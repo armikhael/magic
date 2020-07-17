@@ -7,6 +7,7 @@ class Home extends React.Component {
 		return (
 			<div>
 				<h1>Hola mundo</h1>
+				<p>{process.env.REACT_APP_ENVIROMENT}</p>
 			</div>
 		)
 	}
