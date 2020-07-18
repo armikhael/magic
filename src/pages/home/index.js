@@ -3,6 +3,9 @@
 import React from 'react'
 import { Button, DatePicker } from 'antd'
 
+import Navbar from '../../components/Navbar/Navbar'
+import Footer from '../../components/Footer/Footer'
+
 import './style.css'
 import servicesHome from './services'
 
@@ -28,12 +31,14 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div>
+				<Navbar />
 				<h1>{this.state.title}</h1>
 				<p>{process.env.REACT_APP_ENVIROMENT}</p>
 				<>
 					<Button type='primary'>PRESS ME</Button>
 					<DatePicker placeholder='select date' />
 				</>
+				<Footer />
 			</div>
 		)
 	}
