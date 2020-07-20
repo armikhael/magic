@@ -7,7 +7,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 
 import './style.css'
-import servicesHome from './services'
+import serviceGetAccounts from './services/get-accounts'
 
 class Home extends React.Component {
 	constructor(props) {
@@ -16,16 +16,20 @@ class Home extends React.Component {
 
 		this.state = {
 			title: 'Hola Mundo!',
+			service: null,
 		}
 	}
 
-	handleServicesHome = (item) => {
-		servicesHome(this.state.title)
+	handleServiceGetAccounts = async (item) => {
+		let accounts = await serviceGetAccounts()
+		console.log(accounts);
+		this.setState({ service: accounts.itemsPerPage })
 	}
+
 
 	componentDidMount() {
 		console.log('3. componentDidMount')
-		this.handleServicesHome()
+		this.handleServiceGetAccounts()
 	}
 
 	render() {
@@ -38,6 +42,7 @@ class Home extends React.Component {
 					<Button type='primary'>PRESS ME</Button>
 					<DatePicker placeholder='select date' />
 				</>
+				<p> Servicio nuevo: { this.state.service }</p>
 				<Footer />
 			</div>
 		)
