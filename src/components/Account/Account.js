@@ -11,13 +11,13 @@ class Account extends React.Component {
         
 		if (this.props.items.length >= 0) {
 			return (
-				<ul>
+				<div>
 					{
 						this.props.items.map(function(item, i){
 						    return <li key={i}>{item.email}</li>
 						})
 					}
-				</ul>
+				</div>
 			)
 		} else {
             return 'Cargando...'
