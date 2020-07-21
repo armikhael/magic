@@ -32,6 +32,14 @@ class Home extends React.Component {
 		})
 	}
 
+	handleRepeat(props){
+		if (props.length >= 0) {
+			return <Account items={props}/>
+		} else {
+			return <p>Cargando ...</p>
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -43,9 +51,9 @@ class Home extends React.Component {
 					<DatePicker placeholder='select date' />
 				</>
 				<p> Servicio nuevo: { this.state.service }</p>
-
-				<Account items={this.state.accounts}/>
-			
+				<ul>
+					{ this.handleRepeat(this.state.accounts) }	
+				</ul>
 				<Footer />
 			</div>
 		)
