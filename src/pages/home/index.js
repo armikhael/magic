@@ -5,6 +5,7 @@ import { Button, DatePicker } from 'antd'
 
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
+import Account from '../../components/Account/Account'
 
 import './style.css'
 import serviceGetAccounts from './services'
@@ -20,15 +21,11 @@ class Home extends React.Component {
 		}
 	}
 
-	handleFormatNumber(){
-
-	}
 
 	async componentDidMount () {
 		console.log('3. componentDidMount')
 		let accounts = await serviceGetAccounts()
-		console.log(accounts);
-		
+
 		this.setState({ 
 			service: accounts.itemsPerPage,
 			accounts: accounts.data
@@ -46,10 +43,13 @@ class Home extends React.Component {
 					<DatePicker placeholder='select date' />
 				</>
 				<p> Servicio nuevo: { this.state.service }</p>
-				<p>Objeto { JSON.stringify(this.state.accounts) }</p>
+
+				<Account items={this.state.accounts}/>
+			
 				<Footer />
 			</div>
 		)
 	}
 }
+
 export default Home
