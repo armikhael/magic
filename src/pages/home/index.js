@@ -32,14 +32,6 @@ class Home extends React.Component {
 		})
 	}
 
-	handleRepeat(props){
-		if (props.length >= 0) {
-			return <Account items={props}/>
-		} else {
-			return <p>Cargando ...</p>
-		}
-	}
-
 	render() {
 		return (
 			<div>
@@ -57,6 +49,14 @@ class Home extends React.Component {
 				<Footer />
 			</div>
 		)
+	}
+
+	handleRepeat(props){
+		if (props.length >= 0) {
+			return <Account items={props}/>
+		} else {
+			return <p>Cargando ...</p>
+		}
 	}
 }
 

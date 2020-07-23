@@ -1,6 +1,7 @@
 /** @format */
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './style.css'
 
@@ -14,7 +15,7 @@ class Account extends React.Component {
 				<div>
 					{
 						this.props.items.map(function(item, i){
-						    return <li key={i}>{item.email}</li>
+                        return <Link key={i} to={`/account/${item._id}`}><li>{item.name} - {item.email}</li></Link> 
 						})
 					}
 				</div>
