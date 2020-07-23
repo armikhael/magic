@@ -5,6 +5,7 @@ import { Button, DatePicker } from 'antd'
 
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
+import Loading from '../../components/Loading/Loading'
 import Account from '../../components/Account/Account'
 
 import './style.css'
@@ -13,26 +14,27 @@ import serviceGetAccounts from './services'
 class Home extends React.Component {
 	constructor(props) {
 		super(props)
-		console.log('1. constructor')
 		this.state = {
 			title: 'Hola Mundo!',
 			service: null,
-			accounts: {}
+			accounts: {},
+			loading: true,
 		}
 	}
 
-
-	async componentDidMount () {
-		console.log('3. componentDidMount')
+	async componentDidMount() {
 		let accounts = await serviceGetAccounts()
-
-		this.setState({ 
+		this.setState({
 			service: accounts.itemsPerPage,
-			accounts: accounts.data
+			accounts: accounts.data,
+			loading: false,
 		})
 	}
 
 	render() {
+		if (this.state.loading) {
+			return <Loading />
+		}
 		return (
 			<div>
 				<Navbar />
@@ -42,21 +44,13 @@ class Home extends React.Component {
 					<Button type='primary'>PRESS ME</Button>
 					<DatePicker placeholder='select date' />
 				</>
-				<p> Servicio nuevo: { this.state.service }</p>
+				<p> Servicio nuevo: {this.state.service}</p>
 				<ul>
-					{ this.handleRepeat(this.state.accounts) }	
+					<Account items={this.state.accounts} />
 				</ul>
 				<Footer />
 			</div>
 		)
-	}
-
-	handleRepeat(props){
-		if (props.length >= 0) {
-			return <Account items={props}/>
-		} else {
-			return <p>Cargando ...</p>
-		}
 	}
 }
 
