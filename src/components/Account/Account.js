@@ -12,7 +12,7 @@ class Account extends React.Component {
 				<div>
 					{this.props.items.map(function (item, i) {
 						return (
-							<Link key={i} to={`/account/${item._id}`}>
+							<Link key={i} to={`/account/${item.name}`}>
 								<li>
 									{item.name} - {item.email}
 								</li>

@@ -18,8 +18,8 @@ class Account extends React.Component {
 	}
 
 	async componentDidMount() {
-		this.setState({ name: this.props.match.params.nameId })
-		const data = await serviceGetAccount(this.props.match.params.nameId)
+		this.setState({ name: this.props.match.params.name })
+		const data = await serviceGetAccount(this.props.match.params.name)
 		this.setState({ account: data, loading: false })
 	}
 

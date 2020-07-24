@@ -24,6 +24,8 @@ class Home extends React.Component {
 
 	async componentDidMount() {
 		let accounts = await serviceGetAccounts()
+		console.log(accounts);
+		
 		this.setState({
 			service: accounts.itemsPerPage,
 			accounts: accounts.data,

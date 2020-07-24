@@ -6,7 +6,7 @@ export default async function serviceGetAccount(name) {
 	try {
 		const { data } = await axios({
 			method: 'GET',
-			url: `https://cuentas-virales.herokuapp.com/account/id/${name}`,
+			url: `https://cuentas-virales.herokuapp.com/account/${name}`,
 		})
 		return data
 	} catch (error) {
