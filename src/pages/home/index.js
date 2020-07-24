@@ -3,7 +3,6 @@
 import React from 'react'
 import { Button, DatePicker } from 'antd'
 
-import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import Loading from '../../components/Loading/Loading'
 import Account from '../../components/Account/Account'
@@ -24,8 +23,8 @@ class Home extends React.Component {
 
 	async componentDidMount() {
 		let accounts = await serviceGetAccounts()
-		console.log(accounts);
-		
+		console.log(accounts)
+
 		this.setState({
 			service: accounts.itemsPerPage,
 			accounts: accounts.data,
@@ -38,8 +37,7 @@ class Home extends React.Component {
 			return <Loading />
 		}
 		return (
-			<div>
-				<Navbar />
+			<React.Fragment>
 				<h1>{this.state.title}</h1>
 				<p>{process.env.REACT_APP_ENVIROMENT}</p>
 				<>
@@ -51,7 +49,7 @@ class Home extends React.Component {
 					<Account items={this.state.accounts} />
 				</ul>
 				<Footer />
-			</div>
+			</React.Fragment>
 		)
 	}
 }
