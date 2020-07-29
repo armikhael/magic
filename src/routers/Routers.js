@@ -19,7 +19,7 @@ const Routers = () => (
 			<Switch>
 				<Route exact path='/' component={Home} />
 				<Route exact path='/profile' component={Profile} />
-				<Route exact path='/category' component={Category} />
+				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/account/:name' component={Account} />
 				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/auth/register' component={Register} />

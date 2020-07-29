@@ -1,15 +1,19 @@
 /** @format */
-
 import axios from 'axios'
+require('dotenv').config()
 
 export default async function serviceGetAccounts() {
-	try {
-		const { data } = await axios({
-			method: 'GET',
-			url: 'https://cuentas-virales.herokuapp.com/account?page=1&limit=10',
-		})
-		return data
-	} catch (error) {
-		console.log(error)
-	}
+	let returnResponse
+	await axios({
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/account?page=1&limit=10`,
+	})
+    .then((response) => {
+        returnResponse = response
+    })
+    .catch((error) => {
+        returnResponse = error.response.data
+    })
+
+	return returnResponse
 }
