@@ -1,15 +1,20 @@
 /** @format */
+/** @format */
 
 import axios from 'axios'
 
 export default async function serviceGetAccount(name) {
-	try {
-		const { data } = await axios({
-			method: 'GET',
-			url: `https://cuentas-virales.herokuapp.com/account/${name}`,
+	let returnResponse
+	await axios({
+		method: 'get',
+		url: `https://cuentas-virales.herokuapp.com/account/${name}`,
+	})
+		.then((response) => {
+			returnResponse = response.data[0]
 		})
-		return data
-	} catch (error) {
-		console.log(error)
-	}
+		.catch((error) => {
+			returnResponse = error.response.data
+		})
+
+	return returnResponse
 }
