@@ -12,7 +12,7 @@ class Account extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			account: null,
+			accounts: null,
 			loading: true,
 		}
 	}
@@ -22,7 +22,7 @@ class Account extends React.Component {
 			if (data.statusCode) {
 				this.setState({ loading: false, error: data })
 			} else {
-				this.setState({ loading: false, account: data })
+				this.setState({ loading: false, accounts: data })
 			}
 		})
 	}
@@ -36,7 +36,8 @@ class Account extends React.Component {
 		}
 		return (
 			<div>
-				<h1>Account: {this.state.account.name}</h1>
+				<h1>Account: {this.state.accounts.name}</h1>
+				<p>Account: {JSON.stringify(this.state.accounts)}</p>
 			</div>
 		)
 	}

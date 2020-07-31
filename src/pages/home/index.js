@@ -46,7 +46,7 @@ class Home extends React.Component {
 				</>
 				<p> Servicio nuevo: {this.state.service}</p>
 				<ul>
-					<Account items={this.state.accounts} />
+					<Account items={this.state.accounts.data} />
 				</ul>
 				<Footer />
 			</React.Fragment>
