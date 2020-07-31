@@ -1,0 +1,16 @@
+/** @format */
+
+.cv-navbar-logo {
+	float: left;
+	margin-top: 4px;
+	margin-right: 10px;
+	width: 40px;
+}
+
+.cv-navbar-logo-titles {
+	color: #424346;
+	font-weight: 800;
+	font-size: 16px;
+	cursor: pointer;
+	margin-top: 7px;
+}

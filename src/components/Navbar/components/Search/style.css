@@ -1,0 +1,32 @@
+/** @format */
+
+.cv-navbar-search-content {
+	margin-top: 4px;
+}
+
+.cv-navbar-search-select > .ant-select-selector {
+	border-top-left-radius: 25px !important;
+	border-bottom-left-radius: 25px !important;
+	font-weight: 500;
+	height: 40px !important;
+}
+
+.cv-navbar-search-select .ant-select-selection-item {
+	padding-top: 4px !important;
+}
+
+.cv-navbar-search-input {
+	width: 80%;
+	height: 40px;
+	border-top-right-radius: 25px !important;
+	border-bottom-right-radius: 25px !important;
+}
+
+.cv-navbar-search-input .ant-input-suffix {
+	width: 56px;
+	font-size: 20px;
+}
+
+.cv-navbar-search-input .ant-input-search-icon::before {
+	border-left: 1px solid #fff !important;
+}

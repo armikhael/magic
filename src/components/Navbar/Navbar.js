@@ -2,52 +2,39 @@
 
 import React from 'react'
 
-import { Menu } from 'antd'
-import {
-	MailOutlined,
-	AppstoreOutlined,
-	SettingOutlined,
-} from '@ant-design/icons'
+import { Layout, Row, Col } from 'antd'
 
-const { SubMenu } = Menu
+import Logo from './components/Logo/'
+import SearchNavbar from './components/Search/'
+import User from './components/User/'
+
+import './style.css'
+
+const { Header, Content } = Layout
 
 class Navbar extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			current: 'mail',
-		}
-	}
-
-	handleClick = (e) => {
-		this.setState({ current: e.key })
+		this.state = {}
 	}
 
 	render() {
 		return (
-			<Menu
-				onClick={this.handleClick}
-				selectedKeys={[this.state.current]}
-				mode='horizontal'
-				theme='dark'>
-				<Menu.Item key='mail' icon={<MailOutlined />}>
-					Navigation One
-				</Menu.Item>
-				<Menu.Item key='app' disabled icon={<AppstoreOutlined />}>
-					Navigation Two
-				</Menu.Item>
-				<SubMenu icon={<SettingOutlined />} title='Navigation Three - Submenu'>
-					<Menu.ItemGroup title='Item 1'>
-						<Menu.Item key='setting:1'>Option 1</Menu.Item>
-						<Menu.Item key='setting:2'>Option 2</Menu.Item>
-					</Menu.ItemGroup>
-					<Menu.ItemGroup title='Item 2'>
-						<Menu.Item key='setting:3'>Option 3</Menu.Item>
-						<Menu.Item key='setting:4'>Option 4</Menu.Item>
-					</Menu.ItemGroup>
-				</SubMenu>
-				<Menu.Item key='alipay'>Navigation Four - Link</Menu.Item>
-			</Menu>
+			<Header className='cv-navbar-header-content'>
+				<Content className='cv-navbar-content'>
+					<Row>
+						<Col span={5}>
+							<Logo />
+						</Col>
+						<Col span={15}>
+							<SearchNavbar />
+						</Col>
+						<Col span={4}>
+							<User />
+						</Col>
+					</Row>
+				</Content>
+			</Header>
 		)
 	}
 }
