@@ -7,6 +7,7 @@ import Layout from '../components/Layout/Layout'
 
 import Home from '../pages/home'
 import Profile from '../pages/profile'
+import CreateAccount from '../pages/profile/create-account'
 import Category from '../pages/category'
 import Account from '../pages/account'
 import Login from '../pages/auth/login'
@@ -19,6 +20,7 @@ const Routers = () => (
 			<Switch>
 				<Route exact path='/' component={Home} />
 				<Route exact path='/profile' component={Profile} />
+				<Route exact path='/profile/create-account' component={CreateAccount} />
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/account/:name' component={Account} />
 				<Route exact path='/auth/login' component={Login} />
