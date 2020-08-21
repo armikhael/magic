@@ -28,6 +28,16 @@ export const rulesValidation = {
             min: 4,
             message: 'Minimo 4 caracteres!'
         },
+    ],
+    rulesPhone: [
+        {
+            required: true,
+            message: 'Ingresa un número válido',
+        },
+        { 
+            min: 7,
+            message: 'Minimo 4 caracteres!'
+        },
     ]
 
 }

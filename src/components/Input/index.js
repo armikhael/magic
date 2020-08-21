@@ -29,7 +29,8 @@ class InputField extends React.Component {
 						size='large'
 						prefix={this.props.inputNameIcon}
 						type={this.props.inputNameType}
-						placeholder={this.props.inputNameLabel}
+						placeholder={this.props.inputNameMessage}
+						defaultValue= {this.props.inputNameMessage}
 					/>
 				</Form.Item>
 			</>
