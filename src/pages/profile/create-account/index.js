@@ -26,16 +26,6 @@ class CreateAccount extends React.Component {
 		}
 	}
 
-
-	handleSubmitLogin = async (data) => {
-		console.log(data);
-	}
-
-	handleAddPlans = async () => {
-		console.log(this.state.plans);
-	}
-
-	
 	handleButton = async () => {
 		console.log(this.state);
 	} 
@@ -53,9 +43,8 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	
-
 	handleChangeType = (e) => {
+		console.log(e);
 		this.setState({
 			type: e
 		})
@@ -85,8 +74,7 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handleButtonPlans = () => {
-		console.log('planes');
+	handleButtonPlans = () => {	
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
 			description: this.state.auxDescription,
