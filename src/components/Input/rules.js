@@ -5,13 +5,13 @@ export const rulesValidation = {
             message: 'Correo no es inválido',
         },
         {
-            required: true,
+            required: false,
             message: 'Porfavor ingresa tu Correo',
         },
     ],
     rulesPassword: [
         {
-            required: true,
+            required: false,
             message: 'Ingresa tu contraseña!',
         },
         { 
@@ -21,7 +21,7 @@ export const rulesValidation = {
     ],
     rulesText: [
         {
-            required: true,
+            required: false,
             message: 'Ingresa el nombre de tu cuenta',
         },
         { 
@@ -31,7 +31,7 @@ export const rulesValidation = {
     ],
     rulesPhone: [
         {
-            required: true,
+            required: false,
             message: 'Ingresa un número válido',
         },
         { 

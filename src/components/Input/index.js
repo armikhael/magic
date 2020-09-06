@@ -30,7 +30,7 @@ class InputField extends React.Component {
 						prefix={this.props.inputNameIcon}
 						type={this.props.inputNameType}
 						placeholder={this.props.inputNameMessage}
-						defaultValue= {this.props.inputNameMessage}
+						onChange={this.props.inputChange}
 					/>
 				</Form.Item>
 			</>

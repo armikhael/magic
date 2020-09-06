@@ -1,129 +1,231 @@
 /** @format */
 
 import React from 'react'
-import { Form, Select, Button, Input } from 'antd'
+import { Form, Select, Button, Input, Tag } from 'antd'
 
-import { MailOutlined, UserOutlined,  } from '@ant-design/icons'
-import InputField from '../../../components/Input'
-import SelectField from '../../../components/Select'
+import { } from '@ant-design/icons'
 
 import './style.css'
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
-}
 
 const { Option } = Select;
-
-const selectParams = [];
-for (let i = 0; i < 10; i++) {
-	selectParams.push(<Option key={i}>{ 'Categoria ' + i }</Option>);
-}
-
 
 class CreateAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			email: null,
+			name: null,
+			type: null,
+			description: null,
+			image: null,
+			categories: null,
 			plans: [],
+			auxDescription: null,
+			auxPrice: null
 		}
 	}
 
 
-	handleButton(e){
-		alert(e)
+	handleSubmitLogin = async (data) => {
+		console.log(data);
+	}
+
+	handleAddPlans = async () => {
+		console.log(this.state.plans);
+	}
+
+	
+	handleButton = async () => {
+		console.log(this.state);
+	} 
+
+	handleChangeInput = (e) => {
+		console.log(e.target.value);
+		this.setState({
+			[e.target.id]: e.target.value
+		})
+	}
+	handleChangePlans = (e) => {
+		console.log(e.target.value);
+		this.setState({
+			[e.target.id]: e.target.value
+		})
+	}
+
+	
+
+	handleChangeType = (e) => {
+		this.setState({
+			type: e
+		})
+	}
+
+	handleChangeCountry = (e) => {
+		console.log(JSON.parse(e));
+		this.setState({
+			country: e
+		})
+	}
+
+	handlerTagRender(props) {
+		const { label, value, closable, onClose } = props;
+	  
+		return (
+		  <Tag color={value} closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
+			{label}
+		  </Tag>
+		);
+	}
+
+	handleCategory = (e) => {
+		console.log(e);
+		this.setState({
+			categories: e
+		})
+	}
+
+	handleButtonPlans = () => {
+		console.log('planes');
+		let arrayPlans = this.state.plans
+		arrayPlans.push({
+			description: this.state.auxDescription,
+			proce: this.state.auxPrice,
+		})
+		this.setState({
+			plans: arrayPlans,
+			auxDescription: '',
+			auxPrice: ''
+		})
+		console.log(this.state.plans);
+
+
 	}
 	
 	render() {
-		
+		const options = [{ value: 'Deporte' }, { value: 'Comida' }, { value: 'Dietas' }, { value: 'Rutinas' }];
 		return (
 			<div>
 				<h1>Crear Cuenta</h1>
-				<Form>
-					<InputField
-						inputName={'email'}
-						inputNameLabel={'Correo electrónico'}
-						inputNameMessage={'diego.carciente@gmail.com'}
-						inputNameType={'text'}
-						inputNameIcon={<MailOutlined />}
-						inputNameRules={'rulesEmail'}
-					/>
-					<InputField
-						inputName={'name'}
-						inputNameLabel={'Nombre de la cuenta'}
-						inputNameMessage={'@publicidadcreativa'}
-						inputNameType={'text'}
-						inputNameIcon={<UserOutlined />}
-						inputNameRules={'rulesText'}
-					/>
-					<InputField
-						inputName={'type'}
-						inputNameLabel={'Tipo de cuenta'}
-						inputNameRule={true}
-						inputNameMessage={'instagram'}
-						inputNameType={'text'}
-						inputNameRules={'rulesText'}
-					/>
-					<InputField
-						inputName={'description'}
-						inputNameLabel={'Biografía'}
-						inputNameRule={true}
-						inputNameMessage={'La Casa de Papel como la mejor serie del mundo'}
-						inputNameType={'text'}
-						inputNameRules={'rulesText'}
-					/>
-					<InputField
-						inputName={'image'}
-						inputNameLabel={'Imagen de la cuenta'}
-						inputNameRule={true}
-						inputNameMessage={'https://i.pinimg.com/236x/3e/7e/37/3e7e37c281b5947d7aae4e8575882309.jpg'}
-						inputNameType={'text'}
-						inputNameRules={'rulesText'}
-					/>
-					<InputField
-						inputName={'code'}
-						inputNameLabel={'Código de pais'}
-						inputNameRule={true}
-						inputNameMessage={'+56'}
-						inputNameType={'text'}
-						inputNameRules={'rulesText'}
-					/>
-					<InputField
-						inputName={'phone'}
-						inputNameLabel={'Número'}
-						inputNameRule={true}
-						inputNameMessage={'982565380'}
-						inputNameType={'text'}
-						inputNameRules={'rulesPhone'}
-					/>
-					<SelectField
-						selectMode={"multiple"}
-						selectPlaceholder={"¿En qué categorias influencias?"}
-						selectDefault={[]}
-						selectFunction={handleChange}
-						selectOptions={selectParams}
-					/>
-					<InputField
-						inputName={'plansDescription'}
-						inputNameLabel={'Descripción del Plan'}
-						inputNameRule={true}
-						inputNameMessage={'Plan publicitario 1'}
-						inputNameType={'text'}
-						inputNameRules={'rulesText'}
-					/>
-					<Input 
-						placeholder="Precio" 
-						size="small"
-					/>
-					<Button
-						type="primary" e
-						shape="round"
-						size='large'
-						onClick={this.handleButton}
+				<Form
+					onFinish={this.handleSubmitLogin}
+				>	
+					<Form.Item
+						label="Correo Electrónico:"
+						name="email"
+						onChange={this.handleChangeInput}
+						defaultValue="diego.carciente@gmail.com"
 					>
-						Agregar
-					</Button>
+						<Input/>
+					</Form.Item>
+					<Form.Item
+						label="Nombre de la cuenta"
+						name="name"
+						onChange={this.handleChangeInput}
+						defaultValue="@publicidadcreativa"
+					>
+						<Input/>
+					</Form.Item>
+					<Form.Item label="Tipo de cuenta">
+						<Select 
+							onChange={this.handleChangeType}
+						>
+							<Option value="instagram">Instagram</Option>
+							<Option value="facebook">Facebook</Option>
+							<Option value="youtube">Youtube</Option>
+						</Select>
+					</Form.Item>
 					
+					<Form.Item
+						label="Biografia"
+						name="description"
+						onChange={this.handleChangeInput}
+						defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+					>
+						<Input/>
+					</Form.Item>
+
+					<Form.Item
+						label="Imagen"
+						name="image"
+						onChange={this.handleChangeInput}
+						defaultValue="https://i.pinimg.com/236x/3e/7e/37/3e7e37c281b5947d7aae4e8575882309.jpg"
+					>
+						<Input/>
+					</Form.Item>
+
+					<Form.Item label="País">
+						<Select 
+							onChange={this.handleChangeCountry}
+						>
+							<Option value={JSON.stringify({ code: "56", name: "chile" })}>Chile</Option>
+							<Option value={JSON.stringify({ code: "57", name: "colombia" })}>Colombia</Option>
+							<Option value={JSON.stringify({ code: "58", name: "venezuela" })}>Venezuela</Option>
+						</Select>
+					</Form.Item>
+					
+					
+					<Form.Item
+						label="Número"
+						name="phone"
+						onChange={this.handleChangeInput}
+						defaultValue="982565380"
+					>
+						<Input/>
+					</Form.Item>
+					<Form.Item
+						label="Categorias"
+						name="categories"
+					>
+						<Select
+							mode="multiple"
+							showArrow
+							tagRender={this.tagRender}
+							style={{ width: '100%' }}
+							options={options}
+							onChange={this.handleCategory}
+						/>
+					</Form.Item>
+					
+					<hr></hr>
+
+					<Form.Item label="Planes">
+						<Input.Group compact>
+							<Form.Item
+								name="auxDescription"
+								placeholder="Descripción del paquete" 
+								onChange={this.handleChangePlans}
+							>
+								<Input/>
+							</Form.Item>
+							<Form.Item
+								name="auxPrice"
+								placeholder="price"
+								onChange={this.handleChangePlans}
+							>
+								<Input/>
+							</Form.Item>
+						</Input.Group>
+						<Form.Item>
+							<Button
+								type="primary" 
+								shape="round"
+								onClick={this.handleButtonPlans}
+							>
+								Agregar otro Plan
+							</Button>
+						</Form.Item>
+      				</Form.Item>
+
+					<Form.Item>
+						<Button
+							type="primary" 
+							shape="round"
+							onClick={this.handleButton}
+						>
+							Registrar
+						</Button>
+					</Form.Item>
 				</Form>
 
 			</div>
