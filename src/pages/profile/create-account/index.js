@@ -6,7 +6,7 @@ import { Form, Select, Button, Input, Tag } from 'antd'
 import { } from '@ant-design/icons'
 
 import './style.css'
-
+import { serviceGetCategories, serviceSaveAccount } from './services'
 
 const { Option } = Select;
 
@@ -21,13 +21,43 @@ class CreateAccount extends React.Component {
 			image: null,
 			categories: null,
 			plans: [],
+			phone: null,
 			auxDescription: null,
-			auxPrice: null
+			auxPrice: null,
+			responseCategories: []
 		}
 	}
 
+	async componentDidMount() {
+		await serviceGetCategories().then((data) => {			
+			console.log(data);
+			let result = data.map((item) => {
+				return {
+					value: item.name
+				}
+			})
+			this.setState({ responseCategories: result})
+		})
+
+		
+	}
+	
 	handleButton = async () => {
 		console.log(this.state);
+		let body = {
+			email: this.state.email,
+			name: this.state.name,
+			type: this.state.type,
+			description: this.state.description,
+			image: this.state.image,
+			categories: this.state.categories,
+			plans: this.state.plans,
+			phone: this.state.phone,
+		}
+		await serviceSaveAccount(body).then((data) => {
+			console.log(data);
+		})
+		
 	} 
 
 	handleChangeInput = (e) => {
@@ -53,7 +83,7 @@ class CreateAccount extends React.Component {
 	handleChangeCountry = (e) => {
 		console.log(JSON.parse(e));
 		this.setState({
-			country: e
+			country: JSON.parse(e)
 		})
 	}
 
@@ -82,8 +112,6 @@ class CreateAccount extends React.Component {
 		})
 		this.setState({
 			plans: arrayPlans,
-			auxDescription: '',
-			auxPrice: ''
 		})
 		console.log(this.state.plans);
 
@@ -91,7 +119,7 @@ class CreateAccount extends React.Component {
 	}
 	
 	render() {
-		const options = [{ value: 'Deporte' }, { value: 'Comida' }, { value: 'Dietas' }, { value: 'Rutinas' }];
+		
 		return (
 			<div>
 				<h1>Crear Cuenta</h1>
@@ -170,7 +198,7 @@ class CreateAccount extends React.Component {
 							showArrow
 							tagRender={this.tagRender}
 							style={{ width: '100%' }}
-							options={options}
+							options={this.state.responseCategories}
 							onChange={this.handleCategory}
 						/>
 					</Form.Item>
