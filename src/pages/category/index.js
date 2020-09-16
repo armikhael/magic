@@ -3,7 +3,7 @@
 import React from 'react'
 
 import Loading from '../../components/Loading/Loading'
-import Account from '../../components/Account/Account'
+import Account from '../../components/Account/'
 
 import './style.css'
 import serviceGetAccountByCategory from './services'
@@ -12,23 +12,23 @@ class Category extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			accounts: []
+			accounts: [],
 		}
 	}
 
 	async componentDidMount() {
-		console.log(this.props.match.params.name);
-		
-		let page = (this.props.match.params.name) ? this.props.match.params.page : 0
-		await serviceGetAccountByCategory(this.props.match.params.name, page).then((data) => {			
-			if (data.statusCode !== 200) {
-				this.setState({ loading: false, error: data })
-			} else {
-				this.setState({ loading: false, accounts: data.data })
-			}
-		})
+		console.log(this.props.match.params.name)
 
-		
+		let page = this.props.match.params.name ? this.props.match.params.page : 0
+		await serviceGetAccountByCategory(this.props.match.params.name, page).then(
+			(data) => {
+				if (data.statusCode !== 200) {
+					this.setState({ loading: false, error: data })
+				} else {
+					this.setState({ loading: false, accounts: data.data })
+				}
+			}
+		)
 	}
 
 	render() {

@@ -1,0 +1,14 @@
+/** @format */
+
+.cv-masonry-grid {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: auto;
+	margin-top: 20px;
+}
+
+.cv-masonry-grid_column {
+	padding-left: 0px;
+	background-clip: padding-box;
+}
