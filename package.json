@@ -9,9 +9,11 @@
     "antd": "^4.5.4",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "moment": "^2.28.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-masonry-css": "^1.0.14",
+    "react-moment": "^0.9.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },

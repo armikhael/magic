@@ -3,6 +3,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-css'
+import Moment from 'react-moment'
 
 import { Button, DatePicker, Layout, Row, Col } from 'antd'
 import {
@@ -91,7 +92,10 @@ class Home extends React.Component {
 															{item.categories[0]}
 														</span>
 														<ClockCircleOutlined />
-														&nbsp; {item.createdAt}
+														&nbsp;{' '}
+														<Moment format='D MMM YYYY' withTitle>
+															{item.createdAt}
+														</Moment>
 													</h3>
 												</Col>
 												<Col span={6}>
