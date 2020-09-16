@@ -1,0 +1,14 @@
+/** @format */
+
+@media only screen and (min-width: 960px) {
+	.cv-container-main {
+		max-width: 940px;
+	}
+}
+
+@media only screen and (min-width: 1264px) {
+	.cv-container-main {
+		max-width: 1300px;
+		margin: 0 auto;
+	}
+}
