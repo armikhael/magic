@@ -4,9 +4,10 @@ import React from 'react'
 
 import { Layout } from 'antd'
 
-import Footer from '../../components/Footer/Footer'
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
+import PageError from '../../components/Errors/PageError'
+import Footer from '../../components/Footer/Footer'
 
 import './style.css'
 import serviceGetAccounts from './services'
@@ -19,21 +20,32 @@ class Home extends React.Component {
 		this.state = {
 			accounts: {},
 			loading: true,
+			error: null,
 		}
 	}
 
 	async componentDidMount() {
-		let accounts = await serviceGetAccounts()
-		console.log(accounts.data)
-		this.setState({
-			accounts: accounts.data,
-			loading: false,
+		await serviceGetAccounts().then((data) => {
+			if (data.status === 200) {
+				this.setState({
+					accounts: data.data,
+					loading: false,
+				})
+			} else {
+				this.setState({
+					loading: false,
+					error: data,
+				})
+			}
 		})
 	}
 
 	render() {
 		if (this.state.loading) {
 			return <Loading />
+		}
+		if (this.state.error) {
+			return <PageError detailError={this.state.error} />
 		}
 		return (
 			<React.Fragment>

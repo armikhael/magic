@@ -8,12 +8,12 @@ export default async function serviceGetAccounts() {
 		method: 'GET',
 		url: `${process.env.REACT_APP_HOST}/account?page=1&limit=10`,
 	})
-    .then((response) => {
-        returnResponse = response
-    })
-    .catch((error) => {
-        returnResponse = error.response.data
-    })
+		.then((response) => {
+			returnResponse = response
+		})
+		.catch((error) => {
+			returnResponse = error.response.data
+		})
 
 	return returnResponse
 }
