@@ -1,5 +1,9 @@
 /** @format */
 
+body {
+	background-color: #f5f6f8;
+}
+
 @media only screen and (min-width: 960px) {
 	.cv-container-main {
 		max-width: 940px;
