@@ -3,6 +3,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
+import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
 import {
@@ -23,16 +24,18 @@ class Account extends React.Component {
 						<ShareAltOutlined />
 						&nbsp; SHARE
 					</div>
-					<div className='cv-masonry-item-card-image'>
-						<img
-							title={this.props.account.name}
-							alt={this.props.account.name}
-							className='cv-masonry-item-image'
-							src={this.props.account.image}
-						/>
-						<div className='cv-masonry-item-card-image-bg'></div>
-						<EyeOutlined className='cv-fa-eye' />
-					</div>
+					<Link to={`/account/${this.props.account.name}`}>
+						<div className='cv-masonry-item-card-image'>
+							<img
+								title={this.props.account.name}
+								alt={this.props.account.name}
+								className='cv-masonry-item-image'
+								src={this.props.account.image}
+							/>
+							<div className='cv-masonry-item-card-image-bg'></div>
+							<EyeOutlined className='cv-fa-eye' />
+						</div>
+					</Link>
 					<div className='cv-masonry-item-card-titles'>
 						<Link to={`/account/${this.props.account.name}`}>
 							<h3 className='cv-masonry-item-title'>
