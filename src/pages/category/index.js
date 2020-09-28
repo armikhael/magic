@@ -2,11 +2,15 @@
 
 import React from 'react'
 
+import { Layout } from 'antd'
+
 import Loading from '../../components/Loading/Loading'
-import Account from '../../components/Account/'
+import ListMasonry from '../../components/ListMasonry/'
 
 import './style.css'
 import serviceGetAccountByCategory from './services'
+
+const { Content } = Layout
 
 class Category extends React.Component {
 	constructor(props) {
@@ -18,14 +22,14 @@ class Category extends React.Component {
 
 	async componentDidMount() {
 		console.log(this.props.match.params.name)
-
 		let page = this.props.match.params.name ? this.props.match.params.page : 0
 		await serviceGetAccountByCategory(this.props.match.params.name, page).then(
 			(data) => {
-				if (data.statusCode !== 200) {
-					this.setState({ loading: false, error: data })
-				} else {
+				if (data.statusCode === 200) {
+					console.log(data.data)
 					this.setState({ loading: false, accounts: data.data })
+				} else {
+					this.setState({ loading: false, error: data })
 				}
 			}
 		)
@@ -38,11 +42,14 @@ class Category extends React.Component {
 		return (
 			<React.Fragment>
 				<div>
-					<h1>Category</h1>
-					<p>Cuentas por categoria</p>
-					<ul>
-						<Account items={this.state.accounts} />
-					</ul>
+					<Content className='cv-container-main'>
+						<div className='cv-category-content-title'>
+							<h1 className='cv-category-title'>
+								Category {this.props.match.params.name}
+							</h1>
+						</div>
+						<ListMasonry listMasonry={this.state.accounts} />
+					</Content>
 				</div>
 			</React.Fragment>
 		)
