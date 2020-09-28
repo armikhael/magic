@@ -52,9 +52,11 @@ class Account extends React.Component {
 						<Row>
 							<Col span={18}>
 								<h3 className='cv-masonry-item-gird-date-card-title'>
-									<span className='cv-masonry-item-gird-category-title'>
-										{this.props.account.categories[0]}
-									</span>
+									<Link to={`/category/${this.props.account.categories[0]}`}>
+										<span className='cv-masonry-item-gird-category-title'>
+											{this.props.account.categories[0]}
+										</span>
+									</Link>
 									<ClockCircleOutlined />
 									&nbsp;{' '}
 									<Moment format='D MMM YYYY' withTitle>
