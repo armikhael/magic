@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Layout from '../components/Layout/Layout'
 
+import Test from '../pages/test'
+
 import Home from '../pages/home'
 import Profile from '../pages/profile'
 import CreateAccount from '../pages/profile/create-account'
@@ -19,6 +21,7 @@ const Routers = () => (
 		<Layout>
 			<Switch>
 				<Route exact path='/' component={Home} />
+				<Route exact path='/test' component={Test} />
 				<Route exact path='/profile' component={Profile} />
 				<Route exact path='/profile/create-account' component={CreateAccount} />
 				<Route exact path='/category/:name' component={Category} />
