@@ -24,16 +24,14 @@ class Account extends React.Component {
 						&nbsp; SHARE
 					</div>
 					<div className='cv-masonry-item-card-image'>
-						<Link to={`/account/${this.props.account.name}`}>
-							<img
-								title={this.props.account.name}
-								alt={this.props.account.name}
-								className='cv-masonry-item-image'
-								src={this.props.account.image}
-							/>
-							<div className='cv-masonry-item-card-image-bg'></div>
-							<EyeOutlined className='cv-fa-eye' />
-						</Link>
+						<img
+							title={this.props.account.name}
+							alt={this.props.account.name}
+							className='cv-masonry-item-image'
+							src={this.props.account.image}
+						/>
+						<div className='cv-masonry-item-card-image-bg'></div>
+						<EyeOutlined className='cv-fa-eye' />
 					</div>
 					<div className='cv-masonry-item-card-titles'>
 						<Link to={`/account/${this.props.account.name}`}>
