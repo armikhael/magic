@@ -3,12 +3,11 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout } from 'antd'
+import { Layout, Spin } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
 import PageError from '../../components/Errors/PageError'
-import Footer from '../../components/Footer/Footer'
 
 import './style.css'
 import serviceGetAccounts from './services'
@@ -62,11 +61,14 @@ class Home extends React.Component {
 						dataLength={this.state.list.length}
 						next={this.handleList}
 						hasMore={this.state.hasMore}
-						loader={<h4>Loading...</h4>}>
+						loader={
+							<center>
+								<Spin />
+							</center>
+						}>
 						<ListMasonry listMasonry={this.state.list} />
 					</InfiniteScroll>
 				</Content>
-				<Footer />
 			</React.Fragment>
 		)
 	}
