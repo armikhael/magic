@@ -1,11 +1,13 @@
 /** @format */
 
 import React from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout } from 'antd'
+import { Layout, Spin } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
+import PageError from '../../components/Errors/PageError'
 
 import './style.css'
 import serviceGetAccountByCategory from './services'
@@ -16,28 +18,39 @@ class Category extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			accounts: [],
+			list: [],
+			page: 1,
+			hasMore: true,
 		}
 	}
 
 	async componentDidMount() {
-		console.log(this.props.match.params.name)
-		let page = this.props.match.params.name ? this.props.match.params.page : 0
-		await serviceGetAccountByCategory(this.props.match.params.name, page).then(
-			(data) => {
-				if (data.statusCode === 200) {
-					console.log(data.data)
-					this.setState({ loading: false, accounts: data.data })
-				} else {
-					this.setState({ loading: false, error: data })
-				}
+		this.handleList()
+	}
+
+	handleList = async () => {
+		await serviceGetAccountByCategory(
+			this.props.match.params.name,
+			this.state.page
+		).then((data) => {
+			if (data.statusCode === 200) {
+				this.setState({
+					list: [...this.state.list, ...data.data],
+					page: this.state.page + 1,
+					loading: false,
+				})
+			} else {
+				this.setState({ loading: false, error: data })
 			}
-		)
+		})
 	}
 
 	render() {
 		if (this.state.loading) {
 			return <Loading />
+		}
+		if (this.state.error) {
+			return <PageError detailError={this.state.error} />
 		}
 		return (
 			<React.Fragment>
@@ -48,7 +61,17 @@ class Category extends React.Component {
 								Category {this.props.match.params.name}
 							</h1>
 						</div>
-						<ListMasonry listMasonry={this.state.accounts} />
+						<InfiniteScroll
+							dataLength={this.state.list.length}
+							next={this.handleList}
+							hasMore={this.state.hasMore}
+							loader={
+								<center>
+									<Spin />
+								</center>
+							}>
+							<ListMasonry listMasonry={this.state.list} />
+						</InfiniteScroll>
 					</Content>
 				</div>
 			</React.Fragment>
