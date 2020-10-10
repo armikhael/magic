@@ -6,7 +6,7 @@ import { Form, Select, Button, Input, Tag } from 'antd'
 import { } from '@ant-design/icons'
 
 import './style.css'
-import { serviceGetCategories, serviceSaveAccount } from './services'
+import { serviceGetCategories, serviceSaveAccount, serviceGetInstagramAccount } from './services'
 
 const { Option } = Select;
 
@@ -39,7 +39,17 @@ class CreateAccount extends React.Component {
 			this.setState({ responseCategories: result})
 		})
 
-		
+		const account = 'publicidadcreativa'
+		await serviceGetInstagramAccount(account).then((data) => {			
+			const jsonObject = data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+			const jsonParse = JSON.parse(jsonObject);
+			const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+			this.setState({
+				name: account,
+				description: userInfo.biography
+			})
+			console.log(userInfo);
+		})
 	}
 	
 	handleButton = async () => {
@@ -136,11 +146,8 @@ class CreateAccount extends React.Component {
 					</Form.Item>
 					<Form.Item
 						label="Nombre de la cuenta"
-						name="name"
-						onChange={this.handleChangeInput}
-						defaultValue="@publicidadcreativa"
 					>
-						<Input/>
+						<Input defaultValue={this.state.name} />
 					</Form.Item>
 					<Form.Item label="Tipo de cuenta">
 						<Select 
@@ -154,11 +161,8 @@ class CreateAccount extends React.Component {
 					
 					<Form.Item
 						label="Biografia"
-						name="description"
-						onChange={this.handleChangeInput}
-						defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 					>
-						<Input/>
+						<Input defaultValue="Biografia" />
 					</Form.Item>
 
 					<Form.Item

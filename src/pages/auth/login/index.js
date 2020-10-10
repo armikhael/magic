@@ -3,26 +3,23 @@
 import React from 'react'
 
 import { Layout, Row, Col } from 'antd'
-import { FacebookOutlined, GoogleOutlined } from '@ant-design/icons'
+import { GoogleOutlined } from '@ant-design/icons'
 import { GoogleLogin } from 'react-google-login';
+
 
 import './style.css'
 
 const { Content } = Layout
-
 class Login extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {}
 	}
 
-
-
 	render() {
 		const responseGoogle = (response) => {
 			console.log(response);
 		}
-
 		return (
 			<React.Fragment>
 				<div className='cv-login-content'>
@@ -49,18 +46,27 @@ class Login extends React.Component {
 											Encuentra las mejores cuentas
 										</p>
 									</div>
-									<div className='cv-login-content-redes-sociales'>
+									<div className='cv-login-content-redes-sociales'>										
 										<div className='cv-login-content-reds-sociales-google'>
-										<GoogleLogin
-											clientId="264087860616-jckkkgv633q5r4n2othpppgk6rarhf03.apps.googleusercontent.com"
-											render={renderProps => (
-												<button onClick={renderProps.onClick} disabled={renderProps.disabled}>Continuar con Google</button>
-											)}
-											buttonText="Login"
-											onSuccess={responseGoogle}
-											onFailure={responseGoogle}
-											cookiePolicy={'single_host_origin'}
-										/>
+											<GoogleOutlined className='cv-login-content-reds-sociales-google-i' />
+											<GoogleLogin
+												clientId="264087860616-jckkkgv633q5r4n2othpppgk6rarhf03.apps.googleusercontent.com"
+												render={renderProps => (
+													<h2 
+														className='cv-login-title-reds-sociales-google'
+														onClick={renderProps.onClick} 
+														disabled={renderProps.disabled}>
+														Continuar con Google
+													</h2>
+												)}
+												buttonText="Login"
+												onSuccess={responseGoogle}
+												onFailure={responseGoogle}
+												cookiePolicy={'single_host_origin'}
+												
+											/>
+											
+											
 										</div>
 									</div>
 									<br />

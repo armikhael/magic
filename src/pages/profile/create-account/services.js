@@ -36,4 +36,20 @@ import axios from 'axios'
         return returnResponse
     }
 
-    export { serviceGetCategories, serviceSaveAccount };
+    const serviceGetInstagramAccount = async (param) => {
+        let returnResponse
+        await axios({
+            method: 'GET',
+            url: `https://www.instagram.com/${param}`,
+        })
+        .then((response) => {
+            returnResponse = response.data
+        })
+        .catch((error) => {
+            returnResponse = error.response
+        })
+
+        return returnResponse
+    }
+
+    export { serviceGetCategories, serviceSaveAccount, serviceGetInstagramAccount };
