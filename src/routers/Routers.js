@@ -15,6 +15,7 @@ import Account from '../pages/account'
 import Login from '../pages/auth/login'
 import Register from '../pages/auth/register'
 import Recovery from '../pages/auth/recovery'
+import NotFound from '../pages/notfound'
 
 const Routers = () => (
 	<BrowserRouter>
@@ -29,6 +30,7 @@ const Routers = () => (
 				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/auth/register' component={Register} />
 				<Route exact path='/auth/recovery' component={Recovery} />
+				<Route component={NotFound} />
 			</Switch>
 		</Layout>
 	</BrowserRouter>
