@@ -2,9 +2,8 @@
 
 import React from 'react'
 import { Form, Select, Button, Input, Tag } from 'antd'
-
 import { } from '@ant-design/icons'
-
+				
 import './style.css'
 import { serviceGetCategories, serviceSaveAccount, serviceGetInstagramAccount } from './services'
 
@@ -28,6 +27,7 @@ class CreateAccount extends React.Component {
 		}
 	}
 
+	
 	async componentDidMount() {
 		await serviceGetCategories().then((data) => {			
 			console.log(data);
@@ -38,6 +38,7 @@ class CreateAccount extends React.Component {
 			})
 			this.setState({ responseCategories: result})
 		})
+
 
 		const account = 'publicidadcreativa'
 		await serviceGetInstagramAccount(account).then((data) => {			

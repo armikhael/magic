@@ -2,8 +2,25 @@
 
 import React from 'react'
 import axios from 'axios'
+import { createStore } from 'redux'
+
+const initialState = {
+	email: null,
+	firstName: null,
+	lastName: null
+}
+				
+const mutation = (state = initialState, action) => {
+	state[action.type] = action.payload
+	return state
+}
+
+const store = createStore(mutation)
+
+		
 
 class Test extends React.Component {
+	
 	state = {
 		list: [],
 		pageNumber: 1,
@@ -32,8 +49,30 @@ class Test extends React.Component {
 		console.log(userInfo);
 	}
 
+
 	render() {
 
+
+		store.subscribe(() => {
+			console.log('Update store', store.getState());
+		})
+		
+					
+		store.dispatch({
+			type: 'email',
+			payload: 'diego.carciente@gmail.com'
+		})
+
+		store.dispatch({
+			type: 'firstName',
+			payload: 'Diego'
+		})
+
+		store.dispatch({
+			type: 'lastName',
+			payload: 'Carciente'
+		})
+		
 		return (
 			<div className='App'>
 				<p>Biografia: {this.state.biography}</p>
