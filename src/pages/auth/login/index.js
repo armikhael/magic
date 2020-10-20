@@ -4,8 +4,7 @@ import React from 'react'
 
 import { Layout, Row, Col } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
-import { GoogleLogin } from 'react-google-login';
-
+import { GoogleLogin } from 'react-google-login'
 
 import './style.css'
 
@@ -18,19 +17,19 @@ class Login extends React.Component {
 
 	render() {
 		const responseGoogle = (response) => {
-			console.log(response);
+			console.log(response)
 		}
 		return (
 			<React.Fragment>
 				<div className='cv-login-content'>
 					<Content className='cv-container-main'>
 						<Row className='cv-login-conteent-row' align='middle'>
-							<Col span={12}>
+							<Col xs={24} sm={24} md={12}>
 								<h1 className='cv-login-title-main'>
 									Registrate para ver todas las cuentas...
 								</h1>
 							</Col>
-							<Col span={12}>
+							<Col xs={24} sm={24} md={12}>
 								<div className='cv-login-content-logins'>
 									<div className='cv-login-content-logins-center'>
 										<img
@@ -46,27 +45,24 @@ class Login extends React.Component {
 											Encuentra las mejores cuentas
 										</p>
 									</div>
-									<div className='cv-login-content-redes-sociales'>										
+									<div className='cv-login-content-redes-sociales'>
 										<div className='cv-login-content-reds-sociales-google'>
 											<GoogleOutlined className='cv-login-content-reds-sociales-google-i' />
 											<GoogleLogin
-												clientId="264087860616-jckkkgv633q5r4n2othpppgk6rarhf03.apps.googleusercontent.com"
-												render={renderProps => (
-													<h2 
+												clientId='264087860616-jckkkgv633q5r4n2othpppgk6rarhf03.apps.googleusercontent.com'
+												render={(renderProps) => (
+													<h2
 														className='cv-login-title-reds-sociales-google'
-														onClick={renderProps.onClick} 
+														onClick={renderProps.onClick}
 														disabled={renderProps.disabled}>
 														Continuar con Google
 													</h2>
 												)}
-												buttonText="Login"
+												buttonText='Login'
 												onSuccess={responseGoogle}
 												onFailure={responseGoogle}
 												cookiePolicy={'single_host_origin'}
-												
 											/>
-											
-											
 										</div>
 									</div>
 									<br />

@@ -190,6 +190,13 @@
 	font-weight: 900;
 	cursor: pointer;
 }
+
 .cv-masonry-item-share-card i {
 	margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+	.cv-masonry-item-card {
+		margin: 5px;
+	}
 }
