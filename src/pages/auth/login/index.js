@@ -1,11 +1,12 @@
 /** @format */
 
 import React from 'react'
-
-import { Layout, Row, Col } from 'antd'
+import { Link } from "react-router-dom";
+import { Layout, Row, Col, Button } from 'antd'
+import { connect } from 'react-redux'
+import { saveUser } from '../../../redux'
 import { GoogleOutlined } from '@ant-design/icons'
 import { GoogleLogin } from 'react-google-login';
-
 
 import './style.css'
 
@@ -17,8 +18,9 @@ class Login extends React.Component {
 	}
 
 	render() {
-		const responseGoogle = (response) => {
-			console.log(response);
+		const responseGoogle = (data) => {
+			console.log(data)
+			this.props.saveUser('email', data.profileObj.email)
 		}
 		return (
 			<React.Fragment>
@@ -40,7 +42,7 @@ class Login extends React.Component {
 											src='https://i.ibb.co/JnXwKMt/viral.png'
 										/>
 										<h2 className='cv-login-title-register'>
-											Bienvenido a Cuentas Virales
+											Bienvenido a Cuentas Virales: {this.props.email}
 										</h2>
 										<p className='cv-login-sub-title-register'>
 											Encuentra las mejores cuentas
@@ -74,6 +76,11 @@ class Login extends React.Component {
 										Al continuar, aceptas las Condiciones del servicio y la
 										Política de privacidad de Cuentas Virales.
 									</p>
+									<Link to="/profile/create-account">
+										<Button>
+											<p>Click Me!</p>
+										</Button>
+									</Link>
 								</div>
 							</Col>
 						</Row>
@@ -83,4 +90,23 @@ class Login extends React.Component {
 		)
 	}
 }
-export default Login
+
+const mapStateToProps = state => {
+	return {
+		email: state.email
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		saveUser: (field, value) => {
+			dispatch(saveUser(field, value))
+		}
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Login)
+

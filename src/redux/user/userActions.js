@@ -1,5 +1,7 @@
-export const saveUser = () => {
+export const saveUser = (field, payload) => {
     return  {
-        type: 'SAVE_USER'
+        type: 'GLOBAL_USER',
+        field: field, 
+        payload: payload,
     }
 }

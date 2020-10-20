@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Form, Select, Button, Input, Tag } from 'antd'
+import { connect } from 'react-redux'
 import { } from '@ant-design/icons'
 				
 import './style.css'
@@ -13,7 +14,6 @@ class CreateAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			email: null,
 			name: null,
 			type: null,
 			description: null,
@@ -29,6 +29,8 @@ class CreateAccount extends React.Component {
 
 	
 	async componentDidMount() {
+
+		console.log(this.props.email);
 		await serviceGetCategories().then((data) => {			
 			console.log(data);
 			let result = data.map((item) => {
@@ -130,7 +132,6 @@ class CreateAccount extends React.Component {
 	}
 	
 	render() {
-		
 		return (
 			<div>
 				<h1>Crear Cuenta</h1>
@@ -139,11 +140,11 @@ class CreateAccount extends React.Component {
 				>	
 					<Form.Item
 						label="Correo Electrónico:"
-						name="email"
-						onChange={this.handleChangeInput}
-						defaultValue="diego.carciente@gmail.com"
 					>
-						<Input/>
+						<Input 
+							defaultValue={this.props.email}
+							disabled
+						/>
 					</Form.Item>
 					<Form.Item
 						label="Nombre de la cuenta"
@@ -253,4 +254,13 @@ class CreateAccount extends React.Component {
 		)
 	}
 }
-export default CreateAccount
+
+const mapStateToProps = state => {
+	return {
+		email: state.email
+	}
+}
+
+export default connect(
+	mapStateToProps
+)(CreateAccount)

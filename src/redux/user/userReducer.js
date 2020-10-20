@@ -1,17 +1,18 @@
 
-const initialStateUser = {
-    email: 'diego.carciente@gmail.com'
+const initialState = {
+    email: ''
 }
 
-const userReducer = (state = initialStateUser, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SAVE_USER':
+        case 'GLOBAL_USER':
+            console.log('state', state);
             return {
                 ...state,
-                email: 'diego2@gmail.com'
+                [action.field]: action.payload
             }    
         default:
-            break;
+            return state
     }
 }
 
