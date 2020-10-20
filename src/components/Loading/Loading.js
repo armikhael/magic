@@ -1,23 +1,14 @@
 /** @format */
 
 import React from 'react'
+import { LoadingOutlined } from '@ant-design/icons'
 
 import './style.css'
 
 function Loading() {
 	return (
 		<div className='loading'>
-			<div className='lds-grid'>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
+			<LoadingOutlined style={{ fontSize: 24 }} spin />
 		</div>
 	)
 }

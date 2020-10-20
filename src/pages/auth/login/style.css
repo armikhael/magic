@@ -118,3 +118,13 @@
 	text-align: center;
 	padding: 5px 30px;
 }
+
+@media screen and (max-width: 768px) {
+	.cv-login-title-main {
+		font-size: 27px;
+		text-align: center;
+	}
+	.cv-login-conteent-row {
+		height: 80vh;
+	}
+}
