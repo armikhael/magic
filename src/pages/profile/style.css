@@ -1,0 +1,156 @@
+/** @format */
+
+.cv-perfil-title-main-container {
+	background-color: transparent;
+	display: flex;
+	align-items: center;
+}
+
+.cv-perfil-title-main-icon {
+	margin-right: 10px;
+	font-size: 20px;
+}
+
+.cv-perfil-title-main-title {
+	margin-bottom: 0;
+	font-size: 20px;
+}
+
+.cv-perfil-main-container {
+	width: 100%;
+	margin: auto;
+	padding: 15px;
+}
+
+.cv-profile-main-container {
+	margin-bottom: 20px;
+}
+
+.cv-profile-container {
+	background-color: #ffffff;
+}
+
+.cv-profile-main-info-container {
+	height: 100%;
+}
+
+.cv-profile-main-info-inner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cv-profile-avatar {
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px !important;
+}
+
+.cv-profile-main-info-inner-container-2 {
+	padding-left: 30px;
+}
+
+.cv-profile-main-title-user {
+	font-weight: 600;
+	font-size: 25px;
+}
+
+.cv-profile-main-role-user {
+	color: #72849a;
+	font-weight: 600;
+	margin-bottom: 20px;
+	display: block;
+}
+
+.cv-profile-role-tag {
+	border-radius: 50px;
+	padding: 0 10px 2px 10px;
+}
+
+.cv-profile-role-title {
+	color: #72849a;
+	font-style: italic;
+	font-size: 12px;
+}
+
+.cv-profile-role-description {
+	color: #2c73b3;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 11px;
+}
+
+.cv-profile-info-container {
+	border-left: 1px solid #edf2f9;
+	padding-left: 40px;
+}
+
+.cv-profile-info-icon {
+	margin-right: 10px;
+	color: #2c73b3;
+}
+
+.cv-profile-info-title {
+	min-width: 100px;
+	width: 100px;
+	display: block;
+	color: #2a2a2a;
+	font-weight: 500;
+}
+
+.cv-profile-info-description {
+	color: #72849a;
+}
+
+.cv-perfil-description-container {
+	height: 100%;
+	margin-right: 20px;
+}
+
+.cv-perfil-account-img-container {
+	padding: 0px 20px;
+}
+
+.cv-perfil-plans-content-plan {
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
+.cv-perfil-plans-images-plan {
+	width: 48px;
+	height: auto;
+	border-radius: 6px;
+	float: left;
+	margin-right: 10px;
+}
+
+.cv-perfil-plans-title-plan-title {
+	margin-bottom: 5px;
+	color: #3468ad;
+	font-size: 14px;
+}
+
+.cv-perfil-plans-title-plan-title-price {
+	margin-top: 5px;
+}
+
+@media (max-width: 992px) {
+	.cv-profile-avatar {
+		width: 50px;
+		height: 50px;
+		font-size: 20px !important;
+	}
+}
+
+@media (max-width: 575px) {
+	.cv-profile-info-container {
+		border-top: 1px solid #edf2f9;
+		padding-left: 0;
+		border-left: 0;
+		padding-top: 20px;
+		margin-top: 20px;
+	}
+}
