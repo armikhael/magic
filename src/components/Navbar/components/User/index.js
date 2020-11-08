@@ -20,12 +20,17 @@ import {
 	UserOutlined,
 } from '@ant-design/icons'
 
+import { serviceGetInstagramAccount } from '../../../../pages/profile/create-account/services'
+
 import './style.css'
 
 const { Option } = Select
 
 class User extends React.Component {
-	state = { visible: false }
+	state = { 
+		visible: false,
+		account: {}
+	}
 
 	showDrawer = () => {
 		this.setState({
@@ -37,6 +42,21 @@ class User extends React.Component {
 		this.setState({
 			visible: false,
 		})
+	}
+
+	handleFindAccount = async (e) => {
+		if (e.key === 'Enter') {
+			console.log(e.target.value);
+			await serviceGetInstagramAccount(e.target.value).then((data) => {			
+				const jsonObject = data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+				const jsonParse = JSON.parse(jsonObject);
+				const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+				this.setState({
+					account: userInfo
+				})
+				console.log(userInfo);
+			})
+		}
 	}
 
 	render() {
@@ -95,7 +115,10 @@ class User extends React.Component {
 									rules={[
 										{ required: true, message: 'Please enter user name' },
 									]}>
-									<Input placeholder='Nombre de la cuenta' />
+									<Input 
+										placeholder='Nombre de la cuenta' 
+										onKeyDown={this.handleFindAccount}
+									/>
 								</Form.Item>
 							</Col>
 							<Col span={12}>
@@ -186,6 +209,9 @@ class User extends React.Component {
 									/>
 								</Form.Item>
 							</Col>
+						</Row>
+						<Row gutter={16}>
+							<p>{JSON.stringify(this.state.account)}</p>
 						</Row>
 					</Form>
 				</Drawer>
