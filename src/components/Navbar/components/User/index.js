@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { connect } from 'react-redux'
 import {
 	Avatar,
 	Badge,
@@ -104,8 +104,11 @@ class User extends React.Component {
 					<Form layout='vertical' hideRequiredMark>
 						<Row gutter={16}>
 							<Col span={24}>
-								<Form.Item name='name' label='Email'>
-									<Input placeholder='Ingrese su correo electronico' />
+								<Form.Item name='email' label='Email'>
+									<Input 
+										defaultValue={this.props.email}	 
+										disabled="true"
+									/>
 								</Form.Item>
 							</Col>
 							<Col span={12}>
@@ -220,4 +223,12 @@ class User extends React.Component {
 	}
 }
 
-export default User
+const mapStateToProps = state => {
+	return {
+		email: state.email
+	}
+}
+
+export default connect(
+	mapStateToProps
+)(User)
