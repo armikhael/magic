@@ -14,10 +14,6 @@ class CreateAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			name: null,
-			type: null,
-			description: null,
-			image: null,
 			categories: null,
 			plans: [],
 			phone: null,
@@ -40,28 +36,37 @@ class CreateAccount extends React.Component {
 			})
 			this.setState({ responseCategories: result})
 		})
-
-
-		const account = 'publicidadcreativa'
-		await serviceGetInstagramAccount(account).then((data) => {			
-			const jsonObject = data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
-			const jsonParse = JSON.parse(jsonObject);
-			const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
-			this.setState({
-				name: account,
-				description: userInfo.biography
-			})
-			console.log(userInfo);
-		})
 	}
 	
+	handleFindAccount = async (e) => {
+		if (e.key === 'Enter') {
+			console.log(e.target.value);
+			await serviceGetInstagramAccount(e.target.value).then((data) => {			
+				const jsonObject = data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+				const jsonParse = JSON.parse(jsonObject);
+				const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+				this.setState({
+					name: userInfo.name,
+					biography: userInfo.biography,
+					image: userInfo.profile_pic_url_hd,
+					followers: userInfo.edge_followed_by.count,
+					follow: userInfo.edge_follow.count,
+					emailAccount: userInfo.business_email
+				})
+				console.log(this.state.image);
+				console.log(userInfo);
+			})
+		}
+	}
+
+
 	handleButton = async () => {
 		console.log(this.state);
 		let body = {
 			email: this.state.email,
 			name: this.state.name,
 			type: this.state.type,
-			description: this.state.description,
+			biography: this.state.biography,
 			image: this.state.image,
 			categories: this.state.categories,
 			plans: this.state.plans,
@@ -149,32 +154,41 @@ class CreateAccount extends React.Component {
 					<Form.Item
 						label="Nombre de la cuenta"
 					>
-						<Input defaultValue={this.state.name} />
+						<Input onKeyDown={this.handleFindAccount} />
 					</Form.Item>
 					<Form.Item label="Tipo de cuenta">
 						<Select 
 							onChange={this.handleChangeType}
 						>
 							<Option value="instagram">Instagram</Option>
-							<Option value="facebook">Facebook</Option>
-							<Option value="youtube">Youtube</Option>
 						</Select>
 					</Form.Item>
 					
 					<Form.Item
 						label="Biografia"
 					>
-						<Input defaultValue="Biografia" />
+						<p>{this.state.biography}</p>
 					</Form.Item>
 
 					<Form.Item
-						label="Imagen"
-						name="image"
-						onChange={this.handleChangeInput}
-						defaultValue="https://i.pinimg.com/236x/3e/7e/37/3e7e37c281b5947d7aae4e8575882309.jpg"
+						label="Seguidores"
 					>
-						<Input/>
+						<p>{this.state.followers}</p>
 					</Form.Item>
+
+					<Form.Item
+						label="Seguidos"
+					>
+						<p>{this.state.follow}</p>
+					</Form.Item>
+
+					<Form.Item
+						label="Email de la cuenta"
+					>
+						<p>{this.state.emailAccount}</p>
+					</Form.Item>
+
+					<img src={this.state.image} alt={this.state.name}/>
 
 					<Form.Item label="País">
 						<Select 
