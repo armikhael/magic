@@ -4,6 +4,18 @@ body {
 	background-color: #f5f6f8;
 }
 
+.mt15 {
+	margin-top: 15px;
+}
+
+.p20 {
+	padding: 20px;
+}
+
+.aling-right {
+	text-align: right;
+}
+
 @media only screen and (min-width: 960px) {
 	.cv-container-main {
 		max-width: 940px;
