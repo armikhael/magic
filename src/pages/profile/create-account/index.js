@@ -1,5 +1,3 @@
-/** @format */
-
 import React from 'react'
 import {
 	Form,
@@ -39,6 +37,23 @@ class CreateAccount extends React.Component {
 			responseCategories: [],
 			nameAcount: null,
 			image: null,
+			countries: [
+				{
+					code: '56',
+					name: 'chile',
+					label: 'Chile'
+				},
+				{
+					code: '54',
+					name: 'argentina',
+					label: 'Argentina'
+				},
+				{
+					code: '58',
+					name: 'venezuela',
+					label: 'Venezuela'
+				}
+			]
 		}
 	}
 
@@ -57,6 +72,11 @@ class CreateAccount extends React.Component {
 
 	handleFindAccount = async (e) => {
 		if (e.key === 'Enter') {
+			if (this.state.type === '') {
+				alert('Debe seleccionar un tipo de cuenta')
+				return
+			}
+
 			this.setState({ nameAcount: e.target.value })
 			await serviceGetInstagramAccount(e.target.value).then((data) => {
 				const jsonObject = data
@@ -76,6 +96,10 @@ class CreateAccount extends React.Component {
 				})
 				console.log(this.state.image)
 				console.log(userInfo)
+			})
+			.catch((e) => {
+				console.log(e);
+				alert('Esta cuenta no existe')
 			})
 		}
 	}
@@ -188,7 +212,10 @@ class CreateAccount extends React.Component {
 												</Select>
 											</Form.Item>
 											<Form.Item label='Nombre de la cuenta'>
-												<Input onKeyDown={this.handleFindAccount} />
+												<Input 
+													disabled={!this.state.type}
+													onKeyDown={this.handleFindAccount} 
+												/>
 											</Form.Item>
 										</Card>
 									</Col>
@@ -263,34 +290,24 @@ class CreateAccount extends React.Component {
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item label='País'>
 												<Select onChange={this.handleChangeCountry}>
-													<Option
-														value={JSON.stringify({
-															code: '56',
-															name: 'chile',
-														})}>
-														Chile
-													</Option>
-													<Option
-														value={JSON.stringify({
-															code: '57',
-															name: 'colombia',
-														})}>
-														Colombia
-													</Option>
-													<Option
-														value={JSON.stringify({
-															code: '58',
-															name: 'venezuela',
-														})}>
-														Venezuela
-													</Option>
+													{
+														this.state.countries.map((item, i) => {
+															console.log('pais', item, i);
+															return (
+																<Option key={i} value={JSON.stringify({
+																	code: item.code,
+																	name: item.name
+																})}>{item.label}</Option>
+															)
+														})
+													}
 												</Select>
 											</Form.Item>
 											<Form.Item
 												label='Número'
 												name='phone'
 												onChange={this.handleChangeInput}
-												defaultValue='982565380'>
+											>
 												<Input />
 											</Form.Item>
 											<Form.Item label='Categorias' name='categories'>
