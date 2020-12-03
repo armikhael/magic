@@ -342,7 +342,7 @@ class CreateAccount extends React.Component {
 														name='auxDescription'
 														placeholder='Descripción del paquete'
 														onChange={this.handleChangePlans}
-														rules={this.rulesValidation.rulesText}
+														rules={rulesValidation.rulesText}
 													>
 														<Input />
 													</Form.Item>
@@ -351,7 +351,7 @@ class CreateAccount extends React.Component {
 														name='auxPrice'
 														placeholder='price'
 														onChange={this.handleChangePlans}
-														rules={this.rulesValidation.rulesPrice}
+														rules={rulesValidation.rulesPrice}
 													>
 														<Input />
 													</Form.Item>
