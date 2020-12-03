@@ -31,6 +31,7 @@ class CreateAccount extends React.Component {
 		super(props)
 		this.state = {
 			plans: [],
+			email: null,
 			auxDescription: null,
 			auxPrice: null,
 			responseCategories: [],
@@ -55,7 +56,13 @@ class CreateAccount extends React.Component {
 	}
 
 	async componentDidMount() {
-		console.log(this.props.email)
+		let userEmail = localStorage.getItem('email')
+		console.log(userEmail);
+		this.setState({
+			email: userEmail
+		});
+
+		console.log(this.state.email);
 		await serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
 				return {
@@ -212,10 +219,10 @@ class CreateAccount extends React.Component {
 								wrapperCol={{ span: 16 }}>
 								<Row>
 									<Col span={12}>
-										<h3 className='cv-create-account-from-title'>Usuario </h3>
+										<h3 className='cv-create-account-from-title'>Usuario {this.state.email}</h3>
 										<Card className='cv-create-account-card-custom'>
-											<Form.Item label='Correo Electrónico:'>
-												<Input defaultValue={this.props.email} disabled />
+											<Form.Item label="Correo Electrónico">
+												<Input  value={this.state.email}  disabled />
 											</Form.Item>
 											<Form.Item label='Tipo de cuenta'>
 												<Select onChange={this.handleChangeType}>

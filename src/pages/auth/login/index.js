@@ -27,6 +27,7 @@ class Login extends React.Component {
 	render() {
 		const responseGoogle = (data) => {
 			console.log(data)
+			localStorage.setItem('email', data.profileObj.email);
 			this.props.saveUser('email', data.profileObj.email)
 		}
 		return (
