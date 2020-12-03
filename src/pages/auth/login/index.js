@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Layout, Row, Col, Button } from 'antd'
 import { connect } from 'react-redux'
 import { saveUser } from '../../../redux'
@@ -17,6 +17,13 @@ class Login extends React.Component {
 		this.state = {}
 	}
 
+	handleLogging(){
+		if (this.props.email) {
+			return  (
+				<Redirect to="/profile/create-account" />
+			)
+		}
+	}
 	render() {
 		const responseGoogle = (data) => {
 			console.log(data)
@@ -73,6 +80,7 @@ class Login extends React.Component {
 										Al continuar, aceptas las Condiciones del servicio y la
 										Política de privacidad de Cuentas Virales.
 									</p>
+									{this.handleLogging()}
 									<Link to="/profile/create-account">
 										<Button>
 											<p>Click Me!</p>

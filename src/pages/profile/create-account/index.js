@@ -16,9 +16,10 @@ import { connect } from 'react-redux'
 import { RocketOutlined, AntDesignOutlined } from '@ant-design/icons'
 
 import './style.css'
+import { rulesValidation } from './rules'
 import {
 	serviceGetCategories,
-	serviceSaveAccount,
+	// serviceSaveAccount,
 	serviceGetInstagramAccount,
 } from './services'
 
@@ -29,14 +30,10 @@ class CreateAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			categories: null,
 			plans: [],
-			phone: null,
 			auxDescription: null,
 			auxPrice: null,
 			responseCategories: [],
-			nameAcount: null,
-			image: null,
 			countries: [
 				{
 					code: '56',
@@ -60,7 +57,6 @@ class CreateAccount extends React.Component {
 	async componentDidMount() {
 		console.log(this.props.email)
 		await serviceGetCategories().then((data) => {
-			console.log(data)
 			let result = data.map((item) => {
 				return {
 					value: item.name,
@@ -75,32 +71,35 @@ class CreateAccount extends React.Component {
 			if (this.state.type === '') {
 				alert('Debe seleccionar un tipo de cuenta')
 				return
+			} else if (this.state.type === 'instagram') {
+				await serviceGetInstagramAccount(e.target.value).then((data) => {
+					const jsonObject = data
+						.match(
+							/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
+						)[1]
+						.slice(0, -1)
+					const jsonParse = JSON.parse(jsonObject)
+					const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+					this.setState({
+						name: userInfo.username,
+						biography: userInfo.biography,
+						image: userInfo.profile_pic_url_hd,
+						followers: userInfo.edge_followed_by.count,
+						follow: userInfo.edge_follow.count,
+						emailAccount: userInfo.business_email,
+					})
+					console.log(this.state.image)
+					console.log(userInfo)
+				})
+				.catch((e) => {
+					console.log(e);
+					alert('Esta cuenta no existe')
+				})
+			} else {
+				alert('este tipo de cuenta no esta permitida')
 			}
 
-			this.setState({ nameAcount: e.target.value })
-			await serviceGetInstagramAccount(e.target.value).then((data) => {
-				const jsonObject = data
-					.match(
-						/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
-					)[1]
-					.slice(0, -1)
-				const jsonParse = JSON.parse(jsonObject)
-				const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
-				this.setState({
-					name: userInfo.name,
-					biography: userInfo.biography,
-					image: userInfo.profile_pic_url_hd,
-					followers: userInfo.edge_followed_by.count,
-					follow: userInfo.edge_follow.count,
-					emailAccount: userInfo.business_email,
-				})
-				console.log(this.state.image)
-				console.log(userInfo)
-			})
-			.catch((e) => {
-				console.log(e);
-				alert('Esta cuenta no existe')
-			})
+			
 		}
 	}
 
@@ -115,17 +114,25 @@ class CreateAccount extends React.Component {
 			categories: this.state.categories,
 			plans: this.state.plans,
 			phone: this.state.phone,
+			code: this.state.code,
+			country: this.state.country,
 		}
-		await serviceSaveAccount(body).then((data) => {
-			console.log(data)
-		})
+
+		console.log(body);
+		// await serviceSaveAccount(body).then((data) => {
+		// 	console.log(data)
+		// })
 	}
 
 	handleChangeInput = (e) => {
 		console.log(e.target.value)
-		this.setState({
-			[e.target.id]: e.target.value,
-		})
+		let number = e.target.value.match(/^[0-9.]+$/)
+		console.log(number);
+		if (number != null) {
+			this.setState({
+				[e.target.id]: number,
+			})
+		}
 	}
 	handleChangePlans = (e) => {
 		console.log(e.target.value)
@@ -143,9 +150,13 @@ class CreateAccount extends React.Component {
 
 	handleChangeCountry = (e) => {
 		console.log(JSON.parse(e))
+		e = JSON.parse(e)
 		this.setState({
-			country: JSON.parse(e),
+			country: e.name,
+			code: e.code
 		})
+
+		console.log(this.state);
 	}
 
 	handlerTagRender(props) {
@@ -292,7 +303,6 @@ class CreateAccount extends React.Component {
 												<Select onChange={this.handleChangeCountry}>
 													{
 														this.state.countries.map((item, i) => {
-															console.log('pais', item, i);
 															return (
 																<Option key={i} value={JSON.stringify({
 																	code: item.code,
@@ -306,7 +316,7 @@ class CreateAccount extends React.Component {
 											<Form.Item
 												label='Número'
 												name='phone'
-												onChange={this.handleChangeInput}
+												rules={rulesValidation.rulesPhone}
 											>
 												<Input />
 											</Form.Item>
@@ -331,14 +341,18 @@ class CreateAccount extends React.Component {
 														label='Nombre:'
 														name='auxDescription'
 														placeholder='Descripción del paquete'
-														onChange={this.handleChangePlans}>
+														onChange={this.handleChangePlans}
+														rules={this.rulesValidation.rulesText}
+													>
 														<Input />
 													</Form.Item>
 													<Form.Item
 														label='Precio:'
 														name='auxPrice'
 														placeholder='price'
-														onChange={this.handleChangePlans}>
+														onChange={this.handleChangePlans}
+														rules={this.rulesValidation.rulesPrice}
+													>
 														<Input />
 													</Form.Item>
 													<div className='cv-create-account-btn-add-content'>
