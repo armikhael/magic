@@ -18,6 +18,12 @@ export const rulesValidation = {
 			min: 4,
 			message: 'Minimo 4 caracteres!',
 		},
+    ],
+    rulesDropdown: [
+		{
+			required: true,
+			message: 'Ingresa tu contraseña!',
+		}
 	],
 	rulesText: [
 		{

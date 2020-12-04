@@ -79,11 +79,11 @@ class CreateAccount extends React.Component {
 				alert('Debe seleccionar un tipo de cuenta')
 				return
 			} else if (this.state.type === 'instagram') {
-				await serviceGetInstagramAccount(e.target.value).then((data) => {
+				let account = e.target.value.toLowerCase()
+				console.log(account);
+				await serviceGetInstagramAccount(account).then((data) => {
 					const jsonObject = data
-						.match(
-							/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
-						)[1]
+						.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1]
 						.slice(0, -1)
 					const jsonParse = JSON.parse(jsonObject)
 					const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
@@ -111,7 +111,7 @@ class CreateAccount extends React.Component {
 	}
 
 	handleButton = async () => {
-		console.log(this.state)
+		
 		let body = {
 			email: this.state.email,
 			name: this.state.name,
@@ -125,21 +125,24 @@ class CreateAccount extends React.Component {
 			country: this.state.country,
 		}
 
-		console.log(body);
+		console.log(Object.keys(body));
+		console.log(body)
+		for (let i = 0; i < Object.keys(body).length; i++) {
+			let value = Object.keys(body)[i]
+			if (body[value] === undefined || body[value].length <= 0) {
+				alert('Debe rellenar todos los campos')
+				return 
+			}
+		}
 		// await serviceSaveAccount(body).then((data) => {
 		// 	console.log(data)
 		// })
 	}
 
 	handleChangeInput = (e) => {
-		console.log(e.target.value)
-		let number = e.target.value.match(/^[0-9.]+$/)
-		console.log(number);
-		if (number != null) {
-			this.setState({
-				[e.target.id]: number,
-			})
-		}
+		this.setState({
+			[e.target.id]: e.target.value,
+		})
 	}
 	handleChangePlans = (e) => {
 		console.log(e.target.value)
@@ -195,6 +198,8 @@ class CreateAccount extends React.Component {
 		})
 		this.setState({
 			plans: arrayPlans,
+			auxPrice: null,
+			auxDescription: null, 
 		})
 		console.log(this.state.plans)
 	}
@@ -306,7 +311,9 @@ class CreateAccount extends React.Component {
 									<Col span={12}>
 										<h3 className='cv-create-account-from-title'>Región</h3>
 										<Card className='cv-create-account-card-custom'>
-											<Form.Item label='País'>
+											<Form.Item 
+												label='País'
+											>
 												<Select onChange={this.handleChangeCountry}>
 													{
 														this.state.countries.map((item, i) => {
@@ -324,6 +331,7 @@ class CreateAccount extends React.Component {
 												label='Número'
 												name='phone'
 												rules={rulesValidation.rulesPhone}
+												onChange={this.handleChangeInput}
 											>
 												<Input />
 											</Form.Item>
@@ -347,20 +355,18 @@ class CreateAccount extends React.Component {
 													<Form.Item
 														label='Nombre:'
 														name='auxDescription'
-														placeholder='Descripción del paquete'
 														onChange={this.handleChangePlans}
 														rules={rulesValidation.rulesText}
 													>
-														<Input />
+														<Input placeholder='Ingrese el paquete'/>
 													</Form.Item>
 													<Form.Item
 														label='Precio:'
-														name='auxPrice'
-														placeholder='price'
+														name='auxPrice'													
 														onChange={this.handleChangePlans}
 														rules={rulesValidation.rulesPrice}
 													>
-														<Input />
+														<Input placeholder='Ingrese el precio'/>
 													</Form.Item>
 													<div className='cv-create-account-btn-add-content'>
 														<Button
