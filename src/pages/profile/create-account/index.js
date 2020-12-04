@@ -114,7 +114,7 @@ class CreateAccount extends React.Component {
 		
 		let body = {
 			email: this.state.email,
-			name: this.state.name,
+			name: `${this.state.name}-${this.state.type}`,
 			type: this.state.type,
 			biography: this.state.biography,
 			image: this.state.image,
