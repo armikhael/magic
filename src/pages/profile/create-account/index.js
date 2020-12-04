@@ -142,7 +142,10 @@ class CreateAccount extends React.Component {
 		for (let i = 0; i < Object.keys(body).length; i++) {
 			let value = Object.keys(body)[i]
 			if (body[value] === undefined || body[value].length <= 0) {
-				alert('Debe rellenar todos los campos')
+				notification['warning']({
+					message: `Formulario`,
+					description: 'Debe rellenar todos los campos.',
+				})
 				return
 			}
 		}
