@@ -24,12 +24,12 @@ const serviceSaveAccount = async (body) => {
 		url: `${process.env.REACT_APP_HOST}/account`,
 		data: body,
 	})
-		.then((response) => {
-			returnResponse = response.data
-		})
-		.catch((error) => {
-			returnResponse = error.response
-		})
+	.then((response) => {
+		returnResponse = response.data
+	})
+	.catch((e) => {
+		returnResponse = e.response.data
+	})
 	return returnResponse
 }
 
