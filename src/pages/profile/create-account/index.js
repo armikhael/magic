@@ -22,7 +22,7 @@ import './style.css'
 import { rulesValidation } from './rules'
 import {
 	serviceGetCategories,
-	// serviceSaveAccount,
+	serviceSaveAccount,
 	serviceGetInstagramAccount,
 } from './services'
 
@@ -96,6 +96,8 @@ class CreateAccount extends React.Component {
 							.slice(0, -1)
 						const jsonParse = JSON.parse(jsonObject)
 						const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+
+						
 						this.setState({
 							name: userInfo.username,
 							biography: userInfo.biography,
@@ -104,14 +106,19 @@ class CreateAccount extends React.Component {
 							follow: userInfo.edge_follow.count,
 							emailAccount: userInfo.business_email,
 						})
-						console.log(this.state.image)
-						console.log(userInfo)
+						if (userInfo.edge_followed_by.count < 10000) {
+							notification['error']({
+								message: `Problemas con la cuenta`,
+								description: 'La cuenta no cumple las condiciones para ser vendedor',
+							})
+							return 
+						}
 					})
 					.catch((e) => {
-						console.log(e)
+						console.log('respuesta 2', e)
 						notification['error']({
-							message: `Error de Cuenta`,
-							description: 'Esta cuenta no existe.',
+							message: `Ups!`,
+							description: 'Esta cuenta no existe',
 						})
 					})
 			} else {
@@ -142,13 +149,29 @@ class CreateAccount extends React.Component {
 		for (let i = 0; i < Object.keys(body).length; i++) {
 			let value = Object.keys(body)[i]
 			if (body[value] === undefined || body[value].length <= 0) {
-				alert('Debe rellenar todos los campos')
+				notification['error']({
+					message: `Información Faltante`,
+					description: 'Faltan datos obligatorios',
+				})
 				return
 			}
 		}
-		// await serviceSaveAccount(body).then((data) => {
-		// 	console.log(data)
-		// })
+		await serviceSaveAccount(body)
+		.then((data) => {
+			if (data.statusCode === 409) {
+				notification['error']({
+					message: `Ups!`,
+					description: `${data.message}`,
+				})
+				return
+			}
+
+			notification['success']({
+				message: `Good job!!`,
+				description: `La cuenta se ha registrado satisfactoriamente`,
+			})
+			
+		})
 	}
 
 	handleChangeInput = (e) => {
