@@ -13,6 +13,7 @@ import {
 	HeartOutlined,
 } from '@ant-design/icons'
 
+import serviceGetAccountsByEmail from './services'
 import './style.css'
 
 const { Content, Header } = Layout
@@ -21,13 +22,18 @@ const { Text } = Typography
 class Profile extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {
+			userProfile: JSON.parse(localStorage.getItem('user'))
+		}
 	}
 
 	async componentDidMount() {
-		let user = JSON.parse(localStorage.getItem('user'))
-		this.setState({
-			userProfile: user
+		serviceGetAccountsByEmail(this.state.userProfile.email)
+		.then((data) => {
+			this.setState({
+				accounts: data
+			})
+			console.log('respuesta de las cuentas', data);
 		})
 	}
 
@@ -207,6 +213,7 @@ class Profile extends React.Component {
 														vehicula ex, non bibendum ante lorem in tortor.
 													</p>
 												</Col>
+												<p>{JSON.stringify(this.state.accounts)}</p>
 											</Row>
 										</Card>
 									</Col>

@@ -33,8 +33,8 @@ class CreateAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			userProfile: JSON.parse(localStorage.getItem('user')),
 			plans: [],
-			email: null,
 			auxDescription: null,
 			auxPrice: null,
 			responseCategories: [],
@@ -59,13 +59,6 @@ class CreateAccount extends React.Component {
 	}
 
 	async componentDidMount() {
-		let user = JSON.parse(localStorage.getItem('user'))
-		this.setState({
-			email: user.email,
-			userProfile: user
-		})
-
-		console.log(this.state.email)
 		await serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
 				return {
@@ -132,7 +125,7 @@ class CreateAccount extends React.Component {
 
 	handleButton = async () => {
 		let body = {
-			email: this.state.email,
+			email: this.state.userProfile.email,
 			name: `${this.state.name}-${this.state.type}`,
 			type: this.state.type,
 			biography: this.state.biography,
@@ -270,7 +263,7 @@ class CreateAccount extends React.Component {
 										</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item label='Correo Electrónico'>
-												<Input value={this.state.email} disabled />
+												<Input value={this.state.userProfile.email} disabled />
 											</Form.Item>
 											<Form.Item label='Tipo de cuenta'>
 												<Select onChange={this.handleChangeType}>
