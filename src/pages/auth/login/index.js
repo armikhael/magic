@@ -9,6 +9,7 @@ import { GoogleOutlined } from '@ant-design/icons'
 import { GoogleLogin } from 'react-google-login';
 
 import './style.css'
+import serviceSaveUser from './services'
 
 const { Content } = Layout
 class Login extends React.Component {
@@ -25,10 +26,21 @@ class Login extends React.Component {
 		}
 	}
 	render() {
-		const responseGoogle = (data) => {
+		const responseGoogle = async (data) => {
 			console.log(data)
-			localStorage.setItem('email', data.profileObj.email);
+			localStorage.setItem('user', JSON.stringify(data.profileObj));
 			this.props.saveUser('email', data.profileObj.email)
+			serviceSaveUser({
+				email: data.profileObj.email,
+				autentication: "google",
+				first_name: data.profileObj.givenName,
+				last_name: data.profileObj.familyName,
+				image: data.profileObj.imageUrl
+			})
+			.then((data) => {
+				console.log('respuesta del registro', data);
+			})
+			
 		}
 		return (
 			<React.Fragment>

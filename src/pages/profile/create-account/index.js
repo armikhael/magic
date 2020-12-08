@@ -59,10 +59,10 @@ class CreateAccount extends React.Component {
 	}
 
 	async componentDidMount() {
-		let userEmail = localStorage.getItem('email')
-		console.log(userEmail)
+		let user = JSON.parse(localStorage.getItem('user'))
 		this.setState({
-			email: userEmail,
+			email: user.email,
+			userProfile: user
 		})
 
 		console.log(this.state.email)
@@ -87,40 +87,40 @@ class CreateAccount extends React.Component {
 			} else if (this.state.type === 'instagram') {
 				let account = e.target.value.toLowerCase()
 				console.log(account)
-				await serviceGetInstagramAccount(account)
-					.then((data) => {
-						const jsonObject = data
-							.match(
-								/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
-							)[1]
-							.slice(0, -1)
-						const jsonParse = JSON.parse(jsonObject)
-						const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
-						console.log(userInfo);
-						this.setState({
-							name: userInfo.username,
-							biography: userInfo.biography,
-							image: userInfo.profile_pic_url_hd,
-							followers: userInfo.edge_followed_by.count,
-							follow: userInfo.edge_follow.count,
-							emailAccount: userInfo.business_email,
-						})
-						if (userInfo.edge_followed_by.count < 10000) {
-							notification['error']({
-								message: `Problemas con la cuenta`,
-								description:
-									'La cuenta no cumple las condiciones para ser vendedor',
-							})
-							return
-						}
+				serviceGetInstagramAccount(account)
+				.then((data) => {
+					const jsonObject = data
+						.match(
+							/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
+						)[1]
+						.slice(0, -1)
+					const jsonParse = JSON.parse(jsonObject)
+					const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+					console.log(userInfo);
+					this.setState({
+						name: userInfo.username,
+						biography: userInfo.biography,
+						image: userInfo.profile_pic_url_hd,
+						followers: userInfo.edge_followed_by.count,
+						follow: userInfo.edge_follow.count,
+						emailAccount: userInfo.business_email,
 					})
-					.catch((e) => {
-						console.log('respuesta 2', e)
+					if (userInfo.edge_followed_by.count < 10000) {
 						notification['error']({
-							message: `Ups!`,
-							description: 'Esta cuenta no existe',
+							message: `Problemas con la cuenta`,
+							description:
+								'La cuenta no cumple las condiciones para ser vendedor',
 						})
+						return
+					}
+				})
+				.catch((e) => {
+					console.log('respuesta 2', e)
+					notification['error']({
+						message: `Ups!`,
+						description: 'Esta cuenta no existe',
 					})
+				})
 			} else {
 				notification['error']({
 					message: `Error de Cuenta`,
@@ -266,7 +266,7 @@ class CreateAccount extends React.Component {
 								<Row>
 									<Col span={12}>
 										<h3 className='cv-create-account-from-title'>
-											Usuario {this.state.email}
+											Usuario {JSON.stringify(this.state.userProfile)}
 										</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item label='Correo Electrónico'>

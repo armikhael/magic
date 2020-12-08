@@ -24,6 +24,13 @@ class Profile extends React.Component {
 		this.state = {}
 	}
 
+	async componentDidMount() {
+		let user = JSON.parse(localStorage.getItem('user'))
+		this.setState({
+			userProfile: user
+		})
+	}
+
 	render() {
 		return (
 			<>
@@ -33,6 +40,7 @@ class Profile extends React.Component {
 							<UserOutlined className='cv-perfil-title-main-icon' />
 							<h3 className='cv-perfil-title-main-title'>Perfil de Usuario</h3>
 						</Header>
+						<p>{JSON.stringify(this.state.userProfile)}</p>
 					</Content>
 					<Layout className='cv-perfil-main-container'>
 						<Row>
