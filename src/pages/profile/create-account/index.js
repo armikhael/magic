@@ -96,7 +96,7 @@ class CreateAccount extends React.Component {
 							.slice(0, -1)
 						const jsonParse = JSON.parse(jsonObject)
 						const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
-
+						console.log(userInfo);
 						this.setState({
 							name: userInfo.username,
 							biography: userInfo.biography,
@@ -224,6 +224,14 @@ class CreateAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
+
+		if (this.state.auxDescription === null || this.state.auxPrice === null) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Debe rellenar los datos correspondientes`,
+			})
+			return
+		}
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
 			description: this.state.auxDescription,
@@ -390,15 +398,17 @@ class CreateAccount extends React.Component {
 														label='Nombre:'
 														name='auxDescription'
 														onChange={this.handleChangePlans}
-														rules={rulesValidation.rulesText}>
+														rules={rulesValidation.rulesText}
+													>
 														<Input placeholder='Ingrese el paquete' />
 													</Form.Item>
 													<Form.Item
 														label='Precio:'
 														name='auxPrice'
 														onChange={this.handleChangePlans}
-														rules={rulesValidation.rulesPrice}>
-														<Input placeholder='Ingrese el precio' />
+														rules={rulesValidation.rulesPrice}
+													>
+														<Input placeholder='Ingrese el precio'/>
 													</Form.Item>
 													<div className='cv-create-account-btn-add-content'>
 														<Button
