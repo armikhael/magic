@@ -23,6 +23,7 @@
 }
 
 .cv-profile-main-container {
+	margin: 10px;
 	margin-bottom: 20px;
 }
 
@@ -38,6 +39,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.cv-profile-main-info-inner-container-img {
+	border-radius: 50%;
+	padding: 10px;
+	width: 100%;
 }
 
 .cv-profile-avatar {
@@ -83,58 +90,14 @@
 	font-size: 11px;
 }
 
-.cv-profile-info-container {
-	border-left: 1px solid #edf2f9;
-	padding-left: 40px;
-}
-
-.cv-profile-info-icon {
-	margin-right: 10px;
-	color: #2c73b3;
-}
-
-.cv-profile-info-title {
-	min-width: 100px;
-	width: 100px;
-	display: block;
-	color: #2a2a2a;
-	font-weight: 500;
-}
-
-.cv-profile-info-description {
-	color: #72849a;
-}
-
 .cv-perfil-description-container {
 	height: 100%;
+	margin: 10px;
 	margin-right: 20px;
 }
 
 .cv-perfil-account-img-container {
 	padding: 0px 20px;
-}
-
-.cv-perfil-plans-content-plan {
-	margin-bottom: 10px;
-	padding-bottom: 5px;
-}
-
-.cv-perfil-plans-images-plan {
-	width: 48px;
-	height: auto;
-	border-radius: 6px;
-	float: left;
-	margin-right: 10px;
-}
-
-.cv-perfil-plans-title-plan-title {
-	margin-bottom: 5px;
-	color: #3468ad;
-	font-size: 14px;
-}
-
-.cv-perfil-plans-title-plan-title-price {
-	margin-top: 5px;
 }
 
 @media (max-width: 992px) {
@@ -146,11 +109,4 @@
 }
 
 @media (max-width: 575px) {
-	.cv-profile-info-container {
-		border-top: 1px solid #edf2f9;
-		padding-left: 0;
-		border-left: 0;
-		padding-top: 20px;
-		margin-top: 20px;
-	}
 }

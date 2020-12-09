@@ -2,15 +2,20 @@
 
 import React from 'react'
 
-import { Layout, Row, Col, Card, Avatar, Space, Typography } from 'antd'
+import {
+	Layout,
+	Row,
+	Col,
+	Card,
+	Skeleton,
+	Space,
+	Typography,
+	Avatar,
+} from 'antd'
 import {
 	UserOutlined,
-	MailOutlined,
-	UserAddOutlined,
-	FileTextOutlined,
-	PhoneOutlined,
-	ClockCircleOutlined,
 	HeartOutlined,
+	AntDesignOutlined,
 } from '@ant-design/icons'
 
 import serviceGetAccountsByEmail from './services'
@@ -19,21 +24,18 @@ import './style.css'
 const { Content, Header } = Layout
 const { Text } = Typography
 
-class Profile extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			userProfile: JSON.parse(localStorage.getItem('user'))
-		}
+export default class Profile extends React.Component {
+	state = {
+		userProfile: JSON.parse(localStorage.getItem('user')),
+		accounts: [],
 	}
 
 	async componentDidMount() {
-		serviceGetAccountsByEmail(this.state.userProfile.email)
-		.then((data) => {
+		serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
 			this.setState({
-				accounts: data
+				accounts: data,
 			})
-			console.log('respuesta de las cuentas', data);
+			console.log('respuesta de las cuentas', data)
 		})
 	}
 
@@ -41,20 +43,21 @@ class Profile extends React.Component {
 		return (
 			<>
 				<Layout>
-					<Content>
-						<Header className='cv-perfil-title-main-container'>
-							<UserOutlined className='cv-perfil-title-main-icon' />
-							<h3 className='cv-perfil-title-main-title'>Perfil de Usuario</h3>
-						</Header>
-						<p>{JSON.stringify(this.state.userProfile)}</p>
-					</Content>
 					<Layout className='cv-perfil-main-container'>
 						<Row>
-							<Col span={24}>
+							<Col span={10}>
+								<Content>
+									<Header className='cv-perfil-title-main-container'>
+										<UserOutlined className='cv-perfil-title-main-icon' />
+										<h3 className='cv-perfil-title-main-title'>
+											Perfil de Usuario
+										</h3>
+									</Header>
+								</Content>
 								<Card className='cv-profile-main-container'>
 									<Layout className='cv-profile-container'>
 										<Row>
-											<Col xs={24} sm={10} md={10} lg={14} xl={14}>
+											<Col xs={24} sm={24} md={24} lg={24} xl={24}>
 												<Row className='cv-profile-main-info-container'>
 													<Col
 														xs={4}
@@ -63,9 +66,11 @@ class Profile extends React.Component {
 														lg={4}
 														xl={4}
 														className='cv-profile-main-info-inner-container'>
-														<Avatar
-															className='cv-profile-avatar'
-															icon={<UserOutlined />}
+														<img
+															className='cv-profile-main-info-inner-container-img'
+															src={this.state.userProfile.imageUrl}
+															alt={this.state.userProfile.name}
+															title={this.state.userProfile.name}
 														/>
 													</Col>
 													<Col
@@ -77,182 +82,108 @@ class Profile extends React.Component {
 														className='cv-profile-main-info-inner-container-2'>
 														<Space direction='vertical'>
 															<Text className='cv-profile-main-title-user'>
-																Carlos Espinoza
+																{this.state.userProfile.name}
 															</Text>
 															<Space>
 																<Text className='cv-profile-main-role-user'>
-																	Roles: Cuenta
+																	{this.state.userProfile.email}
 																</Text>
 															</Space>
-															<Space>
-																<Text className='cv-profile-role-title'>
-																	Rol QF:
-																</Text>
-																<Text className='cv-profile-role-description'>
-																	Rol 1
-																</Text>
-															</Space>
-															<Space>
-																<Text className='cv-profile-role-title'>
-																	Rol Tracking:
-																</Text>
-																<Text className='cv-profile-role-description'>
-																	Rol 2
-																</Text>
-															</Space>
+															{(() => {
+																if (this.state.userProfile.googleId) {
+																	return (
+																		<Space>
+																			<Text className='cv-profile-role-title'>
+																				ID Google
+																			</Text>
+																			<Text className='cv-profile-role-description'>
+																				{this.state.userProfile.googleId}
+																			</Text>
+																		</Space>
+																	)
+																}
+															})()}
 														</Space>
 													</Col>
 												</Row>
-											</Col>
-											<Col
-												xs={24}
-												sm={14}
-												md={14}
-												lg={10}
-												xl={10}
-												className='cv-profile-info-container'>
-												<Space direction='vertical'>
-													<Space direction='horizontal'>
-														<MailOutlined className='cv-profile-info-icon' />
-														<Text className='cv-profile-info-title'>
-															Nombre:{' '}
-														</Text>
-														<Text className='cv-profile-info-description'>
-															Carlos
-														</Text>
-													</Space>
-													<Space direction='horizontal'>
-														<UserOutlined className='cv-profile-info-icon' />
-														<Text className='cv-profile-info-title'>
-															Apellido:{' '}
-														</Text>
-														<Text className='cv-profile-info-description'>
-															Espinoza
-														</Text>
-													</Space>
-													<Space direction='horizontal'>
-														<UserAddOutlined className='cv-profile-info-icon' />
-														<Text className='cv-profile-info-title'>
-															Correo:{' '}
-														</Text>
-														<Text className='cv-profile-info-description'>
-															carlos@gmail.com
-														</Text>
-													</Space>
-													<Space direction='horizontal'>
-														<FileTextOutlined className='cv-profile-info-icon' />
-														<Text className='cv-profile-info-title'>Rut: </Text>
-														<Text className='cv-profile-info-description'>
-															27.2155.134-4
-														</Text>
-													</Space>
-													<Space direction='horizontal'>
-														<PhoneOutlined className='cv-profile-info-icon' />
-														<Text className='cv-profile-info-title'>
-															{' '}
-															Teléfono:{' '}
-														</Text>
-														<Text className='cv-profile-info-description'>
-															+56738473734
-														</Text>
-													</Space>
-													<Space direction='horizontal'>
-														<ClockCircleOutlined className='cv-profile-info-icon' />
-														<Text className='cv-profile-info-title'>
-															Fecha:{' '}
-														</Text>
-														<Text className='cv-profile-info-description'>
-															12/45/544
-														</Text>
-													</Space>
-												</Space>
 											</Col>
 										</Row>
 									</Layout>
 								</Card>
 							</Col>
-
-							<Header className='cv-perfil-title-main-container'>
-								<HeartOutlined className='cv-perfil-title-main-icon' />
-								<h3 className='cv-perfil-title-main-title'>
-									Cuentas Asociadas
-								</h3>
-							</Header>
-
-							<Col span={24}>
+							<Col span={14}>
+								<Header className='cv-perfil-title-main-container'>
+									<HeartOutlined className='cv-perfil-title-main-icon' />
+									<h3 className='cv-perfil-title-main-title'>
+										Cuentas Asociadas
+									</h3>
+								</Header>
 								<Row>
-									<Col xs={24} sm={24} md={16} lg={16} xl={16}>
+									<Col xs={24} sm={24} md={24} lg={24} xl={24}>
 										<Card className='cv-perfil-description-container'>
 											<Row>
-												<Col
-													xs={6}
-													sm={6}
-													md={6}
-													lg={6}
-													xl={6}
-													className='cv-perfil-account-img-container'>
-													<img
-														width='100%'
-														title='Cuenta'
-														alt='Cuenta'
-														src='http://pluto.pinsupreme.com/wp-content/uploads/2014/05/AdobeStock_103332683-863x576.jpg'
-													/>
+												<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+													{this.state.accounts.map(function (item, i) {
+														return (
+															<Row key={i}>
+																<Col span={6}>
+																	<img
+																		className='cv-create-account-image-acount'
+																		src={item.image}
+																		alt={item.name}
+																	/>
+																</Col>
+																<Col
+																	span={18}
+																	className='cv-create-account-detail-acount'>
+																	<Row>
+																		<Col span={24}>
+																			<h3>{item.name}</h3>
+																		</Col>
+																		<Col span={12}>
+																			<span>
+																				<b>{item.followers}</b>
+																			</span>{' '}
+																			Seguidores
+																		</Col>
+																		<Col span={12}>
+																			<span>
+																				<b>{item.follow}</b>
+																			</span>{' '}
+																			Seguidos
+																		</Col>
+																		<Col span={24} className='mt15'>
+																			{item.emailAccount}
+																			<p>{item.biography}</p>
+																		</Col>
+																	</Row>
+																</Col>
+															</Row>
+														)
+													})}
+													{(() => {
+														if (this.state.accounts.length === 0) {
+															return (
+																<Row>
+																	<Col span={6}>
+																		<div className='mt15'>
+																			<Avatar
+																				size={120}
+																				icon={<AntDesignOutlined />}
+																			/>
+																		</div>
+																	</Col>
+																	<Col
+																		span={18}
+																		className='cv-create-account-detail-acount'>
+																		<Skeleton active />
+																	</Col>
+																</Row>
+															)
+														}
+													})()}
 												</Col>
-												<Col xs={18} sm={18} md={18} lg={18} xl={18}>
-													<h3 className='cv-perfil-description-title'>
-														Lorem Ipsum
-													</h3>
-													<p className='cv-perfil-description'>
-														Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Duis sagittis neque nec leo cvaretra porta.
-														Duis posuere tincidunt justo, finibus interdum nunc
-														ultrices non. Cras consectetur facilisis nulla,
-														ultricies cvaretra ante tristique eleifend. Sed
-														finibus leo eu arcu auctor tincidunt. Integer
-														sagittis, elit vitae volutpat dignissim, arcu sapien
-														vehicula ex, non bibendum ante lorem in tortor.
-													</p>
-												</Col>
-												<p>{JSON.stringify(this.state.accounts)}</p>
 											</Row>
-										</Card>
-									</Col>
-									<Col
-										className='cv-perfil-planes-container'
-										xs={24}
-										sm={24}
-										md={8}
-										lg={8}
-										xl={8}>
-										<Card>
-											<div className='cv-perfil-plans-content-plan'>
-												<img
-													className='cv-perfil-plans-images-plan'
-													title='Plan'
-													alt='Plan'
-													src='http://pluto.pinsupreme.com/wp-content/uploads/2014/05/AdobeStock_103332683-100x100.jpg'
-												/>
-												<h3 className='cv-perfil-plans-title-plan-title'>
-													Descripcion
-												</h3>
-												<h4 className='cv-perfil-plans-title-plan-title-price'>
-													Precio: 10.00
-												</h4>
-											</div>
-											<div className='cv-perfil-plans-content-plan'>
-												<img
-													className='cv-perfil-plans-images-plan'
-													title='Plan'
-													alt='Plan'
-													src='http://pluto.pinsupreme.com/wp-content/uploads/2014/05/AdobeStock_103332683-100x100.jpg'
-												/>
-												<h3 className='cv-perfil-plans-title-plan-title'>
-													Descripcion
-												</h3>
-												<h4 className='cv-perfil-plans-title-plan-title-price'>
-													Precio: 10.00
-												</h4>
-											</div>
 										</Card>
 									</Col>
 								</Row>
@@ -264,4 +195,3 @@ class Profile extends React.Component {
 		)
 	}
 }
-export default Profile

@@ -1,7 +1,8 @@
 /** @format */
 
-body {
-	background-color: #f5f6f8;
+body,
+html {
+	background-color: #f0f2f5;
 }
 
 .mt15 {

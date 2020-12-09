@@ -81,39 +81,39 @@ class CreateAccount extends React.Component {
 				let account = e.target.value.toLowerCase()
 				console.log(account)
 				serviceGetInstagramAccount(account)
-				.then((data) => {
-					const jsonObject = data
-						.match(
-							/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
-						)[1]
-						.slice(0, -1)
-					const jsonParse = JSON.parse(jsonObject)
-					const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
-					console.log(userInfo);
-					this.setState({
-						name: userInfo.username,
-						biography: userInfo.biography,
-						image: userInfo.profile_pic_url_hd,
-						followers: userInfo.edge_followed_by.count,
-						follow: userInfo.edge_follow.count,
-						emailAccount: userInfo.business_email,
-					})
-					if (userInfo.edge_followed_by.count < 10000) {
-						notification['error']({
-							message: `Problemas con la cuenta`,
-							description:
-								'La cuenta no cumple las condiciones para ser vendedor',
+					.then((data) => {
+						const jsonObject = data
+							.match(
+								/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
+							)[1]
+							.slice(0, -1)
+						const jsonParse = JSON.parse(jsonObject)
+						const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+						console.log(userInfo)
+						this.setState({
+							name: userInfo.username,
+							biography: userInfo.biography,
+							image: userInfo.profile_pic_url_hd,
+							followers: userInfo.edge_followed_by.count,
+							follow: userInfo.edge_follow.count,
+							emailAccount: userInfo.business_email,
 						})
-						return
-					}
-				})
-				.catch((e) => {
-					console.log('respuesta 2', e)
-					notification['error']({
-						message: `Ups!`,
-						description: 'Esta cuenta no existe',
+						if (userInfo.edge_followed_by.count < 10000) {
+							notification['error']({
+								message: `Problemas con la cuenta`,
+								description:
+									'La cuenta no cumple las condiciones para ser vendedor',
+							})
+							return
+						}
 					})
-				})
+					.catch((e) => {
+						console.log('respuesta 2', e)
+						notification['error']({
+							message: `Ups!`,
+							description: 'Esta cuenta no existe',
+						})
+					})
 			} else {
 				notification['error']({
 					message: `Error de Cuenta`,
@@ -217,7 +217,6 @@ class CreateAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-
 		if (this.state.auxDescription === null || this.state.auxPrice === null) {
 			notification['error']({
 				message: `Ups!`,
@@ -258,9 +257,7 @@ class CreateAccount extends React.Component {
 								wrapperCol={{ span: 16 }}>
 								<Row>
 									<Col span={12}>
-										<h3 className='cv-create-account-from-title'>
-											Usuario {JSON.stringify(this.state.userProfile)}
-										</h3>
+										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item label='Correo Electrónico'>
 												<Input value={this.state.userProfile.email} disabled />
@@ -314,7 +311,7 @@ class CreateAccount extends React.Component {
 															return (
 																<Row>
 																	<Col span={24}>
-																		<h3>{this.state.nameAcount}</h3>
+																		<h3>{this.state.name}</h3>
 																	</Col>
 																	<Col span={12}>
 																		<span>
@@ -391,17 +388,15 @@ class CreateAccount extends React.Component {
 														label='Nombre:'
 														name='auxDescription'
 														onChange={this.handleChangePlans}
-														rules={rulesValidation.rulesText}
-													>
+														rules={rulesValidation.rulesText}>
 														<Input placeholder='Ingrese el paquete' />
 													</Form.Item>
 													<Form.Item
 														label='Precio:'
 														name='auxPrice'
 														onChange={this.handleChangePlans}
-														rules={rulesValidation.rulesPrice}
-													>
-														<Input placeholder='Ingrese el precio'/>
+														rules={rulesValidation.rulesPrice}>
+														<Input placeholder='Ingrese el precio' />
 													</Form.Item>
 													<div className='cv-create-account-btn-add-content'>
 														<Button
