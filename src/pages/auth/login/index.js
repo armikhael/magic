@@ -1,8 +1,8 @@
 /** @format */
 
 import React from 'react'
-import { Link, Redirect } from "react-router-dom";
-import { Layout, Row, Col, Button } from 'antd'
+import { Redirect } from "react-router-dom";
+import { Layout, Row, Col } from 'antd'
 import { connect } from 'react-redux'
 import { saveUser } from '../../../redux'
 import { GoogleOutlined } from '@ant-design/icons'
@@ -18,30 +18,32 @@ class Login extends React.Component {
 		this.state = {}
 	}
 
-	handleLogging(){
-		if (this.props.email) {
-			return  (
-				<Redirect to="/profile/create-account" />
-			)
+	handleRedirect = () => {
+		if (this.state.redirect) {
+		  	return <Redirect to='/profile/create-account' />
 		}
 	}
+	
+	handleGoogleAuth = async (data) => {
+		console.log(data)
+		localStorage.setItem('user', JSON.stringify(data.profileObj));
+		this.props.saveUser('email', data.profileObj.email)
+		await serviceSaveUser({
+			email: data.profileObj.email,
+			autentication: "google",
+			first_name: data.profileObj.givenName,
+			last_name: data.profileObj.familyName,
+			image: data.profileObj.imageUrl
+		})
+		.then((data) => {
+			console.log('respuesta del registro', data);
+			// 
+		})
+		
+		this.setState({ redirect: true })
+	}
+
 	render() {
-		const responseGoogle = async (data) => {
-			console.log(data)
-			localStorage.setItem('user', JSON.stringify(data.profileObj));
-			this.props.saveUser('email', data.profileObj.email)
-			serviceSaveUser({
-				email: data.profileObj.email,
-				autentication: "google",
-				first_name: data.profileObj.givenName,
-				last_name: data.profileObj.familyName,
-				image: data.profileObj.imageUrl
-			})
-			.then((data) => {
-				console.log('respuesta del registro', data);
-			})
-			
-		}
 		return (
 			<React.Fragment>
 				<div className='cv-login-content'>
@@ -82,27 +84,27 @@ class Login extends React.Component {
 													</h2>
 												)}
 												buttonText='Login'
-												onSuccess={responseGoogle}
-												onFailure={responseGoogle}
+												onSuccess={this.handleGoogleAuth}
+												onFailure={this.handleGoogleAuth}
 												cookiePolicy={'single_host_origin'}
 											/>
 										</div>
 									</div>
+									
 									<br />
 									<p className='cv-login-title-termi-condi'>
 										Al continuar, aceptas las Condiciones del servicio y la
 										Política de privacidad de Cuentas Virales.
+										
 									</p>
-									{this.handleLogging()}
-									<Link to="/profile/create-account">
-										<Button>
-											<p>Click Me!</p>
-										</Button>
-									</Link>
+									
 								</div>
+								
 							</Col>
 						</Row>
 					</Content>
+
+					{this.handleRedirect()}
 				</div>
 			</React.Fragment>
 		)

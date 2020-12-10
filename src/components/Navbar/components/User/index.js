@@ -1,11 +1,12 @@
 /** @format */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
-import { Avatar, Badge, Row, Col } from 'antd'
+import { Avatar, Badge, Row, Col, Button } from 'antd'
 import {
 	NotificationOutlined,
+	CloseOutlined,
 	PlusOutlined,
 	UserOutlined,
 } from '@ant-design/icons'
@@ -13,11 +14,37 @@ import {
 import './style.css'
 
 class User extends React.Component {
+	
+	constructor(props) {
+		super(props)
+		this.state = {}
+	}
+
+	handleRedirect = () => {
+		if (this.state.redirect) {
+		  	return <Redirect to='/auth/login' />
+		}
+	}
+
+	handleLogout = () => {
+		console.log('paso por aca');
+		localStorage.removeItem('user');
+		console.log(localStorage.getItem('user'));
+		this.setState({ redirect: true })
+	}
+
+
 	render() {
+
 		return (
 			<React.Fragment>
 				<div className='cv-navbar-user-content'>
 					<Row align='middle'>
+						<Col xs={8} sm={8} md={8}>	
+							<Button onClick={this.handleLogout}>			
+								<CloseOutlined style={{ fontSize: '20px' }} />		
+							</Button>			
+						</Col>
 						<Col xs={8} sm={8} md={8}>
 							<Link to={`/profile/create-account`}>
 								<PlusOutlined style={{ fontSize: '20px' }} />
@@ -33,7 +60,9 @@ class User extends React.Component {
 								<Avatar size={28} icon={<UserOutlined />} />
 							</Link>
 						</Col>
+						
 					</Row>
+					{ this.handleRedirect()}
 				</div>
 			</React.Fragment>
 		)

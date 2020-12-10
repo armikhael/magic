@@ -172,6 +172,7 @@ class CreateAccount extends React.Component {
 			[e.target.id]: e.target.value,
 		})
 	}
+
 	handleChangePlans = (e) => {
 		this.setState({
 			[e.target.id]: e.target.value,
