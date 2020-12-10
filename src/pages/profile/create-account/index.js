@@ -173,7 +173,6 @@ class CreateAccount extends React.Component {
 		})
 	}
 	handleChangePlans = (e) => {
-		console.log(e.target.value)
 		this.setState({
 			[e.target.id]: e.target.value,
 		})
@@ -229,14 +228,19 @@ class CreateAccount extends React.Component {
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
 			description: this.state.auxDescription,
-			price: this.state.auxPrice,
+			price: this.state.auxPrice
 		})
 		this.setState({
 			plans: arrayPlans,
-			auxPrice: null,
-			auxDescription: null,
 		})
 		console.log(this.state.plans)
+	}
+
+	handleDelete = (e) => {
+		this.state.plans.splice(e, 1);
+		this.setState({
+			plans: this.state.plans
+		})
 	}
 
 	render() {
@@ -413,7 +417,15 @@ class CreateAccount extends React.Component {
 													<ol>
 														{this.state.plans.map((item, key) => (
 															<li key={key}>
-																{item.description} - {item.price}
+																{item.description} - {item.price} - 
+																<Button
+																	type='primary'
+																	shape='round'
+																	onClick={() => {
+																		this.handleDelete(key)
+																	}}>
+																	borrar 
+																</Button>
 															</li>
 														))}
 													</ol>
