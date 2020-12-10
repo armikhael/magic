@@ -135,6 +135,8 @@ class CreateAccount extends React.Component {
 			phone: this.state.phone,
 			code: this.state.code,
 			country: this.state.country,
+			followers: this.state.followers,
+			follow: this.state.follow,
 		}
 
 		console.log(Object.keys(body))
