@@ -1,6 +1,8 @@
 /** @format */
 
 import React from 'react'
+import { Redirect } from 'react-router-dom'
+
 import {
 	Form,
 	Select,
@@ -33,10 +35,11 @@ class CreateAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			itemsCaegories: 5, 
 			userProfile: JSON.parse(localStorage.getItem('user')),
-			plans: [],
 			auxDescription: null,
 			auxPrice: null,
+			plans: [],
 			responseCategories: [],
 			countries: [
 				{
@@ -67,6 +70,12 @@ class CreateAccount extends React.Component {
 			})
 			this.setState({ responseCategories: result })
 		})
+	}
+
+	handleRedirect = (param) => {
+		if (this.state.redirect) {
+			  return <Redirect to={`/account/${param}`}/>
+		}
 	}
 
 	handleFindAccount = async (e) => {
@@ -164,7 +173,12 @@ class CreateAccount extends React.Component {
 			notification['success']({
 				message: `Good job!!`,
 				description: `La cuenta se ha registrado satisfactoriamente`,
-			})
+			})			
+		})
+		
+		this.setState({ 
+			redirect: true,
+			accountParam: body.name
 		})
 	}
 
@@ -181,7 +195,6 @@ class CreateAccount extends React.Component {
 	}
 
 	handleChangeType = (e) => {
-		console.log(e)
 		this.setState({
 			type: e,
 		})
@@ -194,8 +207,6 @@ class CreateAccount extends React.Component {
 			country: e.name,
 			code: e.code,
 		})
-
-		console.log(this.state)
 	}
 
 	handlerTagRender(props) {
@@ -213,7 +224,12 @@ class CreateAccount extends React.Component {
 	}
 
 	handleCategory = (e) => {
-		console.log(e)
+		if (e.length >= this.state.itemsCaegories) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
+			})
+		}
 		this.setState({
 			categories: e,
 		})
@@ -443,6 +459,7 @@ class CreateAccount extends React.Component {
 										onClick={this.handleButton}>
 										REGISTRAR
 									</Button>
+									{ this.handleRedirect(this.state.accountParam)}
 								</div>
 							</Form>
 						</Layout>
