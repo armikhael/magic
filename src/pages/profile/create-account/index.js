@@ -126,6 +126,7 @@ class CreateAccount extends React.Component {
 	handleButton = async () => {
 		let body = {
 			email: this.state.userProfile.email,
+			account: `${this.state.name}`,
 			name: `${this.state.name}-${this.state.type}`,
 			type: this.state.type,
 			biography: this.state.biography,
