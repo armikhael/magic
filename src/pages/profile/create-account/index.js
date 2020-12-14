@@ -40,6 +40,7 @@ class CreateAccount extends React.Component {
 			auxDescription: null,
 			auxPrice: null,
 			plans: [],
+			agree: false,
 			responseCategories: [],
 			countries: [
 				{
@@ -108,6 +109,7 @@ class CreateAccount extends React.Component {
 							emailAccount: userInfo.business_email,
 						})
 						if (userInfo.edge_followed_by.count < 10000) {
+							this.setState({ agree: false })
 							notification['error']({
 								message: `Problemas con la cuenta`,
 								description:
@@ -115,6 +117,8 @@ class CreateAccount extends React.Component {
 							})
 							return
 						}
+
+						this.setState({ agree: true })
 					})
 					.catch((e) => {
 						console.log('respuesta 2', e)
@@ -364,94 +368,104 @@ class CreateAccount extends React.Component {
 										</Card>
 									</Col>
 								</Row>
-								<Row>
-									<Col span={12}>
-										<h3 className='cv-create-account-from-title'>Región</h3>
-										<Card className='cv-create-account-card-custom'>
-											<Form.Item label='País'>
-												<Select onChange={this.handleChangeCountry}>
-													{this.state.countries.map((item, i) => {
-														return (
-															<Option
-																key={i}
-																value={JSON.stringify({
-																	code: item.code,
-																	name: item.name,
-																})}>
-																{item.label}
-															</Option>
-														)
-													})}
-												</Select>
-											</Form.Item>
-											<Form.Item
-												label='Número'
-												name='phone'
-												rules={rulesValidation.rulesPhone}
-												onChange={this.handleChangeInput}>
-												<Input />
-											</Form.Item>
-											<Form.Item label='Categorias' name='categories'>
-												<Select
-													mode='multiple'
-													showArrow
-													tagRender={this.tagRender}
-													style={{ width: '100%' }}
-													options={this.state.responseCategories}
-													onChange={this.handleCategory}
-												/>
-											</Form.Item>
-										</Card>
-									</Col>
-									<Col span={12}>
-										<h3 className='cv-create-account-from-title'>Planes</h3>
-										<Card className='cv-create-account-card-custom'>
+								{(() => {
+									if (this.state.agree) {
+										return (
 											<Row>
 												<Col span={12}>
-													<Form.Item
-														label='Nombre:'
-														name='auxDescription'
-														onChange={this.handleChangePlans}
-														rules={rulesValidation.rulesText}>
-														<Input placeholder='Ingrese el paquete' />
-													</Form.Item>
-													<Form.Item
-														label='Precio:'
-														name='auxPrice'
-														onChange={this.handleChangePlans}
-														rules={rulesValidation.rulesPrice}>
-														<Input placeholder='Ingrese el precio' />
-													</Form.Item>
-													<div className='cv-create-account-btn-add-content'>
-														<Button
-															type='primary'
-															shape='round'
-															onClick={this.handleButtonPlans}>
-															AGREGAR
-														</Button>
-													</div>
+													<h3 className='cv-create-account-from-title'>
+														Región
+													</h3>
+													<Card className='cv-create-account-card-custom'>
+														<Form.Item label='País'>
+															<Select onChange={this.handleChangeCountry}>
+																{this.state.countries.map((item, i) => {
+																	return (
+																		<Option
+																			key={i}
+																			value={JSON.stringify({
+																				code: item.code,
+																				name: item.name,
+																			})}>
+																			{item.label}
+																		</Option>
+																	)
+																})}
+															</Select>
+														</Form.Item>
+														<Form.Item
+															label='Número'
+															name='phone'
+															rules={rulesValidation.rulesPhone}
+															onChange={this.handleChangeInput}>
+															<Input />
+														</Form.Item>
+														<Form.Item label='Categorias' name='categories'>
+															<Select
+																mode='multiple'
+																showArrow
+																tagRender={this.tagRender}
+																style={{ width: '100%' }}
+																options={this.state.responseCategories}
+																onChange={this.handleCategory}
+															/>
+														</Form.Item>
+													</Card>
 												</Col>
 												<Col span={12}>
-													<ol>
-														{this.state.plans.map((item, key) => (
-															<li key={key}>
-																{item.description} - {item.price} -
-																<Button
-																	type='primary'
-																	shape='round'
-																	onClick={() => {
-																		this.handleDelete(key)
-																	}}>
-																	borrar
-																</Button>
-															</li>
-														))}
-													</ol>
+													<h3 className='cv-create-account-from-title'>
+														Planes
+													</h3>
+													<Card className='cv-create-account-card-custom'>
+														<Row>
+															<Col span={12}>
+																<Form.Item
+																	label='Nombre:'
+																	name='auxDescription'
+																	onChange={this.handleChangePlans}
+																	rules={rulesValidation.rulesText}>
+																	<Input placeholder='Ingrese el paquete' />
+																</Form.Item>
+																<Form.Item
+																	label='Precio:'
+																	name='auxPrice'
+																	onChange={this.handleChangePlans}
+																	rules={rulesValidation.rulesPrice}>
+																	<Input placeholder='Ingrese el precio' />
+																</Form.Item>
+																<div className='cv-create-account-btn-add-content'>
+																	<Button
+																		type='primary'
+																		shape='round'
+																		onClick={this.handleButtonPlans}>
+																		AGREGAR
+																	</Button>
+																</div>
+															</Col>
+															<Col span={12}>
+																<ol>
+																	{this.state.plans.map((item, key) => (
+																		<li key={key}>
+																			{item.description} - {item.price} -
+																			<Button
+																				type='primary'
+																				shape='round'
+																				onClick={() => {
+																					this.handleDelete(key)
+																				}}>
+																				borrar
+																			</Button>
+																		</li>
+																	))}
+																</ol>
+															</Col>
+														</Row>
+													</Card>
 												</Col>
 											</Row>
-										</Card>
-									</Col>
-								</Row>
+										)
+									}
+								})()}
 								<div className='cv-create-account-btn-submit'>
 									<Button
 										type='primary'
