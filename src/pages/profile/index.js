@@ -18,6 +18,8 @@ import {
 	AntDesignOutlined,
 } from '@ant-design/icons'
 
+import Loading from '../../components/Loading/Loading'
+
 import serviceGetAccountsByEmail from './services'
 import './style.css'
 
@@ -28,18 +30,26 @@ export default class Profile extends React.Component {
 	state = {
 		userProfile: JSON.parse(localStorage.getItem('user')),
 		accounts: [],
+		loading: true,
 	}
 
 	async componentDidMount() {
-		serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
-			this.setState({
-				accounts: data,
+		if (this.state.userProfile) {
+			serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
+				this.setState({
+					accounts: data,
+					loading: false,
+				})
 			})
-			console.log('respuesta de las cuentas', data)
-		})
+		} else {
+			this.props.history.push('/auth/login')
+		}
 	}
 
 	render() {
+		if (this.state.loading) {
+			return <Loading />
+		}
 		return (
 			<>
 				<Layout>

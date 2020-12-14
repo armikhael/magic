@@ -1,54 +1,55 @@
 /** @format */
 
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { Avatar, Badge, Row, Col, Button } from 'antd'
+import { Avatar, Badge, Row, Col, Menu, Dropdown } from 'antd'
 import {
 	NotificationOutlined,
-	CloseOutlined,
 	PlusOutlined,
 	UserOutlined,
+	LoginOutlined,
 } from '@ant-design/icons'
 
 import './style.css'
 
-class User extends React.Component {
-	
-	constructor(props) {
-		super(props)
-		this.state = {}
-	}
+const menu = (
+	<Menu>
+		<Menu.Item>
+			<Link to={`/profile`}>Perfil</Link>
+		</Menu.Item>
+		<Menu.Item>
+			<Link
+				onClick={() => {
+					localStorage.removeItem('user')
+				}}
+				to={`/auth/login`}>
+				Cerrar sesion
+			</Link>
+		</Menu.Item>
+	</Menu>
+)
 
-	handleRedirect = () => {
-		if (this.state.redirect) {
-		  	return <Redirect to='/auth/login' />
-		}
+export default class User extends React.Component {
+	state = {
+		user: JSON.parse(localStorage.getItem('user')),
 	}
-
-	handleLogout = () => {
-		console.log('paso por aca');
-		localStorage.removeItem('user');
-		console.log(localStorage.getItem('user'));
-		this.setState({ redirect: true })
-	}
-
 
 	render() {
-
 		return (
 			<React.Fragment>
 				<div className='cv-navbar-user-content'>
 					<Row align='middle'>
-						<Col xs={8} sm={8} md={8}>	
-							<Button onClick={this.handleLogout}>			
-								<CloseOutlined style={{ fontSize: '20px' }} />		
-							</Button>			
-						</Col>
 						<Col xs={8} sm={8} md={8}>
-							<Link to={`/profile/create-account`}>
-								<PlusOutlined style={{ fontSize: '20px' }} />
-							</Link>
+							{(() => {
+								if (this.state.user) {
+									return (
+										<Link to={`/profile/create-account`}>
+											<PlusOutlined style={{ fontSize: '20px' }} />
+										</Link>
+									)
+								}
+							})()}
 						</Col>
 						<Col xs={8} sm={8} md={8}>
 							<Badge count={5}>
@@ -56,17 +57,25 @@ class User extends React.Component {
 							</Badge>
 						</Col>
 						<Col xs={8} sm={8} md={8}>
-							<Link to={`/profile`}>
-								<Avatar size={28} icon={<UserOutlined />} />
-							</Link>
+							{(() => {
+								if (this.state.user) {
+									return (
+										<Dropdown overlay={menu} placement='bottomRight' arrow>
+											<Avatar size={28} icon={<UserOutlined />} />
+										</Dropdown>
+									)
+								} else {
+									return (
+										<Link to={`/auth/login`}>
+											<LoginOutlined style={{ fontSize: '20px' }} />
+										</Link>
+									)
+								}
+							})()}
 						</Col>
-						
 					</Row>
-					{ this.handleRedirect()}
 				</div>
 			</React.Fragment>
 		)
 	}
 }
-
-export default User

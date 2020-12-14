@@ -35,7 +35,7 @@ class CreateAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			itemsCaegories: 5, 
+			itemsCaegories: 5,
 			userProfile: JSON.parse(localStorage.getItem('user')),
 			auxDescription: null,
 			auxPrice: null,
@@ -74,7 +74,7 @@ class CreateAccount extends React.Component {
 
 	handleRedirect = (param) => {
 		if (this.state.redirect) {
-			  return <Redirect to={`/account/${param}`}/>
+			return <Redirect to={`/account/${param}`} />
 		}
 	}
 
@@ -173,12 +173,12 @@ class CreateAccount extends React.Component {
 			notification['success']({
 				message: `Good job!!`,
 				description: `La cuenta se ha registrado satisfactoriamente`,
-			})			
+			})
 		})
-		
-		this.setState({ 
+
+		this.setState({
 			redirect: true,
-			accountParam: body.name
+			accountParam: body.name,
 		})
 	}
 
@@ -246,7 +246,7 @@ class CreateAccount extends React.Component {
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
 			description: this.state.auxDescription,
-			price: this.state.auxPrice
+			price: this.state.auxPrice,
 		})
 		this.setState({
 			plans: arrayPlans,
@@ -255,9 +255,9 @@ class CreateAccount extends React.Component {
 	}
 
 	handleDelete = (e) => {
-		this.state.plans.splice(e, 1);
+		this.state.plans.splice(e, 1)
 		this.setState({
-			plans: this.state.plans
+			plans: this.state.plans,
 		})
 	}
 
@@ -435,14 +435,14 @@ class CreateAccount extends React.Component {
 													<ol>
 														{this.state.plans.map((item, key) => (
 															<li key={key}>
-																{item.description} - {item.price} - 
+																{item.description} - {item.price} -
 																<Button
 																	type='primary'
 																	shape='round'
 																	onClick={() => {
 																		this.handleDelete(key)
 																	}}>
-																	borrar 
+																	borrar
 																</Button>
 															</li>
 														))}
@@ -459,7 +459,7 @@ class CreateAccount extends React.Component {
 										onClick={this.handleButton}>
 										REGISTRAR
 									</Button>
-									{ this.handleRedirect(this.state.accountParam)}
+									{this.handleRedirect(this.state.accountParam)}
 								</div>
 							</Form>
 						</Layout>
