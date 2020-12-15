@@ -24,12 +24,12 @@ const serviceSaveAccount = async (body) => {
 		url: `${process.env.REACT_APP_HOST}/account`,
 		data: body,
 	})
-	.then((response) => {
-		returnResponse = response.data
-	})
-	.catch((e) => {
-		returnResponse = e.response.data
-	})
+		.then((response) => {
+			returnResponse = response.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data
+		})
 	return returnResponse
 }
 
@@ -40,10 +40,17 @@ const serviceGetInstagramAccount = async (param) => {
 		url: `https://www.instagram.com/${param}`,
 	})
 		.then((response) => {
-			returnResponse = response.data
+			const jsonObject = response.data
+				.match(
+					/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
+				)[1]
+				.slice(0, -1)
+			const jsonParse = JSON.parse(jsonObject)
+			const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+			returnResponse = userInfo
 		})
 		.catch((error) => {
-			returnResponse = error.response
+			returnResponse = error
 		})
 	return returnResponse
 }

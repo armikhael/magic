@@ -20,6 +20,8 @@ import {
 import { connect } from 'react-redux'
 import { RocketOutlined, AntDesignOutlined } from '@ant-design/icons'
 
+import ModalsContact from './components/ModalsContact'
+
 import './style.css'
 import { rulesValidation } from './rules'
 import {
@@ -29,6 +31,7 @@ import {
 } from './services'
 
 const { Option } = Select
+const { Search } = Input
 const { Content, Header } = Layout
 
 class CreateAccount extends React.Component {
@@ -42,6 +45,7 @@ class CreateAccount extends React.Component {
 			plans: [],
 			agree: false,
 			responseCategories: [],
+			modalsContact: false,
 			countries: [
 				{
 					code: '56',
@@ -79,60 +83,30 @@ class CreateAccount extends React.Component {
 		}
 	}
 
-	handleFindAccount = async (e) => {
-		if (e.key === 'Enter') {
-			if (this.state.type === '') {
-				notification['warning']({
-					message: `Cuenta`,
-					description: 'Debe seleccionar un tipo de cuenta.',
-				})
-				return
-			} else if (this.state.type === 'instagram') {
-				let account = e.target.value.toLowerCase()
-				console.log(account)
-				serviceGetInstagramAccount(account)
-					.then((data) => {
-						const jsonObject = data
-							.match(
-								/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
-							)[1]
-							.slice(0, -1)
-						const jsonParse = JSON.parse(jsonObject)
-						const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
-						console.log(userInfo)
-						this.setState({
-							name: userInfo.username,
-							biography: userInfo.biography,
-							image: userInfo.profile_pic_url_hd,
-							followers: userInfo.edge_followed_by.count,
-							follow: userInfo.edge_follow.count,
-							emailAccount: userInfo.business_email,
-						})
-						if (userInfo.edge_followed_by.count < 10000) {
-							this.setState({ agree: false })
-							notification['error']({
-								message: `Problemas con la cuenta`,
-								description:
-									'La cuenta no cumple las condiciones para ser vendedor',
-							})
-							return
-						}
-
-						this.setState({ agree: true })
+	handleFindAccount = async (item) => {
+		if (this.state.type === 'instagram') {
+			serviceGetInstagramAccount(item)
+				.then((response) => {
+					this.setState({
+						name: response.username,
+						biography: response.biography,
+						image: response.profile_pic_url_hd,
+						followers: response.edge_followed_by.count,
+						follow: response.edge_follow.count,
+						emailAccount: response.business_email,
 					})
-					.catch((e) => {
-						console.log('respuesta 2', e)
-						notification['error']({
-							message: `Ups!`,
-							description: 'Esta cuenta no existe',
-						})
-					})
-			} else {
-				notification['error']({
-					message: `Error de Cuenta`,
-					description: 'Este tipo de cuenta no esta permitida',
+					if (response.edge_followed_by.count < 10000) {
+						this.setState({ agree: false, modalsContact: true })
+						return
+					}
+					this.setState({ agree: true })
 				})
-			}
+				.catch(() => {
+					notification['error']({
+						message: `Error!`,
+						description: `Error la cuenta no existe.`,
+					})
+				})
 		}
 	}
 
@@ -215,7 +189,6 @@ class CreateAccount extends React.Component {
 
 	handlerTagRender(props) {
 		const { label, value, closable, onClose } = props
-
 		return (
 			<Tag
 				color={value}
@@ -265,9 +238,17 @@ class CreateAccount extends React.Component {
 		})
 	}
 
+	handleCloseModalsConctac = () => {
+		this.setState({ modalsContact: false })
+	}
+
 	render() {
 		return (
 			<>
+				<ModalsContact
+					modalsContact={this.state.modalsContact}
+					handleCloseModalsConctac={this.handleCloseModalsConctac}
+				/>
 				<Layout>
 					<Content>
 						<Header className='cv-perfil-title-main-container'>
@@ -296,9 +277,10 @@ class CreateAccount extends React.Component {
 												</Select>
 											</Form.Item>
 											<Form.Item label='Nombre de la cuenta'>
-												<Input
+												<Search
 													disabled={!this.state.type}
-													onKeyDown={this.handleFindAccount}
+													placeholder='Buscar cuenta...'
+													onSearch={this.handleFindAccount}
 												/>
 											</Form.Item>
 										</Card>
