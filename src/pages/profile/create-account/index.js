@@ -140,7 +140,7 @@ class CreateAccount extends React.Component {
 			}
 		}
 		await serviceSaveAccount(body).then((data) => {
-			if (data.statusCode === 409) {
+			if (data.statusCode === 500) {
 				notification['error']({
 					message: `Ups!`,
 					description: `${data.message}`,
@@ -152,11 +152,11 @@ class CreateAccount extends React.Component {
 				message: `Good job!!`,
 				description: `La cuenta se ha registrado satisfactoriamente`,
 			})
-		})
 
-		this.setState({
-			redirect: true,
-			accountParam: body.name,
+			this.setState({
+				redirect: true,
+				accountParam: body.name,
+			})
 		})
 	}
 

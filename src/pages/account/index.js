@@ -50,7 +50,7 @@ class Account extends React.Component {
 							</Col>
 							<Col span={24} className='cv-detail-content-account-detail'>
 								<h1 className='cv-detail-title-main'>
-									{this.state.accounts.name}
+									{this.state.accounts.account}
 								</h1>
 								<h3 className='cv-detail-sub-title'>
 									<Moment format='LLLL' withTitle>
