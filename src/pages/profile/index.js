@@ -11,6 +11,7 @@ import {
 	Space,
 	Typography,
 	Avatar,
+	Button,
 } from 'antd'
 import {
 	UserOutlined,
@@ -20,17 +21,20 @@ import {
 
 import Loading from '../../components/Loading/Loading'
 
-import serviceGetAccountsByEmail from './services'
+import { serviceGetAccountsByEmail, serviceDeleteAccount } from './services'
 import './style.css'
 
 const { Content, Header } = Layout
 const { Text } = Typography
 
 export default class Profile extends React.Component {
-	state = {
-		userProfile: JSON.parse(localStorage.getItem('user')),
-		accounts: [],
-		loading: true,
+	constructor(props) {
+		super(props)
+		this.state = {
+			userProfile: JSON.parse(localStorage.getItem('user')),
+			accounts: [],
+			loading: true,
+		}
 	}
 
 	async componentDidMount() {
@@ -44,6 +48,16 @@ export default class Profile extends React.Component {
 		} else {
 			this.props.history.push('/auth/login')
 		}
+	}
+
+	handleDeleteAccount = async (item) => {
+		await serviceDeleteAccount(item._id)
+		const newList = await serviceGetAccountsByEmail(
+			this.state.userProfile.email
+		)
+		this.setState({
+			accounts: newList,
+		})
 	}
 
 	render() {
@@ -133,7 +147,7 @@ export default class Profile extends React.Component {
 										<Card className='cv-perfil-description-container'>
 											<Row>
 												<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-													{this.state.accounts.map(function (item, i) {
+													{this.state.accounts.map((item, i) => {
 														return (
 															<Row key={i}>
 																<Col span={6}>
@@ -148,7 +162,7 @@ export default class Profile extends React.Component {
 																	className='cv-create-account-detail-acount'>
 																	<Row>
 																		<Col span={24}>
-																			<h3>{item.name}</h3>
+																			<h3>{item.account}</h3>
 																		</Col>
 																		<Col span={12}>
 																			<span>
@@ -165,6 +179,16 @@ export default class Profile extends React.Component {
 																		<Col span={24} className='mt15'>
 																			{item.emailAccount}
 																			<p>{item.biography}</p>
+																		</Col>
+																		<Col>
+																			<Button
+																				type='primary'
+																				shape='round'
+																				onClick={() => {
+																					this.handleDeleteAccount(item)
+																				}}>
+																				borrar
+																			</Button>
 																		</Col>
 																	</Row>
 																</Col>

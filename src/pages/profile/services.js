@@ -3,7 +3,7 @@
 
 import axios from 'axios'
 
-export default async function serviceGetAccountsByEmail(data) {
+const serviceGetAccountsByEmail = async (data) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -18,3 +18,21 @@ export default async function serviceGetAccountsByEmail(data) {
 
 	return returnResponse
 }
+
+const serviceDeleteAccount = async (data) => {
+	let returnResponse
+	await axios({
+		method: 'DELETE',
+		url: `${process.env.REACT_APP_HOST}/account/${data}`,
+	})
+		.then((response) => {
+			returnResponse = response.data
+		})
+		.catch((error) => {
+			returnResponse = error.response.data
+		})
+
+	return returnResponse
+}
+
+export { serviceGetAccountsByEmail, serviceDeleteAccount }
