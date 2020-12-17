@@ -16,8 +16,8 @@ deploy dev:
         - apt-get install -y ruby-dev
         - gem install dpl
         - wget --header="${HEADER}" $ENV_DEVELOP -O .env
-        - git config --global user.email "admin@pharol.cl"
-        - git config --global user.name "Pharol"
+        - git config --global user.email "diego.carciente@gmail.com"
+        - git config --global user.name "dirlant"
         - git add -f .env
         - dpl --provider=heroku --app=$HEROKU_DEV --api-key=$API_KEY
  
