@@ -36,9 +36,11 @@ export default class User extends React.Component {
 	}
 
 	async componentDidMount() {
-		this.setState({
-			userProfile: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')): null,
-		})
+		if (localStorage.getItem('user')) {
+			this.setState({
+				userProfile: JSON.parse(localStorage.getItem('user'))
+			})
+		}
 	}
 
 	render() {

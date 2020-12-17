@@ -38,9 +38,11 @@ export default class Profile extends React.Component {
 	}
 
 	async componentDidMount() {
-		this.setState({
-			userProfile: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')): null,
-		})
+		if (localStorage.getItem('user')) {
+			this.setState({
+				userProfile: JSON.parse(localStorage.getItem('user'))
+			})
+		}
 		if (this.state.userProfile) {
 			serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
 				this.setState({
