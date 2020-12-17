@@ -31,7 +31,7 @@ export default class Profile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			userProfile: null,
+			userProfile: localStorage.getItem('user'),
 			accounts: [],
 			loading: true,
 		}

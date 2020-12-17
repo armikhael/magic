@@ -39,7 +39,7 @@ class CreateAccount extends React.Component {
 		super(props)
 		this.state = {
 			itemsCaegories: 5,
-			userProfile: null,
+			userProfile: localStorage.getItem('user'),
 			auxDescription: null,
 			auxPrice: null,
 			plans: [],
