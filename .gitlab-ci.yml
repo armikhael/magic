@@ -1,13 +1,8 @@
 stages:
   - deploy-dev
 
-
-
-
 variables:
   HEADER: 'PRIVATE-TOKEN: ${TOKEN_GITLAB}'
-
-
 
 deploy dev:
     stage: deploy-dev
