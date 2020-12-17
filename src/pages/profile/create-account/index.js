@@ -67,9 +67,11 @@ class CreateAccount extends React.Component {
 	}
 
 	async componentDidMount() {
-		this.setState({
-			userProfile: 'diego.carciente@gmail.com',
-		})
+		if (localStorage.getItem('user') !== undefined) {
+			this.setState({
+				userProfile: JSON.parse(localStorage.getItem('user'))
+			})
+		}
 		await serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
 				return {

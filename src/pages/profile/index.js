@@ -38,9 +38,9 @@ export default class Profile extends React.Component {
 	}
 
 	async componentDidMount() {
-		if (localStorage.getItem('user')) {
+		if (localStorage.getItem('user') !== undefined) {
 			this.setState({
-				userProfile: 'diego.carciente@gmail.com'
+				userProfile: JSON.parse(localStorage.getItem('user'))
 			})
 		}
 		if (this.state.userProfile) {
