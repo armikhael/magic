@@ -46,9 +46,11 @@ const serviceGetInstagramAccount = async (param) => {
 		)[1]
 		.slice(0, -1)
 		console.log('error de JSON parse');
-		const jsonParse = JSON.parse(jsonObject)
-		const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
-		returnResponse = userInfo
+		if (jsonObject) {
+			const jsonParse = JSON.parse(jsonObject)
+			const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
+			returnResponse = userInfo
+		}
 	})
 	.catch((error) => {
 		returnResponse = error
