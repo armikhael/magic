@@ -39,7 +39,7 @@ class CreateAccount extends React.Component {
 		super(props)
 		this.state = {
 			itemsCaegories: 5,
-			userProfile: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')): null,
+			userProfile: 'diego.carciente@gmail.com',
 			auxDescription: null,
 			auxPrice: null,
 			plans: [],
@@ -179,7 +179,6 @@ class CreateAccount extends React.Component {
 	}
 
 	handleChangeCountry = (e) => {
-		console.log(JSON.parse(e))
 		e = JSON.parse(e)
 		this.setState({
 			country: e.name,
