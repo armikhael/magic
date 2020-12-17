@@ -26,13 +26,10 @@ class Home extends React.Component {
 		}
 	}
 
-	async componentDidMount() {
-		this.handleList()
-	}
-
-	handleList = async () => {
+	componentDidMount() {
 		try {
-			await serviceGetAccounts(this.state.page).then((data) => {
+			console.log('entro por aqui');
+			serviceGetAccounts(this.state.page).then((data) => {
 				if (data.status === 200) {
 					this.setState({
 						list: [...this.state.list, ...data.data.data],
@@ -49,7 +46,6 @@ class Home extends React.Component {
 		} catch (e) {
 			console.log('inicio', e);
 		}
-		
 	}
 
 	render() {
