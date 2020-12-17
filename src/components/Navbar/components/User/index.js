@@ -32,7 +32,7 @@ const menu = (
 
 export default class User extends React.Component {
 	state = {
-		user: JSON.parse(localStorage.getItem('user')),
+		user: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')): null,
 	}
 
 	render() {
