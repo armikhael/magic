@@ -31,13 +31,16 @@ export default class Profile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			userProfile: 'diego.carciente@gmail.com',
+			userProfile: null,
 			accounts: [],
 			loading: true,
 		}
 	}
 
 	async componentDidMount() {
+		this.setState({
+			userProfile: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')): null,
+		})
 		if (this.state.userProfile) {
 			serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
 				this.setState({

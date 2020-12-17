@@ -32,7 +32,13 @@ const menu = (
 
 export default class User extends React.Component {
 	state = {
-		user: 'diego.carciente@gmail.com',
+		user: null,
+	}
+
+	async componentDidMount() {
+		this.setState({
+			userProfile: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')): null,
+		})
 	}
 
 	render() {
