@@ -14,6 +14,8 @@ deploy dev:
         - git config --global user.email "diego.carciente@gmail.com"
         - git config --global user.name "dirlant"
         - git add -f .env
+        - git add . 
+        - git commit -am "update"
         - dpl --provider=heroku --app=$HEROKU_DEV --api-key=$API_KEY
  
     only:
