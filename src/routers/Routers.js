@@ -19,7 +19,7 @@ import Recovery from '../pages/auth/recovery'
 import NotFound from '../pages/notfound'
 
 const Routers = () => (
-	<BrowserRouter>
+	<BrowserRouter forceRefresh={true}>
 		<Layout>
 			<Switch>
 				<Route exact path='/auth/login' component={Login} />

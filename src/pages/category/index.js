@@ -25,7 +25,6 @@ class Category extends React.Component {
 	}
 
 	async componentDidMount() {
-		console.log('categoria', this.props.match.params.name);
 		await serviceGetAccountByCategory(
 			this.props.match.params.name,
 			this.state.page
