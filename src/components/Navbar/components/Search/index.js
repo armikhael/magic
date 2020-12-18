@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import { Input, Select } from 'antd'
 
 import './style.css'
@@ -32,8 +32,8 @@ class SearchNavbar extends React.Component {
 					<Select defaultValue='Categorías' className='cv-navbar-search-select'>
 						{this.state.categories.map(function (item, i) {
 							return (
-								<Option value={i} key={i}>
-									{item.name}
+								<Option key={i}>
+									<Link to={`category/${item.name}`}>{item.name}</Link>
 								</Option>
 							)
 						})}
