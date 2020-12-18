@@ -18,9 +18,10 @@ class SearchNavbar extends React.Component {
 		}
 	}
 	async componentDidMount() {
-		let response = await serviceGetCategories()
-		this.setState({
-			categories: response.data,
+		serviceGetCategories().then((response) => {
+			this.setState({
+				categories: response.data,
+			})
 		})
 	}
 
@@ -29,13 +30,13 @@ class SearchNavbar extends React.Component {
 			<React.Fragment>
 				<Input.Group compact className='cv-navbar-search-content'>
 					<Select defaultValue='Categorías' className='cv-navbar-search-select'>
-						{
-							this.state.categories.map(function (item, i) {
-								return (
-									<Option value={i} key={i}>{item.name}</Option>
-								)
-							})
-						}
+						{this.state.categories.map(function (item, i) {
+							return (
+								<Option value={i} key={i}>
+									{item.name}
+								</Option>
+							)
+						})}
 					</Select>
 					<Search
 						className='cv-navbar-search-input'

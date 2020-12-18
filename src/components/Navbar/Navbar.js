@@ -23,13 +23,13 @@ class Navbar extends React.Component {
 			<Header className='cv-navbar-header-content'>
 				<Content className='cv-navbar-content'>
 					<Row>
-						<Col span={5}>
+						<Col xs={3} sm={3} md={5}>
 							<Logo />
 						</Col>
-						<Col span={15}>
+						<Col xs={16} sm={16} md={15}>
 							<SearchNavbar />
 						</Col>
-						<Col span={4}>
+						<Col xs={5} sm={5} md={4}>
 							<User />
 						</Col>
 					</Row>

@@ -14,3 +14,13 @@
 	cursor: pointer;
 	margin-top: 7px;
 }
+
+@media (max-width: 768px) {
+	.cv-navbar-logo-titles {
+		display: none;
+	}
+	.cv-navbar-logo {
+		margin-top: 6px;
+		width: 35px;
+	}
+}

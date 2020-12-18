@@ -3,13 +3,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Avatar, Badge, Row, Col, Menu, Dropdown } from 'antd'
-import {
-	NotificationOutlined,
-	PlusOutlined,
-	UserOutlined,
-	LoginOutlined,
-} from '@ant-design/icons'
+import { Avatar, Row, Col, Menu, Dropdown } from 'antd'
+import { PlusOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons'
 
 import './style.css'
 
@@ -31,13 +26,12 @@ const menu = (
 )
 
 export default class User extends React.Component {
-
 	render() {
 		return (
 			<React.Fragment>
 				<div className='cv-navbar-user-content'>
 					<Row align='middle'>
-						<Col xs={8} sm={8} md={8}>
+						<Col xs={12} sm={12} md={{ span: 8, offset: 8 }}>
 							{(() => {
 								if (localStorage.getItem('user')) {
 									return (
@@ -48,12 +42,7 @@ export default class User extends React.Component {
 								}
 							})()}
 						</Col>
-						<Col xs={8} sm={8} md={8}>
-							<Badge count={5}>
-								<NotificationOutlined style={{ fontSize: '20px' }} />
-							</Badge>
-						</Col>
-						<Col xs={8} sm={8} md={8}>
+						<Col xs={12} sm={12} md={8}>
 							{(() => {
 								if (localStorage.getItem('user')) {
 									return (
