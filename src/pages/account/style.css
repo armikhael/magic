@@ -174,3 +174,15 @@
 .cv-detail-plans-title-plan-title-price {
 	margin-top: 5px;
 }
+
+@media (max-width: 768px) {
+	.cv-detail-content-account-detail {
+		padding: 0 10px;
+	}
+	.cv-detail-account-category-title {
+		float: none;
+	}
+	.cv-detail-content-plans-main {
+		padding: 20px 10px;
+	}
+}

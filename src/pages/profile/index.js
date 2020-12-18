@@ -2,22 +2,8 @@
 
 import React from 'react'
 
-import {
-	Layout,
-	Row,
-	Col,
-	Card,
-	Skeleton,
-	Space,
-	Typography,
-	Avatar,
-	Button,
-} from 'antd'
-import {
-	UserOutlined,
-	HeartOutlined,
-	AntDesignOutlined,
-} from '@ant-design/icons'
+import { Layout, Row, Col, Card, Skeleton, Space, Typography, Avatar, Button } from 'antd'
+import { UserOutlined, HeartOutlined, AntDesignOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 
@@ -28,7 +14,6 @@ const { Content, Header } = Layout
 const { Text } = Typography
 
 export default class Profile extends React.Component {
-
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -43,9 +28,9 @@ export default class Profile extends React.Component {
 			let jsonParse = JSON.parse(localStorage.getItem('user'))
 
 			this.setState({
-				userProfile: jsonParse
+				userProfile: jsonParse,
 			})
-			
+
 			serviceGetAccountsByEmail(jsonParse.email).then((data) => {
 				this.setState({
 					accounts: data,
@@ -57,9 +42,7 @@ export default class Profile extends React.Component {
 
 	handleDeleteAccount = async (item) => {
 		await serviceDeleteAccount(item._id)
-		const newList = await serviceGetAccountsByEmail(
-			this.state.userProfile.email
-		)
+		const newList = await serviceGetAccountsByEmail(this.state.userProfile.email)
 		this.setState({
 			accounts: newList,
 		})
@@ -74,13 +57,11 @@ export default class Profile extends React.Component {
 				<Layout>
 					<Layout className='cv-perfil-main-container'>
 						<Row>
-							<Col span={10}>
+							<Col xs={24} sm={24} md={10}>
 								<Content>
 									<Header className='cv-perfil-title-main-container'>
 										<UserOutlined className='cv-perfil-title-main-icon' />
-										<h3 className='cv-perfil-title-main-title'>
-											Perfil de Usuario
-										</h3>
+										<h3 className='cv-perfil-title-main-title'>Perfil de Usuario</h3>
 									</Header>
 								</Content>
 								<Card className='cv-profile-main-container'>
@@ -122,9 +103,7 @@ export default class Profile extends React.Component {
 																if (this.state.userProfile.googleId) {
 																	return (
 																		<Space>
-																			<Text className='cv-profile-role-title'>
-																				ID Google
-																			</Text>
+																			<Text className='cv-profile-role-title'>ID Google</Text>
 																			<Text className='cv-profile-role-description'>
 																				{this.state.userProfile.googleId}
 																			</Text>
@@ -140,12 +119,10 @@ export default class Profile extends React.Component {
 									</Layout>
 								</Card>
 							</Col>
-							<Col span={14}>
+							<Col xs={24} sm={24} md={14}>
 								<Header className='cv-perfil-title-main-container'>
 									<HeartOutlined className='cv-perfil-title-main-icon' />
-									<h3 className='cv-perfil-title-main-title'>
-										Cuentas Asociadas
-									</h3>
+									<h3 className='cv-perfil-title-main-title'>Cuentas Asociadas</h3>
 								</Header>
 								<Row>
 									<Col xs={24} sm={24} md={24} lg={24} xl={24}>
@@ -162,9 +139,7 @@ export default class Profile extends React.Component {
 																		alt={item.name}
 																	/>
 																</Col>
-																<Col
-																	span={18}
-																	className='cv-create-account-detail-acount'>
+																<Col span={18} className='cv-create-account-detail-acount'>
 																	<Row>
 																		<Col span={24}>
 																			<h3>{item.account}</h3>
@@ -206,15 +181,10 @@ export default class Profile extends React.Component {
 																<Row>
 																	<Col span={6}>
 																		<div className='mt15'>
-																			<Avatar
-																				size={120}
-																				icon={<AntDesignOutlined />}
-																			/>
+																			<Avatar size={120} icon={<AntDesignOutlined />} />
 																		</div>
 																	</Col>
-																	<Col
-																		span={18}
-																		className='cv-create-account-detail-acount'>
+																	<Col span={18} className='cv-create-account-detail-acount'>
 																		<Skeleton active />
 																	</Col>
 																</Row>

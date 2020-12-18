@@ -24,11 +24,7 @@ import ModalsContact from './components/ModalsContact'
 
 import './style.css'
 import { rulesValidation } from './rules'
-import {
-	serviceGetCategories,
-	serviceSaveAccount,
-	serviceGetInstagramAccount,
-} from './services'
+import { serviceGetCategories, serviceSaveAccount, serviceGetInstagramAccount } from './services'
 
 const { Option } = Select
 const { Search } = Input
@@ -64,13 +60,12 @@ class CreateAccount extends React.Component {
 				},
 			],
 		}
-
 	}
 
 	async componentDidMount() {
 		if (localStorage.getItem('user')) {
 			this.setState({
-				userProfile: JSON.parse(localStorage.getItem('user'))
+				userProfile: JSON.parse(localStorage.getItem('user')),
 			})
 		}
 		await serviceGetCategories().then((data) => {
@@ -82,7 +77,6 @@ class CreateAccount extends React.Component {
 			this.setState({ responseCategories: result })
 		})
 	}
-
 
 	handleRedirect = (param) => {
 		if (this.state.redirect) {
@@ -187,7 +181,7 @@ class CreateAccount extends React.Component {
 
 	handleChangeCountry = (e) => {
 		e = JSON.parse(e)
-		console.log(e);
+		console.log(e)
 		this.setState({
 			country: e.name,
 			code: e.code,
@@ -197,11 +191,7 @@ class CreateAccount extends React.Component {
 	handlerTagRender(props) {
 		const { label, value, closable, onClose } = props
 		return (
-			<Tag
-				color={value}
-				closable={closable}
-				onClose={onClose}
-				style={{ marginRight: 3 }}>
+			<Tag color={value} closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
 				{label}
 			</Tag>
 		)
@@ -272,7 +262,7 @@ class CreateAccount extends React.Component {
 								labelCol={{ span: 6 }}
 								wrapperCol={{ span: 16 }}>
 								<Row>
-									<Col span={12}>
+									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
 											{(() => {
@@ -284,7 +274,7 @@ class CreateAccount extends React.Component {
 													)
 												}
 											})()}
-											
+
 											<Form.Item label='Tipo de cuenta'>
 												<Select onChange={this.handleChangeType}>
 													<Option value='instagram'>Instagram</Option>
@@ -299,10 +289,8 @@ class CreateAccount extends React.Component {
 											</Form.Item>
 										</Card>
 									</Col>
-									<Col span={12}>
-										<h3 className='cv-create-account-from-title'>
-											Datos de Cuenta{' '}
-										</h3>
+									<Col xs={24} sm={24} md={12}>
+										<h3 className='cv-create-account-from-title'>Datos de Cuenta </h3>
 										<Card className='cv-create-account-card-custom'>
 											<Row>
 												<Col span={6}>
@@ -318,18 +306,13 @@ class CreateAccount extends React.Component {
 														} else {
 															return (
 																<div className='mt15'>
-																	<Avatar
-																		size={120}
-																		icon={<AntDesignOutlined />}
-																	/>
+																	<Avatar size={120} icon={<AntDesignOutlined />} />
 																</div>
 															)
 														}
 													})()}
 												</Col>
-												<Col
-													span={18}
-													className='cv-create-account-detail-acount'>
+												<Col span={18} className='cv-create-account-detail-acount'>
 													{(() => {
 														if (this.state.image) {
 															return (
@@ -368,10 +351,8 @@ class CreateAccount extends React.Component {
 									if (this.state.agree) {
 										return (
 											<Row>
-												<Col span={12}>
-													<h3 className='cv-create-account-from-title'>
-														Región
-													</h3>
+												<Col xs={24} sm={24} md={12}>
+													<h3 className='cv-create-account-from-title'>Región</h3>
 													<Card className='cv-create-account-card-custom'>
 														<Form.Item label='País'>
 															<Select onChange={this.handleChangeCountry}>
@@ -408,10 +389,8 @@ class CreateAccount extends React.Component {
 														</Form.Item>
 													</Card>
 												</Col>
-												<Col span={12}>
-													<h3 className='cv-create-account-from-title'>
-														Planes
-													</h3>
+												<Col xs={24} sm={24} md={12}>
+													<h3 className='cv-create-account-from-title'>Planes</h3>
 													<Card className='cv-create-account-card-custom'>
 														<Row>
 															<Col span={12}>
@@ -463,10 +442,7 @@ class CreateAccount extends React.Component {
 									}
 								})()}
 								<div className='cv-create-account-btn-submit'>
-									<Button
-										type='primary'
-										shape='round'
-										onClick={this.handleButton}>
+									<Button type='primary' shape='round' onClick={this.handleButton}>
 										REGISTRAR
 									</Button>
 									{this.handleRedirect(this.state.accountParam)}
