@@ -4,7 +4,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Layout from '../components/Layout/Layout'
-import PrivateRoute from '../components/Routers/'
+import PrivateRoute from './components/PrivateRoute/'
 
 import Test from '../pages/test'
 
@@ -27,14 +27,14 @@ const Routers = () => (
 				<Route exact path='/test' component={Test} />
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/account/:name' component={Account} />
-				
+
 				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
-				<PrivateRoute exact path='/profile' component={Profile}/>
+				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/create-account' component={CreateAccount} />
+
 				<Route component={NotFound} />
-				
 			</Switch>
 		</Layout>
 	</BrowserRouter>
