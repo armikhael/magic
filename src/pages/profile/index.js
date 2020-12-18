@@ -31,28 +31,29 @@ export default class Profile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			userProfile: localStorage.getItem('user'),
+			userProfile: null,
 			accounts: [],
 			loading: true,
 		}
 	}
 
 	async componentDidMount() {
-		if (localStorage.getItem('user') !== undefined) {
+
+		console.log(localStorage.getItem('user'));
+		if (localStorage.getItem('user')) {
+			let jsonParse = JSON.parse(localStorage.getItem('user'))
+
 			this.setState({
-				userProfile: JSON.parse(localStorage.getItem('user'))
+				userProfile: jsonParse
 			})
-		}
-		if (this.state.userProfile) {
-			serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
+			await serviceGetAccountsByEmail(jsonParse.email).then((data) => {
 				this.setState({
 					accounts: data,
 					loading: false,
 				})
 			})
-		} else {
-			this.props.history.push('/auth/login')
 		}
+
 	}
 
 	handleDeleteAccount = async (item) => {
