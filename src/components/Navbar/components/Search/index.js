@@ -15,6 +15,7 @@ class SearchNavbar extends React.Component {
 		super(props)
 		this.state = {
 			categories: [],
+			path: null,
 		}
 	}
 	async componentDidMount() {
@@ -30,10 +31,10 @@ class SearchNavbar extends React.Component {
 			<React.Fragment>
 				<Input.Group compact className='cv-navbar-search-content'>
 					<Select defaultValue='Categorías' className='cv-navbar-search-select'>
-						{this.state.categories.map(function (item, i) {
+						{this.state.categories.map((item, i) => {
 							return (
 								<Option key={i}>
-									<Link to={`category/${item.name}`}>{item.name}</Link>
+									<Link to={`/category/${item.name}`}>{item.name}</Link>
 								</Option>
 							)
 						})}
