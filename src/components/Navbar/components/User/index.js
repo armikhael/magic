@@ -31,17 +31,6 @@ const menu = (
 )
 
 export default class User extends React.Component {
-	state = {
-		user: localStorage.getItem('user'),
-	}
-
-	async componentDidMount() {
-		if (localStorage.getItem('user') !== undefined) {
-			this.setState({
-				userProfile: JSON.parse(localStorage.getItem('user'))
-			})
-		}
-	}
 
 	render() {
 		return (
@@ -50,7 +39,7 @@ export default class User extends React.Component {
 					<Row align='middle'>
 						<Col xs={8} sm={8} md={8}>
 							{(() => {
-								if (this.state.user) {
+								if (localStorage.getItem('user')) {
 									return (
 										<Link to={`/profile/create-account`}>
 											<PlusOutlined style={{ fontSize: '20px' }} />
@@ -66,7 +55,7 @@ export default class User extends React.Component {
 						</Col>
 						<Col xs={8} sm={8} md={8}>
 							{(() => {
-								if (this.state.user) {
+								if (localStorage.getItem('user')) {
 									return (
 										<Dropdown overlay={menu} placement='bottomRight' arrow>
 											<Avatar size={28} icon={<UserOutlined />} />

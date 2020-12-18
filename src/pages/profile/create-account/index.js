@@ -64,14 +64,15 @@ class CreateAccount extends React.Component {
 				},
 			],
 		}
+
 	}
 
 	async componentDidMount() {
-		if (localStorage.getItem('user') !== undefined) {
+		if (localStorage.getItem('user')) {
 			this.setState({
 				userProfile: JSON.parse(localStorage.getItem('user'))
 			})
-		}
+		} 
 		await serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
 				return {
@@ -81,6 +82,7 @@ class CreateAccount extends React.Component {
 			this.setState({ responseCategories: result })
 		})
 	}
+
 
 	handleRedirect = (param) => {
 		if (this.state.redirect) {
@@ -271,9 +273,16 @@ class CreateAccount extends React.Component {
 									<Col span={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
-											<Form.Item label='Correo Electrónico'>
-												<Input value={this.state.userProfile.email} disabled />
-											</Form.Item>
+										{(() => {
+											if (this.state.userProfile) {
+													return (
+														<Form.Item label='Correo Electrónico'>
+															<Input value={this.state.userProfile.email} disabled />
+														</Form.Item>
+													)
+												}
+											})()}
+											
 											<Form.Item label='Tipo de cuenta'>
 												<Select onChange={this.handleChangeType}>
 													<Option value='instagram'>Instagram</Option>

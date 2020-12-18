@@ -3,8 +3,6 @@
 import React from 'react'
 import { Redirect } from "react-router-dom";
 import { Layout, Row, Col } from 'antd'
-import { connect } from 'react-redux'
-import { saveUser } from '../../../redux'
 import { GoogleOutlined } from '@ant-design/icons'
 import { GoogleLogin } from 'react-google-login';
 
@@ -15,7 +13,9 @@ const { Content } = Layout
 class Login extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {
+			email: null
+		}
 	}
 
 	handleRedirect = () => {
@@ -25,9 +25,14 @@ class Login extends React.Component {
 	}
 	
 	handleGoogleAuth = async (data) => {
-		console.log(data)
+		console.log(data);
+		if (data.error) {
+			return 
+		}
 		localStorage.setItem('user', JSON.stringify(data.profileObj));
-		this.props.saveUser('email', data.profileObj.email)
+		this.setState({
+			email: data.profileObj.email
+		})
 		await serviceSaveUser({
 			email: data.profileObj.email,
 			autentication: "google",
@@ -37,7 +42,6 @@ class Login extends React.Component {
 		})
 		.then((data) => {
 			console.log('respuesta del registro', data);
-			// 
 		})
 		
 		this.setState({ redirect: true })
@@ -64,7 +68,7 @@ class Login extends React.Component {
 											src='https://i.ibb.co/JnXwKMt/viral.png'
 										/>
 										<h2 className='cv-login-title-register'>
-											Bienvenido a Cuentas Virales: {this.props.email}
+											Bienvenido a Cuentas Virales: {this.state.email}
 										</h2>
 										<p className='cv-login-sub-title-register'>
 											Encuentra las mejores cuentas
@@ -74,7 +78,7 @@ class Login extends React.Component {
 										<div className='cv-login-content-reds-sociales-google'>
 											<GoogleOutlined className='cv-login-content-reds-sociales-google-i' />
 											<GoogleLogin
-												clientId='264087860616-jckkkgv633q5r4n2othpppgk6rarhf03.apps.googleusercontent.com'
+												clientId='655830526663-ag8k3bioo1rt7e0gece2ciqc33ktcod0.apps.googleusercontent.com'
 												render={(renderProps) => (
 													<h2
 														className='cv-login-title-reds-sociales-google'
@@ -111,22 +115,6 @@ class Login extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		email: state.email
-	}
-}
 
-const mapDispatchToProps = dispatch => {
-	return {
-		saveUser: (field, value) => {
-			dispatch(saveUser(field, value))
-		}
-	}
-}
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Login)
+export default Login
 
