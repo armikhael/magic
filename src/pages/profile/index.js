@@ -28,6 +28,7 @@ const { Content, Header } = Layout
 const { Text } = Typography
 
 export default class Profile extends React.Component {
+
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -37,23 +38,21 @@ export default class Profile extends React.Component {
 		}
 	}
 
-	async componentDidMount() {
-
-		console.log(localStorage.getItem('user'));
+	componentDidMount() {
 		if (localStorage.getItem('user')) {
 			let jsonParse = JSON.parse(localStorage.getItem('user'))
 
 			this.setState({
 				userProfile: jsonParse
 			})
-			await serviceGetAccountsByEmail(jsonParse.email).then((data) => {
+			
+			serviceGetAccountsByEmail(jsonParse.email).then((data) => {
 				this.setState({
 					accounts: data,
 					loading: false,
 				})
 			})
 		}
-
 	}
 
 	handleDeleteAccount = async (item) => {

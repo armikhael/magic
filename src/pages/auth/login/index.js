@@ -13,9 +13,18 @@ const { Content } = Layout
 class Login extends React.Component {
 	constructor(props) {
 		super(props)
+		this._isMounted = false;
 		this.state = {
 			email: null
 		}
+	}
+
+	componentWillUnmount() {
+    this._isMounted = false;
+	}
+	
+	componentDidMount() {
+		this._isMounted = true;
 	}
 
 	handleRedirect = () => {

@@ -273,8 +273,8 @@ class CreateAccount extends React.Component {
 									<Col span={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
-										{(() => {
-											if (this.state.userProfile) {
+											{(() => {
+												if (this.state.userProfile) {
 													return (
 														<Form.Item label='Correo Electrónico'>
 															<Input value={this.state.userProfile.email} disabled />
