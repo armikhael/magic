@@ -186,6 +186,8 @@ class CreateAccount extends React.Component {
 	}
 
 	handleChangeCountry = (e) => {
+		e = JSON.parse(e)
+		console.log(e);
 		this.setState({
 			country: e.name,
 			code: e.code,
