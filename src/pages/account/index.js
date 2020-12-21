@@ -42,16 +42,14 @@ class Account extends React.Component {
 		return (
 			<React.Fragment>
 				<Row>
-					<Col span={18}>
+					<Col xs={24} sm={24} md={18}>
 						<Row className='cv-detail-content-accoun'>
 							<Col span={24}>
 								<ShareAltOutlined />
 								&nbsp; | &nbsp;SHARE
 							</Col>
 							<Col span={24} className='cv-detail-content-account-detail'>
-								<h1 className='cv-detail-title-main'>
-									{this.state.accounts.account}
-								</h1>
+								<h1 className='cv-detail-title-main'>{this.state.accounts.account}</h1>
 								<h3 className='cv-detail-sub-title'>
 									<Moment format='LLLL' withTitle>
 										{this.state.accounts.createdAt}
@@ -71,16 +69,12 @@ class Account extends React.Component {
 									/>
 									<div className='cv-masonry-item-card-image-bg'></div>
 								</div>
-								<p className='cv-detail-account-descript'>
-									{this.state.accounts.description}
-								</p>
+								<p className='cv-detail-account-descript'>{this.state.accounts.description}</p>
 								<div>
 									{this.state.accounts.categories.map(function (item, i) {
 										return (
 											<Link to={`/category/${item}`} key={i}>
-												<span className='cv-detail-category-tag'>
-													#{item}&nbsp;&nbsp;
-												</span>
+												<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 											</Link>
 										)
 									})}
@@ -94,7 +88,7 @@ class Account extends React.Component {
 							&nbsp; Carlos Espinoza
 						</div>
 					</Col>
-					<Col span={6} className='cv-detail-content-plans'>
+					<Col xs={24} sm={24} md={6} className='cv-detail-content-plans'>
 						<div className='cv-detail-content-plans-main'>
 							<div className='cv-detail-plans-content-images'>
 								<img
@@ -109,18 +103,8 @@ class Account extends React.Component {
 							{this.state.accounts.plans.map(function (item, i) {
 								return (
 									<div className='cv-detail-plans-content-plan' key={i}>
-										<img
-											className='cv-detail-plans-images-plan'
-											title='Plan'
-											alt='Plan'
-											src='http://pluto.pinsupreme.com/wp-content/uploads/2014/05/AdobeStock_103332683-100x100.jpg'
-										/>
-										<h3 className='cv-detail-plans-title-plan-title'>
-											{item.description}
-										</h3>
-										<h4 className='cv-detail-plans-title-plan-title-price'>
-											Precio: {item.price}
-										</h4>
+										<h3 className='cv-detail-plans-title-plan-title'>{item.description}</h3>
+										<h4 className='cv-detail-plans-title-plan-title-price'>Precio: {item.price}</h4>
 									</div>
 								)
 							})}

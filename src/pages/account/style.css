@@ -176,13 +176,25 @@
 }
 
 @media (max-width: 768px) {
+	.cv-detail-content-accoun {
+		margin: 10px;
+		padding: 10px;
+	}
 	.cv-detail-content-account-detail {
 		padding: 0 10px;
+		font-size: 16px;
 	}
 	.cv-detail-account-category-title {
 		float: none;
 	}
 	.cv-detail-content-plans-main {
 		padding: 20px 10px;
+	}
+	.cv-detail-title-main {
+		font-size: 25px;
+		margin-top: 15px;
+	}
+	.cv-detail-plans-content-images {
+		display: none;
 	}
 }
