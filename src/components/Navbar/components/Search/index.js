@@ -11,6 +11,7 @@ const { Search } = Input
 const { Option } = Select
 
 class SearchNavbar extends React.Component {
+	
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -24,6 +25,10 @@ class SearchNavbar extends React.Component {
 				categories: response.data,
 			})
 		})
+	}
+
+	redirect = (props) => {
+		console.log(this.props);
 	}
 
 	render() {
@@ -42,7 +47,7 @@ class SearchNavbar extends React.Component {
 					<Search
 						className='cv-navbar-search-input'
 						placeholder='¿Qué cuentas deseas Buscar...?'
-						onSearch={(value) => console.log(value)}
+						onSearch={this.redirect}
 					/>
 				</Input.Group>
 			</React.Fragment>
