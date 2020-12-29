@@ -42,3 +42,9 @@
 	text-align: right;
 	padding: 20px;
 }
+
+@media (max-width: 768px) {
+	.cv-create-account-card-custom {
+		height: 100%;
+	}
+}
