@@ -11,7 +11,9 @@ import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 
 import './style.css'
-import serviceGetAccount from './services'
+import { serviceGetAccount, updateAccount } from './services'
+import { serviceGetInstagramAccount } from '../../components/ServiceCommons/GetAccountInstagram'
+
 
 class Account extends React.Component {
 	constructor(props) {
@@ -23,13 +25,37 @@ class Account extends React.Component {
 	}
 
 	async componentDidMount() {
-		await serviceGetAccount(this.props.match.params.name).then((data) => {
-			if (data.statusCode) {
-				this.setState({ loading: false, error: data })
-			} else {
-				this.setState({ loading: false, accounts: data })
-			}
-		})
+		
+		let data = await serviceGetAccount(this.props.match.params.name)
+
+		if (data.statusCode) {
+			this.setState({ loading: false, error: data })
+		} else {
+			this.setState({ loading: false, accounts: data })
+		}
+
+		console.log(data);
+		
+		if (data.type === 'instagram') {
+			let instagram = await serviceGetInstagramAccount(data.account)
+
+			console.log({
+				name: `${instagram.username}-instagram`,
+				biography: instagram.biography,
+				image: instagram.profile_pic_url_hd,
+				followers: instagram.edge_followed_by.count,
+				follow: instagram.edge_follow.count,
+			});
+			await updateAccount({
+				name: `${instagram.username}-instagram`,
+				biography: instagram.biography,
+				image: instagram.profile_pic_url_hd,
+				followers: instagram.edge_followed_by.count,
+				follow: instagram.edge_follow.count,
+			})
+			
+		}
+
 	}
 
 	render() {

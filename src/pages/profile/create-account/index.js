@@ -24,7 +24,8 @@ import ModalsContact from './components/ModalsContact'
 
 import './style.css'
 import { rulesValidation } from './rules'
-import { serviceGetCategories, serviceSaveAccount, serviceGetInstagramAccount } from './services'
+import { serviceGetCategories, serviceSaveAccount } from './services'
+import { serviceGetInstagramAccount } from '../../../components/ServiceCommons/GetAccountInstagram'
 
 const { Option } = Select
 const { Search } = Input
