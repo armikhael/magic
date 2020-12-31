@@ -72,7 +72,7 @@ class Account extends React.Component {
 						<Row className='cv-detail-content-accoun'>
 							<Col span={24}>
 								<ShareAltOutlined />
-								&nbsp; | &nbsp;SHARE
+								&nbsp; | &nbsp;SHARE | <a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.accounts.phone}&text=Hola%20${this.state.accounts.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>WhatsApp</a>
 							</Col>
 							<Col span={24} className='cv-detail-content-account-detail'>
 								<h1 className='cv-detail-title-main'>{this.state.accounts.account}</h1>
