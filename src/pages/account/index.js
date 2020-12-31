@@ -75,7 +75,11 @@ class Account extends React.Component {
 								&nbsp; | &nbsp;SHARE | <a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.accounts.phone}&text=Hola%20${this.state.accounts.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>WhatsApp</a>
 							</Col>
 							<Col span={24} className='cv-detail-content-account-detail'>
-								<h1 className='cv-detail-title-main'>{this.state.accounts.account}</h1>
+								<h1 className='cv-detail-title-main'>
+									{this.state.accounts.account} / 
+									Seguidores: {new Intl.NumberFormat("de-DE").format(this.state.accounts.followers)} / 
+									Seguidos: {new Intl.NumberFormat("de-DE").format(this.state.accounts.follow)}
+								</h1>
 								<h3 className='cv-detail-sub-title'>
 									<Moment format='LLLL' withTitle>
 										{this.state.accounts.createdAt}
