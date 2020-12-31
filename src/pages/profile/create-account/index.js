@@ -85,9 +85,9 @@ class CreateAccount extends React.Component {
 		}
 	}
 
-	handleFindAccount = async (item) => {
+	handleFindAccount = async (props) => {
 		if (this.state.type === 'instagram') {
-			serviceGetInstagramAccount(item)
+			serviceGetInstagramAccount(props)
 				.then((response) => {
 					this.setState({
 						name: response.username,

@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 
-export default async function serviceGetAccountByCategory(name, page) {
+const serviceGetAccountByCategory = async (name, page) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -21,3 +21,5 @@ export default async function serviceGetAccountByCategory(name, page) {
 
 	return returnResponse
 }
+
+export { serviceGetAccountByCategory }

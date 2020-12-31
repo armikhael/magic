@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Input, Select } from 'antd'
 
 import './style.css'
-import serviceGetCategories from './services'
+import { serviceGetCategories, serviceSearch} from './services'
 
 const { Search } = Input
 const { Option } = Select
@@ -27,8 +27,10 @@ class SearchNavbar extends React.Component {
 		})
 	}
 
-	redirect = (props) => {
-		console.log(this.props);
+	redirect = async (props) => {
+		console.log(props);
+		const { data } = await serviceSearch(props)
+		console.log(data);
 	}
 
 	render() {

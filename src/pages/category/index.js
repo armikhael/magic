@@ -10,7 +10,7 @@ import ListMasonry from '../../components/ListMasonry/'
 import PageError from '../../components/Errors/PageError'
 
 import './style.css'
-import serviceGetAccountByCategory from './services'
+import { serviceGetAccountByCategory } from './services'
 
 const { Content } = Layout
 

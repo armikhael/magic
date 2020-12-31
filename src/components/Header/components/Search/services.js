@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 
-export default async function serviceGetCategories() {
+const serviceGetCategories = async () => {
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -17,3 +17,21 @@ export default async function serviceGetCategories() {
 
 	return returnResponse
 }
+
+const serviceSearch = async (param) => {
+	let returnResponse
+	await axios({
+		method: 'GET',
+        url: `${process.env.REACT_APP_HOST}/search/${param}`,
+	})
+    .then((response) => {
+        returnResponse = response.data
+    })
+    .catch((error) => {
+        returnResponse = error.response.data
+    })
+
+	return returnResponse
+}
+
+export { serviceGetCategories, serviceSearch }

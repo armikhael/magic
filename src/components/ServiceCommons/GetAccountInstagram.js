@@ -13,6 +13,7 @@ const serviceGetInstagramAccount = async (param) => {
 		)[1]
 		.slice(0, -1)
 		const jsonParse = JSON.parse(jsonObject)
+		console.log(jsonParse);
 		const userInfo = jsonParse.entry_data.ProfilePage[0].graphql.user
 		returnResponse = userInfo
 	})
