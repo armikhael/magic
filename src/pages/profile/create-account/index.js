@@ -24,7 +24,7 @@ import ModalsContact from './components/ModalsContact'
 
 import './style.css'
 import { rulesValidation } from './rules'
-import { serviceGetCategories, serviceSaveAccount } from './services'
+import { serviceGetCategories, serviceSaveAccount, serviceGetCountry } from './services'
 import { serviceGetInstagramAccount } from '../../../components/ServiceCommons/GetAccountInstagram'
 
 const { Option } = Select
@@ -43,23 +43,7 @@ class CreateAccount extends React.Component {
 			agree: false,
 			responseCategories: [],
 			modalsContact: false,
-			countries: [
-				{
-					code: '56',
-					name: 'chile',
-					label: 'Chile',
-				},
-				{
-					code: '54',
-					name: 'argentina',
-					label: 'Argentina',
-				},
-				{
-					code: '58',
-					name: 'venezuela',
-					label: 'Venezuela',
-				},
-			],
+			countries: [],
 		}
 	}
 
@@ -76,6 +60,18 @@ class CreateAccount extends React.Component {
 				}
 			})
 			this.setState({ responseCategories: result })
+		})
+
+		await serviceGetCountry().then((data) => {
+			let result = data.map((item) => {
+				return {
+					code: item.code,
+					name: item.name,
+					label: item.name.toUpperCase(),
+				}
+			})
+			console.log('country', result);
+			this.setState({ countries: result })
 		})
 	}
 
