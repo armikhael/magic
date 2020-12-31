@@ -12,12 +12,7 @@ import './style.css'
 
 const { Header, Content } = Layout
 
-class Navbar extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {}
-	}
-
+export default class Headers extends React.Component {
 	render() {
 		return (
 			<Header className='cv-navbar-header-content'>
@@ -38,5 +33,3 @@ class Navbar extends React.Component {
 		)
 	}
 }
-
-export default Navbar

@@ -27,25 +27,21 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		try {
-			console.log('entro por aqui');
-			serviceGetAccounts(this.state.page).then((data) => {
-				if (data.status === 200) {
-					this.setState({
-						list: [...this.state.list, ...data.data.data],
-						page: this.state.page + 1,
-						loading: false,
-					})
-				} else {
-					this.setState({
-						loading: false,
-						error: data,
-					})
-				}
-			})
-		} catch (e) {
-			console.log('inicio', e);
-		}
+		serviceGetAccounts(this.state.page).then((data) => {
+			if (data.status === 200) {
+				console.log(data)
+				this.setState({
+					list: [...this.state.list, ...data.data.data],
+					page: this.state.page + 1,
+					loading: false,
+				})
+			} else {
+				this.setState({
+					loading: false,
+					error: data,
+				})
+			}
+		})
 	}
 
 	render() {

@@ -18,7 +18,7 @@ import {
 	notification,
 } from 'antd'
 import { connect } from 'react-redux'
-import { RocketOutlined, AntDesignOutlined } from '@ant-design/icons'
+import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import ModalsContact from './components/ModalsContact'
 
@@ -424,12 +424,12 @@ class CreateAccount extends React.Component {
 																		<li key={key}>
 																			{item.description} - {item.price} -
 																			<Button
-																				type='primary'
+																				type='link'
 																				shape='round'
 																				onClick={() => {
 																					this.handleDelete(key)
 																				}}>
-																				borrar
+																				<DeleteOutlined />
 																			</Button>
 																		</li>
 																	))}

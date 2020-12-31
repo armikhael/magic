@@ -15,7 +15,7 @@ import {
 
 import './style.css'
 
-class Account extends React.Component {
+export default class Account extends React.Component {
 	render() {
 		return (
 			<div className='cv-masonry-item'>
@@ -38,13 +38,9 @@ class Account extends React.Component {
 					</Link>
 					<div className='cv-masonry-item-card-titles'>
 						<Link to={`/account/${this.props.account.name}`}>
-							<h3 className='cv-masonry-item-title'>
-								{this.props.account.name}
-							</h3>
+							<h3 className='cv-masonry-item-title'>{this.props.account.name}</h3>
 						</Link>
-						<p className='cv-masonry-item-description'>
-							{this.props.account.description}
-						</p>
+						<p className='cv-masonry-item-description'>{this.props.account.description}</p>
 						<div className='cv-masonry-item-card-more'>
 							<Link
 								className='cv-masonry-item-card-more-title'
@@ -53,23 +49,26 @@ class Account extends React.Component {
 							</Link>
 						</div>
 						<Row>
-							<Col span={18}>
+							<Col xs={24} sm={12} md={14}>
 								<h3 className='cv-masonry-item-gird-date-card-title'>
 									<Link to={`/category/${this.props.account.categories[0]}`}>
 										<span className='cv-masonry-item-gird-category-title'>
 											{this.props.account.categories[0]}
 										</span>
 									</Link>
-									<ClockCircleOutlined />
-									&nbsp;{' '}
+								</h3>
+							</Col>
+							<Col xs={24} sm={12} md={10} className='aling-right'>
+								<h3 className='cv-masonry-item-gird-like-card-title'>
+									<HeartOutlined className='cv-fa-heart' /> {this.props.account.followers}
+								</h3>
+							</Col>
+							<Col xs={24} sm={24} md={24}>
+								<h3 className='cv-masonry-item-gird-date-card-title'>
+									<ClockCircleOutlined />{' '}
 									<Moment format='D MMM YYYY' withTitle>
 										{this.props.account.createdAt}
 									</Moment>
-								</h3>
-							</Col>
-							<Col span={6}>
-								<h3 className='cv-masonry-item-gird-like-card-title'>
-									<HeartOutlined className='cv-fa-heart' /> 3476
 								</h3>
 							</Col>
 						</Row>
@@ -79,5 +78,3 @@ class Account extends React.Component {
 		)
 	}
 }
-
-export default Account

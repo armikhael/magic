@@ -198,6 +198,7 @@
 @media screen and (max-width: 768px) {
 	.cv-masonry-item-card {
 		margin: 5px;
+		padding: 5px;
 	}
 	.cv-masonry-item-title {
 		font-size: 16px;

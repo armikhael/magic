@@ -3,7 +3,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
-import Navbar from '../../components/Navbar/Navbar'
+import Header from '../../components/Header/'
 
 function Layout(props) {
 	const handleLayouts = () => {
@@ -12,7 +12,7 @@ function Layout(props) {
 		} else {
 			return (
 				<>
-					<Navbar />
+					<Header />
 					{props.children}
 				</>
 			)
