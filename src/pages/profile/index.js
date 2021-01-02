@@ -4,6 +4,7 @@ import React from 'react'
 
 import { Layout, Row, Col, Card, Skeleton, Space, Typography, Avatar, Button } from 'antd'
 import { UserOutlined, HeartOutlined, AntDesignOutlined } from '@ant-design/icons'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Loading from '../../components/Loading/Loading'
 
@@ -162,13 +163,18 @@ export default class Profile extends React.Component {
 																		</Col>
 																		<Col>
 																			<Button
-																				type='primary'
+																				type='danger'
 																				shape='round'
 																				onClick={() => {
 																					this.handleDeleteAccount(item)
 																				}}>
 																				borrar
 																			</Button>
+																		</Col>
+																		<Col>
+																			<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/account/${item.name}`}>
+																				<button>Copiar enlace para compartir</button>
+																			</CopyToClipboard>
 																		</Col>
 																	</Row>
 																</Col>
