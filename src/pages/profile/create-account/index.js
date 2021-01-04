@@ -67,7 +67,7 @@ class CreateAccount extends React.Component {
 				return {
 					code: item.code,
 					name: item.name,
-					label: item.name.toUpperCase(),
+					label: item.name
 				}
 			})
 			console.log('country', result);
@@ -195,12 +195,7 @@ class CreateAccount extends React.Component {
 	}
 
 	handleCategory = (e) => {
-		if (e.length >= this.state.itemsCaegories) {
-			notification['error']({
-				message: `Ups!`,
-				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
-			})
-		}
+		console.log(e);
 		this.setState({
 			categories: e,
 		})
@@ -256,8 +251,10 @@ class CreateAccount extends React.Component {
 						<Layout>
 							<Form
 								onFinish={this.handleSubmitLogin}
-								labelCol={{ span: 6 }}
-								wrapperCol={{ span: 16 }}>
+								labelCol={{ span: 24 }}
+								wrapperCol={{ span: 24 }}
+								layout="vertical"
+							>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
@@ -351,11 +348,19 @@ class CreateAccount extends React.Component {
 												<Col xs={24} sm={24} md={12}>
 													<h3 className='cv-create-account-from-title'>Región</h3>
 													<Card className='cv-create-account-card-custom'>
-														<Form.Item label='País'>
-															<Select onChange={this.handleChangeCountry}>
+														<Form.Item 
+															name='country'
+															label='¿De donde son la mayoría de tus seguidores?'
+															rules={rulesValidation.rulesSelect}
+														>
+															<Select 
+																onChange={this.handleChangeCountry}
+																
+															>
 																{this.state.countries.map((item, i) => {
 																	return (
 																		<Option
+																			style={{ textTransform: 'capitalize' }}
 																			key={i}
 																			value={JSON.stringify({
 																				code: item.code,
@@ -368,21 +373,33 @@ class CreateAccount extends React.Component {
 															</Select>
 														</Form.Item>
 														<Form.Item
-															label='Número'
+															label='Coloca tú número de WhatsApp'
 															name='phone'
 															rules={rulesValidation.rulesPhone}
 															onChange={this.handleChangeInput}>
 															<Input />
 														</Form.Item>
-														<Form.Item label='Categorias' name='categories'>
+														<Form.Item 
+															label='Elige la categpría que más se asocie a tu cuenta' 
+															name='categories'
+															rules={rulesValidation.rulesSelect}
+														>
 															<Select
-																mode='multiple'
-																showArrow
-																tagRender={this.tagRender}
-																style={{ width: '100%' }}
-																options={this.state.responseCategories}
+																style={{ width: '100%'}}
 																onChange={this.handleCategory}
-															/>
+															>
+																{this.state.responseCategories.map((item, i) => {
+																	return (
+																		<Option
+																			style={{ textTransform: 'capitalize' }}
+																			key={i}
+																			value={item.value}>
+																			{item.value}
+																		</Option>
+																	)
+																})}
+															</Select>
+
 														</Form.Item>
 													</Card>
 												</Col>
@@ -390,7 +407,7 @@ class CreateAccount extends React.Component {
 													<h3 className='cv-create-account-from-title'>Planes</h3>
 													<Card className='cv-create-account-card-custom'>
 														<Row>
-															<Col span={12}>
+															<Col span={24}>
 																<Form.Item
 																	label='Nombre:'
 																	name='auxDescription'
@@ -414,7 +431,7 @@ class CreateAccount extends React.Component {
 																	</Button>
 																</div>
 															</Col>
-															<Col span={12}>
+															<Col span={24}>
 																<ol>
 																	{this.state.plans.map((item, key) => (
 																		<li key={key}>

@@ -73,4 +73,10 @@ export const rulesValidation = {
             }
         }
 	],
+	rulesSelect: [
+		{
+			required: true,
+			message: 'Debe seleccionar una opción',
+		},
+	]
 }

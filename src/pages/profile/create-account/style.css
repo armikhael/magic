@@ -6,7 +6,7 @@
 	padding-top: 15px;
 	margin-right: 5px;
 	margin-left: 5px;
-	height: 220px;
+	min-height: 220px;
 }
 
 .cv-create-account-from-title {
