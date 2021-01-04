@@ -8,7 +8,6 @@ import {
 	Select,
 	Button,
 	Input,
-	Tag,
 	Layout,
 	Row,
 	Col,
@@ -159,8 +158,9 @@ class CreateAccount extends React.Component {
 	}
 
 	handleChangeInput = (e) => {
+		console.log('write', e.target.name, e.target.value);
 		this.setState({
-			[e.target.id]: e.target.value,
+			[e.target.name]: e.target.value,
 		})
 	}
 
@@ -185,16 +185,17 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handlerTagRender(props) {
-		const { label, value, closable, onClose } = props
-		return (
-			<Tag color={value} closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
-				{label}
-			</Tag>
-		)
-	}
+
 
 	handleCategory = (e) => {
+		if (e.length > this.state.itemsCaegories) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
+			})
+			return
+		}
+
 		console.log(e);
 		this.setState({
 			categories: e,
@@ -346,16 +347,15 @@ class CreateAccount extends React.Component {
 										return (
 											<Row>
 												<Col xs={24} sm={24} md={12}>
-													<h3 className='cv-create-account-from-title'>Región</h3>
+													<h3 className='cv-create-account-from-title'>Información</h3>
 													<Card className='cv-create-account-card-custom'>
 														<Form.Item 
 															name='country'
-															label='¿De donde son la mayoría de tus seguidores?'
+															label='¿En que país te encuentras actualmente?'
 															rules={rulesValidation.rulesSelect}
 														>
 															<Select 
 																onChange={this.handleChangeCountry}
-																
 															>
 																{this.state.countries.map((item, i) => {
 																	return (
@@ -374,19 +374,24 @@ class CreateAccount extends React.Component {
 														</Form.Item>
 														<Form.Item
 															label='Coloca tú número de WhatsApp'
-															name='phone'
+															
 															rules={rulesValidation.rulesPhone}
 															onChange={this.handleChangeInput}>
-															<Input />
+															<Input name='phone'/>
+															<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.phone}&text=Hola%20${this.state.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>Confirma tu número</a>
 														</Form.Item>
 														<Form.Item 
-															label='Elige la categpría que más se asocie a tu cuenta' 
+															label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
 															name='categories'
 															rules={rulesValidation.rulesSelect}
 														>
 															<Select
 																style={{ width: '100%'}}
 																onChange={this.handleCategory}
+																mode='multiple'
+																showArrow
+																maxTagCount={5}
+																loading={true}
 															>
 																{this.state.responseCategories.map((item, i) => {
 																	return (
