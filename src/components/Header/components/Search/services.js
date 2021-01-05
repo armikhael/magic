@@ -6,31 +6,29 @@ const serviceGetCategories = async () => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-        url: `${process.env.REACT_APP_HOST}/category`,
+		url: `${process.env.REACT_APP_HOST}/category`,
 	})
-    .then((response) => {
-        returnResponse = response.data
-    })
-    .catch((error) => {
-        returnResponse = error.response.data
-    })
-
+		.then((response) => {
+			returnResponse = response.data
+		})
+		.catch((error) => {
+			returnResponse = error.response.data
+		})
 	return returnResponse
 }
 
-const serviceSearch = async (param) => {
+const serviceSearch = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-        url: `${process.env.REACT_APP_HOST}/search/${param}`,
+		url: `${process.env.REACT_APP_HOST}/search/${item}`,
 	})
-    .then((response) => {
-        returnResponse = response.data
-    })
-    .catch((error) => {
-        returnResponse = error.response.data
-    })
-
+		.then((response) => {
+			returnResponse = response.data
+		})
+		.catch((error) => {
+			returnResponse = error.response.data
+		})
 	return returnResponse
 }
 
