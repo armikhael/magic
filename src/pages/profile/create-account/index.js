@@ -20,6 +20,7 @@ import { connect } from 'react-redux'
 import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import ModalsContact from './components/ModalsContact'
+import ModalsVerification from './components/ModalVerification'
 
 import './style.css'
 import { rulesValidation } from './rules'
@@ -42,6 +43,7 @@ class CreateAccount extends React.Component {
 			agree: false,
 			responseCategories: [],
 			modalsContact: false,
+			modalsVerification: false,
 			countries: [],
 		}
 	}
@@ -93,15 +95,30 @@ class CreateAccount extends React.Component {
 						emailAccount: response.business_email,
 					})
 					if (response.edge_followed_by.count < 10000) {
-						this.setState({ agree: false, modalsContact: true })
+						this.setState({ 
+							agree: false, 
+							modalsContact: true, 
+						})
 						return
 					}
+					
+					console.log(response.biography);
+					let word = response.biography.toLowerCase()
+					let isTrue = word.includes(process.env.REACT_APP_SECRET)
+					if (!isTrue) {
+						this.setState({ 
+							agree: false, 
+							modalsVerification: true,
+						})
+						return 
+					}
+
 					this.setState({ agree: true })
 				})
 				.catch(() => {
 					notification['error']({
 						message: `Error!`,
-						description: `Error la cuenta no existe.`,
+						description: `Esta cuenta es inválida`,
 					})
 				})
 		}
@@ -232,6 +249,10 @@ class CreateAccount extends React.Component {
 		this.setState({ modalsContact: false })
 	}
 
+	handleCloseModalsVerification = () => {
+		this.setState({ modalsVerification: false })
+	}
+
 	render() {
 		return (
 			<>
@@ -239,6 +260,12 @@ class CreateAccount extends React.Component {
 					modalsContact={this.state.modalsContact}
 					handleCloseModalsConctac={this.handleCloseModalsConctac}
 				/>
+
+				<ModalsVerification
+					modalsContact={this.state.modalsVerification}
+					handleCloseModalsConctac={this.handleCloseModalsVerification}
+				/>
+				
 				<Layout>
 					<Content>
 						<Header className='cv-perfil-title-main-container'>
