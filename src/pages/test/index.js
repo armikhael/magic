@@ -1,9 +1,7 @@
 /** @format */
 
-import React, { } from 'react'
-import { connect } from 'react-redux'
-import { saveUser } from '../../redux'
-import { Button } from 'antd'
+import React from 'react';
+import InstagramLogin from 'react-instagram-login';
 
 class Test extends React.Component {
 
@@ -12,36 +10,22 @@ class Test extends React.Component {
 		console.log();
 	}
 
-	testInit = async () => {
-		
+	responseInstagram = (response) => {
+		console.log(response);
 	}
 
-	render(props) {
+	render() {
 		return (
-			<div className='App'>
-				<p>email: {this.props.email}</p>
-				<Button type="primary" onClick={this.props.saveUser('diego.carciente@nuevo.com')}>Cambiar Correo</Button>
-			</div>
+			<InstagramLogin
+				clientId="1597947977079398"
+				buttonText="Login"
+				onSuccess={this.responseInstagram}
+				onFailure={this.responseInstagram}
+			/>
 		)
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		email: state.email
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		saveUser: (item) => {
-			dispatch(saveUser(item))
-		}
-	}
-}
 
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Test)
+export default Test

@@ -22,6 +22,7 @@
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.1.21",
     "react-infinite-scroll-component": "^5.1.0",
+    "react-instagram-login": "^1.4.0",
     "react-masonry-css": "^1.0.14",
     "react-moment": "^0.9.7",
     "react-redux": "^7.2.1",
