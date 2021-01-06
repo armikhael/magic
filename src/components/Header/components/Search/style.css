@@ -31,16 +31,23 @@
 	border-left: 1px solid #fff !important;
 }
 
+.cv-navbar-search-select > .ant-select-arrow {
+	display: none;
+}
+
+.cv-navbar-search-select > .ant-select-selector > .ant-select-selection-item {
+	padding-right: 0px;
+}
+
+.cv-navbar-search-select-option {
+	width: 120px !important;
+}
+
 @media (max-width: 768px) {
-	.cv-navbar-search-select > .ant-select-selector,
-	.cv-navbar-search-select > .ant-select-arrow {
-		display: none;
-	}
 	.cv-navbar-search-input {
-		width: 100%;
-		border-top-left-radius: 25px !important;
-		border-bottom-left-radius: 25px !important;
+		width: 85%;
 	}
+
 	.cv-navbar-search-input .ant-input-suffix {
 		width: 50px;
 		font-size: 16px;

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import { Input, Select } from 'antd'
+import { MenuOutlined } from '@ant-design/icons'
 
 import './style.css'
 import { serviceGetCategories } from './services'
@@ -28,7 +29,10 @@ export default function SearchNavbar() {
 	return (
 		<React.Fragment>
 			<Input.Group compact className='cv-navbar-search-content'>
-				<Select defaultValue='Categorías' className='cv-navbar-search-select'>
+				<Select
+					defaultValue={<MenuOutlined />}
+					className='cv-navbar-search-select'
+					dropdownClassName='cv-navbar-search-select-option'>
 					{isCategories.map((item, i) => {
 						return (
 							<Option key={i}>
