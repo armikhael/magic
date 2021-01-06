@@ -13,10 +13,10 @@ export default class ModalsVerification extends React.Component {
 			<>
 				<Modal
 					title='!Verifiquemos su cuenta!'
-					visible={this.props.modalsContact}
+					visible={this.props.modalsVerification}
 					onOk={this.handleContact}
 					okText='Verificar'
-					onCancel={this.props.handleCloseModalsConctac}
+					onCancel={this.props.handleCloseModalsVerification}
 					cancelText='Cancelar'>
 					<p>
 						Para asegurarnos de que la cuenta es de su propuedad, sólo debe colocar

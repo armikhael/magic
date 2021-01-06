@@ -11,7 +11,8 @@ import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 
 import './style.css'
-import { serviceGetAccount, updateAccount } from './services'
+import { serviceGetAccount } from '../../components/ServiceCommons/GetAccount'
+import { updateAccount } from './services'
 import { serviceGetInstagramAccount } from '../../components/ServiceCommons/GetAccountInstagram'
 
 

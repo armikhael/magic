@@ -36,7 +36,7 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/create-account' component={CreateAccount} />
-				<PrivateRoute exact path='/profile/edit-account' component={EditAccount} />
+				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 
 				<Route component={NotFound} />
 			</Switch>
