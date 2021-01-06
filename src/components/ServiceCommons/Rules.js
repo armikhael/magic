@@ -1,4 +1,4 @@
-export const rulesValidation = {
+export const rules = {
 	rulesEmail: [
 		{
 			type: 'email',

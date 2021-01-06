@@ -1,7 +1,6 @@
 /** @format */
 
 import React from 'react'
-
 import { Layout, Row, Col, Card, Skeleton, Space, Typography, Avatar, Button } from 'antd'
 import { UserOutlined, HeartOutlined, AntDesignOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -15,12 +14,14 @@ const { Content, Header } = Layout
 const { Text } = Typography
 
 export default class Profile extends React.Component {
+	
 	constructor(props) {
 		super(props)
 		this.state = {
 			userProfile: null,
 			accounts: [],
 			loading: true,
+			redirect: false,
 		}
 	}
 
@@ -170,6 +171,9 @@ export default class Profile extends React.Component {
 																				}}>
 																				borrar
 																			</Button>
+																		</Col>
+																		<Col>
+																			-- <a href={`/profile/edit-account/${item.name}`}>Editar</a> --
 																		</Col>
 																		<Col>
 																			<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/account/${item.name}`}>

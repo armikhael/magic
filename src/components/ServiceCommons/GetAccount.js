@@ -1,13 +1,10 @@
-/** @format */
-
 import axios from 'axios'
 
-const updateAccount = async (body) => {
+const serviceGetAccount = async (name) => {
 	let returnResponse
 	await axios({
-		method: 'PUT',
-		url: `${process.env.REACT_APP_HOST}/account`,
-		data: body,
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/account/name/${name}`,
 	})
 		.then((response) => {
 			returnResponse = response.data[0]
@@ -19,4 +16,4 @@ const updateAccount = async (body) => {
 	return returnResponse
 }
 
-export { updateAccount }
+export { serviceGetAccount }

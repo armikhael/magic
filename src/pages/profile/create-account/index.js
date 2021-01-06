@@ -16,13 +16,13 @@ import {
 	Skeleton,
 	notification,
 } from 'antd'
-import { connect } from 'react-redux'
 import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import ModalsContact from './components/ModalsContact'
+import ModalsVerification from './components/ModalVerification'
 
 import './style.css'
-import { rulesValidation } from './rules'
+import { rules } from '../../../components/ServiceCommons/Rules'
 import { serviceGetCategories, serviceSaveAccount, serviceGetCountry } from './services'
 import { serviceGetInstagramAccount } from '../../../components/ServiceCommons/GetAccountInstagram'
 
@@ -42,6 +42,7 @@ class CreateAccount extends React.Component {
 			agree: false,
 			responseCategories: [],
 			modalsContact: false,
+			modalsVerification: false,
 			countries: [],
 		}
 	}
@@ -74,9 +75,9 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handleRedirect = (param) => {
+	handleRedirect = (item) => {
 		if (this.state.redirect) {
-			return <Redirect to={`/account/${param}`} />
+			return <Redirect to={`/account/${item}`} />
 		}
 	}
 
@@ -93,15 +94,31 @@ class CreateAccount extends React.Component {
 						emailAccount: response.business_email,
 					})
 					if (response.edge_followed_by.count < 10000) {
-						this.setState({ agree: false, modalsContact: true })
+						this.setState({ 
+							agree: false, 
+							modalsContact: true, 
+						})
 						return
 					}
+					
+					console.log(response.biography);
+					let word = response.biography.toLowerCase()
+					let isTrue = word.includes(process.env.REACT_APP_SECRET)
+					console.log(isTrue);
+					if (!isTrue) {
+						this.setState({ 
+							agree: false, 
+							modalsVerification: true,
+						})
+						return 
+					}
+
 					this.setState({ agree: true })
 				})
 				.catch(() => {
 					notification['error']({
 						message: `Error!`,
-						description: `Error la cuenta no existe.`,
+						description: `Esta cuenta es inválida`,
 					})
 				})
 		}
@@ -232,6 +249,10 @@ class CreateAccount extends React.Component {
 		this.setState({ modalsContact: false })
 	}
 
+	handleCloseModalsVerification = () => {
+		this.setState({ modalsVerification: false })
+	}
+
 	render() {
 		return (
 			<>
@@ -239,6 +260,12 @@ class CreateAccount extends React.Component {
 					modalsContact={this.state.modalsContact}
 					handleCloseModalsConctac={this.handleCloseModalsConctac}
 				/>
+
+				<ModalsVerification
+					modalsVerification={this.state.modalsVerification}
+					handleCloseModalsVerification={this.handleCloseModalsVerification}
+				/>
+				
 				<Layout>
 					<Content>
 						<Header className='cv-perfil-title-main-container'>
@@ -352,7 +379,7 @@ class CreateAccount extends React.Component {
 														<Form.Item 
 															name='country'
 															label='¿En que país te encuentras actualmente?'
-															rules={rulesValidation.rulesSelect}
+															rules={rules.rulesSelect}
 														>
 															<Select 
 																onChange={this.handleChangeCountry}
@@ -375,7 +402,7 @@ class CreateAccount extends React.Component {
 														<Form.Item
 															label='Coloca tú número de WhatsApp'
 															
-															rules={rulesValidation.rulesPhone}
+															rules={rules.rulesPhone}
 															onChange={this.handleChangeInput}>
 															<Input name='phone'/>
 															<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.phone}&text=Hola%20${this.state.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>Confirma tu número</a>
@@ -383,7 +410,7 @@ class CreateAccount extends React.Component {
 														<Form.Item 
 															label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
 															name='categories'
-															rules={rulesValidation.rulesSelect}
+															rules={rules.rulesSelect}
 														>
 															<Select
 																style={{ width: '100%'}}
@@ -417,14 +444,14 @@ class CreateAccount extends React.Component {
 																	label='Nombre:'
 																	name='auxDescription'
 																	onChange={this.handleChangePlans}
-																	rules={rulesValidation.rulesText}>
+																	rules={rules.rulesText}>
 																	<Input placeholder='Ingrese el paquete' />
 																</Form.Item>
 																<Form.Item
 																	label='Precio:'
 																	name='auxPrice'
 																	onChange={this.handleChangePlans}
-																	rules={rulesValidation.rulesPrice}>
+																	rules={rules.rulesPrice}>
 																	<Input placeholder='Ingrese el precio' />
 																</Form.Item>
 																<div className='cv-create-account-btn-add-content'>
@@ -478,10 +505,4 @@ class CreateAccount extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		email: state.email,
-	}
-}
-
-export default connect(mapStateToProps)(CreateAccount)
+export default CreateAccount
