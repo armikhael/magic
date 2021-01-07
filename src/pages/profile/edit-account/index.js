@@ -11,12 +11,16 @@ import {
 	Card,
 	Avatar,
 	Skeleton,
+	notification
 } from 'antd'
 import { rules } from '../../../components/ServiceCommons/Rules'
 import { RocketOutlined, AntDesignOutlined } from '@ant-design/icons'
 import { serviceGetAccount } from '../../../components/ServiceCommons/GetAccount'
-import './style.css'
+import { serviceGetCategories } from '../../../components/ServiceCommons/GetCategory'
+import { serviceGetCountry } from '../../../components/ServiceCommons/GetCountry'
 
+import './style.css'
+const { Option } = Select
 const { Content, Header } = Layout
 
 export default class EditAccount extends React.Component {
@@ -24,7 +28,10 @@ export default class EditAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			accountDetails: {}
+			accountDetails: {},
+			countries: [],
+			responseCategories: [],
+			categories: [],
 		}
 	}
 
@@ -34,12 +41,70 @@ export default class EditAccount extends React.Component {
 				userProfile: JSON.parse(localStorage.getItem('user')),
 			})
 		}
+
 		let response = await serviceGetAccount(this.props.match.params.name)
 		console.log(response);
-		this.setState({ accountDetails: response })
+		this.setState({ 
+			accountDetails: response,
+			phone: response.phone,
+			account: response.account,
+			country: response.country,
+			categories: response.categories,
+		})
+		
+		await serviceGetCategories().then((data) => {
+			let result = data.map((item) => {
+				return {
+					value: item.name,
+				}
+			})
+			this.setState({ responseCategories: result })
+		})
 
-
+		await serviceGetCountry().then((data) => {
+			let result = data.map((item) => {
+				return {
+					code: item.code,
+					name: item.name,
+					label: item.name
+				}
+			})
+			this.setState({ countries: result })
+		})
+		console.log('2', this.state);
 	}
+
+	handleChangeInput = (e) => {
+		console.log('write', e.target.name, e.target.value);
+		this.setState({
+			[e.target.name]: e.target.value,
+		})
+	}
+
+	handleCategory = (e) => {
+		if (e.length > this.state.itemsCaegories) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
+			})
+			return
+		}
+
+		console.log(e);
+		this.setState({
+			categories: e,
+		})
+	}
+
+	handleChangeCountry = (e) => {
+		e = JSON.parse(e)
+		console.log(e)
+		this.setState({
+			country: e.name,
+			code: e.code,
+		})
+	}
+
 
 	render() {
 		return (
@@ -143,20 +208,75 @@ export default class EditAccount extends React.Component {
 								</Row>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
-									<h3 className='cv-create-account-from-title'>Información</h3>
-									<Card className='cv-create-account-card-custom'>
-										<Form.Item 
-											name='country'
-											label='¿En que país te encuentras actualmente?'
-											rules={rules.rulesSelect}
-										>
-											<Select>
+										<h3 className='cv-create-account-from-title'>Información</h3>
+										<Card className='cv-create-account-card-custom'>
+											{this.state.country && 
+												<Form.Item 
+												name='country'
+												label='¿En que país te encuentras actualmente?'
+												rules={rules.rulesSelect}
+												initialValue={this.state.country}>
+												<Select 
+													onChange={this.handleChangeCountry}>
+													{this.state.countries.map((item, i) => {
+														return (
+															<Option
+																style={{ textTransform: 'capitalize' }}
+																key={i}
+																value={JSON.stringify({
+																	code: item.code,
+																	name: item.name,
+																})}>
+																{item.label}
+															</Option>
+														)
+													})}
+												</Select>
+											</Form.Item>
+											}
+
+											<Form.Item
+												label='Coloca tú número de WhatsApp'											
+												rules={rules.rulesPhone}
+												onChange={this.handleChangeInput}>
+												<Input 
+													name='phone'
+													value={this.state.phone}/>
+												<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.phone}&text=Hola%20${this.state.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>Confirma tu número</a>
+											</Form.Item>
+											{this.state.categories.length > 0 && 
+												<Form.Item 
+												label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
+												name='categories'
+												rules={rules.rulesSelect}
+												initialValue={this.state.categories}>
+												<Select
+													style={{ width: '100%'}}
+													onChange={this.handleCategory}
+													mode='multiple'
+													showArrow
+													maxTagCount={5}
+													loading={true}>
+													{this.state.responseCategories.map((item, i) => {
+														return (
+															<Option
+																style={{ textTransform: 'capitalize' }}
+																key={i}
+																value={item.value}>
+																{item.value}
+															</Option>
+														)
+													})}
+												</Select>
+											</Form.Item>
+										
 												
-											</Select>
-										</Form.Item>
-									</Card>
-								</Col>
+											}
+											
+										</Card>
+									</Col>
 								</Row>
+										
 										
 								
 							</Form>

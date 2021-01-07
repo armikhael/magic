@@ -2,21 +2,6 @@
 
 import axios from 'axios'
 
-const serviceGetCategories = async () => {
-	let returnResponse
-	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/category`,
-	})
-		.then((response) => {
-			returnResponse = response.data.data
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
-	return returnResponse
-}
-
 const serviceSaveAccount = async (body) => {
 	let returnResponse
 	await axios({
@@ -24,12 +9,12 @@ const serviceSaveAccount = async (body) => {
 		url: `${process.env.REACT_APP_HOST}/account`,
 		data: body,
 	})
-		.then((response) => {
-			returnResponse = response.data
-		})
-		.catch((e) => {
-			returnResponse = e.response.data
-		})
+	.then((response) => {
+		returnResponse = response.data
+	})
+	.catch((e) => {
+		returnResponse = e.response.data
+	})
 	return returnResponse
 }
 
@@ -55,18 +40,5 @@ const serviceGetInstagramAccount = async (param) => {
 	return returnResponse
 }
 
-const serviceGetCountry = async () => {
-	let returnResponse
-	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/country`,
-	})
-		.then((response) => {
-			returnResponse = response.data.data
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
-	return returnResponse
-}
-export { serviceGetCategories, serviceSaveAccount, serviceGetInstagramAccount, serviceGetCountry }
+
+export { serviceSaveAccount, serviceGetInstagramAccount }

@@ -23,7 +23,9 @@ import ModalsVerification from './components/ModalVerification'
 
 import './style.css'
 import { rules } from '../../../components/ServiceCommons/Rules'
-import { serviceGetCategories, serviceSaveAccount, serviceGetCountry } from './services'
+import { serviceSaveAccount } from './services'
+import { serviceGetCountry } from '../../../components/ServiceCommons/GetCountry'
+import { serviceGetCategories } from '../../../components/ServiceCommons/GetCategory'
 import { serviceGetInstagramAccount } from '../../../components/ServiceCommons/GetAccountInstagram'
 
 const { Option } = Select
