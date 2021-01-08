@@ -22,8 +22,8 @@ import ModalsContact from './components/ModalsContact'
 import ModalsVerification from './components/ModalVerification'
 
 import './style.css'
-import { rules } from '../../../components/ServiceCommons/Rules'
 import { serviceSaveAccount } from './services'
+import { rules } from '../../../components/ServiceCommons/Rules'
 import { serviceGetCountry } from '../../../components/ServiceCommons/GetCountry'
 import { serviceGetCategories } from '../../../components/ServiceCommons/GetCategory'
 import { serviceGetInstagramAccount } from '../../../components/ServiceCommons/GetAccountInstagram'
@@ -126,7 +126,7 @@ class CreateAccount extends React.Component {
 		}
 	}
 
-	handleButton = async () => {
+	handleSubmit = async () => {
 		let body = {
 			email: this.state.userProfile.email,
 			account: `${this.state.name}`,
@@ -490,7 +490,7 @@ class CreateAccount extends React.Component {
 									}
 								})()}
 								<div className='cv-create-account-btn-submit'>
-									<Button type='primary' shape='round' onClick={this.handleButton}>
+									<Button type='primary' shape='round' onClick={this.handleSubmit}>
 										REGISTRAR
 									</Button>
 									{this.handleRedirect(this.state.accountParam)}
@@ -499,9 +499,6 @@ class CreateAccount extends React.Component {
 						</Layout>
 					</Content>
 				</section>
-				<Content className='cv-container-main'>
-					<Form onFinish={this.handleSubmitLogin}></Form>
-				</Content>
 			</>
 		)
 	}

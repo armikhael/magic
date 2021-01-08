@@ -14,13 +14,14 @@ import {
 	Button,
 	notification
 } from 'antd'
+import './style.css'
+import { serviceUpdateAccount } from './services'
 import { rules } from '../../../components/ServiceCommons/Rules'
 import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
 import { serviceGetAccount } from '../../../components/ServiceCommons/GetAccount'
 import { serviceGetCategories } from '../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../components/ServiceCommons/GetCountry'
 
-import './style.css'
 const { Option } = Select
 const { Content, Header } = Layout
 
@@ -33,6 +34,8 @@ export default class EditAccount extends React.Component {
 			accountDetails: {},
 			countries: [],
 			responseCategories: [],
+			auxDescription: null,
+			auxPrice: null,
 			plans: []
 		}
 	}
@@ -51,9 +54,12 @@ export default class EditAccount extends React.Component {
 			phone: response.phone,
 			account: response.account,
 			country: response.country,
+			code: response.code,
 			categories: response.categories,
 			plans: response.plans
 		})
+
+		console.log('account:', this.state.accountDetails._id);
 		
 		await serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
@@ -109,6 +115,78 @@ export default class EditAccount extends React.Component {
 		})
 	}
 
+	handleDelete = (e) => {
+		this.state.plans.splice(e, 1)
+		this.setState({
+			plans: this.state.plans,
+		})
+	}
+
+	handleButtonPlans = () => {
+		if (this.state.auxDescription === null || this.state.auxPrice === null) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Debe rellenar los datos correspondientes`,
+			})
+			return
+		}
+		let arrayPlans = this.state.plans
+		arrayPlans.push({
+			description: this.state.auxDescription,
+			price: this.state.auxPrice,
+		})
+		this.setState({
+			plans: arrayPlans,
+		})
+		console.log(this.state.plans)
+	}
+
+	handleChangePlans = (e) => {
+		this.setState({
+			[e.target.id]: e.target.value,
+		})
+	}
+
+
+	handleSubmit = async () => {
+		let body = {
+			id: this.state.accountDetails._id,
+			categories: this.state.categories,
+			plans: this.state.plans,
+			phone: this.state.phone,
+			code: this.state.code,
+			country: this.state.country,
+		}
+
+		console.log(Object.keys(body))
+		console.log(body)
+		for (let i = 0; i < Object.keys(body).length; i++) {
+			let value = Object.keys(body)[i]
+			if (body[value] === undefined || body[value].length <= 0) {
+				notification['warning']({
+					message: `Formulario`,
+					description: 'Debe rellenar todos los campos.',
+				})
+				return
+			}
+		}
+
+		await serviceUpdateAccount(body).then((data) => {
+			if (data.statusCode === 500) {
+				notification['error']({
+					message: `Ups!`,
+					description: `${data.message}`,
+				})
+				return
+			}
+
+			notification['success']({
+				message: `Good job!!`,
+				description: `La cuenta se ha actualizado satisfactoriamente`,
+			})
+
+		})
+	}
 
 	render() {
 		return (
@@ -131,22 +209,6 @@ export default class EditAccount extends React.Component {
 								layout="vertical"
 							>
 								<Row>
-									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>Usuario</h3>
-										<Card className='cv-create-account-card-custom'>
-											{this.state.userProfile &&
-												<Form.Item label='Correo Electrónico'>
-													<Input value={this.state.userProfile.email} disabled />
-												</Form.Item>
-											}
-											<Form.Item label='Tipo de cuenta'>
-												<Input value={this.state.accountDetails.type} disabled />
-											</Form.Item>
-											<Form.Item label='Nombre de la cuenta'>
-											<Input value={this.state.accountDetails.name} disabled />
-											</Form.Item>
-										</Card>
-									</Col>
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Datos de Cuenta </h3>
 										<Card className='cv-create-account-card-custom'>
@@ -322,9 +384,11 @@ export default class EditAccount extends React.Component {
 										</Card>
 									</Col>
 								</Row>
-										
-										
-								
+								<div className='cv-create-account-btn-submit'>
+									<Button type='primary' shape='round' onClick={this.handleSubmit}>
+										Actualizar
+									</Button>
+								</div>
 							</Form>
 						</Layout>
 					</Content>
