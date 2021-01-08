@@ -11,10 +11,11 @@ import {
 	Card,
 	Avatar,
 	Skeleton,
+	Button,
 	notification
 } from 'antd'
 import { rules } from '../../../components/ServiceCommons/Rules'
-import { RocketOutlined, AntDesignOutlined } from '@ant-design/icons'
+import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
 import { serviceGetAccount } from '../../../components/ServiceCommons/GetAccount'
 import { serviceGetCategories } from '../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../components/ServiceCommons/GetCountry'
@@ -28,10 +29,11 @@ export default class EditAccount extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			itemsCaegories: 5,
 			accountDetails: {},
 			countries: [],
 			responseCategories: [],
-			categories: [],
+			plans: []
 		}
 	}
 
@@ -50,6 +52,7 @@ export default class EditAccount extends React.Component {
 			account: response.account,
 			country: response.country,
 			categories: response.categories,
+			plans: response.plans
 		})
 		
 		await serviceGetCategories().then((data) => {
@@ -83,6 +86,7 @@ export default class EditAccount extends React.Component {
 
 	handleCategory = (e) => {
 		if (e.length > this.state.itemsCaegories) {
+			console.log('mas de 5');
 			notification['error']({
 				message: `Ups!`,
 				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
@@ -130,16 +134,11 @@ export default class EditAccount extends React.Component {
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
-											{(() => {
-												if (this.state.userProfile) {
-													return (
-														<Form.Item label='Correo Electrónico'>
-															<Input value={this.state.userProfile.email} disabled />
-														</Form.Item>
-													)
-												}
-											})()}
-
+											{this.state.userProfile &&
+												<Form.Item label='Correo Electrónico'>
+													<Input value={this.state.userProfile.email} disabled />
+												</Form.Item>
+											}
 											<Form.Item label='Tipo de cuenta'>
 												<Input value={this.state.accountDetails.type} disabled />
 											</Form.Item>
@@ -244,35 +243,82 @@ export default class EditAccount extends React.Component {
 													value={this.state.phone}/>
 												<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.phone}&text=Hola%20${this.state.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>Confirma tu número</a>
 											</Form.Item>
-											{this.state.categories.length > 0 && 
-												<Form.Item 
-												label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
-												name='categories'
-												rules={rules.rulesSelect}
-												initialValue={this.state.categories}>
-												<Select
-													style={{ width: '100%'}}
-													onChange={this.handleCategory}
-													mode='multiple'
-													showArrow
-													maxTagCount={5}
-													loading={true}>
-													{this.state.responseCategories.map((item, i) => {
-														return (
-															<Option
-																style={{ textTransform: 'capitalize' }}
-																key={i}
-																value={item.value}>
-																{item.value}
-															</Option>
-														)
-													})}
-												</Select>
-											</Form.Item>
-										
-												
+
+											{this.state.categories && 
+													<Form.Item 
+													label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
+													name='categories'
+													rules={rules.rulesSelect}
+													initialValue={this.state.categories}>
+													<Select
+														style={{ width: '100%'}}
+														onChange={this.handleCategory}
+														mode='multiple'
+														showArrow
+														maxTagCount={5}>
+														{this.state.responseCategories.map((item, i) => {
+															return (
+																<Option
+																	style={{ textTransform: 'capitalize' }}
+																	key={i}
+																	value={item.value}>
+																	{item.value}
+																</Option>
+															)
+														})}
+													</Select>
+												</Form.Item>
 											}
-											
+										</Card>
+									</Col>
+									<Col xs={24} sm={24} md={12}>
+										<h3 className='cv-create-account-from-title'>Planes</h3>
+										<Card className='cv-create-account-card-custom'>
+											<Row>
+												<Col span={24}>
+													<Form.Item
+														label='Nombre:'
+														name='auxDescription'
+														onChange={this.handleChangePlans}
+														rules={rules.rulesText}>
+														<Input placeholder='Ingrese el paquete' />
+													</Form.Item>
+													<Form.Item
+														label='Precio:'
+														name='auxPrice'
+														onChange={this.handleChangePlans}
+														rules={rules.rulesPrice}>
+														<Input placeholder='Ingrese el precio' />
+													</Form.Item>
+													<div className='cv-create-account-btn-add-content'>
+														<Button
+															type='primary'
+															shape='round'
+															onClick={this.handleButtonPlans}>
+															AGREGAR
+														</Button>
+													</div>
+												</Col>
+												{this.state.plans.length > 0 && 
+													<Col span={24}>
+														<ol>
+															{this.state.plans.map((item, key) => (
+																<li key={key}>
+																	{item.description} - {item.price} -
+																	<Button
+																		type='link'
+																		shape='round'
+																		onClick={() => {
+																			this.handleDelete(key)
+																		}}>
+																		<DeleteOutlined />
+																	</Button>
+																</li>
+															))}
+														</ol>
+													</Col>
+												}
+											</Row>
 										</Card>
 									</Col>
 								</Row>
