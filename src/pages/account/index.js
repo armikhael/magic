@@ -12,9 +12,6 @@ import PageError from '../../components/Errors/PageError'
 
 import './style.css'
 import { serviceGetAccount } from '../../components/ServiceCommons/GetAccount'
-import { updateAccount } from './services'
-import { serviceGetInstagramAccount } from '../../components/ServiceCommons/GetAccountInstagram'
-
 
 class Account extends React.Component {
 	constructor(props) {
@@ -34,29 +31,6 @@ class Account extends React.Component {
 		} else {
 			this.setState({ loading: false, accounts: data })
 		}
-
-		console.log(data);
-		
-		if (data.type === 'instagram') {
-			let instagram = await serviceGetInstagramAccount(data.account)
-
-			console.log({
-				name: `${instagram.username}-instagram`,
-				biography: instagram.biography,
-				image: instagram.profile_pic_url_hd,
-				followers: instagram.edge_followed_by.count,
-				follow: instagram.edge_follow.count,
-			});
-			await updateAccount({
-				name: `${instagram.username}-instagram`,
-				biography: instagram.biography,
-				image: instagram.profile_pic_url_hd,
-				followers: instagram.edge_followed_by.count,
-				follow: instagram.edge_follow.count,
-			})
-			
-		}
-
 	}
 
 	render() {

@@ -1,4 +1,10 @@
 export const rules = {
+	required: [
+		{
+			required: true,
+			message: 'Debe seleccionar una opción',
+		},
+	],
 	rulesEmail: [
 		{
 			type: 'email',
@@ -78,5 +84,16 @@ export const rules = {
 			required: true,
 			message: 'Debe seleccionar una opción',
 		},
+	],
+	rulesFollowers: [
+		{
+			required: true,
+			message: 'Debe seleccionar una opción',
+		},
+		{
+			min: 8,
+			message: 'Debes contar con al menos 10.000 seguidores',
+		},
+		
 	]
 }

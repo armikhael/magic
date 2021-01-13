@@ -12,11 +12,9 @@ import {
 	Row,
 	Col,
 	Card,
-	Avatar,
-	Skeleton,
 	notification,
 } from 'antd'
-import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
+import { RocketOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import ModalsContact from './components/ModalsContact'
 import ModalsVerification from './components/ModalVerification'
@@ -29,7 +27,7 @@ import { serviceGetCategories } from '../../../components/ServiceCommons/GetCate
 import { serviceGetInstagramAccount } from '../../../components/ServiceCommons/GetAccountInstagram'
 
 const { Option } = Select
-const { Search } = Input
+const { TextArea } = Input
 const { Content, Header } = Layout
 
 class CreateAccount extends React.Component {
@@ -50,6 +48,7 @@ class CreateAccount extends React.Component {
 	}
 
 	async componentDidMount() {
+		console.log('Hola Mundo');
 		if (localStorage.getItem('user')) {
 			this.setState({
 				userProfile: JSON.parse(localStorage.getItem('user')),
@@ -133,7 +132,7 @@ class CreateAccount extends React.Component {
 			name: `${this.state.name}-${this.state.type}`,
 			type: this.state.type,
 			biography: this.state.biography,
-			image: this.state.image,
+			image: 'https://i.ibb.co/JnXwKMt/viral.png',
 			categories: this.state.categories,
 			plans: this.state.plans,
 			phone: this.state.phone,
@@ -190,6 +189,7 @@ class CreateAccount extends React.Component {
 	}
 
 	handleChangeType = (e) => {
+		console.log(e);
 		this.setState({
 			type: e,
 		})
@@ -289,206 +289,150 @@ class CreateAccount extends React.Component {
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
-											{(() => {
-												if (this.state.userProfile) {
-													return (
-														<Form.Item label='Correo Electrónico'>
-															<Input value={this.state.userProfile.email} disabled />
-														</Form.Item>
-													)
-												}
-											})()}
-
 											<Form.Item label='Tipo de cuenta'>
 												<Select onChange={this.handleChangeType}>
 													<Option value='instagram'>Instagram</Option>
 												</Select>
 											</Form.Item>
-											<Form.Item label='Nombre de la cuenta'>
-												<Search
-													disabled={!this.state.type}
-													placeholder='Buscar cuenta...'
-													onSearch={this.handleFindAccount}
-												/>
+											<Form.Item
+												label='Usuario'
+												rules={rules.rulesText}
+												onChange={this.handleChangeInput}>
+												<Input name='name'/>
+											</Form.Item>
+											<Form.Item
+												label='Seguidores'
+												rules={rules.rulesFollowers}
+												onChange={this.handleChangeInput}>
+												<Input name='followers'/>
+											</Form.Item>
+											<Form.Item
+												label='Seguidos'
+												rules={rules.required}
+												onChange={this.handleChangeInput}>
+												<Input name='follow'/>
+											</Form.Item>
+											<Form.Item
+												label='¿De que trata tu cuenta? (Resumen)'
+												rules={rules.required}
+												onChange={this.handleChangeInput}>
+												<TextArea rows={4} name='biography'/>
+											</Form.Item>				
+										</Card>
+									</Col>
+								</Row>
+								<Row>
+									<Col xs={24} sm={24} md={12}>
+										<h3 className='cv-create-account-from-title'>Información</h3>
+										<Card className='cv-create-account-card-custom'>
+											<Form.Item 
+												name='country'
+												label='¿En que país te encuentras actualmente?'
+												rules={rules.rulesSelect}
+											>
+												<Select 
+													onChange={this.handleChangeCountry}
+												>
+													{this.state.countries.map((item, i) => {
+														return (
+															<Option
+																style={{ textTransform: 'capitalize' }}
+																key={i}
+																value={JSON.stringify({
+																	code: item.code,
+																	name: item.name,
+																})}>
+																{item.label}
+															</Option>
+														)
+													})}
+												</Select>
+											</Form.Item>
+											<Form.Item
+												label='Coloca tú número de WhatsApp'
+												rules={rules.rulesPhone}
+												onChange={this.handleChangeInput}>
+												<Input name='phone'/>
+												<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.phone}&text=Hola%20${this.state.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>Confirma tu número</a>
+											</Form.Item>
+											<Form.Item 
+												label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
+												name='categories'
+												rules={rules.rulesSelect}
+											>
+												<Select
+													style={{ width: '100%'}}
+													onChange={this.handleCategory}
+													mode='multiple'
+													showArrow
+													maxTagCount={5}
+													loading={true}
+												>
+													{this.state.responseCategories.map((item, i) => {
+														return (
+															<Option
+																style={{ textTransform: 'capitalize' }}
+																key={i}
+																value={item.value}>
+																{item.value}
+															</Option>
+														)
+													})}
+												</Select>
+
 											</Form.Item>
 										</Card>
 									</Col>
 									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>Datos de Cuenta </h3>
+										<h3 className='cv-create-account-from-title'>Planes</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Row>
-												<Col span={6}>
-													{(() => {
-														if (this.state.image) {
-															return (
-																<img
-																	className='cv-create-account-image-acount'
-																	src={this.state.image}
-																	alt={this.state.name}
-																/>
-															)
-														} else {
-															return (
-																<div className='mt15'>
-																	<Avatar size={120} icon={<AntDesignOutlined />} />
-																</div>
-															)
-														}
-													})()}
+												<Col span={24}>
+													<Form.Item
+														label='Nombre:'
+														name='auxDescription'
+														onChange={this.handleChangePlans}
+														rules={rules.rulesText}>
+														<Input placeholder='Ingrese el paquete' />
+													</Form.Item>
+													<Form.Item
+														label='Precio:'
+														name='auxPrice'
+														onChange={this.handleChangePlans}
+														rules={rules.rulesPrice}>
+														<Input placeholder='Ingrese el precio' />
+													</Form.Item>
+													<div className='cv-create-account-btn-add-content'>
+														<Button
+															type='primary'
+															shape='round'
+															onClick={this.handleButtonPlans}>
+															AGREGAR
+														</Button>
+													</div>
 												</Col>
-												<Col span={18} className='cv-create-account-detail-acount'>
-													{(() => {
-														if (this.state.image) {
-															return (
-																<Row>
-																	<Col span={24}>
-																		<h3>{this.state.name}</h3>
-																	</Col>
-																	<Col span={12}>
-																		<span>
-																			<b>{this.state.followers}</b>
-																		</span>{' '}
-																		Seguidores
-																	</Col>
-																	<Col span={12}>
-																		<span>
-																			<b>{this.state.follow}</b>
-																		</span>{' '}
-																		Seguidos
-																	</Col>
-																	<Col span={24} className='mt15'>
-																		{this.state.emailAccount}
-																		<p>{this.state.biography}</p>
-																	</Col>
-																</Row>
-															)
-														} else {
-															return <Skeleton active />
-														}
-													})()}
+												<Col span={24}>
+													<ol>
+														{this.state.plans.map((item, key) => (
+															<li key={key}>
+																{item.description} - {item.price} -
+																<Button
+																	type='link'
+																	shape='round'
+																	onClick={() => {
+																		this.handleDelete(key)
+																	}}>
+																	<DeleteOutlined />
+																</Button>
+															</li>
+														))}
+													</ol>
 												</Col>
 											</Row>
 										</Card>
 									</Col>
 								</Row>
-								{(() => {
-									if (this.state.agree) {
-										return (
-											<Row>
-												<Col xs={24} sm={24} md={12}>
-													<h3 className='cv-create-account-from-title'>Información</h3>
-													<Card className='cv-create-account-card-custom'>
-														<Form.Item 
-															name='country'
-															label='¿En que país te encuentras actualmente?'
-															rules={rules.rulesSelect}
-														>
-															<Select 
-																onChange={this.handleChangeCountry}
-															>
-																{this.state.countries.map((item, i) => {
-																	return (
-																		<Option
-																			style={{ textTransform: 'capitalize' }}
-																			key={i}
-																			value={JSON.stringify({
-																				code: item.code,
-																				name: item.name,
-																			})}>
-																			{item.label}
-																		</Option>
-																	)
-																})}
-															</Select>
-														</Form.Item>
-														<Form.Item
-															label='Coloca tú número de WhatsApp'
-															
-															rules={rules.rulesPhone}
-															onChange={this.handleChangeInput}>
-															<Input name='phone'/>
-															<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.phone}&text=Hola%20${this.state.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>Confirma tu número</a>
-														</Form.Item>
-														<Form.Item 
-															label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
-															name='categories'
-															rules={rules.rulesSelect}
-														>
-															<Select
-																style={{ width: '100%'}}
-																onChange={this.handleCategory}
-																mode='multiple'
-																showArrow
-																maxTagCount={5}
-																loading={true}
-															>
-																{this.state.responseCategories.map((item, i) => {
-																	return (
-																		<Option
-																			style={{ textTransform: 'capitalize' }}
-																			key={i}
-																			value={item.value}>
-																			{item.value}
-																		</Option>
-																	)
-																})}
-															</Select>
 
-														</Form.Item>
-													</Card>
-												</Col>
-												<Col xs={24} sm={24} md={12}>
-													<h3 className='cv-create-account-from-title'>Planes</h3>
-													<Card className='cv-create-account-card-custom'>
-														<Row>
-															<Col span={24}>
-																<Form.Item
-																	label='Nombre:'
-																	name='auxDescription'
-																	onChange={this.handleChangePlans}
-																	rules={rules.rulesText}>
-																	<Input placeholder='Ingrese el paquete' />
-																</Form.Item>
-																<Form.Item
-																	label='Precio:'
-																	name='auxPrice'
-																	onChange={this.handleChangePlans}
-																	rules={rules.rulesPrice}>
-																	<Input placeholder='Ingrese el precio' />
-																</Form.Item>
-																<div className='cv-create-account-btn-add-content'>
-																	<Button
-																		type='primary'
-																		shape='round'
-																		onClick={this.handleButtonPlans}>
-																		AGREGAR
-																	</Button>
-																</div>
-															</Col>
-															<Col span={24}>
-																<ol>
-																	{this.state.plans.map((item, key) => (
-																		<li key={key}>
-																			{item.description} - {item.price} -
-																			<Button
-																				type='link'
-																				shape='round'
-																				onClick={() => {
-																					this.handleDelete(key)
-																				}}>
-																				<DeleteOutlined />
-																			</Button>
-																		</li>
-																	))}
-																</ol>
-															</Col>
-														</Row>
-													</Card>
-												</Col>
-											</Row>
-										)
-									}
-								})()}
 								<div className='cv-create-account-btn-submit'>
 									<Button type='primary' shape='round' onClick={this.handleSubmit}>
 										REGISTRAR
