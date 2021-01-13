@@ -24,7 +24,6 @@ import { serviceSaveAccount } from './services'
 import { rules } from '../../../components/ServiceCommons/Rules'
 import { serviceGetCountry } from '../../../components/ServiceCommons/GetCountry'
 import { serviceGetCategories } from '../../../components/ServiceCommons/GetCategory'
-import { serviceGetInstagramAccount } from '../../../components/ServiceCommons/GetAccountInstagram'
 
 const { Option } = Select
 const { TextArea } = Input
@@ -78,52 +77,52 @@ class CreateAccount extends React.Component {
 
 	handleRedirect = (item) => {
 		if (this.state.redirect) {
-			return <Redirect to={`/account/${item}`} />
+			return <Redirect to={`/account/activation`} />
 		}
 	}
 
-	handleFindAccount = async (props) => {
-		if (this.state.type === 'instagram') {
-			serviceGetInstagramAccount(props)
-				.then((response) => {
-					this.setState({
-						name: response.username,
-						biography: response.biography,
-						image: response.profile_pic_url_hd,
-						followers: response.edge_followed_by.count,
-						follow: response.edge_follow.count,
-						emailAccount: response.business_email,
-					})
-					if (response.edge_followed_by.count < 10000) {
-						this.setState({ 
-							agree: false, 
-							modalsContact: true, 
-						})
-						return
-					}
+	// handleFindAccount = async (props) => {
+	// 	if (this.state.type === 'instagram') {
+	// 		serviceGetInstagramAccount(props)
+	// 			.then((response) => {
+	// 				this.setState({
+	// 					name: response.username,
+	// 					biography: response.biography,
+	// 					image: response.profile_pic_url_hd,
+	// 					followers: response.edge_followed_by.count,
+	// 					follow: response.edge_follow.count,
+	// 					emailAccount: response.business_email,
+	// 				})
+	// 				if (response.edge_followed_by.count < 10000) {
+	// 					this.setState({ 
+	// 						agree: false, 
+	// 						modalsContact: true, 
+	// 					})
+	// 					return
+	// 				}
 					
-					console.log(response.biography);
-					let word = response.biography.toLowerCase()
-					let isTrue = word.includes(process.env.REACT_APP_SECRET)
-					console.log(isTrue);
-					if (!isTrue) {
-						this.setState({ 
-							agree: false, 
-							modalsVerification: true,
-						})
-						return 
-					}
+	// 				console.log(response.biography);
+	// 				let word = response.biography.toLowerCase()
+	// 				let isTrue = word.includes(process.env.REACT_APP_SECRET)
+	// 				console.log(isTrue);
+	// 				if (!isTrue) {
+	// 					this.setState({ 
+	// 						agree: false, 
+	// 						modalsVerification: true,
+	// 					})
+	// 					return 
+	// 				}
 
-					this.setState({ agree: true })
-				})
-				.catch(() => {
-					notification['error']({
-						message: `Error!`,
-						description: `Esta cuenta es inválida`,
-					})
-				})
-		}
-	}
+	// 				this.setState({ agree: true })
+	// 			})
+	// 			.catch(() => {
+	// 				notification['error']({
+	// 					message: `Error!`,
+	// 					description: `Esta cuenta es inválida`,
+	// 				})
+	// 			})
+	// 	}
+	// }
 
 	handleSubmit = async () => {
 		let body = {
@@ -138,8 +137,6 @@ class CreateAccount extends React.Component {
 			phone: this.state.phone,
 			code: this.state.code,
 			country: this.state.country,
-			followers: this.state.followers,
-			follow: this.state.follow,
 		}
 
 		console.log(Object.keys(body))
@@ -299,18 +296,6 @@ class CreateAccount extends React.Component {
 												rules={rules.rulesText}
 												onChange={this.handleChangeInput}>
 												<Input name='name'/>
-											</Form.Item>
-											<Form.Item
-												label='Seguidores'
-												rules={rules.rulesFollowers}
-												onChange={this.handleChangeInput}>
-												<Input name='followers'/>
-											</Form.Item>
-											<Form.Item
-												label='Seguidos'
-												rules={rules.required}
-												onChange={this.handleChangeInput}>
-												<Input name='follow'/>
 											</Form.Item>
 											<Form.Item
 												label='¿De que trata tu cuenta? (Resumen)'

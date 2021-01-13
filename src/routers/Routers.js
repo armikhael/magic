@@ -10,6 +10,7 @@ import Test from '../pages/test'
 
 import Home from '../pages/home'
 import Profile from '../pages/profile'
+import Activation from '../pages/profile/activation'
 import CreateAccount from '../pages/profile/create-account'
 import EditAccount from '../pages/profile/edit-account'
 import Category from '../pages/category'
@@ -19,6 +20,7 @@ import Register from '../pages/auth/register'
 import Recovery from '../pages/auth/recovery'
 import NotFound from '../pages/notfound'
 import Results from '../pages/results'
+import InactiveAccounts from '../pages/admin/inactive-accounts'
 
 const Routers = () => (
 	<BrowserRouter forceRefresh={true}>
@@ -31,11 +33,13 @@ const Routers = () => (
 				<Route exact path='/account/:name' component={Account} />
 				<Route exact path='/results/:name' component={Results} />
 
+				<PrivateRoute exact path='/admin/inactive-accounts/' component={InactiveAccounts} />
 				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/create-account' component={CreateAccount} />
+				<PrivateRoute exact path='/profile/activation' component={Activation} />
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 
 				<Route component={NotFound} />
