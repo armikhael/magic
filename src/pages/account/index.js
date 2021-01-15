@@ -23,9 +23,7 @@ class Account extends React.Component {
 	}
 
 	async componentDidMount() {
-		
 		let data = await serviceGetAccount(this.props.match.params.name)
-
 		if (data.statusCode) {
 			this.setState({ loading: false, error: data })
 		} else {
@@ -46,14 +44,39 @@ class Account extends React.Component {
 					<Col xs={24} sm={24} md={18}>
 						<Row className='cv-detail-content-accoun'>
 							<Col span={24}>
-								<ShareAltOutlined />
-								&nbsp; | &nbsp;SHARE | <a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.accounts.phone}&text=Hola%20${this.state.accounts.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>WhatsApp</a>
+								<Row>
+									<Col span={12}>
+										<div className='cv-detail-share-card'>
+											<ShareAltOutlined />
+											&nbsp; COMPARTIR
+										</div>
+									</Col>
+									<Col span={12}>
+										<a
+											rel='noopener noreferrer'
+											target='_blank'
+											href={`https://api.whatsapp.com/send?phone=${this.state.accounts.phone}&text=Hola%20${this.state.accounts.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>
+											<img
+												title='whatsapp'
+												alt='whatsapp'
+												className='cv-detail-img-whatsapp'
+												src='https://i.ibb.co/KNTSnyg/whatsapp-button-png-2-2.png'
+											/>
+										</a>
+									</Col>
+								</Row>
 							</Col>
 							<Col span={24} className='cv-detail-content-account-detail'>
 								<h1 className='cv-detail-title-main'>
-									{this.state.accounts.account} / 
-									Seguidores: {new Intl.NumberFormat("de-DE").format(this.state.accounts.followers)} / 
-									Seguidos: {new Intl.NumberFormat("de-DE").format(this.state.accounts.follow)}
+									{this.state.accounts.account}
+									{this.state.accounts.eneable && (
+										<img
+											className='cv-detail-img-content-account-verified'
+											src='https://i.ibb.co/0f5YxSt/verificado.png'
+											alt='verificado'
+											title='verificado'
+										/>
+									)}
 								</h1>
 								<h3 className='cv-detail-sub-title'>
 									<Moment format='LLLL' withTitle>
@@ -66,12 +89,42 @@ class Account extends React.Component {
 									</Link>
 								</h3>
 								<div className='cv-detail-account-img-main-contnet'>
-									<img
-										title={this.state.accounts.name}
-										alt={this.state.accounts.name}
-										className='cv-detail-account-img-main'
-										src={this.state.accounts.image}
-									/>
+									<Row>
+										<Col span={7}>
+											<img
+												title={this.state.accounts.name}
+												alt={this.state.accounts.name}
+												className='cv-detail-account-img-main'
+												src={this.state.accounts.image}
+											/>
+										</Col>
+										<Col span={15} className='cv-detail-account-content-info'>
+											<h3 className='cv-detail-account-content-info-country'>
+												{this.state.accounts.country}
+											</h3>
+											<a
+												href={'https://www.instagram.com/' + this.state.accounts.account}
+												target='_blank'
+												rel='noopener noreferrer'>
+												<h3 className='cv-detail-account-content-info-account'>
+													{this.state.accounts.type === 'instagram' && (
+														<img
+															width='30px'
+															src='https://i.ibb.co/hymRJXG/instagram.png'
+															alt='instagram'
+															title='instagram'
+														/>
+													)}
+													&nbsp;&nbsp; @{this.state.accounts.account}
+												</h3>
+											</a>
+											<h3 className='cv-detail-account-content-info-email'>
+												{this.state.accounts.email}
+											</h3>
+											<h3>{this.state.accounts.biography}</h3>
+										</Col>
+									</Row>
+
 									<div className='cv-masonry-item-card-image-bg'></div>
 								</div>
 								<p className='cv-detail-account-descript'>{this.state.accounts.description}</p>
@@ -90,7 +143,7 @@ class Account extends React.Component {
 							<hr className='cv-detail-hr' />
 							<h3 className='cv-detail-user-create-title'>Creado por</h3>
 							<UserOutlined />
-							&nbsp; Carlos Espinoza
+							&nbsp; {this.state.accounts.email}
 						</div>
 					</Col>
 					<Col xs={24} sm={24} md={6} className='cv-detail-content-plans'>
