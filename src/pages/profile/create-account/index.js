@@ -241,7 +241,7 @@ class CreateAccount extends React.Component {
 								wrapperCol={{ span: 24 }}
 								layout="vertical">
 								<Row>
-									<Col xs={24} sm={24} md={12} offset={5}>
+									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item label='Tipo de cuenta'>
@@ -266,7 +266,7 @@ class CreateAccount extends React.Component {
 									</Col>
 								</Row>
 								<Row>
-									<Col xs={24} sm={24} md={12} offset={5}>
+									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Información</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item 
@@ -327,7 +327,7 @@ class CreateAccount extends React.Component {
 									</Col>
 									</Row>
 								<Row>
-									<Col xs={24} sm={24} md={12} offset={5}>
+									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Row>
