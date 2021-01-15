@@ -15,6 +15,7 @@ import CreateAccount from '../pages/profile/create-account'
 import EditAccount from '../pages/profile/edit-account'
 import Category from '../pages/category'
 import Account from '../pages/account'
+import View from '../pages/account/view'
 import Login from '../pages/auth/login'
 import Register from '../pages/auth/register'
 import Recovery from '../pages/auth/recovery'
@@ -32,6 +33,7 @@ const Routers = () => (
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/account/:name' component={Account} />
 				<Route exact path='/results/:name' component={Results} />
+				<Route exact path='/account/view/:name' component={View} />
 
 				<PrivateRoute exact path='/admin/inactive-accounts/' component={InactiveAccounts} />
 				<PrivateRoute exact path='/auth/register' component={Register} />

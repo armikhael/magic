@@ -13,9 +13,8 @@ import {
 	Col,
 	Card,
 	notification,
-	Divider
 } from 'antd'
-import { RocketOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons'
+import { RocketOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import ModalsContact from './components/ModalsContact'
 import ModalsVerification from './components/ModalVerification'
@@ -29,7 +28,6 @@ import { serviceGetCategories } from '../../../components/ServiceCommons/GetCate
 const { Option } = Select
 const { TextArea } = Input
 const { Content, Header } = Layout
-let index = 0;
 
 class CreateAccount extends React.Component {
 	constructor(props) {
@@ -37,7 +35,6 @@ class CreateAccount extends React.Component {
 		this.state = {
 			itemsCaegories: 5,
 			userProfile: null,
-			auxDescription: null,
 			auxPrice: null,
 			plans: [],
 			agree: false,
@@ -45,21 +42,16 @@ class CreateAccount extends React.Component {
 			modalsContact: false,
 			modalsVerification: false,
 			countries: [],
-			concepts: [
-				'Una Publicación por 24 horas',
-				'2 Historias',
-				'Un IGTV',
-				'Un Reels',
-				'Diseño de Logo',
-				'Diseño de Imágenes',
-				'Asesoría',
-			],
-			auxConcept: '',
+			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
+			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
 		}
 	}
 
+
 	async componentDidMount() {
 		console.log('Hola Mundo');
+		this.setState({ auxTime: this.state.timeContcept[this.state.quantity[0]]})
 		if (localStorage.getItem('user')) {
 			this.setState({
 				userProfile: JSON.parse(localStorage.getItem('user')),
@@ -162,12 +154,12 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handleChangeType = (e) => {
-		console.log(e);
-		this.setState({
-			type: e,
-		})
-	}
+	// handleChangeType = (e) => {
+	// 	console.log(e);
+	// 	this.setState({
+	// 		type: e,
+	// 	})
+	// }
 
 	handleChangeCountry = (e) => {
 		e = JSON.parse(e)
@@ -178,25 +170,20 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-
-
 	handleCategory = (e) => {
-		if (e.length > this.state.itemsCaegories) {
-			notification['error']({
-				message: `Ups!`,
-				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
-			})
-			return
-		}
-
 		console.log(e);
+		
 		this.setState({
 			categories: e,
 		})
 	}
 
 	handleButtonPlans = () => {
-		if (this.state.auxDescription === null || this.state.auxPrice === null) {
+		if (this.state.selectQuantityConcept === null || 
+			 this.state.selectConcept === null ||
+			 this.state.selectQuantityTime === null ||
+			 this.state.selectTime === null ||
+			 this.state.auxPrice === null) {
 			notification['error']({
 				message: `Ups!`,
 				description: `Debe rellenar los datos correspondientes`,
@@ -205,7 +192,7 @@ class CreateAccount extends React.Component {
 		}
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
-			description: this.state.auxDescription,
+			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept} Durante ${this.state.selectQuantityTime} ${this.state.selectTime}` ,
 			price: this.state.auxPrice,
 		})
 		this.setState({
@@ -229,25 +216,25 @@ class CreateAccount extends React.Component {
 		this.setState({ modalsVerification: false })
 	}
 
-	handleAddConcept = () => {
-    console.log('handleAddConcept');
-    const { concepts, auxConcept } = this.state;
-    this.setState({
-      concepts: [...concepts, auxConcept || `New item ${index++}`],
-      auxConcept: '',
-    });
-	};
+	handleSelect = (e) => {
+		console.log(e.option, e.value);
+		if (e.option === 'categories' && e.value.length > this.state.itemsCaegories) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
+			})
+			return
+		}
+		
+		this.setState({
+			[e.option]: e.value
+		})
+	}
 
-	handleWriteConcept = event => {
-		console.log(event.target.value);
-    this.setState({
-      auxConcept: event.target.value,
-    });
-  };
-	
 	render() {
-		const { concepts, auxConcept } = this.state;
+
 		return (
+			
 			<>
 				<ModalsContact
 					modalsContact={this.state.modalsContact}
@@ -274,14 +261,14 @@ class CreateAccount extends React.Component {
 								onFinish={this.handleSubmitLogin}
 								labelCol={{ span: 24 }}
 								wrapperCol={{ span: 24 }}
-								layout="vertical"
-							>
+								layout="vertical">
 								<Row>
-									<Col xs={24} sm={24} md={12}>
+									<Col xs={24} sm={24} md={12} offset={5}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item label='Tipo de cuenta'>
-												<Select onChange={this.handleChangeType}>
+											
+												<Select onChange={(e) => this.handleSelect({ option: 'type', value: e })}>
 													<Option value='instagram'>Instagram</Option>
 												</Select>
 											</Form.Item>
@@ -301,7 +288,7 @@ class CreateAccount extends React.Component {
 									</Col>
 								</Row>
 								<Row>
-									<Col xs={24} sm={24} md={12}>
+									<Col xs={24} sm={24} md={12} offset={5}>
 										<h3 className='cv-create-account-from-title'>Información</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item 
@@ -311,7 +298,7 @@ class CreateAccount extends React.Component {
 											>
 												<Select 
 													onChange={this.handleChangeCountry}
-												>
+													placeholder="Seleccionar">
 													{this.state.countries.map((item, i) => {
 														return (
 															<Option
@@ -338,65 +325,76 @@ class CreateAccount extends React.Component {
 												label='Elige hasta 5 categorías que más se asocien a tu cuenta' 
 												name='categories'
 												rules={rules.rulesSelect}>
-												
 												<Select
 													style={{ width: '100%'}}
-													onChange={this.handleCategory}
+													onChange={(e) => this.handleSelect({ option: 'categories', value: e })}
 													mode='multiple'
 													showArrow
 													maxTagCount={5}
-													loading={true}>
-
+													loading={true}
+													placeholder="Seleccionar">
 													{this.state.responseCategories.map((item, i) => {
 														return (
 															<Option
 																style={{ textTransform: 'capitalize' }}
 																key={i}
 																value={item.value}>
-																{item.value.toUpperCase()}
+																{item.value}
 															</Option>
 														)
 													})}
 												</Select>
-
 											</Form.Item>
 										</Card>
 									</Col>
-									<Col xs={24} sm={24} md={12}>
+									</Row>
+								<Row>
+									<Col xs={24} sm={24} md={12} offset={5}>
 										<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Row>
 												<Col span={24}>
-													<Form.Item
-														label='¿Qué servicio o paquete ofreces?:'
-														name='auxDescription'
-														
-														rules={rules.rulesText}>
-														<Select
-															style={{ width: '100%' }}
-															onChange={this.handleConcept}
-															placeholder="Selecciona o escribe un servicio"
-															dropdownRender={menu => (
-																<div>
-																	{menu}
-																	<Divider style={{ margin: '4px 0' }} />
-																	<div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-																		<Input style={{ flex: 'auto' }} value={auxConcept} onChange={this.handleWriteConcept} />
-																		<Button
-																			style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
-																			onClick={this.handleAddConcept}
-																		>
-																			<PlusOutlined /> Agregar
-																		</Button>
-																	</div>
-																</div>
-															)}
-														>
-															{concepts.map(item => (
+													<p>¿Cuáles son tus paquetes publicitarios?</p>
+													<Form.Item label='Opciones Publicitarias'>
+														<Select 
+															placeholder="Seleccionar"
+															style={{ width: 120 }}
+															onChange={(e) => this.handleSelect({ option: 'selectQuantityConcept', value: e })}>
+															{this.state.quantity.map(item => (
+																<Option key={item} value={item}>{item}</Option>
+															))}
+														</Select>
+														<Select 
+															placeholder="Seleccionar"
+															style={{ width: 120 }}
+															onChange={(e) => this.handleSelect({ option: 'selectConcept', value: e })}>
+															{this.state.concepts.map(item => (
 																<Option key={item}>{item}</Option>
 															))}
 														</Select>
 													</Form.Item>
+													<Form.Item label='Tiempo'>
+														<Select 
+															label={'Tiempo'} 
+															placeholder="Seleccionar"
+															style={{ width: 120 }} 
+															onChange={(e) => this.handleSelect({ option: 'selectQuantityTime', value: e })}>
+															{this.state.quantity.map(item => (
+																<Option key={item}>{item}</Option>
+															))}
+														</Select>
+														<Select
+															label={'Concepto'}
+															placeholder="Seleccionar"
+															style={{ width: 120 }}
+															onChange={(e) => this.handleSelect({ option: 'selectTime', value: e })}>
+															{this.state.timeContcept.map(item => (
+																<Option key={item}>{item}</Option>
+															))}
+														</Select>
+													</Form.Item>
+													
+													
 													<Form.Item
 														label='Precio en Dólares (USD)'
 														name='auxPrice'
@@ -404,6 +402,7 @@ class CreateAccount extends React.Component {
 														rules={rules.rulesPrice}>
 														<Input placeholder='Precio en Dólares' />
 													</Form.Item>
+													
 													<div className='cv-create-account-btn-add-content'>
 														<Button
 															type='primary'
@@ -414,7 +413,7 @@ class CreateAccount extends React.Component {
 													</div>
 												</Col>
 												<Col span={24}>
-													<ol>
+													<ul>
 														{this.state.plans.map((item, key) => (
 															<li key={key}>
 																{item.description} - {item.price} -
@@ -428,7 +427,7 @@ class CreateAccount extends React.Component {
 																</Button>
 															</li>
 														))}
-													</ol>
+													</ul>
 												</Col>
 											</Row>
 										</Card>
