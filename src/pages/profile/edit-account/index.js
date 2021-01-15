@@ -32,11 +32,14 @@ export default class EditAccount extends React.Component {
 		this.state = {
 			itemsCaegories: 5,
 			accountDetails: {},
-			countries: [],
 			responseCategories: [],
 			auxDescription: null,
 			auxPrice: null,
-			plans: []
+			plans: [],
+			countries: [],
+			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
+			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
 		}
 	}
 
@@ -123,7 +126,16 @@ export default class EditAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-		if (this.state.auxDescription === null || this.state.auxPrice === null) {
+		console.log(this.state.selectQuantityConcept);
+		console.log(this.state.selectConcept);
+		console.log(this.state.selectQuantityTime);
+		console.log(this.state.selectTime);
+		console.log(this.state.auxPrice);
+		if (this.state.selectQuantityConcept === null || 
+			 this.state.selectConcept === null ||
+			 this.state.selectQuantityTime === null ||
+			 this.state.selectTime === null ||
+			 this.state.auxPrice === null) {
 			notification['error']({
 				message: `Ups!`,
 				description: `Debe rellenar los datos correspondientes`,
@@ -132,7 +144,7 @@ export default class EditAccount extends React.Component {
 		}
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
-			description: this.state.auxDescription,
+			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept} Durante ${this.state.selectQuantityTime} ${this.state.selectTime}` ,
 			price: this.state.auxPrice,
 		})
 		this.setState({
@@ -141,11 +153,6 @@ export default class EditAccount extends React.Component {
 		console.log(this.state.plans)
 	}
 
-	handleChangePlans = (e) => {
-		this.setState({
-			[e.target.id]: e.target.value,
-		})
-	}
 
 
 	handleSubmit = async () => {
@@ -185,6 +192,21 @@ export default class EditAccount extends React.Component {
 				description: `La cuenta se ha actualizado satisfactoriamente`,
 			})
 
+		})
+	}
+
+	handleSelect = (e) => {
+		console.log(e.option, e.value);
+		if (e.option === 'categories' && e.value.length > this.state.itemsCaegories) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
+			})
+			return
+		}
+		
+		this.setState({
+			[e.option]: e.value
 		})
 	}
 
@@ -333,25 +355,61 @@ export default class EditAccount extends React.Component {
 											}
 										</Card>
 									</Col>
+								</Row>
+								<Row>
 									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>Planes</h3>
+										<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Row>
 												<Col span={24}>
-													<Form.Item
-														label='Nombre:'
-														name='auxDescription'
-														onChange={this.handleChangePlans}
-														rules={rules.rulesText}>
-														<Input placeholder='Ingrese el paquete' />
+													<p>¿Cuáles son tus paquetes publicitarios?</p>
+													<Form.Item label='Opciones Publicitarias'>
+														<Select 
+															placeholder="Seleccionar"
+															style={{ width: 120 }}
+															onChange={(e) => this.handleSelect({ option: 'selectQuantityConcept', value: e })}>
+															{this.state.quantity.map(item => (
+																<Option key={item} value={item}>{item}</Option>
+															))}
+														</Select>
+														<Select 
+															placeholder="Seleccionar"
+															style={{ width: 120 }}
+															onChange={(e) => this.handleSelect({ option: 'selectConcept', value: e })}>
+															{this.state.concepts.map(item => (
+																<Option key={item}>{item}</Option>
+															))}
+														</Select>
 													</Form.Item>
+													<Form.Item label='Tiempo'>
+														<Select 
+															label={'Tiempo'} 
+															placeholder="Seleccionar"
+															style={{ width: 120 }} 
+															onChange={(e) => this.handleSelect({ option: 'selectQuantityTime', value: e })}>
+															{this.state.quantity.map(item => (
+																<Option key={item}>{item}</Option>
+															))}
+														</Select>
+														<Select
+															label={'Concepto'}
+															placeholder="Seleccionar"
+															style={{ width: 120 }}
+															onChange={(e) => this.handleSelect({ option: 'selectTime', value: e })}>
+															{this.state.timeContcept.map(item => (
+																<Option key={item}>{item}</Option>
+															))}
+														</Select>
+													</Form.Item>
+													
+													
 													<Form.Item
-														label='Precio:'
-														name='auxPrice'
-														onChange={this.handleChangePlans}
+														label='Precio en Dólares (USD)'
+														onChange={this.handleChangeInput}
 														rules={rules.rulesPrice}>
-														<Input placeholder='Ingrese el precio' />
+														<Input name="auxPrice" placeholder='Precio en Dólares'/>
 													</Form.Item>
+													
 													<div className='cv-create-account-btn-add-content'>
 														<Button
 															type='primary'
@@ -361,29 +419,28 @@ export default class EditAccount extends React.Component {
 														</Button>
 													</div>
 												</Col>
-												{this.state.plans.length > 0 && 
-													<Col span={24}>
-														<ol>
-															{this.state.plans.map((item, key) => (
-																<li key={key}>
-																	{item.description} - {item.price} -
-																	<Button
-																		type='link'
-																		shape='round'
-																		onClick={() => {
-																			this.handleDelete(key)
-																		}}>
-																		<DeleteOutlined />
-																	</Button>
-																</li>
-															))}
-														</ol>
-													</Col>
-												}
+												<Col span={24}>
+													<ul>
+														{this.state.plans.map((item, key) => (
+															<li key={key}>
+																{item.description} - {item.price} -
+																<Button
+																	type='link'
+																	shape='round'
+																	onClick={() => {
+																		this.handleDelete(key)
+																	}}>
+																	<DeleteOutlined />
+																</Button>
+															</li>
+														))}
+													</ul>
+												</Col>
 											</Row>
 										</Card>
 									</Col>
 								</Row>
+
 								<div className='cv-create-account-btn-submit'>
 									<Button type='primary' shape='round' onClick={this.handleSubmit}>
 										Actualizar

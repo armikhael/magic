@@ -140,12 +140,6 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handlePrice = (e) => {
-		console.log('price', e.target.value);
-		this.setState({
-			auxPrice: e.target.value,
-		})
-	}
 
 	handleChangeCountry = (e) => {
 		e = JSON.parse(e)
@@ -309,7 +303,6 @@ class CreateAccount extends React.Component {
 													mode='multiple'
 													showArrow
 													maxTagCount={5}
-													loading={true}
 													placeholder="Seleccionar">
 													{this.state.responseCategories.map((item, i) => {
 														return (
@@ -375,10 +368,9 @@ class CreateAccount extends React.Component {
 													
 													<Form.Item
 														label='Precio en Dólares (USD)'
-														name='auxPrice'
-														onChange={this.handlePrice}
+														onChange={this.handleChangeInput}
 														rules={rules.rulesPrice}>
-														<Input placeholder='Precio en Dólares' />
+														<Input name="auxPrice" placeholder='Precio en Dólares'/>
 													</Form.Item>
 													
 													<div className='cv-create-account-btn-add-content'>
