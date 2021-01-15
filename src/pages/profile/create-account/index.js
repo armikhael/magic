@@ -140,13 +140,6 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handleConcept = (e) => {
-		console.log('concept', e);
-		this.setState({
-			auxDescription: e,
-		})
-	}
-
 	handlePrice = (e) => {
 		console.log('price', e.target.value);
 		this.setState({
@@ -154,27 +147,12 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	// handleChangeType = (e) => {
-	// 	console.log(e);
-	// 	this.setState({
-	// 		type: e,
-	// 	})
-	// }
-
 	handleChangeCountry = (e) => {
 		e = JSON.parse(e)
 		console.log(e)
 		this.setState({
 			country: e.name,
 			code: e.code,
-		})
-	}
-
-	handleCategory = (e) => {
-		console.log(e);
-		
-		this.setState({
-			categories: e,
 		})
 	}
 
