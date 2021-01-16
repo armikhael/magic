@@ -113,7 +113,7 @@ export default class Profile extends React.Component {
 																	)
 																}
 															})()}
-															<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/account/view/${btoa(this.state.userProfile)}`}>
+															<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/account/view/${btoa(this.state.userProfile.email)}`}>
 																<button>Listado de cuentas</button>
 															</CopyToClipboard>
 														</Space>
