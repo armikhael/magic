@@ -16,7 +16,7 @@ export default class View extends React.Component {
   
 	componentDidMount() {
     serviceGetAccountByEmail(atob(this.props.match.params.name)).then((response) => {
-      console.log(response);
+      console.log('listado de cuentas', response);
 			this.setState({ list: response })
 		})
 	}

@@ -13,6 +13,9 @@ import {
 	Col,
 	Card,
 	notification,
+	List,
+	Typography,
+	Divider
 } from 'antd'
 import { RocketOutlined, DeleteOutlined } from '@ant-design/icons'
 
@@ -153,8 +156,6 @@ class CreateAccount extends React.Component {
 	handleButtonPlans = () => {
 		if (this.state.selectQuantityConcept === null || 
 			 this.state.selectConcept === null ||
-			 this.state.selectQuantityTime === null ||
-			 this.state.selectTime === null ||
 			 this.state.auxPrice === null) {
 			notification['error']({
 				message: `Ups!`,
@@ -164,7 +165,7 @@ class CreateAccount extends React.Component {
 		}
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
-			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept} Durante ${this.state.selectQuantityTime} ${this.state.selectTime}` ,
+			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept}`,
 			price: this.state.auxPrice,
 		})
 		this.setState({
@@ -325,11 +326,11 @@ class CreateAccount extends React.Component {
 										<Card className='cv-create-account-card-custom'>
 											<Row>
 												<Col span={24}>
-													<p>¿Cuáles son tus paquetes publicitarios?</p>
-													<Form.Item label='Opciones Publicitarias'>
+													<p>¿Cuáles son tus tarifas publicitarios?</p>
+													<Form.Item label='Ejemplo: 2 Historias'>
 														<Select 
 															placeholder="Seleccionar"
-															style={{ width: 120 }}
+															style={{ width: '30%' }}
 															onChange={(e) => this.handleSelect({ option: 'selectQuantityConcept', value: e })}>
 															{this.state.quantity.map(item => (
 																<Option key={item} value={item}>{item}</Option>
@@ -337,14 +338,15 @@ class CreateAccount extends React.Component {
 														</Select>
 														<Select 
 															placeholder="Seleccionar"
-															style={{ width: 120 }}
+															style={{ width: '70%' }}
 															onChange={(e) => this.handleSelect({ option: 'selectConcept', value: e })}>
 															{this.state.concepts.map(item => (
 																<Option key={item}>{item}</Option>
 															))}
 														</Select>
 													</Form.Item>
-													<Form.Item label='Tiempo'>
+
+													{/* <Form.Item label='Tiempo'>
 														<Select 
 															label={'Tiempo'} 
 															placeholder="Seleccionar"
@@ -363,7 +365,7 @@ class CreateAccount extends React.Component {
 																<Option key={item}>{item}</Option>
 															))}
 														</Select>
-													</Form.Item>
+													</Form.Item> */}
 													
 													
 													<Form.Item
@@ -381,13 +383,16 @@ class CreateAccount extends React.Component {
 															AGREGAR
 														</Button>
 													</div>
-												</Col>
-												<Col span={24}>
-													<ul>
-														{this.state.plans.map((item, key) => (
-															<li key={key}>
-																{item.description} - {item.price} -
+													<Divider></Divider>
+													<List
+														header={<div>Tarifas agregadas</div>}
+														bordered
+														dataSource={this.state.plans}
+														renderItem={(item, key) => (
+															<List.Item>															
+																<Typography.Text>{item.description} por {item.price} Dólares</Typography.Text>
 																<Button
+																	danger
 																	type='link'
 																	shape='round'
 																	onClick={() => {
@@ -395,12 +400,12 @@ class CreateAccount extends React.Component {
 																	}}>
 																	<DeleteOutlined />
 																</Button>
-															</li>
-														))}
-													</ul>
+															</List.Item>
+														)}
+													/>
 												</Col>
 											</Row>
-										</Card>
+										</Card>									
 									</Col>
 								</Row>
 

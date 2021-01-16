@@ -12,7 +12,10 @@ import {
 	Avatar,
 	Skeleton,
 	Button,
-	notification
+	notification,
+	Divider,
+	Typography,
+	List
 } from 'antd'
 import './style.css'
 import { serviceUpdateAccount } from './services'
@@ -126,15 +129,8 @@ export default class EditAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-		console.log(this.state.selectQuantityConcept);
-		console.log(this.state.selectConcept);
-		console.log(this.state.selectQuantityTime);
-		console.log(this.state.selectTime);
-		console.log(this.state.auxPrice);
 		if (this.state.selectQuantityConcept === null || 
 			 this.state.selectConcept === null ||
-			 this.state.selectQuantityTime === null ||
-			 this.state.selectTime === null ||
 			 this.state.auxPrice === null) {
 			notification['error']({
 				message: `Ups!`,
@@ -144,7 +140,7 @@ export default class EditAccount extends React.Component {
 		}
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
-			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept} Durante ${this.state.selectQuantityTime} ${this.state.selectTime}` ,
+			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept}` ,
 			price: this.state.auxPrice,
 		})
 		this.setState({
@@ -381,7 +377,8 @@ export default class EditAccount extends React.Component {
 															))}
 														</Select>
 													</Form.Item>
-													<Form.Item label='Tiempo'>
+
+													{/* <Form.Item label='Tiempo'>
 														<Select 
 															label={'Tiempo'} 
 															placeholder="Seleccionar"
@@ -400,7 +397,7 @@ export default class EditAccount extends React.Component {
 																<Option key={item}>{item}</Option>
 															))}
 														</Select>
-													</Form.Item>
+													</Form.Item> */}
 													
 													
 													<Form.Item
@@ -418,13 +415,16 @@ export default class EditAccount extends React.Component {
 															AGREGAR
 														</Button>
 													</div>
-												</Col>
-												<Col span={24}>
-													<ul>
-														{this.state.plans.map((item, key) => (
-															<li key={key}>
-																{item.description} - {item.price} -
+													<Divider></Divider>
+													<List
+														header={<div>Tarifas agregadas</div>}
+														bordered
+														dataSource={this.state.plans}
+														renderItem={(item, key) => (
+															<List.Item>															
+																<Typography.Text>{item.description} por {item.price} Dólares</Typography.Text>
 																<Button
+																	danger
 																	type='link'
 																	shape='round'
 																	onClick={() => {
@@ -432,9 +432,9 @@ export default class EditAccount extends React.Component {
 																	}}>
 																	<DeleteOutlined />
 																</Button>
-															</li>
-														))}
-													</ul>
+															</List.Item>
+														)}
+													/>
 												</Col>
 											</Row>
 										</Card>
