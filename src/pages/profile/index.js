@@ -113,7 +113,7 @@ export default class Profile extends React.Component {
 																	)
 																}
 															})()}
-															<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/account/view/${btoa(this.state.userProfile.email)}`}>
+															<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(this.state.userProfile.email)}`}>
 																<button>Listado de cuentas</button>
 															</CopyToClipboard>
 														</Space>
@@ -179,7 +179,7 @@ export default class Profile extends React.Component {
 																			-- <a href={`/profile/edit-account/${item.name}`}>Editar</a> --
 																		</Col>
 																		<Col>
-																			<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/account/${item.name}`}>
+																			<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
 																				<button>Copiar enlace para compartir</button>
 																			</CopyToClipboard>
 																		</Col>

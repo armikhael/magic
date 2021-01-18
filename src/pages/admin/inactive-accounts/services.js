@@ -23,9 +23,7 @@ const serviceActiveAccount = async (item) => {
 	await axios({
 		method: 'PUT',
     url: `${process.env.REACT_APP_HOST}/account/active/`,
-    data: {
-      name: item.name
-    }
+    data: item
 	})
 		.then((response) => {
 			returnResponse = response.data

@@ -48,6 +48,7 @@ class CreateAccount extends React.Component {
 			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
+			currency: 'Dólares'
 		}
 	}
 
@@ -145,11 +146,24 @@ class CreateAccount extends React.Component {
 
 
 	handleChangeCountry = (e) => {
+		let currency = {
+			argentina: 'Pesos Argentinos',
+			chile: 'Pesos Chilenos',
+			colombia: 'Pesos Colombianos',
+			ecuador: 'Dólares',
+			españa: 'Euros',
+			mexico: 'Pesos Mexicanos',
+			panama: 'Dólares',
+			peru: 'Soles',
+			venezuela: 'Dólares',
+		}
+		
 		e = JSON.parse(e)
 		console.log(e)
 		this.setState({
 			country: e.name,
 			code: e.code,
+			currency: currency[e.name]
 		})
 	}
 
@@ -167,6 +181,7 @@ class CreateAccount extends React.Component {
 		arrayPlans.push({
 			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept}`,
 			price: this.state.auxPrice,
+			currency: this.state.currency
 		})
 		this.setState({
 			plans: arrayPlans,
@@ -292,7 +307,7 @@ class CreateAccount extends React.Component {
 												rules={rules.rulesPhone}
 												onChange={this.handleChangeInput}>
 												<Input name='phone'/>
-												<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.phone}&text=Hola%20${this.state.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>Confirma tu número</a>
+												<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>WhatsApp: {this.state.code}{this.state.phone}</a>
 											</Form.Item>
 											<Form.Item 
 												label='Elige hasta 5 categorías que más se asocien a tu cuenta' 
@@ -319,7 +334,8 @@ class CreateAccount extends React.Component {
 											</Form.Item>
 										</Card>
 									</Col>
-									</Row>
+								</Row>
+
 								<Row>
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
@@ -366,13 +382,11 @@ class CreateAccount extends React.Component {
 															))}
 														</Select>
 													</Form.Item> */}
-													
-													
 													<Form.Item
-														label='Precio en Dólares (USD)'
+														label={`Precio en ${this.state.currency}`}
 														onChange={this.handleChangeInput}
 														rules={rules.rulesPrice}>
-														<Input name="auxPrice" placeholder='Precio en Dólares'/>
+														<Input name="auxPrice" placeholder={`${this.state.currency}`}/>
 													</Form.Item>
 													
 													<div className='cv-create-account-btn-add-content'>
@@ -390,7 +404,7 @@ class CreateAccount extends React.Component {
 														dataSource={this.state.plans}
 														renderItem={(item, key) => (
 															<List.Item>															
-																<Typography.Text>{item.description} por {item.price} Dólares</Typography.Text>
+																<Typography.Text>{item.description} por {item.price} {item.currency}</Typography.Text>
 																<Button
 																	danger
 																	type='link'
@@ -408,7 +422,7 @@ class CreateAccount extends React.Component {
 										</Card>									
 									</Col>
 								</Row>
-
+							
 								<div className='cv-create-account-btn-submit'>
 									<Button type='primary' shape='round' onClick={this.handleSubmit}>
 										REGISTRAR

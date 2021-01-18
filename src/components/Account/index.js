@@ -24,7 +24,7 @@ export default class Account extends React.Component {
 						<ShareAltOutlined />
 						&nbsp; SHARE
 					</div>
-					<Link to={`/account/${this.props.account.name}`}>
+					<Link to={`/${this.props.account.name}`}>
 						<div className='cv-masonry-item-card-image'>
 							<img
 								title={this.props.account.name}
@@ -37,14 +37,14 @@ export default class Account extends React.Component {
 						</div>
 					</Link>
 					<div className='cv-masonry-item-card-titles'>
-						<Link to={`/account/${this.props.account.name}`}>
+						<Link to={`/${this.props.account.name}`}>
 							<h3 className='cv-masonry-item-title'>{this.props.account.name}</h3>
 						</Link>
 						<p className='cv-masonry-item-description'>{this.props.account.description}</p>
 						<div className='cv-masonry-item-card-more'>
 							<Link
 								className='cv-masonry-item-card-more-title'
-								to={`/account/${this.props.account.name}`}>
+								to={`/${this.props.account.name}`}>
 								Leer más
 							</Link>
 						</div>

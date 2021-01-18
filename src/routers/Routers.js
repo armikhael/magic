@@ -27,24 +27,25 @@ const Routers = () => (
 	<BrowserRouter forceRefresh={true}>
 		<Layout>
 			<Switch>
-				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/' component={Home} />
 				<Route exact path='/test' component={Test} />
+				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/category/:name' component={Category} />
-				<Route exact path='/account/:name' component={Account} />
 				<Route exact path='/results/:name' component={Results} />
-				<Route exact path='/account/view/:name' component={View} />
 
-				<PrivateRoute exact path='/admin/inactive-accounts/' component={InactiveAccounts} />
+				<PrivateRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
-				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/create-account' component={CreateAccount} />
 				<PrivateRoute exact path='/profile/activation' component={Activation} />
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
+				
+				<Route exact path='/token/:name' component={View} />
+				<Route exact path='/:name' component={Account} />
 
 				<Route component={NotFound} />
+				
 			</Switch>
 		</Layout>
 	</BrowserRouter>
