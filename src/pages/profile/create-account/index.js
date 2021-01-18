@@ -157,7 +157,7 @@ class CreateAccount extends React.Component {
 			peru: 'Soles',
 			venezuela: 'Dólares',
 		}
-		
+
 		e = JSON.parse(e)
 		console.log(e)
 		this.setState({
@@ -330,6 +330,14 @@ class CreateAccount extends React.Component {
 															</Option>
 														)
 													})}
+													<Option
+														style={{ textTransform: 'capitalize' }}
+														key={999}
+														value={null}>
+														<a target="__blank" href="https://api.whatsapp.com/send?phone=56979582051&text=Hola,%20ninguna%20una%20categor%C3%ADa%20se%20ajusta%20a%20mi%20cuenta,%20%C2%BFcomo%20puedo%20hacer%20para%20crear%20una%20nueva?">
+															Solicitar una nueva categoría
+														</a>
+													</Option>
 												</Select>
 											</Form.Item>
 										</Card>
