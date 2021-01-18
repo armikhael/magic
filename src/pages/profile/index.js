@@ -101,20 +101,11 @@ export default class Profile extends React.Component {
 																	{this.state.userProfile.email}
 																</Text>
 															</Space>
-															{(() => {
-																if (this.state.userProfile.googleId) {
-																	return (
-																		<Space>
-																			<Text className='cv-profile-role-title'>ID Google</Text>
-																			<Text className='cv-profile-role-description'>
-																				{this.state.userProfile.googleId}
-																			</Text>
-																		</Space>
-																	)
-																}
-															})()}
 															<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(this.state.userProfile.email)}`}>
-																<button>Listado de cuentas</button>
+																<Button 
+																	shape='round'>
+																	Copiar enlace para la biografía
+																</Button>
 															</CopyToClipboard>
 														</Space>
 													</Col>
@@ -149,38 +140,35 @@ export default class Profile extends React.Component {
 																		<Col span={24}>
 																			<h3>{item.account}</h3>
 																		</Col>
-																		<Col span={12}>
-																			<span>
-																				<b>{item.followers}</b>
-																			</span>{' '}
-																			Seguidores
-																		</Col>
-																		<Col span={12}>
-																			<span>
-																				<b>{item.follow}</b>
-																			</span>{' '}
-																			Seguidos
-																		</Col>
 																		<Col span={24} className='mt15'>
 																			{item.emailAccount}
 																			<p>{item.biography}</p>
 																		</Col>
-																		<Col>
+																	</Row>
+																	<Row>
+																		<Col span={5}>
 																			<Button
 																				type='danger'
 																				shape='round'
 																				onClick={() => {
 																					this.handleDeleteAccount(item)
 																				}}>
-																				borrar
+																				Eliminar
 																			</Button>
 																		</Col>
-																		<Col>
-																			-- <a href={`/profile/edit-account/${item.name}`}>Editar</a> --
+																		<Col span={4}>
+																			<Button 
+																				shape='round'
+																				href={`/profile/edit-account/${item.name}`}>
+																				Editar
+																			</Button>
 																		</Col>
-																		<Col>
+																		<Col span={5}>
 																			<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																				<button>Copiar enlace para compartir</button>
+																			<Button 
+																				shape='round'>
+																				Copiar enlace
+																			</Button>
 																			</CopyToClipboard>
 																		</Col>
 																	</Row>

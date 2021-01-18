@@ -5,7 +5,7 @@ import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
 import { Row, Col } from 'antd'
-import { ShareAltOutlined, UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
@@ -45,12 +45,12 @@ class Account extends React.Component {
 						<Row className='cv-detail-content-accoun'>
 							<Col span={24}>
 								<Row>
-									<Col span={12}>
+									{/* <Col span={12}>
 										<div className='cv-detail-share-card'>
 											<ShareAltOutlined />
 											&nbsp; COMPARTIR
 										</div>
-									</Col>
+									</Col> */}
 									<Col span={12}>
 										<a
 											rel='noopener noreferrer'
