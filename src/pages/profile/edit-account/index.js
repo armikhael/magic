@@ -1,6 +1,7 @@
 /** @format */
 
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import {
 	Form,
 	Select,
@@ -43,7 +44,8 @@ export default class EditAccount extends React.Component {
 			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
-			currency: 'Dólares'
+			currency: 'Dólares',
+			redirect: false
 		}
 	}
 
@@ -86,7 +88,13 @@ export default class EditAccount extends React.Component {
 					currency: item.currency
 				}
 			})
-			this.setState({ countries: result })
+
+			let resultCurrency = result.filter(item => item.name === this.state.country)
+			console.log('resultado', result, this.state.country, resultCurrency);
+			this.setState({ 
+				countries: result,
+				currency: resultCurrency[0].currency
+			})
 		})
 		console.log('2', this.state);
 	}
@@ -186,7 +194,7 @@ export default class EditAccount extends React.Component {
 				})
 				return
 			}
-
+			this.setState({ redirect: true })
 			notification['success']({
 				message: `Good job!!`,
 				description: `La cuenta se ha actualizado satisfactoriamente`,
@@ -208,6 +216,12 @@ export default class EditAccount extends React.Component {
 		this.setState({
 			[e.option]: e.value
 		})
+	}
+
+	handleRedirect = () => {
+		if (this.state.redirect) {
+			return <Redirect to={`/profile/`} />
+		}
 	}
 
 	render() {
@@ -444,6 +458,7 @@ export default class EditAccount extends React.Component {
 						</Layout>
 					</Content>
 				</section>
+				{this.handleRedirect()}
 				<Content className='cv-container-main'>
 					<Form onFinish={this.handleSubmitLogin}></Form>
 				</Content>

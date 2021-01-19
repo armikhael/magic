@@ -26,7 +26,7 @@ class Category extends React.Component {
 
 	async componentDidMount() {
 		await serviceGetAccountByCategory(
-			this.props.match.params.name,
+			this.props.match.params.name.replaceAll("-", " "),
 			this.state.page
 		).then((data) => {
 			if (data.statusCode === 200) {

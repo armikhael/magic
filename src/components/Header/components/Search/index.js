@@ -36,7 +36,7 @@ export default function SearchNavbar() {
 					{isCategories.map((item, i) => {
 						return (
 							<Option key={i}>
-								<Link to={`/category/${item.name}`}>{item.name}</Link>
+								<Link to={`/category/${item.name.replaceAll(" ", "-")}`}>{item.name}</Link>
 							</Option>
 						)
 					})}
