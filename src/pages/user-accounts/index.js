@@ -1,22 +1,23 @@
 /** @format */
 
 import React from 'react'
+
 import { Layout } from 'antd'
-import './style.css'
+
+import ListMasonry from '../../components/ListMasonry/'
+
 import { serviceGetAccountByEmail } from './service'
-import ListMasonry from '../../../components/ListMasonry/'
+import './style.css'
 
 const { Content } = Layout
 
-export default class View extends React.Component {
-
-  state = {
+export default class userAccounts extends React.Component {
+	state = {
 		list: [],
-  }
-  
+	}
+
 	componentDidMount() {
-    serviceGetAccountByEmail(atob(this.props.match.params.name)).then((response) => {
-      console.log('listado de cuentas', response);
+		serviceGetAccountByEmail(atob(this.props.match.params.name)).then((response) => {
 			this.setState({ list: response })
 		})
 	}
@@ -29,7 +30,7 @@ export default class View extends React.Component {
 						<h1 className='cv-category-title'>
 							Cuentas asociadas de: {atob(this.props.match.params.name)}
 						</h1>
-            <ListMasonry listMasonry={this.state.list} />
+						<ListMasonry listMasonry={this.state.list} />
 					</div>
 				</Content>
 			</>
