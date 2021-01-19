@@ -146,7 +146,7 @@ export default class Profile extends React.Component {
 																		</Col>
 																	</Row>
 																	<Row>
-																		<Col span={5}>
+																		<Col xs={24} sm={24} md={24} lg={6} xl={6}>
 																			<Button
 																				type='danger'
 																				shape='round'
@@ -156,14 +156,14 @@ export default class Profile extends React.Component {
 																				Eliminar
 																			</Button>
 																		</Col>
-																		<Col span={4}>
+																		<Col xs={24} sm={24} md={24} lg={5} xl={5}>
 																			<Button 
 																				shape='round'
 																				href={`/profile/edit-account/${item.name}`}>
 																				Editar
 																			</Button>
 																		</Col>
-																		<Col span={5}>
+																		<Col xs={24} sm={24} md={24} lg={5} xl={5}>
 																			<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
 																			<Button 
 																				shape='round'>
