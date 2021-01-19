@@ -18,7 +18,7 @@ const menu = (
 				onClick={() => {
 					localStorage.removeItem('user')
 				}}
-				to={`/auth/login`}>
+				to={`/`}>
 				Cerrar sesion
 			</Link>
 		</Menu.Item>
