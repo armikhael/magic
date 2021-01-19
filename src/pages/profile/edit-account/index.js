@@ -260,19 +260,7 @@ export default class EditAccount extends React.Component {
 															return (
 																<Row>
 																	<Col span={24}>
-																		<h3>{this.state.accountDetails.name}</h3>
-																	</Col>
-																	<Col span={12}>
-																		<span>
-																			<b>{this.state.accountDetails.followers}</b>
-																		</span>{' '}
-																		Seguidores
-																	</Col>
-																	<Col span={12}>
-																		<span>
-																			<b>{this.state.follow}</b>
-																		</span>{' '}
-																		Seguidos
+																		<h3>{this.state.accountDetails.account}</h3>
 																	</Col>
 																	<Col span={24} className='mt15'>
 																		{this.state.accountDetails.email}
