@@ -1,9 +1,21 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Row, Col, Card, Skeleton, Space, Typography, Avatar, Button } from 'antd'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+
+import {
+	Layout,
+	Row,
+	Col,
+	Card,
+	Skeleton,
+	Space,
+	Typography,
+	Avatar,
+	Button,
+	notification,
+} from 'antd'
 import { UserOutlined, HeartOutlined, AntDesignOutlined } from '@ant-design/icons'
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Loading from '../../components/Loading/Loading'
 
@@ -14,7 +26,6 @@ const { Content, Header } = Layout
 const { Text } = Typography
 
 export default class Profile extends React.Component {
-	
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -28,11 +39,9 @@ export default class Profile extends React.Component {
 	componentDidMount() {
 		if (localStorage.getItem('user')) {
 			let jsonParse = JSON.parse(localStorage.getItem('user'))
-
 			this.setState({
 				userProfile: jsonParse,
 			})
-
 			serviceGetAccountsByEmail(jsonParse.email).then((data) => {
 				this.setState({
 					accounts: data,
@@ -43,7 +52,18 @@ export default class Profile extends React.Component {
 	}
 
 	handleDeleteAccount = async (item) => {
-		await serviceDeleteAccount(item._id)
+		let btn = (
+			<Button
+				className='ph-profile-address-button-delete'
+				onClick={() => serviceDeleteAccount(item._id)}>
+				<h3 className='ph-profile-address-button-delete-title'>Confirmar</h3>
+			</Button>
+		)
+		notification['error']({
+			message: 'Eliminar Cuenta',
+			description: `Estas seguro que quieres eliminar la cuenta "${item.account}".`,
+			btn,
+		})
 		const newList = await serviceGetAccountsByEmail(this.state.userProfile.email)
 		this.setState({
 			accounts: newList,
@@ -101,11 +121,11 @@ export default class Profile extends React.Component {
 																	{this.state.userProfile.email}
 																</Text>
 															</Space>
-															<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(this.state.userProfile.email)}`}>
-																<Button 
-																	shape='round'>
-																	Copiar enlace para la biografía
-																</Button>
+															<CopyToClipboard
+																text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(
+																	this.state.userProfile.email
+																)}`}>
+																<Button shape='round'>Copiar enlace para la biografía</Button>
 															</CopyToClipboard>
 														</Space>
 													</Col>
@@ -157,18 +177,16 @@ export default class Profile extends React.Component {
 																			</Button>
 																		</Col>
 																		<Col xs={24} sm={24} md={24} lg={5} xl={5}>
-																			<Button 
+																			<Button
 																				shape='round'
 																				href={`/profile/edit-account/${item.name}`}>
 																				Editar
 																			</Button>
 																		</Col>
 																		<Col xs={24} sm={24} md={24} lg={5} xl={5}>
-																			<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																			<Button 
-																				shape='round'>
-																				Copiar enlace
-																			</Button>
+																			<CopyToClipboard
+																				text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+																				<Button shape='round'>Copiar enlace</Button>
 																			</CopyToClipboard>
 																		</Col>
 																	</Row>
