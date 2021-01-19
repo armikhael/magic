@@ -121,10 +121,14 @@
 
 @media screen and (max-width: 768px) {
 	.cv-login-title-main {
-		font-size: 27px;
+		font-size: 24px;
 		text-align: center;
 	}
 	.cv-login-conteent-row {
 		height: 80vh;
+	}
+	.cv-login-content-logins {
+		width: 350px;
+		padding: 50px 20px;
 	}
 }
