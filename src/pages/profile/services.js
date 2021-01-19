@@ -9,29 +9,27 @@ const serviceGetAccountsByEmail = async (data) => {
 		method: 'GET',
 		url: `${process.env.REACT_APP_HOST}/account/email/${data}`,
 	})
-		.then((response) => {
-			returnResponse = response.data
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
-
+	.then((response) => {
+		returnResponse = response.data
+	})
+	.catch((error) => {
+		returnResponse = error.response.data
+	})
 	return returnResponse
 }
 
-const serviceDeleteAccount = async (data) => {
+const serviceDeleteAccount = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'DELETE',
-		url: `${process.env.REACT_APP_HOST}/account/${data}`,
+		url: `${process.env.REACT_APP_HOST}/account/${item.id}/${item.email}`,
 	})
-		.then((response) => {
-			returnResponse = response.data
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
-
+	.then((response) => {
+		returnResponse = response.data
+	})
+	.catch((error) => {
+		returnResponse = error.response.data
+	})
 	return returnResponse
 }
 

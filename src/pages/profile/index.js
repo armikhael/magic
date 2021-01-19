@@ -55,7 +55,12 @@ export default class Profile extends React.Component {
 		let btn = (
 			<Button
 				className='ph-profile-address-button-delete'
-				onClick={() => serviceDeleteAccount(item._id)}>
+				onClick={() => serviceDeleteAccount({ id: item._id, email: this.state.userProfile.email }).then((response) => {
+					console.log(response);
+					this.setState({
+						accounts: response,
+					})
+				})}>
 				<h3 className='ph-profile-address-button-delete-title'>Confirmar</h3>
 			</Button>
 		)
@@ -64,10 +69,7 @@ export default class Profile extends React.Component {
 			description: `Estas seguro que quieres eliminar la cuenta "${item.account}".`,
 			btn,
 		})
-		const newList = await serviceGetAccountsByEmail(this.state.userProfile.email)
-		this.setState({
-			accounts: newList,
-		})
+		
 	}
 
 	render() {
