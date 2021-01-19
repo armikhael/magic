@@ -48,7 +48,7 @@ class CreateAccount extends React.Component {
 			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
-			currency: 'Dólares'
+			currency: 'Dólares',
 		}
 	}
 
@@ -75,7 +75,8 @@ class CreateAccount extends React.Component {
 				return {
 					code: item.code,
 					name: item.name,
-					label: item.name
+					label: item.name,
+					currency: item.currency
 				}
 			})
 			console.log('country', result);
@@ -146,24 +147,12 @@ class CreateAccount extends React.Component {
 
 
 	handleChangeCountry = (e) => {
-		let currency = {
-			argentina: 'Pesos Argentinos',
-			chile: 'Pesos Chilenos',
-			colombia: 'Pesos Colombianos',
-			ecuador: 'Dólares',
-			españa: 'Euros',
-			mexico: 'Pesos Mexicanos',
-			panama: 'Dólares',
-			peru: 'Soles',
-			venezuela: 'Dólares',
-		}
-
 		e = JSON.parse(e)
 		console.log(e)
 		this.setState({
 			country: e.name,
 			code: e.code,
-			currency: currency[e.name]
+			currency: e.currency
 		})
 	}
 
@@ -295,6 +284,7 @@ class CreateAccount extends React.Component {
 																value={JSON.stringify({
 																	code: item.code,
 																	name: item.name,
+																	currency: item.currency
 																})}>
 																{item.label}
 															</Option>
@@ -307,7 +297,7 @@ class CreateAccount extends React.Component {
 												rules={rules.rulesPhone}
 												onChange={this.handleChangeInput}>
 												<Input name='phone'/>
-												<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>WhatsApp: {this.state.code}{this.state.phone}</a>
+												WhatsApp -> <a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>{this.state.code}{this.state.phone}</a>
 											</Form.Item>
 											<Form.Item 
 												label='Elige hasta 5 categorías que más se asocien a tu cuenta' 
@@ -330,14 +320,6 @@ class CreateAccount extends React.Component {
 															</Option>
 														)
 													})}
-													<Option
-														style={{ textTransform: 'capitalize' }}
-														key={999}
-														value={null}>
-														<a target="__blank" href="https://api.whatsapp.com/send?phone=56979582051&text=Hola,%20ninguna%20una%20categor%C3%ADa%20se%20ajusta%20a%20mi%20cuenta,%20%C2%BFcomo%20puedo%20hacer%20para%20crear%20una%20nueva?">
-															Solicitar una nueva categoría
-														</a>
-													</Option>
 												</Select>
 											</Form.Item>
 										</Card>

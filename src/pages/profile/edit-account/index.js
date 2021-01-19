@@ -43,18 +43,6 @@ export default class EditAccount extends React.Component {
 			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
-			listCurrency: {
-				universal: 'Dólares',
-				venezuela: 'Dólares',
-				argentina: 'Pesos Argentinos',
-				chile: 'Pesos Chilenos',
-				colombia: 'Pesos Colombianos',
-				ecuador: 'Dólares',
-				españa: 'Euros',
-				mexico: 'Pesos Mexicanos',
-				panama: 'Dólares',
-				peru: 'Soles',
-			},
 			currency: 'Dólares'
 		}
 	}
@@ -76,7 +64,6 @@ export default class EditAccount extends React.Component {
 			code: response.code,
 			categories: response.categories,
 			plans: response.plans,
-			currency: this.state.listCurrency[response.country]
 		})
 
 		console.log('account:', this.state.accountDetails._id);
@@ -95,7 +82,8 @@ export default class EditAccount extends React.Component {
 				return {
 					code: item.code,
 					name: item.name,
-					label: item.name
+					label: item.name,
+					currency: item.currency
 				}
 			})
 			this.setState({ countries: result })
@@ -132,7 +120,7 @@ export default class EditAccount extends React.Component {
 		this.setState({
 			country: e.name,
 			code: e.code,
-			currency: this.state.listCurrency[e.name]
+			currency: e.currency
 		})
 	}
 
@@ -312,7 +300,8 @@ export default class EditAccount extends React.Component {
 												rules={rules.rulesSelect}
 												initialValue={this.state.country}>
 												<Select 
-													onChange={this.handleChangeCountry}>
+													onChange={this.handleChangeCountry}
+													placeholder="Seleccionar">
 													{this.state.countries.map((item, i) => {
 														return (
 															<Option
@@ -321,6 +310,7 @@ export default class EditAccount extends React.Component {
 																value={JSON.stringify({
 																	code: item.code,
 																	name: item.name,
+																	currency: item.currency
 																})}>
 																{item.label}
 															</Option>
