@@ -6,17 +6,13 @@ import Moment from 'react-moment'
 import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
-import {
-	EyeOutlined,
-	ShareAltOutlined,
-	ClockCircleOutlined,
-	HeartOutlined,
-} from '@ant-design/icons'
+import { EyeOutlined, ShareAltOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
 import './style.css'
 
 export default class Account extends React.Component {
 	render() {
+		console.log('locote', this.props.account)
 		return (
 			<div className='cv-masonry-item'>
 				<div className='cv-masonry-item-card'>
@@ -38,13 +34,20 @@ export default class Account extends React.Component {
 					</Link>
 					<div className='cv-masonry-item-card-titles'>
 						<Link to={`/${this.props.account.name}`}>
-							<h3 className='cv-masonry-item-title'>{this.props.account.name}</h3>
+							<h3 className='cv-masonry-item-title'>
+								{this.props.account.account}{' '}
+								{this.props.account.eneable && (
+									<img
+										width='15px'
+										src='https://i.ibb.co/0f5YxSt/verificado.png'
+										alt='verificado'
+										title='verificado'
+									/>
+								)}
+							</h3>
 						</Link>
-						<p className='cv-masonry-item-description'>{this.props.account.description}</p>
 						<div className='cv-masonry-item-card-more'>
-							<Link
-								className='cv-masonry-item-card-more-title'
-								to={`/${this.props.account.name}`}>
+							<Link className='cv-masonry-item-card-more-title' to={`/${this.props.account.name}`}>
 								Leer más
 							</Link>
 						</div>
@@ -60,7 +63,14 @@ export default class Account extends React.Component {
 							</Col>
 							<Col xs={24} sm={12} md={10} className='aling-right'>
 								<h3 className='cv-masonry-item-gird-like-card-title'>
-									<HeartOutlined className='cv-fa-heart' /> {this.props.account.followers}
+									{this.props.account.type === 'instagram' && (
+										<img
+											width='30px'
+											src='https://i.ibb.co/hymRJXG/instagram.png'
+											alt='instagram'
+											title='instagram'
+										/>
+									)}
 								</h3>
 							</Col>
 							<Col xs={24} sm={24} md={24}>

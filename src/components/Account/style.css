@@ -105,18 +105,13 @@
 	margin-bottom: 5px;
 	font-weight: 700;
 	color: #2c2d2f;
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 32px;
 	border-bottom: 1px solid transparent;
 	-webkit-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	cursor: pointer;
-}
-
-.cv-masonry-item-description {
-	color: #5c5c5c;
-	font-weight: 400;
-	font-size: 14px;
+	text-transform: capitalize;
 }
 
 .cv-masonry-item-card-more {
@@ -153,6 +148,8 @@
 	font-weight: 700;
 	letter-spacing: 1px;
 	color: #464646;
+	position: absolute;
+	right: -5px;
 }
 
 .cv-fa-heart {
@@ -201,7 +198,10 @@
 		padding: 5px;
 	}
 	.cv-masonry-item-title {
-		font-size: 16px;
+		font-size: 15px;
 		line-height: 27px;
+	}
+	.cv-masonry-item-gird-like-card-title {
+		top: -15px;
 	}
 }
