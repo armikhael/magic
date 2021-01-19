@@ -88,15 +88,12 @@ export default class EditAccount extends React.Component {
 					currency: item.currency
 				}
 			})
-
 			let resultCurrency = result.filter(item => item.name === this.state.country)
-			console.log('resultado', result, this.state.country, resultCurrency);
 			this.setState({ 
 				countries: result,
 				currency: resultCurrency[0].currency
 			})
 		})
-		console.log('2', this.state);
 	}
 
 	handleChangeInput = (e) => {
