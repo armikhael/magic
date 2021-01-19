@@ -150,7 +150,7 @@ class Account extends React.Component {
 										<div className='cv-detail-plans-content-plan' key={i}>
 											<h3 className='cv-detail-plans-title-plan-title'>{item.description}</h3>
 											<h4 className='cv-detail-plans-title-plan-title-price'>
-												Precio: {item.price}
+												Precio: {item.price} <span style={{ textTransform: 'capitalize' }}>{item.currency}</span>
 											</h4>
 										</div>
 									)
