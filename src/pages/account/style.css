@@ -139,7 +139,7 @@
 	background-color: #fff;
 	border-radius: 0 0 0 50px;
 	margin-bottom: 20px;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 .cv-detail-content-plans-main {

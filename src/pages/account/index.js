@@ -4,7 +4,7 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
-import { Row, Col } from 'antd'
+import { Row, Col, List, Avatar } from 'antd'
 import { WhatsAppOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -50,7 +50,7 @@ class Account extends React.Component {
 									className='cv-detail-whatsapp-icon'
 									rel='noopener noreferrer'
 									target='_blank'
-									href={`https://api.whatsapp.com/send?phone=${this.state.accounts.phone}&text=Hola%20${this.state.accounts.account},%20te%20encontre%20por%20publilovers.com%20por%20tus%20paquetes%20publicitarios`}>
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.accounts.phone}&text=Hola%20${this.state.accounts.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`}>
 									<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
 								</a>
 							</Col>
@@ -140,21 +140,30 @@ class Account extends React.Component {
 										title='Publicidad'
 										alt='Publicidad'
 										className='cv-detail-plans-images'
-										src='http://pluto.pinsupreme.com/wp-content/uploads/2017/12/magic-sidebar.jpg'
+										src='https://www.womgp.com/blog/wp-content/uploads/2018/04/5-tendencias-influencer-marketing-2017-810x473.jpg'
 									/>
 								</div>
 								<h3 className='cv-detail-plans-title'>Planes</h3>
 								<div className='cv-detail-plans-hr'></div>
-								{this.state.accounts.plans.map(function (item, i) {
-									return (
-										<div className='cv-detail-plans-content-plan' key={i}>
-											<h3 className='cv-detail-plans-title-plan-title'>{item.description}</h3>
-											<h4 className='cv-detail-plans-title-plan-title-price'>
-												Precio: {item.price} <span style={{ textTransform: 'capitalize' }}>{item.currency}</span>
-											</h4>
-										</div>
-									)
-								})}
+								<List
+									itemLayout="horizontal"
+									dataSource={this.state.accounts.plans}
+									renderItem={item => (
+										<a href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.accounts.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
+											<List.Item
+												actions={[
+													<WhatsAppOutlined/>,
+												]}
+											>
+												<List.Item.Meta
+													avatar={<Avatar src={this.state.accounts.image} />}
+													title={item.description}
+													description={`Precio: ${item.price} ${item.currency}`}
+												/>
+											</List.Item>
+										</a>
+									)}
+								/>
 							</div>
 						</div>
 					</Col>
