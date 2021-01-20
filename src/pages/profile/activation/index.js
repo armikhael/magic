@@ -1,21 +1,31 @@
 /** @format */
 
 import React from 'react'
-import { Layout } from 'antd'
+import { Layout, Row, Button } from 'antd'
+import { CopyOutlined } from '@ant-design/icons'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import './style.css'
 const { Content } = Layout
 
 export default class Activation extends React.Component {
-
 	render() {
 		return (
 			<>
 				<Content className='cv-container-main'>
-					<div className='cv-category-content-title'>
-						<h1 className='cv-category-title'>
-							Nos estaremos comunicando con usted a su cuenta de instagram para verificar su identidad
-						</h1>
-					</div>
+					<Row>
+						<div className='cv-category-content-title'>
+							<p>Su cuenta ha sido registrada exitosamente, una vez verificada su cuenta aparecerá en los resultados de búsqueda.</p>
+							<p>Para verificar su identidad debe enviarnos el siguiente código a nuestra cuenta de instagram desde la cuenta que acaba de registrar</p>
+							<h2>@cuentasvirales</h2>
+							<div style={{ textAlign: 'center'}}>
+								<h1>Código: {this.props.match.params.name}</h1>
+								<CopyToClipboard
+									text={this.props.match.params.name}>
+									<Button shape='round'>Copiar código <CopyOutlined /></Button>
+								</CopyToClipboard>
+							</div>
+						</div>
+					</Row>
 				</Content>
 			</>
 		)

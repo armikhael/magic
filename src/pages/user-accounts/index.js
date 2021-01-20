@@ -17,7 +17,7 @@ export default class userAccounts extends React.Component {
 	}
 
 	componentDidMount() {
-		serviceGetAccountByEmail(atob(this.props.match.params.name)).then((response) => {
+		serviceGetAccountByEmail(atob(this.props.match.params.email)).then((response) => {
 			this.setState({ list: response })
 		})
 	}

@@ -38,10 +38,10 @@ const Routers = () => (
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/create-account' component={CreateAccount} />
-				<PrivateRoute exact path='/profile/activation' component={Activation} />
+				<PrivateRoute exact path='/profile/activation/:name' component={Activation} />
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 
-				<Route exact path='/token/:name' component={userAccounts} />
+				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={Account} />
 
 				<Route component={NotFound} />

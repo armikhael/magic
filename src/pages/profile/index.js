@@ -124,9 +124,7 @@ export default class Profile extends React.Component {
 																</Text>
 															</Space>
 															<CopyToClipboard
-																text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(
-																	this.state.userProfile.email
-																)}`}>
+																text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(this.state.userProfile.email)}`}>
 																<Button shape='round'>Copiar enlace para la biografía</Button>
 															</CopyToClipboard>
 														</Space>

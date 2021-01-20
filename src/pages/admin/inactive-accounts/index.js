@@ -28,7 +28,7 @@ export default class InactiveAccounts extends React.Component {
   }
 
   handleChangeInput = (e) => {
-		console.log('write', e.target.name, e.target.value);
+    console.log('write', e.target.name, e.target.value);
 		this.setState({
 			[e.target.name]: e.target.value,
 		})
@@ -52,6 +52,7 @@ export default class InactiveAccounts extends React.Component {
                     <p> id: {item.id}</p>
                     <p> name: {item.name}</p>
                     <p> email: {item.email}</p>
+                    <p> token: {btoa(item.account)}</p>
                     <p> verificar: <a href={`https://${item.type}.com/${item.account}`} target="__blank">{item.account}</a></p>
                     <Form
                       onFinish={this.handleSubmitLogin}

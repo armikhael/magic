@@ -84,12 +84,6 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handleRedirect = (item) => {
-		if (this.state.redirect) {
-			return <Redirect to={`/profile/activation`} />
-		}
-	}
-
 	handleSubmit = async () => {
 		let body = {
 			email: this.state.userProfile.email,
@@ -100,7 +94,7 @@ class CreateAccount extends React.Component {
 			image: 'https://i.ibb.co/JnXwKMt/viral.png',
 			categories: this.state.categories,
 			plans: this.state.plans,
-			phone: this.state.phone,
+			phone: this.state.code + this.state.phone,
 			code: this.state.code,
 			country: this.state.country,
 		}
@@ -206,6 +200,13 @@ class CreateAccount extends React.Component {
 		this.setState({
 			[e.option]: e.value
 		})
+	}
+
+
+	handleRedirect = () => {
+		if (this.state.redirect) {
+			return <Redirect to={`/profile/activation/${btoa(this.state.name)}`} />
+		}
 	}
 
 	render() {
