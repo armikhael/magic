@@ -16,7 +16,7 @@ class Logo extends React.Component {
 					}}>
 					<img
 						className='cv-navbar-logo'
-						src='https://i.ibb.co/JnXwKMt/viral.png'
+						src={process.env.REACT_APP_LOGO}
 						alt='Logo Cuentas Virales'
 					/>
 					<h1 className='cv-navbar-logo-titles'>Cuentas Virales</h1>
