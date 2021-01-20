@@ -139,7 +139,7 @@
 	background-color: #fff;
 	border-radius: 0 0 0 50px;
 	margin-bottom: 20px;
-	min-height: 100vh;
+	height: 100vh;
 }
 
 .cv-detail-content-plans-main {
@@ -194,6 +194,11 @@
 .cv-detail-plans-title-plan-title-price {
 	margin-top: 5px;
 	color: #888888;
+}
+
+.cv-detail-plans-list {
+	overflow-y: scroll;
+	height: 400px;
 }
 
 .cv-detail-accounts-user-email-xs {
@@ -257,5 +262,8 @@
 	}
 	.cv-detail-contente-user-create {
 		margin: 0px;
+	}
+	.cv-detail-plans-list {
+		height: auto;
 	}
 }
