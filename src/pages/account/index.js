@@ -60,7 +60,7 @@ class Account extends React.Component {
 									className='cv-detail-whatsapp-icon'
 									rel='noopener noreferrer'
 									target='_blank'
-									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.profile.phone}&text=Hola%20${this.state.profile.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`}>
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.profile.code}${this.state.profile.phone}&text=Hola%20${this.state.profile.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`}>
 									<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
 								</a>
 							</Col>
@@ -161,7 +161,7 @@ class Account extends React.Component {
 									dataSource={this.state.profile.plans}
 									renderItem={(item) => (
 										<a
-											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.profile.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.profile.code}${this.state.profile.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
 											<List.Item actions={[<WhatsAppOutlined />]}>
 												<List.Item.Meta
 													avatar={<Avatar src={this.state.profile.image} />}
