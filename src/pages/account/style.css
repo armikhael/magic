@@ -196,6 +196,11 @@
 	color: #888888;
 }
 
+.cv-detail-plans-list {
+	overflow-y: scroll;
+	height: 400px;
+}
+
 .cv-detail-accounts-user-email-xs {
 	display: none;
 }

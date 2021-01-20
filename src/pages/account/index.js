@@ -146,15 +146,13 @@ class Account extends React.Component {
 								<h3 className='cv-detail-plans-title'>Planes</h3>
 								<div className='cv-detail-plans-hr'></div>
 								<List
-									itemLayout="horizontal"
+									className='cv-detail-plans-list'
+									itemLayout='horizontal'
 									dataSource={this.state.accounts.plans}
-									renderItem={item => (
-										<a href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.accounts.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
-											<List.Item
-												actions={[
-													<WhatsAppOutlined/>,
-												]}
-											>
+									renderItem={(item) => (
+										<a
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.accounts.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
+											<List.Item actions={[<WhatsAppOutlined />]}>
 												<List.Item.Meta
 													avatar={<Avatar src={this.state.accounts.image} />}
 													title={item.description}
