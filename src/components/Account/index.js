@@ -12,7 +12,6 @@ import './style.css'
 
 export default class Account extends React.Component {
 	render() {
-		console.log('locote', this.props.account)
 		return (
 			<div className='cv-masonry-item'>
 				<div className='cv-masonry-item-card'>

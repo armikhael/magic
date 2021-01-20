@@ -2,18 +2,17 @@
 
 import React from 'react'
 import Moment from 'react-moment'
+import ip from 'ip'
 import { Link } from 'react-router-dom'
-
 import { Row, Col, List, Avatar } from 'antd'
 import { WhatsAppOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
-
 import CreateUser from './components/CreateUser'
+import { serviceGetAccount } from '../../components/ServiceCommons/GetAccount'
 
 import './style.css'
-import { serviceGetAccount } from '../../components/ServiceCommons/GetAccount'
 
 class Account extends React.Component {
 	constructor(props) {
@@ -25,11 +24,22 @@ class Account extends React.Component {
 	}
 
 	async componentDidMount() {
+		
 		let data = await serviceGetAccount(this.props.match.params.name)
 		if (data.statusCode) {
 			this.setState({ loading: false, error: data })
 		} else {
 			this.setState({ loading: false, accounts: data })
+			this.handleIpCounter()
+		}
+	}
+
+	handleIpCounter = () => {
+		if (localStorage.getItem('ip') || (localStorage.getItem('ip') === ip.address()) ) {
+			console.log('no se hace nada');
+		} else {
+			console.log('se contabiliza la ip');
+			localStorage.setItem('ip', ip.address())
 		}
 	}
 
