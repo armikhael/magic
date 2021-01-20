@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { Layout, Button, Form, Row, Input } from 'antd'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { CopyOutlined } from '@ant-design/icons'
 import { serviceGetAccountsInactives, serviceActiveAccount } from './services'
 import './style.css'
 
@@ -23,7 +25,7 @@ export default class InactiveAccounts extends React.Component {
     item.image = this.state.image
     console.log(item);
     serviceActiveAccount(item).then((response) => {
-      console.log(response);
+      this.setState({ list: response.data })
 		})
   }
 
@@ -49,11 +51,17 @@ export default class InactiveAccounts extends React.Component {
                 return (
                   
                   <div key={i}>
-                    <p> id: {item.id}</p>
+                    <p> id: {item._id}</p>
                     <p> name: {item.name}</p>
-                    <p> email: {item.email}</p>
                     <p> token: {btoa(item.account)}</p>
-                    <p> verificar: <a href={`https://${item.type}.com/${item.account}`} target="__blank">{item.account}</a></p>
+                    <p> 
+                      verificar: 
+                      <a href={`https://${item.type}.com/${item.account}`} target="__blank">{item.account}</a> --> 
+                      <CopyToClipboard
+                        text={item.account}>
+                        <Button shape='round'>Copiar nombre <CopyOutlined /></Button>
+                      </CopyToClipboard>
+                    </p>
                     <Form
                       onFinish={this.handleSubmitLogin}
                       labelCol={{ span: 24 }}
