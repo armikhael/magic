@@ -3,18 +3,7 @@
 import React from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import {
-	Layout,
-	Row,
-	Col,
-	Card,
-	Skeleton,
-	Space,
-	Typography,
-	Avatar,
-	Button,
-	notification,
-} from 'antd'
+import { Layout, Row, Col, Card, Skeleton, Typography, Avatar, Button, notification } from 'antd'
 import { UserOutlined, HeartOutlined, AntDesignOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -29,7 +18,7 @@ export default class Profile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			userProfile: null,
+			userProfile: JSON.parse(localStorage.getItem('user')),
 			accounts: [],
 			loading: true,
 			redirect: false,
@@ -37,30 +26,29 @@ export default class Profile extends React.Component {
 	}
 
 	componentDidMount() {
-		if (localStorage.getItem('user')) {
-			let jsonParse = JSON.parse(localStorage.getItem('user'))
+		serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
 			this.setState({
-				userProfile: jsonParse,
+				accounts: data,
+				loading: false,
 			})
-			serviceGetAccountsByEmail(jsonParse.email).then((data) => {
-				this.setState({
-					accounts: data,
-					loading: false,
-				})
-			})
-		}
+		})
 	}
 
 	handleDeleteAccount = async (item) => {
 		let btn = (
 			<Button
 				className='ph-profile-address-button-delete'
-				onClick={() => serviceDeleteAccount({ id: item._id, email: this.state.userProfile.email }).then((response) => {
-					console.log(response);
-					this.setState({
-						accounts: response,
+				onClick={() =>
+					serviceDeleteAccount({
+						id: item._id,
+						email: this.state.userProfile.email,
+					}).then((response) => {
+						this.setState({
+							accounts: response,
+						})
+						notification.close('notiAccountDelete')
 					})
-				})}>
+				}>
 				<h3 className='ph-profile-address-button-delete-title'>Confirmar</h3>
 			</Button>
 		)
@@ -68,8 +56,8 @@ export default class Profile extends React.Component {
 			message: 'Eliminar Cuenta',
 			description: `Estas seguro que quieres eliminar la cuenta "${item.account}".`,
 			btn,
+			key: 'notiAccountDelete',
 		})
-		
 	}
 
 	render() {
@@ -114,20 +102,18 @@ export default class Profile extends React.Component {
 														lg={20}
 														xl={20}
 														className='cv-profile-main-info-inner-container-2'>
-														<Space direction='vertical'>
-															<Text className='cv-profile-main-title-user'>
-																{this.state.userProfile.name}
-															</Text>
-															<Space>
-																<Text className='cv-profile-main-role-user'>
-																	{this.state.userProfile.email}
-																</Text>
-															</Space>
-															<CopyToClipboard
-																text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(this.state.userProfile.email)}`}>
-																<Button shape='round'>Copiar enlace para la biografía</Button>
-															</CopyToClipboard>
-														</Space>
+														<Text className='cv-profile-main-title-user'>
+															{this.state.userProfile.name}
+														</Text>
+														<Text className='cv-profile-main-role-user'>
+															{this.state.userProfile.email}
+														</Text>
+														<CopyToClipboard
+															text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(
+																this.state.userProfile.email
+															)}`}>
+															<Button shape='round'>Copiar enlace para la biografía</Button>
+														</CopyToClipboard>
 													</Col>
 												</Row>
 											</Col>
@@ -142,77 +128,73 @@ export default class Profile extends React.Component {
 								</Header>
 								<Row>
 									<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-										<Card className='cv-perfil-description-container'>
-											<Row>
-												<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-													{this.state.accounts.map((item, i) => {
-														return (
-															<Row key={i}>
-																<Col span={6}>
-																	<img
-																		className='cv-create-account-image-acount'
-																		src={item.image}
-																		alt={item.name}
-																	/>
+										<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+											{this.state.accounts.map((item, i) => {
+												return (
+													<Row className='cv-profile-card-account-content' key={i}>
+														<Col span={6}>
+															<img
+																className='cv-profile-card-account-image'
+																src={item.image}
+																alt={item.name}
+															/>
+														</Col>
+														<Col span={18} className='cv-profile-account-detail-acount'>
+															<Row>
+																<Col span={24}>
+																	<h3 className='cv-profile-account-detail-title'>
+																		{item.account}
+																	</h3>
 																</Col>
-																<Col span={18} className='cv-create-account-detail-acount'>
-																	<Row>
-																		<Col span={24}>
-																			<h3>{item.account}</h3>
-																		</Col>
-																		<Col span={24} className='mt15'>
-																			{item.emailAccount}
-																			<p>{item.biography}</p>
-																		</Col>
-																	</Row>
-																	<Row>
-																		<Col xs={24} sm={24} md={24} lg={6} xl={6}>
-																			<Button
-																				type='danger'
-																				shape='round'
-																				onClick={() => {
-																					this.handleDeleteAccount(item)
-																				}}>
-																				Eliminar
-																			</Button>
-																		</Col>
-																		<Col xs={24} sm={24} md={24} lg={5} xl={5}>
-																			<Button
-																				shape='round'
-																				href={`/profile/edit-account/${item.name}`}>
-																				Editar
-																			</Button>
-																		</Col>
-																		<Col xs={24} sm={24} md={24} lg={5} xl={5}>
-																			<CopyToClipboard
-																				text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																				<Button shape='round'>Copiar enlace</Button>
-																			</CopyToClipboard>
-																		</Col>
-																	</Row>
+																<Col span={24} className='mt15'>
+																	{item.emailAccount}
+																	<p>{item.biography}</p>
 																</Col>
 															</Row>
-														)
-													})}
-													{(() => {
-														if (this.state.accounts.length === 0) {
-															return (
-																<Row>
-																	<Col span={6}>
-																		<div className='mt15'>
-																			<Avatar size={120} icon={<AntDesignOutlined />} />
-																		</div>
-																	</Col>
-																	<Col span={18} className='cv-create-account-detail-acount'>
-																		<Skeleton active />
-																	</Col>
-																</Row>
-															)
-														}
-													})()}
-												</Col>
-											</Row>
-										</Card>
+															<Row>
+																<Col className='mb15' xs={24} sm={24} md={24} lg={5} xl={5}>
+																	<Button shape='round' href={`/profile/edit-account/${item.name}`}>
+																		Editar
+																	</Button>
+																</Col>
+																<Col className='mb15' xs={24} sm={24} md={24} lg={8} xl={8}>
+																	<CopyToClipboard
+																		text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+																		<Button shape='round'>Copiar enlace</Button>
+																	</CopyToClipboard>
+																</Col>
+																<Col className='mb15' xs={24} sm={24} md={24} lg={6} xl={6}>
+																	<Button
+																		type='danger'
+																		shape='round'
+																		onClick={() => {
+																			this.handleDeleteAccount(item)
+																		}}>
+																		Eliminar
+																	</Button>
+																</Col>
+															</Row>
+														</Col>
+													</Row>
+												)
+											})}
+											{(() => {
+												if (this.state.accounts.length === 0) {
+													return (
+														<Row>
+															<Col span={6}>
+																<div className='mt15'>
+																	<Avatar size={120} icon={<AntDesignOutlined />} />
+																</div>
+															</Col>
+															<Col span={18} className='cv-create-account-detail-acount'>
+																<Skeleton active />
+															</Col>
+														</Row>
+													)
+												}
+											})()}
+										</Col>
 									</Col>
 								</Row>
 							</Col>
