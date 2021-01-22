@@ -56,7 +56,7 @@ export const rules = {
 					if (patron.test(value)) {
 							return Promise.resolve();
 					}
-					return Promise.reject('Sólo se permiten números en el teléfono');
+					return Promise.reject('Sólo se permiten números');
 				}
 			}
     ],

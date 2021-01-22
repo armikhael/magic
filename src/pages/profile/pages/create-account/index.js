@@ -294,9 +294,11 @@ class CreateAccount extends React.Component {
 											</Form.Item>
 											<Form.Item
 												label='Coloca tú número de WhatsApp'
+												name='phone' 
 												rules={rules.rulesPhone}
 												onChange={this.handleChangeInput}>
 												<Input name='phone' />
+											</Form.Item>
 												WhatsApp ->{' '}
 												<a
 													rel='noopener noreferrer'
@@ -305,7 +307,6 @@ class CreateAccount extends React.Component {
 													{this.state.code}
 													{this.state.phone}
 												</a>
-											</Form.Item>
 											<Form.Item
 												label='Elige hasta 5 categorías que más se asocien a tu cuenta'
 												name='categories'
