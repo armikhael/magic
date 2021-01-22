@@ -292,6 +292,12 @@ class CreateAccount extends React.Component {
 													})}
 												</Select>
 											</Form.Item>
+											<a
+												rel='noopener noreferrer'
+												target='_blank'
+												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
+												¿Tu pais se encuentra en el listado? Escríbenos
+											</a>
 											<Form.Item
 												label='Coloca tú número de WhatsApp'
 												name='phone' 
@@ -303,7 +309,7 @@ class CreateAccount extends React.Component {
 												<a
 													rel='noopener noreferrer'
 													target='_blank'
-													href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>
+													href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>
 													{this.state.code}
 													{this.state.phone}
 												</a>
@@ -330,6 +336,12 @@ class CreateAccount extends React.Component {
 													})}
 												</Select>
 											</Form.Item>
+											<a
+												rel='noopener noreferrer'
+												target='_blank'
+												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
+												¿Tu categoría no se encuentra en el listado? Escríbenos
+											</a>
 										</Card>
 									</Col>
 								</Row>

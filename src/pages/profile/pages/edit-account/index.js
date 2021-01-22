@@ -316,6 +316,12 @@ export default class EditAccount extends React.Component {
 													</Select>
 												</Form.Item>
 											)}
+											<a
+												rel='noopener noreferrer'
+												target='_blank'
+												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
+												¿Tu pais se encuentra en el listado? Escríbenos
+											</a>
 
 											<Form.Item
 												label='Coloca tú número de WhatsApp'
@@ -354,8 +360,14 @@ export default class EditAccount extends React.Component {
 															)
 														})}
 													</Select>
-												</Form.Item>
+												</Form.Item>												
 											)}
+											<a
+												rel='noopener noreferrer'
+												target='_blank'
+												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
+												¿Tu categoría no se encuentra en el listado? Escríbenos
+											</a>
 										</Card>
 									</Col>
 								</Row>
