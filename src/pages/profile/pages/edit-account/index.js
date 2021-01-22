@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+
 import {
 	Form,
 	Select,
@@ -16,21 +17,22 @@ import {
 	notification,
 	Divider,
 	Typography,
-	List
+	List,
 } from 'antd'
-import './style.css'
-import { serviceUpdateAccount } from './services'
-import { rules } from '../../../components/ServiceCommons/Rules'
 import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
-import { serviceGetAccount } from '../../../components/ServiceCommons/GetAccount'
-import { serviceGetCategories } from '../../../components/ServiceCommons/GetCategory'
-import { serviceGetCountry } from '../../../components/ServiceCommons/GetCountry'
+
+import { rules } from '../../../../components/ServiceCommons/Rules'
+import { serviceGetAccount } from '../../../../components/ServiceCommons/GetAccount'
+import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
+import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
+
+import { serviceUpdateAccount } from './services'
+import './style.css'
 
 const { Option } = Select
 const { Content, Header } = Layout
 
 export default class EditAccount extends React.Component {
-
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -45,7 +47,7 @@ export default class EditAccount extends React.Component {
 			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
 			currency: 'Dólares',
-			redirect: false
+			redirect: false,
 		}
 	}
 
@@ -58,7 +60,7 @@ export default class EditAccount extends React.Component {
 
 		let response = await serviceGetAccount(this.props.match.params.name)
 
-		this.setState({ 
+		this.setState({
 			accountDetails: response,
 			phone: response.phone,
 			account: response.account,
@@ -68,8 +70,8 @@ export default class EditAccount extends React.Component {
 			plans: response.plans,
 		})
 
-		console.log('account:', this.state.accountDetails._id);
-		
+		console.log('account:', this.state.accountDetails._id)
+
 		await serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
 				return {
@@ -85,19 +87,19 @@ export default class EditAccount extends React.Component {
 					code: item.code,
 					name: item.name,
 					label: item.name,
-					currency: item.currency
+					currency: item.currency,
 				}
 			})
-			let resultCurrency = result.filter(item => item.name === this.state.country)
-			this.setState({ 
+			let resultCurrency = result.filter((item) => item.name === this.state.country)
+			this.setState({
 				countries: result,
-				currency: resultCurrency[0].currency
+				currency: resultCurrency[0].currency,
 			})
 		})
 	}
 
 	handleChangeInput = (e) => {
-		console.log('write', e.target.name, e.target.value);
+		console.log('write', e.target.name, e.target.value)
 		this.setState({
 			[e.target.name]: e.target.value,
 		})
@@ -105,7 +107,7 @@ export default class EditAccount extends React.Component {
 
 	handleCategory = (e) => {
 		if (e.length > this.state.itemsCaegories) {
-			console.log('mas de 5');
+			console.log('mas de 5')
 			notification['error']({
 				message: `Ups!`,
 				description: `Sólo puede agregar hasta ${this.state.itemsCaegories} categorías`,
@@ -113,7 +115,7 @@ export default class EditAccount extends React.Component {
 			return
 		}
 
-		console.log(e);
+		console.log(e)
 		this.setState({
 			categories: e,
 		})
@@ -125,7 +127,7 @@ export default class EditAccount extends React.Component {
 		this.setState({
 			country: e.name,
 			code: e.code,
-			currency: e.currency
+			currency: e.currency,
 		})
 	}
 
@@ -137,9 +139,11 @@ export default class EditAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-		if (this.state.selectQuantityConcept === null || 
-			 this.state.selectConcept === null ||
-			 this.state.auxPrice === null) {
+		if (
+			this.state.selectQuantityConcept === null ||
+			this.state.selectConcept === null ||
+			this.state.auxPrice === null
+		) {
 			notification['error']({
 				message: `Ups!`,
 				description: `Debe rellenar los datos correspondientes`,
@@ -150,15 +154,13 @@ export default class EditAccount extends React.Component {
 		arrayPlans.push({
 			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept}`,
 			price: this.state.auxPrice,
-			currency: this.state.currency
+			currency: this.state.currency,
 		})
 		this.setState({
 			plans: arrayPlans,
 		})
 		console.log(this.state.plans)
 	}
-
-
 
 	handleSubmit = async () => {
 		let body = {
@@ -196,12 +198,11 @@ export default class EditAccount extends React.Component {
 				message: `Good job!!`,
 				description: `La cuenta se ha actualizado satisfactoriamente`,
 			})
-
 		})
 	}
 
 	handleSelect = (e) => {
-		console.log(e.option, e.value);
+		console.log(e.option, e.value)
 		if (e.option === 'categories' && e.value.length > this.state.itemsCaegories) {
 			notification['error']({
 				message: `Ups!`,
@@ -209,9 +210,9 @@ export default class EditAccount extends React.Component {
 			})
 			return
 		}
-		
+
 		this.setState({
-			[e.option]: e.value
+			[e.option]: e.value,
 		})
 	}
 
@@ -239,8 +240,7 @@ export default class EditAccount extends React.Component {
 								onFinish={this.handleSubmitLogin}
 								labelCol={{ span: 24 }}
 								wrapperCol={{ span: 24 }}
-								layout="vertical"
-							>
+								layout='vertical'>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Datos de Cuenta </h3>
@@ -292,51 +292,53 @@ export default class EditAccount extends React.Component {
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Información</h3>
 										<Card className='cv-create-account-card-custom'>
-											{this.state.country && 
-												<Form.Item 
-												name='country'
-												label='¿En que país te encuentras actualmente?'
-												rules={rules.rulesSelect}
-												initialValue={this.state.country}>
-												<Select 
-													onChange={this.handleChangeCountry}
-													placeholder="Seleccionar">
-													{this.state.countries.map((item, i) => {
-														return (
-															<Option
-																style={{ textTransform: 'capitalize' }}
-																key={i}
-																value={JSON.stringify({
-																	code: item.code,
-																	name: item.name,
-																	currency: item.currency
-																})}>
-																{item.label}
-															</Option>
-														)
-													})}
-												</Select>
-											</Form.Item>
-											}
+											{this.state.country && (
+												<Form.Item
+													name='country'
+													label='¿En que país te encuentras actualmente?'
+													rules={rules.rulesSelect}
+													initialValue={this.state.country}>
+													<Select onChange={this.handleChangeCountry} placeholder='Seleccionar'>
+														{this.state.countries.map((item, i) => {
+															return (
+																<Option
+																	style={{ textTransform: 'capitalize' }}
+																	key={i}
+																	value={JSON.stringify({
+																		code: item.code,
+																		name: item.name,
+																		currency: item.currency,
+																	})}>
+																	{item.label}
+																</Option>
+															)
+														})}
+													</Select>
+												</Form.Item>
+											)}
 
 											<Form.Item
-												label='Coloca tú número de WhatsApp'											
+												label='Coloca tú número de WhatsApp'
 												rules={rules.rulesPhone}
 												onChange={this.handleChangeInput}>
-												<Input 
-													name='phone'
-													value={this.state.phone}/>
-												<a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>WhatsApp: {this.state.code}{this.state.phone}</a>												
+												<Input name='phone' value={this.state.phone} />
+												<a
+													rel='noopener noreferrer'
+													target='_blank'
+													href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>
+													WhatsApp: {this.state.code}
+													{this.state.phone}
+												</a>
 											</Form.Item>
 
-											{this.state.categories && 
-													<Form.Item 
-													label='Elige hasta 5 categprías que más se asocien a tu cuenta' 
+											{this.state.categories && (
+												<Form.Item
+													label='Elige hasta 5 categprías que más se asocien a tu cuenta'
 													name='categories'
 													rules={rules.rulesSelect}
 													initialValue={this.state.categories}>
 													<Select
-														style={{ width: '100%'}}
+														style={{ width: '100%' }}
 														onChange={this.handleCategory}
 														mode='multiple'
 														showArrow
@@ -353,31 +355,39 @@ export default class EditAccount extends React.Component {
 														})}
 													</Select>
 												</Form.Item>
-											}
+											)}
 										</Card>
 									</Col>
 								</Row>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
+										<h3 className='cv-create-account-from-title'>
+											Informa el precio de tus servicios
+										</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Row>
 												<Col span={24}>
 													<p>¿Cuáles son tus paquetes publicitarios?</p>
 													<Form.Item label='Opciones Publicitarias'>
-														<Select 
-															placeholder="Seleccionar"
+														<Select
+															placeholder='Seleccionar'
 															style={{ width: 120 }}
-															onChange={(e) => this.handleSelect({ option: 'selectQuantityConcept', value: e })}>
-															{this.state.quantity.map(item => (
-																<Option key={item} value={item}>{item}</Option>
+															onChange={(e) =>
+																this.handleSelect({ option: 'selectQuantityConcept', value: e })
+															}>
+															{this.state.quantity.map((item) => (
+																<Option key={item} value={item}>
+																	{item}
+																</Option>
 															))}
 														</Select>
-														<Select 
-															placeholder="Seleccionar"
+														<Select
+															placeholder='Seleccionar'
 															style={{ width: 120 }}
-															onChange={(e) => this.handleSelect({ option: 'selectConcept', value: e })}>
-															{this.state.concepts.map(item => (
+															onChange={(e) =>
+																this.handleSelect({ option: 'selectConcept', value: e })
+															}>
+															{this.state.concepts.map((item) => (
 																<Option key={item}>{item}</Option>
 															))}
 														</Select>
@@ -403,20 +413,16 @@ export default class EditAccount extends React.Component {
 															))}
 														</Select>
 													</Form.Item> */}
-													
-													
+
 													<Form.Item
 														label={`Precio en ${this.state.currency}`}
 														onChange={this.handleChangeInput}
 														rules={rules.rulesPrice}>
-														<Input name="auxPrice" placeholder={`${this.state.currency}`}/>
+														<Input name='auxPrice' placeholder={`${this.state.currency}`} />
 													</Form.Item>
-													
+
 													<div className='cv-create-account-btn-add-content'>
-														<Button
-															type='primary'
-															shape='round'
-															onClick={this.handleButtonPlans}>
+														<Button type='primary' shape='round' onClick={this.handleButtonPlans}>
 															AGREGAR
 														</Button>
 													</div>
@@ -426,8 +432,10 @@ export default class EditAccount extends React.Component {
 														bordered
 														dataSource={this.state.plans}
 														renderItem={(item, key) => (
-															<List.Item>															
-																<Typography.Text>{item.description} por {item.price} {item.currency}</Typography.Text>
+															<List.Item>
+																<Typography.Text>
+																	{item.description} por {item.price} {item.currency}
+																</Typography.Text>
 																<Button
 																	danger
 																	type='link'
