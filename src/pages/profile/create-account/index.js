@@ -244,19 +244,23 @@ class CreateAccount extends React.Component {
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
-											<Form.Item label='Tipo de cuenta'>
-											
+											<Form.Item 
+												name='type'
+												label='Tipo de cuenta'
+												rules={rules.rulesSelect}>											
 												<Select onChange={(e) => this.handleSelect({ option: 'type', value: e })}>
 													<Option value='instagram'>Instagram</Option>
 												</Select>
 											</Form.Item>
 											<Form.Item
-												label='Usuario'
-												rules={rules.rulesText}
+												name='name'
+												label={`Escriba su usuario sin el "@"`}
+												rules={rules.rulesAcount}
 												onChange={this.handleChangeInput}>
 												<Input name='name'/>
 											</Form.Item>
 											<Form.Item
+												name='biography'
 												label='¿De que trata tu cuenta? (Resumen)'
 												rules={rules.required}
 												onChange={this.handleChangeInput}>
@@ -298,7 +302,7 @@ class CreateAccount extends React.Component {
 												rules={rules.rulesPhone}
 												onChange={this.handleChangeInput}>
 												<Input name='phone'/>
-												WhatsApp -> <a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>{this.state.code}{this.state.phone}</a>
+												WhatsApp - <a rel="noopener noreferrer" target="_blank" href={`https://api.whatsapp.com/send?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>{this.state.code}{this.state.phone}</a>
 											</Form.Item>
 											<Form.Item 
 												label='Elige hasta 5 categorías que más se asocien a tu cuenta' 

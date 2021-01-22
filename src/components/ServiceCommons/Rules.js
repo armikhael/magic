@@ -42,23 +42,23 @@ export const rules = {
 		},
     ],
     rulesPhone: [
-		{
-			required: true,
-			message: 'Ingrese sú número telefónico',
-		},
-		{
-			min: 7,
-			message: 'Minimo 7 caracteres!',
-        },
-        {
-            validator: (_, value) => {
-                let patron = /^\d*$/; 
-                if (patron.test(value)) {
-                    return Promise.resolve();
-                }
-                return Promise.reject('Sólo se permiten números en el teléfono');
-            }
-        }
+			{
+				required: true,
+				message: 'Ingrese sú número telefónico',
+			},
+			{
+				min: 7,
+				message: 'Minimo 7 caracteres!',
+      },
+			{
+				validator: (_, value) => {
+					let patron = /^\d*$/; 
+					if (patron.test(value)) {
+							return Promise.resolve();
+					}
+					return Promise.reject('Sólo se permiten números en el teléfono');
+				}
+			}
     ],
     rulesPrice: [
 		{
@@ -94,6 +94,21 @@ export const rules = {
 			min: 8,
 			message: 'Debes contar con al menos 10.000 seguidores',
 		},
-		
+	],
+	rulesAcount: [
+		{
+			required: true,
+			message: 'Debe agregar su cuenta',
+		},
+		{
+			validator: (_, value) => {
+				console.log('valudando', value);
+				let patron = /^[A-Z]+$/i; 
+				if (patron.test(value)) {
+						return Promise.resolve();
+				}
+				return Promise.reject('Sólo se permiten letras, no coloque "@"');
+			}
+		}
 	]
 }
