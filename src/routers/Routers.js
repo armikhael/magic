@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Layout from '../components/Layout/Layout'
 import PrivateRoute from './components/PrivateRoute/'
+import AdminRoute from './components/AdminRoute'
 
 import Test from '../pages/test'
 
@@ -33,7 +34,6 @@ const Routers = () => (
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/results/:name' component={Results} />
 
-				<PrivateRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
 				<PrivateRoute exact path='/profile' component={Profile} />
@@ -41,6 +41,8 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/activation/:name' component={Activation} />
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 
+				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
+				
 				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={Account} />
 
