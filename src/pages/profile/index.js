@@ -26,6 +26,7 @@ export default class Profile extends React.Component {
 	}
 
 	componentDidMount() {
+		console.log(this.state.userProfile.image);
 		serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
 			this.setState({
 				accounts: data,
@@ -90,7 +91,7 @@ export default class Profile extends React.Component {
 														className='cv-profile-main-info-inner-container'>
 														<img
 															className='cv-profile-main-info-inner-container-img'
-															src={this.state.userProfile.imageUrl}
+															src={this.state.userProfile.image}
 															alt={this.state.userProfile.name}
 															title={this.state.userProfile.name}
 														/>
