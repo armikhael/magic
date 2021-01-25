@@ -3,7 +3,7 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout, Spin } from 'antd'
+import { Layout } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
@@ -57,12 +57,14 @@ class Home extends React.Component {
 					<InfiniteScroll
 						dataLength={this.state.list.length}
 						next={this.handleList}
-						hasMore={this.state.hasMore}
-						loader={
+						hasMore={this.state.hasMore}>
+						{/*
+						 loader={
 							<center>
 								<Spin />
 							</center>
-						}>
+						} 
+						*/}
 						<ListMasonry listMasonry={this.state.list} />
 					</InfiniteScroll>
 				</Content>

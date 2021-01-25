@@ -6,7 +6,12 @@ import Moment from 'react-moment'
 import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
-import { EyeOutlined, ShareAltOutlined, ClockCircleOutlined } from '@ant-design/icons'
+import {
+	EyeOutlined,
+	ShareAltOutlined,
+	ClockCircleOutlined,
+	InstagramOutlined,
+} from '@ant-design/icons'
 
 import './style.css'
 
@@ -55,7 +60,7 @@ export default class Account extends React.Component {
 								<h3 className='cv-masonry-item-gird-date-card-title'>
 									<Link to={`/category/${this.props.account.categories[0]}`}>
 										<span className='cv-masonry-item-gird-category-title'>
-											{this.props.account.categories[0]}
+											#{this.props.account.categories[0]}
 										</span>
 									</Link>
 								</h3>
@@ -63,12 +68,7 @@ export default class Account extends React.Component {
 							<Col xs={24} sm={12} md={10} className='aling-right'>
 								<h3 className='cv-masonry-item-gird-like-card-title'>
 									{this.props.account.type === 'instagram' && (
-										<img
-											width='30px'
-											src='https://i.ibb.co/hymRJXG/instagram.png'
-											alt='instagram'
-											title='instagram'
-										/>
+										<InstagramOutlined style={{ fontSize: '30px' }} />
 									)}
 								</h3>
 							</Col>

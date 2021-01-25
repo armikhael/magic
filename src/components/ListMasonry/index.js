@@ -11,7 +11,7 @@ class ListMasonry extends React.Component {
 	render() {
 		return (
 			<Masonry
-				breakpointCols={{ default: 4, 720: 2 }}
+				breakpointCols={{ default: 5, 720: 2 }}
 				className='cv-masonry-grid'
 				columnClassName='cv-masonry-grid_column'>
 				{this.props.listMasonry.map(function (item, i) {

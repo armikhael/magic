@@ -7,7 +7,7 @@
 
 .cv-masonry-item-card {
 	padding: 10px;
-	margin: 10px;
+	margin: 5px;
 	border: #fff;
 	-webkit-box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
 	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
@@ -112,6 +112,9 @@
 	transition: all 0.2s ease;
 	cursor: pointer;
 	text-transform: capitalize;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .cv-masonry-item-card-more {
@@ -124,7 +127,7 @@
 	display: inline-block;
 	color: #111;
 	background-color: #fff;
-	border-bottom: 2px solid #111;
+	border-bottom: 2px solid #200258;
 	padding: 4px 0px;
 	font-size: 12px;
 	line-height: 14px;
@@ -158,10 +161,10 @@
 
 .cv-masonry-item-gird-category-title {
 	padding: 2px 6px;
-	background-color: #fd0131d4;
+	background-color: #fff;
 	font-size: 9px;
 	line-height: 14px;
-	color: #fff;
+	color: #5d5d5d;
 	border-radius: 4px;
 	font-weight: 900;
 	margin-right: 10px;

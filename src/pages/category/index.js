@@ -3,7 +3,7 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout, Spin } from 'antd'
+import { Layout } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
@@ -26,7 +26,7 @@ class Category extends React.Component {
 
 	async componentDidMount() {
 		await serviceGetAccountByCategory(
-			this.props.match.params.name.replaceAll("-", " "),
+			this.props.match.params.name.replaceAll('-', ' '),
 			this.state.page
 		).then((data) => {
 			if (data.statusCode === 200) {
@@ -53,19 +53,12 @@ class Category extends React.Component {
 				<div>
 					<Content className='cv-container-main'>
 						<div className='cv-category-content-title'>
-							<h1 className='cv-category-title'>
-								Category {this.props.match.params.name}
-							</h1>
+							<h1 className='cv-category-title'>Category {this.props.match.params.name}</h1>
 						</div>
 						<InfiniteScroll
 							dataLength={this.state.list.length}
 							next={this.handleList}
-							hasMore={this.state.hasMore}
-							loader={
-								<center>
-									<Spin />
-								</center>
-							}>
+							hasMore={this.state.hasMore}>
 							<ListMasonry listMasonry={this.state.list} />
 						</InfiniteScroll>
 					</Content>
