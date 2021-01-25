@@ -1,10 +1,11 @@
 /** @format */
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import { Layout, Row, Col, Card, Skeleton, Typography, Avatar, Button, notification } from 'antd'
-import { UserOutlined, HeartOutlined, AntDesignOutlined } from '@ant-design/icons'
+import { Layout, Row, Col, Card, Result, Typography, Button, notification } from 'antd'
+import { UserOutlined, HeartOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 
@@ -181,16 +182,21 @@ export default class Profile extends React.Component {
 											{(() => {
 												if (this.state.accounts.length === 0) {
 													return (
-														<Row>
-															<Col span={6}>
-																<div className='mt15'>
-																	<Avatar size={120} icon={<AntDesignOutlined />} />
-																</div>
-															</Col>
-															<Col span={18} className='cv-create-account-detail-acount'>
-																<Skeleton active />
-															</Col>
-														</Row>
+														<div className='cv-profile-card-account-content'>
+															<Result
+																status='error'
+																title='Cuentas Registradas'
+																subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
+																extra={[
+																	<Link
+																		key='profile-link-add-account'
+																		to={`/profile/create-account`}>
+																		<Button key='profile-button-add-account'>
+																			Registrar Cuenta
+																		</Button>
+																	</Link>,
+																]}></Result>
+														</div>
 													)
 												}
 											})()}
