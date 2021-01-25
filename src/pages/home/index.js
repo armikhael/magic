@@ -27,18 +27,21 @@ class Home extends React.Component {
 	}
 
 	componentDidMount() {
-		serviceGetAccounts(this.state.page).then((data) => {
-			if (data.status === 200) {
-				console.log(data)
+		this.handleList()
+	}
+
+	handleList = () => {
+		serviceGetAccounts(this.state.page).then((response) => {
+			if (response.status === 200) {
 				this.setState({
-					list: [...this.state.list, ...data.data.data],
+					list: [...this.state.list, ...response.data.data],
 					page: this.state.page + 1,
 					loading: false,
 				})
 			} else {
 				this.setState({
 					loading: false,
-					error: data,
+					error: response,
 				})
 			}
 		})
@@ -57,14 +60,8 @@ class Home extends React.Component {
 					<InfiniteScroll
 						dataLength={this.state.list.length}
 						next={this.handleList}
-						hasMore={this.state.hasMore}>
-						{/*
-						 loader={
-							<center>
-								<Spin />
-							</center>
-						} 
-						*/}
+						hasMore={this.state.hasMore}
+						loader={<center></center>}>
 						<ListMasonry listMasonry={this.state.list} />
 					</InfiniteScroll>
 				</Content>
