@@ -57,10 +57,15 @@
 	.cv-header-search-input {
 		width: 85%;
 	}
-
 	.cv-header-search-input .ant-input-suffix {
 		width: 50px;
 		font-size: 16px;
+	}
+	.cv-header-search-icon-category {
+		width: 20px;
+	}
+	.cv-header-search-select > .ant-select-selector {
+		padding: 0 4px !important;
 	}
 }
 

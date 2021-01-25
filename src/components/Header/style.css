@@ -17,3 +17,9 @@
 	max-width: 1300px;
 	margin: auto;
 }
+
+@media (max-width: 768px) {
+	.cv-navbar-header-content {
+		padding: 8px 8px;
+	}
+}
