@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import { Input, Select } from 'antd'
-import { MenuOutlined } from '@ant-design/icons'
 
 import './style.css'
 import { serviceGetCategories } from './services'
@@ -28,21 +27,28 @@ export default function SearchNavbar() {
 
 	return (
 		<React.Fragment>
-			<Input.Group compact className='cv-navbar-search-content'>
+			<Input.Group compact className='cv-header-search-content'>
 				<Select
-					defaultValue={<MenuOutlined />}
-					className='cv-navbar-search-select'
-					dropdownClassName='cv-navbar-search-select-option'>
+					defaultValue={
+						<img
+							width='25px'
+							className='cv-header-search-icon-category'
+							src='https://i.ibb.co/mzMWjY8/categorias.png'
+							alt='Categorias'
+						/>
+					}
+					className='cv-header-search-select'
+					dropdownClassName='cv-header-search-select-option'>
 					{isCategories.map((item, i) => {
 						return (
 							<Option key={i}>
-								<Link to={`/category/${item.name.replaceAll(" ", "-")}`}>{item.name}</Link>
+								<Link to={`/category/${item.name.replaceAll(' ', '-')}`}>{item.name}</Link>
 							</Option>
 						)
 					})}
 				</Select>
 				<Search
-					className='cv-navbar-search-input'
+					className='cv-header-search-input'
 					placeholder='¿Qué cuentas deseas Buscar...?'
 					onSearch={handleSearch}
 				/>

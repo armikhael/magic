@@ -5,14 +5,16 @@
 	margin-top: 4px;
 	margin-right: 10px;
 	width: 40px;
+	border-radius: 4px;
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
 }
 
 .cv-navbar-logo-titles {
 	color: #424346;
-	font-weight: 800;
-	font-size: 16px;
+	font-weight: 900;
+	font-size: 17px;
 	cursor: pointer;
-	margin-top: 7px;
+	margin-top: 3px;
 }
 
 @media (max-width: 768px) {

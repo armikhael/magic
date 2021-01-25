@@ -7,8 +7,8 @@ import { Layout, Row, Col } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
 
 import { GoogleLogin } from 'react-google-login'
-import FacebookLogin from 'react-facebook-login';
- 
+//import FacebookLogin from 'react-facebook-login'
+
 import './style.css'
 import serviceSaveUser from './services'
 
@@ -47,15 +47,14 @@ class Login extends React.Component {
 			email: data.email,
 			autentication: 'facebook',
 			first_name: name[0],
-			last_name: (name[1]) ? name[1] : '',
+			last_name: name[1] ? name[1] : '',
 			image: data.picture.data.url,
 		}
 		await this.handleAuthLogin(profile)
 	}
 
-	handleAuthLogin = async(item) => {
-		await serviceSaveUser(item)
-		.then((data) => {
+	handleAuthLogin = async (item) => {
+		await serviceSaveUser(item).then((data) => {
 			console.log('respuesta del registro', data)
 		})
 
@@ -109,12 +108,13 @@ class Login extends React.Component {
 												cookiePolicy={'single_host_origin'}
 											/>
 										</div>
-									</div>								
-
+									</div>
+									{/* 							
 									<FacebookLogin
 										appId="1859534864215755"
 										fields="name,email,picture"
 										callback={this.handleFacebookAuth} />
+										*/}
 									<br />
 									<p className='cv-login-title-termi-condi'>
 										Al continuar, aceptas las Condiciones del servicio y la Política de privacidad

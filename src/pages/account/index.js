@@ -24,7 +24,7 @@ class Account extends React.Component {
 
 	async componentDidMount() {
 		let data = await serviceGetAccount(this.props.match.params.name)
-		console.log(data);
+		console.log(data)
 		if (data.statusCode) {
 			this.setState({ loading: false, error: data })
 		} else {
@@ -59,7 +59,7 @@ class Account extends React.Component {
 									{this.state.profile.eneable && (
 										<img
 											className='cv-detail-img-content-account-verified'
-											src='https://i.ibb.co/0f5YxSt/verificado.png'
+											src='https://i.ibb.co/DwZbZB6/verificacion.png'
 											alt='verificado'
 											title='verificado'
 										/>

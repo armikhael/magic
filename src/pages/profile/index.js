@@ -26,7 +26,6 @@ export default class Profile extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log(this.state.userProfile.image);
 		serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
 			this.setState({
 				accounts: data,

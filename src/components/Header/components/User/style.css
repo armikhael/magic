@@ -1,5 +1,21 @@
 /** @format */
 
-.cv-navbar-user-content {
+.cv-header-user-content {
 	text-align: center;
+}
+
+.cv-heder-user-icon-add-account {
+	width: 27px;
+}
+
+.cv-heder-user-image-user {
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
+	width: 40px;
+	border-radius: 50%;
+}
+
+.cv-header-user-icon-login {
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
+	width: 40px;
+	border-radius: 50%;
 }

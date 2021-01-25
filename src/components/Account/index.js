@@ -38,7 +38,7 @@ export default class Account extends React.Component {
 								{this.props.account.eneable && (
 									<img
 										width='15px'
-										src='https://i.ibb.co/0f5YxSt/verificado.png'
+										src='https://i.ibb.co/DwZbZB6/verificacion.png'
 										alt='verificado'
 										title='verificado'
 									/>

@@ -3,8 +3,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Avatar, Row, Col, Menu, Dropdown } from 'antd'
-import { PlusOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons'
+import { Row, Col, Menu, Dropdown } from 'antd'
 
 import './style.css'
 
@@ -29,14 +28,18 @@ export default class User extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div className='cv-navbar-user-content'>
+				<div className='cv-header-user-content'>
 					<Row align='middle'>
 						<Col xs={12} sm={12} md={{ span: 8, offset: 8 }}>
 							{(() => {
 								if (localStorage.getItem('user')) {
 									return (
 										<Link to={`/profile/create-account`}>
-											<PlusOutlined style={{ fontSize: '20px' }} />
+											<img
+												className='cv-heder-user-icon-add-account'
+												src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+												alt='Agregar Cuenta'
+											/>
 										</Link>
 									)
 								}
@@ -47,13 +50,21 @@ export default class User extends React.Component {
 								if (localStorage.getItem('user')) {
 									return (
 										<Dropdown overlay={menu} placement='bottomRight' arrow>
-											<Avatar size={28} icon={<UserOutlined />} />
+											<img
+												className='cv-heder-user-image-user'
+												src={JSON.parse(localStorage.getItem('user')).image}
+												alt='Imagen de Usuario'
+											/>
 										</Dropdown>
 									)
 								} else {
 									return (
 										<Link to={`/auth/login`}>
-											<LoginOutlined style={{ fontSize: '20px' }} />
+											<img
+												className='cv-header-user-icon-login'
+												src='https://i.ibb.co/0C5Mpp9/iniciar-sesion.png'
+												alt='Iniciar Sesión'
+											/>
 										</Link>
 									)
 								}
