@@ -24,19 +24,23 @@ class Category extends React.Component {
 		}
 	}
 
-	async componentDidMount() {
-		await serviceGetAccountByCategory(
+	componentDidMount() {
+		this.handleList()
+	}
+
+	handleList = () => {
+		serviceGetAccountByCategory(
 			this.props.match.params.name.replaceAll('-', ' '),
 			this.state.page
-		).then((data) => {
-			if (data.statusCode === 200) {
+		).then((response) => {
+			if (response.statusCode === 200) {
 				this.setState({
-					list: [...this.state.list, ...data.data],
+					list: [...this.state.list, ...response.data],
 					page: this.state.page + 1,
 					loading: false,
 				})
 			} else {
-				this.setState({ loading: false, error: data })
+				this.setState({ loading: false, error: response })
 			}
 		})
 	}
@@ -58,7 +62,8 @@ class Category extends React.Component {
 						<InfiniteScroll
 							dataLength={this.state.list.length}
 							next={this.handleList}
-							hasMore={this.state.hasMore}>
+							hasMore={this.state.hasMore}
+							loader={<center></center>}>
 							<ListMasonry listMasonry={this.state.list} />
 						</InfiniteScroll>
 					</Content>
