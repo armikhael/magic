@@ -82,7 +82,8 @@ class Login extends React.Component {
 											title='Logo Cuentas Virales'
 											alt='Logo Cuentas Virales'
 											width='40px'
-											src='https://i.ibb.co/JnXwKMt/viral.png'
+											className='cv-login-logo-app'
+											src={process.env.REACT_APP_LOGO}
 										/>
 										<h2 className='cv-login-title-register'>
 											Bienvenido a Cuentas Virales: {this.state.email}
