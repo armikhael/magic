@@ -30,6 +30,7 @@ import { serviceUpdateAccount } from './services'
 import './style.css'
 
 const { Option } = Select
+const { TextArea } = Input
 const { Content, Header } = Layout
 
 export default class EditAccount extends React.Component {
@@ -68,6 +69,7 @@ export default class EditAccount extends React.Component {
 			code: response.code,
 			categories: response.categories,
 			plans: response.plans,
+			biography: response.biography
 		})
 
 		console.log('account:', this.state.accountDetails._id)
@@ -170,6 +172,7 @@ export default class EditAccount extends React.Component {
 			phone: this.state.phone,
 			code: this.state.code,
 			country: this.state.country,
+			biography: this.state.biography
 		}
 
 		console.log(Object.keys(body))
@@ -271,11 +274,15 @@ export default class EditAccount extends React.Component {
 															return (
 																<Row>
 																	<Col span={24}>
-																		<h3>{this.state.accountDetails.account}</h3>
+																		<h3>@{this.state.accountDetails.account}</h3>
 																	</Col>
 																	<Col span={24} className='mt15'>
-																		{this.state.accountDetails.email}
-																		<p>{this.state.accountDetails.biography}</p>
+																		<Form.Item
+																			label='Biografia'
+																			rules={rules.rulesText}
+																			onChange={this.handleChangeInput}>
+																			<TextArea rows={4} name='biography' value={this.state.biography} />
+																		</Form.Item>																
 																	</Col>
 																</Row>
 															)
@@ -291,7 +298,7 @@ export default class EditAccount extends React.Component {
 								<Row>
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Información</h3>
-										<Card className='cv-create-account-card-custom'>
+										<Card className='cv-create-account-card-custom'>										
 											{this.state.country && (
 												<Form.Item
 													name='country'

@@ -7,7 +7,7 @@ const serviceUpdateAccount = async (body) => {
 	let returnResponse
 	await axios({
 		method: 'PUT',
-		url: `${process.env.REACT_APP_HOST}/account/info`,
+		url: `${process.env.REACT_APP_HOST}/account/`,
 		data: body,
 	})
 	.then((response) => {
