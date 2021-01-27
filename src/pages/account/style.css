@@ -49,7 +49,7 @@
 
 .cv-detail-account-category-title {
 	padding: 4px 15px;
-	background-color: #fd0131d4;
+	background-color: #200159;
 	font-size: 11px;
 	line-height: 14px;
 	color: #fff;
@@ -58,6 +58,7 @@
 	margin-right: 10px;
 	cursor: pointer;
 	float: right;
+	text-transform: uppercase;
 }
 
 .cv-detail-account-img-main-contnet {
@@ -90,8 +91,16 @@
 }
 
 .cv-detail-account-content-info-account {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.cv-detail-account-content-info-account h3 {
+	margin-left: 10px;
 	font-size: 14px;
-	color: #004dff;
+	color: #f61073;
+	font-weight: 900;
+	margin-top: 3px;
 }
 
 .cv-detail-account-content-info-email {
@@ -116,7 +125,7 @@
 }
 
 .cv-detail-category-tag:hover {
-	color: #fd0131d4;
+	color: #200159;
 	font-weight: 500;
 }
 
@@ -163,12 +172,12 @@
 }
 
 .cv-detail-plans-hr {
-	border: 1px solid #fd0131d4;
+	border: 1px solid #200159;
 	display: block;
 	height: 5px;
 	width: 25px;
 	border-radius: 2px;
-	background-color: #fd0131d4;
+	background-color: #200159;
 	margin-bottom: 20px;
 }
 

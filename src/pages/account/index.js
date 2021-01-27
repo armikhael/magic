@@ -3,33 +3,27 @@
 import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
+
 import { Row, Col, List, Avatar } from 'antd'
-import { WhatsAppOutlined } from '@ant-design/icons'
+import { WhatsAppOutlined, InstagramOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
-import CreateUser from './components/CreateUser'
 import { serviceGetAccount } from '../../components/ServiceCommons/GetAccount'
 
+import CreateUser from './components/CreateUser'
 import './style.css'
 
-class Account extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			accounts: null,
-			loading: true,
-		}
+export default class Account extends React.Component {
+	state = {
+		detail: null,
+		loading: true,
 	}
 
-	async componentDidMount() {
-		let data = await serviceGetAccount(this.props.match.params.name)
-		console.log(data)
-		if (data.statusCode) {
-			this.setState({ loading: false, error: data })
-		} else {
-			this.setState({ loading: false, profile: data })
-		}
+	componentDidMount() {
+		serviceGetAccount(this.props.match.params.name).then((responde) => {
+			this.setState({ loading: false, detail: responde })
+		})
 	}
 
 	render() {
@@ -40,7 +34,7 @@ class Account extends React.Component {
 			return <PageError detailError={this.state.error} />
 		}
 		return (
-			<React.Fragment>
+			<>
 				<Row>
 					<Col xs={24} sm={24} md={18}>
 						<Row className='cv-detail-content-accoun'>
@@ -49,14 +43,14 @@ class Account extends React.Component {
 									className='cv-detail-whatsapp-icon'
 									rel='noopener noreferrer'
 									target='_blank'
-									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.profile.code}${this.state.profile.phone}&text=Hola%20${this.state.profile.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`}>
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`}>
 									<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
 								</a>
 							</Col>
 							<Col span={24} className='cv-detail-content-account-detail'>
 								<h1 className='cv-detail-title-main'>
-									{this.state.profile.account}
-									{this.state.profile.eneable && (
+									{this.state.detail.account}
+									{this.state.detail.eneable && (
 										<img
 											className='cv-detail-img-content-account-verified'
 											src='https://i.ibb.co/DwZbZB6/verificacion.png'
@@ -67,11 +61,11 @@ class Account extends React.Component {
 								</h1>
 								<h3 className='cv-detail-sub-title'>
 									<Moment format='LLLL' withTitle>
-										{this.state.profile.createdAt}
+										{this.state.detail.createdAt}
 									</Moment>
-									<Link to={`/category/${this.state.profile.categories[0]}`}>
+									<Link to={`/category/${this.state.detail.categories[0]}`}>
 										<span className='cv-detail-account-category-title'>
-											{this.state.profile.categories[0]}
+											{this.state.detail.categories[0]}
 										</span>
 									</Link>
 								</h3>
@@ -79,45 +73,40 @@ class Account extends React.Component {
 									<Row>
 										<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 											<img
-												title={this.state.profile.name}
-												alt={this.state.profile.name}
+												title={this.state.detail.name}
+												alt={this.state.detail.name}
 												className='cv-detail-account-img-main'
-												src={this.state.profile.image}
+												src={this.state.detail.image}
 											/>
 										</Col>
 										<Col xs={24} sm={24} md={15} className='cv-detail-account-content-info'>
 											<h3 className='cv-detail-account-content-info-country'>
-												{this.state.profile.country}
+												{this.state.detail.country}
 											</h3>
 											<a
-												href={'https://www.instagram.com/' + this.state.profile.account}
+												href={'https://www.instagram.com/' + this.state.detail.account}
 												target='_blank'
 												rel='noopener noreferrer'>
-												<h3 className='cv-detail-account-content-info-account'>
-													{this.state.profile.type === 'instagram' && (
-														<img
-															width='30px'
-															src='https://i.ibb.co/hymRJXG/instagram.png'
-															alt='instagram'
-															title='instagram'
-														/>
+												<div className='cv-detail-account-content-info-account'>
+													{this.state.detail.type === 'instagram' && (
+														<InstagramOutlined style={{ fontSize: '30px', color: '#464646' }} />
 													)}
-													&nbsp;&nbsp; @{this.state.profile.account}
-												</h3>
+													<h3>@{this.state.detail.account}</h3>
+												</div>
 											</a>
 											<h3 className='cv-detail-account-content-info-email'>
-												{this.state.profile.email}
+												{this.state.detail.email}
 											</h3>
 											<h3 className='cv-detail-account-content-info-detail'>
-												{this.state.profile.biography}
+												{this.state.detail.biography}
 											</h3>
 										</Col>
 									</Row>
 									<div className='cv-masonry-item-card-image-bg'></div>
 								</div>
-								<p className='cv-detail-account-descript'>{this.state.profile.description}</p>
+								<p className='cv-detail-account-descript'>{this.state.detail.description}</p>
 								<div>
-									{this.state.profile.categories.map(function (item, i) {
+									{this.state.detail.categories.map(function (item, i) {
 										return (
 											<Link to={`/category/${item}`} key={i}>
 												<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
@@ -128,7 +117,7 @@ class Account extends React.Component {
 							</Col>
 						</Row>
 						<div className='cv-detail-accounts-user-email-md'>
-							<CreateUser email={this.state.profile.email} />
+							<CreateUser email={this.state.detail.email} />
 						</div>
 					</Col>
 					<Col xs={24} sm={24} md={6}>
@@ -147,13 +136,13 @@ class Account extends React.Component {
 								<List
 									className='cv-detail-plans-list'
 									itemLayout='horizontal'
-									dataSource={this.state.profile.plans}
+									dataSource={this.state.detail.plans}
 									renderItem={(item) => (
 										<a
-											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.profile.code}${this.state.profile.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
 											<List.Item actions={[<WhatsAppOutlined />]}>
 												<List.Item.Meta
-													avatar={<Avatar src={this.state.profile.image} />}
+													avatar={<Avatar src={this.state.detail.image} />}
 													title={item.description}
 													description={`Precio: ${item.price} ${item.currency}`}
 												/>
@@ -165,12 +154,10 @@ class Account extends React.Component {
 						</div>
 					</Col>
 					<div className='cv-detail-accounts-user-email-xs'>
-						<CreateUser email={this.state.profile.email} />
+						<CreateUser email={this.state.detail.email} />
 					</div>
 				</Row>
-			</React.Fragment>
+			</>
 		)
 	}
 }
-
-export default Account
