@@ -3,7 +3,7 @@
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
 
-import { Layout, Row, Col } from 'antd'
+import { Layout, Row, Col, notification } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
 
 import { GoogleLogin } from 'react-google-login'
@@ -14,55 +14,49 @@ import serviceSaveUser from './services'
 
 const { Content } = Layout
 class Login extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			email: null,
-		}
+	state = {
+		email: null,
 	}
 
 	handleRedirect = () => {
-		if (this.state.redirect) {
-			return <Redirect to='/profile/create-account' />
+		
+	}
+
+	handleGoogleAuth = async (item) => {
+		if (!item.error) {
+			this.handleAuthLogin({
+				email: item.profileObj.email,
+				autentication: 'google',
+				first_name: item.profileObj.givenName,
+				last_name: item.profileObj.familyName,
+				image: item.profileObj.imageUrl,
+			})
 		}
 	}
 
-	handleGoogleAuth = async (data) => {
-		if (data.error) {
-			return
-		}
-		let profile = {
-			email: data.profileObj.email,
-			autentication: 'google',
-			first_name: data.profileObj.givenName,
-			last_name: data.profileObj.familyName,
-			image: data.profileObj.imageUrl,
-		}
-		await this.handleAuthLogin(profile)
-	}
-
-	handleFacebookAuth = async (data) => {
-		let name = data.name.split(' ')
-		let profile = {
-			email: data.email,
+	handleFacebookAuth = async (item) => {
+		let name = item.name.split(' ')
+		this.handleAuthLogin({
+			email: item.email,
 			autentication: 'facebook',
 			first_name: name[0],
 			last_name: name[1] ? name[1] : '',
-			image: data.picture.data.url,
-		}
-		await this.handleAuthLogin(profile)
+			image: item.picture.data.url,
+		})
 	}
 
-	handleAuthLogin = async (item) => {
-		await serviceSaveUser(item).then((data) => {
-			console.log('respuesta del registro', data)
+	handleAuthLogin = (item) => {
+		serviceSaveUser(item)
+		.then((response) => {
+			notification['success']({
+				message: `Bienvenido!!`,
+				description: `Su cuenta esta autorizada`,
+			})
 		})
-
 		localStorage.setItem('user', JSON.stringify(item))
 		this.setState({
 			email: item.email,
 		})
-
 		this.setState({ redirect: true })
 	}
 
@@ -128,10 +122,11 @@ class Login extends React.Component {
 									</center>
 								</div>
 							</Col>
-						</Row>
+						</Row>					
 					</Content>
-
-					{this.handleRedirect()}
+					{this.state.redirect &&
+						<Redirect to='/profile/create-account' />
+					}
 				</div>
 			</React.Fragment>
 		)
