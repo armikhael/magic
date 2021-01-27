@@ -42,7 +42,7 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
-				
+
 				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={Account} />
 
