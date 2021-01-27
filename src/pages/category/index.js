@@ -14,14 +14,11 @@ import { serviceGetAccountByCategory } from './services'
 
 const { Content } = Layout
 
-class Category extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			list: [],
-			page: 1,
-			hasMore: true,
-		}
+export default class Category extends React.Component {
+	state = {
+		list: [],
+		page: 1,
+		hasMore: true,
 	}
 
 	componentDidMount() {
@@ -72,4 +69,3 @@ class Category extends React.Component {
 		)
 	}
 }
-export default Category
