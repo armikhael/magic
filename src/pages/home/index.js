@@ -14,16 +14,13 @@ import serviceGetAccounts from './services'
 
 const { Content } = Layout
 
-class Home extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			page: 1,
-			list: [],
-			loading: true,
-			error: null,
-			hasMore: true,
-		}
+export default class Home extends React.Component {
+	state = {
+		page: 1,
+		list: [],
+		loading: true,
+		error: null,
+		hasMore: true,
 	}
 
 	componentDidMount() {
@@ -55,7 +52,7 @@ class Home extends React.Component {
 			return <PageError detailError={this.state.error} />
 		}
 		return (
-			<React.Fragment>
+			<>
 				<Content className='cv-container-main'>
 					<InfiniteScroll
 						dataLength={this.state.list.length}
@@ -65,9 +62,7 @@ class Home extends React.Component {
 						<ListMasonry listMasonry={this.state.list} />
 					</InfiniteScroll>
 				</Content>
-			</React.Fragment>
+			</>
 		)
 	}
 }
-
-export default Home
