@@ -22,6 +22,7 @@ import Register from '../pages/auth/register'
 import Recovery from '../pages/auth/recovery'
 import NotFound from '../pages/not-found'
 import Results from '../pages/results'
+import Help from '../pages/help'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
 
 const Routers = () => (
@@ -33,6 +34,7 @@ const Routers = () => (
 				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/results/:name' component={Results} />
+				<Route exact path='/help/' component={Help} />
 
 				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
