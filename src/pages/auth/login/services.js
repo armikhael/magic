@@ -16,6 +16,5 @@ export default async function serviceSaveUser(item) {
 	.catch((error) => {
 		returnResponse = error.response.data
 	})
-
 	return returnResponse
 }

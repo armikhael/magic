@@ -1,6 +1,5 @@
 /** @format */
 import axios from 'axios'
-require('dotenv').config()
 
 export default async function serviceGetAccounts(item) {
 	let returnResponse
@@ -14,6 +13,5 @@ export default async function serviceGetAccounts(item) {
 		.catch((error) => {
 			returnResponse = error.response.data
 		})
-
 	return returnResponse
 }
