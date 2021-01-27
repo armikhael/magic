@@ -6,12 +6,18 @@ import Moment from 'react-moment'
 import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
-import { EyeOutlined, ClockCircleOutlined, InstagramOutlined } from '@ant-design/icons'
+import {
+	EyeOutlined,
+	ClockCircleOutlined,
+	InstagramOutlined,
+	HeartOutlined,
+} from '@ant-design/icons'
 
 import './style.css'
 
 export default class Account extends React.Component {
 	render() {
+		console.log(this.props.account)
 		return (
 			<div className='cv-masonry-item'>
 				<div className='cv-masonry-item-card'>
@@ -67,6 +73,9 @@ export default class Account extends React.Component {
 									{this.props.account.type === 'instagram' && (
 										<InstagramOutlined style={{ fontSize: '30px' }} />
 									)}
+									<div>
+										<HeartOutlined style={{ color: '#ca0000' }} /> {this.props.account.counter}
+									</div>
 								</h3>
 							</Col>
 							<Col xs={24} sm={24} md={24}>
