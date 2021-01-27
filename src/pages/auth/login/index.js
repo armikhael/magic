@@ -2,26 +2,16 @@
 
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
-
-import { Layout, Row, Col, notification } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import { GoogleOutlined } from '@ant-design/icons'
-
 import { GoogleLogin } from 'react-google-login'
 //import FacebookLogin from 'react-facebook-login'
-
 import './style.css'
 import serviceSaveUser from './services'
-
 const { Content } = Layout
-class Login extends React.Component {
-	state = {
-		email: null,
-	}
-
-	handleRedirect = () => {
-		
-	}
-
+export default class Login extends React.Component {
+	state = { email: null }
+	
 	handleGoogleAuth = async (item) => {
 		if (!item.error) {
 			this.handleAuthLogin({
@@ -47,17 +37,12 @@ class Login extends React.Component {
 
 	handleAuthLogin = (item) => {
 		serviceSaveUser(item)
-		.then((response) => {
-			notification['success']({
-				message: `Bienvenido!!`,
-				description: `Su cuenta esta autorizada`,
-			})
-		})
+		.then(() => {})
 		localStorage.setItem('user', JSON.stringify(item))
-		this.setState({
-			email: item.email,
+		this.setState({ 
+			email: item.email, 
+			redirect: true
 		})
-		this.setState({ redirect: true })
 	}
 
 	render() {
@@ -132,5 +117,3 @@ class Login extends React.Component {
 		)
 	}
 }
-
-export default Login

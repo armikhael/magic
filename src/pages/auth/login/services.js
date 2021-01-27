@@ -2,6 +2,7 @@
 /** @format */
 
 import axios from 'axios'
+import { notification } from 'antd'
 
 export default async function serviceSaveUser(item) {
 	let returnResponse
@@ -12,6 +13,10 @@ export default async function serviceSaveUser(item) {
 	})
 	.then((response) => {
 		returnResponse = response.data
+		notification['success']({
+			message: `Bienvenido!!`,
+			description: `Su cuenta esta autorizada`,
+		})
 	})
 	.catch((error) => {
 		returnResponse = error.response.data
