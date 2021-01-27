@@ -99,16 +99,6 @@ export const rules = {
 		{
 			required: true,
 			message: 'Debe agregar su cuenta',
-		},
-		{
-			validator: (_, value) => {
-				console.log('valudando', value);
-				let patron = /^[A-Z]+$/i; 
-				if (patron.test(value)) {
-						return Promise.resolve();
-				}
-				return Promise.reject('Sólo se permiten letras, no coloque "@"');
-			}
 		}
 	]
 }
