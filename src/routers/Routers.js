@@ -23,6 +23,9 @@ import Recovery from '../pages/auth/recovery'
 import NotFound from '../pages/not-found'
 import Results from '../pages/results'
 import Help from '../pages/help'
+import HelpAboutUs from '../pages/help/pages/about-us'
+import HelpRegister from '../pages/help/pages/register'
+import HelpBenefits from '../pages/help/pages/benefits'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
 
 const Routers = () => (
@@ -35,6 +38,9 @@ const Routers = () => (
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/results/:name' component={Results} />
 				<Route exact path='/help/' component={Help} />
+				<Route exact path='/help/about-us/' component={HelpAboutUs} />
+				<Route exact path='/help/register/' component={HelpRegister} />
+				<Route exact path='/help/benefits/' component={HelpBenefits} />
 
 				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
