@@ -26,6 +26,13 @@ export default class AboutUs extends React.Component {
                   una agencia de Publicidad y Marketing que se ha visto la necesidad de crear un espacio para influencers dispuestos a brindar 
                   sus servicios publicitarios para empresas y negocios que necesitan dar a conocer sus productos
                 </p>
+                <iframe 
+                  width="560" 
+                  height="315" 
+                  src="https://www.youtube.com/embed/u0ji8h6BFos" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen title="AboutUs"></iframe>
               </Col>
             </Row>
           </Layout>

@@ -22,7 +22,13 @@ export default class Register extends React.Component {
               <Col span={16}>
                 <h2>¿Cómo registrarse?</h2>
                 <p>El proceso es bastante sencillo, en el vídeo te explicaremos el paso a paso de como hacerlo</p>
-
+                <iframe 
+                  width="560" 
+                  height="315" 
+                  src="https://www.youtube.com/embed/u0ji8h6BFos" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen title="AboutUs"></iframe>
               </Col>
             </Row>
           </Layout>
