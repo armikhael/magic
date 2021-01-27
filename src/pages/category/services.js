@@ -6,11 +6,7 @@ const serviceGetAccountByCategory = async (name, page) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account/category`,
-		params: {
-			name: name,
-			page: page,
-		},
+		url: `${process.env.REACT_APP_HOST}/account/category?name=${name}&page=${page}`,
 	})
 		.then((response) => {
 			returnResponse = response.data
