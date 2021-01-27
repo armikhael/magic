@@ -2,16 +2,20 @@
 
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { Layout, Row, Col } from 'antd'
-import { GoogleOutlined } from '@ant-design/icons'
 import { GoogleLogin } from 'react-google-login'
 //import FacebookLogin from 'react-facebook-login'
+
+import { Layout, Row, Col } from 'antd'
+import { GoogleOutlined } from '@ant-design/icons'
+
 import './style.css'
 import serviceSaveUser from './services'
+
 const { Content } = Layout
+
 export default class Login extends React.Component {
 	state = { email: null }
-	
+
 	handleGoogleAuth = async (item) => {
 		if (!item.error) {
 			this.handleAuthLogin({
@@ -36,18 +40,17 @@ export default class Login extends React.Component {
 	}
 
 	handleAuthLogin = (item) => {
-		serviceSaveUser(item)
-		.then(() => {})
+		serviceSaveUser(item).then(() => {})
 		localStorage.setItem('user', JSON.stringify(item))
-		this.setState({ 
-			email: item.email, 
-			redirect: true
+		this.setState({
+			email: item.email,
+			redirect: true,
 		})
 	}
 
 	render() {
 		return (
-			<React.Fragment>
+			<>
 				<div className='cv-login-content'>
 					<Content className='cv-container-main'>
 						<Row className='cv-login-conteent-row' align='middle'>
@@ -107,13 +110,11 @@ export default class Login extends React.Component {
 									</center>
 								</div>
 							</Col>
-						</Row>					
+						</Row>
 					</Content>
-					{this.state.redirect &&
-						<Redirect to='/profile/create-account' />
-					}
+					{this.state.redirect && <Redirect to='/profile/create-account' />}
 				</div>
-			</React.Fragment>
+			</>
 		)
 	}
 }
