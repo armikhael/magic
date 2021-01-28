@@ -33,6 +33,10 @@ p {
 	text-align: right;
 }
 
+.ant-layout {
+	background: transparent;
+}
+
 @media only screen and (min-width: 960px) {
 	.cv-container-main {
 		max-width: 940px;
