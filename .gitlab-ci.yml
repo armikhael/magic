@@ -20,7 +20,7 @@ deploy develop:
         - dpl --provider=heroku --app=$HEROKU_DEV --api-key=$API_KEY
 
 deploy production:
-    stage: deploy-develop
+    stage: deploy-production
     script:
         - apt-get update -qy
         - apt-get install -y ruby-dev
