@@ -1,11 +1,12 @@
 stages:
-  - deploy-dev
+  - deploy-develop
+  - deploy-production
 
 variables:
   HEADER: 'PRIVATE-TOKEN: ${TOKEN_GITLAB}'
 
-deploy dev:
-    stage: deploy-dev
+deploy develop:
+    stage: deploy-develop
     script:
         - apt-get update -qy
         - apt-get install -y ruby-dev
@@ -17,8 +18,22 @@ deploy dev:
         - git add . 
         - git commit -am "update"
         - dpl --provider=heroku --app=$HEROKU_DEV --api-key=$API_KEY
+
+deploy production:
+    stage: deploy-develop
+    script:
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
+        - gem install dpl
+        - wget --header="${HEADER}" $ENV_MASTER -O .env
+        - git config --global user.email "diego.carciente@gmail.com"
+        - git config --global user.name "dirlant"
+        - git add -f .env
+        - git add . 
+        - git commit -am "update"
+        - dpl --provider=heroku --app=$HEROKU_MASTER --api-key=$API_KEY
  
     only:
-        - develop
+        - master
 
 
