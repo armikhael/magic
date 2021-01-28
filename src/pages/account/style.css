@@ -1,0 +1,282 @@
+/** @format */
+
+.cv-detail-content-accoun {
+	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
+	background-color: #fff;
+	border-radius: 0 0 0 50px;
+	border-radius: 12px;
+	margin: 20px;
+	padding: 20px;
+}
+
+.cv-detail-whatsapp-icon {
+	position: absolute;
+	right: 20px;
+	font-size: 24px;
+	top: 0px;
+	z-index: 1;
+}
+
+.cv-detail-whatsapp-icon-i {
+	color: #f61073;
+}
+
+.cv-detail-content-account-detail {
+	padding: 0 50px;
+	position: relative;
+}
+
+.cv-detail-img-content-account-verified {
+	width: 45px;
+	margin-top: -7px;
+	margin-left: 10px;
+}
+
+.cv-detail-title-main {
+	font-weight: 900;
+	color: #53565d;
+	line-height: 50px;
+	text-decoration: none;
+	font-size: 40px;
+	margin-top: 30px;
+	text-transform: uppercase;
+}
+
+.cv-detail-sub-title {
+	font-size: 14px;
+	color: #3c5b68;
+}
+
+.cv-detail-account-category-title {
+	padding: 4px 15px;
+	background-color: #200159;
+	font-size: 11px;
+	line-height: 14px;
+	color: #fff;
+	border-radius: 4px;
+	font-weight: 900;
+	margin-right: 10px;
+	cursor: pointer;
+	float: right;
+	text-transform: uppercase;
+}
+
+.cv-detail-account-img-main-contnet {
+	margin-top: 20px;
+	overflow: hidden;
+	border-radius: 12px;
+	position: relative;
+}
+
+.cv-detail-account-img-main {
+	width: 100%;
+	border-radius: 12px;
+	margin-top: 15px;
+	-webkit-transition: all 0.6s ease;
+	transition: all 0.6s ease;
+	z-index: 1;
+	margin-bottom: 15px;
+	border-radius: 50%;
+}
+
+.cv-detail-account-content-info {
+	padding: 10px 40px;
+	margin-top: 25px;
+}
+
+.cv-detail-account-content-info-country {
+	color: #5d5d5d;
+	font-size: 20px;
+	text-transform: capitalize;
+}
+
+.cv-detail-account-content-info-account {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.cv-detail-account-content-info-account h3 {
+	margin-left: 10px;
+	font-size: 14px;
+	color: #f61073;
+	font-weight: 900;
+	margin-top: 3px;
+}
+
+.cv-detail-account-content-info-email {
+	font-size: 15px;
+	color: #444;
+	font-style: italic;
+}
+
+.cv-detail-account-descript {
+	color: #5c5c5c;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 26px;
+	margin-top: 20px;
+}
+
+.cv-detail-category-tag {
+	font-size: 14px;
+	color: #5c5c5c;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.cv-detail-category-tag:hover {
+	color: #200159;
+	font-weight: 500;
+}
+
+.cv-detail-contente-user-create {
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	background-color: #fff;
+	border-radius: 12px;
+	margin: 20px;
+	padding: 20px;
+}
+
+.cv-detail-hr {
+	border: 0.5px solid #e8e8e8;
+	width: 95%;
+}
+
+.cv-detail-user-create-title {
+	color: #2c2d2f;
+	font-size: 17px;
+}
+
+.cv-detail-content-plans {
+	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
+	background-color: #fff;
+	border-radius: 0 0 0 50px;
+	margin-bottom: 20px;
+	height: 100vh;
+}
+
+.cv-detail-content-plans-main {
+	padding: 20px 30px;
+}
+
+.cv-detail-plans-content-images {
+	text-align: center;
+}
+
+.cv-detail-plans-images {
+	width: 100%;
+	max-width: 100%;
+}
+
+.cv-detail-plans-title {
+	margin-top: 30px;
+	color: #2c2d2f;
+	font-size: 17px;
+}
+
+.cv-detail-plans-hr {
+	border: 1px solid #200159;
+	display: block;
+	height: 5px;
+	width: 25px;
+	border-radius: 2px;
+	background-color: #200159;
+	margin-bottom: 20px;
+}
+
+.cv-detail-plans-content-plan {
+	margin-bottom: 20px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.cv-detail-plans-images-plan {
+	width: 48px;
+	height: auto;
+	border-radius: 6px;
+	float: left;
+	margin-right: 10px;
+}
+
+.cv-detail-plans-title-plan-title {
+	margin-bottom: 5px;
+	color: #3a3a3a;
+	font-size: 16px;
+}
+
+.cv-detail-plans-title-plan-title-price {
+	margin-top: 5px;
+	color: #888888;
+}
+
+.cv-detail-plans-list {
+	overflow-y: scroll;
+	height: 400px;
+}
+
+.cv-detail-accounts-user-email-xs {
+	display: none;
+}
+
+@media (max-width: 768px) {
+	.cv-detail-content-accoun {
+		margin: 10px;
+		padding: 10px;
+	}
+	.cv-detail-content-account-detail {
+		padding: 0 10px;
+		font-size: 16px;
+	}
+	.cv-detail-account-category-title {
+		float: none;
+		display: block;
+		width: 150px;
+		margin: 0 auto;
+		margin-top: 12px;
+	}
+	.cv-detail-title-main {
+		font-size: 25px;
+		text-align: center;
+		margin-top: 15px;
+	}
+	.cv-detail-img-content-account-verified {
+		width: 20px;
+	}
+	.cv-detail-plans-content-images {
+		display: none;
+	}
+	.cv-detail-sub-title {
+		text-align: center;
+	}
+	.cv-detail-account-img-main {
+		width: 150px;
+	}
+	.cv-detail-account-img-main-content {
+		text-align: center;
+	}
+	.cv-detail-account-content-info {
+		margin-top: 0px;
+		text-align: center;
+	}
+	.cv-detail-account-content-info-detail {
+		font-size: 16px;
+	}
+	.cv-detail-accounts-user-email-md {
+		display: none;
+	}
+	.cv-detail-accounts-user-email-xs {
+		display: block;
+	}
+	.cv-detail-content-plans {
+		border-radius: 12px;
+		margin-bottom: 0px;
+		margin: 10px;
+		height: auto;
+	}
+	.cv-detail-contente-user-create {
+		margin: 0px;
+	}
+	.cv-detail-plans-list {
+		height: auto;
+	}
+}

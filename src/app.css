@@ -1,0 +1,51 @@
+/** @format */
+
+body,
+html {
+	background-color: #f9f9f9;
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.mt15 {
+	margin-top: 15px;
+}
+
+.mb15 {
+	margin-bottom: 15px;
+}
+
+.p20 {
+	padding: 20px;
+}
+
+.aling-right {
+	text-align: right;
+}
+
+.ant-layout {
+	background: transparent;
+}
+
+@media only screen and (min-width: 960px) {
+	.cv-container-main {
+		max-width: 940px;
+	}
+}
+
+@media only screen and (min-width: 1264px) {
+	.cv-container-main {
+		max-width: 1300px;
+		margin: 0 auto;
+	}
+}

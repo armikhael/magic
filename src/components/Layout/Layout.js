@@ -1,9 +1,25 @@
 /** @format */
 
 import React from 'react'
+import { withRouter } from 'react-router-dom'
+import Header from '../../components/Header/'
 
 function Layout(props) {
-	return <React.Fragment>{props.children}</React.Fragment>
+
+	const handleLayouts = () => {
+		if (props.location.pathname === '/auth/login') {
+			return <>{props.children}</>
+		} else {
+			return (
+				<>
+					<Header />
+					{props.children}
+				</>
+			)
+		}
+	}
+
+	return <React.Fragment>{handleLayouts()}</React.Fragment>
 }
 
-export default Layout
+export default withRouter(Layout)

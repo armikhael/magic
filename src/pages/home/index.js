@@ -1,46 +1,68 @@
 /** @format */
 
 import React from 'react'
-import { Button, DatePicker } from 'antd'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
-import Navbar from '../../components/Navbar/Navbar'
-import Footer from '../../components/Footer/Footer'
+import { Layout } from 'antd'
+
+import Loading from '../../components/Loading/Loading'
+import ListMasonry from '../../components/ListMasonry/'
+import PageError from '../../components/Errors/PageError'
 
 import './style.css'
-import servicesHome from './services'
+import serviceGetAccounts from './services'
 
-class Home extends React.Component {
-	constructor(props) {
-		super(props)
-		console.log('1. constructor')
+const { Content } = Layout
 
-		this.state = {
-			title: 'Hola Mundo!',
-		}
-	}
-
-	handleServicesHome = (item) => {
-		servicesHome(this.state.title)
+export default class Home extends React.Component {
+	state = {
+		page: 1,
+		list: [],
+		loading: true,
+		error: null,
+		hasMore: true,
 	}
 
 	componentDidMount() {
-		console.log('3. componentDidMount')
-		this.handleServicesHome()
+		this.handleList()
+	}
+
+	handleList = () => {
+		serviceGetAccounts(this.state.page).then((response) => {
+			if (response.status === 200) {
+				this.setState({
+					list: [...this.state.list, ...response.data.data],
+					page: this.state.page + 1,
+					loading: false,
+				})
+			} else {
+				this.setState({
+					loading: false,
+					error: response,
+				})
+			}
+		})
 	}
 
 	render() {
+		if (this.state.loading) {
+			return <Loading />
+		}
+		if (this.state.error) {
+			return <PageError detailError={this.state.error} />
+		}
 		return (
-			<div>
-				<Navbar />
-				<h1>{this.state.title}</h1>
-				<p>{process.env.REACT_APP_ENVIROMENT}</p>
-				<>
-					<Button type='primary'>PRESS ME</Button>
-					<DatePicker placeholder='select date' />
-				</>
-				<Footer />
-			</div>
+			<>
+				<Content className='cv-container-main'>
+					<InfiniteScroll
+						dataLength={this.state.list.length}
+						next={this.handleList}
+						hasMore={this.state.hasMore}
+						loader={<center></center>}>
+						<ListMasonry listMasonry={this.state.list} />
+					</InfiniteScroll>
+				</Content>
+			</>
 		)
 	}
 }
-export default Home

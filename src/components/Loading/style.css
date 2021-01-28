@@ -1,0 +1,10 @@
+/** @format */
+
+.loading {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 75vh;
+	width: 100%;
+}
