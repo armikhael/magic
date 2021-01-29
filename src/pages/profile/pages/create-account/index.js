@@ -47,16 +47,10 @@ class CreateAccount extends React.Component {
 			modalsContact: false,
 			modalsVerification: false,
 			countries: [],
-			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+			quantity: config.quantityPost,
 			timeContcept: config.times,
 			socialNet: config.socialNet,
-			concepts: {
-				instagram: config.typeOfPost.instagram,
-				facebook: config.typeOfPost.facebook,
-				tiktok: config.typeOfPost.tiktok,
-				twitter: config.typeOfPost.twitter,
-				youtube: config.typeOfPost.youtube
-			},
+			concepts: config.typeOfPost,
 			currency: 'Dólares',
 		}
 	}
