@@ -2,12 +2,12 @@
 
 import axios from 'axios'
 
-const updateAccount = async (body) => {
+const updateAccount = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'PUT',
 		url: `${process.env.REACT_APP_HOST}/account`,
-		data: body,
+		data: item,
 	})
 		.then((response) => {
 			returnResponse = response.data[0]

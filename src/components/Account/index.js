@@ -6,12 +6,7 @@ import Moment from 'react-moment'
 import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
-import {
-	EyeOutlined,
-	ClockCircleOutlined,
-	InstagramOutlined,
-	HeartOutlined,
-} from '@ant-design/icons'
+import { EyeOutlined, ClockCircleOutlined, InstagramOutlined } from '@ant-design/icons'
 
 import './style.css'
 
@@ -73,8 +68,9 @@ export default class Account extends React.Component {
 									{this.props.account.type === 'instagram' && (
 										<InstagramOutlined style={{ fontSize: '30px' }} />
 									)}
-									<div>
-										<HeartOutlined style={{ color: '#ca0000' }} /> {this.props.account.counter}
+									<div className='mt10'>
+										<EyeOutlined style={{ color: '#ca0000', fontSize: '12px' }} />{' '}
+										{this.props.account.counter}
 									</div>
 								</h3>
 							</Col>

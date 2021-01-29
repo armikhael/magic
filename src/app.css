@@ -17,6 +17,10 @@ p {
 	font-family: 'Montserrat', sans-serif;
 }
 
+.mt10 {
+	margin-top: 10px;
+}
+
 .mt15 {
 	margin-top: 15px;
 }
