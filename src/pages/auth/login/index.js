@@ -112,7 +112,7 @@ export default class Login extends React.Component {
 							</Col>
 						</Row>
 					</Content>
-					{this.state.redirect && <Redirect to='/profile/create-account' />}
+					{this.state.redirect && <Redirect to='/profile/' />}
 				</div>
 			</>
 		)
