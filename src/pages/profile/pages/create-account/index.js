@@ -48,7 +48,14 @@ class CreateAccount extends React.Component {
 			countries: [],
 			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
-			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
+			socialNet: ['Instagram', 'Facebook', 'Tiktok', 'Twitter', 'YouTube'],
+			concepts: {
+				instagram: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Instagram Live(s)' , 'Reel(s)', 'Video(s)', 'Carousel(es)'],
+				facebook: ['Imagen(es)', 'Video(s', 'Historia(s)', 'Facebook Live(s)'],
+				tiktok: ['Video(s)'],
+				twitter: ['Tweet(s)', 'Tweet(s) con Video(s)', 'Tweet(s) con Audio(s)'],
+				youtube: ['Video(s) 5 min', 'Video(s) 10 min', 'Video(s) +10 min']
+			},
 			currency: 'Dólares',
 		}
 	}
@@ -203,6 +210,16 @@ class CreateAccount extends React.Component {
 		})
 	}
 
+	handleSelectType = (e) => {
+		console.log(e.option, e.value)
+		this.setState({
+			[e.option]: e.value.toLowerCase(),
+			conceptsSelected: this.state.concepts[e.value.toLowerCase()],
+			plans: [],
+			selectConcept: this.state.concepts[e.value.toLowerCase()][0]
+		})
+	}
+
 	handleRedirect = () => {
 		if (this.state.redirect) {
 			return <Redirect to={`/profile/activation/${btoa(this.state.name)}`} />
@@ -245,9 +262,13 @@ class CreateAccount extends React.Component {
 											<Form.Item 
 												name='type'
 												label='Tipo de cuenta'
-												rules={rules.rulesSelect}>											
-												<Select onChange={(e) => this.handleSelect({ option: 'type', value: e })}>
-													<Option value='instagram'>Instagram</Option>
+												rules={rules.rulesSelect}>																				
+												<Select 
+													onChange={(e) => this.handleSelectType({ option: 'type', value: e })}
+													placeholder='Seleccionar'>
+													{this.state.socialNet.map((item) => (
+														<Option key={item}>{item}</Option>
+													))}
 												</Select>
 											</Form.Item>
 											<Form.Item
@@ -272,10 +293,12 @@ class CreateAccount extends React.Component {
 										<h3 className='cv-create-account-from-title'>Información</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item
-												name='country'
+												name='country'												
 												label='¿En que país te encuentras actualmente?'
 												rules={rules.rulesSelect}>
-												<Select onChange={this.handleChangeCountry} placeholder='Seleccionar'>
+												<Select 
+													onChange={this.handleChangeCountry}
+													placeholder='Seleccionar'>
 													{this.state.countries.map((item, i) => {
 														return (
 															<Option
@@ -346,13 +369,14 @@ class CreateAccount extends React.Component {
 									</Col>
 								</Row>
 
+								{this.state.conceptsSelected &&
 								<Row>
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>
 											Informa el precio de tus servicios
 										</h3>
-										<Card className='cv-create-account-card-custom'>
-											<Row>
+										<Card className='cv-create-account-card-custom'>							
+											<Row>												
 												<Col span={24}>
 													<p>¿Cuáles son tus tarifas publicitarios?</p>
 													<Form.Item label='Ejemplo: 2 Historias'>
@@ -368,13 +392,14 @@ class CreateAccount extends React.Component {
 																</Option>
 															))}
 														</Select>
+														
 														<Select
 															placeholder='Seleccionar'
 															style={{ width: '70%' }}
 															onChange={(e) =>
 																this.handleSelect({ option: 'selectConcept', value: e })
 															}>
-															{this.state.concepts.map((item) => (
+															{this.state.conceptsSelected.map((item) => (
 																<Option key={item}>{item}</Option>
 															))}
 														</Select>
@@ -435,10 +460,11 @@ class CreateAccount extends React.Component {
 														)}
 													/>
 												</Col>
-											</Row>
+											</Row>											
 										</Card>
 									</Col>
 								</Row>
+								}
 
 								<div className='cv-create-account-btn-submit'>
 									<Button type='primary' shape='round' onClick={this.handleSubmit}>
