@@ -21,8 +21,8 @@ export default class Account extends React.Component {
 	}
 
 	componentDidMount() {
-		serviceGetAccount(this.props.match.params.name).then((responde) => {
-			this.setState({ loading: false, detail: responde })
+		serviceGetAccount(this.props.match.params.name).then((response) => {
+			this.setState({ loading: false, detail: response })
 		})
 	}
 

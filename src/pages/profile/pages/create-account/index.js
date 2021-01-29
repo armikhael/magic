@@ -101,7 +101,7 @@ class CreateAccount extends React.Component {
 			image: process.env.REACT_APP_LOGO,
 			categories: this.state.categories,
 			plans: this.state.plans,
-			phone: this.state.code + this.state.phone,
+			phone: this.state.phone,
 			code: this.state.code,
 			country: this.state.country,
 		}
