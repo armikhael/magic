@@ -14,10 +14,12 @@ const { Option } = Select
 export default function SearchNavbar() {
 	let history = useHistory()
 	const [isCategories, setCategories] = useState([])
+	const [isCountries, setCountries] = useState([])
 
 	useEffect(() => {
 		serviceGetCategories().then((response) => {
-			setCategories(response.data)
+			setCategories(response.categories)
+			setCountries(response.countries)
 		})
 	}, [])
 
@@ -43,6 +45,25 @@ export default function SearchNavbar() {
 						return (
 							<Option key={i}>
 								<Link to={`/category/${item.name.replaceAll(' ', '-')}`}>{item.name}</Link>
+							</Option>
+						)
+					})}
+				</Select>
+				<Select
+					defaultValue={
+						<img
+							width='25px'
+							className='cv-header-search-icon-category'
+							src='https://i.ibb.co/mzMWjY8/categorias.png'
+							alt='Categorias'
+						/>
+					}
+					className='cv-header-search-select'
+					dropdownClassName='cv-header-search-select-option'>
+					{isCountries.map((item, i) => {
+						return (
+							<Option key={i}>
+								<Link to={`/country/${item.name.replaceAll(' ', '-')}`}>{item.name}</Link>
 							</Option>
 						)
 					})}

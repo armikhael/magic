@@ -22,6 +22,7 @@ import {
 import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import { rules } from '../../../../components/ServiceCommons/Rules'
+import { config } from '../../../../components/ServiceCommons/Config'
 import { serviceGetAccount } from '../../../../components/ServiceCommons/GetAccount'
 import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
@@ -45,13 +46,13 @@ export default class EditAccount extends React.Component {
 			plans: [],
 			countries: [],
 			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
+			timeContcept: config.times,
 			concepts: {
-				instagram: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Instagram Live(s)' , 'Reel(s)', 'Video(s)', 'Carousel(es)'],
-				facebook: ['Imagen(es)', 'Video(s', 'Historia(s)', 'Facebook Live(s)'],
-				tiktok: ['Video(s)'],
-				twitter: ['Tweet(s)', 'Tweet(s) con Video(s)', 'Tweet(s) con Audio(s)'],
-				youtube: ['Video(s) 5 min', 'Video(s) 10 min', 'Video(s) +10 min']
+				instagram: config.typeOfPost.instagram,
+				facebook: config.typeOfPost.facebook,
+				tiktok: config.typeOfPost.tiktok,
+				twitter: config.typeOfPost.twitter,
+				youtube: config.typeOfPost.youtube
 			},
 			currency: 'Dólares',
 			redirect: false,
