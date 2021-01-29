@@ -20,6 +20,7 @@ import {
 import { RocketOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import { rules } from '../../../../components/ServiceCommons/Rules'
+import { config } from '../../../../components/ServiceCommons/Config'
 import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
 import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
 
@@ -47,7 +48,7 @@ class CreateAccount extends React.Component {
 			modalsVerification: false,
 			countries: [],
 			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
+			timeContcept: config.times,
 			socialNet: ['Instagram', 'Facebook', 'Tiktok', 'Twitter', 'YouTube'],
 			concepts: {
 				instagram: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Instagram Live(s)' , 'Reel(s)', 'Video(s)', 'Carousel(es)'],
