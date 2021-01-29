@@ -94,6 +94,7 @@ export default class Account extends React.Component {
 													<h3>@{this.state.detail.account}</h3>
 												</div>
 											</a>
+											<p>Cantidad de Visitas: {this.state.detail.counter}</p>
 											<h3 className='cv-detail-account-content-info-email'>
 												{this.state.detail.email}
 											</h3>

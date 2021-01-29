@@ -279,4 +279,7 @@
 	.cv-detail-plans-list {
 		height: auto;
 	}
+	.cv-detail-account-content-info-account {
+		display: block;
+	}
 }
