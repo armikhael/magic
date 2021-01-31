@@ -153,7 +153,7 @@
 	color: #464646;
 	position: absolute;
 	right: -5px;
-	top: -10px;
+	top: -20px;
 }
 
 .cv-fa-heart {
@@ -206,6 +206,6 @@
 		line-height: 27px;
 	}
 	.cv-masonry-item-gird-like-card-title {
-		top: -15px;
+		top: -40px;
 	}
 }

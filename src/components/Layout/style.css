@@ -1,0 +1,39 @@
+/** @format */
+
+.cv-layout-btn-help {
+	position: fixed;
+	z-index: 660;
+	bottom: 25px;
+	right: 16px;
+	animation-delay: 100ms;
+	box-shadow: rgb(0 0 0 / 10%) 0px 2px 0px 0px, rgb(0 0 0 / 4%) 0px 0px 0px 0.5px;
+	transform: translateY(0px);
+	transition-delay: 100ms;
+	transition-duration: 0.85s;
+	transition-timing-function: cubic-bezier(0.19, 1.32, 0.48, 1);
+	width: 45px !important;
+	height: 45px !important;
+}
+
+.cv-layout-btn-help:hover {
+	color: #f61073;
+	border-color: #f61073;
+}
+
+.cv-layout-btn-help:hover > .anticon-question {
+	font-size: 25px;
+}
+
+.cv-layout-btn-help > .anticon-question {
+	font-size: 23px;
+}
+
+@media screen and (max-width: 768px) {
+	.cv-layout-btn-help {
+		width: 40px !important;
+		height: 40px !important;
+	}
+	.cv-layout-btn-help > .anticon-question {
+		font-size: 20px;
+	}
+}

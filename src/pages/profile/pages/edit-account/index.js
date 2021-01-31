@@ -22,6 +22,7 @@ import {
 import { RocketOutlined, AntDesignOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import { rules } from '../../../../components/ServiceCommons/Rules'
+import { config } from '../../../../components/ServiceCommons/Config'
 import { serviceGetAccount } from '../../../../components/ServiceCommons/GetAccount'
 import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
@@ -44,9 +45,9 @@ export default class EditAccount extends React.Component {
 			auxPrice: null,
 			plans: [],
 			countries: [],
-			quantity: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-			timeContcept: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
-			concepts: ['Publicación(es)', 'Historia(s)', 'IGTV', 'Reel(s)', 'Video(s)', 'Carousel(es)'],
+			quantity: config.quantityPost,
+			timeContcept: config.times,
+			concepts: config.typeOfPost,
 			currency: 'Dólares',
 			redirect: false,
 		}
@@ -69,7 +70,8 @@ export default class EditAccount extends React.Component {
 			code: response.code,
 			categories: response.categories,
 			plans: response.plans,
-			biography: response.biography
+			biography: response.biography,
+			conceptsSelected: this.state.concepts[response.type]
 		})
 
 		console.log('account:', this.state.accountDetails._id)
@@ -378,6 +380,7 @@ export default class EditAccount extends React.Component {
 										</Card>
 									</Col>
 								</Row>
+								{this.state.conceptsSelected &&
 								<Row>
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>
@@ -390,7 +393,7 @@ export default class EditAccount extends React.Component {
 													<Form.Item label='Opciones Publicitarias'>
 														<Select
 															placeholder='Seleccionar'
-															style={{ width: 120 }}
+															style={{ width: '30%' }}
 															onChange={(e) =>
 																this.handleSelect({ option: 'selectQuantityConcept', value: e })
 															}>
@@ -402,11 +405,11 @@ export default class EditAccount extends React.Component {
 														</Select>
 														<Select
 															placeholder='Seleccionar'
-															style={{ width: 120 }}
+															style={{ width: '70%' }}
 															onChange={(e) =>
 																this.handleSelect({ option: 'selectConcept', value: e })
 															}>
-															{this.state.concepts.map((item) => (
+															{this.state.conceptsSelected.map((item) => (
 																<Option key={item}>{item}</Option>
 															))}
 														</Select>
@@ -472,7 +475,7 @@ export default class EditAccount extends React.Component {
 										</Card>
 									</Col>
 								</Row>
-
+								}
 								<div className='cv-create-account-btn-submit'>
 									<Button type='primary' shape='round' onClick={this.handleSubmit}>
 										Actualizar
