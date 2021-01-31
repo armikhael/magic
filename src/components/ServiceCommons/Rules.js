@@ -62,22 +62,18 @@ export const rules = {
     ],
     rulesPrice: [
 		{
-			required: true,
-			message: 'Ingrese el precio',
-		},
-		{
 			min: 1,
 			message: 'Minimo 1 caracter!',
-        },
-        {
-            validator: (_, value) => {
-                let patron = /^\d*$/; 
-                if (patron.test(value)) {
-                    return Promise.resolve();
-                }
-                return Promise.reject('Sólo se permiten números positivos');
-            }
-        }
+    },
+		{
+			validator: (_, value) => {
+				let patron = /^\d*$/; 
+				if (patron.test(value)) {
+						return Promise.resolve();
+				}
+				return Promise.reject('Sólo se permiten números');
+			}
+		}
 	],
 	rulesSelect: [
 		{

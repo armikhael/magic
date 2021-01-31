@@ -402,11 +402,11 @@ class CreateAccount extends React.Component {
 													</Form.Item> */}
 													<Form.Item
 														label={`Precio en ${this.state.currency}`}
+														name='price' 
 														onChange={this.handleChangeInput}
 														rules={rules.rulesPrice}>
 														<Input name='auxPrice' placeholder={`${this.state.currency}`} />
-													</Form.Item>
-
+													</Form.Item>													
 													<div className='cv-create-account-btn-add-content'>
 														<Button type='primary' shape='round' onClick={this.handleButtonPlans}>
 															AGREGAR
