@@ -36,7 +36,6 @@ export default class Account extends React.Component {
 					<div className='cv-masonry-item-card-titles'>
 						<Link to={`/${this.props.account.name}`}>
 							<h3 className='cv-masonry-item-title'>
-								{this.props.account.account}{' '}
 								{this.props.account.eneable && (
 									<img
 										width='15px'
@@ -44,9 +43,11 @@ export default class Account extends React.Component {
 										alt='verificado'
 										title='verificado'
 									/>
-								)}
+								)}{' '}
+								{this.props.account.account}{' '}
 							</h3>
 						</Link>
+						<p>{this.props.account.biography}</p>
 						<div className='cv-masonry-item-card-more'>
 							<Link className='cv-masonry-item-card-more-title' to={`/${this.props.account.name}`}>
 								Leer más

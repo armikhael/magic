@@ -17,7 +17,6 @@ export default function SearchNavbar() {
 
 	useEffect(() => {
 		serviceGetCategories().then((response) => {
-			console.log(response)
 			setMenu(response)
 		})
 	}, [])
