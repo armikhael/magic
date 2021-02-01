@@ -4,8 +4,8 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
-import { Row, Col, List, Avatar } from 'antd'
-import { WhatsAppOutlined, InstagramOutlined } from '@ant-design/icons'
+import { Row, Col, List, Avatar , Badge} from 'antd'
+import { WhatsAppOutlined, InstagramOutlined, NotificationOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
@@ -132,6 +132,12 @@ export default class Account extends React.Component {
 										src='https://www.womgp.com/blog/wp-content/uploads/2018/04/5-tendencias-influencer-marketing-2017-810x473.jpg'
 									/>
 								</div>
+								<a href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
+									<Badge dot>
+										<NotificationOutlined />
+										Intercambios (Canje) a Convenir
+									</Badge>
+								</a>
 								<h3 className='cv-detail-plans-title'>Planes</h3>
 								<div className='cv-detail-plans-hr'></div>
 								<List
