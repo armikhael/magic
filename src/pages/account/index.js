@@ -140,7 +140,7 @@ export default class Account extends React.Component {
 									dataSource={this.state.detail.plans}
 									renderItem={(item) => (
 										<a
-											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola,+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
 											<List.Item actions={[<WhatsAppOutlined />]}>
 												<List.Item.Meta
 													avatar={<Avatar src={this.state.detail.image} />}
