@@ -6,7 +6,7 @@ const serviceGetCategories = async () => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/category`,
+		url: `${process.env.REACT_APP_HOST}/home/init`,
 	})
 		.then((response) => {
 			returnResponse = response.data

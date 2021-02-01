@@ -2,11 +2,11 @@
 
 import axios from 'axios'
 
-const serviceGetAccountByCategory = async (name, page) => {
+const serviceGetAccountByCountry = async (name, page) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/search?category=${name}&page=${page}`,
+		url: `${process.env.REACT_APP_HOST}/search?country=${name}&page=${page}`,
 	})
 		.then((response) => {
 			returnResponse = response.data
@@ -16,4 +16,4 @@ const serviceGetAccountByCategory = async (name, page) => {
 		})
 	return returnResponse
 }
-export { serviceGetAccountByCategory }
+export { serviceGetAccountByCountry }
