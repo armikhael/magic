@@ -10,11 +10,11 @@ import ListMasonry from '../../components/ListMasonry/'
 import PageError from '../../components/Errors/PageError'
 
 import './style.css'
-import { serviceGetAccountByCategory } from './services'
+import { serviceGetAccountByCountry } from './service'
 
 const { Content } = Layout
 
-export default class Category extends React.Component {
+export default class Country extends React.Component {
 	state = {
 		list: [],
 		page: 1,
@@ -26,7 +26,7 @@ export default class Category extends React.Component {
 	}
 
 	handleList = () => {
-		serviceGetAccountByCategory(
+		serviceGetAccountByCountry(
 			this.props.match.params.name.replaceAll('-', ' '),
 			this.state.page
 		).then((response) => {
@@ -54,7 +54,7 @@ export default class Category extends React.Component {
 				<div>
 					<Content className='cv-container-main'>
 						<div className='cv-category-content-title'>
-							<h1 className='cv-category-title'>Categoria: {this.props.match.params.name}</h1>
+							<h1 className='cv-category-title'>Pais: {this.props.match.params.name}</h1>
 						</div>
 						<InfiniteScroll
 							dataLength={this.state.list.length}

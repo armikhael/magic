@@ -3,21 +3,21 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-import { Input, Select } from 'antd'
+import { Input, Menu, Dropdown } from 'antd'
 
 import './style.css'
 import { serviceGetCategories } from './services'
 
 const { Search } = Input
-const { Option } = Select
+const { SubMenu } = Menu
 
 export default function SearchNavbar() {
 	let history = useHistory()
-	const [isCategories, setCategories] = useState([])
+	const [isMenu, setMenu] = useState({ countries: [], categories: [] })
 
 	useEffect(() => {
 		serviceGetCategories().then((response) => {
-			setCategories(response.data)
+			setMenu(response)
 		})
 	}, [])
 
@@ -25,28 +25,56 @@ export default function SearchNavbar() {
 		history.push(`/results/${item}`)
 	}
 
+	const menu = (
+		<Menu>
+			<SubMenu title='Paises'>
+				<div className='cv-header-search-submenu-content'>
+					{isMenu.countries.map((item, i) => {
+						return (
+							<h4 key={i}>
+								<Link
+									className='cv-header-search-submenu-title'
+									to={`/country/${item.name.replaceAll(' ', '-')}`}>
+									{item.name}
+								</Link>
+							</h4>
+						)
+					})}
+				</div>
+			</SubMenu>
+			<SubMenu title='Categorías'>
+				<div className='cv-header-search-submenu-content'>
+					{isMenu.categories.map((item, i) => {
+						return (
+							<h4 key={i}>
+								<Link
+									className='cv-header-search-submenu-title'
+									to={`/category/${item.name.replaceAll(' ', '-')}`}>
+									{item.name}
+								</Link>
+							</h4>
+						)
+					})}
+				</div>
+			</SubMenu>
+		</Menu>
+	)
+
 	return (
 		<React.Fragment>
 			<Input.Group compact className='cv-header-search-content'>
-				<Select
-					defaultValue={
-						<img
-							width='25px'
-							className='cv-header-search-icon-category'
-							src='https://i.ibb.co/mzMWjY8/categorias.png'
-							alt='Categorias'
-						/>
-					}
-					className='cv-header-search-select'
-					dropdownClassName='cv-header-search-select-option'>
-					{isCategories.map((item, i) => {
-						return (
-							<Option key={i}>
-								<Link to={`/category/${item.name.replaceAll(' ', '-')}`}>{item.name}</Link>
-							</Option>
-						)
-					})}
-				</Select>
+				<div className='cv-header-search-dropdown'>
+					<Dropdown overlay={menu} trigger={['click']}>
+						<div className='ant-dropdown-link' onClick={(item) => item.preventDefault()}>
+							<img
+								width='25px'
+								className='cv-header-search-icon-submenu'
+								src='https://i.ibb.co/mzMWjY8/categorias.png'
+								alt='Categorias'
+							/>
+						</div>
+					</Dropdown>
+				</div>
 				<Search
 					className='cv-header-search-input'
 					placeholder='¿Qué cuentas deseas Buscar...?'
