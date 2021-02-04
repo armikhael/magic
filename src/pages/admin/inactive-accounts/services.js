@@ -34,4 +34,19 @@ const serviceActiveAccount = async (item) => {
 	return returnResponse
 }
 
-export { serviceGetAccountsInactives, serviceActiveAccount }
+const serviceDeleteAccount = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'DELETE',
+		url: `${process.env.REACT_APP_HOST}/account/${item.id}/${item.email}`,
+	})
+	.then((response) => {
+		returnResponse = response.data
+	})
+	.catch((error) => {
+		returnResponse = error.response.data
+	})
+	return returnResponse
+}
+
+export { serviceGetAccountsInactives, serviceActiveAccount, serviceDeleteAccount }
