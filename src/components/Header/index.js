@@ -18,13 +18,13 @@ export default class Headers extends React.Component {
 			<Header className='cv-navbar-header-content'>
 				<Content className='cv-navbar-content'>
 					<Row>
-						<Col xs={3} sm={3} md={5}>
+						<Col xs={3} sm={3} md={4}>
 							<Logo />
 						</Col>
-						<Col xs={16} sm={16} md={15}>
+						<Col xs={17} sm={17} md={14}>
 							<SearchNavbar />
 						</Col>
-						<Col xs={5} sm={5} md={4}>
+						<Col xs={4} sm={4} md={6}>
 							<User />
 						</Col>
 					</Row>

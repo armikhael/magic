@@ -4,8 +4,12 @@
 	text-align: center;
 }
 
+.cv-header-user-desktop {
+	display: block;
+}
+
 .cv-heder-user-icon-add-account {
-	width: 27px;
+	width: 22px;
 }
 
 .cv-heder-user-image-user {
@@ -14,8 +18,40 @@
 	border-radius: 50%;
 }
 
+.cv-header-user-icon-init-sesion {
+	color: #200159;
+	font-weight: 900;
+}
+
+.cv-header-user-icon-login-content {
+	border-radius: 8px;
+	color: #797979;
+	font-weight: 900;
+}
+
+.cv-header-user-icon-login-content:hover {
+	color: #200159;
+}
+
 .cv-header-user-icon-login {
-	box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
-	width: 40px;
-	border-radius: 50%;
+	width: 30px;
+}
+
+.cv-header-user-mobil {
+	display: none;
+	text-align: right;
+}
+
+.cv-header-user-icon-menu {
+	width: 30px;
+	margin-right: 10px;
+}
+
+@media (max-width: 1024px) {
+	.cv-header-user-desktop {
+		display: none;
+	}
+	.cv-header-user-mobil {
+		display: block;
+	}
 }
