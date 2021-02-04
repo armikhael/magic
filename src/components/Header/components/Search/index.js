@@ -26,7 +26,7 @@ export default function SearchNavbar() {
 	}
 
 	const menu = (
-		<Menu>
+		<Menu className='cv-header-search-menu'>
 			<SubMenu title='Paises'>
 				<div className='cv-header-search-submenu-content'>
 					{isMenu.countries.map((item, i) => {
@@ -63,23 +63,13 @@ export default function SearchNavbar() {
 	return (
 		<React.Fragment>
 			<Input.Group compact className='cv-header-search-content'>
-				<div className='cv-header-search-dropdown'>
-					<Dropdown overlay={menu} trigger={['click']}>
-						<div className='ant-dropdown-link' onClick={(item) => item.preventDefault()}>
-							<img
-								width='25px'
-								className='cv-header-search-icon-submenu'
-								src='https://i.ibb.co/mzMWjY8/categorias.png'
-								alt='Categorias'
-							/>
-						</div>
-					</Dropdown>
-				</div>
-				<Search
-					className='cv-header-search-input'
-					placeholder='¿Qué cuentas deseas Buscar...?'
-					onSearch={handleSearch}
-				/>
+				<Dropdown overlay={menu} trigger={['click']}>
+					<Search
+						className='cv-header-search-input'
+						placeholder='¿Qué cuentas deseas Buscar...?'
+						onSearch={handleSearch}
+					/>
+				</Dropdown>
 			</Input.Group>
 		</React.Fragment>
 	)

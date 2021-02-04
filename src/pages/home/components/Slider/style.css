@@ -1,0 +1,11 @@
+/** @format */
+
+.ant-carousel .slick-dots li.slick-active button,
+.ant-carousel .slick-dots li button {
+	background: #f61073;
+}
+
+.cv-home-carousel-content {
+	box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
+	margin-top: -1px;
+}

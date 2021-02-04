@@ -30,25 +30,22 @@ export default class User extends React.Component {
 			<React.Fragment>
 				<div className='cv-header-user-content'>
 					<Row align='middle'>
-						<Col xs={12} sm={12} md={{ span: 8, offset: 8 }}>
-							{(() => {
-								if (localStorage.getItem('user')) {
-									return (
+						{localStorage.getItem('user') && (
+							<Col xs={12} sm={12} md={{ span: 24, offset: 0 }}>
+								<Row align='middle'>
+									<Col xs={12} sm={12} md={12}>
 										<Link to={`/profile/create-account`}>
-											<img
-												className='cv-heder-user-icon-add-account'
-												src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
-												alt='Agregar Cuenta'
-											/>
+											<div className='cv-header-user-icon-login-content'>
+												<img
+													className='cv-heder-user-icon-add-account'
+													src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+													alt='Agregar Cuenta'
+												/>{' '}
+												<span className='ml10'>Publicate</span>
+											</div>
 										</Link>
-									)
-								}
-							})()}
-						</Col>
-						<Col xs={12} sm={12} md={8}>
-							{(() => {
-								if (localStorage.getItem('user')) {
-									return (
+									</Col>
+									<Col xs={12} sm={12} md={12}>
 										<Dropdown overlay={menu} placement='bottomRight' arrow>
 											<img
 												className='cv-heder-user-image-user'
@@ -56,20 +53,33 @@ export default class User extends React.Component {
 												alt='Imagen de Usuario'
 											/>
 										</Dropdown>
-									)
-								} else {
-									return (
+									</Col>
+								</Row>
+							</Col>
+						)}
+						{!localStorage.getItem('user') && (
+							<Col xs={12} sm={12} md={24}>
+								<Row align='middle'>
+									<Col xs={12} sm={12} md={12}>
 										<Link to={`/auth/login`}>
-											<img
-												className='cv-header-user-icon-login'
-												src='https://i.ibb.co/0C5Mpp9/iniciar-sesion.png'
-												alt='Iniciar Sesión'
-											/>
+											<div className='cv-header-user-icon-init-sesion'>Iniciar sesión</div>
 										</Link>
-									)
-								}
-							})()}
-						</Col>
+									</Col>
+									<Col xs={12} sm={12} md={12}>
+										<Link to={`/auth/login`}>
+											<div className='cv-header-user-icon-login-content'>
+												<img
+													className='cv-header-user-icon-login'
+													src='https://i.ibb.co/0C5Mpp9/iniciar-sesion.png'
+													alt='Crear Cuenta'
+												/>{' '}
+												Crear Cuenta
+											</div>
+										</Link>
+									</Col>
+								</Row>
+							</Col>
+						)}
 					</Row>
 				</div>
 			</React.Fragment>
