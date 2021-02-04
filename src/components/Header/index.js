@@ -21,10 +21,10 @@ export default class Headers extends React.Component {
 						<Col xs={3} sm={3} md={4}>
 							<Logo />
 						</Col>
-						<Col xs={16} sm={16} md={14}>
+						<Col xs={17} sm={17} md={14}>
 							<SearchNavbar />
 						</Col>
-						<Col xs={5} sm={5} md={6}>
+						<Col xs={4} sm={4} md={6}>
 							<User />
 						</Col>
 					</Row>

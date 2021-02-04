@@ -4,6 +4,10 @@
 	text-align: center;
 }
 
+.cv-header-user-desktop {
+	display: block;
+}
+
 .cv-heder-user-icon-add-account {
 	width: 22px;
 }
@@ -31,4 +35,23 @@
 
 .cv-header-user-icon-login {
 	width: 30px;
+}
+
+.cv-header-user-mobil {
+	display: none;
+	text-align: right;
+}
+
+.cv-header-user-icon-menu {
+	width: 30px;
+	margin-right: 10px;
+}
+
+@media (max-width: 1024px) {
+	.cv-header-user-desktop {
+		display: none;
+	}
+	.cv-header-user-mobil {
+		display: block;
+	}
 }

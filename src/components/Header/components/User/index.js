@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 import { Row, Col, Menu, Dropdown } from 'antd'
 
+import SideBar from './components/SideBar'
+
 import './style.css'
 
 const menu = (
@@ -25,11 +27,21 @@ const menu = (
 )
 
 export default class User extends React.Component {
+	state = {
+		menu: false,
+	}
+
+	handleOpenMenu = (item) => {
+		this.setState({
+			menu: item,
+		})
+	}
+
 	render() {
 		return (
 			<React.Fragment>
 				<div className='cv-header-user-content'>
-					<Row align='middle'>
+					<Row align='middle' className='cv-header-user-desktop'>
 						{localStorage.getItem('user') && (
 							<Col xs={12} sm={12} md={{ span: 24, offset: 0 }}>
 								<Row align='middle'>
@@ -81,6 +93,17 @@ export default class User extends React.Component {
 							</Col>
 						)}
 					</Row>
+					<Row align='middle' className='cv-header-user-mobil'>
+						<Col xs={24} sm={24} md={24}>
+							<img
+								onClick={() => this.handleOpenMenu(true)}
+								className='cv-header-user-icon-menu'
+								src='https://i.ibb.co/mzMWjY8/categorias.png'
+								alt='Menu'
+							/>{' '}
+						</Col>
+					</Row>
+					<SideBar handleOpenMenu={() => this.handleOpenMenu(false)} menu={this.state.menu} />
 				</div>
 			</React.Fragment>
 		)
