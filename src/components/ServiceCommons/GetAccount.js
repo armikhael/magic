@@ -9,12 +9,12 @@ const serviceGetAccount = async (name) => {
 			name: name
 		}
 	})
-		.then((response) => {
-			returnResponse = response.data[0]
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
+	.then((response) => {
+		returnResponse = response.data[0]
+	})
+	.catch((error) => {
+		returnResponse = error.response.data
+	})
 
 	return returnResponse
 }
