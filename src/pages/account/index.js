@@ -22,7 +22,11 @@ export default class Account extends React.Component {
 
 	componentDidMount() {
 		serviceGetAccount(this.props.match.params.name).then((response) => {
-			this.setState({ loading: false, detail: response })
+			this.setState({ 
+				loading: false, 
+				detail: response.account[0],
+				relations: response.relations
+			})
 		})
 	}
 
