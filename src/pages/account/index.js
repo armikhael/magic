@@ -9,10 +9,10 @@ import { WhatsAppOutlined, InstagramOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
-import { serviceGetAccount } from '../../components/ServiceCommons/GetAccount'
 
 import CreateUser from './components/CreateUser'
 import './style.css'
+import { serviceViewAccount } from './services'
 
 export default class Account extends React.Component {
 	state = {
@@ -21,8 +21,12 @@ export default class Account extends React.Component {
 	}
 
 	componentDidMount() {
-		serviceGetAccount(this.props.match.params.name).then((response) => {
-			this.setState({ loading: false, detail: response })
+		serviceViewAccount(this.props.match.params.name).then((response) => {
+			this.setState({ 
+				loading: false, 
+				detail: response.account[0],
+				relations: response.relations
+			})
 		})
 	}
 
@@ -132,6 +136,10 @@ export default class Account extends React.Component {
 										src='https://www.womgp.com/blog/wp-content/uploads/2018/04/5-tendencias-influencer-marketing-2017-810x473.jpg'
 									/>
 								</div>
+								<a href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>									
+									<WhatsAppOutlined />
+									&nbsp; Intercambios & Canjes a Convenir									
+								</a>
 								<h3 className='cv-detail-plans-title'>Planes</h3>
 								<div className='cv-detail-plans-hr'></div>
 								<List

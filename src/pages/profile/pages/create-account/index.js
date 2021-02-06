@@ -316,7 +316,7 @@ class CreateAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
-												¿Tu pais se encuentra en el listado? Escríbenos
+												¿Tu pais se "NO" encuentra en el listado? Escríbenos
 											</a>
 											<Form.Item
 												label='Coloca tú número de WhatsApp'
@@ -360,7 +360,7 @@ class CreateAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
-												¿Tu categoría no se encuentra en el listado? Escríbenos
+												¿Tu categoría "NO" se encuentra en el listado? Escríbenos
 											</a>
 										</Card>
 									</Col>
