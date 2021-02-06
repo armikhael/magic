@@ -2,21 +2,22 @@
 
 import axios from 'axios'
 
-const updateAccount = async (item) => {
+const serviceViewAccount = async (item) => {
+	console.log('name:', item);
 	let returnResponse
 	await axios({
-		method: 'PUT',
-		url: `${process.env.REACT_APP_HOST}/account`,
-		data: item,
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/account/view/${item}`,
 	})
-		.then((response) => {
-			returnResponse = response.data[0]
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
+	.then((response) => {
+		console.log(response.data);
+		returnResponse = response.data
+	})
+	.catch((error) => {
+		returnResponse = error.response.data
+	})
 
 	return returnResponse
 }
 
-export { updateAccount }
+export { serviceViewAccount }

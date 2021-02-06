@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-const serviceGetAccount = async (name) => {
+const serviceGetAccount = async (item) => {
+	console.log('name:', item);
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account/view/${name}`,
+		url: `${process.env.REACT_APP_HOST}/account/name/${item}`,
 	})
 	.then((response) => {
-		console.log(response.data);
-		returnResponse = response.data
+		returnResponse = response.data[0]
 	})
 	.catch((error) => {
 		returnResponse = error.response.data
