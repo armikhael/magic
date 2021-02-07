@@ -4,7 +4,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Drawer, Row, Col } from 'antd'
-import { QuestionOutlined, HomeOutlined, CloseSquareOutlined } from '@ant-design/icons'
+import {
+	QuestionOutlined,
+	HomeOutlined,
+	CloseSquareOutlined,
+	UserOutlined,
+} from '@ant-design/icons'
 
 import './style.css'
 
@@ -90,6 +95,16 @@ export default class SideBar extends React.Component {
 						</div>
 					</Link>
 				</div>
+				{localStorage.getItem('user') && (
+					<div className='cv-header-user-sidebar-list'>
+						<Link to={`/profile`}>
+							<div className='cv-header-user-icon-login-content'>
+								<UserOutlined style={{ fontSize: 30 }} />
+								<span className='ml10'>Profile</span>
+							</div>
+						</Link>
+					</div>
+				)}
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/profile/create-account`}>
 						<div className='cv-header-user-icon-login-content'>
