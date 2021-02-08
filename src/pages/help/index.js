@@ -60,9 +60,9 @@ export default function Help() {
 													className='cv-help-button-contact'
 													type='primary'
 													key='btn-help-contact'
-													href='https://api.whatsapp.com/send?phone=56979582051&text=Hola,+quisiera+solicitar+una+nuevo+pa%C3%ADs:'
+													href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+pa%C3%ADs:`}
 													target='_blank'>
-													Conactar
+													Contactar
 												</Button>
 											}
 										/>

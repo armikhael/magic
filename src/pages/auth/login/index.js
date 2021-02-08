@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { GoogleLogin } from 'react-google-login'
+// import { GoogleLogin } from 'react-google-login'
 //import FacebookLogin from 'react-facebook-login'
 
-import { Layout, Row, Col } from 'antd'
-import { GoogleOutlined } from '@ant-design/icons'
+import { Layout, Row, Col, Button } from 'antd'
+// import { WhatsAppOutlined } from '@ant-design/icons'
 
 import './style.css'
 import serviceSaveUser from './services'
@@ -55,7 +55,7 @@ export default class Login extends React.Component {
 					<Content className='cv-container-main'>
 						<Row className='cv-login-conteent-row' align='middle'>
 							<Col xs={24} sm={24} md={12}>
-								<h1 className='cv-login-title-main'>Registrate para ver todas las cuentas...</h1>
+								<h1 className='cv-login-title-main'>Se parte de la comunidad de Influencers en LATIONAMÉRICA</h1>
 							</Col>
 							<Col xs={24} sm={24} md={12}>
 								<div className='cv-login-content-logins'>
@@ -72,7 +72,7 @@ export default class Login extends React.Component {
 										</h2>
 										<p className='cv-login-sub-title-register'>Encuentra las mejores cuentas</p>
 									</div>
-									<div className='cv-login-content-redes-sociales'>
+									{/* <div className='cv-login-content-redes-sociales'>
 										<div className='cv-login-content-reds-sociales-google'>
 											<GoogleOutlined className='cv-login-content-reds-sociales-google-i' />
 											<GoogleLogin
@@ -82,7 +82,7 @@ export default class Login extends React.Component {
 														className='cv-login-title-reds-sociales-google'
 														onClick={renderProps.onClick}
 														disabled={renderProps.disabled}>
-														Continuar con Google
+														Registrarme
 													</h2>
 												)}
 												buttonText='Login'
@@ -91,7 +91,17 @@ export default class Login extends React.Component {
 												cookiePolicy={'single_host_origin'}
 											/>
 										</div>
-									</div>
+									</div> */}
+									
+									<a href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola!+Quisiera+registrarme+como+influencer,+mi+cuenta+es: `}>
+										<Button 
+											type="primary" 
+											shape="round"
+											size="large"
+											style={{ marginLeft: '100px'}}>
+											Registrarme
+										</Button>
+									</a>
 									{/* 							
 									<FacebookLogin
 										appId="1859534864215755"
