@@ -15,7 +15,7 @@ class ListMasonry extends React.Component {
 				className='cv-masonry-grid'
 				columnClassName='cv-masonry-grid_column'>
 				{this.props.listMasonry.map(function (item, i) {
-					return <Account account={item} key={i} />
+					return <Account account={item} key={i} accountBio={true} />
 				})}
 			</Masonry>
 		)

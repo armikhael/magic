@@ -16,7 +16,7 @@ import CreateAccount from '../pages/profile/pages/create-account'
 import EditAccount from '../pages/profile/pages/edit-account'
 import Category from '../pages/category'
 import Country from '../pages/country'
-import Account from '../pages/account'
+import AccountDetail from '../pages/account'
 import userAccounts from '../pages/user-accounts/'
 import Login from '../pages/auth/login'
 import Register from '../pages/auth/register'
@@ -48,7 +48,7 @@ const Routers = () => (
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 
 				<Route exact path='/token/:email' component={userAccounts} />
-				<Route exact path='/:name' component={Account} />
+				<Route exact path='/:name' component={AccountDetail} />
 
 				<Route component={NotFound} />
 			</Switch>

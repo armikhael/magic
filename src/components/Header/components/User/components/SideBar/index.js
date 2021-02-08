@@ -100,7 +100,7 @@ export default class SideBar extends React.Component {
 						<Link to={`/profile`}>
 							<div className='cv-header-user-icon-login-content'>
 								<UserOutlined style={{ fontSize: 30 }} />
-								<span className='ml10'>Profile</span>
+								<span className='ml10'>Perfil</span>
 							</div>
 						</Link>
 					</div>
