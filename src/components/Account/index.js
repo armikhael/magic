@@ -6,7 +6,7 @@ import Moment from 'react-moment'
 import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
-import { EyeOutlined, ClockCircleOutlined, InstagramOutlined } from '@ant-design/icons'
+import { EyeOutlined, ClockCircleOutlined, InstagramOutlined, PieChartOutlined } from '@ant-design/icons'
 
 import './style.css'
 
@@ -45,8 +45,9 @@ export default class Account extends React.Component {
 									/>
 								)}{' '}
 								{this.props.account.account}{' '}
-							</h3>
+							</h3>							
 						</Link>
+						<p></p>
 						<p>{this.props.account.biography}</p>
 						<div className='cv-masonry-item-card-more'>
 							<Link className='cv-masonry-item-card-more-title' to={`/${this.props.account.name}`}>
@@ -71,7 +72,12 @@ export default class Account extends React.Component {
 									<div className='mt10'>
 										<EyeOutlined style={{ color: '#ca0000', fontSize: '12px' }} />{' '}
 										{this.props.account.counter}
+										
 									</div>
+									<div className='mt10'>
+										<PieChartOutlined /> {this.props.account.interface.followers}										
+									</div>
+									
 								</h3>
 							</Col>
 							<Col xs={24} sm={24} md={24}>
