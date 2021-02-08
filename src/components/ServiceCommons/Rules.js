@@ -84,12 +84,17 @@ export const rules = {
 	rulesFollowers: [
 		{
 			required: true,
-			message: 'Debe seleccionar una opción',
+			message: 'Debes ingresar los seguidores que tienes actualmente (será verificado)',
 		},
 		{
-			min: 8,
-			message: 'Debes contar con al menos 10.000 seguidores',
-		},
+			validator: (_, value) => {
+				console.log(value);
+				if (value >= 1000){
+					return Promise.resolve()
+				}
+				return Promise.reject('Debes contar con al menos 1.000 seguidores');
+			}
+		}
 	],
 	rulesAcount: [
 		{

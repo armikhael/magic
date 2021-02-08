@@ -54,7 +54,7 @@ export default function Help() {
 									<>
 										<Result
 											title='¿Dinos qué necesitas?'
-											subTitle='Si tienes alguna dua Verifica esta documentación, si sientes que faltas algo contactarnos haciendo click en el botón conactar.'
+											subTitle='Si tienes alguna duda Verifica esta documentación, si sientes que faltas algo contactarnos haciendo click en el botón contactar.'
 											extra={
 												<Button
 													className='cv-help-button-contact'

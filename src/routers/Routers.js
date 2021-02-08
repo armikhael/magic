@@ -15,6 +15,7 @@ import Activation from '../pages/profile/pages/activation'
 import CreateAccount from '../pages/profile/pages/create-account'
 import EditAccount from '../pages/profile/pages/edit-account'
 import Category from '../pages/category'
+import Country from '../pages/country'
 import Account from '../pages/account'
 import userAccounts from '../pages/user-accounts/'
 import Login from '../pages/auth/login'
@@ -33,6 +34,7 @@ const Routers = () => (
 				<Route exact path='/test' component={Test} />
 				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/category/:name' component={Category} />
+				<Route exact path='/country/:name' component={Country} />
 				<Route exact path='/results/:name' component={Results} />
 				<Route exact path='/help' component={Help} />
 

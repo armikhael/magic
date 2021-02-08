@@ -64,6 +64,7 @@ export default class EditAccount extends React.Component {
 
 		this.setState({
 			accountDetails: response,
+			followers: response.followers,
 			phone: response.phone,
 			account: response.account,
 			country: response.country,
@@ -74,7 +75,7 @@ export default class EditAccount extends React.Component {
 			conceptsSelected: this.state.concepts[response.type]
 		})
 
-		console.log('account:', this.state.accountDetails._id)
+		console.log('account:', this.state.accountDetails)
 
 		await serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
@@ -169,6 +170,7 @@ export default class EditAccount extends React.Component {
 	handleSubmit = async () => {
 		let body = {
 			id: this.state.accountDetails._id,
+			followers: this.state.followers,
 			categories: this.state.categories,
 			plans: this.state.plans,
 			phone: this.state.phone,
@@ -221,11 +223,6 @@ export default class EditAccount extends React.Component {
 		})
 	}
 
-	handleRedirect = () => {
-		if (this.state.redirect) {
-			return <Redirect to={`/profile/`} />
-		}
-	}
 
 	render() {
 		return (
@@ -278,6 +275,12 @@ export default class EditAccount extends React.Component {
 																	<Col span={24}>
 																		<h3>@{this.state.accountDetails.account}</h3>
 																	</Col>
+																	<Form.Item
+																		label='¿Cuantos seguidores tienes?'
+																		rules={rules.rulesFollowers}
+																		onChange={this.handleChangeInput}>
+																		<Input name='followers' value={this.state.followers}/>
+																	</Form.Item>
 																	<Col span={24} className='mt15'>
 																		<Form.Item
 																			label='Biografia'
@@ -329,7 +332,7 @@ export default class EditAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
-												¿Tu pais se encuentra en el listado? Escríbenos
+												¿Tu pais "NO" se encuentra en el listado? Escríbenos
 											</a>
 
 											<Form.Item
@@ -375,7 +378,7 @@ export default class EditAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
-												¿Tu categoría no se encuentra en el listado? Escríbenos
+												¿Tu categoría "NO" se encuentra en el listado? Escríbenos
 											</a>
 										</Card>
 									</Col>
@@ -414,27 +417,6 @@ export default class EditAccount extends React.Component {
 															))}
 														</Select>
 													</Form.Item>
-
-													{/* <Form.Item label='Tiempo'>
-														<Select 
-															label={'Tiempo'} 
-															placeholder="Seleccionar"
-															style={{ width: 120 }} 
-															onChange={(e) => this.handleSelect({ option: 'selectQuantityTime', value: e })}>
-															{this.state.quantity.map(item => (
-																<Option key={item}>{item}</Option>
-															))}
-														</Select>
-														<Select
-															label={'Concepto'}
-															placeholder="Seleccionar"
-															style={{ width: 120 }}
-															onChange={(e) => this.handleSelect({ option: 'selectTime', value: e })}>
-															{this.state.timeContcept.map(item => (
-																<Option key={item}>{item}</Option>
-															))}
-														</Select>
-													</Form.Item> */}
 
 													<Form.Item
 														label={`Precio en ${this.state.currency}`}
@@ -485,7 +467,7 @@ export default class EditAccount extends React.Component {
 						</Layout>
 					</Content>
 				</section>
-				{this.handleRedirect()}
+				{this.state.redirect && <Redirect to={`/profile/`} /> }
 				<Content className='cv-container-main'>
 					<Form onFinish={this.handleSubmitLogin}></Form>
 				</Content>

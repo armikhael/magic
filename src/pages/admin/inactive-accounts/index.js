@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Button, Form, Row, Input } from 'antd'
+import { Layout, Button, Form, Input } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '@ant-design/icons'
 import { serviceGetAccountsInactives, serviceActiveAccount } from './services'
@@ -21,7 +21,7 @@ export default class InactiveAccounts extends React.Component {
 		})
   }
   
-  activeAccount = async(item) => {
+  handleActiveAccount = async(item) => {
     item.image = this.state.image
     console.log(item);
     serviceActiveAccount(item).then((response) => {
@@ -50,41 +50,40 @@ export default class InactiveAccounts extends React.Component {
               {this.state.list.map((item, i) => {
                 return (
                   
-                  <div key={i}>
-                    <p> id: {item._id}</p>
-                    <p> name: {item.name}</p>
-                    <p> token: {btoa(item.account)}</p>
-                    <p> 
+                  <ul key={i}>
+                    <li> id: {item._id}</li>
+                    <li> 
+                      phone: {item.code}{item.phone} -- 
+                      <CopyToClipboard
+                        text={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account},+como+estas?`}>
+                        <Button shape='round'>Copiar <CopyOutlined /></Button>
+                      </CopyToClipboard>
+                    </li>
+                    <li> token: {btoa(item.account)}</li>
+                    <li> 
                       verificar: 
-                      <a href={`https://${item.type}.com/${item.account}`} target="__blank">{item.account}</a> --> 
+                      <a href={`https://${item.type}.com/${item.account}`} target="__blank">{item.account}</a> --  
                       <CopyToClipboard
                         text={item.account}>
-                        <Button shape='round'>Copiar nombre <CopyOutlined /></Button>
+                        <Button shape='round'>Copiar <CopyOutlined /></Button>
                       </CopyToClipboard>
-                    </p>
-                    <Form
-                      onFinish={this.handleSubmitLogin}
-                      labelCol={{ span: 24 }}
-                      wrapperCol={{ span: 24 }}
-                      layout="vertical">
-                      <Row>
-                        <Form.Item
-                          label='Imagen URL'
-                          onChange={this.handleChangeInput}>
-                          <Input name='image'/>
-                        </Form.Item>
-                        <Button
-                          shape='round'
-                          onClick={() => {
-                            this.activeAccount(item)
-                          }}>
-                          activar cuenta
-                        </Button>
-                        
-                        <hr></hr>
-                      </Row>
-                    </Form>
-                  </div>
+                    </li>
+                    <li>
+                      <Form.Item
+                        label='Imagen URL'
+                        onChange={this.handleChangeInput}>
+                        <Input name='image'/>
+                      </Form.Item>
+                      <Button
+                        shape='round'
+                        onClick={() => {
+                          this.handleActiveAccount(item)
+                        }}>
+                        activar cuenta
+                      </Button>
+                      <hr></hr>
+                    </li>
+                  </ul>
                 )
               })}
             </ul>

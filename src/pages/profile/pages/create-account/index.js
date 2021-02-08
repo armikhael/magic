@@ -90,6 +90,7 @@ class CreateAccount extends React.Component {
 		let body = {
 			email: this.state.userProfile.email,
 			account: `${this.state.name}`,
+			followers: `${this.state.followers}`,
 			name: `${this.state.name}-${this.state.type}`,
 			type: this.state.type,
 			biography: this.state.biography,
@@ -215,12 +216,6 @@ class CreateAccount extends React.Component {
 		})
 	}
 
-	handleRedirect = () => {
-		if (this.state.redirect) {
-			return <Redirect to={`/profile/activation/${btoa(this.state.name)}`} />
-		}
-	}
-
 	render() {
 		return (
 			<>
@@ -274,6 +269,13 @@ class CreateAccount extends React.Component {
 												<Input name='name' />
 											</Form.Item>
 											<Form.Item
+												name='followers'
+												label='¿Cuantos seguidores tienes?'
+												rules={rules.rulesFollowers}
+												onChange={this.handleChangeInput}>
+												<Input name='followers' />
+											</Form.Item>
+											<Form.Item
 												name='biography'
 												label='¿De que trata tu cuenta? (Resumen)'
 												rules={rules.required}
@@ -314,7 +316,7 @@ class CreateAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
-												¿Tu pais se encuentra en el listado? Escríbenos
+												¿Tu pais se "NO" encuentra en el listado? Escríbenos
 											</a>
 											<Form.Item
 												label='Coloca tú número de WhatsApp'
@@ -358,7 +360,7 @@ class CreateAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
-												¿Tu categoría no se encuentra en el listado? Escríbenos
+												¿Tu categoría "NO" se encuentra en el listado? Escríbenos
 											</a>
 										</Card>
 									</Col>
@@ -399,27 +401,6 @@ class CreateAccount extends React.Component {
 															))}
 														</Select>
 													</Form.Item>
-
-													{/* <Form.Item label='Tiempo'>
-														<Select 
-															label={'Tiempo'} 
-															placeholder="Seleccionar"
-															style={{ width: 120 }} 
-															onChange={(e) => this.handleSelect({ option: 'selectQuantityTime', value: e })}>
-															{this.state.quantity.map(item => (
-																<Option key={item}>{item}</Option>
-															))}
-														</Select>
-														<Select
-															label={'Concepto'}
-															placeholder="Seleccionar"
-															style={{ width: 120 }}
-															onChange={(e) => this.handleSelect({ option: 'selectTime', value: e })}>
-															{this.state.timeContcept.map(item => (
-																<Option key={item}>{item}</Option>
-															))}
-														</Select>
-													</Form.Item> */}
 													<Form.Item
 														label={`Precio en ${this.state.currency}`}
 														name='price' 
@@ -465,7 +446,7 @@ class CreateAccount extends React.Component {
 									<Button type='primary' shape='round' onClick={this.handleSubmit}>
 										REGISTRAR
 									</Button>
-									{this.handleRedirect(this.state.accountParam)}
+									{this.state.redirect && <Redirect to={`/profile/activation/${btoa(this.state.name)}`} /> }
 								</div>
 							</Form>
 						</Layout>

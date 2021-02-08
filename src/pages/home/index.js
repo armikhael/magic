@@ -9,6 +9,8 @@ import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
 import PageError from '../../components/Errors/PageError'
 
+import Slider from './components/Slider'
+
 import './style.css'
 import serviceGetAccounts from './services'
 
@@ -53,6 +55,7 @@ export default class Home extends React.Component {
 		}
 		return (
 			<>
+				<Slider />
 				<Content className='cv-container-main'>
 					<InfiniteScroll
 						dataLength={this.state.list.length}
