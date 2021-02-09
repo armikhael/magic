@@ -117,6 +117,11 @@
 	text-overflow: ellipsis;
 }
 
+.cv-masonry-followers {
+	color: #f61073;
+	font-weight: 900;
+}
+
 .cv-masonry-item-card-more {
 	margin-top: 15px;
 	margin-bottom: 10px;

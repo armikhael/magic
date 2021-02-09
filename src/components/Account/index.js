@@ -6,7 +6,12 @@ import Moment from 'react-moment'
 import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
-import { EyeOutlined, ClockCircleOutlined, InstagramOutlined } from '@ant-design/icons'
+import {
+	EyeOutlined,
+	ClockCircleOutlined,
+	InstagramOutlined,
+	UserOutlined,
+} from '@ant-design/icons'
 
 import './style.css'
 
@@ -47,7 +52,12 @@ export default class Account extends React.Component {
 								{this.props.account.account}{' '}
 							</h3>
 						</Link>
-						<p>{this.props.account.biography}</p>
+						{this.props.accountBio && <p>{this.props.account.biography}</p>}
+						<div className='mt10'>
+							<UserOutlined />{' '}
+							<span className='cv-masonry-followers'>{this.props.account.interface.followers}</span>{' '}
+							Seguidores
+						</div>
 						<div className='cv-masonry-item-card-more'>
 							<Link className='cv-masonry-item-card-more-title' to={`/${this.props.account.name}`}>
 								Leer más

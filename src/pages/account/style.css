@@ -109,6 +109,11 @@
 	font-style: italic;
 }
 
+.cv-detail-followers {
+	color: #f61073;
+	font-weight: 900;
+}
+
 .cv-detail-account-descript {
 	color: #5c5c5c;
 	font-weight: 400;
@@ -129,17 +134,16 @@
 	font-weight: 500;
 }
 
+.cv-detail-accounts-relations-conente {
+	padding: 0 20px;
+}
+
 .cv-detail-contente-user-create {
 	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
 	background-color: #fff;
 	border-radius: 12px;
 	margin: 20px;
 	padding: 20px;
-}
-
-.cv-detail-hr {
-	border: 0.5px solid #e8e8e8;
-	width: 95%;
 }
 
 .cv-detail-user-create-title {
@@ -150,7 +154,7 @@
 .cv-detail-content-plans {
 	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
 	background-color: #fff;
-	border-radius: 0 0 0 50px;
+	border-radius: 0 0 12px 12px;
 	margin-bottom: 20px;
 	height: 100vh;
 }
@@ -166,6 +170,20 @@
 .cv-detail-plans-images {
 	width: 100%;
 	max-width: 100%;
+}
+
+.cv-detail-inter-canj-content {
+	font-size: 13px;
+	margin-top: 20px;
+	background: #f61073;
+	text-align: center;
+	padding: 8px 5px;
+	border-radius: 7px;
+}
+
+.cv-detail-inter-canj-content > a {
+	color: #fff;
+	font-weight: 900;
 }
 
 .cv-detail-plans-title {
@@ -214,6 +232,18 @@
 	height: 400px;
 }
 
+.cv-detail-plans-list .ant-list-item-meta-avatar {
+	margin-top: 16px;
+}
+
+.cv-account-detail-content {
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	margin-bottom: 20px;
+	padding: 20px;
+	background: #fff;
+	border-radius: 12px;
+}
+
 .cv-detail-accounts-user-email-xs {
 	display: none;
 }
@@ -222,6 +252,10 @@
 	.cv-detail-content-accoun {
 		margin: 10px;
 		padding: 10px;
+	}
+	.cv-detail-whatsapp-icon {
+		right: 0px;
+		top: -6px;
 	}
 	.cv-detail-content-account-detail {
 		padding: 0 10px;
@@ -266,6 +300,8 @@
 	}
 	.cv-detail-accounts-user-email-xs {
 		display: block;
+		width: 100%;
+		padding: 0 5px;
 	}
 	.cv-detail-content-plans {
 		border-radius: 12px;
@@ -278,6 +314,9 @@
 	}
 	.cv-detail-plans-list {
 		height: auto;
+	}
+	.cv-account-detail-content {
+		display: none;
 	}
 	.cv-detail-account-content-info-account {
 		display: block;

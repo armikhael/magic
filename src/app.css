@@ -21,6 +21,10 @@ p {
 	margin-top: 10px;
 }
 
+.mb10 {
+	margin-bottom: 10px;
+}
+
 .mt15 {
 	margin-top: 15px;
 }
@@ -61,7 +65,7 @@ p {
 
 @media only screen and (min-width: 1264px) {
 	.cv-container-main {
-		max-width: 1300px;
+		max-width: 1240px;
 		margin: 0 auto;
 	}
 }
