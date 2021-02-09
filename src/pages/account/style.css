@@ -300,6 +300,8 @@
 	}
 	.cv-detail-accounts-user-email-xs {
 		display: block;
+		width: 100%;
+		padding: 0 5px;
 	}
 	.cv-detail-content-plans {
 		border-radius: 12px;
@@ -312,6 +314,9 @@
 	}
 	.cv-detail-plans-list {
 		height: auto;
+	}
+	.cv-account-detail-content {
+		display: none;
 	}
 	.cv-detail-account-content-info-account {
 		display: block;

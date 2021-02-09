@@ -9,9 +9,10 @@ import { WhatsAppOutlined, InstagramOutlined, UserOutlined } from '@ant-design/i
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
-import Account from '../../components/Account'
 
 import CreateUser from './components/CreateUser'
+import AccountsRelations from './components/AccountsRelations'
+
 import './style.css'
 import { serviceViewAccount } from './services'
 
@@ -136,19 +137,8 @@ export default class AccountDetail extends React.Component {
 							</Row>
 							<div className='cv-detail-accounts-user-email-md'>
 								<CreateUser email={this.state.detail.email} />
+								<AccountsRelations relations={this.state.relations} />
 							</div>
-							<Row className='cv-detail-accounts-relations-conente'>
-								<Col xs={24} sm={24} md={24}>
-									<h3>Cuentas Relacionadas</h3>
-								</Col>
-								{this.state.relations.map(function (item, i) {
-									return (
-										<Col xs={12} sm={12} md={6} key={i}>
-											<Account account={item} accountBio={false} />
-										</Col>
-									)
-								})}
-							</Row>
 						</Col>
 						<Col xs={24} sm={24} md={6}>
 							<div className='cv-detail-content-plans'>
@@ -202,6 +192,8 @@ export default class AccountDetail extends React.Component {
 						</Col>
 						<div className='cv-detail-accounts-user-email-xs'>
 							<CreateUser email={this.state.detail.email} />
+							<br />
+							<AccountsRelations relations={this.state.relations} />
 						</div>
 					</Row>
 				</Content>
