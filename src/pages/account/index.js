@@ -32,7 +32,6 @@ export default class AccountDetail extends React.Component {
 				detail: response.account[0],
 				relations: response.relations,
 			})
-			console.log(response.relations)
 		})
 	}
 

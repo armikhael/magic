@@ -3,7 +3,6 @@
 import axios from 'axios'
 
 const serviceViewAccount = async (item) => {
-	console.log('name:', item)
 	let returnResponse
 	await axios({
 		method: 'GET',
