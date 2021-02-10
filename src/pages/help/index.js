@@ -1,18 +1,16 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React from 'react'
 import renderHTML from 'react-render-html'
-
-import { Layout, Row, Col, Result, Button } from 'antd'
+import { Link } from 'react-router-dom'
+import { Layout, Row, Col } from 'antd'
 
 import { help } from './data.js'
 import './style.css'
 
 const { Content } = Layout
 
-export default function Help() {
-	const [isDetail, setDetail] = useState()
-
+export default function Help(props) {
 	return (
 		<>
 			<Content className='cv-container-main'>
@@ -26,7 +24,15 @@ export default function Help() {
 								{help.map(function (item, index) {
 									return (
 										<div className={`cv-help-content-list`} key={index}>
-											<li onClick={() => setDetail(item)}>{item.title}</li>
+											<li>
+												<Link
+													className={`cv-help-list-li ${
+														item.slug === props.match.params.name ? 'cv-active-li' : ''
+													}`}
+													to={`/help/${item.slug}`}>
+													{item.title}
+												</Link>
+											</li>
 										</div>
 									)
 								})}
@@ -34,40 +40,28 @@ export default function Help() {
 						</Col>
 						<Col xs={24} sm={24} md={16}>
 							<div className='cv-help-content'>
-								{isDetail && (
-									<>
-										<h3 className='cv-help-detail-title'>{isDetail.title}</h3>
-										{renderHTML(isDetail.description)}
-										<br />
-										<iframe
-											className='cv-help-detail-iframe'
-											width='100%'
-											height='400'
-											src={isDetail.url_video}
-											frameBorder='0'
-											allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-											allowFullScreen
-											title='AboutUs'></iframe>
-									</>
-								)}
-								{!isDetail && (
-									<>
-										<Result
-											title='¿Dinos qué necesitas?'
-											subTitle='Si tienes alguna duda Verifica esta documentación, si sientes que faltas algo contactarnos haciendo click en el botón contactar.'
-											extra={
-												<Button
-													className='cv-help-button-contact'
-													type='primary'
-													key='btn-help-contact'
-													href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+pa%C3%ADs:`}
-													target='_blank'>
-													Contactar
-												</Button>
-											}
-										/>
-									</>
-								)}
+								{help.map(function (item, index) {
+									return (
+										<div key={index}>
+											{props.match.params.name === item.slug && (
+												<>
+													<h3 className='cv-help-detail-title'>{item.title}</h3>
+													{renderHTML(item.description)}
+													<br />
+													<iframe
+														className='cv-help-detail-iframe'
+														width='100%'
+														height='400'
+														src={item.url_video}
+														frameBorder='0'
+														allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+														allowFullScreen
+														title='AboutUs'></iframe>
+												</>
+											)}
+										</div>
+									)
+								})}
 							</div>
 						</Col>
 					</Row>

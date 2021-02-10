@@ -15,7 +15,6 @@ import './style.css'
 
 export default class SideBar extends React.Component {
 	render() {
-		console.log(JSON.parse(localStorage.getItem('user')))
 		return (
 			<Drawer
 				className='cv-header-user-sidebar-content'
@@ -119,7 +118,7 @@ export default class SideBar extends React.Component {
 					</Link>
 				</div>
 				<div className='cv-header-user-sidebar-list'>
-					<Link to={`/help`}>
+					<Link to={`/help/cuentas-virales`}>
 						<div className='cv-header-user-icon-login-content'>
 							<QuestionOutlined style={{ fontSize: 30 }} />
 							<span className='ml10'>Ayuda</span>

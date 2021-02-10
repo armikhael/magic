@@ -31,6 +31,14 @@
 	list-style: none;
 }
 
+.cv-help-list-li {
+	color: #5d5d5d;
+}
+
+.cv-active-li {
+	color: #f61073;
+}
+
 .cv-help-detail-title {
 	font-size: 25px;
 	font-weight: 900;

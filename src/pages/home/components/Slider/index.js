@@ -13,7 +13,7 @@ export default class Slider extends React.Component {
 			<>
 				<Carousel className='cv-home-carousel-content cv-home-slider-web ' autoplay>
 					<div>
-						<Link to={`/help`}>
+						<Link to={`/help/cuentas-virales`}>
 							<img
 								width='100%'
 								src='https://i.postimg.cc/ty3J2F7P/banner-cv-general.jpg'
@@ -33,7 +33,7 @@ export default class Slider extends React.Component {
 				</Carousel>
 				<Carousel className='cv-home-carousel-content cv-home-slider-mobil' autoplay>
 					<div>
-						<Link to={`/help`}>
+						<Link to={`/help/cuentas-virales`}>
 							<img
 								width='100%'
 								src='https://i.postimg.cc/bwz8f8tc/banner-general-mobile.jpg'

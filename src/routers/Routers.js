@@ -36,7 +36,7 @@ const Routers = () => (
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/country/:name' component={Country} />
 				<Route exact path='/results/:name' component={Results} />
-				<Route exact path='/help' component={Help} />
+				<Route exact path='/help/:name' component={Help} />
 
 				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
