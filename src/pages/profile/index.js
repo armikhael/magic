@@ -109,12 +109,12 @@ export default class Profile extends React.Component {
 														<Text className='cv-profile-main-role-user'>
 															{this.state.userProfile.email}
 														</Text>
-														<CopyToClipboard
+														{/* <CopyToClipboard
 															text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(
 																this.state.userProfile.email
 															)}`}>
 															<Button shape='round'>Copiar enlace para la biografía</Button>
-														</CopyToClipboard>
+														</CopyToClipboard> */}
 													</Col>
 												</Row>
 											</Col>
