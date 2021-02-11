@@ -21,7 +21,7 @@ const menu = (
 			</a>
 		</Menu.Item>
 		<Menu.Item>
-			<Link to={`/help`}>Preguntas Frecuentes</Link>
+			<Link to={`/help/cuentas-virales`}>Preguntas Frecuentes</Link>
 		</Menu.Item>
 	</Menu>
 )
