@@ -277,7 +277,7 @@ class CreateAccount extends React.Component {
 											</Form.Item>
 											<Form.Item
 												name='biography'
-												label='¿De que trata tu cuenta? (Resumen)'
+												label='Biografía (Describe tu personalidad)'
 												rules={rules.required}
 												onChange={this.handleChangeInput}>
 												<TextArea rows={4} name='biography' />

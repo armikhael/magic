@@ -94,7 +94,7 @@
 }
 
 .cv-login-content-reds-sociales-whatsapp {
-	background-color: #50AD2A;
+	background-color: #50ad2a;
 	border-radius: 50px;
 	padding: 6px;
 	width: 250px;
@@ -122,6 +122,20 @@
 	padding: 0px;
 	font-size: 15px;
 	font-weight: 600;
+}
+
+.cv-login-conten-register-button-icon svg {
+	margin-left: -90px;
+}
+
+.cv-login-conten-register {
+	text-align: center;
+}
+
+.cv-login-conten-register-button {
+	width: 250px;
+	height: 36px !important;
+	margin-top: 5px;
 }
 
 .cv-login-title-termi-condi {

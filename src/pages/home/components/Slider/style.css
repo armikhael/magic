@@ -9,3 +9,21 @@
 	box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
 	margin-top: -1px;
 }
+
+.cv-home-slider-web {
+	display: block !important;
+}
+
+.cv-home-slider-mobil {
+	display: none !important;
+}
+
+@media (max-width: 768px) {
+	.cv-home-slider-web {
+		display: none !important;
+	}
+
+	.cv-home-slider-mobil {
+		display: block !important;
+	}
+}
