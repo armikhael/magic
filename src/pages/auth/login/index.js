@@ -85,7 +85,7 @@ export default class Login extends React.Component {
 														className='cv-login-title-reds-sociales-google'
 														onClick={renderProps.onClick}
 														disabled={renderProps.disabled}>
-														Contitunar con Google
+														Continuar con Google
 													</h2>
 												)}
 												buttonText='Login'

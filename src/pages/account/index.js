@@ -5,7 +5,7 @@ import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
 import { Row, Col, List, Avatar, Layout } from 'antd'
-import { WhatsAppOutlined, InstagramOutlined, UserOutlined } from '@ant-design/icons'
+import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
@@ -27,6 +27,7 @@ export default class AccountDetail extends React.Component {
 
 	componentDidMount() {
 		serviceViewAccount(this.props.match.params.name).then((response) => {
+			console.log(response.account)
 			this.setState({
 				loading: false,
 				detail: response.account[0],
@@ -94,13 +95,15 @@ export default class AccountDetail extends React.Component {
 													{this.state.detail.country}
 												</h3>
 												<a
-													href={'https://www.instagram.com/' + this.state.detail.account}
+													href={this.state.detail.interface.link}
 													target='_blank'
 													rel='noopener noreferrer'>
 													<div className='cv-detail-account-content-info-account'>
-														{this.state.detail.type === 'instagram' && (
-															<InstagramOutlined style={{ fontSize: '30px', color: '#464646' }} />
-														)}
+														<img
+															width='30px'
+															src={this.state.detail.interface.icon}
+															alt={this.state.detail.type}
+														/>
 														<h3>@{this.state.detail.account}</h3>
 													</div>
 												</a>
