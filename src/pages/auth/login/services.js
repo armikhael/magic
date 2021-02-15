@@ -31,19 +31,25 @@ const authLoginServices = async (item, redirect) => {
 		data: item,
 	})
 		.then((response) => {
+			console.log(response)
 			if (response.data.statusCode <= 200) {
 				notification['success']({
 					message: `!Bienvenido a Cuentas Virales!`,
-					description: `Su cuenta esta autorizada...`,
+					description: `Registra tus cuentas y comeinza a vender...`,
 				})
-				redirect.history.push('/')
 				localStorage.setItem(
 					'user',
 					JSON.stringify({
 						email: response.data.data.email,
-						image: 'https://i.postimg.cc/L8FxK2m9/user.png',
+						image: response.data.data.image,
+						first_name: response.data.data.first_name,
+						last_name: response.data.data.last_name,
 					})
 				)
+				let timer = setTimeout(() => {
+					redirect.history.push('/')
+				}, 4000)
+				return () => clearTimeout(timer)
 			} else {
 				notification['warning']({
 					message: `Problema para Iniciar Sesión`,
@@ -53,8 +59,8 @@ const authLoginServices = async (item, redirect) => {
 			returnResponse = response.data
 		})
 		.catch((error) => {
-			returnResponse = error.response.data
-			notification['errror']({
+			returnResponse = error.response
+			notification['error']({
 				message: `Problemas de Servicios`,
 				description: `process.env.REACT_APP_HOST/auth/login`,
 			})

@@ -23,7 +23,7 @@ export const rulesValidation = {
 	],
 	rulesText: [
 		{
-			required: false,
+			required: true,
 			message: 'Ingresa el nombre de tu cuenta',
 		},
 		{

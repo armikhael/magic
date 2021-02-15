@@ -1,7 +1,11 @@
 /** @format */
 
 .ant-form-item {
-	margin-bottom: 12px;
+	margin-bottom: 8px;
+}
+
+.ant-form-item-with-help {
+	margin-bottom: 0 !important;
 }
 
 .ant-form-item-explain {

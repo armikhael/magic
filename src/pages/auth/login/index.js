@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login'
 //import FacebookLogin from 'react-facebook-login'
 
@@ -47,8 +47,8 @@ export default class Login extends React.Component {
 			localStorage.setItem('user', JSON.stringify(item))
 			this.setState({
 				email: item.email,
-				redirect: true,
 			})
+			this.props.history.push('/')
 		})
 	}
 
@@ -152,7 +152,7 @@ export default class Login extends React.Component {
 											/>
 										</div>
 										<div className='cv-login-conten-register'>
-											<Link to={`/`}>
+											<Link to={`/auth/register`}>
 												¿Aún no estás en Cuentas Virales? <span>Regístrate</span>
 											</Link>
 										</div>
@@ -177,7 +177,6 @@ export default class Login extends React.Component {
 							</Col>
 						</Row>
 					</Content>
-					{this.state.redirect && <Redirect to='/profile/' />}
 				</div>
 			</>
 		)
