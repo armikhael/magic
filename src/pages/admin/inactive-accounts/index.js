@@ -52,6 +52,7 @@ export default class InactiveAccounts extends React.Component {
                   
                   <ul key={i}>
                     <li> id: {item._id}</li>
+                    <li> seguidores: {item.followers}</li>
                     <li> 
                       phone: {item.code}{item.phone} -- 
                       <CopyToClipboard
