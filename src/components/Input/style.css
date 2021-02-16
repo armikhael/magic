@@ -1,0 +1,19 @@
+/** @format */
+
+.ant-form-item {
+	margin-bottom: 8px;
+}
+
+.ant-form-item-with-help {
+	margin-bottom: 0 !important;
+}
+
+.ant-form-item-explain {
+	font-size: 12px;
+}
+
+.ph-login-main-form-label {
+	font-size: 12px;
+	font-weight: 900;
+	color: #808080;
+}

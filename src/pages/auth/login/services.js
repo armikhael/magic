@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-export default async function serviceSaveUser(item) {
+const autLoginSocialServices = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'POST',
@@ -22,3 +22,50 @@ export default async function serviceSaveUser(item) {
 		})
 	return returnResponse
 }
+
+const authLoginServices = async (item, redirect) => {
+	let returnResponse
+	await axios({
+		method: 'POST',
+		url: `${process.env.REACT_APP_HOST}/auth/login`,
+		data: item,
+	})
+		.then((response) => {
+			console.log(response)
+			if (response.data.statusCode <= 200) {
+				notification['success']({
+					message: `!Bienvenido a Cuentas Virales!`,
+					description: `Registra tus cuentas y comeinza a vender...`,
+				})
+				localStorage.setItem(
+					'user',
+					JSON.stringify({
+						email: response.data.data.email,
+						image: response.data.data.image,
+						first_name: response.data.data.first_name,
+						last_name: response.data.data.last_name,
+					})
+				)
+				let timer = setTimeout(() => {
+					redirect.history.push('/')
+				}, 4000)
+				return () => clearTimeout(timer)
+			} else {
+				notification['warning']({
+					message: `Problema para Iniciar Sesión`,
+					description: `${response.data.data.message}...`,
+				})
+			}
+			returnResponse = response.data
+		})
+		.catch((error) => {
+			returnResponse = error.response
+			notification['error']({
+				message: `Problemas de Servicios`,
+				description: `process.env.REACT_APP_HOST/auth/login`,
+			})
+		})
+	return returnResponse
+}
+
+export { authLoginServices, autLoginSocialServices }
