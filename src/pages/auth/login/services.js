@@ -35,7 +35,7 @@ const authLoginServices = async (item, redirect) => {
 			if (response.data.statusCode <= 200) {
 				notification['success']({
 					message: `!Bienvenido a Cuentas Virales!`,
-					description: `Registra tus cuentas y comeinza a vender...`,
+					description: `Registra tus cuentas y comienza a vender...`,
 				})
 				localStorage.setItem(
 					'user',
