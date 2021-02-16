@@ -63,7 +63,7 @@ export default class InactiveAccounts extends React.Component {
                     <li> token: {btoa(item.account)}</li>
                     <li> 
                       verificar: 
-                      <a href={`https://${item.type}.com/${item.account}`} target="__blank">{item.account}</a> --  
+                      <a href={item.interface.link} target="__blank">{item.account}</a> --  
                       <CopyToClipboard
                         text={item.account}>
                         <Button shape='round'>Copiar <CopyOutlined /></Button>
