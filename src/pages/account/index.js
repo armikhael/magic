@@ -150,7 +150,7 @@ export default class AccountDetail extends React.Component {
 											title='Publicidad'
 											alt='Publicidad'
 											className='cv-detail-plans-images'
-											src='https://www.womgp.com/blog/wp-content/uploads/2018/04/5-tendencias-influencer-marketing-2017-810x473.jpg'
+											src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
 										/>
 									</div>
 									<div className='cv-detail-inter-canj-content'>
@@ -186,7 +186,7 @@ export default class AccountDetail extends React.Component {
 									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
 									<img
 										width='100%'
-										src='https://i.postimg.cc/WpgnHjcQ/Captura-de-Pantalla-2021-02-08-a-la-s-13-03-19.png'
+										src='https://i.postimg.cc/jjQbJMHD/publicidad-1.jpg'
 										alt='Publicidad'
 									/>
 								</a>

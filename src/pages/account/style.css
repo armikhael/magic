@@ -167,6 +167,10 @@
 	text-align: center;
 }
 
+.cv-detail-plans-content-images img {
+	border-radius: 4px;
+}
+
 .cv-detail-plans-images {
 	width: 100%;
 	max-width: 100%;
@@ -242,6 +246,10 @@
 	padding: 20px;
 	background: #fff;
 	border-radius: 12px;
+}
+
+.cv-account-detail-content img {
+	border-radius: 4px;
 }
 
 .cv-detail-accounts-user-email-xs {
