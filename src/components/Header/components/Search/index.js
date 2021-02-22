@@ -32,7 +32,7 @@ export default function SearchNavbar() {
 					{isMenu.countries.map((item, i) => {
 						return (
 							<Tag key={i} className='cv-header-search-tag'>
-								<Link to={`/country/${item.name.replaceAll(' ', '-')}`}>{item.name}</Link>
+								<Link to={`/country/${item.slug}`}>{item.name}</Link>
 							</Tag>
 						)
 					})}
@@ -48,9 +48,7 @@ export default function SearchNavbar() {
 									<div
 										className='cv-header-search-content-category'
 										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link
-										className='cv-header-search-submenu-title'
-										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
@@ -69,9 +67,7 @@ export default function SearchNavbar() {
 									<div
 										className='cv-header-search-content-category'
 										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link
-										className='cv-header-search-submenu-title'
-										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
@@ -90,9 +86,7 @@ export default function SearchNavbar() {
 									<div
 										className='cv-header-search-content-category'
 										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link
-										className='cv-header-search-submenu-title'
-										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
@@ -111,9 +105,7 @@ export default function SearchNavbar() {
 									<div
 										className='cv-header-search-content-category'
 										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link
-										className='cv-header-search-submenu-title'
-										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
