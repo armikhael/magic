@@ -60,7 +60,13 @@ export default class InactiveAccounts extends React.Component {
                         <Button shape='round'>Copiar <CopyOutlined /></Button>
                       </CopyToClipboard>
                     </li>
-                    <li> token: {btoa(item.account)}</li>
+                    <li> 
+                      token: {btoa(item.account)}
+                      <CopyToClipboard
+                        text={btoa(item.account)}>
+                        <Button shape='round'>Copiar <CopyOutlined /></Button>
+                      </CopyToClipboard>
+                    </li>
                     <li> 
                       verificar: 
                       <a href={item.interface.link} target="__blank">{item.account}</a> --  
