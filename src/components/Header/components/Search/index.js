@@ -32,7 +32,7 @@ export default function SearchNavbar() {
 					{isMenu.countries.map((item, i) => {
 						return (
 							<Tag key={i} className='cv-header-search-tag'>
-								<Link to={`/country/${item.name.replaceAll(' ', '-')}`}>{item.name}</Link>
+								<Link to={`/country/${item.name.replaceAll(' ', '-').toLowerCase()}`}>{item.name}</Link>
 							</Tag>
 						)
 					})}
