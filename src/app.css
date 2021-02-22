@@ -57,6 +57,11 @@ p {
 	background: transparent;
 }
 
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title:hover {
+	background-color: transparent;
+}
+
 @media only screen and (min-width: 960px) {
 	.cv-container-main {
 		max-width: 940px;

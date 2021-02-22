@@ -3,13 +3,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-import { Input, Menu, Dropdown } from 'antd'
+import { Input, Menu, Dropdown, Row, Col, Tag } from 'antd'
 
 import './style.css'
 import { serviceGetCategories } from './services'
 
 const { Search } = Input
-const { SubMenu } = Menu
 
 export default function SearchNavbar() {
 	let history = useHistory()
@@ -17,7 +16,6 @@ export default function SearchNavbar() {
 
 	useEffect(() => {
 		serviceGetCategories().then((response) => {
-			console.log(response)
 			setMenu(response)
 		})
 	}, [])
@@ -28,43 +26,112 @@ export default function SearchNavbar() {
 
 	const menu = (
 		<Menu className='cv-header-search-menu'>
-			<SubMenu title='Paises'>
-				<div className='cv-header-search-submenu-content'>
+			<h3 className='cv-headr-title-search-menu'>Países</h3>
+			<Menu.Item>
+				<div className='cv-header-search-conetent-country'>
 					{isMenu.countries.map((item, i) => {
 						return (
-							<h4 key={i}>
-								<Link
-									className='cv-header-search-submenu-title'
-									to={`/country/${item.name.replaceAll(' ', '-')}`}>
-									{item.name}
-								</Link>
-							</h4>
+							<Tag key={i} className='cv-header-search-tag'>
+								<Link to={`/country/${item.name.replaceAll(' ', '-')}`}>{item.name}</Link>
+							</Tag>
 						)
 					})}
 				</div>
-			</SubMenu>
-			<SubMenu title='Categorías'>
-				<div className='cv-header-search-submenu-content'>
-					{isMenu.categories.map((item, i) => {
+			</Menu.Item>
+			<h3 className='cv-headr-title-search-menu'>Ideales para tí</h3>
+			<Menu.Item>
+				<Row>
+					{isMenu.categories.slice(0, 8).map((item, i) => {
 						return (
-							<h4 key={i}>
-								<Link
-									className='cv-header-search-submenu-title'
-									to={`/category/${item.name.replaceAll(' ', '-')}`}>
-									{item.name}
-								</Link>
-							</h4>
+							<Col xs={12} sm={12} md={6} key={i}>
+								<div className='cv-header-search-content-category-main'>
+									<div
+										className='cv-header-search-content-category'
+										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
+									<Link
+										className='cv-header-search-submenu-title'
+										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+										{item.name}
+									</Link>
+								</div>
+							</Col>
 						)
 					})}
-				</div>
-			</SubMenu>
+				</Row>
+			</Menu.Item>
+			<h3 className='cv-headr-title-search-menu'>Populares en Cuenta virales</h3>
+			<Menu.Item>
+				<Row>
+					{isMenu.categories.slice(8, 16).map((item, i) => {
+						return (
+							<Col xs={12} sm={12} md={6} key={i}>
+								<div className='cv-header-search-content-category-main'>
+									<div
+										className='cv-header-search-content-category'
+										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
+									<Link
+										className='cv-header-search-submenu-title'
+										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+										{item.name}
+									</Link>
+								</div>
+							</Col>
+						)
+					})}
+				</Row>
+			</Menu.Item>
+			<h3 className='cv-headr-title-search-menu'>Para todos</h3>
+			<Menu.Item>
+				<Row>
+					{isMenu.categories.slice(16, 24).map((item, i) => {
+						return (
+							<Col xs={12} sm={12} md={6} key={i}>
+								<div className='cv-header-search-content-category-main'>
+									<div
+										className='cv-header-search-content-category'
+										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
+									<Link
+										className='cv-header-search-submenu-title'
+										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+										{item.name}
+									</Link>
+								</div>
+							</Col>
+						)
+					})}
+				</Row>
+			</Menu.Item>
+			<h3 className='cv-headr-title-search-menu'>Entretenido</h3>
+			<Menu.Item>
+				<Row>
+					{isMenu.categories.slice(24, 32).map((item, i) => {
+						return (
+							<Col xs={12} sm={12} md={6} key={i}>
+								<div className='cv-header-search-content-category-main'>
+									<div
+										className='cv-header-search-content-category'
+										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
+									<Link
+										className='cv-header-search-submenu-title'
+										to={`/category/${item.name.replaceAll(' ', '-')}`}>
+										{item.name}
+									</Link>
+								</div>
+							</Col>
+						)
+					})}
+				</Row>
+			</Menu.Item>
 		</Menu>
 	)
 
 	return (
 		<React.Fragment>
 			<Input.Group compact className='cv-header-search-content'>
-				<Dropdown overlay={menu} trigger={['click']}>
+				<Dropdown
+					overlayClassName='cv-header-search-content-overlay-dropdown'
+					overlay={menu}
+					trigger={['click']}>
 					<Search
 						className='cv-header-search-input'
 						placeholder='¿Qué cuentas deseas Buscar...?'
