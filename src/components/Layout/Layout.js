@@ -34,6 +34,7 @@ function Layout(props) {
 			return (
 				<>
 					<Header />
+					<div className='cv-layout-br'></div>
 					{props.children}
 					<Dropdown overlay={menu} placement='topRight' arrow>
 						<Button
