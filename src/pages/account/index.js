@@ -27,6 +27,7 @@ export default class AccountDetail extends React.Component {
 
 	componentDidMount() {
 		serviceViewAccount(this.props.match.params.name).then((response) => {
+			console.log(response)
 			this.setState({
 				loading: false,
 				detail: response.account[0],
