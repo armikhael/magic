@@ -7,7 +7,6 @@ const serviceGetAccount = async (item) => {
     url: `${process.env.REACT_APP_HOST}/account/name/${item}`,
   })
   .then((response) => {
-    console.log('data', response.data[0]);
     returnResponse = response.data[0]
   })
   .catch((error) => {
@@ -15,10 +14,10 @@ const serviceGetAccount = async (item) => {
   })
   return returnResponse
 }
+
 const serviceUploadImage = async (item) => {
-  console.log(this.state.account);
   let returnResponse		
-  axios({
+  await axios({
     method: 'POST',
     url: `https://api.imgbb.com/1/upload`,
     headers: {
@@ -27,7 +26,27 @@ const serviceUploadImage = async (item) => {
     data: item
   })
   .then((response) => {
-    console.log(response.data);
+    returnResponse = response.data.data
+  })
+  .catch((error) => {
+    returnResponse = error.response
+  })
+  return returnResponse
+}
+
+const serviceUpdateImage = async (id, item) => {
+  let returnResponse
+  await axios({
+    method: 'PUT',
+    url: `${process.env.REACT_APP_HOST}/account/image`,
+    data: {
+      id: id,
+      image: item.image.url,
+      image_medium: item.medium.url,
+      image_thumb: item.thumb.url,
+    }
+  })
+  .then((response) => {
     returnResponse = response.data
   })
   .catch((error) => {
@@ -36,4 +55,4 @@ const serviceUploadImage = async (item) => {
   return returnResponse
 }
 
-export { serviceGetAccount, serviceUploadImage }
+export { serviceGetAccount, serviceUploadImage, serviceUpdateImage }

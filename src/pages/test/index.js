@@ -1,9 +1,8 @@
 /** @format */
 
-import axios from 'axios'
 import React from 'react';
 import ImageUploader from 'react-images-upload';
-import { serviceGetAccount, serviceUploadImage } from './services'
+import { serviceGetAccount, serviceUploadImage, serviceUpdateImage } from './services'
 
 
 export default class Test extends React.Component {
@@ -17,49 +16,31 @@ export default class Test extends React.Component {
 	
 	componentDidMount() {
 		serviceGetAccount("publicidadcreativa-instagram").then((response) => {
-			console.log(response);
 			this.setState({ 
 				account: response,
 				name: response.name
 			})
-			console.log(this.state.account.name);
 		})
-
-	}
-
-	handleUpload(item) {
-		console.log(item);
-		
-		console.log('state', this.state);
-		// const formData = new FormData()
-  	// formData.append("image", item[0]);
-  	// formData.append("name", this.state.account.name);
-		// formData.append("key", "a37ed9ea9a4369226c2d0c16e8c5d076");
-		// serviceUploadImage(item)
-	}
-
-	serviceUpdateImage(item){
-		let returnResponse
-		axios({
-			method: 'PUT',
-			url: `${process.env.REACT_APP_HOST}/account/image`,
-			data: {
-				id: "602ea886f79dee00176827b0",
-				image: "https://i.ibb.co/vq3Dj9w/soyjorgegomez-instagram.jpg",
-				image_thumb:  "https://i.ibb.co/pwfnLq0/soyjorgegomez-instagram.jpg",
-				image_medium: "https://i.ibb.co/sRKtV7m/soyjorgegomez-instagram.jpg"
-			}
-		})
-		.then((response) => {
-			returnResponse = response.data[0]
-		})
-		.catch((error) => {
-			returnResponse = error.response
-		})
-		return returnResponse
 	}
 
 	render() {
+
+		const handleUpload = async (item) => {
+			const formData = new FormData()
+			formData.append("image", item[0]);
+			formData.append("name", this.state.account.name);
+			formData.append("key", "a37ed9ea9a4369226c2d0c16e8c5d076");
+			try {
+				const responseUpload = await serviceUploadImage(formData)
+				const responseUpdate = await serviceUpdateImage(this.state.account._id, responseUpload)
+				if (responseUpdate.statusCode === 200) {
+					alert('finalizamos')
+				}
+			} catch (error) {
+				alert(error)
+			}
+		}
+
 		return (
 			<>
 				{this.state.account &&
@@ -71,7 +52,7 @@ export default class Test extends React.Component {
 				<ImageUploader
 						withIcon={true}
 						buttonText='Choose images'
-						onChange={this.handleUpload}
+						onChange={handleUpload}
 						imgExtension={['.jpg', '.gif', '.png', '.gif']}
 						maxFileSize={5242880}
 						withPreview={true}
