@@ -320,6 +320,9 @@
 		width: 100%;
 		padding: 0 5px;
 	}
+	.cv-detail-user-create-title {
+		margin-top: 12px;
+	}
 	.cv-detail-content-plans {
 		border-radius: 12px;
 		margin-bottom: 0px;

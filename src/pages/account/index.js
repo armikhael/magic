@@ -21,16 +21,19 @@ const { Content } = Layout
 export default class AccountDetail extends React.Component {
 	state = {
 		detail: null,
+		asociation: null,
 		relations: null,
 		loading: true,
 	}
 
 	componentDidMount() {
 		serviceViewAccount(this.props.match.params.name).then((response) => {
+			console.log('response', response.asociation)
 			this.setState({
 				loading: false,
 				detail: response.account[0],
 				relations: response.relations,
+				asociation: response.asociation,
 			})
 		})
 	}
@@ -137,7 +140,7 @@ export default class AccountDetail extends React.Component {
 								</Col>
 							</Row>
 							<div className='cv-detail-accounts-user-email-md'>
-								<CreateUser email={this.state.detail.email} />
+								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 								<AccountsRelations relations={this.state.relations} />
 							</div>
 						</Col>
@@ -195,7 +198,7 @@ export default class AccountDetail extends React.Component {
 							</div>
 						</Col>
 						<div className='cv-detail-accounts-user-email-xs'>
-							<CreateUser email={this.state.detail.email} />
+							<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 							<div className='cv-detail-accounts-user-publicidad'>
 								<a
 									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
