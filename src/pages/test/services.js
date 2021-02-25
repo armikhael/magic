@@ -42,7 +42,6 @@ const serviceUpdateImage = async (id, item) => {
     data: {
       id: id,
       image: item.image.url,
-      image_medium: item.medium.url,
       image_thumb: item.thumb.url,
     }
   })
