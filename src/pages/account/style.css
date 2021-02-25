@@ -256,6 +256,15 @@
 	display: none;
 }
 
+.cv-detail-accounts-user-publicidad {
+	padding: 10px;
+	background: #fff;
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	border-radius: 12px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 @media (max-width: 768px) {
 	.cv-detail-content-accoun {
 		margin: 10px;
@@ -328,5 +337,8 @@
 	}
 	.cv-detail-account-content-info-account {
 		display: block;
+	}
+	.cv-detail-accounts-relations-conente {
+		padding: 0 0px;
 	}
 }

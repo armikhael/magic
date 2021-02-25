@@ -27,7 +27,6 @@ export default class AccountDetail extends React.Component {
 
 	componentDidMount() {
 		serviceViewAccount(this.props.match.params.name).then((response) => {
-			console.log(response)
 			this.setState({
 				loading: false,
 				detail: response.account[0],
@@ -146,12 +145,15 @@ export default class AccountDetail extends React.Component {
 							<div className='cv-detail-content-plans'>
 								<div className='cv-detail-content-plans-main'>
 									<div className='cv-detail-plans-content-images'>
-										<img
-											title='Publicidad'
-											alt='Publicidad'
-											className='cv-detail-plans-images'
-											src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
-										/>
+										<a
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
+											<img
+												title='Publicidad'
+												alt='Publicidad'
+												className='cv-detail-plans-images'
+												src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
+											/>
+										</a>
 									</div>
 									<div className='cv-detail-inter-canj-content'>
 										<a
@@ -194,8 +196,28 @@ export default class AccountDetail extends React.Component {
 						</Col>
 						<div className='cv-detail-accounts-user-email-xs'>
 							<CreateUser email={this.state.detail.email} />
-							<br />
+							<div className='cv-detail-accounts-user-publicidad'>
+								<a
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
+									<img
+										title='Publicidad'
+										alt='Publicidad'
+										className='cv-detail-plans-images'
+										src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
+									/>
+								</a>
+							</div>
 							<AccountsRelations relations={this.state.relations} />
+							<div className='cv-detail-accounts-user-publicidad'>
+								<a
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
+									<img
+										width='100%'
+										src='https://i.postimg.cc/jjQbJMHD/publicidad-1.jpg'
+										alt='Publicidad'
+									/>
+								</a>
+							</div>
 						</div>
 					</Row>
 				</Content>
