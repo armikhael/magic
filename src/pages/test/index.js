@@ -15,7 +15,7 @@ export default class Test extends React.Component {
 	}
 	
 	componentDidMount() {
-		serviceGetAccount("publicidadcreativa-instagram").then((response) => {
+		serviceGetAccount("soyjorgegomez-instagram").then((response) => {
 			this.setState({ 
 				account: response,
 				name: response.name
