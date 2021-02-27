@@ -201,7 +201,7 @@ export default class AccountDetail extends React.Component {
 							<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 							<div className='cv-detail-accounts-user-publicidad'>
 								<a
-									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola!%20Vi%20un%20anuncio%20en%20cuentasvirales.com%20y%20quisiera%20posicionar%20mi%20cuenta%20de%20instagram`}>
 									<img
 										title='Publicidad'
 										alt='Publicidad'
@@ -213,7 +213,7 @@ export default class AccountDetail extends React.Component {
 							<AccountsRelations relations={this.state.relations} />
 							<div className='cv-detail-accounts-user-publicidad'>
 								<a
-									href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola!%20vi%20su%20anucio%20en%20cuentasvirales.com%20y%20quisiera%20recibir%20asesoría%20para%20mejorar%20mi%20cuenta`}>
 									<img
 										width='100%'
 										src='https://i.postimg.cc/jjQbJMHD/publicidad-1.jpg'
