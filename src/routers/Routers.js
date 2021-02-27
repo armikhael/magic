@@ -33,12 +33,12 @@ const Routers = () => (
 				<Route exact path='/' component={Home} />
 				<Route exact path='/test' component={Test} />
 				<Route exact path='/auth/login' component={Login} />
+				<Route exact path='/auth/register' component={Register} />
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/country/:name' component={Country} />
 				<Route exact path='/results/:name' component={Results} />
 				<Route exact path='/help/:name' component={Help} />
 
-				<PrivateRoute exact path='/auth/register' component={Register} />
 				<PrivateRoute exact path='/auth/recovery' component={Recovery} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/create-account' component={CreateAccount} />

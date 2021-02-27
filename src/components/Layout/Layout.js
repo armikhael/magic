@@ -28,12 +28,13 @@ const menu = (
 
 function Layout(props) {
 	const handleLayouts = () => {
-		if (props.location.pathname === '/auth/login') {
+		if (props.location.pathname === '/auth/login' || props.location.pathname === '/auth/register') {
 			return <>{props.children}</>
 		} else {
 			return (
 				<>
 					<Header />
+					<div className='cv-layout-br'></div>
 					{props.children}
 					<Dropdown overlay={menu} placement='topRight' arrow>
 						<Button

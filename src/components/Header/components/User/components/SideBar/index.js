@@ -48,7 +48,7 @@ export default class SideBar extends React.Component {
 								</Link>
 							</Col>
 							<Col xs={12} sm={12} md={12}>
-								<Link to={`/auth/login`}>
+								<Link to={`/auth/register`}>
 									<div className='cv-header-user-icon-login-content'>
 										<img
 											className='cv-header-user-icon-login'

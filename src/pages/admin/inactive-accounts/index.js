@@ -52,6 +52,7 @@ export default class InactiveAccounts extends React.Component {
                   
                   <ul key={i}>
                     <li> id: {item._id}</li>
+                    <li> seguidores: {item.followers}</li>
                     <li> 
                       phone: {item.code}{item.phone} -- 
                       <CopyToClipboard
@@ -59,10 +60,16 @@ export default class InactiveAccounts extends React.Component {
                         <Button shape='round'>Copiar <CopyOutlined /></Button>
                       </CopyToClipboard>
                     </li>
-                    <li> token: {btoa(item.account)}</li>
+                    <li> 
+                      token: {btoa(item.account)}
+                      <CopyToClipboard
+                        text={btoa(item.account)}>
+                        <Button shape='round'>Copiar <CopyOutlined /></Button>
+                      </CopyToClipboard>
+                    </li>
                     <li> 
                       verificar: 
-                      <a href={`https://${item.type}.com/${item.account}`} target="__blank">{item.account}</a> --  
+                      <a href={item.interface.link} target="__blank">{item.account}</a> --  
                       <CopyToClipboard
                         text={item.account}>
                         <Button shape='round'>Copiar <CopyOutlined /></Button>

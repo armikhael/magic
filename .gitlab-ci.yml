@@ -1,5 +1,5 @@
 stages:
-  # - deploy-develop
+  - deploy-develop
   - deploy-production
 
 variables:
@@ -17,7 +17,9 @@ variables:
 #         - git add -f .env
 #         - git add . 
 #         - git commit -am "update"
-#         - dpl --provider=heroku --app=$HEROKU_DEV --api-key=$API_KEY
+#         - dpl --provider=heroku --app=$HEROKU_DEVELOP --api-key=$API_KEY
+#     only:
+#         - develop
 
 deploy production:
     stage: deploy-production

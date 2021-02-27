@@ -1,16 +1,14 @@
 /** @format */
 
 import React from 'react'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-
-import { Layout, Row, Button, Result, Col } from 'antd'
-import { CopyOutlined } from '@ant-design/icons'
-
+import { Layout, Row, Result, Col } from 'antd'
 import './style.css'
 
 const { Content } = Layout
 
 export default class Activation extends React.Component {
+
+
 	render() {
 		return (
 			<>
@@ -20,22 +18,9 @@ export default class Activation extends React.Component {
 							<Result
 								className='cv-profile-activation-result'
 								status='success'
-								title='¡Su cuenta ha sido registrada exitosamente!'
-								subTitle='Una vez verificada su cuenta aparecerá en los resultados de búsqueda.Para verificar su identidad debe enviarnos el siguiente código a nuestra cuenta de instagram desde la cuenta que acaba de registrar. Gracias'
+								title='¡Sólo te queda un paso!'
+								subTitle='Una vez verificada su cuenta aparecerá en los resultados de búsqueda. Para verificar su identidad debe presionar "Confirmar Cuenta" que lo llevará a nuestro equipo de Soporte. Gracias'
 								extra={[
-									<h3
-										className='cv-profile-activation-title-code'
-										key='cv-profile-activation-title'>
-										Código: <br /> {this.props.match.params.name}
-									</h3>,
-									<br key='cv-profile-activation-br' />,
-									<CopyToClipboard
-										text={this.props.match.params.name}
-										key='cv-profile-activation-copy'>
-										<Button shape='round' key='cv-profile-activation-button'>
-											Copiar código <CopyOutlined key='cv-profile-activation-icon' />
-										</Button>
-									</CopyToClipboard>,
 									<br key='cv-profile-activation-br-two' />,
 									<img
 										key='cv-profile-activation-img'
@@ -45,13 +30,15 @@ export default class Activation extends React.Component {
 										alt='Cuentas Virales'
 									/>,
 									<br key='cv-profile-activation-br-three' />,
-									<a
-										href='https://www.instagram.com/cuentasvirales/?hl=es-la'
-										rel='noopener noreferrer'
-										key='cv-profile-activation-a'
-										target='_blank'>
-										@cuentasvirales
-									</a>,
+									<h3>
+										<a
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=56979582051&text=Hola,%20me%20acabo%20de%20registrar%20en%20cuentasvirales.com%20y%20quisiera%20confirmar%20mi%20cuenta%20${atob(this.props.match.params.name)}`}
+											rel='noopener noreferrer'
+											key='cv-profile-activation-a'
+											target='_blank'>
+												Confirmar Cuenta
+										</a>
+									</h3>
 								]}
 							/>
 						</Content>

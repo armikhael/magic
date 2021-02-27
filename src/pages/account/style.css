@@ -167,6 +167,10 @@
 	text-align: center;
 }
 
+.cv-detail-plans-content-images img {
+	border-radius: 4px;
+}
+
 .cv-detail-plans-images {
 	width: 100%;
 	max-width: 100%;
@@ -244,8 +248,21 @@
 	border-radius: 12px;
 }
 
+.cv-account-detail-content img {
+	border-radius: 4px;
+}
+
 .cv-detail-accounts-user-email-xs {
 	display: none;
+}
+
+.cv-detail-accounts-user-publicidad {
+	padding: 10px;
+	background: #fff;
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	border-radius: 12px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {
@@ -303,6 +320,9 @@
 		width: 100%;
 		padding: 0 5px;
 	}
+	.cv-detail-user-create-title {
+		margin-top: 12px;
+	}
 	.cv-detail-content-plans {
 		border-radius: 12px;
 		margin-bottom: 0px;
@@ -320,5 +340,8 @@
 	}
 	.cv-detail-account-content-info-account {
 		display: block;
+	}
+	.cv-detail-accounts-relations-conente {
+		padding: 0 0px;
 	}
 }

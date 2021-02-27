@@ -15,6 +15,10 @@
 	height: 45px !important;
 }
 
+.cv-layout-br {
+	height: 64px;
+}
+
 .cv-layout-btn-help:hover {
 	color: #f61073;
 	border-color: #f61073;

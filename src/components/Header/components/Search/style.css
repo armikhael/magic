@@ -1,24 +1,74 @@
 /** @format */
 
 .cv-header-search-menu {
-	width: 200px;
-	margin-left: 20px;
+	height: 80vh;
+	width: 97%;
+	overflow-y: scroll;
+	margin-left: 12px;
+	position: absolute;
 	border-radius: 0 0 8px 8px !important;
 }
 
-.cv-header-search-submenu-content {
-	padding: 10px 15px;
-	height: 300px;
-	position: relative;
-	overflow-y: scroll;
+.cv-headr-title-search-menu {
+	padding: 5px 15px;
+	font-size: 14px;
+	color: #636363;
+	margin-bottom: 0px;
 }
 
-.cv-header-search-submenu-content li {
-	padding: 5px 0;
+.cv-header-search-conetent-country {
+	width: 100%;
+	overflow-x: scroll;
+	height: 45px;
+}
+
+.cv-header-search-tag {
+	border-radius: 50px;
+	padding: 3px 10px;
+}
+
+.cv-header-search-tag:hover {
+	background: #f92078;
+}
+
+.cv-header-search-tag:hover > a {
+	color: #fff;
+	font-weight: 900;
+}
+
+.cv-header-search-content-category-main {
+	position: relative;
+}
+
+.cv-header-search-content-category-main:hover > .cv-header-search-content-category {
+	filter: brightness(0.5);
+}
+
+.cv-header-search-content-category-main:hover > a {
+	color: #fff;
+	font-size: 15px;
+}
+
+.cv-header-search-content-category {
+	background-size: 100%;
+	height: 80px;
+	text-align: center;
+	margin: 4px;
+	padding-top: 28px;
+	border-radius: 4px;
+	filter: brightness(0.6);
 }
 
 .cv-header-search-submenu-title {
 	text-transform: capitalize;
+	position: absolute;
+	top: 28px;
+	color: #fff;
+	font-weight: 900;
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+	font-size: 14px;
 }
 
 .cv-header-search-content {
@@ -56,8 +106,11 @@
 		font-size: 16px;
 	}
 	.cv-header-search-menu {
-		width: 150px;
+		width: 100%;
 		margin-left: 10px;
+	}
+	.cv-header-search-content-overlay-dropdown {
+		width: 95%;
 	}
 }
 
