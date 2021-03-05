@@ -54,7 +54,7 @@ export default class InactiveAccounts extends React.Component {
                     <li> id: {item._id}</li>
                     <li> seguidores: {item.followers}</li>
                     <li> 
-                      phone: {item.code}{item.phone} -- 
+                      phone: <a href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account},+recibió un código? en su cuenta de ${item.type}..`} target="__blank">{item.code}{item.phone}</a> -- 
                       <CopyToClipboard
                         text={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account},+como+estas?`}>
                         <Button shape='round'>Copiar <CopyOutlined /></Button>
