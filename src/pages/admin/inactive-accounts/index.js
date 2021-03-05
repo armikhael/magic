@@ -52,6 +52,7 @@ export default class InactiveAccounts extends React.Component {
                   
                   <ul key={i}>
                     <li> id: {item._id}</li>
+                    <li> cuenta: {item.name}</li>
                     <li> seguidores: {item.followers}</li>
                     <li> 
                       phone: <a href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account},+recibió un código? en su cuenta de ${item.type}..`} target="__blank">{item.code}{item.phone}</a> -- 
@@ -61,9 +62,9 @@ export default class InactiveAccounts extends React.Component {
                       </CopyToClipboard>
                     </li>
                     <li> 
-                      token: {btoa(item.account)}
+                      token: {btoa(item.name)}
                       <CopyToClipboard
-                        text={btoa(item.account)}>
+                        text={btoa(item.name)}>
                         <Button shape='round'>Copiar <CopyOutlined /></Button>
                       </CopyToClipboard>
                     </li>
