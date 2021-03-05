@@ -21,17 +21,19 @@ const { Content } = Layout
 export default class AccountDetail extends React.Component {
 	state = {
 		detail: null,
+		asociation: null,
 		relations: null,
 		loading: true,
 	}
 
 	componentDidMount() {
 		serviceViewAccount(this.props.match.params.name).then((response) => {
-			console.log(response)
+			console.log('response', response.asociation)
 			this.setState({
 				loading: false,
 				detail: response.account[0],
 				relations: response.relations,
+				asociation: response.asociation,
 			})
 		})
 	}
@@ -138,7 +140,7 @@ export default class AccountDetail extends React.Component {
 								</Col>
 							</Row>
 							<div className='cv-detail-accounts-user-email-md'>
-								<CreateUser email={this.state.detail.email} />
+								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 								<AccountsRelations relations={this.state.relations} />
 							</div>
 						</Col>
@@ -146,12 +148,15 @@ export default class AccountDetail extends React.Component {
 							<div className='cv-detail-content-plans'>
 								<div className='cv-detail-content-plans-main'>
 									<div className='cv-detail-plans-content-images'>
-										<img
-											title='Publicidad'
-											alt='Publicidad'
-											className='cv-detail-plans-images'
-											src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
-										/>
+										<a
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
+											<img
+												title='Publicidad'
+												alt='Publicidad'
+												className='cv-detail-plans-images'
+												src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
+											/>
+										</a>
 									</div>
 									<div className='cv-detail-inter-canj-content'>
 										<a
@@ -193,9 +198,29 @@ export default class AccountDetail extends React.Component {
 							</div>
 						</Col>
 						<div className='cv-detail-accounts-user-email-xs'>
-							<CreateUser email={this.state.detail.email} />
-							<br />
+							<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
+							<div className='cv-detail-accounts-user-publicidad'>
+								<a
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola!%20Vi%20un%20anuncio%20en%20cuentasvirales.com%20y%20quisiera%20posicionar%20mi%20cuenta%20de%20instagram`}>
+									<img
+										title='Publicidad'
+										alt='Publicidad'
+										className='cv-detail-plans-images'
+										src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
+									/>
+								</a>
+							</div>
 							<AccountsRelations relations={this.state.relations} />
+							<div className='cv-detail-accounts-user-publicidad'>
+								<a
+									href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola!%20vi%20su%20anucio%20en%20cuentasvirales.com%20y%20quisiera%20recibir%20asesoría%20para%20mejorar%20mi%20cuenta`}>
+									<img
+										width='100%'
+										src='https://i.postimg.cc/jjQbJMHD/publicidad-1.jpg'
+										alt='Publicidad'
+									/>
+								</a>
+							</div>
 						</div>
 					</Row>
 				</Content>
