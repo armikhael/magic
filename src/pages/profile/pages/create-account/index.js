@@ -89,9 +89,9 @@ class CreateAccount extends React.Component {
 	handleSubmit = async () => {
 		let body = {
 			email: this.state.userProfile.email,
-			account: `${this.state.name}`,
+			account: `${this.state.name.trim()}`,
 			followers: `${this.state.followers}`,
-			name: `${this.state.name}-${this.state.type}`,
+			name: `${this.state.name.trim()}-${this.state.type}`,
 			type: this.state.type,
 			biography: this.state.biography,
 			image: process.env.REACT_APP_LOGO,
@@ -104,6 +104,7 @@ class CreateAccount extends React.Component {
 
 		console.log(Object.keys(body))
 		console.log(body)
+		return 
 		for (let i = 0; i < Object.keys(body).length; i++) {
 			let value = Object.keys(body)[i]
 			if (body[value] === undefined || body[value].length <= 0) {
