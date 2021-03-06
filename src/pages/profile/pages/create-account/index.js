@@ -264,7 +264,7 @@ class CreateAccount extends React.Component {
 											<Form.Item
 												name='name'
 												label={`Escriba su usuario sin el "@"`}
-												rules={rules.rulesAcount}
+												rules={rules.rulesAccount}
 												onChange={this.handleChangeInput}>
 												<Input name='name' />
 											</Form.Item>

@@ -96,10 +96,18 @@ export const rules = {
 			}
 		}
 	],
-	rulesAcount: [
+	rulesAccount: [
 		{
 			required: true,
 			message: 'Debe agregar su cuenta',
+		},
+		{
+			validator: (_, value) => {
+				if (value.indexOf("@") === -1) {
+					return Promise.resolve();
+				}
+				return Promise.reject('NO se permite el símbolo @');
+			}
 		}
 	]
 }
