@@ -104,7 +104,6 @@ class CreateAccount extends React.Component {
 
 		console.log(Object.keys(body))
 		console.log(body)
-		return 
 		for (let i = 0; i < Object.keys(body).length; i++) {
 			let value = Object.keys(body)[i]
 			if (body[value] === undefined || body[value].length <= 0) {
