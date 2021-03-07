@@ -95,7 +95,7 @@ export default function SearchNavbar() {
 					})}
 				</Row>
 			</Menu.Item>
-			<h3 className='cv-headr-title-search-menu'>Entretenido</h3>
+			<h3 className='cv-headr-title-search-menu'>Lo mas reciente</h3>
 			<Menu.Item>
 				<Row>
 					{isMenu.categories.slice(24, 32).map((item, i) => {

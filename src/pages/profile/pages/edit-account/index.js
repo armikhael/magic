@@ -283,7 +283,7 @@ export default class EditAccount extends React.Component {
 																	</Form.Item>
 																	<Col span={24} className='mt15'>
 																		<Form.Item
-																			label='Biografia'
+																			label='Biografía'
 																			rules={rules.rulesText}
 																			onChange={this.handleChangeInput}>
 																			<TextArea rows={4} name='biography' value={this.state.biography} />
@@ -332,7 +332,7 @@ export default class EditAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
-												¿Tu pais "NO" se encuentra en el listado? Escríbenos
+												¿Tu país "NO" se encuentra en el listado? Escríbenos
 											</a>
 
 											<Form.Item
@@ -351,7 +351,7 @@ export default class EditAccount extends React.Component {
 
 											{this.state.categories && (
 												<Form.Item
-													label='Elige hasta 5 categprías que más se asocien a tu cuenta'
+													label='Elige hasta 5 categorías que más se asocien a tu cuenta'
 													name='categories'
 													rules={rules.rulesSelect}
 													initialValue={this.state.categories}>

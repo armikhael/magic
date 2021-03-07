@@ -20,7 +20,7 @@ const menu = (
 					localStorage.removeItem('user')
 				}}
 				to={`/`}>
-				Cerrar sesion
+				Cerrar Sesión
 			</Link>
 		</Menu.Item>
 	</Menu>

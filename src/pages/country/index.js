@@ -54,7 +54,7 @@ export default class Country extends React.Component {
 				<div>
 					<Content className='cv-container-main'>
 						<div className='cv-category-content-title'>
-							<h1 className='cv-category-title'>Pais: {this.props.match.params.name}</h1>
+							<h1 className='cv-category-title'>País: {this.props.match.params.name.replaceAll('-', ' ')}</h1>
 						</div>
 						<InfiniteScroll
 							dataLength={this.state.list.length}
