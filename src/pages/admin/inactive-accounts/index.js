@@ -55,11 +55,17 @@ export default class InactiveAccounts extends React.Component {
                     <li> cuenta: {item.name}</li>
                     <li> seguidores: {item.followers}</li>
                     <li> 
-                      phone: <a href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account},+recibió un código? en su cuenta de ${item.type}..`} target="__blank">{item.code}{item.phone}</a> -- 
+                      phone: {item.code}{item.phone}
                       <CopyToClipboard
-                        text={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account},+como+estas?`}>
+                        text={`${item.code}${item.phone}`}>
                         <Button shape='round'>Copiar <CopyOutlined /></Button>
                       </CopyToClipboard>
+                    </li>
+                    <li> 
+                      primera confirmación: <a href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account}, recibió un código? en su cuenta de ${item.type}..`} target="__blank">{item.code}{item.phone}</a>
+                    </li>
+                    <li> 
+                      última confirmación: <a href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account}, esperamos que estes muy bien... es necesario que nos envíes el código que te envíamos a tu cuenta de ${item.type} para poder activarla o en las próximas 24 horas se dará de baja a la cuenta. Saludos`} target="__blank">{item.code}{item.phone}</a>
                     </li>
                     <li> 
                       token: {btoa(item.name)}
