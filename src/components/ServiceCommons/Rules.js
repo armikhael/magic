@@ -103,10 +103,10 @@ export const rules = {
 		},
 		{
 			validator: (_, value) => {
-				if (value.indexOf("@") === -1) {
+				if (value.indexOf("@") === -1 && value.indexOf(" ") === -1) {
 					return Promise.resolve();
 				}
-				return Promise.reject('NO se permite el símbolo @');
+				return Promise.reject('NO se permite el símbolo @ ni espacios en blanco');
 			}
 		}
 	]
