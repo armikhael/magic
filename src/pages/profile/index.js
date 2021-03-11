@@ -4,12 +4,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import { Layout, Row, Col, Card, Result, Typography, Button, notification } from 'antd'
-import { UserOutlined, HeartOutlined } from '@ant-design/icons'
+import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form } from 'antd'
+import { UserOutlined, HeartOutlined, ApiOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
+import InputField from '../../components/Input'
 
-import { serviceGetAccountsByEmail, serviceDeleteAccount } from './services'
+import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 import './style.css'
 
 const { Content, Header } = Layout
@@ -23,15 +24,23 @@ export default class Profile extends React.Component {
 			accounts: [],
 			loading: true,
 			redirect: false,
+			loadingChangePassword: false,
 		}
 	}
 
 	componentDidMount() {
-		serviceGetAccountsByEmail(this.state.userProfile.email).then((data) => {
+		serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
 			this.setState({
-				accounts: data,
+				accounts: response,
 				loading: false,
 			})
+		})
+	}
+
+	handleChangePassword = (item) => {
+		this.setState({ loadingChangePassword: true })
+		serviceChangePassword(item, this.state.userProfile.email).then(() => {
+			this.setState({ loadingChangePassword: false })
 		})
 	}
 
@@ -121,6 +130,51 @@ export default class Profile extends React.Component {
 										</Row>
 									</Layout>
 								</Card>
+								{this.state.userProfile.autentication !== 'google' && (
+									<Card className='cv-profile-main-container'>
+										<h3 className='cv-perfil-title-main-title'>
+											<ApiOutlined className='cv-perfil-title-main-icon' />
+											Cambiar Contraseña
+										</h3>
+										<br />
+										<Layout className='cv-profile-container'>
+											<Form
+												name='normal_login'
+												initialValues={{ remember: true }}
+												onFinish={this.handleChangePassword}>
+												<InputField
+													className={'cv-auth-login-field-input'}
+													inputName={'password'}
+													inputNameLabel={'Contraseña Actual'}
+													inputNameRule={true}
+													inputNameMessage={'Ingrese su contraseña'}
+													inputNameType={'password'}
+													inputNameIcon={''}
+													inputNameRules={'rulesPassword'}
+												/>
+												<InputField
+													className={'cv-auth-login-field-input'}
+													inputName={'new_password'}
+													inputNameLabel={'Nueva Contraseña'}
+													inputNameRule={true}
+													inputNameMessage={'Ingrese tu nueva contraseña'}
+													inputNameType={'password'}
+													inputNameIcon={''}
+													inputNameRules={'rulesPassword'}
+												/>
+												<br />
+												<Form.Item>
+													<Button
+														loading={this.state.loadingChangePassword}
+														htmlType={'submit'}
+														className={'cv-profile-button-submit-change-password'}>
+														Confirmar
+													</Button>
+												</Form.Item>
+											</Form>
+										</Layout>
+									</Card>
+								)}
 							</Col>
 							<Col xs={24} sm={24} md={14}>
 								<Header className='cv-perfil-title-main-container'>
