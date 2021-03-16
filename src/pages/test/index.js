@@ -1,61 +1,84 @@
 /** @format */
 
-import React from 'react'
-import ImageUploader from 'react-images-upload'
+import React, { useState, useEffect } from 'react'
+
+import { Upload, Button } from 'antd'
+import ImgCrop from 'antd-img-crop'
+
 import { serviceGetAccount, serviceUploadImage, serviceUpdateImage } from './services'
 
-export default class Test extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			account: null,
-			name: null,
+export default function Test() {
+	const [fileList, setFileList] = useState([])
+	const [isButtom, setButtom] = useState(false)
+	const [isAccount, setAccount] = useState(null)
+
+	useEffect(() => {
+		serviceGetAccount('euforiastral-instagram').then((response) => {
+			console.log(response)
+			setFileList([
+				{
+					uid: '-1',
+					name: 'image.png',
+					status: 'done',
+					url: response.image,
+					image: response.image,
+					image_thumb: response.image_thumb,
+				},
+			])
+			setAccount(response)
+		})
+	}, [])
+
+	const handleOnChange = ({ fileList: item }) => {
+		setFileList(item)
+		if (item.length > 0) {
+			setButtom(true)
 		}
 	}
 
-	componentDidMount() {
-		serviceGetAccount('geraldinelopez__-instagram').then((response) => {
-			this.setState({
-				account: response,
-				name: response.name,
-			})
+	const handleSaveImage = () => {
+		let formData = new FormData()
+		formData.append('image', fileList[0].originFileObj)
+		formData.append('name', isAccount.name)
+		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
+		serviceUploadImage(formData).then((response) => {
+			serviceUpdateImage(isAccount._id, response).then((response) => {})
 		})
 	}
 
-	render() {
-		const handleUpload = async (item) => {
-			const formData = new FormData()
-			formData.append('image', item[0])
-			formData.append('name', this.state.account.name)
-			formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
-			try {
-				const responseUpload = await serviceUploadImage(formData)
-				const responseUpdate = await serviceUpdateImage(this.state.account._id, responseUpload)
-				if (responseUpdate.statusCode === 200) {
-					alert('finalizamos')
-				}
-			} catch (error) {
-				alert(error)
-			}
+	const handleOnPreview = async (item) => {
+		let src = item.url
+		if (!src) {
+			src = await new Promise((resolve) => {
+				let reader = new FileReader()
+				reader.readAsDataURL(item.originFileObj)
+				reader.onload = () => resolve(reader.result)
+			})
 		}
-
-		return (
-			<>
-				{this.state.account && (
-					<div>
-						<p>id: {this.state.account._id}</p>
-						<p>name: {this.state.account.name}</p>
-					</div>
-				)}
-				<ImageUploader
-					withIcon={true}
-					buttonText='Choose images'
-					onChange={handleUpload}
-					imgExtension={['.jpg', '.gif', '.png', '.gif']}
-					maxFileSize={5242880}
-					withPreview={true}
-				/>
-			</>
-		)
+		let image = new Image()
+		image.src = src
+		let imgWindow = window.open(src)
+		imgWindow.document.write(image.outerHTML)
 	}
+
+	return (
+		<>
+			<ImgCrop>
+				<Upload
+					className='cv-upload-img'
+					listType='picture-card'
+					fileList={fileList}
+					onChange={handleOnChange}
+					onPreview={handleOnPreview}>
+					{fileList.length < 1 && '+ Imagen'}
+				</Upload>
+			</ImgCrop>
+			<br />
+			{isButtom && (
+				<Button type='primary' onClick={handleSaveImage}>
+					Enviar
+				</Button>
+			)}
+		</>
+	)
 }
