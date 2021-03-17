@@ -1,3 +1,5 @@
+/** @format */
+
 export const rules = {
 	required: [
 		{
@@ -24,12 +26,12 @@ export const rules = {
 			min: 4,
 			message: 'Minimo 4 caracteres!',
 		},
-    ],
-    rulesDropdown: [
+	],
+	rulesDropdown: [
 		{
 			required: true,
 			message: 'Ingresa tu contraseña!',
-		}
+		},
 	],
 	rulesText: [
 		{
@@ -40,40 +42,31 @@ export const rules = {
 			min: 4,
 			message: 'Minimo 4 caracteres!',
 		},
-    ],
-    rulesPhone: [
-			{
-				required: true,
-				message: 'Ingrese sú número telefónico',
-			},
-			{
-				min: 7,
-				message: 'Minimo 7 caracteres!',
-      },
-			{
-				validator: (_, value) => {
-					let patron = /^\d*$/; 
-					if (patron.test(value)) {
-							return Promise.resolve();
-					}
-					return Promise.reject('Sólo se permiten números');
+	],
+	rulesPhone: [
+		{
+			required: true,
+			message: 'Ingrese sú número telefónico',
+		},
+		{
+			min: 7,
+			message: 'Minimo 7 caracteres!',
+		},
+		{
+			validator: (_, value) => {
+				let patron = /^\d*$/
+				if (patron.test(value)) {
+					return Promise.resolve()
 				}
-			}
-    ],
-    rulesPrice: [
+				return Promise.reject('Sólo se permiten números')
+			},
+		},
+	],
+	rulesPrice: [
 		{
 			min: 1,
 			message: 'Minimo 1 caracter!',
-    },
-		{
-			validator: (_, value) => {
-				let patron = /^\d*$/; 
-				if (patron.test(value)) {
-						return Promise.resolve();
-				}
-				return Promise.reject('Sólo se permiten números');
-			}
-		}
+		},
 	],
 	rulesSelect: [
 		{
@@ -88,18 +81,25 @@ export const rules = {
 		},
 		{
 			validator: (_, value) => {
-				console.log(value);
-				if (value >= 1000){
+				if (value >= 1000) {
 					return Promise.resolve()
 				}
-				return Promise.reject('Debes contar con al menos 1.000 seguidores');
-			}
-		}
+				return Promise.reject('Debes contar con al menos 1.000 seguidores')
+			},
+		},
 	],
-	rulesAcount: [
+	rulesAccount: [
 		{
 			required: true,
 			message: 'Debe agregar su cuenta',
-		}
-	]
+		},
+		{
+			validator: (_, value) => {
+				if (value.indexOf('@') === -1 && value.indexOf(' ') === -1) {
+					return Promise.resolve()
+				}
+				return Promise.reject('NO se permite el símbolo @ ni espacios en blanco')
+			},
+		},
+	],
 }

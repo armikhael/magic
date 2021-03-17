@@ -87,52 +87,66 @@ class CreateAccount extends React.Component {
 	}
 
 	handleSubmit = async () => {
-		let body = {
-			email: this.state.userProfile.email,
-			account: `${this.state.name}`,
-			followers: `${this.state.followers}`,
-			name: `${this.state.name}-${this.state.type}`,
-			type: this.state.type,
-			biography: this.state.biography,
-			image: process.env.REACT_APP_LOGO,
-			categories: this.state.categories,
-			plans: this.state.plans,
-			phone: this.state.phone,
-			code: this.state.code,
-			country: this.state.country,
-		}
-
-		console.log(Object.keys(body))
-		console.log(body)
-		for (let i = 0; i < Object.keys(body).length; i++) {
-			let value = Object.keys(body)[i]
-			if (body[value] === undefined || body[value].length <= 0) {
-				notification['warning']({
-					message: `Formulario`,
-					description: 'Debe rellenar todos los campos.',
-				})
-				return
-			}
-		}
-		await serviceSaveAccount(body).then((data) => {
-			if (data.statusCode !== 200) {
+		try {
+			if (this.state.phone.indexOf(this.state.code) === 0) {
 				notification['error']({
 					message: `Ups!`,
-					description: `${data.message}`,
+					description: `El número de WhatsApp debe ir sin el código del país`,
 				})
 				return
 			}
+			let body = {
+				email: this.state.userProfile.email,
+				account: `${this.state.name.trim()}`,
+				followers: `${this.state.followers}`,
+				name: `${this.state.name.trim()}-${this.state.type}`,
+				type: this.state.type,
+				biography: this.state.biography,
+				image: process.env.REACT_APP_LOGO,
+				categories: this.state.categories,
+				plans: this.state.plans,
+				phone: this.state.phone,
+				code: this.state.code,
+				country: this.state.country,
+			}
 
-			notification['success']({
-				message: `Good job!!`,
-				description: `La cuenta se ha registrado satisfactoriamente`,
-			})
+			console.log(Object.keys(body))
+			console.log(body)
+			for (let i = 0; i < Object.keys(body).length; i++) {
+				let value = Object.keys(body)[i]
+				if (body[value] === undefined || body[value].length <= 0) {
+					notification['warning']({
+						message: `Formulario`,
+						description: 'Debe rellenar todos los campos.',
+					})
+					return
+				}
+			}
+			await serviceSaveAccount(body).then((data) => {
+				if (data.statusCode !== 200) {
+					notification['error']({
+						message: `Ups!`,
+						description: `${data.message}`,
+					})
+					return
+				}
 
-			this.setState({
-				redirect: true,
-				accountParam: body.name,
+				notification['success']({
+					message: `Good job!!`,
+					description: `La cuenta se ha registrado satisfactoriamente`,
+				})
+
+				this.setState({
+					redirect: true,
+					accountParam: body.name,
+				})
 			})
-		})
+		} catch (error) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Revise que todos los campos esten completos`,
+			})
+		}
 	}
 
 	handleChangeInput = (e) => {
@@ -212,7 +226,7 @@ class CreateAccount extends React.Component {
 			[e.option]: e.value.toLowerCase(),
 			conceptsSelected: this.state.concepts[e.value.toLowerCase()],
 			plans: [],
-			selectConcept: this.state.concepts[e.value.toLowerCase()][0]
+			selectConcept: this.state.concepts[e.value.toLowerCase()][0],
 		})
 	}
 
@@ -249,12 +263,17 @@ class CreateAccount extends React.Component {
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
-											<Form.Item 
+											<Form.Item
 												name='type'
 												label='Tipo de cuenta'
-												rules={rules.rulesSelect}>																				
-												<Select 
-													onChange={(e) => this.handleSelectType({ option: 'type', value: e })}
+												rules={rules.rulesSelect}>
+												<Select
+													onChange={(e) =>
+														this.handleSelectType({
+															option: 'type',
+															value: e,
+														})
+													}
 													placeholder='Seleccionar'>
 													{this.state.socialNet.map((item) => (
 														<Option key={item}>{item}</Option>
@@ -264,7 +283,7 @@ class CreateAccount extends React.Component {
 											<Form.Item
 												name='name'
 												label={`Escriba su usuario sin el "@"`}
-												rules={rules.rulesAcount}
+												rules={rules.rulesAccount}
 												onChange={this.handleChangeInput}>
 												<Input name='name' />
 											</Form.Item>
@@ -287,19 +306,23 @@ class CreateAccount extends React.Component {
 								</Row>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>Información</h3>
+										<h3 className='cv-create-account-from-title'>
+											Información
+										</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item
-												name='country'												
+												name='country'
 												label='¿En que país te encuentras actualmente?'
 												rules={rules.rulesSelect}>
-												<Select 
+												<Select
 													onChange={this.handleChangeCountry}
 													placeholder='Seleccionar'>
 													{this.state.countries.map((item, i) => {
 														return (
 															<Option
-																style={{ textTransform: 'capitalize' }}
+																style={{
+																	textTransform: 'capitalize',
+																}}
 																key={i}
 																value={JSON.stringify({
 																	code: item.code,
@@ -316,137 +339,176 @@ class CreateAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
-												Si tu país NO se encuentra en el listado... Escríbenos
+												Si tu país NO se encuentra en el listado...
+												Escríbenos
 											</a>
+											<br></br>
 											<Form.Item
-												label='Coloca tú número de WhatsApp'
-												name='phone' 
+												label='Coloca tú número de WhatsApp (sin código de país)'
 												rules={rules.rulesPhone}
+												name='phone'
 												onChange={this.handleChangeInput}>
 												<Input name='phone' />
 											</Form.Item>
-												WhatsApp ->{' '}
-												<a
-													rel='noopener noreferrer'
-													target='_blank'
-													href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>
-													{this.state.code}
-													{this.state.phone}
-												</a>
+											¿Cómo se verá en tu perfil? ...{' '}
+											<a
+												rel='noopener noreferrer'
+												target='_blank'
+												href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.code}${this.state.phone}&text=Hola%20${this.state.name}%20este%20es%20un%20mensaje%20de%20prueba`}>
+												{this.state.code}
+												{this.state.phone}
+											</a>
 											<Form.Item
 												label='Elige hasta 5 categorías que más se asocien a tu cuenta'
 												name='categories'
 												rules={rules.rulesSelect}>
 												<Select
 													style={{ width: '100%' }}
-													onChange={(e) => this.handleSelect({ option: 'categories', value: e })}
+													onChange={(e) =>
+														this.handleSelect({
+															option: 'categories',
+															value: e,
+														})
+													}
 													mode='multiple'
 													showArrow
 													maxTagCount={5}
 													placeholder='Seleccionar'>
-													{this.state.responseCategories.map((item, i) => {
-														return (
-															<Option
-																style={{ textTransform: 'capitalize' }}
-																key={i}
-																value={item.value}>
-																{item.value}
-															</Option>
-														)
-													})}
+													{this.state.responseCategories.map(
+														(item, i) => {
+															return (
+																<Option
+																	style={{
+																		textTransform: 'capitalize',
+																	}}
+																	key={i}
+																	value={item.value}>
+																	{item.value}
+																</Option>
+															)
+														}
+													)}
 												</Select>
 											</Form.Item>
 											<a
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
-												Si tu categoría NO se encuentra en el listado... Escríbenos
+												Si tu categoría NO se encuentra en el listado...
+												Escríbenos
 											</a>
 										</Card>
 									</Col>
 								</Row>
 
-								{this.state.conceptsSelected &&
-								<Row>
-									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>
-											Informa el precio de tus servicios
-										</h3>
-										<Card className='cv-create-account-card-custom'>							
-											<Row>												
-												<Col span={24}>
-													<p>¿Cuáles son tus tarifas publicitarios?</p>
-													<Form.Item label='Ejemplo: 2 Historias'>
-														<Select
-															placeholder='Seleccionar'
-															style={{ width: '30%' }}
-															onChange={(e) =>
-																this.handleSelect({ option: 'selectQuantityConcept', value: e })
-															}>
-															{this.state.quantity.map((item) => (
-																<Option key={item} value={item}>
-																	{item}
-																</Option>
-															))}
-														</Select>
-														
-														<Select
-															placeholder='Seleccionar'
-															style={{ width: '70%' }}
-															onChange={(e) =>
-																this.handleSelect({ option: 'selectConcept', value: e })
-															}>
-															{this.state.conceptsSelected.map((item) => (
-																<Option key={item}>{item}</Option>
-															))}
-														</Select>
-													</Form.Item>
-													<Form.Item
-														label={`Precio en ${this.state.currency}`}
-														name='price' 
-														onChange={this.handleChangeInput}
-														rules={rules.rulesPrice}>
-														<Input name='auxPrice' placeholder={`${this.state.currency}`} />
-													</Form.Item>													
-													<div className='cv-create-account-btn-add-content'>
-														<Button type='primary' shape='round' onClick={this.handleButtonPlans}>
-															AGREGAR
-														</Button>
-													</div>
-													<Divider></Divider>
-													<List
-														header={<div>Tarifas agregadas</div>}
-														bordered
-														dataSource={this.state.plans}
-														renderItem={(item, key) => (
-															<List.Item>
-																<Typography.Text>
-																	{item.description} por {item.price} {item.currency}
-																</Typography.Text>
-																<Button
-																	danger
-																	type='link'
-																	shape='round'
-																	onClick={() => {
-																		this.handleDelete(key)
-																	}}>
-																	<DeleteOutlined />
-																</Button>
-															</List.Item>
-														)}
-													/>
-												</Col>
-											</Row>											
-										</Card>
-									</Col>
-								</Row>
-								}
+								{this.state.conceptsSelected && (
+									<Row>
+										<Col xs={24} sm={24} md={12}>
+											<h3 className='cv-create-account-from-title'>
+												Informa el precio de tus servicios
+											</h3>
+											<Card className='cv-create-account-card-custom'>
+												<Row>
+													<Col span={24}>
+														<p>
+															¿Cuáles son tus tarifas publicitarios?
+														</p>
+														<Form.Item label='Ejemplo: 2 Historias'>
+															<Select
+																placeholder='Seleccionar'
+																style={{ width: '30%' }}
+																onChange={(e) =>
+																	this.handleSelect({
+																		option:
+																			'selectQuantityConcept',
+																		value: e,
+																	})
+																}>
+																{this.state.quantity.map((item) => (
+																	<Option key={item} value={item}>
+																		{item}
+																	</Option>
+																))}
+															</Select>
+
+															<Select
+																placeholder='Seleccionar'
+																style={{ width: '70%' }}
+																onChange={(e) =>
+																	this.handleSelect({
+																		option: 'selectConcept',
+																		value: e,
+																	})
+																}>
+																{this.state.conceptsSelected.map(
+																	(item) => (
+																		<Option key={item}>
+																			{item}
+																		</Option>
+																	)
+																)}
+															</Select>
+														</Form.Item>
+														<Form.Item
+															label={`Precio en ${this.state.currency}`}
+															name='price'
+															onChange={this.handleChangeInput}
+															rules={rules.rulesPrice}>
+															<Input
+																name='auxPrice'
+																placeholder={`${this.state.currency}`}
+															/>
+														</Form.Item>
+														<div className='cv-create-account-btn-add-content'>
+															<Button
+																type='primary'
+																shape='round'
+																onClick={this.handleButtonPlans}>
+																AGREGAR
+															</Button>
+														</div>
+														<Divider></Divider>
+														<List
+															header={<div>Tarifas agregadas</div>}
+															bordered
+															dataSource={this.state.plans}
+															renderItem={(item, key) => (
+																<List.Item>
+																	<Typography.Text>
+																		{item.description} por{' '}
+																		{item.price} {item.currency}
+																	</Typography.Text>
+																	<Button
+																		danger
+																		type='link'
+																		shape='round'
+																		onClick={() => {
+																			this.handleDelete(key)
+																		}}>
+																		<DeleteOutlined />
+																	</Button>
+																</List.Item>
+															)}
+														/>
+													</Col>
+												</Row>
+											</Card>
+										</Col>
+									</Row>
+								)}
 
 								<div className='cv-create-account-btn-submit'>
-									<Button type='primary' shape='round' onClick={this.handleSubmit}>
+									<Button
+										type='primary'
+										shape='round'
+										onClick={this.handleSubmit}>
 										REGISTRAR
 									</Button>
-									{this.state.redirect && <Redirect to={`/profile/activation/${btoa(this.state.name)}`} /> }
+									{this.state.redirect && (
+										<Redirect
+											to={`/profile/activation/${btoa(this.state.name)}`}
+										/>
+									)}
 								</div>
 							</Form>
 						</Layout>
