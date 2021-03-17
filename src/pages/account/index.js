@@ -226,22 +226,24 @@ export default class AccountDetail extends React.Component {
 							/>
 							<div className='cv-detail-accounts-user-publicidad'>
 								<a
-									href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola!%20Vi%20un%20anuncio%20en%20cuentasvirales.com%20y%20quisiera%20posicionar%20mi%20cuenta%20de%20instagram`}>
+									href={`${config.linkSeguidores}`}>
 									<img
 										title='Publicidad'
 										alt='Publicidad'
 										className='cv-detail-plans-images'
-										src='https://i.postimg.cc/j5MYMCkK/publicidad-2.png'
+										src='https://i.ibb.co/KGb2pSt/seguidores.gif'
 									/>
 								</a>
 							</div>
 							<AccountsRelations relations={this.state.relations} />
 							<div className='cv-detail-accounts-user-publicidad'>
 								<a
-									href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola!%20vi%20su%20anucio%20en%20cuentasvirales.com%20y%20quisiera%20recibir%20asesoría%20para%20mejorar%20mi%20cuenta`}>
+									rel="noopener noreferrer"
+									href={`${config.linkYoutube}`}
+									target="_blank">
 									<img
 										width='100%'
-										src='https://i.postimg.cc/jjQbJMHD/publicidad-1.jpg'
+										src='https://i.ibb.co/kSX3Zdt/burger-king2.gif'
 										alt='Publicidad'
 									/>
 								</a>
