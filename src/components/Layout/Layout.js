@@ -16,7 +16,7 @@ const menu = (
 			<a
 				target='_blank'
 				rel='noopener noreferrer'
-				href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+pa%C3%ADs:`}>
+				href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola, tengo algunas dudas sobre la aplicación:`}>
 				Contáctanos
 			</a>
 		</Menu.Item>
@@ -28,7 +28,10 @@ const menu = (
 
 function Layout(props) {
 	const handleLayouts = () => {
-		if (props.location.pathname === '/auth/login' || props.location.pathname === '/auth/register') {
+		if (
+			props.location.pathname === '/auth/login' ||
+			props.location.pathname === '/auth/register'
+		) {
 			return <>{props.children}</>
 		} else {
 			return (
