@@ -7,16 +7,14 @@ import { Button, Dropdown, Menu } from 'antd'
 import { QuestionOutlined } from '@ant-design/icons'
 
 import Header from '../../components/Header/'
+import { config } from '../../components/ServiceCommons/Config'
 
 import './style.css'
 
 const menu = (
 	<Menu>
 		<Menu.Item>
-			<a
-				target='_blank'
-				rel='noopener noreferrer'
-				href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola, tengo algunas dudas sobre la aplicación:`}>
+			<a target='_blank' rel='noopener noreferrer' href={`${config.linkSoporte}`}>
 				Contáctanos
 			</a>
 		</Menu.Item>

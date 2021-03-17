@@ -156,7 +156,8 @@
 	background-color: #fff;
 	border-radius: 0 0 12px 12px;
 	margin-bottom: 20px;
-	height: 100vh;
+	min-height: 100vh;
+	height: auto;
 }
 
 .cv-detail-content-plans-main {
