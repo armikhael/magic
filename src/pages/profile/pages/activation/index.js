@@ -7,8 +7,6 @@ import './style.css'
 const { Content } = Layout
 
 export default class Activation extends React.Component {
-
-
 	render() {
 		return (
 			<>
@@ -32,13 +30,17 @@ export default class Activation extends React.Component {
 									<br key='cv-profile-activation-br-three' />,
 									<h3>
 										<a
-											href={`${process.env.REACT_APP_WHATSAPP}?phone=56979582051&text=Hola,%20me%20acabo%20de%20registrar%20en%20cuentasvirales.com%20y%20quisiera%20confirmar%20mi%20cuenta%20${atob(this.props.match.params.name)}`}
+											href={`${process.env.REACT_APP_WHATSAPP}?phone=${
+												process.env.REACT_APP_CONTACT
+											}&text=Hola,%20me%20acabo%20de%20registrar%20en%20cuentasvirales.com%20y%20quisiera%20confirmar%20mi%20cuenta%20${atob(
+												this.props.match.params.name
+											)}`}
 											rel='noopener noreferrer'
 											key='cv-profile-activation-a'
 											target='_blank'>
-												Confirmar Cuenta
+											Confirmar Cuenta
 										</a>
-									</h3>
+									</h3>,
 								]}
 							/>
 						</Content>
