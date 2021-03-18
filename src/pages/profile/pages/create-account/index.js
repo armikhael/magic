@@ -178,6 +178,7 @@ class CreateAccount extends React.Component {
 			})
 			return
 		}
+
 		let arrayPlans = this.state.plans
 		arrayPlans.push({
 			description: `${this.state.selectQuantityConcept} ${this.state.selectConcept}`,
