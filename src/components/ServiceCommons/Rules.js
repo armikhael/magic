@@ -67,6 +67,16 @@ export const rules = {
 			min: 1,
 			message: 'Minimo 1 caracter!',
 		},
+		{
+			validator: (_, value) => {
+				if (value.indexOf('$') === -1 && value.indexOf(' ') === -1) {
+					return Promise.resolve()
+				}
+				return Promise.reject(
+					'NO se permite el símbolos ni espacios en blanco en el precio'
+				)
+			},
+		},
 	],
 	rulesSelect: [
 		{
