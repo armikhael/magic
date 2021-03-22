@@ -37,13 +37,13 @@ const serviceUpdateImage = async (id, item) => {
 			returnResponse = response.data
 			if (response.data.statusCode === 200) {
 				notification['success']({
-					message: `!Imagen subida con Existo!`,
+					message: `!Imagen subida con Exito!`,
 					description: `Recuerda que puedes cambiarla cuando quieras...`,
 				})
 			} else {
 				notification['error']({
 					message: `Problemas de Servicios`,
-					description: `process.env.REACT_APP_HOST}/account/image`,
+					description: `Error al cargar la imagen`,
 				})
 			}
 		})
