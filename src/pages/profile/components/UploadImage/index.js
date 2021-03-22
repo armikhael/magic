@@ -1,33 +1,25 @@
 /** @format */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { Upload, Button } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
-import { serviceGetAccount, serviceUploadImage, serviceUpdateImage } from './services'
+import { serviceUploadImage, serviceUpdateImage } from './services'
+import './style.css'
 
-export default function Test() {
-	const [fileList, setFileList] = useState([])
+export default function UploadImage(props) {
+	const [fileList, setFileList] = useState([
+		{
+			uid: '-1',
+			name: 'image.png',
+			status: 'done',
+			url: props.account.image,
+			image: props.account.image,
+			image_thumb: props.account.image_thumb,
+		},
+	])
 	const [isButtom, setButtom] = useState(false)
-	const [isAccount, setAccount] = useState(null)
-
-	useEffect(() => {
-		serviceGetAccount('verohnndz-instagram').then((response) => {
-			console.log(response)
-			setFileList([
-				{
-					uid: '-1',
-					name: 'image.png',
-					status: 'done',
-					url: response.image,
-					image: response.image,
-					image_thumb: response.image_thumb,
-				},
-			])
-			setAccount(response)
-		})
-	}, [])
 
 	const handleOnChange = ({ fileList: item }) => {
 		setFileList(item)
@@ -39,10 +31,10 @@ export default function Test() {
 	const handleSaveImage = () => {
 		let formData = new FormData()
 		formData.append('image', fileList[0].originFileObj)
-		formData.append('name', isAccount.name)
+		formData.append('name', props.account.name)
 		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
 		serviceUploadImage(formData).then((response) => {
-			serviceUpdateImage(isAccount._id, response).then((response) => {})
+			serviceUpdateImage(props.account._id, response).then((response) => {})
 		})
 	}
 
@@ -75,8 +67,8 @@ export default function Test() {
 			</ImgCrop>
 			<br />
 			{isButtom && (
-				<Button type='primary' onClick={handleSaveImage}>
-					Enviar
+				<Button className="cv-upload-img-update" type='primary' onClick={handleSaveImage}>
+					Actualizar
 				</Button>
 			)}
 		</>

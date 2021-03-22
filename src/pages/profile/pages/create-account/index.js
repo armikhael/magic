@@ -3,20 +3,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import {
-	Form,
-	Select,
-	Button,
-	Input,
-	Layout,
-	Row,
-	Col,
-	Card,
-	notification,
-	List,
-	Typography,
-	Divider,
-} from 'antd'
+import { Form, Select, Button, Input, Layout, Row, Col, Card, notification, List, Typography, Divider } from 'antd'
 import { RocketOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import { rules } from '../../../../components/ServiceCommons/Rules'
@@ -167,11 +154,7 @@ class CreateAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-		if (
-			this.state.selectQuantityConcept === null ||
-			this.state.selectConcept === null ||
-			this.state.auxPrice === null
-		) {
+		if (this.state.selectQuantityConcept === null || this.state.selectConcept === null || this.state.auxPrice === null) {
 			notification['error']({
 				message: `Ups!`,
 				description: `Debe rellenar los datos correspondientes`,
@@ -231,6 +214,13 @@ class CreateAccount extends React.Component {
 		})
 	}
 
+	handleFailed = (e) => {
+		notification['error']({
+			message: `Ups!`,
+			description: `Tiene campos obligatorios que corregir`,
+		})
+	}
+
 	render() {
 		return (
 			<>
@@ -256,7 +246,8 @@ class CreateAccount extends React.Component {
 					<Content className='cv-create-account-content-max'>
 						<Layout>
 							<Form
-								onFinish={this.handleSubmitLogin}
+								onFinish={this.handleSubmit}
+								onFinishFailed={this.handleFailed}
 								labelCol={{ span: 24 }}
 								wrapperCol={{ span: 24 }}
 								layout='vertical'>
@@ -264,10 +255,7 @@ class CreateAccount extends React.Component {
 									<Col xs={24} sm={24} md={12}>
 										<h3 className='cv-create-account-from-title'>Usuario</h3>
 										<Card className='cv-create-account-card-custom'>
-											<Form.Item
-												name='type'
-												label='Tipo de cuenta'
-												rules={rules.rulesSelect}>
+											<Form.Item name='type' label='Tipo de cuenta' rules={rules.rulesSelect}>
 												<Select
 													onChange={(e) =>
 														this.handleSelectType({
@@ -307,17 +295,13 @@ class CreateAccount extends React.Component {
 								</Row>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>
-											Información
-										</h3>
+										<h3 className='cv-create-account-from-title'>Información</h3>
 										<Card className='cv-create-account-card-custom'>
 											<Form.Item
 												name='country'
 												label='¿En que país te encuentras actualmente?'
 												rules={rules.rulesSelect}>
-												<Select
-													onChange={this.handleChangeCountry}
-													placeholder='Seleccionar'>
+												<Select onChange={this.handleChangeCountry} placeholder='Seleccionar'>
 													{this.state.countries.map((item, i) => {
 														return (
 															<Option
@@ -340,8 +324,7 @@ class CreateAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+país: `}>
-												Si tu país NO se encuentra en el listado...
-												Escríbenos
+												Si tu país NO se encuentra en el listado... Escríbenos
 											</a>
 											<br></br>
 											<Form.Item
@@ -375,28 +358,25 @@ class CreateAccount extends React.Component {
 													showArrow
 													maxTagCount={5}
 													placeholder='Seleccionar'>
-													{this.state.responseCategories.map(
-														(item, i) => {
-															return (
-																<Option
-																	style={{
-																		textTransform: 'capitalize',
-																	}}
-																	key={i}
-																	value={item.value}>
-																	{item.value}
-																</Option>
-															)
-														}
-													)}
+													{this.state.responseCategories.map((item, i) => {
+														return (
+															<Option
+																style={{
+																	textTransform: 'capitalize',
+																}}
+																key={i}
+																value={item.value}>
+																{item.value}
+															</Option>
+														)
+													})}
 												</Select>
 											</Form.Item>
 											<a
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
-												Si tu categoría NO se encuentra en el listado...
-												Escríbenos
+												Si tu categoría NO se encuentra en el listado... Escríbenos
 											</a>
 										</Card>
 									</Col>
@@ -405,23 +385,18 @@ class CreateAccount extends React.Component {
 								{this.state.conceptsSelected && (
 									<Row>
 										<Col xs={24} sm={24} md={12}>
-											<h3 className='cv-create-account-from-title'>
-												Informa el precio de tus servicios
-											</h3>
+											<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
 											<Card className='cv-create-account-card-custom'>
 												<Row>
 													<Col span={24}>
-														<p>
-															¿Cuáles son tus tarifas publicitarios?
-														</p>
+														<p>¿Cuáles son tus tarifas publicitarios?</p>
 														<Form.Item label='Ejemplo: 2 Historias'>
 															<Select
 																placeholder='Seleccionar'
 																style={{ width: '30%' }}
 																onChange={(e) =>
 																	this.handleSelect({
-																		option:
-																			'selectQuantityConcept',
+																		option: 'selectQuantityConcept',
 																		value: e,
 																	})
 																}>
@@ -441,13 +416,9 @@ class CreateAccount extends React.Component {
 																		value: e,
 																	})
 																}>
-																{this.state.conceptsSelected.map(
-																	(item) => (
-																		<Option key={item}>
-																			{item}
-																		</Option>
-																	)
-																)}
+																{this.state.conceptsSelected.map((item) => (
+																	<Option key={item}>{item}</Option>
+																))}
 															</Select>
 														</Form.Item>
 														<Form.Item
@@ -455,16 +426,10 @@ class CreateAccount extends React.Component {
 															name='price'
 															onChange={this.handleChangeInput}
 															rules={rules.rulesPrice}>
-															<Input
-																name='auxPrice'
-																placeholder={`${this.state.currency}`}
-															/>
+															<Input name='auxPrice' placeholder={`${this.state.currency}`} />
 														</Form.Item>
 														<div className='cv-create-account-btn-add-content'>
-															<Button
-																type='primary'
-																shape='round'
-																onClick={this.handleButtonPlans}>
+															<Button type='primary' shape='round' onClick={this.handleButtonPlans}>
 																AGREGAR
 															</Button>
 														</div>
@@ -476,8 +441,7 @@ class CreateAccount extends React.Component {
 															renderItem={(item, key) => (
 																<List.Item>
 																	<Typography.Text>
-																		{item.description} por{' '}
-																		{item.price} {item.currency}
+																		{item.description} por {item.price} {item.currency}
 																	</Typography.Text>
 																	<Button
 																		danger
@@ -499,17 +463,10 @@ class CreateAccount extends React.Component {
 								)}
 
 								<div className='cv-create-account-btn-submit'>
-									<Button
-										type='primary'
-										shape='round'
-										onClick={this.handleSubmit}>
+									<Button type='primary' shape='round' htmlType='submit'>
 										REGISTRAR
 									</Button>
-									{this.state.redirect && (
-										<Redirect
-											to={`/profile/activation/${btoa(this.state.name)}`}
-										/>
-									)}
+									{this.state.redirect && <Redirect to={`/profile/activation/${btoa(this.state.name)}`} />}
 								</div>
 							</Form>
 						</Layout>

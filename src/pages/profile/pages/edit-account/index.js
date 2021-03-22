@@ -142,11 +142,7 @@ export default class EditAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-		if (
-			this.state.selectQuantityConcept === null ||
-			this.state.selectConcept === null ||
-			this.state.auxPrice === null
-		) {
+		if (this.state.selectQuantityConcept === null || this.state.selectConcept === null || this.state.auxPrice === null) {
 			notification['error']({
 				message: `Ups!`,
 				description: `Debe rellenar los datos correspondientes`,
@@ -167,6 +163,13 @@ export default class EditAccount extends React.Component {
 
 	handleSubmit = async () => {
 		try {
+			if (this.state.phone.indexOf(this.state.code) === 0) {
+				notification['error']({
+					message: `Ups!`,
+					description: `El número de WhatsApp debe ir sin el código del país`,
+				})
+				return
+			}
 			let body = {
 				id: this.state.accountDetails._id,
 				followers: this.state.followers,
@@ -229,6 +232,13 @@ export default class EditAccount extends React.Component {
 		})
 	}
 
+	handleFailed = (e) => {
+		notification['error']({
+			message: `Ups!`,
+			description: `Tiene campos obligatorios que corregir`,
+		})
+	}
+
 	render() {
 		return (
 			<>
@@ -244,15 +254,14 @@ export default class EditAccount extends React.Component {
 					<Content className='cv-create-account-content-max'>
 						<Layout>
 							<Form
-								onFinish={this.handleSubmitLogin}
+								onFinish={this.handleSubmit}
+								onFinishFailed={this.handleFailed}
 								labelCol={{ span: 24 }}
 								wrapperCol={{ span: 24 }}
 								layout='vertical'>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>
-											Datos de Cuenta{' '}
-										</h3>
+										<h3 className='cv-create-account-from-title'>Datos de Cuenta </h3>
 										<Card className='cv-create-account-card-custom'>
 											<Row>
 												<Col span={6}>
@@ -261,73 +270,42 @@ export default class EditAccount extends React.Component {
 															return (
 																<img
 																	className='cv-create-account-image-acount'
-																	src={
-																		this.state.accountDetails
-																			.image
-																	}
-																	alt={
-																		this.state.accountDetails
-																			.name
-																	}
+																	src={this.state.accountDetails.image}
+																	alt={this.state.accountDetails.name}
 																/>
 															)
 														} else {
 															return (
 																<div className='mt15'>
-																	<Avatar
-																		size={120}
-																		icon={<AntDesignOutlined />}
-																	/>
+																	<Avatar size={120} icon={<AntDesignOutlined />} />
 																</div>
 															)
 														}
 													})()}
 												</Col>
-												<Col
-													span={18}
-													className='cv-create-account-detail-acount'>
+												<Col span={18} className='cv-create-account-detail-acount'>
 													{(() => {
 														if (this.state.accountDetails.image) {
 															return (
 																<Row>
 																	<Col span={24}>
-																		<h3>
-																			@
-																			{
-																				this.state
-																					.accountDetails
-																					.account
-																			}
-																		</h3>
+																		<h3>@{this.state.accountDetails.account}</h3>
 																	</Col>
 																	<Form.Item
 																		label='¿Cuantos seguidores tienes?'
 																		rules={rules.rulesFollowers}
-																		onChange={
-																			this.handleChangeInput
-																		}>
-																		<Input
-																			name='followers'
-																			value={
-																				this.state.followers
-																			}
-																		/>
+																		onChange={this.handleChangeInput}>
+																		<Input name='followers' value={this.state.followers} />
 																	</Form.Item>
 																	<Col span={24} className='mt15'>
 																		<Form.Item
 																			label='Biografía'
 																			rules={rules.rulesText}
-																			onChange={
-																				this
-																					.handleChangeInput
-																			}>
+																			onChange={this.handleChangeInput}>
 																			<TextArea
 																				rows={4}
 																				name='biography'
-																				value={
-																					this.state
-																						.biography
-																				}
+																				value={this.state.biography}
 																			/>
 																		</Form.Item>
 																	</Col>
@@ -344,9 +322,7 @@ export default class EditAccount extends React.Component {
 								</Row>
 								<Row>
 									<Col xs={24} sm={24} md={12}>
-										<h3 className='cv-create-account-from-title'>
-											Información
-										</h3>
+										<h3 className='cv-create-account-from-title'>Información</h3>
 										<Card className='cv-create-account-card-custom'>
 											{this.state.country && (
 												<Form.Item
@@ -354,9 +330,7 @@ export default class EditAccount extends React.Component {
 													label='¿En que país te encuentras actualmente?'
 													rules={rules.rulesSelect}
 													initialValue={this.state.country}>
-													<Select
-														onChange={this.handleChangeCountry}
-														placeholder='Seleccionar'>
+													<Select onChange={this.handleChangeCountry} placeholder='Seleccionar'>
 														{this.state.countries.map((item, i) => {
 															return (
 																<Option
@@ -409,21 +383,18 @@ export default class EditAccount extends React.Component {
 														mode='multiple'
 														showArrow
 														maxTagCount={5}>
-														{this.state.responseCategories.map(
-															(item, i) => {
-																return (
-																	<Option
-																		style={{
-																			textTransform:
-																				'capitalize',
-																		}}
-																		key={i}
-																		value={item.value}>
-																		{item.value}
-																	</Option>
-																)
-															}
-														)}
+														{this.state.responseCategories.map((item, i) => {
+															return (
+																<Option
+																	style={{
+																		textTransform: 'capitalize',
+																	}}
+																	key={i}
+																	value={item.value}>
+																	{item.value}
+																</Option>
+															)
+														})}
 													</Select>
 												</Form.Item>
 											)}
@@ -431,8 +402,7 @@ export default class EditAccount extends React.Component {
 												rel='noopener noreferrer'
 												target='_blank'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nueva+categoría: `}>
-												¿Tu categoría "NO" se encuentra en el listado?
-												Escríbenos
+												¿Tu categoría "NO" se encuentra en el listado? Escríbenos
 											</a>
 										</Card>
 									</Col>
@@ -440,23 +410,18 @@ export default class EditAccount extends React.Component {
 								{this.state.conceptsSelected && (
 									<Row>
 										<Col xs={24} sm={24} md={12}>
-											<h3 className='cv-create-account-from-title'>
-												Informa el precio de tus servicios
-											</h3>
+											<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
 											<Card className='cv-create-account-card-custom'>
 												<Row>
 													<Col span={24}>
-														<p>
-															¿Cuáles son tus paquetes publicitarios?
-														</p>
+														<p>¿Cuáles son tus paquetes publicitarios?</p>
 														<Form.Item label='Opciones Publicitarias'>
 															<Select
 																placeholder='Seleccionar'
 																style={{ width: '30%' }}
 																onChange={(e) =>
 																	this.handleSelect({
-																		option:
-																			'selectQuantityConcept',
+																		option: 'selectQuantityConcept',
 																		value: e,
 																	})
 																}>
@@ -475,13 +440,9 @@ export default class EditAccount extends React.Component {
 																		value: e,
 																	})
 																}>
-																{this.state.conceptsSelected.map(
-																	(item) => (
-																		<Option key={item}>
-																			{item}
-																		</Option>
-																	)
-																)}
+																{this.state.conceptsSelected.map((item) => (
+																	<Option key={item}>{item}</Option>
+																))}
 															</Select>
 														</Form.Item>
 
@@ -489,17 +450,11 @@ export default class EditAccount extends React.Component {
 															label={`Precio en ${this.state.currency}`}
 															onChange={this.handleChangeInput}
 															rules={rules.rulesPrice}>
-															<Input
-																name='auxPrice'
-																placeholder={`${this.state.currency}`}
-															/>
+															<Input name='auxPrice' placeholder={`${this.state.currency}`} />
 														</Form.Item>
 
 														<div className='cv-create-account-btn-add-content'>
-															<Button
-																type='primary'
-																shape='round'
-																onClick={this.handleButtonPlans}>
+															<Button type='primary' shape='round' onClick={this.handleButtonPlans}>
 																AGREGAR
 															</Button>
 														</div>
@@ -511,8 +466,7 @@ export default class EditAccount extends React.Component {
 															renderItem={(item, key) => (
 																<List.Item>
 																	<Typography.Text>
-																		{item.description} por{' '}
-																		{item.price} {item.currency}
+																		{item.description} por {item.price} {item.currency}
 																	</Typography.Text>
 																	<Button
 																		danger
@@ -533,10 +487,7 @@ export default class EditAccount extends React.Component {
 									</Row>
 								)}
 								<div className='cv-create-account-btn-submit'>
-									<Button
-										type='primary'
-										shape='round'
-										onClick={this.handleSubmit}>
+									<Button type='primary' shape='round' htmlType='submit'>
 										Actualizar
 									</Button>
 								</div>
