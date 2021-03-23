@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Row, Result, Col } from 'antd'
+import { Layout, Row, Result, Col, Button } from 'antd'
 import './style.css'
 
 const { Content } = Layout
@@ -17,7 +17,7 @@ export default class Activation extends React.Component {
 								className='cv-profile-activation-result'
 								status='success'
 								title='¡Sólo te queda un paso!'
-								subTitle='Una vez verificada su cuenta aparecerá en los resultados de búsqueda. Para verificar su identidad debe presionar "Confirmar Cuenta" que lo llevará a nuestro equipo de Soporte. Gracias'
+								subTitle={`¡En las próximas 48 horas recibirá un código de seguridad en su instagram para activar su cuenta!`}
 								extra={[
 									<br key='cv-profile-activation-br-two' />,
 									<img
@@ -29,17 +29,9 @@ export default class Activation extends React.Component {
 									/>,
 									<br key='cv-profile-activation-br-three' />,
 									<h3>
-										<a
-											href={`${process.env.REACT_APP_WHATSAPP}?phone=${
-												process.env.REACT_APP_CONTACT
-											}&text=Hola,%20me%20acabo%20de%20registrar%20en%20cuentasvirales.com%20y%20quisiera%20confirmar%20mi%20cuenta%20${atob(
-												this.props.match.params.name
-											)}`}
-											rel='noopener noreferrer'
-											key='cv-profile-activation-a'
-											target='_blank'>
-											Confirmar Cuenta
-										</a>
+										<Button shape='round' href={`/profile`}>
+											Continuar
+										</Button>
 									</h3>,
 								]}
 							/>

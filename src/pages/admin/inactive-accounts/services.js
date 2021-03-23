@@ -22,8 +22,8 @@ const serviceActiveAccount = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'PUT',
-    url: `${process.env.REACT_APP_HOST}/account/active/`,
-    data: item
+		url: `${process.env.REACT_APP_HOST}/account/active/`,
+		data: item,
 	})
 		.then((response) => {
 			returnResponse = response.data
@@ -40,12 +40,12 @@ const serviceDeleteAccount = async (item) => {
 		method: 'DELETE',
 		url: `${process.env.REACT_APP_HOST}/account/${item.id}/${item.email}`,
 	})
-	.then((response) => {
-		returnResponse = response.data
-	})
-	.catch((error) => {
-		returnResponse = error.response.data
-	})
+		.then((response) => {
+			returnResponse = response.data
+		})
+		.catch((error) => {
+			returnResponse = error.response.data
+		})
 	return returnResponse
 }
 

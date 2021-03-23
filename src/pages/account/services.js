@@ -7,9 +7,10 @@ const serviceViewAccount = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account/view/${item}`,
+		url: `${process.env.REACT_APP_HOST}/account/detail/${item}`,
 	})
 		.then((response) => {
+			console.log(response)
 			if (response.data.statusCode <= 200) {
 				returnResponse = response.data.data
 			} else {
@@ -21,9 +22,10 @@ const serviceViewAccount = async (item) => {
 		})
 		.catch((error) => {
 			returnResponse = error.response.data
+			console.log(process.env.REACT_APP_HOST, error)
 			notification['error']({
 				message: `Error`,
-				description: `Problemas con el servico process.env.REACT_APP_HOST`,
+				description: `Error de conexión, intente mas tarde`,
 			})
 		})
 

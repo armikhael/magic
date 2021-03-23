@@ -10,6 +10,8 @@ import { UserOutlined, HeartOutlined, ApiOutlined } from '@ant-design/icons'
 import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
 
+import UploadImage from './components/UploadImage'
+
 import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 import './style.css'
 
@@ -76,7 +78,7 @@ export default class Profile extends React.Component {
 		}
 		return (
 			<>
-				<Layout>
+				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
 						<Row>
 							<Col xs={24} sm={24} md={10}>
@@ -187,14 +189,10 @@ export default class Profile extends React.Component {
 											{this.state.accounts.map((item, i) => {
 												return (
 													<Row className='cv-profile-card-account-content' key={i}>
-														<Col span={6}>
-															<img
-																className='cv-profile-card-account-image'
-																src={item.image}
-																alt={item.name}
-															/>
+														<Col sm={24} md={6} className='cv-profile-upload-image'>
+															<UploadImage account={item} />
 														</Col>
-														<Col span={18} className='cv-profile-account-detail-acount'>
+														<Col sm={24} md={18} className='cv-profile-account-detail-acount'>
 															<Row>
 																<Col span={24}>
 																	<h3 className='cv-profile-account-detail-title'>
@@ -260,7 +258,7 @@ export default class Profile extends React.Component {
 							</Col>
 						</Row>
 					</Layout>
-				</Layout>
+				</div>
 			</>
 		)
 	}
