@@ -17,7 +17,7 @@ export default class Activation extends React.Component {
 								className='cv-profile-activation-result'
 								status='success'
 								title='¡Sólo te queda un paso!'
-								subTitle={`¡En las próximas 48 horas recibirá un código de seguridad en su instagram para activar su cuenta!`}
+								subTitle={`¡En las próximas 48 horas recibirá un código en la red social registrada para activar su cuenta! Recuerde habilitar la opción de recibir mensajes de cualquier persona para que le llegue este código`}
 								extra={[
 									<br key='cv-profile-activation-br-two' />,
 									<img
