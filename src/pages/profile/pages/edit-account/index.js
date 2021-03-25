@@ -163,13 +163,6 @@ export default class EditAccount extends React.Component {
 
 	handleSubmit = async () => {
 		try {
-			if (this.state.phone.indexOf(this.state.code) === 0) {
-				notification['error']({
-					message: `Ups!`,
-					description: `El número de WhatsApp debe ir sin el código del país`,
-				})
-				return
-			}
 			let body = {
 				id: this.state.accountDetails._id,
 				followers: this.state.followers,
