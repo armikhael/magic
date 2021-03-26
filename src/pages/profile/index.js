@@ -33,6 +33,9 @@ export default class Profile extends React.Component {
 	componentDidMount() {
 		serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
 			console.log(response)
+			if (response[0].image === null) {
+				response[0].image = 'https://i.postimg.cc/YSQXZWCP/logo.jpg'
+			}
 			this.setState({
 				accounts: response,
 				loading: false,
