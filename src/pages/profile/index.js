@@ -32,6 +32,7 @@ export default class Profile extends React.Component {
 
 	componentDidMount() {
 		serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
+			console.log(response)
 			this.setState({
 				accounts: response,
 				loading: false,
@@ -120,12 +121,6 @@ export default class Profile extends React.Component {
 														<Text className='cv-profile-main-role-user'>
 															{this.state.userProfile.email}
 														</Text>
-														{/* <CopyToClipboard
-															text={`${process.env.REACT_APP_DOMAIN}/token/${btoa(
-																this.state.userProfile.email
-															)}`}>
-															<Button shape='round'>Copiar enlace para la biografía</Button>
-														</CopyToClipboard> */}
 													</Col>
 												</Row>
 											</Col>
@@ -206,16 +201,20 @@ export default class Profile extends React.Component {
 															</Row>
 															<Row>
 																<Col className='mb15' xs={24} sm={24} md={24} lg={5} xl={5}>
-																	<Button shape='round' href={`/profile/edit-account/${item.name}`}>
+																	<Button
+																		shape='round'
+																		href={`/profile/edit-account/${item.name}`}>
 																		Editar
 																	</Button>
 																</Col>
-																<Col className='mb15' xs={24} sm={24} md={24} lg={8} xl={8}>
-																	<CopyToClipboard
-																		text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																		<Button shape='round'>Copiar enlace</Button>
-																	</CopyToClipboard>
-																</Col>
+																{item.eneable === true && (
+																	<Col className='mb15' xs={24} sm={24} md={24} lg={8} xl={8}>
+																		<CopyToClipboard
+																			text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+																			<Button shape='round'>Copiar enlace</Button>
+																		</CopyToClipboard>
+																	</Col>
+																)}
 																<Col className='mb15' xs={24} sm={24} md={24} lg={6} xl={6}>
 																	<Button
 																		type='danger'

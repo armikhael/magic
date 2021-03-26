@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Button, Form, Input } from 'antd'
+import { Layout, Button } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '@ant-design/icons'
 import { serviceGetAccountsInactives, serviceActiveAccount } from './services'
@@ -105,9 +105,6 @@ export default class InactiveAccounts extends React.Component {
 											</CopyToClipboard>
 										</li>
 										<li>
-											<Form.Item label='Imagen URL' onChange={this.handleChangeInput}>
-												<Input name='image' />
-											</Form.Item>
 											<Button
 												shape='round'
 												onClick={() => {
