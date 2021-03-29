@@ -69,12 +69,13 @@ export const rules = {
 		},
 		{
 			validator: (_, value) => {
-				if (value.indexOf('$') === -1 && value.indexOf(' ') === -1) {
+				let patron = /^([0-9])*$/
+				console.log(patron.test(value))
+				if (patron.test(value) === true) {
+					console.log('positivo')
 					return Promise.resolve()
 				}
-				return Promise.reject(
-					'NO se permite el símbolos ni espacios en blanco en el precio'
-				)
+				return Promise.reject('NO se permitem el símbolos, letras, ni espacios en blanco en el precio')
 			},
 		},
 	],
