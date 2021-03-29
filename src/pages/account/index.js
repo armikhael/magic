@@ -52,6 +52,12 @@ export default class AccountDetail extends React.Component {
 					<Row>
 						<Col xs={24} sm={24} md={18}>
 							<Row className='cv-detail-content-accoun'>
+								<p>
+									¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
+									<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
+								</p>
+							</Row>
+							<Row className='cv-detail-content-accoun'>
 								<Col span={24}>
 									<a
 										className='cv-detail-whatsapp-icon'
@@ -85,11 +91,7 @@ export default class AccountDetail extends React.Component {
 									</h3>
 									<div className='cv-detail-account-img-main-contnet'>
 										<Row>
-											<Col
-												xs={24}
-												sm={24}
-												md={7}
-												className='cv-detail-account-img-main-content'>
+											<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 												<img
 													title={this.state.detail.name}
 													alt={this.state.detail.name}
@@ -97,11 +99,7 @@ export default class AccountDetail extends React.Component {
 													src={this.state.detail.image}
 												/>
 											</Col>
-											<Col
-												xs={24}
-												sm={24}
-												md={15}
-												className='cv-detail-account-content-info'>
+											<Col xs={24} sm={24} md={15} className='cv-detail-account-content-info'>
 												<h3 className='cv-detail-account-content-info-country'>
 													{this.state.detail.country}
 												</h3>
@@ -118,9 +116,7 @@ export default class AccountDetail extends React.Component {
 														<h3>@{this.state.detail.account}</h3>
 													</div>
 												</a>
-												<p>
-													Cantidad de Visitas: {this.state.detail.counter}
-												</p>
+												<p>Cantidad de Visitas: {this.state.detail.counter}</p>
 												<h3 className='cv-detail-account-content-info-email'>
 													{this.state.detail.email}
 												</h3>
@@ -138,16 +134,12 @@ export default class AccountDetail extends React.Component {
 										</Row>
 										<div className='cv-masonry-item-card-image-bg'></div>
 									</div>
-									<p className='cv-detail-account-descript'>
-										{this.state.detail.description}
-									</p>
+									<p className='cv-detail-account-descript'>{this.state.detail.description}</p>
 									<div>
 										{this.state.detail.categories.map(function (item, i) {
 											return (
 												<Link to={`/category/${item}`} key={i}>
-													<span className='cv-detail-category-tag'>
-														#{item}&nbsp;&nbsp;
-													</span>
+													<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 												</Link>
 											)
 										})}
@@ -155,10 +147,7 @@ export default class AccountDetail extends React.Component {
 								</Col>
 							</Row>
 							<div className='cv-detail-accounts-user-email-md'>
-								<CreateUser
-									email={this.state.detail.email}
-									asociation={this.state.asociation}
-								/>
+								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 								<AccountsRelations relations={this.state.relations} />
 							</div>
 						</Col>
@@ -166,8 +155,7 @@ export default class AccountDetail extends React.Component {
 							<div className='cv-detail-content-plans'>
 								<div className='cv-detail-content-plans-main'>
 									<div className='cv-detail-plans-content-images'>
-										<a
-											href={`${config.linkSeguidores}`}>
+										<a href={`${config.linkSeguidores}`}>
 											<img
 												title='Publicidad'
 												alt='Publicidad'
@@ -194,9 +182,7 @@ export default class AccountDetail extends React.Component {
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
 												<List.Item actions={[<WhatsAppOutlined />]}>
 													<List.Item.Meta
-														avatar={
-															<Avatar src={this.state.detail.image} />
-														}
+														avatar={<Avatar src={this.state.detail.image} />}
 														title={item.description}
 														description={`Precio: ${item.price} ${item.currency}`}
 													/>
@@ -207,26 +193,15 @@ export default class AccountDetail extends React.Component {
 								</div>
 							</div>
 							<div className='cv-account-detail-content'>
-								<a
-									rel="noopener noreferrer"
-									href={`${config.linkYoutube}`}
-									target="_blank">
-									<img
-										width='100%'
-										src='https://i.ibb.co/kSX3Zdt/burger-king2.gif'
-										alt='Publicidad'
-									/>
+								<a rel='noopener noreferrer' href={`${config.linkYoutube}`} target='_blank'>
+									<img width='100%' src='https://i.ibb.co/kSX3Zdt/burger-king2.gif' alt='Publicidad' />
 								</a>
 							</div>
 						</Col>
 						<div className='cv-detail-accounts-user-email-xs'>
-							<CreateUser
-								email={this.state.detail.email}
-								asociation={this.state.asociation}
-							/>
+							<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 							<div className='cv-detail-accounts-user-publicidad'>
-								<a
-									href={`${config.linkSeguidores}`}>
+								<a href={`${config.linkSeguidores}`}>
 									<img
 										title='Publicidad'
 										alt='Publicidad'
@@ -237,15 +212,8 @@ export default class AccountDetail extends React.Component {
 							</div>
 							<AccountsRelations relations={this.state.relations} />
 							<div className='cv-detail-accounts-user-publicidad'>
-								<a
-									rel="noopener noreferrer"
-									href={`${config.linkYoutube}`}
-									target="_blank">
-									<img
-										width='100%'
-										src='https://i.ibb.co/kSX3Zdt/burger-king2.gif'
-										alt='Publicidad'
-									/>
+								<a rel='noopener noreferrer' href={`${config.linkYoutube}`} target='_blank'>
+									<img width='100%' src='https://i.ibb.co/kSX3Zdt/burger-king2.gif' alt='Publicidad' />
 								</a>
 							</div>
 						</div>
