@@ -1,10 +1,10 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Button } from 'antd'
+import { Layout, Button, notification } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '@ant-design/icons'
-import { serviceGetAccountsInactives, serviceActiveAccount } from './services'
+import { serviceGetAccountsInactives, serviceActiveAccount, serviceDeleteAccount } from './services'
 import './style.css'
 
 const { Content } = Layout
@@ -29,6 +29,24 @@ export default class InactiveAccounts extends React.Component {
 		})
 	}
 
+	handleDeleteAccount = async (item) => {
+		console.log(item._id)
+		serviceDeleteAccount(item._id)
+			.then((response) => {
+				notification['success']({
+					message: `Good job!!`,
+					description: `La cuenta se ha eliminado correctamente`,
+				})
+			})
+			.catch((error) => {
+				console.log(error)
+				notification['error']({
+					message: `Ups!`,
+					description: `Algo inesperado ocurrió`,
+				})
+			})
+	}
+
 	handleChangeInput = (e) => {
 		console.log('write', e.target.name, e.target.value)
 		this.setState({
@@ -48,6 +66,11 @@ export default class InactiveAccounts extends React.Component {
 							{this.state.list.map((item, i) => {
 								return (
 									<ul key={i}>
+										<li>
+											<Button shape='round' onClick={() => this.handleDeleteAccount(item)}>
+												Eliminar cuenta
+											</Button>
+										</li>
 										<li> id: {item._id}</li>
 										<li> cuenta: {item.name}</li>
 										<li> seguidores: {item.followers}</li>

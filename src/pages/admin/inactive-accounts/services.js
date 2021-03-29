@@ -38,7 +38,7 @@ const serviceDeleteAccount = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'DELETE',
-		url: `${process.env.REACT_APP_HOST}/account/${item.id}/${item.email}`,
+		url: `${process.env.REACT_APP_HOST}/account/${item}`,
 	})
 		.then((response) => {
 			returnResponse = response.data
