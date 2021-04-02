@@ -12,7 +12,13 @@ const { Search } = Input
 
 export default function SearchNavbar() {
 	let history = useHistory()
-	const [isMenu, setMenu] = useState({ countries: [], categories: [] })
+	const [isMenu, setMenu] = useState({
+		countries: [],
+		categories: [],
+		men_categories: [],
+		man_categories: [],
+		mix_categories: [],
+	})
 
 	useEffect(() => {
 		serviceGetCategories().then((response) => {
@@ -38,10 +44,10 @@ export default function SearchNavbar() {
 					})}
 				</div>
 			</Menu.Item>
-			<h3 className='cv-headr-title-search-menu'>Ideales para tí</h3>
+			<h3 className='cv-headr-title-search-menu'>Para ellas</h3>
 			<Menu.Item>
 				<Row>
-					{isMenu.categories.slice(0, 8).map((item, i) => {
+					{isMenu.men_categories.map((item, i) => {
 						return (
 							<Col xs={12} sm={12} md={6} key={i}>
 								<div className='cv-header-search-content-category-main'>
@@ -57,10 +63,10 @@ export default function SearchNavbar() {
 					})}
 				</Row>
 			</Menu.Item>
-			<h3 className='cv-headr-title-search-menu'>Populares en Cuenta virales</h3>
+			<h3 className='cv-headr-title-search-menu'>Para ellos</h3>
 			<Menu.Item>
 				<Row>
-					{isMenu.categories.slice(8, 16).map((item, i) => {
+					{isMenu.man_categories.map((item, i) => {
 						return (
 							<Col xs={12} sm={12} md={6} key={i}>
 								<div className='cv-header-search-content-category-main'>
@@ -79,26 +85,7 @@ export default function SearchNavbar() {
 			<h3 className='cv-headr-title-search-menu'>Para todos</h3>
 			<Menu.Item>
 				<Row>
-					{isMenu.categories.slice(16, 24).map((item, i) => {
-						return (
-							<Col xs={12} sm={12} md={6} key={i}>
-								<div className='cv-header-search-content-category-main'>
-									<div
-										className='cv-header-search-content-category'
-										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
-										{item.name}
-									</Link>
-								</div>
-							</Col>
-						)
-					})}
-				</Row>
-			</Menu.Item>
-			<h3 className='cv-headr-title-search-menu'>Lo mas reciente</h3>
-			<Menu.Item>
-				<Row>
-					{isMenu.categories.slice(24, 32).map((item, i) => {
+					{isMenu.mix_categories.map((item, i) => {
 						return (
 							<Col xs={12} sm={12} md={6} key={i}>
 								<div className='cv-header-search-content-category-main'>
@@ -120,10 +107,7 @@ export default function SearchNavbar() {
 	return (
 		<React.Fragment>
 			<Input.Group compact className='cv-header-search-content'>
-				<Dropdown
-					overlayClassName='cv-header-search-content-overlay-dropdown'
-					overlay={menu}
-					trigger={['click']}>
+				<Dropdown overlayClassName='cv-header-search-content-overlay-dropdown' overlay={menu} trigger={['click']}>
 					<Search
 						className='cv-header-search-input'
 						placeholder='¿Qué cuentas deseas Buscar...?'

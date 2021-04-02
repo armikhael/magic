@@ -19,12 +19,14 @@
 .cv-header-search-conetent-country {
 	width: 100%;
 	overflow-x: scroll;
-	height: 45px;
+	height: auto;
 }
 
 .cv-header-search-tag {
 	border-radius: 50px;
 	padding: 3px 10px;
+	margin: 5px 3px;
+	float: left;
 }
 
 .cv-header-search-tag:hover {
