@@ -24,18 +24,31 @@ export default class InactiveAccounts extends React.Component {
 	handleActiveAccount = async (item) => {
 		item.image = this.state.image
 		console.log(item)
-		serviceActiveAccount(item).then((response) => {
-			this.setState({ list: response.data })
-		})
+		serviceActiveAccount(item)
+			.then((response) => {
+				this.setState({ list: response.data })
+				notification['success']({
+					message: `Great!`,
+					description: `Activada con exito`,
+				})
+			})
+			.catch((error) => {
+				console.log(error)
+				notification['error']({
+					message: `Ups!`,
+					description: `Algo inesperado ocurrió`,
+				})
+			})
 	}
 
 	handleDeleteAccount = async (item) => {
 		console.log(item._id)
 		serviceDeleteAccount(item._id)
 			.then((response) => {
+				this.setState({ list: response.data })
 				notification['success']({
-					message: `Good job!!`,
-					description: `La cuenta se ha eliminado correctamente`,
+					message: `Great!`,
+					description: `Eliminada con exito`,
 				})
 			})
 			.catch((error) => {
@@ -59,7 +72,7 @@ export default class InactiveAccounts extends React.Component {
 			<>
 				<Content className='cv-container-main'>
 					<div className='cv-category-content-title'>
-						<h1 className='cv-category-title'>Cuentas inactivas</h1>
+						<h1 className='cv-category-title'>Cuentas inactivas ({this.state.list.length})</h1>
 					</div>
 					{this.state.list.length > 0 && (
 						<ul>
@@ -109,7 +122,10 @@ export default class InactiveAccounts extends React.Component {
 										</li>
 										<li>
 											token: {btoa(item.name)}
-											<CopyToClipboard text={btoa(item.name)}>
+											<CopyToClipboard
+												text={`Este código te lo pediran para activar su cuenta en cuentasvirales.com, envíe solo el código cuando se lo soliciten ${btoa(
+													item.name
+												)}`}>
 												<Button shape='round'>
 													Copiar <CopyOutlined />
 												</Button>
