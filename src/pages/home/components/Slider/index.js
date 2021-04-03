@@ -21,15 +21,6 @@ export default class Slider extends React.Component {
 							/>
 						</Link>
 					</div>
-					<div>
-						<Link to={`/profile/create-account`}>
-							<img
-								width='100%'
-								src='https://i.postimg.cc/fTgDSzC7/banner-cv-influencer.jpg'
-								alt='Banner Publicitario'
-							/>
-						</Link>
-					</div>
 				</Carousel>
 				<Carousel className='cv-home-carousel-content cv-home-slider-mobil' autoplay>
 					<div>
@@ -37,15 +28,6 @@ export default class Slider extends React.Component {
 							<img
 								width='100%'
 								src='https://i.postimg.cc/bwz8f8tc/banner-general-mobile.jpg'
-								alt='Banner Publicitario'
-							/>
-						</Link>
-					</div>
-					<div>
-						<Link to={`/profile/create-account`}>
-							<img
-								width='100%'
-								src='https://i.postimg.cc/tCdyc77N/banner-influencer-mobile.jpg'
 								alt='Banner Publicitario'
 							/>
 						</Link>
