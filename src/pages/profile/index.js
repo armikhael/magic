@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form } from 'antd'
+import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Input } from 'antd'
 import { UserOutlined, HeartOutlined, ApiOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -12,7 +12,7 @@ import InputField from '../../components/Input'
 
 import UploadImage from './components/UploadImage'
 
-import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
+import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword, serviceActiveAccount } from './services'
 import './style.css'
 
 const { Content, Header } = Layout
@@ -72,6 +72,36 @@ export default class Profile extends React.Component {
 		})
 	}
 
+	handleChangeInput = (e) => {
+		console.log('write', e.target.name, e.target.value)
+		this.setState({
+			[e.target.name]: e.target.value,
+		})
+	}
+
+	handleConfirmAccount = (item) => {
+		if (this.state.code === btoa(item.name)) {
+			serviceActiveAccount(item)
+				.then((response) => {
+					this.setState({
+						accounts: response.data,
+					})
+				})
+				.catch((e) => {
+					console.log(e)
+				})
+			notification['success']({
+				message: 'Excelente!',
+				description: `Su cuenta ha sido activada con éxito`,
+			})
+		} else {
+			notification['error']({
+				message: 'Ups!',
+				description: `El código es incorrecto`,
+			})
+		}
+	}
+
 	render() {
 		if (this.state.loading) {
 			return <Loading />
@@ -81,6 +111,109 @@ export default class Profile extends React.Component {
 				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
 						<Row>
+							<Col xs={24} sm={24} md={14}>
+								<Header className='cv-perfil-title-main-container'>
+									<HeartOutlined className='cv-perfil-title-main-icon' />
+									<h3 className='cv-perfil-title-main-title'>Cuentas Asociadas</h3>
+								</Header>
+								<Row>
+									<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+										<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+											{this.state.accounts.map((item, i) => {
+												return (
+													<Row className='cv-profile-card-account-content' key={i}>
+														<Col sm={24} md={6} className='cv-profile-upload-image'>
+															<UploadImage account={item} />
+														</Col>
+														<Col sm={24} md={18} className='cv-profile-account-detail-acount'>
+															<Row>
+																<Col span={24}>
+																	<h3 className='cv-profile-account-detail-title'>
+																		{item.account}
+																	</h3>
+																</Col>
+																<Col span={24} className='mt15'>
+																	{item.emailAccount}
+																	<p>{item.biography}</p>
+																</Col>
+															</Row>
+															<Row>
+																<Col className='mb15' xs={24} sm={24} md={24} lg={5} xl={5}>
+																	<Button
+																		shape='round'
+																		href={`/profile/edit-account/${item.name}`}>
+																		Editar
+																	</Button>
+																</Col>
+																{item.eneable === true && (
+																	<Col className='mb15' xs={24} sm={24} md={24} lg={8} xl={8}>
+																		<CopyToClipboard
+																			text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+																			<Button shape='round'>Copiar enlace</Button>
+																		</CopyToClipboard>
+																	</Col>
+																)}
+																<Col className='mb15' xs={24} sm={24} md={24} lg={6} xl={6}>
+																	<Button
+																		type='danger'
+																		shape='round'
+																		onClick={() => {
+																			this.handleDeleteAccount(item)
+																		}}>
+																		Eliminar
+																	</Button>
+																</Col>
+															</Row>
+															{item.eneable === false && (
+																<Row>
+																	<Form layout='vertical'>
+																		<Form.Item
+																			className={'cv-auth-login-field-input'}
+																			label={'Código de confirmación'}
+																			name='code'
+																			onChange={this.handleChangeInput}>
+																			<Input name='code' />
+																		</Form.Item>
+																		<Button
+																			type='danger'
+																			shape='round'
+																			onClick={() => {
+																				this.handleConfirmAccount(item)
+																			}}>
+																			Confirmar Cuenta
+																		</Button>
+																	</Form>
+																</Row>
+															)}
+														</Col>
+													</Row>
+												)
+											})}
+											{(() => {
+												if (this.state.accounts.length === 0) {
+													return (
+														<div className='cv-profile-card-account-content'>
+															<Result
+																status='error'
+																title='Cuentas Registradas'
+																subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
+																extra={[
+																	<Link
+																		key='profile-link-add-account'
+																		to={`/profile/create-account`}>
+																		<Button key='profile-button-add-account'>
+																			Registrar Cuenta
+																		</Button>
+																	</Link>,
+																]}></Result>
+														</div>
+													)
+												}
+											})()}
+										</Col>
+									</Col>
+								</Row>
+							</Col>
 							<Col xs={24} sm={24} md={10}>
 								<Content>
 									<Header className='cv-perfil-title-main-container'>
@@ -171,88 +304,6 @@ export default class Profile extends React.Component {
 										</Layout>
 									</Card>
 								)}
-							</Col>
-							<Col xs={24} sm={24} md={14}>
-								<Header className='cv-perfil-title-main-container'>
-									<HeartOutlined className='cv-perfil-title-main-icon' />
-									<h3 className='cv-perfil-title-main-title'>Cuentas Asociadas</h3>
-								</Header>
-								<Row>
-									<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-										<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-											{this.state.accounts.map((item, i) => {
-												return (
-													<Row className='cv-profile-card-account-content' key={i}>
-														<Col sm={24} md={6} className='cv-profile-upload-image'>
-															<UploadImage account={item} />
-														</Col>
-														<Col sm={24} md={18} className='cv-profile-account-detail-acount'>
-															<Row>
-																<Col span={24}>
-																	<h3 className='cv-profile-account-detail-title'>
-																		{item.account}
-																	</h3>
-																</Col>
-																<Col span={24} className='mt15'>
-																	{item.emailAccount}
-																	<p>{item.biography}</p>
-																</Col>
-															</Row>
-															<Row>
-																<Col className='mb15' xs={24} sm={24} md={24} lg={5} xl={5}>
-																	<Button
-																		shape='round'
-																		href={`/profile/edit-account/${item.name}`}>
-																		Editar
-																	</Button>
-																</Col>
-																{item.eneable === true && (
-																	<Col className='mb15' xs={24} sm={24} md={24} lg={8} xl={8}>
-																		<CopyToClipboard
-																			text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																			<Button shape='round'>Copiar enlace</Button>
-																		</CopyToClipboard>
-																	</Col>
-																)}
-																<Col className='mb15' xs={24} sm={24} md={24} lg={6} xl={6}>
-																	<Button
-																		type='danger'
-																		shape='round'
-																		onClick={() => {
-																			this.handleDeleteAccount(item)
-																		}}>
-																		Eliminar
-																	</Button>
-																</Col>
-															</Row>
-														</Col>
-													</Row>
-												)
-											})}
-											{(() => {
-												if (this.state.accounts.length === 0) {
-													return (
-														<div className='cv-profile-card-account-content'>
-															<Result
-																status='error'
-																title='Cuentas Registradas'
-																subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
-																extra={[
-																	<Link
-																		key='profile-link-add-account'
-																		to={`/profile/create-account`}>
-																		<Button key='profile-button-add-account'>
-																			Registrar Cuenta
-																		</Button>
-																	</Link>,
-																]}></Result>
-														</div>
-													)
-												}
-											})()}
-										</Col>
-									</Col>
-								</Row>
 							</Col>
 						</Row>
 					</Layout>
