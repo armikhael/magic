@@ -110,6 +110,12 @@ export default class Profile extends React.Component {
 			<>
 				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
+						<Row className='cv-detail-content-accoun'>
+							<p>
+								¿Quieres unirte al grupo de Micro - Influencers?
+								<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}> Unirme </a>
+							</p>
+						</Row>
 						<Row>
 							<Col xs={24} sm={24} md={14}>
 								<Header className='cv-perfil-title-main-container'>
