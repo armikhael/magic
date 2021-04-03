@@ -123,7 +123,7 @@ export default class InactiveAccounts extends React.Component {
 										<li>
 											token: {btoa(item.name)}
 											<CopyToClipboard
-												text={`Este código debes ingresarlo para activar tu perfil en cuentasvirales.com:  ${btoa(
+												text={`Hola! este código es el que debes ingresar para activar tu perfil en cuentasvirales.com:  ${btoa(
 													item.name
 												)}`}>
 												<Button shape='round'>
