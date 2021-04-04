@@ -3,7 +3,7 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout, Select } from 'antd'
+import { Layout } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
@@ -13,7 +13,7 @@ import './style.css'
 import { serviceGetAccountByCategory } from './services'
 
 const { Content } = Layout
-const { Option } = Select
+// const { Option } = Select
 
 export default class Category extends React.Component {
 	state = {
@@ -71,15 +71,15 @@ export default class Category extends React.Component {
 						<div className='cv-category-content-title'>
 							<h1 className='cv-category-title'>
 								Categoria: {this.props.match.params.name}
-								<Select
-									style={{ width: 200, float: 'right' }}
+								{/* <Select
+									style={{ width: '100%', float: 'left' }}
 									onChange={this.handleChange}
-									placeholder='Ordernar por'>
+									placeholder='Ordernar'>
 									<Option value={'descFollowers'}>Más seguidores</Option>
 									<Option value={'ascFollowers'}>Menos seguidores</Option>
 									<Option value={'descViews'}>Mayor visitas</Option>
 									<Option value={'ascViews'}>Menor visitas</Option>
-								</Select>
+								</Select> */}
 							</h1>
 						</div>
 						<InfiniteScroll
