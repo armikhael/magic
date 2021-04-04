@@ -3,7 +3,7 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout, Select } from 'antd'
+import { Layout } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
@@ -13,7 +13,7 @@ import './style.css'
 import { serviceGetAccountByCountry } from './service'
 
 const { Content } = Layout
-const { Option } = Select
+// const { Option } = Select
 export default class Country extends React.Component {
 	state = {
 		list: [],
@@ -70,7 +70,7 @@ export default class Country extends React.Component {
 						<div className='cv-category-content-title'>
 							<h1 className='cv-category-title'>
 								País: {this.props.match.params.name.replaceAll('-', ' ')}
-								<Select
+								{/* <Select
 									style={{ width: 200, float: 'right' }}
 									onChange={this.handleChange}
 									placeholder='Ordernar por'>
@@ -78,7 +78,7 @@ export default class Country extends React.Component {
 									<Option value={'ascFollowers'}>Menos seguidores</Option>
 									<Option value={'descViews'}>Mayor visitas</Option>
 									<Option value={'ascViews'}>Menor visitas</Option>
-								</Select>
+								</Select> */}
 							</h1>
 						</div>
 						<InfiniteScroll
