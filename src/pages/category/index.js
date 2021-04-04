@@ -3,7 +3,7 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout } from 'antd'
+import { Layout, Menu, Dropdown } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
@@ -13,7 +13,6 @@ import './style.css'
 import { serviceGetAccountByCategory } from './services'
 
 const { Content } = Layout
-// const { Option } = Select
 
 export default class Category extends React.Component {
 	state = {
@@ -42,19 +41,20 @@ export default class Category extends React.Component {
 		)
 	}
 
-	handleChange = (value) => {
-		console.log(value)
-		serviceGetAccountByCategory(this.props.match.params.name.replaceAll('-', ' '), 1, value).then((response) => {
-			console.log(response)
-			if (response.statusCode === 200) {
-				this.setState({
-					list: response.data,
-					loading: false,
-				})
-			} else {
-				this.setState({ loading: false, error: response })
+	handleMenuClick = (item) => {
+		console.log('click')
+		serviceGetAccountByCategory(this.props.match.params.name.replaceAll('-', ' '), 1, item.item.props.name).then(
+			(response) => {
+				if (response.statusCode === 200) {
+					this.setState({
+						list: response.data,
+						loading: false,
+					})
+				} else {
+					this.setState({ loading: false, error: response })
+				}
 			}
-		})
+		)
 	}
 
 	render() {
@@ -64,6 +64,22 @@ export default class Category extends React.Component {
 		if (this.state.error) {
 			return <PageError detailError={this.state.error} />
 		}
+		const menu = (
+			<Menu onClick={this.handleMenuClick}>
+				<Menu.Item key='descFollowers' name='descFollowers'>
+					Más seguidores
+				</Menu.Item>
+				<Menu.Item key='ascFollowers' name='ascFollowers'>
+					Menos seguidores
+				</Menu.Item>
+				<Menu.Item key='descViews' name='descViews'>
+					Más visitas
+				</Menu.Item>
+				<Menu.Item key='ascViews' name='ascViews'>
+					Menos visitas
+				</Menu.Item>
+			</Menu>
+		)
 		return (
 			<React.Fragment>
 				<div>
@@ -71,17 +87,10 @@ export default class Category extends React.Component {
 						<div className='cv-category-content-title'>
 							<h1 className='cv-category-title'>
 								Categoria: {this.props.match.params.name}
-								{/* <Select
-									style={{ width: '100%', float: 'left' }}
-									onChange={this.handleChange}
-									placeholder='Ordernar'>
-									<Option value={'descFollowers'}>Más seguidores</Option>
-									<Option value={'ascFollowers'}>Menos seguidores</Option>
-									<Option value={'descViews'}>Mayor visitas</Option>
-									<Option value={'ascViews'}>Menor visitas</Option>
-								</Select> */}
+								<Dropdown.Button overlay={menu} style={{ float: 'right' }}></Dropdown.Button>
 							</h1>
 						</div>
+						<br></br>
 						<InfiniteScroll
 							dataLength={this.state.list.length}
 							next={this.handleList}
