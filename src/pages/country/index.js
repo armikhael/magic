@@ -3,7 +3,7 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout } from 'antd'
+import { Layout, Menu, Dropdown } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
@@ -13,7 +13,6 @@ import './style.css'
 import { serviceGetAccountByCountry } from './service'
 
 const { Content } = Layout
-// const { Option } = Select
 export default class Country extends React.Component {
 	state = {
 		list: [],
@@ -41,19 +40,20 @@ export default class Country extends React.Component {
 		)
 	}
 
-	handleChange = (value) => {
-		console.log(value)
-		serviceGetAccountByCountry(this.props.match.params.name.replaceAll('-', ' '), 1, value).then((response) => {
-			console.log(response)
-			if (response.statusCode === 200) {
-				this.setState({
-					list: response.data,
-					loading: false,
-				})
-			} else {
-				this.setState({ loading: false, error: response })
+	handleMenuClick = (item) => {
+		console.log('click')
+		serviceGetAccountByCountry(this.props.match.params.name.replaceAll('-', ' '), 1, item.item.props.name).then(
+			(response) => {
+				if (response.statusCode === 200) {
+					this.setState({
+						list: response.data,
+						loading: false,
+					})
+				} else {
+					this.setState({ loading: false, error: response })
+				}
 			}
-		})
+		)
 	}
 
 	render() {
@@ -63,6 +63,22 @@ export default class Country extends React.Component {
 		if (this.state.error) {
 			return <PageError detailError={this.state.error} />
 		}
+		const menu = (
+			<Menu onClick={this.handleMenuClick}>
+				<Menu.Item key='descFollowers' name='descFollowers'>
+					Más seguidores
+				</Menu.Item>
+				<Menu.Item key='ascFollowers' name='ascFollowers'>
+					Menos seguidores
+				</Menu.Item>
+				<Menu.Item key='descViews' name='descViews'>
+					Más visitas
+				</Menu.Item>
+				<Menu.Item key='ascViews' name='ascViews'>
+					Menos visitas
+				</Menu.Item>
+			</Menu>
+		)
 		return (
 			<React.Fragment>
 				<div>
@@ -70,15 +86,7 @@ export default class Country extends React.Component {
 						<div className='cv-category-content-title'>
 							<h1 className='cv-category-title'>
 								País: {this.props.match.params.name.replaceAll('-', ' ')}
-								{/* <Select
-									style={{ width: 200, float: 'right' }}
-									onChange={this.handleChange}
-									placeholder='Ordernar por'>
-									<Option value={'descFollowers'}>Más seguidores</Option>
-									<Option value={'ascFollowers'}>Menos seguidores</Option>
-									<Option value={'descViews'}>Mayor visitas</Option>
-									<Option value={'ascViews'}>Menor visitas</Option>
-								</Select> */}
+								<Dropdown.Button overlay={menu} style={{ float: 'right' }}></Dropdown.Button>
 							</h1>
 						</div>
 						<InfiniteScroll
