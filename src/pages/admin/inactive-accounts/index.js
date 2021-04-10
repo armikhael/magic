@@ -105,25 +105,9 @@ export default class InactiveAccounts extends React.Component {
 											</Button>
 										</li>
 										<li>
-											<Button
-												shape='round'
-												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account}, recibió un código? en su cuenta de ${item.type}..`}
-												target='__blank'>
-												primera confirmación
-											</Button>
-										</li>
-										<li>
-											<Button
-												shape='round'
-												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola+${item.account}, esperamos que estes muy bien... es necesario que nos envíes el código que te envíamos a tu cuenta de ${item.type} para poder activarla o en las próximas 24 horas se dará de baja a la cuenta. Saludos`}
-												target='__blank'>
-												ultima confirmación
-											</Button>
-										</li>
-										<li>
 											token: {btoa(item.name)}
 											<CopyToClipboard
-												text={`Hola! este código es el que debes ingresar para activar tu perfil en cuentasvirales.com:  ${btoa(
+												text={`Hola! este código es el que debes ingresar para activar tu perfil en cuentasvirales.com, ingresa el siguiente código \n\n  ${btoa(
 													item.name
 												)}`}>
 												<Button shape='round'>
