@@ -16,6 +16,16 @@ export const config = {
 			'Video(s) 45 segundos',
 			'Video(s) 60 segundos',
 		],
+		twitch: [
+			'Anuncio cada 5 min',
+			'Anuncio cada 10 min',
+			'Anuncio cada 30 min',
+			'Titulo en el Stream',
+			'Logo en el Stream',
+			'Logo en los Paneles',
+			'Hora(s) de Stream por semana',
+			'Hora(s) de Stream por mes',
+		],
 	},
 	linkSeguidores: `${
 		process.env.REACT_APP_WHATSAPP

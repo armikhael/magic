@@ -390,7 +390,7 @@ class CreateAccount extends React.Component {
 												<Row>
 													<Col span={24}>
 														<p>¿Cuáles son tus tarifas publicitarios?</p>
-														<Form.Item label='Ejemplo: 2 Historias'>
+														<Form.Item label='Tipo de publicación'>
 															<Select
 																placeholder='Seleccionar'
 																style={{ width: '30%' }}
