@@ -3,11 +3,12 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout, Menu, Dropdown } from 'antd'
+import { Layout } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
 import PageError from '../../components/Errors/PageError'
+import Filters from '../../components/Filters'
 
 import './style.css'
 import { serviceGetAccountByCountry } from './service'
@@ -63,32 +64,15 @@ export default class Country extends React.Component {
 		if (this.state.error) {
 			return <PageError detailError={this.state.error} />
 		}
-		const menu = (
-			<Menu onClick={this.handleMenuClick}>
-				<Menu.Item key='descFollowers' name='descFollowers'>
-					Más seguidores
-				</Menu.Item>
-				<Menu.Item key='ascFollowers' name='ascFollowers'>
-					Menos seguidores
-				</Menu.Item>
-				<Menu.Item key='descViews' name='descViews'>
-					Más visitas
-				</Menu.Item>
-				<Menu.Item key='ascViews' name='ascViews'>
-					Menos visitas
-				</Menu.Item>
-			</Menu>
-		)
+
 		return (
 			<React.Fragment>
 				<div>
 					<Content className='cv-container-main'>
-						<div className='cv-category-content-title'>
-							<h1 className='cv-category-title'>
-								País: {this.props.match.params.name.replaceAll('-', ' ')}
-								<Dropdown.Button overlay={menu} style={{ float: 'right' }}></Dropdown.Button>
-							</h1>
-						</div>
+						<Filters
+							section='País'
+							title={this.props.match.params.name.replaceAll('-', ' ')}
+							handleMenuClick={this.handleMenuClick}></Filters>
 						<InfiniteScroll
 							dataLength={this.state.list.length}
 							next={this.handleList}
