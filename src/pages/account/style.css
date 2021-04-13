@@ -12,13 +12,27 @@
 .cv-detail-whatsapp-icon {
 	position: absolute;
 	right: 20px;
-	font-size: 24px;
+	font-size: 18px;
 	top: 0px;
 	z-index: 1;
+	border: 1px solid #f61073;
+	padding: 2px 10px;
+	border-radius: 8px;
+	color: #fff;
+	background-color: #f61073;
+	font-weight: 900;
+}
+
+.cv-detail-whatsapp-icon:hover {
+	color: #fff;
+}
+
+.cv-detail-whatsapp-icon span {
+	font-size: 15px;
 }
 
 .cv-detail-whatsapp-icon-i {
-	color: #f61073;
+	color: #fff;
 }
 
 .cv-detail-content-account-detail {
@@ -273,7 +287,10 @@
 	}
 	.cv-detail-whatsapp-icon {
 		right: 0px;
-		top: -6px;
+		top: 0px;
+		position: relative;
+		margin-bottom: 10px;
+		margin-top: 10px;
 	}
 	.cv-detail-content-account-detail {
 		padding: 0 10px;
