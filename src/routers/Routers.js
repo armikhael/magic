@@ -25,6 +25,7 @@ import NotFound from '../pages/not-found'
 import Results from '../pages/results'
 import Help from '../pages/help'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
+import UploadImgAccounts from '../pages/admin/upload-img-accounts'
 
 const Routers = () => (
 	<BrowserRouter forceRefresh={true}>
@@ -46,6 +47,7 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
+				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
 
 				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={AccountDetail} />
