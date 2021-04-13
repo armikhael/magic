@@ -5,14 +5,19 @@ import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Input } from 'antd'
-import { UserOutlined, HeartOutlined, ApiOutlined } from '@ant-design/icons'
+import { UserOutlined, HeartOutlined, ApiOutlined, WhatsAppOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
 
 import UploadImage from './components/UploadImage'
 
-import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword, serviceActiveAccount } from './services'
+import {
+	serviceGetAccountsByEmail,
+	serviceDeleteAccount,
+	serviceChangePassword,
+	serviceActiveAccount,
+} from './services'
 import './style.css'
 
 const { Content, Header } = Layout
@@ -110,12 +115,6 @@ export default class Profile extends React.Component {
 			<>
 				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
-						<Row className='cv-detail-content-accoun'>
-							<p>
-								¿Quieres unirte al grupo de Micro - Influencers?
-								<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}> Unirme </a>
-							</p>
-						</Row>
 						<Row>
 							<Col xs={24} sm={24} md={14}>
 								<Header className='cv-perfil-title-main-container'>
@@ -145,9 +144,7 @@ export default class Profile extends React.Component {
 															</Row>
 															<Row>
 																<Col className='mb15' xs={24} sm={24} md={24} lg={5} xl={5}>
-																	<Button
-																		shape='round'
-																		href={`/profile/edit-account/${item.name}`}>
+																	<Button shape='round' href={`/profile/edit-account/${item.name}`}>
 																		Editar
 																	</Button>
 																</Col>
@@ -265,6 +262,15 @@ export default class Profile extends React.Component {
 										</Row>
 									</Layout>
 								</Card>
+								<Row className='cv-profile-content-accoun'>
+									<p>
+										<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}>
+											<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
+										</a>
+										&nbsp;¿Quieres unirte al grupo de Micro - Influencers?
+										<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}> ¡ENTRAR! </a>
+									</p>
+								</Row>
 								{this.state.userProfile.autentication !== 'google' && (
 									<Card className='cv-profile-main-container'>
 										<h3 className='cv-perfil-title-main-title'>
