@@ -9,7 +9,7 @@ import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
-import { config } from '../../components/ServiceCommons/Config'
+// import { config } from '../../components/ServiceCommons/Config'
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
@@ -156,7 +156,7 @@ export default class AccountDetail extends React.Component {
 						<Col xs={24} sm={24} md={6}>
 							<div className='cv-detail-content-plans'>
 								<div className='cv-detail-content-plans-main'>
-									<div className='cv-detail-plans-content-images'>
+									{/* <div className='cv-detail-plans-content-images'>
 										<a href={`${config.linkSeguidores}`}>
 											<img
 												title='Publicidad'
@@ -165,7 +165,7 @@ export default class AccountDetail extends React.Component {
 												src='https://i.ibb.co/KGb2pSt/seguidores.gif'
 											/>
 										</a>
-									</div>
+									</div> */}
 									<div className='cv-detail-inter-canj-content'>
 										<a
 											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
