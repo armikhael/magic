@@ -194,14 +194,18 @@
 .cv-detail-inter-canj-content {
 	font-size: 13px;
 	margin-top: 20px;
-	background: #f61073;
+	background: #ffffff;
 	text-align: center;
 	padding: 8px 5px;
 	border-radius: 7px;
+	border: 1px solid #f61073;
+}
+.ant-popover {
+	width: 60%;
 }
 
 .cv-detail-inter-canj-content > a {
-	color: #fff;
+	color: #f61073;
 	font-weight: 900;
 }
 

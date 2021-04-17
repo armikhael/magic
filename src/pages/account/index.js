@@ -4,8 +4,8 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
-import { Row, Col, List, Avatar, Layout } from 'antd'
-import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
+import { Row, Col, List, Avatar, Layout, Popconfirm } from 'antd'
+import { WhatsAppOutlined, UserOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
@@ -167,11 +167,46 @@ export default class AccountDetail extends React.Component {
 										</a>
 									</div> */}
 									<div className='cv-detail-inter-canj-content'>
-										<a
-											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
-											<WhatsAppOutlined />
-											&nbsp;Intercambios
-										</a>
+										<Popconfirm
+											title='El influencer hará una mención en su cuenta, tú en la tuya (a esto le llamamos intercambio publicitario) y de esta manera intercambian seguidores (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+											okText='Si'
+											cancelText='No'
+											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+											onConfirm={() => {
+												window.open(
+													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN)`
+												)
+											}}>
+											<a href={'/'}>&nbsp;Mención x Mención</a>
+										</Popconfirm>
+									</div>
+									<div className='cv-detail-inter-canj-content'>
+										<Popconfirm
+											title='El influencer te pedirá un "PRODUCTO" a cambio de la publicidad, el influencer se quedará con dicho producto que primero debe probar y hará la mención de tu negocio (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+											okText='Si'
+											cancelText='No'
+											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+											onConfirm={() => {
+												window.open(
+													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
+												)
+											}}>
+											<a href={'/'}>&nbsp;Producto x Mención</a>
+										</Popconfirm>
+									</div>
+									<div className='cv-detail-inter-canj-content'>
+										<Popconfirm
+											title='Entregarás un producto al influencer para que haga un "SORTEO" en su cuenta (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+											okText='Si'
+											cancelText='No'
+											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+											onConfirm={() => {
+												window.open(
+													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
+												)
+											}}>
+											<a href={'/'}>&nbsp;Sorteo x Mención</a>
+										</Popconfirm>
 									</div>
 									<h3 className='cv-detail-plans-title'>Planes</h3>
 									<div className='cv-detail-plans-hr'></div>
