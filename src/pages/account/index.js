@@ -4,11 +4,12 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
-import { Row, Col, List, Avatar, Layout } from 'antd'
-import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
+import { Row, Col, List, Avatar, Layout, Popconfirm } from 'antd'
+import { WhatsAppOutlined, UserOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
+import { serviceEventGoogleAnalytics } from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 // import { config } from '../../components/ServiceCommons/Config'
 
 import CreateUser from './components/CreateUser'
@@ -28,6 +29,10 @@ export default class AccountDetail extends React.Component {
 	}
 
 	componentDidMount() {
+		serviceEventGoogleAnalytics({
+			category: 'account-details',
+			action: 'view',
+		})
 		serviceViewAccount(this.props.match.params.name).then((response) => {
 			console.log('response', response.asociation)
 			this.setState({
@@ -58,14 +63,24 @@ export default class AccountDetail extends React.Component {
 								</p>
 							</Row>
 							<Row className='cv-detail-content-accoun'>
-								<Col span={24}>
-									<a
+								<Col span={24} className='center'>
+									<span
 										className='cv-detail-whatsapp-icon'
 										rel='noopener noreferrer'
 										target='_blank'
-										href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`}>
+										onClick={() => {
+											serviceEventGoogleAnalytics({
+												category: 'contacto',
+												action: 'click-contacto',
+											})
+											window.open(
+												`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
+											)
+										}}>
 										<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
-									</a>
+										&nbsp;
+										<span>Contactame</span>
+									</span>
 								</Col>
 								<Col span={24} className='cv-detail-content-account-detail'>
 									<h1 className='cv-detail-title-main'>
@@ -165,11 +180,58 @@ export default class AccountDetail extends React.Component {
 										</a>
 									</div> */}
 									<div className='cv-detail-inter-canj-content'>
-										<a
-											href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+conversar+sobre+un+intercambio+por+publicidad`}>
-											<WhatsAppOutlined />
-											&nbsp;Intercambios
-										</a>
+										<Popconfirm
+											title='El influencer hará una mención en su cuenta, tú en la tuya (a esto le llamamos intercambio publicitario) y de esta manera intercambian seguidores (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+											okText='Si'
+											cancelText='No'
+											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+											onConfirm={() => {
+												serviceEventGoogleAnalytics({
+													category: 'intercambio',
+													action: 'click-mencion',
+												})
+												window.open(
+													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN)`
+												)
+											}}>
+											<a href={'/'}>&nbsp;Mención x Mención</a>
+										</Popconfirm>
+									</div>
+									<div className='cv-detail-inter-canj-content'>
+										<Popconfirm
+											title='El influencer te pedirá un "PRODUCTO" a cambio de la publicidad, el influencer se quedará con dicho producto que primero debe probar y hará la mención de tu negocio (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+											okText='Si'
+											cancelText='No'
+											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+											onConfirm={() => {
+												serviceEventGoogleAnalytics({
+													category: 'intercambio',
+													action: 'click-producto',
+												})
+												window.open(
+													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
+												)
+											}}>
+											<a href={'/'}>&nbsp;Producto x Mención</a>
+										</Popconfirm>
+									</div>
+									<div className='cv-detail-inter-canj-content'>
+										<Popconfirm
+											title='Entregarás un producto al influencer para que haga un "SORTEO" en su cuenta (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+											okText='Si'
+											cancelText='No'
+											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+											onConfirm={() => {
+												serviceEventGoogleAnalytics({
+													category: 'intercambio',
+													action: 'click-sorteo',
+												})
+												window.open(
+													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
+												)
+											}}>
+											<a href={'/'}>&nbsp;Sorteo x Mención</a>
+										</Popconfirm>
 									</div>
 									<h3 className='cv-detail-plans-title'>Planes</h3>
 									<div className='cv-detail-plans-hr'></div>
@@ -178,8 +240,17 @@ export default class AccountDetail extends React.Component {
 										itemLayout='horizontal'
 										dataSource={this.state.detail.plans}
 										renderItem={(item) => (
-											<a
-												href={`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`}>
+											<span
+												onClick={() => {
+													console.log('contratacion')
+													serviceEventGoogleAnalytics({
+														category: 'pago',
+														action: 'click-contratacion',
+													})
+													window.open(
+														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
+													)
+												}}>
 												<List.Item actions={[<WhatsAppOutlined />]}>
 													<List.Item.Meta
 														avatar={<Avatar src={this.state.detail.image} />}
@@ -187,7 +258,7 @@ export default class AccountDetail extends React.Component {
 														description={`Precio: ${item.price} ${item.currency}`}
 													/>
 												</List.Item>
-											</a>
+											</span>
 										)}
 									/>
 								</div>
