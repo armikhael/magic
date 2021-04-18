@@ -21,6 +21,7 @@
 	color: #fff;
 	background-color: #f61073;
 	font-weight: 900;
+	cursor: pointer;
 }
 
 .cv-detail-whatsapp-icon:hover {
@@ -253,6 +254,7 @@
 .cv-detail-plans-list {
 	overflow-y: scroll;
 	height: 400px;
+	cursor: pointer;
 }
 
 .cv-detail-plans-list .ant-list-item-meta-avatar {

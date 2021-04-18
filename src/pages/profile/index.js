@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Input } from 'antd'
+import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Input, Tag } from 'antd'
 import { UserOutlined, HeartOutlined, ApiOutlined, WhatsAppOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -130,7 +130,10 @@ export default class Profile extends React.Component {
 														<Col sm={24} md={6} className='cv-profile-upload-image'>
 															<UploadImage account={item} />
 														</Col>
-														<Col sm={24} md={18} className='cv-profile-account-detail-acount'>
+														<Col
+															sm={24}
+															md={18}
+															className='cv-profile-account-detail-acount'>
 															<Row>
 																<Col span={24}>
 																	<h3 className='cv-profile-account-detail-title'>
@@ -143,20 +146,53 @@ export default class Profile extends React.Component {
 																</Col>
 															</Row>
 															<Row>
-																<Col className='mb15' xs={24} sm={24} md={24} lg={5} xl={5}>
-																	<Button shape='round' href={`/profile/edit-account/${item.name}`}>
+																<Col
+																	className='mb15'
+																	xs={24}
+																	sm={24}
+																	md={24}
+																	lg={5}
+																	xl={5}>
+																	<Tag
+																		color='#EC428D'
+																		style={{ textTransform: 'capitalize' }}>
+																		{item.type}
+																	</Tag>
+																</Col>
+																<Col
+																	className='mb15'
+																	xs={24}
+																	sm={24}
+																	md={24}
+																	lg={5}
+																	xl={5}>
+																	<Button
+																		shape='round'
+																		href={`/profile/edit-account/${item.name}`}>
 																		Editar
 																	</Button>
 																</Col>
 																{item.eneable === true && (
-																	<Col className='mb15' xs={24} sm={24} md={24} lg={8} xl={8}>
+																	<Col
+																		className='mb15'
+																		xs={24}
+																		sm={24}
+																		md={24}
+																		lg={8}
+																		xl={8}>
 																		<CopyToClipboard
 																			text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
 																			<Button shape='round'>Copiar enlace</Button>
 																		</CopyToClipboard>
 																	</Col>
 																)}
-																<Col className='mb15' xs={24} sm={24} md={24} lg={6} xl={6}>
+																<Col
+																	className='mb15'
+																	xs={24}
+																	sm={24}
+																	md={24}
+																	lg={6}
+																	xl={6}>
 																	<Button
 																		type='danger'
 																		shape='round'
