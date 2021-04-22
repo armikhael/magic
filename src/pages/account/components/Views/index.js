@@ -1,29 +1,30 @@
 /** @format */
 
 import React from 'react'
-
+import { Line } from '@ant-design/charts'
 import { Row } from 'antd'
 
-export default class Views extends React.Component {
-	render() {
-		return (
-			<>
-				<div className='cv-detail-contente-user-create'>
-					<Row>
-						Ultimos 7 dias:
-						<ul>
-							{this.props.views.map(function (item, i) {
-								return (
-									<li key={i}>
-										Visitas: {item.counter}, Fecha: {item.date}
-									</li>
-								)
-							})}
-						</ul>
-						total: {this.props.total}
-					</Row>
-				</div>
-			</>
-		)
+export default function Views(props) {
+	const data = props.views
+	const config = {
+		data,
+		height: 200,
+		xField: 'date',
+		yField: 'counter',
+		point: {
+			size: 5,
+			shape: 'diamond',
+		},
 	}
+
+	return (
+		<>
+			<div className='cv-detail-contente-user-create'>
+				<Row>Total de la ultima semana: {props.total}</Row>
+				<Row>
+					<Line {...config} />
+				</Row>
+			</div>
+		</>
+	)
 }
