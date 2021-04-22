@@ -14,6 +14,7 @@ import { serviceEventGoogleAnalytics } from '../../components/ServiceCommons/Eve
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
+import Views from './components/Views'
 
 import './style.css'
 import { serviceViewAccount } from './services'
@@ -40,6 +41,8 @@ export default class AccountDetail extends React.Component {
 				detail: response.account[0],
 				relations: response.relations,
 				asociation: response.asociation,
+				views: response.statitics_view,
+				totalView: response.total_week_view,
 			})
 		})
 	}
@@ -162,6 +165,7 @@ export default class AccountDetail extends React.Component {
 								</Col>
 							</Row>
 							<div className='cv-detail-accounts-user-email-md'>
+								<Views views={this.state.views} total={this.state.totalView} />
 								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 								<AccountsRelations relations={this.state.relations} />
 							</div>
@@ -269,7 +273,9 @@ export default class AccountDetail extends React.Component {
 								</a>
 							</div> */}
 						</Col>
+
 						<div className='cv-detail-accounts-user-email-xs'>
+							<Views views={this.state.views} total={this.state.totalView} />
 							<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 							{/* <div className='cv-detail-accounts-user-publicidad'>
 								<a href={`${config.linkSeguidores}`}>
