@@ -31,6 +31,10 @@ export default class AccountDetail extends React.Component {
 
 	componentDidMount() {
 		serviceEventGoogleAnalytics({
+			category: this.props.match.params.name,
+			action: 'view',
+		})
+		serviceEventGoogleAnalytics({
 			category: 'account-details',
 			action: 'view',
 		})
