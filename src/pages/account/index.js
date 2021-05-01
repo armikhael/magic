@@ -36,7 +36,6 @@ export default class AccountDetail extends React.Component {
 			label: this.props.match.params.name,
 		})
 		serviceViewAccount(this.props.match.params.name).then((response) => {
-			console.log('response', response.asociation)
 			this.setState({
 				loading: false,
 				detail: response.account[0],
@@ -53,7 +52,6 @@ export default class AccountDetail extends React.Component {
 		const date = new Date()
 		let itemFilter = []
 		promotion.forEach((iterator) => {
-			console.log(iterator.month, iterator.day)
 			if (
 				date.getDate() <= iterator.day &&
 				date.getMonth() === iterator.month &&
