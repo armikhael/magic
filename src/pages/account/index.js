@@ -15,6 +15,7 @@ import { Publicity } from '../../components/Json/Publicity'
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
+import Promotion from './components/Promotion'
 
 import './style.css'
 import { serviceViewAccount } from './services'
@@ -190,27 +191,11 @@ export default class AccountDetail extends React.Component {
 						<Col xs={24} sm={24} md={6}>
 							<div className='cv-detail-content-plans'>
 								<div className='cv-detail-content-plans-main'>
-									{this.state.promotion.length > 0 && (
-										<div className='cv-detail-plans-content-images'>
-											<span
-												style={{ cursor: 'pointer' }}
-												onClick={() => {
-													serviceEventGoogleAnalytics({
-														category: 'giveaway',
-														action: 'click-giveaway',
-														label: this.state.detail.name,
-													})
-													window.open(this.state.promotion[0].redirect)
-												}}>
-												<img
-													title='Publicidad'
-													alt='Publicidad'
-													className='cv-detail-plans-images'
-													src={this.state.promotion[0].image}
-												/>
-											</span>
-										</div>
-									)}
+									<div className='cv-detail-plans-content-images'>
+										<Promotion
+											promotion={this.state.promotion}
+											detailAccount={this.state.detail}></Promotion>
+									</div>
 									<div className='cv-detail-inter-canj-content'>
 										<Popconfirm
 											title='El influencer hará una mención en su cuenta, tú en la tuya (a esto le llamamos intercambio publicitario) y de esta manera intercambian seguidores (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
@@ -309,22 +294,12 @@ export default class AccountDetail extends React.Component {
 						<div className='cv-detail-accounts-user-email-xs'>
 							<Views views={this.state.views} total={this.state.totalView} />
 							<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
-							{/* <div className='cv-detail-accounts-user-publicidad'>
-								<a href={`${config.linkSeguidores}`}>
-									<img
-										title='Publicidad'
-										alt='Publicidad'
-										className='cv-detail-plans-images'
-										src='https://i.ibb.co/KGb2pSt/seguidores.gif'
-									/>
-								</a>
-							</div> */}
+							<div className='cv-detail-accounts-user-publicidad'>
+								<Promotion
+									promotion={this.state.promotion}
+									detailAccount={this.state.detail}></Promotion>
+							</div>
 							<AccountsRelations relations={this.state.relations} />
-							{/* <div className='cv-detail-accounts-user-publicidad'>
-								<a rel='noopener noreferrer' href={`${config.linkYoutube}`} target='_blank'>
-									<img width='100%' src='https://i.ibb.co/kSX3Zdt/burger-king2.gif' alt='Publicidad' />
-								</a>
-							</div> */}
 						</div>
 					</Row>
 				</Content>
