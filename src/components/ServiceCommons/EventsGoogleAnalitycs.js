@@ -6,6 +6,7 @@ const serviceEventGoogleAnalytics = async (item) => {
 	ReactGA.event({
 		category: item.category,
 		action: item.action,
+		label: item.label,
 	})
 }
 

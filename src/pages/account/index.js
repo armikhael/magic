@@ -10,7 +10,7 @@ import { WhatsAppOutlined, UserOutlined, QuestionCircleOutlined } from '@ant-des
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 import { serviceEventGoogleAnalytics } from '../../components/ServiceCommons/EventsGoogleAnalitycs'
-// import { config } from '../../components/ServiceCommons/Config'
+import { Publicity } from '../../components/Json/Publicity'
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
@@ -31,15 +31,11 @@ export default class AccountDetail extends React.Component {
 
 	componentDidMount() {
 		serviceEventGoogleAnalytics({
-			category: this.props.match.params.name,
-			action: 'view',
-		})
-		serviceEventGoogleAnalytics({
 			category: 'account-details',
 			action: 'view',
+			label: this.props.match.params.name,
 		})
 		serviceViewAccount(this.props.match.params.name).then((response) => {
-			console.log('response', response.asociation)
 			this.setState({
 				loading: false,
 				detail: response.account[0],
@@ -47,8 +43,24 @@ export default class AccountDetail extends React.Component {
 				asociation: response.asociation,
 				views: response.statitics_view,
 				totalView: response.total_week_view,
+				promotion: this.handleVerifyPromotion(Publicity, response.account[0]),
 			})
 		})
+	}
+
+	handleVerifyPromotion = (promotion, account) => {
+		const date = new Date()
+		let itemFilter = []
+		promotion.forEach((iterator) => {
+			if (
+				date.getDate() <= iterator.day &&
+				date.getMonth() === iterator.month &&
+				iterator.country === account.country
+			) {
+				itemFilter.push(iterator)
+			}
+		})
+		return itemFilter
 	}
 
 	render() {
@@ -79,6 +91,7 @@ export default class AccountDetail extends React.Component {
 											serviceEventGoogleAnalytics({
 												category: 'contacto',
 												action: 'click-contacto',
+												label: this.state.detail.name,
 											})
 											window.open(
 												`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
@@ -177,16 +190,27 @@ export default class AccountDetail extends React.Component {
 						<Col xs={24} sm={24} md={6}>
 							<div className='cv-detail-content-plans'>
 								<div className='cv-detail-content-plans-main'>
-									{/* <div className='cv-detail-plans-content-images'>
-										<a href={`${config.linkSeguidores}`}>
-											<img
-												title='Publicidad'
-												alt='Publicidad'
-												className='cv-detail-plans-images'
-												src='https://i.ibb.co/KGb2pSt/seguidores.gif'
-											/>
-										</a>
-									</div> */}
+									{this.state.promotion.length > 0 && (
+										<div className='cv-detail-plans-content-images'>
+											<span
+												style={{ cursor: 'pointer' }}
+												onClick={() => {
+													serviceEventGoogleAnalytics({
+														category: 'giveaway',
+														action: 'click-giveaway',
+														label: this.state.detail.name,
+													})
+													window.open(this.state.promotion[0].redirect)
+												}}>
+												<img
+													title='Publicidad'
+													alt='Publicidad'
+													className='cv-detail-plans-images'
+													src={this.state.promotion[0].image}
+												/>
+											</span>
+										</div>
+									)}
 									<div className='cv-detail-inter-canj-content'>
 										<Popconfirm
 											title='El influencer hará una mención en su cuenta, tú en la tuya (a esto le llamamos intercambio publicitario) y de esta manera intercambian seguidores (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
@@ -197,6 +221,7 @@ export default class AccountDetail extends React.Component {
 												serviceEventGoogleAnalytics({
 													category: 'intercambio',
 													action: 'click-mencion',
+													label: this.state.detail.name,
 												})
 												window.open(
 													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN)`
@@ -215,6 +240,7 @@ export default class AccountDetail extends React.Component {
 												serviceEventGoogleAnalytics({
 													category: 'intercambio',
 													action: 'click-producto',
+													label: this.state.detail.name,
 												})
 												window.open(
 													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
@@ -233,6 +259,7 @@ export default class AccountDetail extends React.Component {
 												serviceEventGoogleAnalytics({
 													category: 'intercambio',
 													action: 'click-sorteo',
+													label: this.state.detail.name,
 												})
 												window.open(
 													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
@@ -254,6 +281,7 @@ export default class AccountDetail extends React.Component {
 													serviceEventGoogleAnalytics({
 														category: 'pago',
 														action: 'click-contratacion',
+														label: this.state.detail.name,
 													})
 													window.open(
 														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
