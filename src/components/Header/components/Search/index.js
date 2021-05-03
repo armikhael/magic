@@ -7,6 +7,7 @@ import { Input, Menu, Dropdown, Row, Col, Tag } from 'antd'
 
 import './style.css'
 import { serviceGetCategories } from './services'
+import { serviceEventGoogleAnalytics } from '../../../ServiceCommons/EventsGoogleAnalitycs'
 
 const { Search } = Input
 
@@ -38,7 +39,17 @@ export default function SearchNavbar() {
 					{isMenu.countries.map((item, i) => {
 						return (
 							<Tag key={i} className='cv-header-search-tag'>
-								<Link to={`/country/${item.slug}`}>{item.name}</Link>
+								<Link
+									onClick={() => {
+										serviceEventGoogleAnalytics({
+											category: 'click-country',
+											action: 'click',
+											label: item.slug,
+										})
+									}}
+									to={`/country/${item.slug}`}>
+									{item.name}
+								</Link>
 							</Tag>
 						)
 					})}
@@ -54,7 +65,16 @@ export default function SearchNavbar() {
 									<div
 										className='cv-header-search-content-category'
 										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
+									<Link
+										onClick={() => {
+											serviceEventGoogleAnalytics({
+												category: 'click-category',
+												action: 'click',
+												label: item.slug,
+											})
+										}}
+										className='cv-header-search-submenu-title'
+										to={`/category/${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
@@ -73,7 +93,16 @@ export default function SearchNavbar() {
 									<div
 										className='cv-header-search-content-category'
 										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
+									<Link
+										onClick={() => {
+											serviceEventGoogleAnalytics({
+												category: 'click-category',
+												action: 'click',
+												label: item.slug,
+											})
+										}}
+										className='cv-header-search-submenu-title'
+										to={`/category/${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
@@ -92,7 +121,16 @@ export default function SearchNavbar() {
 									<div
 										className='cv-header-search-content-category'
 										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link className='cv-header-search-submenu-title' to={`/category/${item.slug}`}>
+									<Link
+										onClick={() => {
+											serviceEventGoogleAnalytics({
+												category: 'click-category',
+												action: 'click',
+												label: item.slug,
+											})
+										}}
+										className='cv-header-search-submenu-title'
+										to={`/category/${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
@@ -107,7 +145,10 @@ export default function SearchNavbar() {
 	return (
 		<React.Fragment>
 			<Input.Group compact className='cv-header-search-content'>
-				<Dropdown overlayClassName='cv-header-search-content-overlay-dropdown' overlay={menu} trigger={['click']}>
+				<Dropdown
+					overlayClassName='cv-header-search-content-overlay-dropdown'
+					overlay={menu}
+					trigger={['click']}>
 					<Search
 						className='cv-header-search-input'
 						placeholder='¿Qué cuentas deseas Buscar...?'
