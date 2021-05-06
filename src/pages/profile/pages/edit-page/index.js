@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react'
 import FormCreatePage from '../../components/FormCreatePage'
-import { interfaceCreatePage } from './service'
+import { serviceGetDataPage } from './service'
 
-const CreatePage = () => {
+const EditPage = () => {
 	const [data, setData] = useState({})
 
 	const fetchData = async () => {
-		const response = await interfaceCreatePage()
+		const response = await serviceGetDataPage()
 		setData(response)
 	}
 
@@ -18,9 +18,15 @@ const CreatePage = () => {
 
 	return (
 		<>
+			<ul>
+				{' '}
+				Datos relevantes a mostrar
+				<li>Estadísticas de visitas: {data.views}</li>
+				<li>Clicks Recibidos: {data.clicks}</li>
+			</ul>
 			<FormCreatePage data={data}></FormCreatePage>
 		</>
 	)
 }
 
-export default CreatePage
+export default EditPage
