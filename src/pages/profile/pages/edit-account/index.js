@@ -88,7 +88,7 @@ export default class EditAccount extends React.Component {
 			let result = data.map((item) => {
 				return {
 					code: item.code,
-					name: item.name,
+					name: item.name.toLowerCase(),
 					label: item.name,
 					currency: item.currency,
 				}
@@ -142,7 +142,11 @@ export default class EditAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-		if (this.state.selectQuantityConcept === null || this.state.selectConcept === null || this.state.auxPrice === null) {
+		if (
+			this.state.selectQuantityConcept === null ||
+			this.state.selectConcept === null ||
+			this.state.auxPrice === null
+		) {
 			notification['error']({
 				message: `Ups!`,
 				description: `Debe rellenar los datos correspondientes`,
@@ -288,7 +292,10 @@ export default class EditAccount extends React.Component {
 																		label='¿Cuantos seguidores tienes?'
 																		rules={rules.rulesFollowers}
 																		onChange={this.handleChangeInput}>
-																		<Input name='followers' value={this.state.followers} />
+																		<Input
+																			name='followers'
+																			value={this.state.followers}
+																		/>
 																	</Form.Item>
 																	<Col span={24} className='mt15'>
 																		<Form.Item
@@ -323,7 +330,9 @@ export default class EditAccount extends React.Component {
 													label='¿En que país te encuentras actualmente?'
 													rules={rules.rulesSelect}
 													initialValue={this.state.country}>
-													<Select onChange={this.handleChangeCountry} placeholder='Seleccionar'>
+													<Select
+														onChange={this.handleChangeCountry}
+														placeholder='Seleccionar'>
 														{this.state.countries.map((item, i) => {
 															return (
 																<Option
@@ -403,7 +412,9 @@ export default class EditAccount extends React.Component {
 								{this.state.conceptsSelected && (
 									<Row>
 										<Col xs={24} sm={24} md={12}>
-											<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
+											<h3 className='cv-create-account-from-title'>
+												Informa el precio de tus servicios
+											</h3>
 											<Card className='cv-create-account-card-custom'>
 												<Row>
 													<Col span={24}>
@@ -443,11 +454,17 @@ export default class EditAccount extends React.Component {
 															label={`Precio en ${this.state.currency}`}
 															onChange={this.handleChangeInput}
 															rules={rules.rulesPrice}>
-															<Input name='auxPrice' placeholder={`${this.state.currency}`} />
+															<Input
+																name='auxPrice'
+																placeholder={`${this.state.currency}`}
+															/>
 														</Form.Item>
 
 														<div className='cv-create-account-btn-add-content'>
-															<Button type='primary' shape='round' onClick={this.handleButtonPlans}>
+															<Button
+																type='primary'
+																shape='round'
+																onClick={this.handleButtonPlans}>
 																AGREGAR
 															</Button>
 														</div>
@@ -459,7 +476,8 @@ export default class EditAccount extends React.Component {
 															renderItem={(item, key) => (
 																<List.Item>
 																	<Typography.Text>
-																		{item.description} por {item.price} {item.currency}
+																		{item.description} por {item.price}{' '}
+																		{item.currency}
 																	</Typography.Text>
 																	<Button
 																		danger
