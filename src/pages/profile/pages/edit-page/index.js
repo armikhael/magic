@@ -30,6 +30,9 @@ const EditPage = () => {
 						<FormPage data={infoPage}></FormPage>
 					</li>
 					<li>
+						<Link to={'/profile/create-page'}>Cambiar de Vista</Link>
+					</li>
+					<li>
 						<button
 							onClick={() =>
 								dispatch(
@@ -65,9 +68,6 @@ const EditPage = () => {
 							}}>
 							Enviar
 						</button>
-					</li>
-					<li>
-						<Link to={'/profile/create-page'}>Cambiar de Vista</Link>
 					</li>
 				</ul>
 			)}
