@@ -114,12 +114,9 @@ export default class Login extends React.Component {
 													inputNameRules={'rulesPassword'}
 												/>
 											</div>
-											<a
-												target='_blank'
-												rel='noopener noreferrer'
-												href={`${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola,+quisiera+solicitar+una+nuevo+pa%C3%ADs:`}>
+											<Link to={`/auth/recovery`}>
 												<h3 className='cv-auth-login-recover'>¿Olvidaste tu contraseña?</h3>
-											</a>
+											</Link>
 											<Form.Item>
 												<Button
 													loading={this.state.loading}
