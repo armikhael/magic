@@ -1,10 +1,20 @@
 /** @format */
 
 import React from 'react'
+// import { useDispatch } from 'react-redux'
+// import { actionUpdatePage } from '../../../../redux/PageDucks'
+
 import { Button, Input, Form } from 'antd'
 const { TextArea } = Input
 
+// const dataDucks = useSelector((store) => store.page.array)
+
 const FormCreatePage = (props) => {
+	// const dispatch = useDispatch()
+	// useEffect(() => {
+	// 	dispatch(actionUpdatePage(props.data))
+	// }, [props])
+
 	return (
 		<>
 			<ul>

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react'
-import FormCreatePage from '../../components/FormCreatePage'
+import FormPage from '../../components/FormPage'
 import { interfaceCreatePage } from './service'
 
 const CreatePage = () => {
@@ -18,7 +18,7 @@ const CreatePage = () => {
 
 	return (
 		<>
-			<FormCreatePage data={data}></FormCreatePage>
+			<FormPage data={data}></FormPage>
 		</>
 	)
 }

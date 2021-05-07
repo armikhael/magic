@@ -1,10 +1,10 @@
 /** @format */
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import reducerCreatePage from './CreatePageDucks'
+import reducerPage from './PageDucks'
 
 const rootReducer = combineReducers({
-	createPage: reducerCreatePage,
+	page: reducerPage,
 })
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

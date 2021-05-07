@@ -1,21 +1,17 @@
 /** @format */
 
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { actionGetCreatePage } from '../../../../redux/CreatePageDucks'
-import FormCreatePage from '../../components/FormCreatePage'
-import { serviceGetDataPage } from './service'
+import { GET_DATA, UPDATE_DATA } from '../../../../redux/PageDucks'
+import FormPage from '../../components/FormPage'
 
 const EditPage = () => {
-	const [data, setData] = useState({})
 	const dispatch = useDispatch()
-	const dataDucks = useSelector((store) => store.createPage.array)
+	const infoPage = useSelector((store) => store.page.state)
+
 	const fetchData = async () => {
-		const response = await serviceGetDataPage()
-		setData(response)
-		console.log('dataDucks', dataDucks)
-		console.log(response)
+		dispatch(GET_DATA())
 	}
 
 	useEffect(() => {
@@ -24,16 +20,48 @@ const EditPage = () => {
 
 	return (
 		<>
-			<ul>
-				{' '}
-				Datos relevantes a mostrar
-				<li>Estadísticas de visitas: {data.views}</li>
-				<li>Clicks Recibidos: {data.clicks}</li>
-			</ul>
-			<FormCreatePage data={data}></FormCreatePage>
-
-			<button onClick={() => dispatch(actionGetCreatePage())}>Obtener</button>
-			<ul>{dataDucks !== undefined && dataDucks.map((item) => <li key={item.name}>{item.name}</li>)}</ul>
+			{infoPage !== undefined && (
+				<ul>
+					{' '}
+					Datos relevantes a mostrar
+					<li>Estadísticas de visitas: {infoPage.views}</li>
+					<li>Clicks Recibidos: {infoPage.clicks}</li>
+					<li>
+						<FormPage data={infoPage}></FormPage>
+					</li>
+					<li>
+						<button
+							onClick={() =>
+								dispatch(
+									UPDATE_DATA({
+										title: 'Titulo Promocional Nuevo',
+										image: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
+										description:
+											'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+										priceRegular: '7777',
+										pricePromotional: '3333',
+										phone: '8888',
+										dateLimit: '01/01/9999',
+										views: '4444',
+										clicks: '3333',
+									})
+								)
+							}>
+							Actualizar
+						</button>
+					</li>
+					<li>
+						<button
+							onClick={() => {
+								let newObject = { ...infoPage }
+								newObject.title = 'Nuevo Titulo MAL PARIO'
+								dispatch(UPDATE_DATA(newObject))
+							}}>
+							Actualizar Uno
+						</button>
+					</li>
+				</ul>
+			)}
 		</>
 	)
 }
