@@ -3,12 +3,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { GET_DATA, UPDATE_DATA } from '../../../../redux/PageDucks'
+import { GET_DATA, UPDATE_DATA, UPDATE_ONE } from '../../../../redux/PageDucks'
 import FormPage from '../../components/FormPage'
 
 const EditPage = () => {
 	const dispatch = useDispatch()
-	const infoPage = useSelector((store) => store.page.state)
+	const infoPage = useSelector((store) => store.page)
 
 	const fetchData = async () => {
 		dispatch(GET_DATA())
@@ -53,11 +53,17 @@ const EditPage = () => {
 					<li>
 						<button
 							onClick={() => {
-								let newObject = { ...infoPage }
-								newObject.title = 'Nuevo Titulo MAL PARIO'
-								dispatch(UPDATE_DATA(newObject))
+								dispatch(UPDATE_ONE({ attriute: 'title', value: 'NUEVO TITULO DESDE EL STATE' }))
 							}}>
-							Actualizar Uno
+							Actualizar Titulo
+						</button>
+					</li>
+					<li>
+						<button
+							onClick={() => {
+								dispatch(UPDATE_ONE({ attriute: 'dateLimit', value: '99/99/9999' }))
+							}}>
+							Actualizar Fecha
 						</button>
 					</li>
 				</ul>
