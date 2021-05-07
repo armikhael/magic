@@ -10,21 +10,18 @@ export default function reducerPage(state = dataInitial, action) {
 	console.log(action)
 	switch (action.type) {
 		case 'GET_DATA':
-			console.log(state)
 			return { ...action.payload }
 		case 'UPDATE_PAGE':
 			return { ...state, ...action.payload }
 		case 'UPDATE_ONE':
-			console.log(state)
 			const newObject = state
 			newObject[action.payload.attriute] = action.payload.value
 			return { ...newObject }
 		case 'UPDATE_DATA':
-			console.log(state)
 			return { ...action.payload }
 
 		default:
-			return { state }
+			return state
 	}
 }
 

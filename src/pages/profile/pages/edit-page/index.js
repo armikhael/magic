@@ -61,9 +61,9 @@ const EditPage = () => {
 					<li>
 						<button
 							onClick={() => {
-								dispatch(UPDATE_ONE({ attriute: 'dateLimit', value: '99/99/9999' }))
+								console.log(infoPage)
 							}}>
-							Actualizar Fecha
+							Enviar
 						</button>
 					</li>
 				</ul>

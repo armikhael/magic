@@ -1,19 +1,20 @@
 /** @format */
 
 import React from 'react'
-// import { useDispatch } from 'react-redux'
-// import { actionUpdatePage } from '../../../../redux/PageDucks'
+import { useDispatch } from 'react-redux'
+
+import { UPDATE_ONE } from '../../../../redux/PageDucks'
 
 import { Button, Input, Form } from 'antd'
 const { TextArea } = Input
 
-// const dataDucks = useSelector((store) => store.page.array)
-
 const FormCreatePage = (props) => {
-	// const dispatch = useDispatch()
-	// useEffect(() => {
-	// 	dispatch(actionUpdatePage(props.data))
-	// }, [props])
+	const dispatch = useDispatch()
+
+	function handleChangeInput(e) {
+		console.log('write', e.target.name, e.target.value)
+		dispatch(UPDATE_ONE({ attriute: [e.target.name], value: e.target.value }))
+	}
 
 	return (
 		<>
@@ -31,12 +32,16 @@ const FormCreatePage = (props) => {
 				</li>
 				<li>
 					<Form.Item label='Precio Normal'>
-						<Input name='priceRegular' value={props.data.priceRegular} />
+						<Input name='priceRegular' value={props.data.priceRegular} onChange={handleChangeInput} />
 					</Form.Item>
 				</li>
 				<li>
 					<Form.Item label='Precio Promocional'>
-						<Input name='pricePromotional' value={props.data.pricePromotional} />
+						<Input
+							name='pricePromotional'
+							value={props.data.pricePromotional}
+							onChange={handleChangeInput}
+						/>
 					</Form.Item>
 				</li>
 				<li>Teléfono: {props.data.phone}</li>
