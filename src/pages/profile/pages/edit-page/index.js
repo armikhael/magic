@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { GET_DATA, UPDATE_DATA, UPDATE_ONE } from '../../../../redux/PageDucks'
 import FormPage from '../../components/FormPage'
@@ -10,11 +11,10 @@ const EditPage = () => {
 	const dispatch = useDispatch()
 	const infoPage = useSelector((store) => store.page)
 
-	const fetchData = async () => {
-		dispatch(GET_DATA())
-	}
-
 	useEffect(() => {
+		const fetchData = async () => {
+			dispatch(GET_DATA())
+		}
 		fetchData()
 	}, [dispatch])
 
@@ -65,6 +65,9 @@ const EditPage = () => {
 							}}>
 							Enviar
 						</button>
+					</li>
+					<li>
+						<Link to={'/profile/create-page'}>Cambiar de Vista</Link>
 					</li>
 				</ul>
 			)}

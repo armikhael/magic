@@ -22,12 +22,21 @@ const FormCreatePage = (props) => {
 				{' '}
 				Formulario
 				<li>
-					<img src={props.data.image} alt={props.data.title}></img>
+					<img src={props.data.image} alt={props.data.image}></img>
 				</li>
-				<li>Titulo: {props.data.title}</li>
+				<li>
+					<Form.Item label='Titulo'>
+						<Input name='title' value={props.data.title} onChange={handleChangeInput} />
+					</Form.Item>
+				</li>
 				<li>
 					<Form.Item label='Descripción'>
-						<TextArea rows={4} name='description' value={props.data.description} />
+						<TextArea
+							rows={4}
+							name='description'
+							value={props.data.description}
+							onChange={handleChangeInput}
+						/>
 					</Form.Item>
 				</li>
 				<li>
@@ -44,8 +53,16 @@ const FormCreatePage = (props) => {
 						/>
 					</Form.Item>
 				</li>
-				<li>Teléfono: {props.data.phone}</li>
-				<li>Fecha Límite: {props.data.dateLimit}</li>
+				<li>
+					<Form.Item label='Teléfono'>
+						<Input name='phone' value={props.data.phone} onChange={handleChangeInput} />
+					</Form.Item>
+				</li>
+				<li>
+					<Form.Item label='Fecha'>
+						<Input name='dateLimit' value={props.data.dateLimit} onChange={handleChangeInput} />
+					</Form.Item>
+				</li>
 				<li>
 					<Button onClick={() => {}}> Crear Link </Button>
 				</li>

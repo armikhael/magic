@@ -1,24 +1,25 @@
 /** @format */
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import FormPage from '../../components/FormPage'
-import { interfaceCreatePage } from './service'
 
 const CreatePage = () => {
-	const [data, setData] = useState({})
-
-	const fetchData = async () => {
-		const response = await interfaceCreatePage()
-		setData(response)
-	}
-
-	useEffect(() => {
-		fetchData()
-	}, [])
+	const interfacePage = useSelector((store) => store.page)
 
 	return (
 		<>
-			<FormPage data={data}></FormPage>
+			<ul>
+				<FormPage data={interfacePage}></FormPage>
+				<li>
+					<button
+						onClick={() => {
+							console.log(interfacePage)
+						}}>
+						Revisar State
+					</button>
+				</li>
+			</ul>
 		</>
 	)
 }
