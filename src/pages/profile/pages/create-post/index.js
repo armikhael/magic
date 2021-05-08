@@ -10,6 +10,7 @@ import TextAreaField from '../../../../components/Form/TextArea'
 import UploadImage from '../../components/UploadImage'
 
 import { serviceGePost } from './service'
+import interfacePost from './interface'
 
 const CreatePost = (props) => {
 	const [param, setParam] = useState()
@@ -23,13 +24,13 @@ const CreatePost = (props) => {
 
 	useEffect(() => {
 		if (props.match.params.name) {
-			console.log('entro')
 			console.log(props.match.params.name)
 			setParam(props.match.params.name)
 			fetchData()
+		} else {
+			setData(interfacePost)
 		}
 		handleGenerateDates()
-
 		console.log('useEffects')
 	}, [props])
 
@@ -48,8 +49,6 @@ const CreatePost = (props) => {
 		setOptionsDate(date)
 	}
 
-	const initialValues = data
-
 	return (
 		<>
 			{param !== undefined && <p>Parametro: {param}</p>}
@@ -61,7 +60,7 @@ const CreatePost = (props) => {
 					<li>Estadísticas de visitas: {data.views}</li>
 					<li>Clicks Recibidos: {data.clicks}</li>
 					<li>
-						<Form name='normal_login' initialValues={initialValues} onFinish={handleSubmit}>
+						<Form name='normal_login' initialValues={data} onFinish={handleSubmit}>
 							<div className='ph-auth-login-form-container'>
 								<UploadImage account={data.image} />
 								<InputField
