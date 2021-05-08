@@ -49,8 +49,9 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/activation/:name' component={Activation} />
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 				<PrivateRoute exact path='/profile/create-page/' component={CreatePage} />
-				<PrivateRoute exact path='/profile/create-post/' component={CreatePost} />
 				<PrivateRoute exact path='/profile/edit-page/' component={EditPage} />
+				<PrivateRoute exact path='/profile/create-post/' component={CreatePost} />
+				<PrivateRoute exact path='/profile/edit-post/:name' component={CreatePost} />
 
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />

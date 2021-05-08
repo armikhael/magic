@@ -18,7 +18,7 @@ const SelectField = (props) => {
 					onChange={props.componentFunction}>
 					{props.componentOptions.map((iterator) => {
 						return (
-							<Option value={iterator.value} key={iterator.value}>
+							<Option value={iterator.value} key={iterator.name}>
 								{iterator.name}
 							</Option>
 						)

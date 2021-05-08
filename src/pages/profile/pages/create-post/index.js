@@ -4,13 +4,15 @@ import React, { useEffect, useState } from 'react'
 import { Form, Button } from 'antd'
 import moment from 'moment'
 
-import InputField from '../../../../components/Input'
-import SelectField from '../../../../components/Select'
+import InputField from '../../../../components/Form/Input'
+import SelectField from '../../../../components/Form/Select'
+import TextAreaField from '../../../../components/Form/TextArea'
 import UploadImage from '../../components/UploadImage'
 
 import { serviceGePost } from './service'
 
-const CreatePost = () => {
+const CreatePost = (props) => {
+	const [param, setParam] = useState()
 	const [data, setData] = useState()
 	const [optionsDate, setOptionsDate] = useState([])
 
@@ -20,10 +22,16 @@ const CreatePost = () => {
 	}
 
 	useEffect(() => {
-		fetchData()
+		if (props.match.params.name) {
+			console.log('entro')
+			console.log(props.match.params.name)
+			setParam(props.match.params.name)
+			fetchData()
+		}
 		handleGenerateDates()
+
 		console.log('useEffects')
-	}, [])
+	}, [props])
 
 	const handleSubmit = (item) => {
 		console.log(item)
@@ -34,66 +42,82 @@ const CreatePost = () => {
 		for (let i = 1; i < 15; i++) {
 			date.push({
 				value: moment().add(i, 'days').format('L'),
-				name: `${i} Día(s) `,
+				name: `${i} Día(s)  Finaliza el ${moment().add(i, 'days').format('L')}`,
 			})
 		}
 		setOptionsDate(date)
 	}
 
+	const initialValues = data
+
 	return (
 		<>
+			{param !== undefined && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<ul>
 					{' '}
 					Datos relevantes a mostrar
 					<li>Estadísticas de visitas: {data.views}</li>
+					<li>Estadísticas de visitas: {data.views}</li>
 					<li>Clicks Recibidos: {data.clicks}</li>
 					<li>
-						<Form name='normal_login' initialValues={{ remember: true }} onFinish={handleSubmit}>
+						<Form name='normal_login' initialValues={initialValues} onFinish={handleSubmit}>
 							<div className='ph-auth-login-form-container'>
 								<UploadImage account={data.image} />
 								<InputField
-									className={'cv-auth-login-field-input'}
-									inputName={'title'}
-									inputNameLabel={'Titulo del Post'}
-									inputNameRule={true}
-									inputNameMessage={'Ingrese su Título'}
-									inputNameType={'text'}
-									inputNameIcon={''}
-									inputNameRules={''}
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'title'}
+									componentLabel={'Titulo del Post'}
+									componentRule={true}
+									componentMessage={'Ingrese su Título'}
+									componentType={'text'}
+									componentIcon={''}
+									componentRules={''}
+									componentValue={data.title}
+								/>
+								<TextAreaField
+									componentLabel={'Describe la promoción'}
+									componentName={'description'}
+									componentMode={''}
+									componentAutoSize={{ minRows: 2, maxRows: 6 }}
+									componentPlaceholder={'Breve descripción'}
+									componentOptions={optionsDate}
 								/>
 								<InputField
-									className={'cv-auth-login-field-input'}
-									inputName={'price_regular'}
-									inputNameLabel={'Precio Regular'}
-									inputNameRule={true}
-									inputNameMessage={'Ingrese el precio'}
-									inputNameType={''}
-									inputNameIcon={''}
-									inputNameRules={''}
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'price_regular'}
+									componentLabel={'Precio Regular'}
+									componentRule={true}
+									componentMessage={'Ingrese el precio'}
+									componentType={''}
+									componentIcon={''}
+									componentRules={''}
+									componentValue={data.price_regular}
 								/>
 								<InputField
-									className={'cv-auth-login-field-input'}
-									inputName={'price_promotion'}
-									inputNameLabel={'Precio Promocional'}
-									inputNameRule={true}
-									inputNameMessage={'Ingrese el precio'}
-									inputNameType={''}
-									inputNameIcon={''}
-									inputNameRules={''}
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'price_promotion'}
+									componentLabel={'Precio Promocional'}
+									componentRule={true}
+									componentMessage={'Ingrese el precio'}
+									componentType={''}
+									componentIcon={''}
+									componentRules={''}
+									componentValue={data.price_promotion}
 								/>
 								<InputField
-									className={'cv-auth-login-field-input'}
-									inputName={'phone'}
-									inputNameLabel={'Teléfono de Contacto'}
-									inputNameRule={true}
-									inputNameMessage={'Ingrese el teléfono'}
-									inputNameType={''}
-									inputNameIcon={''}
-									inputNameRules={'rulesPhone'}
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'phone'}
+									componentLabel={'Teléfono de Contacto'}
+									componentRule={true}
+									componentMessage={'Ingrese el teléfono'}
+									componentType={''}
+									componentIcon={''}
+									componentRules={'rulesPhone'}
+									componentValue={data.phone}
 								/>
 								<SelectField
-									componentLabel={'Fecha de termino'}
+									componentLabel={'¿Cuanto dura la promoción?'}
 									componentName={'time_limit'}
 									componentMode={''}
 									componentPlaceholder={''}
