@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Form, Button } from 'antd'
 import moment from 'moment'
 
@@ -59,6 +60,12 @@ const CreatePost = (props) => {
 					<li>Estadísticas de visitas: {data.views}</li>
 					<li>Estadísticas de visitas: {data.views}</li>
 					<li>Clicks Recibidos: {data.clicks}</li>
+					<li>
+						<Link to={'/profile/edit-post/nombre-cuenta'}> Editar </Link>
+					</li>
+					<li>
+						<Link to={'/profile/create-post'}> Crear </Link>
+					</li>
 					<li>
 						<Form name='normal_login' initialValues={data} onFinish={handleSubmit}>
 							<div className='ph-auth-login-form-container'>
@@ -129,14 +136,6 @@ const CreatePost = (props) => {
 								</Button>
 							</Form.Item>
 						</Form>
-					</li>
-					<li>
-						<button
-							onClick={() => {
-								console.log(data)
-							}}>
-							Enviar
-						</button>
 					</li>
 				</ul>
 			)}
