@@ -3,21 +3,10 @@
 import { serviceGetDataPage } from '../pages/profile/pages/edit-page/service'
 
 // constants
-const dataInitial = {
-	title: null,
-	image: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
-	description: null,
-	priceRegular: null,
-	pricePromotional: null,
-	phone: null,
-	dateLimit: null,
-	views: null,
-	clicks: null,
-}
+const dataInitial = {}
 
 // reducers
 export default function reducerPage(state = dataInitial, action) {
-	console.log(action)
 	switch (action.type) {
 		case 'GET_DATA':
 			return { ...action.payload }

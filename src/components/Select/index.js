@@ -5,39 +5,28 @@ import React from 'react'
 import { Form, Select } from 'antd'
 import './style.css'
 
-
-
-class SelectField extends React.Component {
-
-    constructor(props) {
-		super(props)
-		this.state = {
-            
-        }
-    }
-    
-	render() {
-		return (
-			<>
-				<h3 className='ph-login-main-form-label'>
-					{this.props.inputNameLabel}
-				</h3>
-				<Form.Item
-					name={this.props.inputName}
-				>
-					<Select
-						style={{ width: '100%' }}
-						mode={this.props.selectMode}
-						placeholder={this.props.selectPlaceholder}
-						defaultValue={this.props.selectDefault}
-						onChange={this.props.selectFunction}
-					>
-						{this.props.selectOptions}
-					</Select>
-				</Form.Item>
-			</>
-		)
-	}
+const { Option } = Select
+const SelectField = (props) => {
+	return (
+		<>
+			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>
+			<Form.Item name={props.componentName}>
+				<Select
+					style={{ width: '100%' }}
+					mode={props.componentMode}
+					placeholder={props.componentPlaceholder}
+					onChange={props.componentFunction}>
+					{props.componentOptions.map((iterator) => {
+						return (
+							<Option value={iterator.value} key={iterator.value}>
+								{iterator.name}
+							</Option>
+						)
+					})}
+				</Select>
+			</Form.Item>
+		</>
+	)
 }
 
 export default SelectField
