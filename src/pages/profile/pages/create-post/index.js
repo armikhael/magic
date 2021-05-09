@@ -8,7 +8,7 @@ import moment from 'moment'
 import InputField from '../../../../components/Form/Input'
 import SelectField from '../../../../components/Form/Select'
 import TextAreaField from '../../../../components/Form/TextArea'
-import UploadImage from '../../components/UploadImage'
+import UploadImage from '../../../../components/UploadImage'
 
 import { serviceGePost } from './service'
 import interfacePost from './interface'
@@ -69,7 +69,9 @@ const CreatePost = (props) => {
 					<li>
 						<Form name='normal_login' initialValues={data} onFinish={handleSubmit}>
 							<div className='ph-auth-login-form-container'>
-								<UploadImage account={data.image} />
+								<div style={{ width: '30%' }}>
+									<UploadImage data={data} />
+								</div>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'title'}
