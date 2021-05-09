@@ -24,32 +24,34 @@ const serviceUploadImage = async (item) => {
 
 const serviceUpdateImage = async (id, item) => {
 	let returnResponse
-	await axios({
-		method: 'PUT',
-		url: `${process.env.REACT_APP_HOST}/account/image`,
-		data: {
-			id: id,
-			image: item.image.url,
-			image_thumb: item.thumb.url,
-		},
-	})
-		.then((response) => {
-			returnResponse = response.data
-			if (response.data.statusCode === 200) {
-				notification['success']({
-					message: `!Imagen subida con Exito!`,
-					description: `Recuerda que puedes cambiarla cuando quieras...`,
-				})
-			} else {
-				notification['error']({
-					message: `Problemas de Servicios`,
-					description: `Error al cargar la imagen`,
-				})
-			}
-		})
-		.catch((error) => {
-			returnResponse = error.response
-		})
+
+	console.log('imagen', item)
+	// await axios({
+	// 	method: 'PUT',
+	// 	url: `${process.env.REACT_APP_HOST}/account/image`,
+	// 	data: {
+	// 		id: id,
+	// 		image: item.image.url,
+	// 		image_thumb: item.thumb.url,
+	// 	},
+	// })
+	// 	.then((response) => {
+	// 		returnResponse = response.data
+	// 		if (response.data.statusCode === 200) {
+	// 			notification['success']({
+	// 				message: `!Imagen subida con Exito!`,
+	// 				description: `Recuerda que puedes cambiarla cuando quieras...`,
+	// 			})
+	// 		} else {
+	// 			notification['error']({
+	// 				message: `Problemas de Servicios`,
+	// 				description: `Error al cargar la imagen`,
+	// 			})
+	// 		}
+	// 	})
+	// 	.catch((error) => {
+	// 		returnResponse = error.response
+	// 	})
 	return returnResponse
 }
 

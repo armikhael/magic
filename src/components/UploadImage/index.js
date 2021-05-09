@@ -9,6 +9,7 @@ import { serviceUploadImage, serviceUpdateImage } from './services'
 import './style.css'
 
 export default function UploadImage(props) {
+	console.log(props)
 	const [fileList, setFileList] = useState([
 		{
 			uid: '-1',
@@ -33,6 +34,7 @@ export default function UploadImage(props) {
 		formData.append('image', fileList[0].originFileObj)
 		formData.append('name', props.data.name)
 		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
+		console.log('formData', formData)
 		serviceUploadImage(formData).then((response) => {
 			serviceUpdateImage(props.data._id, response).then((response) => {})
 		})
