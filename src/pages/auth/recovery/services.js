@@ -12,7 +12,7 @@ const authRecoveryPassword = async (item, redirect) => {
 	})
 		.then((response) => {
 			console.log(response)
-			if (response.statusCode === 200) {
+			if (response.data.statusCode === 200) {
 				notification['success']({
 					message: `Contraseña enviada`,
 					description: `Revisa tu correo electrónico para ver tu nueva contraseña`,
