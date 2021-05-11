@@ -17,6 +17,7 @@ const CreatePost = (props) => {
 	const [param, setParam] = useState()
 	const [data, setData] = useState()
 	const [optionsDate, setOptionsDate] = useState([])
+	const [imgAux, setImgAux] = useState()
 
 	const fetchData = async () => {
 		const res = await serviceGePost()
@@ -32,11 +33,17 @@ const CreatePost = (props) => {
 			setData(interfacePost)
 		}
 		handleGenerateDates()
+
 		console.log('useEffects')
 	}, [props])
 
+	const handleSetImage = (item) => {
+		setImgAux(item)
+	}
+
 	const handleSubmit = (item) => {
-		console.log(item)
+		item.image = imgAux
+		console.log('onFinish', item)
 	}
 
 	const handleGenerateDates = async () => {
@@ -70,7 +77,7 @@ const CreatePost = (props) => {
 						<Form name='normal_login' initialValues={data} onFinish={handleSubmit}>
 							<div className='ph-auth-login-form-container'>
 								<div style={{ width: '30%' }}>
-									<UploadImage data={data} />
+									<UploadImage componentFunction={handleSetImage} />
 								</div>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
@@ -81,7 +88,6 @@ const CreatePost = (props) => {
 									componentType={'text'}
 									componentIcon={''}
 									componentRules={''}
-									componentValue={data.title}
 								/>
 								<TextAreaField
 									componentLabel={'Describe la promoción'}
@@ -121,7 +127,7 @@ const CreatePost = (props) => {
 									componentMessage={'Ingrese el teléfono'}
 									componentType={''}
 									componentIcon={''}
-									componentRules={'rulesPhone'}
+									componentRules={''}
 									componentValue={data.phone}
 								/>
 								<SelectField

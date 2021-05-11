@@ -67,7 +67,7 @@ export default function UploadImage(props) {
 			</ImgCrop>
 			<br />
 			{isButtom && (
-				<Button className="cv-upload-img-update" type='primary' onClick={handleSaveImage}>
+				<Button className='cv-upload-img-update' type='primary' onClick={handleSaveImage}>
 					Actualizar
 				</Button>
 			)}
