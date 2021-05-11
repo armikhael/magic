@@ -41,6 +41,7 @@ export default function UploadImage(props) {
 				console.log(response)
 				handleReturnState(response.image.url)
 			})
+			setButtom(false)
 		} else {
 			alert('El peso de la imagen es muy alto')
 		}
@@ -64,6 +65,7 @@ export default function UploadImage(props) {
 	const handleReturnState = props.componentFunction
 	return (
 		<>
+			<p>{props.componentLabel}</p>
 			<ImgCrop>
 				<Upload
 					name={props.componentName}
@@ -77,8 +79,8 @@ export default function UploadImage(props) {
 			</ImgCrop>
 			<br />
 			{isButtom && (
-				<Button type='primary' onClick={handleSaveImage}>
-					Actualizar
+				<Button type='danger' onClick={handleSaveImage}>
+					Confirmar Imagen
 				</Button>
 			)}
 		</>

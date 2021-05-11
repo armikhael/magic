@@ -17,7 +17,8 @@ const CreatePost = (props) => {
 	const [param, setParam] = useState()
 	const [data, setData] = useState()
 	const [optionsDate, setOptionsDate] = useState([])
-	const [imgAux, setImgAux] = useState()
+	const [isImg, setImg] = useState(null)
+	const [isLink, setLink] = useState()
 
 	const fetchData = async () => {
 		const res = await serviceGePost()
@@ -38,12 +39,7 @@ const CreatePost = (props) => {
 	}, [props])
 
 	const handleSetImage = (item) => {
-		setImgAux(item)
-	}
-
-	const handleSubmit = (item) => {
-		item.image = imgAux
-		console.log('onFinish', item)
+		setImg(item)
 	}
 
 	const handleGenerateDates = async () => {
@@ -55,6 +51,14 @@ const CreatePost = (props) => {
 			})
 		}
 		setOptionsDate(date)
+	}
+
+	const handleSubmit = (item) => {
+		item.image = isImg
+		item._id = '213jk12b312kb31b2j3b'
+		console.log('onFinish', item)
+
+		setLink(btoa(item._id))
 	}
 
 	return (
@@ -76,9 +80,6 @@ const CreatePost = (props) => {
 					<li>
 						<Form name='normal_login' initialValues={data} onFinish={handleSubmit}>
 							<div className='ph-auth-login-form-container'>
-								<div style={{ width: '30%' }}>
-									<UploadImage componentFunction={handleSetImage} />
-								</div>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'title'}
@@ -138,12 +139,17 @@ const CreatePost = (props) => {
 									componentOptions={optionsDate}
 								/>
 							</div>
+							<div style={{ width: '30%' }}>
+								<UploadImage componentLabel={'Imagen Promocional'} componentFunction={handleSetImage} />
+							</div>
 							<Form.Item>
 								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
 									Enviar
 								</Button>
 							</Form.Item>
 						</Form>
+
+						<Button className={'cv-auth-login-main-button-submit'}>Copiar enlace: promo/{isLink}</Button>
 					</li>
 				</ul>
 			)}
