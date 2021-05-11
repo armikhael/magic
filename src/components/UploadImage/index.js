@@ -39,7 +39,7 @@ export default function UploadImage(props) {
 			console.log(formData)
 			serviceUploadImage(formData).then((response) => {
 				console.log(response)
-				componentFunction(response.image.url)
+				handleReturnState(response.image.url)
 			})
 		} else {
 			alert('El peso de la imagen es muy alto')
@@ -61,7 +61,7 @@ export default function UploadImage(props) {
 		imgWindow.document.write(image.outerHTML)
 	}
 
-	const componentFunction = props.componentFunction
+	const handleReturnState = props.componentFunction
 	return (
 		<>
 			<ImgCrop>
