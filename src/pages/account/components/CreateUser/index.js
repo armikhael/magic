@@ -10,15 +10,14 @@ export default class CreateUser extends React.Component {
 	render() {
 		return (
 			<>
-				{this.props.asociation.length > 0 && (
-					<div className='cv-detail-contente-user-create'>
-						<Row>
-							<Col xs={24} sm={24} md={12}>
-								{' '}
-								<h3 className='cv-detail-user-create-title'>Creado por</h3>
-								<UserOutlined />
-								&nbsp; {this.props.email}
-							</Col>
+				<div className='cv-detail-contente-user-create'>
+					<Row>
+						<Col xs={24} sm={24} md={12}>
+							<h3 className='cv-detail-user-create-title'>Creado por</h3>
+							<UserOutlined />
+							&nbsp; {this.props.email}
+						</Col>
+						{this.props.asociation.length > 0 && (
 							<Col xs={24} sm={24} md={12}>
 								<h3 className='cv-detail-user-create-title'>Cuentas Asociadas</h3>
 								{this.props.asociation.map(function (item, i) {
@@ -34,9 +33,9 @@ export default class CreateUser extends React.Component {
 									)
 								})}
 							</Col>
-						</Row>
-					</div>
-				)}
+						)}
+					</Row>
+				</div>
 			</>
 		)
 	}

@@ -77,7 +77,7 @@ export default class AccountDetail extends React.Component {
 					<Row>
 						<Col xs={24} sm={24} md={18}>
 							<Row className='cv-detail-content-accoun'>
-								<p>
+								<p className='cv-detail-content-accoun-p'>
 									¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
 									<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
 								</p>
