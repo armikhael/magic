@@ -1,11 +1,11 @@
 /** @format */
 
-const insterfaceLink = () => {
+const insterfaceForm = () => {
 	return {
-		name: 'diegoCarciente',
-		title: 'titulo del Link',
-		url: 'url del link',
+		name: null,
+		title: null,
+		url: null,
 	}
 }
 
-export default insterfaceLink
+export default insterfaceForm

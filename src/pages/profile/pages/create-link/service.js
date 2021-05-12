@@ -16,8 +16,11 @@ const serviceGetData = async () => {
 	// })
 	return {
 		name: 'diegoCarciente',
-		title: 'titulo del Link',
-		url: 'url del link',
+		links: [
+			{ title: 'titulo del Link', url: 'url del link' },
+			{ title: 'titulo del Link', url: 'url del link' },
+			{ title: 'titulo del Link', url: 'url del link' },
+		],
 	}
 }
 

@@ -70,9 +70,7 @@ export const rules = {
 		{
 			validator: (_, value) => {
 				let patron = /^([0-9])*$/
-				console.log(patron.test(value))
 				if (patron.test(value) === true) {
-					console.log('positivo')
 					return Promise.resolve()
 				}
 				return Promise.reject('NO se permitem el símbolos, letras, ni espacios en blanco en el precio')
@@ -110,6 +108,17 @@ export const rules = {
 					return Promise.resolve()
 				}
 				return Promise.reject('NO se permite el símbolo @ ni espacios en blanco')
+			},
+		},
+	],
+	rulesUrl: [
+		{
+			validator: (_, value) => {
+				let patron = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i
+				if (patron.test(value) === true) {
+					return Promise.resolve()
+				}
+				return Promise.reject('Ingrese una url válida')
 			},
 		},
 	],

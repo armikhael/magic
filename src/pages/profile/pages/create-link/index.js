@@ -7,25 +7,29 @@ import { Form, Button, Divider, List, Typography } from 'antd'
 import InputField from '../../../../components/Form/Input'
 
 import { serviceGetData } from './service'
-import interfaceLink from './interface'
+import insterfaceForm from './interface'
 
 const CreateLink = (props) => {
 	const [param] = useState()
 	const [data, setData] = useState()
 	const [isLink, setLink] = useState([])
+	const [isName, setName] = useState()
+	const [isEdit, setEdit] = useState(false)
 
 	const fetchData = async (param) => {
 		const res = await serviceGetData()
 		console.log(res)
-		setData(res)
+		setData({ name: param })
+		setName(param)
+		setLink(res.links)
 	}
 
 	useEffect(() => {
 		if (props.match.params.name) {
-			console.log(props.match.params.name)
 			fetchData(props.match.params.name)
+			setEdit(true)
 		} else {
-			setData(interfaceLink())
+			setData(insterfaceForm())
 		}
 
 		console.log('useEffects')
@@ -39,10 +43,23 @@ const CreateLink = (props) => {
 		)
 	}
 
-	const handleSubmit = (item) => {
+	const handleAddElement = (item) => {
 		console.log('onFinish', item)
-		setLink((isLink) => [...isLink, item])
-		console.log(isLink)
+		setLink((isLink) => [...isLink, { title: item.title, url: item.url }])
+	}
+
+	const handleChangeName = (item) => {
+		setName(item.target.value)
+	}
+	const handleSubmit = (item = {}) => {
+		item.name = isName
+		item.links = [...isLink]
+		console.log(item)
+		if (isEdit) {
+			console.log('editando links')
+		} else {
+			console.log('creando links')
+		}
 	}
 
 	return (
@@ -51,20 +68,32 @@ const CreateLink = (props) => {
 			{data !== undefined && (
 				<ul>
 					<li>
-						<Link to={'/profile/edit-post/nombre-cuenta'}> Editar </Link>
+						<Link to={'/profile/edit-link/nombre-cuenta'}> Editar </Link>
 					</li>
 					<li>
-						<Link to={'/profile/create-post'}> Crear </Link>
+						<Link to={'/profile/create-link'}> Crear </Link>
 					</li>
 					<li>
-						<Form name='normal_login' initialValues={data} onFinish={handleSubmit}>
+						<Form name='normal_login' initialValues={data} onFinish={handleAddElement}>
 							<div className='ph-auth-login-form-container'>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
-									componentName={'title'}
-									componentLabel={'Titulo del Post'}
+									componentName={'name'}
+									componentLabel={'Nombre del Enlace'}
 									componentRule={true}
-									componentMessage={'Ingrese su Título'}
+									componentMessage={'Nombre del enlace'}
+									componentType={'text'}
+									componentIcon={''}
+									componentRules={''}
+									componentValue={data.name}
+									componentChange={handleChangeName}
+								/>
+								<InputField
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'title'}
+									componentLabel={'Nombre del enlace'}
+									componentRule={true}
+									componentMessage={'Nombre del enlace'}
 									componentType={'text'}
 									componentIcon={''}
 									componentRules={''}
@@ -73,9 +102,9 @@ const CreateLink = (props) => {
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'url'}
-									componentLabel={'Precio Regular'}
+									componentLabel={'Enlace'}
 									componentRule={true}
-									componentMessage={'Ingrese el precio'}
+									componentMessage={'Enlace'}
 									componentType={''}
 									componentIcon={''}
 									componentRules={''}
@@ -86,12 +115,20 @@ const CreateLink = (props) => {
 								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
 									Agregar
 								</Button>
+								<Button
+									className={'cv-auth-login-main-button-submit'}
+									onClick={() => {
+										handleSubmit()
+									}}>
+									Enviar
+								</Button>
 							</Form.Item>
 						</Form>
 					</li>
 				</ul>
 			)}
 			<p>Regisros: {isLink.length}</p>
+			<p>Tu enlace personalizado quedaría así: cuentasvirales.com/{isName}</p>
 			<Divider></Divider>
 			{isLink.length > 0 && (
 				<List
