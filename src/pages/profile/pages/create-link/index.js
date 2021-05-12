@@ -6,7 +6,7 @@ import { Form, Button, Divider, List, Typography } from 'antd'
 
 import InputField from '../../../../components/Form/Input'
 
-import { serviceGetData } from './service'
+import { serviceGetData, serviceCreateData, serviceUpdateData } from './service'
 import insterfaceForm from './interface'
 
 const CreateLink = (props) => {
@@ -17,11 +17,15 @@ const CreateLink = (props) => {
 	const [isEdit, setEdit] = useState(false)
 
 	const fetchData = async (param) => {
-		const res = await serviceGetData()
-		console.log(res)
-		setData({ name: param })
-		setName(param)
-		setLink(res.links)
+		const response = await serviceGetData(param)
+		console.log(response)
+		if (response === null) {
+			alert('Error, ruta no encontrada')
+		} else {
+			setData(response)
+			setName(param)
+			setLink(response.links)
+		}
 	}
 
 	useEffect(() => {
@@ -51,14 +55,19 @@ const CreateLink = (props) => {
 	const handleChangeName = (item) => {
 		setName(item.target.value)
 	}
-	const handleSubmit = (item = {}) => {
-		item.name = isName
-		item.links = [...isLink]
-		console.log(item)
-		if (isEdit) {
-			console.log('editando links')
+	const handleSubmit = async () => {
+		const newData = data
+		newData.name = isName
+		newData.links = [...isLink]
+		console.log(newData)
+		if (isEdit === false) {
+			console.log('creando')
+			const response = await serviceCreateData(newData)
+			console.log(response)
 		} else {
-			console.log('creando links')
+			console.log('editando')
+			const response = await serviceUpdateData(newData)
+			console.log(response)
 		}
 	}
 
@@ -68,7 +77,7 @@ const CreateLink = (props) => {
 			{data !== undefined && (
 				<ul>
 					<li>
-						<Link to={'/profile/edit-link/nombre-cuenta'}> Editar </Link>
+						<Link to={`/profile/edit-link/${isName}`}> Editar </Link>
 					</li>
 					<li>
 						<Link to={'/profile/create-link'}> Crear </Link>

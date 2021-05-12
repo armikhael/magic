@@ -1,27 +1,52 @@
 /** @format */
 
-// import axios from 'axios'
+import axios from 'axios'
 
-const serviceGetData = async () => {
-	// await axios({
-	// 	method: 'PUT',
-	// 	url: `${process.env.REACT_APP_HOST}/account/`,
-	// 	data: body,
-	// })
-	// .then((response) => {
-	// 	returnResponse = response.data
-	// })
-	// .catch((e) => {
-	// 	returnResponse = e.response.data
-	// })
-	return {
-		name: 'diegoCarciente',
-		links: [
-			{ title: 'titulo del Link', url: 'url del link' },
-			{ title: 'titulo del Link', url: 'url del link' },
-			{ title: 'titulo del Link', url: 'url del link' },
-		],
-	}
+const serviceGetData = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/link/${item}`,
+	})
+		.then((response) => {
+			returnResponse = response.data.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data
+		})
+	return returnResponse
 }
 
-export { serviceGetData }
+const serviceCreateData = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'POST',
+		url: `${process.env.REACT_APP_HOST}/link/`,
+		data: item,
+	})
+		.then((response) => {
+			returnResponse = response.data.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data.data
+		})
+	return returnResponse
+}
+
+const serviceUpdateData = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'PUT',
+		url: `${process.env.REACT_APP_HOST}/link/`,
+		data: item,
+	})
+		.then((response) => {
+			returnResponse = response.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data
+		})
+	return returnResponse
+}
+
+export { serviceGetData, serviceCreateData, serviceUpdateData }
