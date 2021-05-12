@@ -28,6 +28,7 @@ function Layout(props) {
 	const handleLayouts = () => {
 		if (
 			props.location.pathname === '/auth/login' ||
+			props.location.pathname === '/auth/recovery' ||
 			props.location.pathname === '/auth/register'
 		) {
 			return <>{props.children}</>
