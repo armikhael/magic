@@ -14,7 +14,6 @@ import Profile from '../pages/profile'
 import Activation from '../pages/profile/pages/activation'
 import CreateAccount from '../pages/profile/pages/create-account'
 import EditAccount from '../pages/profile/pages/edit-account'
-import CreatePost from '../pages/profile/pages/create-post'
 import CreateLink from '../pages/profile/pages/create-link'
 import Category from '../pages/category'
 import Country from '../pages/country'
@@ -49,8 +48,6 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
 				<PrivateRoute exact path='/profile/create-link/' component={CreateLink} />
 				<PrivateRoute exact path='/profile/edit-link/:name' component={CreateLink} />
-				<PrivateRoute exact path='/profile/create-post/' component={CreatePost} />
-				<PrivateRoute exact path='/profile/edit-post/:name' component={CreatePost} />
 
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
