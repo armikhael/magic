@@ -19,7 +19,7 @@ const CreateLink = (props) => {
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
 		console.log(response)
-		if (response === null) {
+		if (response === undefined) {
 			alert('Error, ruta no encontrada')
 		} else {
 			setData(response)
@@ -94,7 +94,7 @@ const CreateLink = (props) => {
 									componentMessage={'Nombre del enlace'}
 									componentType={'text'}
 									componentIcon={''}
-									componentRules={''}
+									componentRules={'required'}
 									componentValue={data.name}
 									componentChange={handleChangeName}
 								/>
@@ -106,7 +106,7 @@ const CreateLink = (props) => {
 									componentMessage={'Nombre del enlace'}
 									componentType={'text'}
 									componentIcon={''}
-									componentRules={''}
+									componentRules={'required'}
 									componentValue={data.title}
 								/>
 								<InputField
@@ -117,7 +117,7 @@ const CreateLink = (props) => {
 									componentMessage={'Enlace'}
 									componentType={''}
 									componentIcon={''}
-									componentRules={''}
+									componentRules={'rulesUrl'}
 									componentValue={data.url}
 								/>
 							</div>
