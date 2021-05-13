@@ -9,7 +9,7 @@ const serviceGetData = async (item) => {
 		url: `${process.env.REACT_APP_HOST}/link/${item}`,
 	})
 		.then((response) => {
-			returnResponse = response.data.data
+			returnResponse = response.data.data[0]
 		})
 		.catch((e) => {
 			returnResponse = e.response.data
@@ -25,7 +25,7 @@ const serviceCreateData = async (item) => {
 		data: item,
 	})
 		.then((response) => {
-			returnResponse = response.data.data
+			returnResponse = response.data
 		})
 		.catch((e) => {
 			returnResponse = e.response.data.data
@@ -41,7 +41,7 @@ const serviceUpdateData = async (item) => {
 		data: item,
 	})
 		.then((response) => {
-			returnResponse = response.data
+			returnResponse = response
 		})
 		.catch((e) => {
 			returnResponse = e.response.data

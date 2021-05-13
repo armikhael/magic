@@ -56,18 +56,19 @@ const CreateLink = (props) => {
 		setName(item.target.value)
 	}
 	const handleSubmit = async () => {
-		const newData = data
+		let newData = data
 		newData.name = isName
 		newData.links = [...isLink]
-		console.log(newData)
 		if (isEdit === false) {
 			console.log('creando')
+			console.log(newData)
 			const response = await serviceCreateData(newData)
-			console.log(response)
+			console.log('response creando', response)
 		} else {
 			console.log('editando')
+			console.log(newData)
 			const response = await serviceUpdateData(newData)
-			console.log(response)
+			console.log('response editando', response)
 		}
 	}
 
