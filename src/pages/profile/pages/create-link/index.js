@@ -10,21 +10,21 @@ import { serviceGetData, serviceCreateData, serviceUpdateData } from './service'
 import insterfaceForm from './interface'
 
 const CreateLink = (props) => {
+	const [form] = Form.useForm()
 	const [param] = useState()
 	const [data, setData] = useState()
-	const [isLink, setLink] = useState([])
-	const [isName, setName] = useState()
+	const [links, setLinks] = useState([])
+	const [name, setName] = useState()
 	const [isEdit, setEdit] = useState(false)
 	const [isDisabled, setDisabled] = useState(false)
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
-		console.log(response)
 		if (response === undefined) {
 			alert('Error, ruta no encontrada')
 		} else {
 			setData(response)
-			setLink(response.links)
+			setLinks(response.links)
 		}
 	}
 
@@ -37,40 +37,34 @@ const CreateLink = (props) => {
 		} else {
 			setData(insterfaceForm())
 		}
-
 		console.log('useEffects')
 	}, [props])
 
 	const handleDelete = (e) => {
-		setLink(
-			isLink.filter((item, key) => {
+		setLinks(
+			links.filter((item, key) => {
 				return key !== e
 			})
 		)
 	}
 
 	const handleAddElement = (item) => {
-		console.log('onFinish', item)
-		setLink((isLink) => [...isLink, { title: item.title, url: item.url }])
+		setLinks((links) => [...links, { title: item.title, url: item.url }])
+		form.resetFields(['title', 'url'])
 	}
 
 	const handleChangeName = (item) => {
 		setName(item.target.value)
 	}
+
 	const handleSubmit = async () => {
 		let newData = data
-		newData.name = isName
-		newData.links = [...isLink]
+		newData.name = name
+		newData.links = [...links]
 		if (isEdit === false) {
-			console.log('creando')
-			console.log(newData)
-			const response = await serviceCreateData(newData)
-			console.log('response creando', response)
+			await serviceCreateData(newData)
 		} else {
-			console.log('editando')
-			console.log(newData)
-			const response = await serviceUpdateData(newData)
-			console.log('response editando', response)
+			await serviceUpdateData(newData)
 		}
 	}
 
@@ -80,13 +74,13 @@ const CreateLink = (props) => {
 			{data !== undefined && (
 				<ul>
 					<li>
-						<Link to={`/profile/edit-link/${isName}`}> Editar </Link>
+						<Link to={`/profile/edit-link/${name}`}> Editar </Link>
 					</li>
 					<li>
 						<Link to={'/profile/create-link'}> Crear </Link>
 					</li>
 					<li>
-						<Form name='normal_login' initialValues={data} onFinish={handleAddElement}>
+						<Form name='links' form={form} initialValues={data} onFinish={handleAddElement}>
 							<div className='ph-auth-login-form-container'>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
@@ -96,11 +90,12 @@ const CreateLink = (props) => {
 									componentMessage={'Nombre del enlace'}
 									componentType={'text'}
 									componentIcon={''}
-									componentRules={'required'}
+									componentRules={'rulesUser'}
 									componentValue={data.name}
 									componentChange={handleChangeName}
 									componentDisabled={isDisabled}
 								/>
+
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'title'}
@@ -140,14 +135,14 @@ const CreateLink = (props) => {
 					</li>
 				</ul>
 			)}
-			<p>Regisros: {isLink.length}</p>
-			<p>Tu enlace personalizado quedaría así: cuentasvirales.com/{isName}</p>
+			<p>Regisros: {links.length}</p>
+			<p>Tu enlace personalizado quedaría así: cuentasvirales.com/{name}</p>
 			<Divider></Divider>
-			{isLink.length > 0 && (
+			{links.length > 0 && (
 				<List
 					header={<div>Enlaces Agregados</div>}
 					bordered
-					dataSource={isLink}
+					dataSource={links}
 					renderItem={(item, key) => (
 						<List.Item>
 							<Typography.Text>
