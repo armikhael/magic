@@ -20,6 +20,7 @@ const InputField = (props) => {
 					type={props.componentType}
 					placeholder={props.componentMessage}
 					onChange={props.componentChange}
+					disabled={props.componentDisabled}
 				/>
 			</Form.Item>
 		</>

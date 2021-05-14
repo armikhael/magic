@@ -15,6 +15,7 @@ const CreateLink = (props) => {
 	const [isLink, setLink] = useState([])
 	const [isName, setName] = useState()
 	const [isEdit, setEdit] = useState(false)
+	const [isDisabled, setDisabled] = useState(false)
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -23,7 +24,6 @@ const CreateLink = (props) => {
 			alert('Error, ruta no encontrada')
 		} else {
 			setData(response)
-			setName(param)
 			setLink(response.links)
 		}
 	}
@@ -32,6 +32,8 @@ const CreateLink = (props) => {
 		if (props.match.params.name) {
 			fetchData(props.match.params.name)
 			setEdit(true)
+			setDisabled(true)
+			setName(props.match.params.name)
 		} else {
 			setData(insterfaceForm())
 		}
@@ -97,6 +99,7 @@ const CreateLink = (props) => {
 									componentRules={'required'}
 									componentValue={data.name}
 									componentChange={handleChangeName}
+									componentDisabled={isDisabled}
 								/>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
