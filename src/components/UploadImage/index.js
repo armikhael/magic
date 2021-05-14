@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { Upload, Button } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
-import { serviceUploadImage, serviceUpdateImage } from './services'
+import { serviceUploadImage } from './services'
 import './style.css'
 
 export default function UploadImage(props) {
@@ -14,9 +14,9 @@ export default function UploadImage(props) {
 			uid: '-1',
 			name: 'image.png',
 			status: 'done',
-			url: props.account.image,
-			image: props.account.image,
-			image_thumb: props.account.image_thumb,
+			url: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
+			image: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
+			image_thumb: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
 		},
 	])
 	const [isButtom, setButtom] = useState(false)
@@ -29,13 +29,22 @@ export default function UploadImage(props) {
 	}
 
 	const handleSaveImage = () => {
-		let formData = new FormData()
-		formData.append('image', fileList[0].originFileObj)
-		formData.append('name', props.account.name)
-		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
-		serviceUploadImage(formData).then((response) => {
-			serviceUpdateImage(props.account._id, response).then((response) => {})
-		})
+		if (fileList[0].size <= 40000) {
+			let formData = new FormData()
+			console.log()
+			formData.append('image', fileList[0].originFileObj)
+			formData.append('name', fileList[0].name + fileList[0].uid)
+			formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
+
+			console.log(formData)
+			serviceUploadImage(formData).then((response) => {
+				console.log(response)
+				handleReturnState(response.image.url)
+			})
+			setButtom(false)
+		} else {
+			alert('El peso de la imagen es muy alto')
+		}
 	}
 
 	const handleOnPreview = async (item) => {
@@ -53,10 +62,13 @@ export default function UploadImage(props) {
 		imgWindow.document.write(image.outerHTML)
 	}
 
+	const handleReturnState = props.componentFunction
 	return (
 		<>
+			<p>{props.componentLabel}</p>
 			<ImgCrop>
 				<Upload
+					name={props.componentName}
 					className='cv-upload-img'
 					listType='picture-card'
 					fileList={fileList}
@@ -67,8 +79,8 @@ export default function UploadImage(props) {
 			</ImgCrop>
 			<br />
 			{isButtom && (
-				<Button className='cv-upload-img-update' type='primary' onClick={handleSaveImage}>
-					Actualizar
+				<Button type='danger' onClick={handleSaveImage}>
+					Confirmar Imagen
 				</Button>
 			)}
 		</>
