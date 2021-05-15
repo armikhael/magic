@@ -65,7 +65,7 @@ export default class Promotion extends Component {
 												serviceEventGoogleAnalytics({
 													category: 'giveaway',
 													action: 'click-giveaway',
-													label: this.props.detailAccount.name,
+													label: `${item.title} - ${item.type_promotion}`,
 												})
 												window.open(item.redirect)
 											}}>
