@@ -47,4 +47,19 @@ const serviceGetPromotions = async (item) => {
 	return returnResponse
 }
 
-export { serviceViewAccount, serviceGetPromotions }
+const serviceGetLnks = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/link/${item}`,
+	})
+		.then((response) => {
+			returnResponse = response.data.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data
+		})
+	return returnResponse
+}
+
+export { serviceViewAccount, serviceGetPromotions, serviceGetLnks }

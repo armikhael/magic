@@ -4,7 +4,7 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
-import { Row, Col, List, Avatar, Layout, Popconfirm } from 'antd'
+import { Row, Col, List, Avatar, Layout, Popconfirm, notification } from 'antd'
 import { WhatsAppOutlined, UserOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -17,7 +17,7 @@ import Views from './components/Views'
 import Promotion from './components/Promotion'
 
 import './style.css'
-import { serviceViewAccount, serviceGetPromotions } from './services'
+import { serviceViewAccount, serviceGetPromotions, serviceGetLnks } from './services'
 
 const { Content } = Layout
 
@@ -28,6 +28,7 @@ export default class AccountDetail extends React.Component {
 		relations: null,
 		loading: true,
 		promotion: [],
+		links: [],
 	}
 
 	async componentDidMount() {
@@ -36,24 +37,44 @@ export default class AccountDetail extends React.Component {
 			action: 'view',
 			label: this.props.match.params.name,
 		})
-		serviceViewAccount(this.props.match.params.name).then((response) => {
-			this.setState({
-				loading: false,
-				detail: response.account[0],
-				relations: response.relations,
-				asociation: response.asociation,
-				views: response.statitics_view,
-				totalView: response.total_week_view,
-			})
 
-			serviceGetPromotions().then(({ data }) => {
-				this.setState({
-					promotion: this.handleVerifyPromotion(data, response.account[0]),
+		try {
+			let redSocial = ['-instagram', '-facebook', '-tiktok']
+			const includeName = redSocial.find((item) => {
+				return this.props.match.params.name.includes(item)
+			})
+			if (includeName !== undefined) {
+				serviceViewAccount(this.props.match.params.name).then((response) => {
+					this.setState({
+						loading: false,
+						detail: response.account[0],
+						relations: response.relations,
+						asociation: response.asociation,
+						views: response.statitics_view,
+						totalView: response.total_week_view,
+					})
+
+					serviceGetPromotions().then(({ data }) => {
+						this.setState({
+							promotion: this.handleVerifyPromotion(data, response.account[0]),
+						})
+					})
 				})
+			} else {
+				serviceGetLnks(this.props.match.params.name).then((response) => {
+					this.setState({
+						loading: false,
+						links: response[0].links,
+					})
+				})
+			}
+		} catch (e) {
+			console.log(e)
+			notification['error']({
+				message: `Ups!`,
+				description: `Disculpe estamos en mantenimiento, intente más tarde`,
 			})
-
-			console.log('promotion', this.state.promotion)
-		})
+		}
 	}
 
 	handleVerifyPromotion = (promotion, account) => {
@@ -83,238 +104,263 @@ export default class AccountDetail extends React.Component {
 		}
 		return (
 			<>
-				<Content className='cv-container-main'>
-					<Row>
-						<Col xs={24} sm={24} md={18}>
-							<Row className='cv-detail-content-accoun'>
-								<p className='cv-detail-content-accoun-p'>
-									¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
-									<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
-								</p>
-							</Row>
-							<Row className='cv-detail-content-accoun'>
-								<Col span={24} className='center'>
-									<span
-										className='cv-detail-whatsapp-icon'
-										rel='noopener noreferrer'
-										target='_blank'
-										onClick={() => {
-											serviceEventGoogleAnalytics({
-												category: 'contacto',
-												action: 'click-contacto',
-												label: this.state.detail.name,
-											})
-											window.open(
-												`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
-											)
-										}}>
-										<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
-										&nbsp;
-										<span>Contactame</span>
-									</span>
-								</Col>
-								<Col span={24} className='cv-detail-content-account-detail'>
-									<h1 className='cv-detail-title-main'>
-										{this.state.detail.account}
-										{this.state.detail.eneable && (
-											<img
-												className='cv-detail-img-content-account-verified'
-												src='https://i.ibb.co/DwZbZB6/verificacion.png'
-												alt='verificado'
-												title='verificado'
-											/>
-										)}
-									</h1>
-									<h3 className='cv-detail-sub-title'>
-										<Moment format='LLLL' withTitle>
-											{this.state.detail.createdAt}
-										</Moment>
-										<Link to={`/category/${this.state.detail.categories[0]}`}>
-											<span className='cv-detail-account-category-title'>
-												{this.state.detail.categories[0]}
-											</span>
-										</Link>
-									</h3>
-									<div className='cv-detail-account-img-main-contnet'>
-										<Row>
-											<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
+				{this.state.detail !== null && (
+					<Content className='cv-container-main'>
+						<Row>
+							<Col xs={24} sm={24} md={18}>
+								<Row className='cv-detail-content-accoun'>
+									<p className='cv-detail-content-accoun-p'>
+										¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
+										<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
+									</p>
+								</Row>
+								<Row className='cv-detail-content-accoun'>
+									<Col span={24} className='center'>
+										<span
+											className='cv-detail-whatsapp-icon'
+											rel='noopener noreferrer'
+											target='_blank'
+											onClick={() => {
+												serviceEventGoogleAnalytics({
+													category: 'contacto',
+													action: 'click-contacto',
+													label: this.state.detail.name,
+												})
+												window.open(
+													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
+												)
+											}}>
+											<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
+											&nbsp;
+											<span>Contactame</span>
+										</span>
+									</Col>
+									<Col span={24} className='cv-detail-content-account-detail'>
+										<h1 className='cv-detail-title-main'>
+											{this.state.detail.account}
+											{this.state.detail.eneable && (
 												<img
-													title={this.state.detail.name}
-													alt={this.state.detail.name}
-													className='cv-detail-account-img-main'
-													src={this.state.detail.image}
+													className='cv-detail-img-content-account-verified'
+													src='https://i.ibb.co/DwZbZB6/verificacion.png'
+													alt='verificado'
+													title='verificado'
 												/>
-											</Col>
-											<Col xs={24} sm={24} md={15} className='cv-detail-account-content-info'>
-												<h3 className='cv-detail-account-content-info-country'>
-													{this.state.detail.country}
-												</h3>
-												<a
-													href={this.state.detail.interface.link}
-													target='_blank'
-													rel='noopener noreferrer'>
-													<div className='cv-detail-account-content-info-account'>
-														<img
-															width='30px'
-															src={this.state.detail.interface.icon}
-															alt={this.state.detail.type}
-														/>
-														<h3>@{this.state.detail.account}</h3>
+											)}
+										</h1>
+										<h3 className='cv-detail-sub-title'>
+											<Moment format='LLLL' withTitle>
+												{this.state.detail.createdAt}
+											</Moment>
+											<Link to={`/category/${this.state.detail.categories[0]}`}>
+												<span className='cv-detail-account-category-title'>
+													{this.state.detail.categories[0]}
+												</span>
+											</Link>
+										</h3>
+										<div className='cv-detail-account-img-main-contnet'>
+											<Row>
+												<Col
+													xs={24}
+													sm={24}
+													md={7}
+													className='cv-detail-account-img-main-content'>
+													<img
+														title={this.state.detail.name}
+														alt={this.state.detail.name}
+														className='cv-detail-account-img-main'
+														src={this.state.detail.image}
+													/>
+												</Col>
+												<Col xs={24} sm={24} md={15} className='cv-detail-account-content-info'>
+													<h3 className='cv-detail-account-content-info-country'>
+														{this.state.detail.country}
+													</h3>
+													<a
+														href={this.state.detail.interface.link}
+														target='_blank'
+														rel='noopener noreferrer'>
+														<div className='cv-detail-account-content-info-account'>
+															<img
+																width='30px'
+																src={this.state.detail.interface.icon}
+																alt={this.state.detail.type}
+															/>
+															<h3>@{this.state.detail.account}</h3>
+														</div>
+													</a>
+													<p>Cantidad de Visitas: {this.state.detail.counter}</p>
+													<h3 className='cv-detail-account-content-info-email'>
+														{this.state.detail.email}
+													</h3>
+													<div className='mt10 mb10'>
+														<UserOutlined />{' '}
+														<span className='cv-detail-followers'>
+															{this.state.detail.interface.followers}
+														</span>{' '}
+														Seguidores
 													</div>
-												</a>
-												<p>Cantidad de Visitas: {this.state.detail.counter}</p>
-												<h3 className='cv-detail-account-content-info-email'>
-													{this.state.detail.email}
-												</h3>
-												<div className='mt10 mb10'>
-													<UserOutlined />{' '}
-													<span className='cv-detail-followers'>
-														{this.state.detail.interface.followers}
-													</span>{' '}
-													Seguidores
-												</div>
-												<h3 className='cv-detail-account-content-info-detail'>
-													{this.state.detail.biography}
-												</h3>
-											</Col>
-										</Row>
-										<div className='cv-masonry-item-card-image-bg'></div>
-									</div>
-									<p className='cv-detail-account-descript'>{this.state.detail.description}</p>
-									<div>
-										{this.state.detail.categories.map(function (item, i) {
-											return (
-												<Link to={`/category/${item}`} key={i}>
-													<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
-												</Link>
-											)
-										})}
-									</div>
-								</Col>
-							</Row>
-							<div className='cv-detail-accounts-user-email-md'>
-								<Views views={this.state.views} total={this.state.totalView} />
-								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
-								<AccountsRelations relations={this.state.relations} />
-							</div>
-						</Col>
-						<Col xs={24} sm={24} md={6}>
-							<div className='cv-detail-content-plans'>
-								<div className='cv-detail-content-plans-main'>
-									<div className='cv-detail-plans-content-images'>
-										{this.state.promotion.length > 0 && (
-											<Promotion
-												promotion={this.state.promotion}
-												detailAccount={this.state.detail}></Promotion>
-										)}
-									</div>
-									<div className='cv-detail-inter-canj-content'>
-										<Popconfirm
-											title='El influencer hará una mención en su cuenta, tú en la tuya (a esto le llamamos intercambio publicitario) y de esta manera intercambian seguidores (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
-											okText='Si'
-											cancelText='No'
-											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-											onConfirm={() => {
-												serviceEventGoogleAnalytics({
-													category: 'intercambio',
-													action: 'click-mencion',
-													label: this.state.detail.name,
-												})
-												window.open(
-													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN)`
+													<h3 className='cv-detail-account-content-info-detail'>
+														{this.state.detail.biography}
+													</h3>
+												</Col>
+											</Row>
+											<div className='cv-masonry-item-card-image-bg'></div>
+										</div>
+										<p className='cv-detail-account-descript'>{this.state.detail.description}</p>
+										<div>
+											{this.state.detail.categories.map(function (item, i) {
+												return (
+													<Link to={`/category/${item}`} key={i}>
+														<span className='cv-detail-category-tag'>
+															#{item}&nbsp;&nbsp;
+														</span>
+													</Link>
 												)
-											}}>
-											<a href={'/'}>&nbsp;Mención x Mención</a>
-										</Popconfirm>
-									</div>
-									<div className='cv-detail-inter-canj-content'>
-										<Popconfirm
-											title='El influencer te pedirá un "PRODUCTO" a cambio de la publicidad, el influencer se quedará con dicho producto que primero debe probar y hará la mención de tu negocio (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
-											okText='Si'
-											cancelText='No'
-											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-											onConfirm={() => {
-												serviceEventGoogleAnalytics({
-													category: 'intercambio',
-													action: 'click-producto',
-													label: this.state.detail.name,
-												})
-												window.open(
-													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
-												)
-											}}>
-											<a href={'/'}>&nbsp;Producto x Mención</a>
-										</Popconfirm>
-									</div>
-									<div className='cv-detail-inter-canj-content'>
-										<Popconfirm
-											title='Entregarás un producto al influencer para que haga un "SORTEO" en su cuenta (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
-											okText='Si'
-											cancelText='No'
-											icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-											onConfirm={() => {
-												serviceEventGoogleAnalytics({
-													category: 'intercambio',
-													action: 'click-sorteo',
-													label: this.state.detail.name,
-												})
-												window.open(
-													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
-												)
-											}}>
-											<a href={'/'}>&nbsp;Sorteo x Mención</a>
-										</Popconfirm>
-									</div>
-									<h3 className='cv-detail-plans-title'>Planes</h3>
-									<div className='cv-detail-plans-hr'></div>
-									<List
-										className='cv-detail-plans-list'
-										itemLayout='horizontal'
-										dataSource={this.state.detail.plans}
-										renderItem={(item) => (
-											<span
-												onClick={() => {
-													console.log('contratacion')
+											})}
+										</div>
+									</Col>
+								</Row>
+								<div className='cv-detail-accounts-user-email-md'>
+									<Views views={this.state.views} total={this.state.totalView} />
+									<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
+									<AccountsRelations relations={this.state.relations} />
+								</div>
+							</Col>
+							<Col xs={24} sm={24} md={6}>
+								<div className='cv-detail-content-plans'>
+									<div className='cv-detail-content-plans-main'>
+										<div className='cv-detail-plans-content-images'>
+											{this.state.promotion.length > 0 && (
+												<Promotion
+													promotion={this.state.promotion}
+													detailAccount={this.state.detail}></Promotion>
+											)}
+										</div>
+										<div className='cv-detail-inter-canj-content'>
+											<Popconfirm
+												title='El influencer hará una mención en su cuenta, tú en la tuya (a esto le llamamos intercambio publicitario) y de esta manera intercambian seguidores (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+												okText='Si'
+												cancelText='No'
+												icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+												onConfirm={() => {
 													serviceEventGoogleAnalytics({
-														category: 'pago',
-														action: 'click-contratacion',
+														category: 'intercambio',
+														action: 'click-mencion',
 														label: this.state.detail.name,
 													})
 													window.open(
-														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
+														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN)`
 													)
 												}}>
-												<List.Item actions={[<WhatsAppOutlined />]}>
-													<List.Item.Meta
-														avatar={<Avatar src={this.state.detail.image} />}
-														title={item.description}
-														description={`Precio: ${item.price} ${item.currency}`}
-													/>
-												</List.Item>
-											</span>
-										)}
-									/>
+												<a href={'/'}>&nbsp;Mención x Mención</a>
+											</Popconfirm>
+										</div>
+										<div className='cv-detail-inter-canj-content'>
+											<Popconfirm
+												title='El influencer te pedirá un "PRODUCTO" a cambio de la publicidad, el influencer se quedará con dicho producto que primero debe probar y hará la mención de tu negocio (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+												okText='Si'
+												cancelText='No'
+												icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+												onConfirm={() => {
+													serviceEventGoogleAnalytics({
+														category: 'intercambio',
+														action: 'click-producto',
+														label: this.state.detail.name,
+													})
+													window.open(
+														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
+													)
+												}}>
+												<a href={'/'}>&nbsp;Producto x Mención</a>
+											</Popconfirm>
+										</div>
+										<div className='cv-detail-inter-canj-content'>
+											<Popconfirm
+												title='Entregarás un producto al influencer para que haga un "SORTEO" en su cuenta (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
+												okText='Si'
+												cancelText='No'
+												icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+												onConfirm={() => {
+													serviceEventGoogleAnalytics({
+														category: 'intercambio',
+														action: 'click-sorteo',
+														label: this.state.detail.name,
+													})
+													window.open(
+														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
+													)
+												}}>
+												<a href={'/'}>&nbsp;Sorteo x Mención</a>
+											</Popconfirm>
+										</div>
+										<h3 className='cv-detail-plans-title'>Planes</h3>
+										<div className='cv-detail-plans-hr'></div>
+										<List
+											className='cv-detail-plans-list'
+											itemLayout='horizontal'
+											dataSource={this.state.detail.plans}
+											renderItem={(item) => (
+												<span
+													onClick={() => {
+														console.log('contratacion')
+														serviceEventGoogleAnalytics({
+															category: 'pago',
+															action: 'click-contratacion',
+															label: this.state.detail.name,
+														})
+														window.open(
+															`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
+														)
+													}}>
+													<List.Item actions={[<WhatsAppOutlined />]}>
+														<List.Item.Meta
+															avatar={<Avatar src={this.state.detail.image} />}
+															title={item.description}
+															description={`Precio: ${item.price} ${item.currency}`}
+														/>
+													</List.Item>
+												</span>
+											)}
+										/>
+									</div>
 								</div>
-							</div>
-							{/* <div className='cv-account-detail-content'>
+								{/* <div className='cv-account-detail-content'>
 								<a rel='noopener noreferrer' href={`${config.linkYoutube}`} target='_blank'>
 									<img width='100%' src='https://i.ibb.co/kSX3Zdt/burger-king2.gif' alt='Publicidad' />
 								</a>
 							</div> */}
-						</Col>
+							</Col>
 
-						<div className='cv-detail-accounts-user-email-xs'>
-							<Views views={this.state.views} total={this.state.totalView} />
-							<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
-							<div className='cv-detail-accounts-user-publicidad'>
-								<Promotion
-									promotion={this.state.promotion}
-									detailAccount={this.state.detail}></Promotion>
+							<div className='cv-detail-accounts-user-email-xs'>
+								<Views views={this.state.views} total={this.state.totalView} />
+								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
+								<div className='cv-detail-accounts-user-publicidad'>
+									<Promotion
+										promotion={this.state.promotion}
+										detailAccount={this.state.detail}></Promotion>
+								</div>
+								<AccountsRelations relations={this.state.relations} />
 							</div>
-							<AccountsRelations relations={this.state.relations} />
-						</div>
-					</Row>
-				</Content>
+						</Row>
+					</Content>
+				)}
+
+				{this.state.links.length > 0 && (
+					<Content className='cv-container-main'>
+						<Row>
+							<ul>
+								Links Asociados
+								{this.state.links.map((item, key) => {
+									return (
+										<li key={key}>
+											{item.title} - {item.url}
+										</li>
+									)
+								})}
+							</ul>
+						</Row>
+					</Content>
+				)}
 			</>
 		)
 	}
