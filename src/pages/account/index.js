@@ -10,7 +10,6 @@ import { WhatsAppOutlined, UserOutlined, QuestionCircleOutlined } from '@ant-des
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 import { serviceEventGoogleAnalytics } from '../../components/ServiceCommons/EventsGoogleAnalitycs'
-import { Publicity } from '../../components/Json/Publicity'
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
@@ -18,7 +17,7 @@ import Views from './components/Views'
 import Promotion from './components/Promotion'
 
 import './style.css'
-import { serviceViewAccount } from './services'
+import { serviceViewAccount, serviceGetPromotions } from './services'
 
 const { Content } = Layout
 
@@ -28,9 +27,10 @@ export default class AccountDetail extends React.Component {
 		asociation: null,
 		relations: null,
 		loading: true,
+		promotion: [],
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
 		serviceEventGoogleAnalytics({
 			category: 'account-details',
 			action: 'view',
@@ -44,8 +44,15 @@ export default class AccountDetail extends React.Component {
 				asociation: response.asociation,
 				views: response.statitics_view,
 				totalView: response.total_week_view,
-				promotion: this.handleVerifyPromotion(Publicity, response.account[0]),
 			})
+
+			serviceGetPromotions().then(({ data }) => {
+				this.setState({
+					promotion: this.handleVerifyPromotion(data, response.account[0]),
+				})
+			})
+
+			console.log('promotion', this.state.promotion)
 		})
 	}
 
@@ -53,11 +60,14 @@ export default class AccountDetail extends React.Component {
 		const date = new Date()
 		let itemFilter = []
 		promotion.forEach((iterator) => {
-			if (
-				date.getDate() <= iterator.day &&
-				date.getMonth() === iterator.month &&
-				iterator.country === account.country
-			) {
+			let filterCountry = iterator.country.find((item) => {
+				let newItem = ''
+				if (item === account.country || item === 'all') {
+					newItem = item
+				}
+				return newItem
+			})
+			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
 				itemFilter.push(iterator)
 			}
 		})
@@ -192,9 +202,11 @@ export default class AccountDetail extends React.Component {
 							<div className='cv-detail-content-plans'>
 								<div className='cv-detail-content-plans-main'>
 									<div className='cv-detail-plans-content-images'>
-										<Promotion
-											promotion={this.state.promotion}
-											detailAccount={this.state.detail}></Promotion>
+										{this.state.promotion.length > 0 && (
+											<Promotion
+												promotion={this.state.promotion}
+												detailAccount={this.state.detail}></Promotion>
+										)}
 									</div>
 									<div className='cv-detail-inter-canj-content'>
 										<Popconfirm

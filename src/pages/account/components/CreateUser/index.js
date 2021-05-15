@@ -8,7 +8,6 @@ import { UserOutlined } from '@ant-design/icons'
 
 export default class CreateUser extends React.Component {
 	render() {
-		console.log('CreateUser', this.props.asociation)
 		return (
 			<>
 				<div className='cv-detail-contente-user-create'>
