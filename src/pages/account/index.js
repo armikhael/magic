@@ -29,6 +29,7 @@ export default class AccountDetail extends React.Component {
 		loading: true,
 		promotion: [],
 		links: [],
+		errored: false,
 	}
 
 	async componentDidMount() {
@@ -47,6 +48,7 @@ export default class AccountDetail extends React.Component {
 				serviceViewAccount(this.props.match.params.name).then((response) => {
 					this.setState({
 						loading: false,
+						image: response.account[0].image,
 						detail: response.account[0],
 						relations: response.relations,
 						asociation: response.asociation,
@@ -75,6 +77,13 @@ export default class AccountDetail extends React.Component {
 				description: `Disculpe estamos en mantenimiento, intente más tarde`,
 			})
 		}
+	}
+
+	handleOnError = () => {
+		this.setState({
+			image: `${process.env.REACT_APP_LOGO}`,
+			errored: true,
+		})
 	}
 
 	handleVerifyPromotion = (promotion, account) => {
@@ -168,7 +177,7 @@ export default class AccountDetail extends React.Component {
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
 														className='cv-detail-account-img-main'
-														src={this.state.detail.image}
+														src={this.state.image}
 													/>
 												</Col>
 												<Col xs={24} sm={24} md={15} className='cv-detail-account-content-info'>

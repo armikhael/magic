@@ -11,6 +11,17 @@ import { EyeOutlined, ClockCircleOutlined, UserOutlined } from '@ant-design/icon
 import './style.css'
 
 export default class Account extends React.Component {
+	state = {
+		image: this.props.account.image,
+		errored: false,
+	}
+	handleOnError = () => {
+		this.setState({
+			image: `${process.env.REACT_APP_LOGO}`,
+			errored: true,
+		})
+	}
+
 	render() {
 		return (
 			<div className='cv-masonry-item'>
@@ -27,7 +38,8 @@ export default class Account extends React.Component {
 								title={this.props.account.name}
 								alt={this.props.account.name}
 								className='cv-masonry-item-image'
-								src={this.props.account.image}
+								src={this.state.image}
+								onError={this.handleOnError}
 							/>
 							<div className='cv-masonry-item-card-image-bg'></div>
 							<EyeOutlined className='cv-fa-eye' />
