@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import renderHTML from 'react-render-html'
 import { Link } from 'react-router-dom'
 import { Layout, Row, Col, notification } from 'antd'
+import InstagramEmbed from 'react-instagram-embed'
 
 import { serviceGetData } from './service'
 
@@ -67,17 +68,35 @@ export default function Help(props) {
 														<h3 className='cv-help-detail-title'>{item.title}</h3>
 														{renderHTML(item.text_html)}
 														<br />
-														{/* <iframe
-															className='cv-help-detail-iframe'
-															width='100%'
-															height='400'
-															src={item.url_video}
-															frameBorder='0'
-															allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-															allowFullScreen
-															title='AboutUs'></iframe> */}
+														<br />
 
-														{renderHTML(item.url_video)}
+														{item.url_type === 'youtube' && (
+															<iframe
+																className='cv-help-detail-iframe'
+																width='100%'
+																height='400'
+																src={item.url_embed}
+																frameBorder='0'
+																allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+																allowFullScreen
+																title='AboutUs'></iframe>
+														)}
+
+														{item.url_type === 'instagram' && (
+															<InstagramEmbed
+																url={item.url_embed}
+																clientAccessToken='1859534864215755|384af0e04ea985f5638bf838d902a5b9'
+																maxWidth={320}
+																hideCaption={false}
+																containerTagName='div'
+																protocol=''
+																injectScript
+																onLoading={() => {}}
+																onSuccess={() => {}}
+																onAfterRender={() => {}}
+																onFailure={() => {}}
+															/>
+														)}
 													</>
 												)}
 											</div>
