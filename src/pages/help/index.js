@@ -7,7 +7,6 @@ import { Layout, Row, Col, notification } from 'antd'
 import InstagramEmbed from 'react-instagram-embed'
 
 import { serviceGetData } from './service'
-
 import './style.css'
 
 const { Content } = Layout
