@@ -4,8 +4,8 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
-import { Row, Col, List, Avatar, Layout, Popconfirm, notification } from 'antd'
-import { WhatsAppOutlined, UserOutlined, QuestionCircleOutlined } from '@ant-design/icons'
+import { Row, Col, List, Avatar, Layout, notification } from 'antd'
+import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
@@ -97,11 +97,7 @@ export default class AccountDetail extends React.Component {
 				}
 				return newItem
 			})
-			if (
-				date.getDate() <= iterator.day &&
-				date.getMonth() === iterator.month &&
-				filterCountry !== undefined
-			) {
+			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
 				itemFilter.push(iterator)
 			}
 		})
@@ -172,7 +168,11 @@ export default class AccountDetail extends React.Component {
 										</h3>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
+												<Col
+													xs={24}
+													sm={24}
+													md={7}
+													className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -220,7 +220,9 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+														<span className='cv-detail-category-tag'>
+															#{item}&nbsp;&nbsp;
+														</span>
 													</Link>
 												)
 											})}
@@ -228,7 +230,11 @@ export default class AccountDetail extends React.Component {
 									</Col>
 								</Row>
 								<div className='cv-detail-accounts-user-email-md'>
-									<Views views={this.state.views} total={this.state.totalView} />
+									<Views
+										views={this.state.views}
+										total={this.state.totalView}
+										detail={this.state.detail}
+									/>
 									<AccountsRelations relations={this.state.relations} />
 								</div>
 							</Col>

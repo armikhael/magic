@@ -10,7 +10,6 @@ const serviceViewAccount = async (item) => {
 		url: `${process.env.REACT_APP_HOST}/account/detail/${item}`,
 	})
 		.then((response) => {
-			console.log(response)
 			if (response.data.statusCode <= 200) {
 				returnResponse = response.data.data
 			} else {

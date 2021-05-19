@@ -34,7 +34,11 @@ export default function Views(props) {
 					<Col xs={24} sm={24} md={12} className='cv-detail-content-actiones-btn'>
 						<p>Intercambios:</p>
 						<Comment
-							author={<a className='cv-detail-actiones-title'>Mención x Mención</a>}
+							author={
+								<a href={'/#'} className='cv-detail-actiones-title'>
+									Mención x Mención
+								</a>
+							}
 							avatar={<NodeIndexOutlined style={{ fontSize: '26px' }} />}
 							content={
 								<p>
@@ -55,13 +59,19 @@ export default function Views(props) {
 												`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN)`
 											)
 										}}>
-										<a className='cv-detail-actiones-title-a'>Click aquí</a>
+										<a href={'/#'} className='cv-detail-actiones-title-a'>
+											Click aquí
+										</a>
 									</Popconfirm>
 								</p>
 							}
 						/>
 						<Comment
-							author={<a className='cv-detail-actiones-title'>Producto x Mención</a>}
+							author={
+								<a href={'/#'} className='cv-detail-actiones-title'>
+									Producto x Mención
+								</a>
+							}
 							avatar={<AuditOutlined style={{ fontSize: '26px' }} />}
 							content={
 								<p>
@@ -82,13 +92,20 @@ export default function Views(props) {
 												`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
 											)
 										}}>
-										<a className='cv-detail-actiones-title-a'>Click aquí</a>
+										<a href={'/#'} className='cv-detail-actiones-title-a'>
+											Click aquí
+										</a>
 									</Popconfirm>
 								</p>
 							}
 						/>
 						<Comment
-							author={<a className='cv-detail-actiones-title'> Sorteo x Mención</a>}
+							author={
+								<a href={'/#'} className='cv-detail-actiones-title'>
+									{' '}
+									Sorteo x Mención
+								</a>
+							}
 							avatar={<NodeIndexOutlined style={{ fontSize: '26px' }} />}
 							content={
 								<p>
@@ -109,7 +126,9 @@ export default function Views(props) {
 												`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
 											)
 										}}>
-										<a className='cv-detail-actiones-title-a'>Click aquí</a>
+										<a href={'/#'} className='cv-detail-actiones-title-a'>
+											Click aquí
+										</a>
 									</Popconfirm>
 								</p>
 							}
