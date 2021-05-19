@@ -1,0 +1,21 @@
+/** @format */
+
+.cv-detail-content-actiones-btn {
+	padding: 0px 10px 10px 35px;
+}
+
+.cv-detail-actiones-title {
+	color: #200159;
+	font-size: 14px;
+	font-weight: 900;
+}
+
+.cv-detail-actiones-title-a {
+	color: #f61073;
+}
+
+@media (max-width: 768px) {
+	.cv-detail-content-actiones-btn {
+		padding: 20px 10px 10px 10px;
+	}
+}

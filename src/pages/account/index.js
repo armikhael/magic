@@ -97,7 +97,11 @@ export default class AccountDetail extends React.Component {
 				}
 				return newItem
 			})
-			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
+			if (
+				date.getDate() <= iterator.day &&
+				date.getMonth() === iterator.month &&
+				filterCountry !== undefined
+			) {
 				itemFilter.push(iterator)
 			}
 		})
@@ -168,11 +172,7 @@ export default class AccountDetail extends React.Component {
 										</h3>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col
-													xs={24}
-													sm={24}
-													md={7}
-													className='cv-detail-account-img-main-content'>
+												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -220,9 +220,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}
@@ -231,7 +229,6 @@ export default class AccountDetail extends React.Component {
 								</Row>
 								<div className='cv-detail-accounts-user-email-md'>
 									<Views views={this.state.views} total={this.state.totalView} />
-									<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 									<AccountsRelations relations={this.state.relations} />
 								</div>
 							</Col>
@@ -244,63 +241,6 @@ export default class AccountDetail extends React.Component {
 													promotion={this.state.promotion}
 													detailAccount={this.state.detail}></Promotion>
 											)}
-										</div>
-										<div className='cv-detail-inter-canj-content'>
-											<Popconfirm
-												title='El influencer hará una mención en su cuenta, tú en la tuya (a esto le llamamos intercambio publicitario) y de esta manera intercambian seguidores (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
-												okText='Si'
-												cancelText='No'
-												icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-												onConfirm={() => {
-													serviceEventGoogleAnalytics({
-														category: 'intercambio',
-														action: 'click-mencion',
-														label: this.state.detail.name,
-													})
-													window.open(
-														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN)`
-													)
-												}}>
-												<a href={'/'}>&nbsp;Mención x Mención</a>
-											</Popconfirm>
-										</div>
-										<div className='cv-detail-inter-canj-content'>
-											<Popconfirm
-												title='El influencer te pedirá un "PRODUCTO" a cambio de la publicidad, el influencer se quedará con dicho producto que primero debe probar y hará la mención de tu negocio (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
-												okText='Si'
-												cancelText='No'
-												icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-												onConfirm={() => {
-													serviceEventGoogleAnalytics({
-														category: 'intercambio',
-														action: 'click-producto',
-														label: this.state.detail.name,
-													})
-													window.open(
-														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
-													)
-												}}>
-												<a href={'/'}>&nbsp;Producto x Mención</a>
-											</Popconfirm>
-										</div>
-										<div className='cv-detail-inter-canj-content'>
-											<Popconfirm
-												title='Entregarás un producto al influencer para que haga un "SORTEO" en su cuenta (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
-												okText='Si'
-												cancelText='No'
-												icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-												onConfirm={() => {
-													serviceEventGoogleAnalytics({
-														category: 'intercambio',
-														action: 'click-sorteo',
-														label: this.state.detail.name,
-													})
-													window.open(
-														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
-													)
-												}}>
-												<a href={'/'}>&nbsp;Sorteo x Mención</a>
-											</Popconfirm>
 										</div>
 										<h3 className='cv-detail-plans-title'>Planes</h3>
 										<div className='cv-detail-plans-hr'></div>
@@ -337,12 +277,15 @@ export default class AccountDetail extends React.Component {
 								<a rel='noopener noreferrer' href={`${config.linkYoutube}`} target='_blank'>
 									<img width='100%' src='https://i.ibb.co/kSX3Zdt/burger-king2.gif' alt='Publicidad' />
 								</a>
-							</div> */}
-							</Col>
-
-							<div className='cv-detail-accounts-user-email-xs'>
-								<Views views={this.state.views} total={this.state.totalView} />
+								</div> */}
 								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
+							</Col>
+							<div className='cv-detail-accounts-user-email-xs'>
+								<Views
+									views={this.state.views}
+									total={this.state.totalView}
+									detail={this.state.detail}
+								/>
 								<div className='cv-detail-accounts-user-publicidad'>
 									<Promotion
 										promotion={this.state.promotion}
