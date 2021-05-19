@@ -31,7 +31,6 @@ export default class Activation extends React.Component {
 
 		return (
 			<>
-				{atob(this.props.match.params.type)}
 				<Row justify={'center'}>
 					<Col sm={24} md={16}>
 						<Content className='cv-profile-activation-content'>
