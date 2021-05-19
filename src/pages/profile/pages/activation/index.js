@@ -8,8 +8,30 @@ const { Content } = Layout
 
 export default class Activation extends React.Component {
 	render() {
+		let textActivation = ''
+		let urlRedirect = ''
+		let type = 'instagram' //atob(this.props.match.params.type)
+		if (type === 'instagram') {
+			textActivation =
+				'Ahora para activar tu cuenta solo debes solicitar tu código de activación por Mensaje Directo (DM) a nuestro equipo Instagram'
+			urlRedirect = 'https://www.instagram.com/cuentasvirales'
+		}
+
+		if (type === 'tiktok') {
+			textActivation =
+				'Ahora para activar tu cuenta solo debes solicitar tu código de activación por Mensaje Privado a nuestro equipo en TikTok'
+			urlRedirect = 'https://www.tiktok.com/@cuentasvirales'
+		}
+
+		if (type === 'facebook') {
+			textActivation =
+				'Ahora para activar tu cuenta solo debes solicitar tu código de activación por Messenger a nuestro equipo en Facebook'
+			urlRedirect = 'https://www.facebook.com/c.viralesfb'
+		}
+
 		return (
 			<>
+				{atob(this.props.match.params.type)}
 				<Row justify={'center'}>
 					<Col sm={24} md={16}>
 						<Content className='cv-profile-activation-content'>
@@ -17,7 +39,7 @@ export default class Activation extends React.Component {
 								className='cv-profile-activation-result'
 								status='success'
 								title='¡Sólo te queda un paso!'
-								subTitle={`¡En las próximas 48 horas recibirá un código en la red social registrada para activar su cuenta! Recuerde habilitar la opción de recibir mensajes de cualquier persona para que le llegue este código`}
+								subTitle={textActivation}
 								extra={[
 									<br key='cv-profile-activation-br-two' />,
 									<img
@@ -29,8 +51,12 @@ export default class Activation extends React.Component {
 									/>,
 									<br key='cv-profile-activation-br-three' />,
 									<h3>
-										<Button shape='round' href={`/profile`}>
-											Continuar
+										<Button
+											shape='round'
+											onClick={() => {
+												window.open(urlRedirect)
+											}}>
+											Solicitar Código de Activación
 										</Button>
 									</h3>,
 								]}
