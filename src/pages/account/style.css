@@ -255,8 +255,6 @@
 }
 
 .cv-detail-plans-list {
-	overflow-y: scroll;
-	height: 400px;
 	cursor: pointer;
 }
 
@@ -355,9 +353,6 @@
 		margin-bottom: 0px;
 		margin: 10px;
 		height: auto;
-	}
-	.cv-detail-contente-user-create {
-		margin: 0px;
 	}
 	.cv-detail-plans-list {
 		height: auto;
