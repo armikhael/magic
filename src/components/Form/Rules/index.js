@@ -1,6 +1,6 @@
 /** @format */
 
-export const rules = {
+export const rulesValidation = {
 	required: [
 		{
 			required: true,
@@ -101,6 +101,20 @@ export const rules = {
 		{
 			required: true,
 			message: 'Debe agregar su cuenta',
+		},
+		{
+			validator: (_, value) => {
+				if (value.indexOf('@') === -1 && value.indexOf(' ') === -1) {
+					return Promise.resolve()
+				}
+				return Promise.reject('NO se permite el símbolo @ ni espacios en blanco')
+			},
+		},
+	],
+	rulesUser: [
+		{
+			required: true,
+			message: 'Debe agregar el nombre del usuario',
 		},
 		{
 			validator: (_, value) => {

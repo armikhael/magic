@@ -10,7 +10,6 @@ const serviceViewAccount = async (item) => {
 		url: `${process.env.REACT_APP_HOST}/account/detail/${item}`,
 	})
 		.then((response) => {
-			console.log(response)
 			if (response.data.statusCode <= 200) {
 				returnResponse = response.data.data
 			} else {
@@ -32,4 +31,34 @@ const serviceViewAccount = async (item) => {
 	return returnResponse
 }
 
-export { serviceViewAccount }
+const serviceGetPromotions = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/promotion/`,
+	})
+		.then((response) => {
+			returnResponse = response.data.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data
+		})
+	return returnResponse
+}
+
+const serviceGetLnks = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/link/${item}`,
+	})
+		.then((response) => {
+			returnResponse = response.data.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data
+		})
+	return returnResponse
+}
+
+export { serviceViewAccount, serviceGetPromotions, serviceGetLnks }

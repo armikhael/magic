@@ -154,7 +154,11 @@ class CreateAccount extends React.Component {
 	}
 
 	handleButtonPlans = () => {
-		if (this.state.selectQuantityConcept === null || this.state.selectConcept === null || this.state.auxPrice === null) {
+		if (
+			this.state.selectQuantityConcept === null ||
+			this.state.selectConcept === null ||
+			this.state.auxPrice === null
+		) {
 			notification['error']({
 				message: `Ups!`,
 				description: `Debe rellenar los datos correspondientes`,
@@ -385,7 +389,9 @@ class CreateAccount extends React.Component {
 								{this.state.conceptsSelected && (
 									<Row>
 										<Col xs={24} sm={24} md={12}>
-											<h3 className='cv-create-account-from-title'>Informa el precio de tus servicios</h3>
+											<h3 className='cv-create-account-from-title'>
+												Informa el precio de tus servicios
+											</h3>
 											<Card className='cv-create-account-card-custom'>
 												<Row>
 													<Col span={24}>
@@ -426,10 +432,16 @@ class CreateAccount extends React.Component {
 															name='price'
 															onChange={this.handleChangeInput}
 															rules={rules.rulesPrice}>
-															<Input name='auxPrice' placeholder={`${this.state.currency}`} />
+															<Input
+																name='auxPrice'
+																placeholder={`${this.state.currency}`}
+															/>
 														</Form.Item>
 														<div className='cv-create-account-btn-add-content'>
-															<Button type='primary' shape='round' onClick={this.handleButtonPlans}>
+															<Button
+																type='primary'
+																shape='round'
+																onClick={this.handleButtonPlans}>
 																AGREGAR
 															</Button>
 														</div>
@@ -441,7 +453,8 @@ class CreateAccount extends React.Component {
 															renderItem={(item, key) => (
 																<List.Item>
 																	<Typography.Text>
-																		{item.description} por {item.price} {item.currency}
+																		{item.description} por {item.price}{' '}
+																		{item.currency}
 																	</Typography.Text>
 																	<Button
 																		danger
@@ -466,7 +479,9 @@ class CreateAccount extends React.Component {
 									<Button type='primary' shape='round' htmlType='submit'>
 										REGISTRAR
 									</Button>
-									{this.state.redirect && <Redirect to={`/profile/activation/${btoa(this.state.name)}`} />}
+									{this.state.redirect && (
+										<Redirect to={`/profile/activation/${btoa(this.state.type)}`} />
+									)}
 								</div>
 							</Form>
 						</Layout>

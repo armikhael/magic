@@ -48,7 +48,7 @@ const authLoginServices = async (item, redirect) => {
 				)
 				let timer = setTimeout(() => {
 					redirect.history.push('/')
-				}, 4000)
+				}, 1000)
 				return () => clearTimeout(timer)
 			} else {
 				notification['warning']({
