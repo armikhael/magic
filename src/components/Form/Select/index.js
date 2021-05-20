@@ -15,10 +15,15 @@ const SelectField = (props) => {
 					style={{ width: '100%' }}
 					mode={props.componentMode}
 					placeholder={props.componentPlaceholder}
-					onChange={props.componentFunction}>
-					{props.componentOptions.map((iterator) => {
+					onChange={props.componentFunction}
+					maxTagCount={props.componentMaxTagCount}>
+					{props.componentOptions.map((iterator, i) => {
 						return (
-							<Option value={iterator.value} key={iterator.name}>
+							<Option
+								style={{
+									textTransform: 'capitalize',
+								}}
+								key={iterator.value}>
 								{iterator.name}
 							</Option>
 						)
