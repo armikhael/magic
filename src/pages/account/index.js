@@ -97,7 +97,11 @@ export default class AccountDetail extends React.Component {
 				}
 				return newItem
 			})
-			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
+			if (
+				date.getDate() <= iterator.day &&
+				date.getMonth() === iterator.month &&
+				filterCountry !== undefined
+			) {
 				itemFilter.push(iterator)
 			}
 		})
@@ -115,9 +119,17 @@ export default class AccountDetail extends React.Component {
 			<>
 				{this.state.detail !== null && (
 					<Content className='cv-container-main'>
+						<div className='cv-detail-content-mobil cv-xs'>
+							<img
+								className='cv-detail-img-main '
+								title={this.state.detail.name}
+								alt={this.state.detail.name}
+								src={this.state.image}
+							/>
+						</div>
 						<Row>
 							<Col xs={24} sm={24} md={18}>
-								<Row className='cv-detail-content-accoun'>
+								<Row className='cv-detail-content-accoun cv-md'>
 									<p className='cv-detail-content-accoun-p'>
 										¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
 										<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
@@ -168,11 +180,7 @@ export default class AccountDetail extends React.Component {
 										</h3>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col
-													xs={24}
-													sm={24}
-													md={7}
-													className='cv-detail-account-img-main-content'>
+												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -220,9 +228,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}

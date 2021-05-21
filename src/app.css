@@ -66,6 +66,19 @@ p {
 	text-align: center;
 }
 
+.cv-xs {
+	display: none;
+}
+
+@media only screen and (max-width: 768px) {
+	.cv-md {
+		display: none;
+	}
+	.cv-xs {
+		display: block;
+	}
+}
+
 @media only screen and (min-width: 960px) {
 	.cv-container-main {
 		max-width: 940px;

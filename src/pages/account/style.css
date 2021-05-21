@@ -1,4 +1,12 @@
 /** @format */
+.cv-detail-img-main {
+	width: 100%;
+}
+
+.cv-detail-content-mobil {
+	position: relative;
+}
+
 .cv-detail-content-accoun {
 	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
 	background-color: #fff;
@@ -291,6 +299,7 @@
 	.cv-detail-content-accoun {
 		margin: 10px;
 		padding: 10px;
+		margin-top: -80px;
 	}
 	.cv-detail-whatsapp-icon {
 		right: 0px;
@@ -329,6 +338,7 @@
 	}
 	.cv-detail-account-img-main-content {
 		text-align: center;
+		display: none;
 	}
 	.cv-detail-account-content-info {
 		margin-top: 0px;
@@ -345,6 +355,12 @@
 		width: 100%;
 		padding: 0 5px;
 	}
+	.cv-detail-contente-user-create {
+		margin: 10px 5px;
+	}
+	.cv-detail-accounts-user-publicidad {
+		margin: 10px 5px;
+	}
 	.cv-detail-user-create-title {
 		margin-top: 12px;
 	}
@@ -353,6 +369,9 @@
 		margin-bottom: 0px;
 		margin: 10px;
 		height: auto;
+	}
+	.cv-detail-content-create-user {
+		margin: 0px 10px;
 	}
 	.cv-detail-plans-list {
 		height: auto;
