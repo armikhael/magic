@@ -6,7 +6,13 @@ import { Form, Button, Divider } from 'antd'
 
 import InputField from '../../../../components/Form/Input'
 import SelectField from '../../../../components/Form/Select'
+import SelectConstantField from '../../../../components/Form/SelectConstant'
+
+import TextAreaField from '../../../../components/Form/TextArea'
+
 import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
+import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
+
 import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 
 import { serviceGetData } from './services'
@@ -18,7 +24,13 @@ const CreateLink = (props) => {
 	const [data, setData] = useState()
 	const [isEdit, setEdit] = useState(false)
 	const [categories, setCategories] = useState([])
+	const [countries, setCountries] = useState([])
 	const [redSocial, setRedSocial] = useState([])
+	const [quantities, setQuantities] = useState([])
+	const [concepts, setConcepts] = useState([])
+	const [listCountry, setListCountry] = useState([])
+	const [currency, setCurrency] = useState()
+	const [code, setCode] = useState()
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -44,18 +56,42 @@ const CreateLink = (props) => {
 						name: item.name,
 					}
 				})
-				console.log('catgories', result)
 				setCategories([...result])
-				setRedSocial([...CONSTANTS.RED_SOCIAL])
 			})
 
+			serviceGetCountry().then((data) => {
+				setListCountry(data)
+				let result = data.map((item) => {
+					return {
+						value: item.name.toLowerCase(),
+						name: item.name,
+					}
+				})
+				setCountries([...result])
+			})
 			setData(insterfaceForm())
+			setQuantities([...CONSTANTS.QUANTITY_POST])
+			setRedSocial([...CONSTANTS.RED_SOCIAL])
+			setConcepts([])
 		}
 		console.log('useEffects')
 	}, [props])
 
+	const handleChangeRedSocial = (item) => {
+		setConcepts([...CONSTANTS.TYPE_POST[item]])
+	}
+
+	const handleChangeCountry = (item) => {
+		const findCurrency = listCountry.find((iterator) => {
+			return iterator.name.toLowerCase() === item
+		})
+		setCode(findCurrency.code)
+		setCurrency(findCurrency.currency)
+	}
 	const handleOnFinish = (item) => {
 		console.log(item)
+		console.log(currency)
+		console.log(code)
 	}
 
 	return (
@@ -72,6 +108,15 @@ const CreateLink = (props) => {
 					<li>
 						<Form name='links' form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
+								<SelectField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'Red Social'}
+									componentName={'type'}
+									componentMode={'single'}
+									componentPlaceholder={'Seleccione una opción'}
+									componentOptions={redSocial}
+									componentOnChange={handleChangeRedSocial}
+								/>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'name'}
@@ -81,6 +126,45 @@ const CreateLink = (props) => {
 									componentType={'text'}
 									componentIcon={''}
 									componentValue={data.name}
+								/>
+
+								<InputField
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'followers'}
+									componentLabel={'Cantidad de Seguidores'}
+									componentMessage={'Seguidores'}
+									componentType={'text'}
+									componentIcon={''}
+									componentValue={data.followers}
+								/>
+
+								<TextAreaField
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'biography'}
+									componentLabel={'Biografía'}
+									componentPlaceholder={'Resumen'}
+									componentRows={4}
+									componentValue={data.biography}
+								/>
+
+								<hr />
+								<SelectField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'¿País de residencia?'}
+									componentName={'country'}
+									componentOnChange={handleChangeCountry}
+									componentPlaceholder={'Seleccione una opción'}
+									componentOptions={countries}
+								/>
+
+								<InputField
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'phone'}
+									componentLabel={'Número de Conacto'}
+									componentMessage={'WhatsApp'}
+									componentType={'text'}
+									componentIcon={''}
+									componentValue={data.phone}
 								/>
 
 								<SelectField
@@ -93,13 +177,33 @@ const CreateLink = (props) => {
 									componentMaxTagCount={5}
 								/>
 
-								<SelectField
+								<hr />
+
+								<SelectConstantField
 									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'Red Social'}
-									componentName={'red_social'}
+									componentLabel={'Cantidad'}
+									componentName={'quantity'}
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
-									componentOptions={redSocial}
+									componentOptions={quantities}
+								/>
+
+								<SelectConstantField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'Tipo de Publicación'}
+									componentName={'concept'}
+									componentMode={'single'}
+									componentPlaceholder={'Seleccione una opción'}
+									componentOptions={concepts}
+								/>
+								<InputField
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'amount'}
+									componentLabel={'Precio'}
+									componentMessage={'Precio'}
+									componentType={'text'}
+									componentIcon={''}
+									componentValue={data.amount}
 								/>
 							</div>
 							<Form.Item>

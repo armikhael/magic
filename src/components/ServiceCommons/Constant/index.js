@@ -1,8 +1,8 @@
 /** @format */
 
 export const CONSTANTS = {
-	quantityPost: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-	times: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
+	QUANTITY_POST: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+	TIMES: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 	RED_SOCIAL: [
 		{
 			name: 'Instagram',
@@ -17,7 +17,7 @@ export const CONSTANTS = {
 			value: 'tiktok',
 		},
 	],
-	typeOfPost: {
+	TYPE_POST: {
 		instagram: [
 			'Historia(s)',
 			'Publicación(es)',

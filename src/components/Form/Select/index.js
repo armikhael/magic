@@ -15,7 +15,7 @@ const SelectField = (props) => {
 					style={{ width: '100%' }}
 					mode={props.componentMode}
 					placeholder={props.componentPlaceholder}
-					onChange={props.componentFunction}
+					onChange={props.componentOnChange}
 					maxTagCount={props.componentMaxTagCount}>
 					{props.componentOptions.map((iterator, i) => {
 						return (
