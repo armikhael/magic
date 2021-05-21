@@ -99,9 +99,17 @@ export default class InactiveAccounts extends React.Component {
 										<li>
 											<Button
 												shape='round'
-												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}`}
+												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola! ${item.account} te escribimos de cuentasvirales.com para informarte que te enviamos el código de activación a tu cuenta de ${item.type}`}
 												target='__blank'>
-												ir a whatsapp
+												Whatsapp: Código de activación
+											</Button>
+										</li>
+										<li>
+											<Button
+												shape='round'
+												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola! ${item.account} te escribimos de cuentasvirales.com para saber si necesitas ayuda con la activación de tu cuenta de ${item.type}`}
+												target='__blank'>
+												Whatsapp: Soporte
 											</Button>
 										</li>
 										<li>
