@@ -92,7 +92,7 @@ const CreateLink = (props) => {
 									componentIcon={''}
 									componentRules={'rulesUser'}
 									componentValue={data.name}
-									componentChange={handleChangeName}
+									componentOnChange={handleChangeName}
 									componentDisabled={isDisabled}
 								/>
 

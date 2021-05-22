@@ -28,7 +28,7 @@ export const CONSTANTS = {
 			'Sorteos Flash',
 			'Instagram Lives',
 		],
-		facebook: ['Imagen(es)', 'Video(s', 'Historia(s)', 'Facebook Lives'],
+		facebook: ['Imagen(es)', 'Video(s)', 'Historia(s)', 'Facebook Lives'],
 		tiktok: ['Video(s) 15 segundos', 'Video(s) 30 segundos', 'Video(s) 45 segundos', 'Video(s) 60 segundos'],
 		twitter: ['Tweet(s)', 'Tweet(s) con Video(s)', 'Tweet(s) con Audio(s)', 'Tweet(s) con Enlace'],
 		youtube: [

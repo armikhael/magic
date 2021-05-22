@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Divider } from 'antd'
+import { Form, Button, Divider, List, Typography } from 'antd'
 
 import InputField from '../../../../components/Form/Input'
 import SelectField from '../../../../components/Form/Select'
@@ -31,6 +31,10 @@ const CreateLink = (props) => {
 	const [listCountry, setListCountry] = useState([])
 	const [currency, setCurrency] = useState()
 	const [code, setCode] = useState()
+	const [quantity, setQuantity] = useState()
+	const [concept, setConcept] = useState()
+	const [amount, setAmout] = useState()
+	const [plans, setPlans] = useState([])
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -88,10 +92,30 @@ const CreateLink = (props) => {
 		setCode(findCurrency.code)
 		setCurrency(findCurrency.currency)
 	}
+
+	const handleAddPlans = () => {
+		plans.push({
+			quantity: quantity,
+			description: concept,
+			price: amount,
+			currency: currency,
+		})
+		setPlans([...plans])
+	}
+
+	const handleDelete = (e) => {
+		setPlans(
+			plans.filter((item, key) => {
+				return key !== e
+			})
+		)
+	}
+
 	const handleOnFinish = (item) => {
+		item.code = code
+		item.currency = currency
+		item.plans = plans
 		console.log(item)
-		console.log(currency)
-		console.log(code)
 	}
 
 	return (
@@ -106,7 +130,7 @@ const CreateLink = (props) => {
 						<Link to={'/profile/create-account'}> Crear </Link>
 					</li>
 					<li>
-						<Form name='links' form={form} initialValues={data} onFinish={handleOnFinish}>
+						<Form name='account' form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
@@ -186,6 +210,9 @@ const CreateLink = (props) => {
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={quantities}
+									componentOnChange={(e) => {
+										setQuantity(e)
+									}}
 								/>
 
 								<SelectConstantField
@@ -195,6 +222,9 @@ const CreateLink = (props) => {
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={concepts}
+									componentOnChange={(e) => {
+										setConcept(e)
+									}}
 								/>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
@@ -202,16 +232,50 @@ const CreateLink = (props) => {
 									componentLabel={'Precio'}
 									componentMessage={'Precio'}
 									componentType={'text'}
-									componentIcon={''}
 									componentValue={data.amount}
+									componentOnChange={(e) => {
+										setAmout(e.target.value)
+									}}
 								/>
 							</div>
+							<Button
+								className={'cv-auth-login-main-button-submit'}
+								onClick={() => {
+									handleAddPlans()
+								}}>
+								Agregar
+							</Button>
 							<Form.Item>
 								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
 									Enviar
 								</Button>
 							</Form.Item>
 						</Form>
+
+						<Divider></Divider>
+						{plans.length > 0 && (
+							<List
+								header={<div>Enlaces Agregados</div>}
+								bordered
+								dataSource={plans}
+								renderItem={(item, key) => (
+									<List.Item>
+										<Typography.Text>
+											{item.quantity} - {item.description} - {item.price} - {item.currency}
+										</Typography.Text>
+										<Button
+											danger
+											type='link'
+											shape='round'
+											onClick={() => {
+												handleDelete(key)
+											}}>
+											Eliminar
+										</Button>
+									</List.Item>
+								)}
+							/>
+						)}
 					</li>
 				</ul>
 			)}
