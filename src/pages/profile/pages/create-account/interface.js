@@ -10,7 +10,8 @@ const insterfaceForm = () => {
 		countries: [],
 		phone: null,
 		quantity: null,
-		amount: null,
+		price: null,
+		description: null,
 	}
 }
 

@@ -19,7 +19,7 @@ const serviceGetData = async (item) => {
 	return returnResponse
 }
 
-const serviceSaveAccount = async (body) => {
+const serviceCreateData = async (body) => {
 	let returnResponse
 	await axios({
 		method: 'POST',
@@ -35,4 +35,4 @@ const serviceSaveAccount = async (body) => {
 	return returnResponse
 }
 
-export { serviceSaveAccount, serviceGetData }
+export { serviceCreateData, serviceGetData }

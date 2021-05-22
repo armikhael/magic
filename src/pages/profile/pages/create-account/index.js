@@ -18,7 +18,8 @@ import { serviceGetData } from './services'
 import insterfaceForm from './interface'
 
 const CreateLink = (props) => {
-	const [form] = Form.useForm()
+	const [formPlans] = Form.useForm()
+	const [formAccount] = Form.useForm()
 	const [param, setParam] = useState()
 	const [data, setData] = useState()
 	const [isEdit, setEdit] = useState(false)
@@ -28,11 +29,8 @@ const CreateLink = (props) => {
 	const [quantities, setQuantities] = useState([])
 	const [concepts, setConcepts] = useState([])
 	const [listCountry, setListCountry] = useState([])
-	const [currency, setCurrency] = useState()
+	const [currencies, setCurrencies] = useState()
 	const [code, setCode] = useState()
-	const [quantity, setQuantity] = useState()
-	const [concept, setConcept] = useState()
-	const [amount, setAmout] = useState()
 	const [plans, setPlans] = useState([])
 	const [disabled, setDisabled] = useState(false)
 
@@ -41,7 +39,10 @@ const CreateLink = (props) => {
 		if (response === undefined) {
 			alert('Error, ruta no encontrada')
 		} else {
+			console.log(response)
 			setData(response)
+			setPlans(response.plans)
+			setConcepts([...CONSTANTS.TYPE_POST[response.type]])
 		}
 	}
 
@@ -75,10 +76,12 @@ const CreateLink = (props) => {
 				setCountries([...result])
 			})
 			setData(insterfaceForm())
-			setQuantities([...CONSTANTS.QUANTITY_POST])
-			setRedSocial([...CONSTANTS.RED_SOCIAL])
-			setConcepts([])
 		}
+
+		setQuantities([...CONSTANTS.QUANTITY_POST])
+		setRedSocial([...CONSTANTS.RED_SOCIAL])
+		setCurrencies([...CONSTANTS.CURRENCY])
+
 		console.log('useEffects')
 	}, [props])
 
@@ -91,18 +94,13 @@ const CreateLink = (props) => {
 			return iterator.name.toLowerCase() === item
 		})
 		setCode(findCurrency.code)
-		setCurrency(findCurrency.currency)
 	}
 
-	const handleAddPlans = () => {
-		plans.push({
-			quantity: quantity,
-			description: concept,
-			price: amount,
-			currency: currency,
-		})
+	const handleAddPlans = (item) => {
+		plans.push(item)
 		setPlans([...plans])
-		form.resetFields(['quantity', 'concept', 'amount'])
+		formPlans.resetFields(['quantity', 'description', 'price', 'currency'])
+		console.log(plans)
 	}
 
 	const handleDelete = (e) => {
@@ -115,9 +113,15 @@ const CreateLink = (props) => {
 
 	const handleOnFinish = (item) => {
 		item.code = code
-		item.currency = currency
 		item.plans = plans
+		delete item.amount
+		delete item.quantity
+		delete item.concept
 		console.log(item)
+
+		// serviceCreateData(item).then((data) => {
+		// 	console.log(data)
+		// })
 	}
 
 	return (
@@ -132,7 +136,8 @@ const CreateLink = (props) => {
 						<Link to={'/profile/create-account'}> Crear </Link>
 					</li>
 					<li>
-						<Form name='account' form={form} initialValues={data} onFinish={handleOnFinish}>
+						Datos de la cuenta
+						<Form id='formAccount' form={formAccount} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
@@ -176,7 +181,6 @@ const CreateLink = (props) => {
 									componentValue={data.biography}
 								/>
 
-								<hr />
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
 									componentLabel={'¿País de residencia?'}
@@ -207,9 +211,19 @@ const CreateLink = (props) => {
 									componentRules={'rulesSelect'}
 									componentMaxTagCount={5}
 								/>
+							</div>
 
-								<hr />
-
+							<Form.Item>
+								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
+									Crear Cuenta
+								</Button>
+							</Form.Item>
+						</Form>
+					</li>
+					<li>
+						Datos de los paquetes
+						<Form id='formPlans' form={formPlans} initialValues={data} onFinish={handleAddPlans}>
+							<div className='ph-auth-login-form-container'>
 								<SelectConstantField
 									componentClass={'cv-auth-login-field-input'}
 									componentLabel={'Cantidad'}
@@ -218,50 +232,47 @@ const CreateLink = (props) => {
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={quantities}
 									componentRules={'rulesSelect'}
-									componentOnChange={(e) => {
-										setQuantity(e)
-									}}
 								/>
 
 								<SelectConstantField
 									componentClass={'cv-auth-login-field-input'}
 									componentLabel={'Tipo de Publicación'}
-									componentName={'concept'}
+									componentName={'description'}
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={concepts}
 									componentRules={'required'}
-									componentOnChange={(e) => {
-										setConcept(e)
-									}}
 								/>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
-									componentName={'amount'}
+									componentName={'price'}
 									componentLabel={'Precio'}
 									componentMessage={'Precio'}
 									componentType={'text'}
-									componentValue={data.amount}
+									componentValue={data.price}
 									componentRules={'rulesPrice'}
-									componentOnChange={(e) => {
-										setAmout(e.target.value)
-									}}
+								/>
+
+								<SelectConstantField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'Tipo de Moneda'}
+									componentName={'currency'}
+									componentMode={'single'}
+									componentPlaceholder={'Seleccione una opción'}
+									componentOptions={currencies}
+									componentRules={'required'}
 								/>
 							</div>
-							<Button
-								className={'cv-auth-login-main-button-submit'}
-								onClick={() => {
-									handleAddPlans()
-								}}>
-								Agregar
-							</Button>
 							<Form.Item>
-								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
-									Enviar
+								<Button
+									form='formPlans'
+									key='submit'
+									htmlType='submit'
+									className={'cv-auth-login-main-button-submit'}>
+									Agregar Plan
 								</Button>
 							</Form.Item>
 						</Form>
-
 						<Divider></Divider>
 						{plans.length > 0 && (
 							<List
@@ -287,6 +298,7 @@ const CreateLink = (props) => {
 							/>
 						)}
 					</li>
+					<li>Datos adicionales</li>
 				</ul>
 			)}
 			<Divider></Divider>
