@@ -34,14 +34,13 @@ const CreateLink = (props) => {
 	const [concept, setConcept] = useState()
 	const [amount, setAmout] = useState()
 	const [plans, setPlans] = useState([])
+	const [disabled, setDisabled] = useState(false)
 
 	const fetchData = async (param) => {
-		console.log(param)
 		const response = await serviceGetData(param)
 		if (response === undefined) {
 			alert('Error, ruta no encontrada')
 		} else {
-			console.log('data', response)
 			setData(response)
 		}
 	}
@@ -52,6 +51,7 @@ const CreateLink = (props) => {
 			setParam(props.match.params.name)
 			fetchData(props.match.params.name)
 			setEdit(true)
+			setDisabled(true)
 		} else {
 			console.log('create')
 			serviceGetCategories().then((data) => {
@@ -102,6 +102,7 @@ const CreateLink = (props) => {
 			currency: currency,
 		})
 		setPlans([...plans])
+		form.resetFields(['quantity', 'concept', 'amount'])
 	}
 
 	const handleDelete = (e) => {
@@ -140,17 +141,19 @@ const CreateLink = (props) => {
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={redSocial}
+									componentDisabled={disabled}
+									componentRules={'rulesSelect'}
 									componentOnChange={handleChangeRedSocial}
 								/>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'name'}
 									componentLabel={'Nombre de tu usuario'}
-									componentRule={true}
+									componentRules={'rulesAccount'}
 									componentMessage={'Usuario'}
 									componentType={'text'}
-									componentIcon={''}
 									componentValue={data.name}
+									componentDisabled={disabled}
 								/>
 
 								<InputField
@@ -159,7 +162,7 @@ const CreateLink = (props) => {
 									componentLabel={'Cantidad de Seguidores'}
 									componentMessage={'Seguidores'}
 									componentType={'text'}
-									componentIcon={''}
+									componentRules={'rulesFollowers'}
 									componentValue={data.followers}
 								/>
 
@@ -169,6 +172,7 @@ const CreateLink = (props) => {
 									componentLabel={'Biografía'}
 									componentPlaceholder={'Resumen'}
 									componentRows={4}
+									componentRules={'required'}
 									componentValue={data.biography}
 								/>
 
@@ -179,6 +183,7 @@ const CreateLink = (props) => {
 									componentName={'country'}
 									componentOnChange={handleChangeCountry}
 									componentPlaceholder={'Seleccione una opción'}
+									componentRules={'rulesSelect'}
 									componentOptions={countries}
 								/>
 
@@ -188,7 +193,7 @@ const CreateLink = (props) => {
 									componentLabel={'Número de Conacto'}
 									componentMessage={'WhatsApp'}
 									componentType={'text'}
-									componentIcon={''}
+									componentRules={'rulesPhone'}
 									componentValue={data.phone}
 								/>
 
@@ -199,6 +204,7 @@ const CreateLink = (props) => {
 									componentMode={'multiple'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={categories}
+									componentRules={'rulesSelect'}
 									componentMaxTagCount={5}
 								/>
 
@@ -211,6 +217,7 @@ const CreateLink = (props) => {
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={quantities}
+									componentRules={'rulesSelect'}
 									componentOnChange={(e) => {
 										setQuantity(e)
 									}}
@@ -223,6 +230,7 @@ const CreateLink = (props) => {
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={concepts}
+									componentRules={'required'}
 									componentOnChange={(e) => {
 										setConcept(e)
 									}}
@@ -234,6 +242,7 @@ const CreateLink = (props) => {
 									componentMessage={'Precio'}
 									componentType={'text'}
 									componentValue={data.amount}
+									componentRules={'rulesPrice'}
 									componentOnChange={(e) => {
 										setAmout(e.target.value)
 									}}
