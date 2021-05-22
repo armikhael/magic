@@ -12,7 +12,6 @@ import TextAreaField from '../../../../components/Form/TextArea'
 
 import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
-
 import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 
 import { serviceGetData } from './services'
@@ -37,11 +36,13 @@ const CreateLink = (props) => {
 	const [plans, setPlans] = useState([])
 
 	const fetchData = async (param) => {
+		console.log(param)
 		const response = await serviceGetData(param)
 		if (response === undefined) {
 			alert('Error, ruta no encontrada')
 		} else {
-			console.log('daa')
+			console.log('data', response)
+			setData(response)
 		}
 	}
 
@@ -121,7 +122,7 @@ const CreateLink = (props) => {
 	return (
 		<>
 			{isEdit === true && <p>Parametro: {param}</p>}
-			{categories.length > 0 && (
+			{data !== undefined && (
 				<ul>
 					<li>
 						<Link to={`/profile/edit-account/${param}`}> Editar </Link>
