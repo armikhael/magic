@@ -50,6 +50,10 @@ export const CONSTANTS = {
 		],
 	},
 	CURRENCY: ['Dólares', 'Pesos Colombianos', 'Pesos Chilenos', 'Pesos Argentinos', 'Pesos Cubanos', 'Soles Peruanos'],
+	TYPE_ACCOUNT: [
+		{ name: 'Marca Personal', value: 'personal' },
+		{ name: 'Negocio', value: 'bussines' },
+	],
 	linkSeguidores: `${
 		process.env.REACT_APP_WHATSAPP
 	}?phone=${'56997104052'}&text=Hola, vi su anuncio de cuentas virales y quisiera conocer el método para crecer en instagram`,
