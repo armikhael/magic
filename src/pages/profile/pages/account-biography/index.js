@@ -1,10 +1,10 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Button } from 'antd'
-import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 
+import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../components/Form/Input'
 import SelectField from '../../../../components/Form/Select'
 import TextAreaField from '../../../../components/Form/TextArea'
@@ -12,10 +12,11 @@ import TextAreaField from '../../../../components/Form/TextArea'
 import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
 
-import { serviceGetData } from './services'
+import { serviceGetData, serviceCreateData } from './services'
 import insterfaceForm from './interface'
 
 const AccountBiography = (props) => {
+	const history = useHistory()
 	const [form] = Form.useForm()
 	const [param, setParam] = useState()
 	const [data, setData] = useState()
@@ -24,17 +25,14 @@ const AccountBiography = (props) => {
 	const [countries, setCountries] = useState([])
 	const [redSocial, setRedSocial] = useState([])
 	const [listCountry, setListCountry] = useState([])
-	const [disabled, setDisabled] = useState(false)
 	const [code, setCode] = useState()
+	const [user, setUser] = useState()
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
-		if (response === undefined) {
-			alert('Error, ruta no encontrada')
-		} else {
-			console.log(response)
-			setData(response)
-		}
+		console.log(response)
+		setData(response)
+		setEdit(true)
 	}
 
 	useEffect(() => {
@@ -42,8 +40,6 @@ const AccountBiography = (props) => {
 			console.log('edit')
 			setParam(props.match.params.name)
 			fetchData(props.match.params.name)
-			setEdit(true)
-			setDisabled(true)
 		} else {
 			console.log('create')
 			serviceGetCategories().then((data) => {
@@ -69,6 +65,7 @@ const AccountBiography = (props) => {
 			setData(insterfaceForm())
 			setRedSocial([...CONSTANTS.RED_SOCIAL])
 		}
+		setUser(JSON.parse(localStorage.getItem('user')))
 		console.log('useEffects')
 	}, [props])
 
@@ -80,13 +77,20 @@ const AccountBiography = (props) => {
 	}
 
 	const handleOnFinish = (item) => {
+		item.email = user.email
+		item.name = `${item.account}-${item.type}`
+		item.image = process.env.REACT_APP_LOGO
 		item.code = code
 		console.log(item)
+		serviceCreateData(item).then((response) => {
+			console.log(response.data.name)
+			history.push(`/profile/account-biography/${response.data.name}`)
+		})
 	}
 
 	return (
 		<>
-			{isEdit === true && <p>Parametro: {param}</p>}
+			<p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<ul>
 					<br></br>
@@ -94,12 +98,17 @@ const AccountBiography = (props) => {
 					<li>
 						<Link to={`/profile/account-biography`}> Crear - Paso 1</Link>
 					</li>
-					<li>
-						<Link to={'/profile/account-plans/publicidadcreativa-instagram'}> Planes - Paso 2</Link>
-					</li>
-					<li>
-						<Link to={'/profile/account-aditional/publicidadcreativa-instagram'}> Detalles - Paso 3</Link>
-					</li>
+					{isEdit === true && (
+						<>
+							<li>
+								<Link to={`/profile/account-plans/${param}`}> Planes - Paso 2</Link>
+							</li>
+							<li>
+								<Link to={`/profile/account-details/${param}`}>Detalles - Paso 3</Link>
+							</li>
+						</>
+					)}
+
 					<li>
 						Datos de la cuenta
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
@@ -111,18 +120,18 @@ const AccountBiography = (props) => {
 									componentMode={'single'}
 									componentPlaceholder={'Seleccione una opción'}
 									componentOptions={redSocial}
-									componentDisabled={disabled}
+									componentDisabled={isEdit}
 									componentRules={'rulesSelect'}
 								/>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
-									componentName={'name'}
+									componentName={'account'}
 									componentLabel={'Nombre de tu usuario'}
 									componentRules={'rulesAccount'}
 									componentMessage={'Usuario'}
 									componentType={'text'}
-									componentValue={data.name}
-									componentDisabled={disabled}
+									componentValue={data.account}
+									componentDisabled={isEdit}
 								/>
 
 								<InputField
@@ -174,6 +183,16 @@ const AccountBiography = (props) => {
 									componentOptions={categories}
 									componentRules={'rulesSelect'}
 									componentMaxTagCount={5}
+								/>
+
+								<TextAreaField
+									componentClass={'cv-auth-login-field-input'}
+									componentName={'faq'}
+									componentLabel={'Condiciones del Servicio'}
+									componentPlaceholder={'Coloca tu condiciones'}
+									componentRows={4}
+									componentRules={'required'}
+									componentValue={data.faq}
 								/>
 							</div>
 

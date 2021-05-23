@@ -9,7 +9,7 @@ import SelectConstantField from '../../../../components/Form/SelectConstant'
 
 import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 
-import { serviceGetData } from './services'
+import { serviceGetData, serviceUpdateData } from './services'
 
 const AccountPlans = (props) => {
 	const [form] = Form.useForm()
@@ -42,7 +42,6 @@ const AccountPlans = (props) => {
 		plans.push(item)
 		setPlans([...plans])
 		form.resetFields(['quantity', 'description', 'price', 'currency'])
-		console.log(plans)
 	}
 
 	const handleDelete = (e) => {
@@ -55,6 +54,12 @@ const AccountPlans = (props) => {
 
 	const handleSubmit = () => {
 		console.log(plans)
+		data.plans = plans
+		data.id = data._id
+		console.log(data)
+		serviceUpdateData(data).then((response) => {
+			console.log(response)
+		})
 	}
 
 	return (
@@ -68,11 +73,12 @@ const AccountPlans = (props) => {
 						<Link to={`/profile/account-biography`}> Crear - Paso 1</Link>
 					</li>
 					<li>
-						<Link to={'/profile/account-plans/publicidadcreativa-instagram'}> Planes - Paso 2</Link>
+						<Link to={`/profile/account-plans/${param}`}> Planes - Paso 2</Link>
 					</li>
 					<li>
-						<Link to={'/profile/account-aditional/publicidadcreativa-instagram'}> Detalles - Paso 3</Link>
+						<Link to={`/profile/account-details/${param}`}>Detalles - Paso 3</Link>
 					</li>
+
 					<li>
 						Cuenta: {data.account}, tipo de cuenta: {data.type}
 					</li>

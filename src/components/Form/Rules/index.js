@@ -4,7 +4,7 @@ export const rulesValidation = {
 	required: [
 		{
 			required: true,
-			message: 'Debe seleccionar una opción',
+			message: 'Este campo es requerido de forma obligatoria',
 		},
 	],
 	rulesEmail: [

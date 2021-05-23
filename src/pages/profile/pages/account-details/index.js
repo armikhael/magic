@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'antd'
 
+import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 import RadioField from '../../../../components/Form/Radio'
 
 import { serviceGetData } from './services'
@@ -11,6 +12,7 @@ import { serviceGetData } from './services'
 const AccountAditional = (props) => {
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
+	const [param, setParam] = useState()
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -19,8 +21,9 @@ const AccountAditional = (props) => {
 	}
 
 	useEffect(() => {
-		console.log('useEffects')
+		setParam(props.match.params.name)
 		fetchData(props.match.params.name)
+		console.log('useEffects')
 	}, [props])
 
 	const handleOnFinish = (item) => {
@@ -34,13 +37,13 @@ const AccountAditional = (props) => {
 					<br></br>
 					<br></br>
 					<li>
-						<Link to={`/profile/account-biography`}> Crear </Link>
+						<Link to={`/profile/account-biography`}> Crear - Paso 1</Link>
 					</li>
 					<li>
-						<Link to={'/profile/account-plans/publicidadcreativa-instagram'}> Planes </Link>
+						<Link to={`/profile/account-plans/${param}`}> Planes - Paso 2</Link>
 					</li>
 					<li>
-						<Link to={'/profile/account-more/publicidadcreativa-instagram'}> Detalles </Link>
+						<Link to={`/profile/account-details/${param}`}>Detalles - Paso 3</Link>
 					</li>
 					<li>
 						Datos adicionales
@@ -48,19 +51,22 @@ const AccountAditional = (props) => {
 							<div className='ph-auth-login-form-container'>
 								<RadioField
 									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'¿Eres marca personal o negocio?'}
-									componentName={'type_account'}
+									componentLabel={'¿Cómo defines tu cuenta?'}
+									componentName={'business'}
 									componentButtonStyle={'solid'}
-									componentOptions={[{ name: 'Marca Personal', value: 'personal' }]}
+									componentOptions={[...CONSTANTS.TYPE_ACCOUNT]}
+								/>
+								<RadioField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'¿Harías publicidad "Gratis" a personas de GoFounMe?'}
+									componentName={'gofoundme'}
+									componentButtonStyle={'solid'}
+									componentOptions={[...CONSTANTS.GOFOUNDME]}
 								/>
 							</div>
 							<Form.Item>
-								<Button
-									form='formPlans'
-									key='submit'
-									htmlType='submit'
-									className={'cv-auth-login-main-button-submit'}>
-									Agregar Plan
+								<Button htmlType='submit' className={'cv-auth-login-main-button-submit'}>
+									Finalizar
 								</Button>
 							</Form.Item>
 						</Form>

@@ -8,6 +8,7 @@ import { rulesValidation } from '../Rules'
 import './style.css'
 
 const RadioField = (props) => {
+	console.log(props.componentOptions)
 	return (
 		<>
 			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>

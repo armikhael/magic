@@ -51,8 +51,12 @@ export const CONSTANTS = {
 	},
 	CURRENCY: ['Dólares', 'Pesos Colombianos', 'Pesos Chilenos', 'Pesos Argentinos', 'Pesos Cubanos', 'Soles Peruanos'],
 	TYPE_ACCOUNT: [
-		{ name: 'Marca Personal', value: 'personal' },
-		{ name: 'Negocio', value: 'bussines' },
+		{ name: 'Marca Personal', value: false },
+		{ name: 'Negocio', value: true },
+	],
+	GOFOUNDME: [
+		{ name: 'No', value: false },
+		{ name: 'Si', value: true },
 	],
 	linkSeguidores: `${
 		process.env.REACT_APP_WHATSAPP

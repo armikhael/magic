@@ -14,8 +14,7 @@ import Profile from '../pages/profile'
 import Activation from '../pages/profile/pages/activation'
 import AccountBiography from '../pages/profile/pages/account-biography'
 import AccountPlans from '../pages/profile/pages/account-plans'
-import AccountAditional from '../pages/profile/pages/account-aditional'
-
+import AccountDetails from '../pages/profile/pages/account-details'
 import CreateLink from '../pages/profile/pages/create-link'
 import Category from '../pages/category'
 import Country from '../pages/country'
@@ -46,8 +45,9 @@ const Routers = () => (
 
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/account-biography' component={AccountBiography} />
+				<PrivateRoute exact path='/profile/account-biography/:name' component={AccountBiography} />
 				<PrivateRoute exact path='/profile/account-plans/:name' component={AccountPlans} />
-				<PrivateRoute exact path='/profile/account-aditional/:name' component={AccountAditional} />
+				<PrivateRoute exact path='/profile/account-details/:name' component={AccountDetails} />
 				<PrivateRoute exact path='/profile/activation/:type' component={Activation} />
 				<PrivateRoute exact path='/profile/create-link/' component={CreateLink} />
 				<PrivateRoute exact path='/profile/edit-link/:name' component={CreateLink} />

@@ -3,15 +3,13 @@
 const insterfaceForm = () => {
 	return {
 		type: [],
-		name: null,
+		account: 'nuevaCuenta',
 		categories: [],
-		followers: null,
-		biography: null,
+		followers: 213213123,
+		biography: 'Marketing',
 		countries: [],
-		phone: null,
-		quantity: null,
-		price: null,
-		description: null,
+		phone: '982565380',
+		faq: 'Mis reglas',
 	}
 }
 
