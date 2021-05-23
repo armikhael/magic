@@ -30,7 +30,7 @@ const AccountAditional = (props) => {
 	const handleOnFinish = (item) => {
 		item._id = data._id
 		serviceUpdateData(item).then((response) => {
-			history.push(`/profile/`)
+			history.push(`/profile/activation/${btoa(data.type)}`)
 		})
 	}
 
