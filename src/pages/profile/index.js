@@ -184,6 +184,28 @@ export default class Profile extends React.Component {
 																		href={`/profile/account-details/${item.name}/modify`}>
 																		Editar Filtros
 																	</Button>
+																	<ul>
+																		<li>
+																			Cuenta de negocio:{' '}
+																			{item.business.toString()}
+																		</li>
+																		<li>
+																			Participa en GoFoundme:
+																			{item.gofoundme.toString()}
+																		</li>
+																		<li>
+																			Mencion x mencion:
+																			{item.mention.toString()}
+																		</li>
+																		<li>
+																			Sorteos:
+																			{item.mention.toString()}
+																		</li>
+																		<li>
+																			productos:
+																			{item.product.toString()}
+																		</li>
+																	</ul>
 																</Col>
 																{item.eneable === true && (
 																	<Col

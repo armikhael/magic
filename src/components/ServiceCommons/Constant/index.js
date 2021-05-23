@@ -54,13 +54,8 @@ export const CONSTANTS = {
 		{ name: 'Marca Personal', value: false },
 		{ name: 'Negocio', value: true },
 	],
-	GOFOUNDME: [
+	BOOLEAN: [
 		{ name: 'No', value: false },
 		{ name: 'Si', value: true },
 	],
-	linkSeguidores: `${
-		process.env.REACT_APP_WHATSAPP
-	}?phone=${'56997104052'}&text=Hola, vi su anuncio de cuentas virales y quisiera conocer el método para crecer en instagram`,
-	linkYoutube: `https://www.youtube.com/watch?v=Hxf_4gj6J4k&ab_channel=PublicidadCreativa`,
-	linkSoporte: `${process.env.REACT_APP_WHATSAPP}?phone=${process.env.REACT_APP_CONTACT}&text=Hola, tengo algunas dudas sobre la aplicación:`,
 }

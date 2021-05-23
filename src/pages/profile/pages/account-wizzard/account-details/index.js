@@ -73,7 +73,28 @@ const AccountDetails = (props) => {
 									componentLabel={'¿Harías publicidad "Gratis" a personas de GoFounMe?'}
 									componentName={'gofoundme'}
 									componentButtonStyle={'solid'}
-									componentOptions={[...CONSTANTS.GOFOUNDME]}
+									componentOptions={[...CONSTANTS.BOOLEAN]}
+								/>
+								<RadioField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'¿Harías publicidad con otras cuentas?'}
+									componentName={'mention'}
+									componentButtonStyle={'solid'}
+									componentOptions={[...CONSTANTS.BOOLEAN]}
+								/>
+								<RadioField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'¿Harías sorteos con otras cuentas?'}
+									componentName={'lottery'}
+									componentButtonStyle={'solid'}
+									componentOptions={[...CONSTANTS.BOOLEAN]}
+								/>
+								<RadioField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'¿Aceptarías productos por publicidad?'}
+									componentName={'product'}
+									componentButtonStyle={'solid'}
+									componentOptions={[...CONSTANTS.BOOLEAN]}
 								/>
 							</div>
 							<Form.Item>
