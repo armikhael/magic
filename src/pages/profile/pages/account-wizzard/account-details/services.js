@@ -19,11 +19,12 @@ const serviceGetData = async (item) => {
 	return returnResponse
 }
 
-const serviceCreateData = async (body) => {
+const serviceUpdateData = async (body) => {
+	console.log(body)
 	let returnResponse
 	await axios({
-		method: 'POST',
-		url: `${process.env.REACT_APP_HOST}/account`,
+		method: 'PUT',
+		url: `${process.env.REACT_APP_HOST}/account/`,
 		data: body,
 	})
 		.then((response) => {
@@ -35,4 +36,4 @@ const serviceCreateData = async (body) => {
 	return returnResponse
 }
 
-export { serviceCreateData, serviceGetData }
+export { serviceGetData, serviceUpdateData }

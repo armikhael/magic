@@ -1,19 +1,18 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Form, Button } from 'antd'
 
-import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
-import InputField from '../../../../components/Form/Input'
-import SelectField from '../../../../components/Form/Select'
-import TextAreaField from '../../../../components/Form/TextArea'
+import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
+import InputField from '../../../../../components/Form/Input'
+import SelectField from '../../../../../components/Form/Select'
+import TextAreaField from '../../../../../components/Form/TextArea'
 
-import { serviceGetCategories } from '../../../../components/ServiceCommons/GetCategory'
-import { serviceGetCountry } from '../../../../components/ServiceCommons/GetCountry'
+import { serviceGetCategories } from '../../../../../components/ServiceCommons/GetCategory'
+import { serviceGetCountry } from '../../../../../components/ServiceCommons/GetCountry'
 
-import { serviceGetData, serviceCreateData } from './services'
-import insterfaceForm from './interface'
+import { serviceGetData, serviceUpdateData } from './services'
 
 const AccountBiography = (props) => {
 	const history = useHistory()
@@ -26,46 +25,39 @@ const AccountBiography = (props) => {
 	const [redSocial, setRedSocial] = useState([])
 	const [listCountry, setListCountry] = useState([])
 	const [code, setCode] = useState()
-	const [user, setUser] = useState()
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
-		console.log(response)
 		setData(response)
 		setEdit(true)
 	}
 
 	useEffect(() => {
-		if (props.match.params.name) {
-			console.log('edit')
-			setParam(props.match.params.name)
-			fetchData(props.match.params.name)
-		} else {
-			console.log('create')
-			serviceGetCategories().then((data) => {
-				let result = data.map((item) => {
-					return {
-						value: item.name,
-						name: item.name,
-					}
-				})
-				setCategories([...result])
+		console.log('edit')
+		setParam(props.match.params.name)
+		fetchData(props.match.params.name)
+		serviceGetCategories().then((data) => {
+			let result = data.map((item) => {
+				return {
+					value: item.name,
+					name: item.name,
+				}
 			})
+			setCategories([...result])
+		})
 
-			serviceGetCountry().then((data) => {
-				setListCountry(data)
-				let result = data.map((item) => {
-					return {
-						value: item.name.toLowerCase(),
-						name: item.name,
-					}
-				})
-				setCountries([...result])
+		serviceGetCountry().then((data) => {
+			setListCountry(data)
+			let result = data.map((item) => {
+				return {
+					value: item.name.toLowerCase(),
+					name: item.name,
+				}
 			})
-			setData(insterfaceForm())
-			setRedSocial([...CONSTANTS.RED_SOCIAL])
-		}
-		setUser(JSON.parse(localStorage.getItem('user')))
+			setCountries([...result])
+		})
+
+		setRedSocial([...CONSTANTS.RED_SOCIAL])
 		console.log('useEffects')
 	}, [props])
 
@@ -77,38 +69,20 @@ const AccountBiography = (props) => {
 	}
 
 	const handleOnFinish = (item) => {
-		item.email = user.email
-		item.name = `${item.account}-${item.type}`
-		item.image = process.env.REACT_APP_LOGO
+		item._id = data._id
 		item.code = code
-		console.log(item)
-		serviceCreateData(item).then((response) => {
-			console.log(response.data.name)
-			history.push(`/profile/account-biography/${response.data.name}`)
+		serviceUpdateData(item).then((response) => {
+			history.push(`/profile/account-plans/${response.name}`)
 		})
 	}
 
 	return (
 		<>
-			<p>Parametro: {param}</p>}
+			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<ul>
 					<br></br>
 					<br></br>
-					<li>
-						<Link to={`/profile/account-biography`}> Crear - Paso 1</Link>
-					</li>
-					{isEdit === true && (
-						<>
-							<li>
-								<Link to={`/profile/account-plans/${param}`}> Planes - Paso 2</Link>
-							</li>
-							<li>
-								<Link to={`/profile/account-details/${param}`}>Detalles - Paso 3</Link>
-							</li>
-						</>
-					)}
-
 					<li>
 						Datos de la cuenta
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
@@ -198,7 +172,7 @@ const AccountBiography = (props) => {
 
 							<Form.Item>
 								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
-									Crear Cuenta
+									Continuar
 								</Button>
 							</Form.Item>
 						</Form>

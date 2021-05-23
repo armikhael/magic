@@ -12,9 +12,10 @@ import Test from '../pages/test'
 import Home from '../pages/home'
 import Profile from '../pages/profile'
 import Activation from '../pages/profile/pages/activation'
-import AccountBiography from '../pages/profile/pages/account-biography'
-import AccountPlans from '../pages/profile/pages/account-plans'
-import AccountDetails from '../pages/profile/pages/account-details'
+import AccountUser from '../pages/profile/pages/account-wizzard/account-user'
+import AccountBiography from '../pages/profile/pages/account-wizzard/account-biography'
+import AccountPlans from '../pages/profile/pages/account-wizzard/account-plans'
+import AccountDetails from '../pages/profile/pages/account-wizzard/account-details'
 import CreateLink from '../pages/profile/pages/create-link'
 import Category from '../pages/category'
 import Country from '../pages/country'
@@ -44,7 +45,7 @@ const Routers = () => (
 				<Route exact path='/help/:name' component={Help} />
 
 				<PrivateRoute exact path='/profile' component={Profile} />
-				<PrivateRoute exact path='/profile/account-biography' component={AccountBiography} />
+				<PrivateRoute exact path='/profile/account-user' component={AccountUser} />
 				<PrivateRoute exact path='/profile/account-biography/:name' component={AccountBiography} />
 				<PrivateRoute exact path='/profile/account-plans/:name' component={AccountPlans} />
 				<PrivateRoute exact path='/profile/account-details/:name' component={AccountDetails} />

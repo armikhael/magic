@@ -60,10 +60,13 @@ export default class Profile extends React.Component {
 						id: item._id,
 						email: this.state.userProfile.email,
 					}).then((response) => {
-						this.setState({
-							accounts: response,
-						})
 						notification.close('notiAccountDelete')
+						serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
+							console.log(response)
+							this.setState({
+								accounts: response,
+							})
+						})
 					})
 				}>
 				<h3 className='ph-profile-address-button-delete-title'>Confirmar</h3>

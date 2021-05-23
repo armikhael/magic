@@ -1,13 +1,13 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Form, Button, Divider, List, Typography } from 'antd'
 
-import InputField from '../../../../components/Form/Input'
-import SelectConstantField from '../../../../components/Form/SelectConstant'
+import InputField from '../../../../../components/Form/Input'
+import SelectConstantField from '../../../../../components/Form/SelectConstant'
 
-import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
+import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 
 import { serviceGetData, serviceUpdateData } from './services'
 
@@ -70,16 +70,6 @@ const AccountPlans = (props) => {
 					<br></br>
 					<br></br>
 					<li>
-						<Link to={`/profile/account-biography`}> Crear - Paso 1</Link>
-					</li>
-					<li>
-						<Link to={`/profile/account-plans/${param}`}> Planes - Paso 2</Link>
-					</li>
-					<li>
-						<Link to={`/profile/account-details/${param}`}>Detalles - Paso 3</Link>
-					</li>
-
-					<li>
 						Cuenta: {data.account}, tipo de cuenta: {data.type}
 					</li>
 					<li>
@@ -133,7 +123,7 @@ const AccountPlans = (props) => {
 
 							<Form.Item>
 								<Button onClick={handleSubmit} className={'cv-auth-login-main-button-submit'}>
-									Enviar
+									Continuar
 								</Button>
 							</Form.Item>
 						</Form>

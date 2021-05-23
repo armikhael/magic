@@ -1,11 +1,11 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Form, Button } from 'antd'
 
-import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
-import RadioField from '../../../../components/Form/Radio'
+import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
+import RadioField from '../../../../../components/Form/Radio'
 
 import { serviceGetData, serviceUpdateData } from './services'
 
@@ -30,7 +30,7 @@ const AccountAditional = (props) => {
 	const handleOnFinish = (item) => {
 		item._id = data._id
 		serviceUpdateData(item).then((response) => {
-			history.push(`/profile/account-details/${response.name}`)
+			history.push(`/profile/`)
 		})
 	}
 
@@ -41,16 +41,7 @@ const AccountAditional = (props) => {
 					<br></br>
 					<br></br>
 					<li>
-						<Link to={`/profile/account-biography`}> Crear - Paso 1</Link>
-					</li>
-					<li>
-						<Link to={`/profile/account-plans/${param}`}> Planes - Paso 2</Link>
-					</li>
-					<li>
-						<Link to={`/profile/account-details/${param}`}>Detalles - Paso 3</Link>
-					</li>
-					<li>
-						Datos adicionales
+						Datos adicionales: {param}
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
 								<RadioField
