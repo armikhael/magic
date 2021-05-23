@@ -15,7 +15,7 @@ import AccountUser from '../pages/profile/pages/account-wizzard/account-user'
 import AccountBiography from '../pages/profile/pages/account-wizzard/account-biography'
 import AccountPlans from '../pages/profile/pages/account-wizzard/account-plans'
 import AccountDetails from '../pages/profile/pages/account-wizzard/account-details'
-import Activation from '../pages/profile/pages/account-wizzard/activation'
+import AccountActivation from '../pages/profile/pages/account-wizzard/account-activation'
 import CreateLink from '../pages/profile/pages/create-link'
 import Category from '../pages/category'
 import Country from '../pages/country'
@@ -46,10 +46,10 @@ const Routers = () => (
 
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/account-user' component={AccountUser} />
-				<PrivateRoute exact path='/profile/account-biography/:name' component={AccountBiography} />
+				<PrivateRoute exact path='/profile/account-biography/:name/:modify?' component={AccountBiography} />
 				<PrivateRoute exact path='/profile/account-plans/:name' component={AccountPlans} />
 				<PrivateRoute exact path='/profile/account-details/:name' component={AccountDetails} />
-				<PrivateRoute exact path='/profile/activation/:type' component={Activation} />
+				<PrivateRoute exact path='/profile/account-activation/:type' component={AccountActivation} />
 				<PrivateRoute exact path='/profile/create-link/' component={CreateLink} />
 				<PrivateRoute exact path='/profile/edit-link/:name' component={CreateLink} />
 

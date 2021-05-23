@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, Divider, List, Typography } from 'antd'
+import { Form, Button, Divider, List, Typography, notification } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
 import SelectConstantField from '../../../../../components/Form/SelectConstant'
@@ -58,7 +58,15 @@ const AccountPlans = (props) => {
 		item.plans = plans
 		item._id = data._id
 		serviceUpdateData(item).then((response) => {
-			history.push(`/profile/account-details/${response.name}`)
+			console.log(response)
+			if (response.statusCode === 200) {
+				history.push(`/profile/account-details/${response.data.name}`)
+			} else {
+				notification['error']({
+					message: `Ups!`,
+					description: `${response.message}`,
+				})
+			}
 		})
 	}
 

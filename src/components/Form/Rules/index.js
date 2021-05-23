@@ -49,10 +49,6 @@ export const rulesValidation = {
 			message: 'Ingrese sú número telefónico',
 		},
 		{
-			min: 7,
-			message: 'Minimo 7 caracteres!',
-		},
-		{
 			validator: (_, value) => {
 				let patron = /^\d*$/
 				if (patron.test(value)) {

@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button } from 'antd'
+import { Form, Button, notification } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import RadioField from '../../../../../components/Form/Radio'
 
 import { serviceGetData, serviceUpdateData } from './services'
 
-const AccountAditional = (props) => {
+const AccountDetails = (props) => {
 	const history = useHistory()
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
@@ -30,7 +30,15 @@ const AccountAditional = (props) => {
 	const handleOnFinish = (item) => {
 		item._id = data._id
 		serviceUpdateData(item).then((response) => {
-			history.push(`/profile/activation/${btoa(data.type)}`)
+			console.log(response)
+			if (response.statusCode === 200) {
+				history.push(`/profile/account-activation/${response.data.type}`)
+			} else {
+				notification['error']({
+					message: `Ups!`,
+					description: `${response.message}`,
+				})
+			}
 		})
 	}
 
@@ -72,4 +80,4 @@ const AccountAditional = (props) => {
 	)
 }
 
-export default AccountAditional
+export default AccountDetails

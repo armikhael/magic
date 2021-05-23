@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button } from 'antd'
+import { Form, Button, notification } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
@@ -25,6 +25,8 @@ const AccountBiography = (props) => {
 	const [redSocial, setRedSocial] = useState([])
 	const [listCountry, setListCountry] = useState([])
 	const [code, setCode] = useState()
+	const [isModify, setIsModify] = useState(false)
+	const [buttonText, setButtonText] = useState('Continuar')
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -33,7 +35,10 @@ const AccountBiography = (props) => {
 	}
 
 	useEffect(() => {
-		console.log('edit')
+		if (props.match.params.modify) {
+			setIsModify(true)
+			setButtonText('Actualizar')
+		}
 		setParam(props.match.params.name)
 		fetchData(props.match.params.name)
 		serviceGetCategories().then((data) => {
@@ -72,7 +77,20 @@ const AccountBiography = (props) => {
 		item._id = data._id
 		item.code = code
 		serviceUpdateData(item).then((response) => {
-			history.push(`/profile/account-plans/${response.name}`)
+			console.log(response)
+			if (response.statusCode === 200) {
+				console.log(response.data.name)
+				if (isModify === false) {
+					history.push(`/profile/account-plans/${response.data.name}`)
+				} else {
+					history.push(`/profile`)
+				}
+			} else {
+				notification['error']({
+					message: `Ups!`,
+					description: `${response.message}`,
+				})
+			}
 		})
 	}
 
@@ -172,7 +190,7 @@ const AccountBiography = (props) => {
 
 							<Form.Item>
 								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
-									Continuar
+									{buttonText}
 								</Button>
 							</Form.Item>
 						</Form>

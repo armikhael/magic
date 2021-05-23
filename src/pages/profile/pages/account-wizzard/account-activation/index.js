@@ -8,7 +8,7 @@ import './style.css'
 
 const { Content } = Layout
 
-const Activation = (props) => {
+const AccountActivation = (props) => {
 	const history = useHistory()
 	const [urlRedirect, setUrlRedirect] = useState()
 	const [textActivation, setTextActivation] = useState()
@@ -86,4 +86,4 @@ const Activation = (props) => {
 	)
 }
 
-export default Activation
+export default AccountActivation

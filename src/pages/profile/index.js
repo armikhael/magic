@@ -171,8 +171,8 @@ export default class Profile extends React.Component {
 																	xl={5}>
 																	<Button
 																		shape='round'
-																		href={`/profile/edit-account/${item.name}`}>
-																		Editar
+																		href={`/profile/account-biography/${item.name}/modify`}>
+																		Editar Biografía
 																	</Button>
 																</Col>
 																{item.eneable === true && (
