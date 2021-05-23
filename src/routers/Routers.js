@@ -49,7 +49,7 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/account-biography/:name/:modify?' component={AccountBiography} />
 				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />
 				<PrivateRoute exact path='/profile/account-details/:name/:modify?' component={AccountDetails} />
-				<PrivateRoute exact path='/profile/account-activation/:type' component={AccountActivation} />
+				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
 				<PrivateRoute exact path='/profile/create-link/' component={CreateLink} />
 				<PrivateRoute exact path='/profile/edit-link/:name' component={CreateLink} />
 

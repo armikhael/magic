@@ -8,6 +8,7 @@ import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import RadioField from '../../../../../components/Form/Radio'
 
 import { serviceGetData, serviceUpdateData } from './services'
+import './style.css'
 
 const AccountDetails = (props) => {
 	const history = useHistory()
@@ -38,7 +39,7 @@ const AccountDetails = (props) => {
 			console.log(response)
 			if (response.statusCode === 200) {
 				if (isModify === false) {
-					history.push(`/profile/account-activation/${response.data.type}`)
+					history.push(`/profile/account-activation/${response.data.name}`)
 				} else {
 					history.push(`/profile`)
 				}

@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Input, Tag } from 'antd'
+import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Tag } from 'antd'
 import { UserOutlined, HeartOutlined, ApiOutlined, WhatsAppOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -12,12 +12,7 @@ import InputField from '../../components/Input'
 
 import UploadImage from './components/UploadImage'
 
-import {
-	serviceGetAccountsByEmail,
-	serviceDeleteAccount,
-	serviceChangePassword,
-	serviceActiveAccount,
-} from './services'
+import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 import './style.css'
 
 const { Content, Header } = Layout
@@ -87,29 +82,6 @@ export default class Profile extends React.Component {
 		})
 	}
 
-	handleConfirmAccount = (item) => {
-		if (this.state.code === btoa(item.name)) {
-			serviceActiveAccount(item)
-				.then((response) => {
-					this.setState({
-						accounts: response.data,
-					})
-				})
-				.catch((e) => {
-					console.log(e)
-				})
-			notification['success']({
-				message: 'Excelente!',
-				description: `Su cuenta ha sido activada con éxito`,
-			})
-		} else {
-			notification['error']({
-				message: 'Ups!',
-				description: `El código es incorrecto`,
-			})
-		}
-	}
-
 	render() {
 		if (this.state.loading) {
 			return <Loading />
@@ -169,22 +141,29 @@ export default class Profile extends React.Component {
 																	md={24}
 																	lg={5}
 																	xl={5}>
-																	<Button
-																		shape='round'
-																		href={`/profile/account-biography/${item.name}/modify`}>
-																		Editar Biografía
-																	</Button>
-																	<Button
-																		shape='round'
-																		href={`/profile/account-plans/${item.name}/modify`}>
-																		Editar Planes
-																	</Button>
-																	<Button
-																		shape='round'
-																		href={`/profile/account-details/${item.name}/modify`}>
-																		Editar Filtros
-																	</Button>
 																	<ul>
+																		<li>
+																			<Button
+																				shape='round'
+																				href={`/profile/account-biography/${item.name}/modify`}>
+																				Editar Biografía
+																			</Button>
+																		</li>
+																		<li>
+																			<Button
+																				shape='round'
+																				href={`/profile/account-plans/${item.name}/modify`}>
+																				Editar Planes
+																			</Button>
+																		</li>
+																		<li>
+																			<Button
+																				shape='round'
+																				href={`/profile/account-details/${item.name}/modify`}>
+																				Editar Filtros
+																			</Button>
+																		</li>
+
 																		<li>
 																			Cuenta de negocio:{' '}
 																			{item.business.toString()}
@@ -205,6 +184,19 @@ export default class Profile extends React.Component {
 																			productos:
 																			{item.product.toString()}
 																		</li>
+																		<li>
+																			activada:
+																			{item.eneable.toString()}
+																		</li>
+																		{item.eneable !== true && (
+																			<li>
+																				<Button
+																					shape='round'
+																					href={`/profile/account-activation/${item.name}/modify`}>
+																					Confirmar Cuenta
+																				</Button>
+																			</li>
+																		)}
 																	</ul>
 																</Col>
 																{item.eneable === true && (
@@ -238,27 +230,6 @@ export default class Profile extends React.Component {
 																	</Button>
 																</Col>
 															</Row>
-															{item.eneable === false && (
-																<Row>
-																	<Form layout='vertical'>
-																		<Form.Item
-																			className={'cv-auth-login-field-input'}
-																			label={'Código de confirmación'}
-																			name='code'
-																			onChange={this.handleChangeInput}>
-																			<Input name='code' />
-																		</Form.Item>
-																		<Button
-																			type='danger'
-																			shape='round'
-																			onClick={() => {
-																				this.handleConfirmAccount(item)
-																			}}>
-																			Confirmar Cuenta
-																		</Button>
-																	</Form>
-																</Row>
-															)}
 														</Col>
 													</Row>
 												)
