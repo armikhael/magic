@@ -21,6 +21,8 @@ const AccountPlans = (props) => {
 	const [concepts, setConcepts] = useState([])
 	const [currencies, setCurrencies] = useState()
 	const [plans, setPlans] = useState([])
+	const [isModify, setIsModify] = useState(false)
+	const [buttonText, setButtonText] = useState('Continuar')
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -31,6 +33,10 @@ const AccountPlans = (props) => {
 
 	useEffect(() => {
 		console.log('edit')
+		if (props.match.params.modify) {
+			setIsModify(true)
+			setButtonText('Actualizar')
+		}
 		setParam(props.match.params.name)
 		fetchData(props.match.params.name)
 		setEdit(true)
@@ -60,7 +66,11 @@ const AccountPlans = (props) => {
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
-				history.push(`/profile/account-details/${response.data.name}`)
+				if (isModify === false) {
+					history.push(`/profile/account-details/${response.data.name}`)
+				} else {
+					history.push(`/profile`)
+				}
 			} else {
 				notification['error']({
 					message: `Ups!`,
@@ -131,7 +141,7 @@ const AccountPlans = (props) => {
 
 							<Form.Item>
 								<Button onClick={handleSubmit} className={'cv-auth-login-main-button-submit'}>
-									Continuar
+									{buttonText}
 								</Button>
 							</Form.Item>
 						</Form>

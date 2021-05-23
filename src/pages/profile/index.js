@@ -174,6 +174,16 @@ export default class Profile extends React.Component {
 																		href={`/profile/account-biography/${item.name}/modify`}>
 																		Editar Biografía
 																	</Button>
+																	<Button
+																		shape='round'
+																		href={`/profile/account-plans/${item.name}/modify`}>
+																		Editar Planes
+																	</Button>
+																	<Button
+																		shape='round'
+																		href={`/profile/account-details/${item.name}/modify`}>
+																		Editar Filtros
+																	</Button>
 																</Col>
 																{item.eneable === true && (
 																	<Col

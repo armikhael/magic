@@ -14,14 +14,19 @@ const AccountDetails = (props) => {
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
 	const [param, setParam] = useState()
+	const [isModify, setIsModify] = useState(false)
+	const [buttonText, setButtonText] = useState('Finalizar')
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
-		console.log(response)
 		setData(response)
 	}
 
 	useEffect(() => {
+		if (props.match.params.modify) {
+			setIsModify(true)
+			setButtonText('Actualizar')
+		}
 		setParam(props.match.params.name)
 		fetchData(props.match.params.name)
 		console.log('useEffects')
@@ -32,7 +37,11 @@ const AccountDetails = (props) => {
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
-				history.push(`/profile/account-activation/${response.data.type}`)
+				if (isModify === false) {
+					history.push(`/profile/account-activation/${response.data.type}`)
+				} else {
+					history.push(`/profile`)
+				}
 			} else {
 				notification['error']({
 					message: `Ups!`,
@@ -69,7 +78,7 @@ const AccountDetails = (props) => {
 							</div>
 							<Form.Item>
 								<Button htmlType='submit' className={'cv-auth-login-main-button-submit'}>
-									Finalizar
+									{buttonText}
 								</Button>
 							</Form.Item>
 						</Form>
