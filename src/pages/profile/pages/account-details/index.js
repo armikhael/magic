@@ -1,15 +1,16 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Button } from 'antd'
 
 import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 import RadioField from '../../../../components/Form/Radio'
 
-import { serviceGetData } from './services'
+import { serviceGetData, serviceUpdateData } from './services'
 
 const AccountAditional = (props) => {
+	const history = useHistory()
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
 	const [param, setParam] = useState()
@@ -27,7 +28,10 @@ const AccountAditional = (props) => {
 	}, [props])
 
 	const handleOnFinish = (item) => {
-		console.log(item)
+		item._id = data._id
+		serviceUpdateData(item).then((response) => {
+			history.push(`/profile/account-details/${response.name}`)
+		})
 	}
 
 	return (

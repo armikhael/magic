@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Divider, List, Typography } from 'antd'
 
 import InputField from '../../../../components/Form/Input'
@@ -12,6 +12,7 @@ import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 import { serviceGetData, serviceUpdateData } from './services'
 
 const AccountPlans = (props) => {
+	const history = useHistory()
 	const [form] = Form.useForm()
 	const [param, setParam] = useState()
 	const [data, setData] = useState()
@@ -53,12 +54,11 @@ const AccountPlans = (props) => {
 	}
 
 	const handleSubmit = () => {
-		console.log(plans)
-		data.plans = plans
-		data.id = data._id
-		console.log(data)
-		serviceUpdateData(data).then((response) => {
-			console.log(response)
+		let item = {}
+		item.plans = plans
+		item._id = data._id
+		serviceUpdateData(item).then((response) => {
+			history.push(`/profile/account-details/${response.name}`)
 		})
 	}
 
