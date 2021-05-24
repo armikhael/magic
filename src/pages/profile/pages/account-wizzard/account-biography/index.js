@@ -120,7 +120,7 @@ const AccountBiography = (props) => {
 									componentName={'account'}
 									componentLabel={'Nombre de tu usuario'}
 									componentRules={'rulesAccount'}
-									componentMessage={'Usuario'}
+									componentPlaceholder={'Usuario'}
 									componentType={'text'}
 									componentValue={data.account}
 									componentDisabled={isEdit}
@@ -130,7 +130,7 @@ const AccountBiography = (props) => {
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'followers'}
 									componentLabel={'Cantidad de Seguidores'}
-									componentMessage={'Seguidores'}
+									componentPlaceholder={'Seguidores'}
 									componentType={'text'}
 									componentRules={'rulesFollowers'}
 									componentValue={data.followers}
@@ -160,7 +160,7 @@ const AccountBiography = (props) => {
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'phone'}
 									componentLabel={'Número de Conacto'}
-									componentMessage={'WhatsApp'}
+									componentPlaceholder={'WhatsApp'}
 									componentType={'text'}
 									componentRules={'rulesPhone'}
 									componentValue={data.phone}

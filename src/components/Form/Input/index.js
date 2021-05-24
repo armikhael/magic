@@ -16,9 +16,9 @@ const InputField = (props) => {
 					className={props.componentClass}
 					size='large'
 					name={props.componentName}
-					prefix={props.componentIcon}
+					prefix={props.componentPrefix}
 					type={props.componentType}
-					placeholder={props.componentMessage}
+					placeholder={props.componentPlaceholder}
 					onChange={props.componentOnChange}
 					disabled={props.componentDisabled}
 				/>

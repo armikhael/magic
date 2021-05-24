@@ -126,7 +126,7 @@ const AccountActivation = (props) => {
 										componentClass={'cv-auth-login-field-input'}
 										componentName={'activation'}
 										componentLabel={'Código de Activación'}
-										componentMessage={'Ingrese su Código'}
+										componentPlaceholder={'Ingrese su Código'}
 										componentType={'text'}
 									/>
 								</div>

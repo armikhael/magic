@@ -87,9 +87,8 @@ const CreateLink = (props) => {
 									componentName={'name'}
 									componentLabel={'Nombre del Enlace'}
 									componentRule={true}
-									componentMessage={'Nombre del enlace'}
+									componentPlaceholder={'Nombre del enlace'}
 									componentType={'text'}
-									componentIcon={''}
 									componentRules={'rulesUser'}
 									componentValue={data.name}
 									componentOnChange={handleChangeName}
@@ -101,9 +100,8 @@ const CreateLink = (props) => {
 									componentName={'title'}
 									componentLabel={'Nombre del enlace'}
 									componentRule={true}
-									componentMessage={'Nombre del enlace'}
+									componentPlaceholder={'Nombre del enlace'}
 									componentType={'text'}
-									componentIcon={''}
 									componentRules={'required'}
 									componentValue={data.title}
 								/>
@@ -112,9 +110,8 @@ const CreateLink = (props) => {
 									componentName={'url'}
 									componentLabel={'Enlace'}
 									componentRule={true}
-									componentMessage={'Enlace'}
+									componentPlaceholder={'Enlace'}
 									componentType={''}
-									componentIcon={''}
 									componentRules={'rulesUrl'}
 									componentValue={data.url}
 								/>

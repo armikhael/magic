@@ -69,7 +69,7 @@ const AccountUser = (props) => {
 									componentName={'account'}
 									componentLabel={'Nombre de tu usuario'}
 									componentRules={'rulesAccount'}
-									componentMessage={'Usuario'}
+									componentPlaceholder={'Usuario'}
 									componentType={'text'}
 									componentValue={data.account}
 								/>

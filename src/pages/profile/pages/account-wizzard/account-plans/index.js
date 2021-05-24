@@ -117,7 +117,7 @@ const AccountPlans = (props) => {
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'price'}
 									componentLabel={'Precio'}
-									componentMessage={'Precio'}
+									componentPlaceholder={'Precio'}
 									componentType={'text'}
 									componentValue={data.price}
 									componentRules={'rulesPrice'}
