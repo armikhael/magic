@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import { Upload, Button } from 'antd'
+import { Upload, Button, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
 import { serviceUploadImage, serviceUpdateImage } from './services'
@@ -20,6 +20,18 @@ export default function UploadImage(props) {
 		},
 	])
 	const [isButtom, setButtom] = useState(false)
+
+	const beforeUpload = (file) => {
+		console.log('beforeUpload', file)
+		const isSize = file.size / 1024 / 1024 <= 0.03
+		if (!isSize) {
+			notification['error']({
+				message: `Ups!`,
+				description: `La imagen es muy pesada, reduce un poco mas el peso`,
+			})
+		}
+		return isSize
+	}
 
 	const handleOnChange = ({ fileList: item }) => {
 		setFileList(item)
@@ -69,7 +81,10 @@ export default function UploadImage(props) {
 					listType='picture-card'
 					fileList={fileList}
 					onChange={handleOnChange}
-					onPreview={handleOnPreview}>
+					onPreview={handleOnPreview}
+					beforeUpload={beforeUpload}
+					progress={{ strokeWidth: 2, showInfo: false }}
+					accept={props.componentAccept || '.jpeg, .png, jpeg'}>
 					{fileList.length < 1 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
