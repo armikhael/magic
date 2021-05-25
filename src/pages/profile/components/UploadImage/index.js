@@ -34,7 +34,13 @@ export default function UploadImage(props) {
 		formData.append('name', props.account.name)
 		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
 		serviceUploadImage(formData).then((response) => {
-			serviceUpdateImage(props.account._id, response).then((response) => {})
+			console.log('imagen subida', response)
+			serviceUpdateImage(props.account._id, response).then((response) => {
+				console.log('imagen guardada', response.data.image)
+				if (props.componentHandle) {
+					handleComponent(response.data.image)
+				}
+			})
 		})
 	}
 
@@ -52,6 +58,8 @@ export default function UploadImage(props) {
 		let imgWindow = window.open(src)
 		imgWindow.document.write(image.outerHTML)
 	}
+
+	const handleComponent = props.componentHandle
 
 	return (
 		<>

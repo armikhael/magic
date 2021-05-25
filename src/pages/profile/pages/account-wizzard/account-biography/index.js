@@ -2,15 +2,16 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification } from 'antd'
+import { Form, Button, notification, Col } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
-
 import { serviceGetCategories } from '../../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../../components/ServiceCommons/GetCountry'
+
+import UploadImage from '../../../components/UploadImage'
 
 import { serviceGetData, serviceUpdateData } from './services'
 
@@ -27,6 +28,7 @@ const AccountBiography = (props) => {
 	const [code, setCode] = useState()
 	const [isModify, setIsModify] = useState(false)
 	const [buttonText, setButtonText] = useState('Continuar')
+	const [image, setImage] = useState()
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -73,9 +75,15 @@ const AccountBiography = (props) => {
 		setCode(findCurrency.code)
 	}
 
+	const handleSetImage = (item) => {
+		setImage(item)
+		console.log('entro por props')
+	}
+
 	const handleOnFinish = (item) => {
 		item._id = data._id
 		item.code = code
+		item.image = image
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
@@ -105,6 +113,10 @@ const AccountBiography = (props) => {
 						Datos de la cuenta
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
+								<Col sm={24} md={6} className='cv-profile-upload-image'>
+									<UploadImage account={data} componentHandle={handleSetImage} />
+								</Col>
+
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
 									componentLabel={'Red Social'}

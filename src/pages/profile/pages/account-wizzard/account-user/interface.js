@@ -2,7 +2,7 @@
 
 const insterfaceForm = () => {
 	return {
-		account: 'nuevaCuenta',
+		account: '',
 	}
 }
 
