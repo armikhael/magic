@@ -17,6 +17,7 @@ import AccountPlans from '../pages/profile/pages/account-wizzard/account-plans'
 import AccountDetails from '../pages/profile/pages/account-wizzard/account-details'
 import AccountActivation from '../pages/profile/pages/account-wizzard/account-activation'
 import CreateLink from '../pages/profile/pages/create-link'
+import Post from '../pages/profile/pages/post'
 import Category from '../pages/category'
 import Country from '../pages/country'
 import AccountDetail from '../pages/account'
@@ -52,6 +53,7 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
 				<PrivateRoute exact path='/profile/create-link/' component={CreateLink} />
 				<PrivateRoute exact path='/profile/edit-link/:name' component={CreateLink} />
+				<PrivateRoute exact path='/profile/create-post/' component={Post} />
 
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
