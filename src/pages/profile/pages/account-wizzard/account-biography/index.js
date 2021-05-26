@@ -12,6 +12,7 @@ import { serviceGetCategories } from '../../../../../components/ServiceCommons/G
 import { serviceGetCountry } from '../../../../../components/ServiceCommons/GetCountry'
 
 import UploadImage from '../../../components/UploadImage'
+import UploadCover from '../../../components/UploadCover'
 
 import { serviceGetData, serviceUpdateData } from './services'
 
@@ -32,6 +33,7 @@ const AccountBiography = (props) => {
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
+		console.log(response)
 		setData(response)
 		setEdit(true)
 	}
@@ -115,6 +117,10 @@ const AccountBiography = (props) => {
 							<div className='ph-auth-login-form-container'>
 								<Col sm={24} md={6} className='cv-profile-upload-image'>
 									<UploadImage account={data} componentHandle={handleSetImage} />
+								</Col>
+
+								<Col sm={24} md={6} className='cv-profile-upload-image'>
+									<UploadCover account={data} componentHandle={handleSetImage} />
 								</Col>
 
 								<SelectField
