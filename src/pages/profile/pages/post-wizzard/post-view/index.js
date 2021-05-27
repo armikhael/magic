@@ -19,7 +19,7 @@ const PostView = (props) => {
 	return (
 		<>
 			Detalles de la Publiccion
-			{data != undefined && (
+			{data !== undefined && (
 				<ul>
 					<li>Titulo: {data.title}</li>
 					<li>Descripcion: {data.text_html}</li>
