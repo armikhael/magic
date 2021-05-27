@@ -1,20 +1,25 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Form, Button, Col } from 'antd'
 import moment from 'moment'
 
-import InputField from '../../../../components/Form/Input'
-import TextAreaField from '../../../../components/Form/TextArea'
-import UploadPost from '../../components/UploadPost'
-import SelectField from '../../../../components/Form/Select'
+import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
+import InputField from '../../../../../components/Form/Input'
+import TextAreaField from '../../../../../components/Form/TextArea'
+import SelectField from '../../../../../components/Form/Select'
+import SelectConstantField from '../../../../../components/Form/SelectConstant'
 
-// import { serviceGetData, serviceCreateData, serviceUpdateData } from './services'
+import UploadPost from '../components/UploadPost'
+import { serviceCreateData, serviceUpdateData } from './services'
 import insterfaceForm from './interface'
 
 const Post = (props) => {
+	const history = useHistory()
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
+	const [isEdit, setEdit] = useState(false)
 	const [image, setImage] = useState()
 	const [limitTime, setLimitTime] = useState([])
 
@@ -23,17 +28,10 @@ const Post = (props) => {
 	useEffect(() => {
 		if (props.match.params.name) {
 			fetchData(props.match.params.name)
+			setEdit(true)
 		} else {
 			setData(insterfaceForm())
-			let times = []
-			for (let i = 0; i < 7; i++) {
-				times.push({
-					name: `Hasta el ${moment().add(i, 'days').format('dddd')} ${moment().add(i, 'days').format('L')}`,
-					value: moment().add(i, 'days').format('L'),
-				})
-			}
-			console.log(times)
-			setLimitTime(times)
+			handleTime()
 		}
 		console.log('useEffects')
 	}, [props])
@@ -43,10 +41,30 @@ const Post = (props) => {
 		console.log('entro por props')
 	}
 
+	const handleTime = () => {
+		let times = []
+		for (let i = 0; i < 7; i++) {
+			times.push({
+				name: `Hasta el ${moment().add(i, 'days').format('dddd')} ${moment().add(i, 'days').format('L')}`,
+				value: moment().add(i, 'days').format('L'),
+			})
+		}
+		console.log(times)
+		setLimitTime(times)
+	}
+
 	const handleSubmit = async (item) => {
 		console.log(image)
-		item.image = image
+		item.image = image || data.image
 		console.log(item)
+		if (isEdit === false) {
+			serviceCreateData(item).then((response) => {
+				console.log(response)
+				history.push(`/profile/post-view/${response.data._id}`)
+			})
+		} else {
+			await serviceUpdateData(item)
+		}
 	}
 
 	return (
@@ -75,12 +93,22 @@ const Post = (props) => {
 								<Col sm={24} md={6} className='cv-profile-upload-image'>
 									<UploadPost image={data.image} componentHandle={handleSetImage} />
 								</Col>
+
+								<SelectConstantField
+									componentClass={'cv-auth-login-field-input'}
+									componentLabel={'Tipo de Moneda'}
+									componentName={'currency'}
+									componentMode={'single'}
+									componentPlaceholder={'Seleccione una opción'}
+									componentOptions={[...CONSTANTS.CURRENCY]}
+									componentRules={'required'}
+								/>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'price_regular'}
 									componentLabel={'Precio Regular'}
 									componentPlaceholder={'Precio Regular'}
-									componentType={'text'}
+									componentType={'number'}
 									componentValue={data.price_regular}
 								/>
 								<InputField
@@ -88,7 +116,7 @@ const Post = (props) => {
 									componentName={'price_promotional'}
 									componentLabel={'Precio Promocional'}
 									componentPlaceholder={'Precio Promocional'}
-									componentType={'text'}
+									componentType={'number'}
 									componentValue={data.price_promotional}
 								/>
 
@@ -97,7 +125,7 @@ const Post = (props) => {
 									componentName={'phone'}
 									componentLabel={'WhatsApp'}
 									componentPlaceholder={'WhatsApp'}
-									componentType={'text'}
+									componentType={'number'}
 									componentValue={data.phone}
 								/>
 

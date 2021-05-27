@@ -47,6 +47,7 @@ export default function UploadPost(props) {
 		serviceUploadImage(formData).then((response) => {
 			console.log('imagen subida', response)
 			handleComponent(response.thumb.url)
+			setButtom(false)
 		})
 	}
 
