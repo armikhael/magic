@@ -18,7 +18,7 @@ export default class SideBar extends React.Component {
 		return (
 			<Drawer
 				className='cv-header-user-sidebar-content'
-				title='Cuentas Virales'
+				title={'Cuentas Virales'}
 				width={300}
 				onClose={() => this.props.handleOpenMenu()}
 				visible={this.props.menu}>
@@ -33,7 +33,7 @@ export default class SideBar extends React.Component {
 										alt='Imagen Usuario'
 									/>
 								</Col>
-								<Col xs={15} sm={15} md={15}>
+								<Col xs={17} sm={17} md={17}>
 									<h3 className='cv-header-user-sidebar-title'>Bienvenido</h3>
 									<p className='cv-header-user-sidebar-sub-title'>
 										Ingresa a tu cuenta para ver tus cuentas o registrarlas...
@@ -89,7 +89,7 @@ export default class SideBar extends React.Component {
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/`}>
 						<div className='cv-header-user-icon-login-content'>
-							<HomeOutlined style={{ fontSize: 30 }} />
+							<HomeOutlined style={{ fontSize: 22 }} />
 							<span className='ml10'>Inicio</span>
 						</div>
 					</Link>
@@ -98,7 +98,7 @@ export default class SideBar extends React.Component {
 					<div className='cv-header-user-sidebar-list'>
 						<Link to={`/profile`}>
 							<div className='cv-header-user-icon-login-content'>
-								<UserOutlined style={{ fontSize: 30 }} />
+								<UserOutlined style={{ fontSize: 22 }} />
 								<span className='ml10'>Perfil</span>
 							</div>
 						</Link>
@@ -108,8 +108,7 @@ export default class SideBar extends React.Component {
 					<Link to={`/profile/create-account`}>
 						<div className='cv-header-user-icon-login-content'>
 							<img
-								className='cv-header-user-icon-login'
-								width='22px'
+								width='19px'
 								src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
 								alt='Crear Cuenta'
 							/>{' '}
@@ -120,20 +119,21 @@ export default class SideBar extends React.Component {
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/help/cuentas-virales`}>
 						<div className='cv-header-user-icon-login-content'>
-							<QuestionOutlined style={{ fontSize: 30 }} />
+							<QuestionOutlined style={{ fontSize: 22 }} />
 							<span className='ml10'>Ayuda</span>
 						</div>
 					</Link>
 				</div>
 				{localStorage.getItem('user') && (
-					<div className='cv-header-user-sidebar-list'>
+					<div className='cv-header-user-sidebar-list cv-header-user-sidebar-list-cs'>
+						<hr className='cv-header-user-sidebar-hr mb10' />
 						<Link
 							to={`/`}
 							onClick={() => {
 								localStorage.removeItem('user')
 							}}>
 							<div className='cv-header-user-icon-login-content'>
-								<CloseSquareOutlined style={{ fontSize: 30 }} />
+								<CloseSquareOutlined style={{ fontSize: 22 }} />
 								<span className='ml10'>Cerrar sesión</span>
 							</div>
 						</Link>
