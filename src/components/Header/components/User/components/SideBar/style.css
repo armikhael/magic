@@ -5,12 +5,11 @@
 }
 
 .cv-header-user-sidebar-content-row {
-	box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .cv-header-user-sidebar-content-img-user {
-	padding: 5px;
+	padding: 10px;
 	border-radius: 50%;
 }
 

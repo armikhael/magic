@@ -26,7 +26,7 @@ export default class SideBar extends React.Component {
 					<>
 						<Link to={`/auth/login`}>
 							<Row className='cv-header-user-sidebar-content-row'>
-								<Col xs={7} sm={7} md={7}>
+								<Col xs={7} sm={7} md={7} className='p10'>
 									<img
 										width='100%'
 										src='https://i.ibb.co/0C5Mpp9/iniciar-sesion.png'
