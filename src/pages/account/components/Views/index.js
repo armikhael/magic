@@ -16,7 +16,6 @@ import { serviceEventGoogleAnalytics } from '../../../../components/ServiceCommo
 import './style.css'
 
 export default function Views(props) {
-	const [user, setUser] = useState()
 	const [redSocial, setRedSocial] = useState({})
 	const data = props.views
 	const config = {
@@ -32,7 +31,6 @@ export default function Views(props) {
 
 	useEffect(() => {
 		const tempUser = JSON.parse(localStorage.getItem('user'))
-		setUser(tempUser)
 		let tempRedSocial = tempUser.red_social.find((iterator) => iterator.name === props.detail.type)
 		setRedSocial(tempRedSocial)
 	}, [props])
@@ -68,7 +66,7 @@ export default function Views(props) {
 												})
 
 												window.open(
-													`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN), mi nombre es ${user.first_name}`
+													`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos la dinñamica de (LIKE x LIKE)`
 												)
 											}}>
 											<span className='cv-detail-actiones-title-a' style={{ cursor: 'pointer' }}>
@@ -114,7 +112,7 @@ export default function Views(props) {
 												})
 
 												window.open(
-													`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos intercambio publicitario (MENCIÓN x MENCIÓN), mi nombre es ${user.first_name}`
+													`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría que hagamos la dinámica de (MENCIÓN x MENCIÓN)`
 												)
 											}}>
 											<span className='cv-detail-actiones-title-a' style={{ cursor: 'pointer' }}>
