@@ -5,18 +5,18 @@ import React, { useState } from 'react'
 import { Upload, Button, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
-import { serviceUploadImage, serviceUpdateData } from './services'
+import { serviceUploadImage } from './services'
 import './style.css'
 
-export default function UploadImage(props) {
+export default function UploadPost(props) {
 	const [fileList, setFileList] = useState([
 		{
 			uid: '-1',
 			name: 'image.png',
 			status: 'done',
-			url: props.account.image,
-			image: props.account.image,
-			image_thumb: props.account.image_thumb,
+			url: props.image || 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
+			image: props.image || 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
+			image_thumb: props.image || 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
 		},
 	])
 	const [isButtom, setButtom] = useState(false)
@@ -43,18 +43,11 @@ export default function UploadImage(props) {
 	const handleSaveImage = () => {
 		let formData = new FormData()
 		formData.append('image', fileList[0].originFileObj)
-		formData.append('name', props.account.name)
 		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
 		serviceUploadImage(formData).then((response) => {
 			console.log('imagen subida', response)
-			props.account.image = response.image.url
-			props.account.image_thumb = response.thumb.url
-			serviceUpdateData(props.account).then((response) => {
-				console.log('imagen guardada', response.data.image)
-				if (props.componentHandle) {
-					handleComponent(response.data.image)
-				}
-			})
+			handleComponent(response.thumb.url)
+			setButtom(false)
 		})
 	}
 

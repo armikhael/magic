@@ -8,21 +8,20 @@ import ImgCrop from 'antd-img-crop'
 import { serviceUploadImage, serviceUpdateData } from './services'
 import './style.css'
 
-export default function UploadImage(props) {
+export default function UploadCover(props) {
 	const [fileList, setFileList] = useState([
 		{
 			uid: '-1',
 			name: 'image.png',
 			status: 'done',
-			url: props.account.image,
-			image: props.account.image,
-			image_thumb: props.account.image_thumb,
+			url: props.account.image_cover,
+			image: props.account.image_cover,
+			image_thumb: props.account.image_cover,
 		},
 	])
 	const [isButtom, setButtom] = useState(false)
 
 	const beforeUpload = (file) => {
-		console.log('beforeUpload', file)
 		const isSize = file.size / 1024 / 1024 <= 0.03
 		if (!isSize) {
 			notification['error']({
@@ -43,14 +42,11 @@ export default function UploadImage(props) {
 	const handleSaveImage = () => {
 		let formData = new FormData()
 		formData.append('image', fileList[0].originFileObj)
-		formData.append('name', props.account.name)
+		formData.append('name', `${props.account.name}-cover`)
 		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
 		serviceUploadImage(formData).then((response) => {
-			console.log('imagen subida', response)
-			props.account.image = response.image.url
-			props.account.image_thumb = response.thumb.url
+			props.account.image_cover = response.image.url
 			serviceUpdateData(props.account).then((response) => {
-				console.log('imagen guardada', response.data.image)
 				if (props.componentHandle) {
 					handleComponent(response.data.image)
 				}

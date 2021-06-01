@@ -114,6 +114,14 @@ export default class InactiveAccounts extends React.Component {
 										</li>
 										<li>
 											token: {btoa(item.name)}
+											<CopyToClipboard text={btoa(item.name)}>
+												<Button shape='round'>
+													Sólo codigo <CopyOutlined />
+												</Button>
+											</CopyToClipboard>
+										</li>
+										<li>
+											token: {btoa(item.name)}
 											<CopyToClipboard
 												text={`Hola! este código es el que debes ingresar para activar tu perfil en cuentasvirales.com, ingresa el siguiente código \n\n  ${btoa(
 													item.name

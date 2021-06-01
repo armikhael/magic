@@ -46,7 +46,7 @@ export default class User extends React.Component {
 							<Col xs={12} sm={12} md={{ span: 24, offset: 0 }}>
 								<Row align='middle'>
 									<Col xs={12} sm={12} md={12}>
-										<Link to={`/profile/create-account`}>
+										<Link to={`/profile/account-user`}>
 											<div className='cv-header-user-icon-login-content'>
 												<img
 													className='cv-heder-user-icon-add-account'

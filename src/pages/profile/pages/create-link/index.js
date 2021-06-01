@@ -6,12 +6,11 @@ import { Form, Button, Divider, List, Typography } from 'antd'
 
 import InputField from '../../../../components/Form/Input'
 
-import { serviceGetData, serviceCreateData, serviceUpdateData } from './service'
+import { serviceGetData, serviceCreateData, serviceUpdateData } from './services'
 import insterfaceForm from './interface'
 
 const CreateLink = (props) => {
 	const [form] = Form.useForm()
-	const [param] = useState()
 	const [data, setData] = useState()
 	const [links, setLinks] = useState([])
 	const [name, setName] = useState()
@@ -70,7 +69,6 @@ const CreateLink = (props) => {
 
 	return (
 		<>
-			{param !== undefined && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<ul>
 					<li>
@@ -80,19 +78,18 @@ const CreateLink = (props) => {
 						<Link to={'/profile/create-link'}> Crear </Link>
 					</li>
 					<li>
-						<Form name='links' form={form} initialValues={data} onFinish={handleAddElement}>
+						<Form name='form' form={form} initialValues={data} onFinish={handleAddElement}>
 							<div className='ph-auth-login-form-container'>
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'name'}
 									componentLabel={'Nombre del Enlace'}
 									componentRule={true}
-									componentMessage={'Nombre del enlace'}
+									componentPlaceholder={'Nombre del enlace'}
 									componentType={'text'}
-									componentIcon={''}
 									componentRules={'rulesUser'}
 									componentValue={data.name}
-									componentChange={handleChangeName}
+									componentOnChange={handleChangeName}
 									componentDisabled={isDisabled}
 								/>
 
@@ -101,9 +98,8 @@ const CreateLink = (props) => {
 									componentName={'title'}
 									componentLabel={'Nombre del enlace'}
 									componentRule={true}
-									componentMessage={'Nombre del enlace'}
+									componentPlaceholder={'Nombre del enlace'}
 									componentType={'text'}
-									componentIcon={''}
 									componentRules={'required'}
 									componentValue={data.title}
 								/>
@@ -112,9 +108,8 @@ const CreateLink = (props) => {
 									componentName={'url'}
 									componentLabel={'Enlace'}
 									componentRule={true}
-									componentMessage={'Enlace'}
+									componentPlaceholder={'Enlace'}
 									componentType={''}
-									componentIcon={''}
 									componentRules={'rulesUrl'}
 									componentValue={data.url}
 								/>

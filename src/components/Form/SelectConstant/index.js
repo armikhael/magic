@@ -1,28 +1,39 @@
 /** @format */
 
 import React from 'react'
-import { Form, Input } from 'antd'
+
+import { Form, Select } from 'antd'
 
 import { rulesValidation } from '../Rules'
 import './style.css'
 
-const { TextArea } = Input
-const TextAreaField = (props) => {
+const { Option } = Select
+const SelectConstantField = (props) => {
 	return (
 		<>
 			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>
 			<Form.Item name={props.componentName} rules={rulesValidation[props.componentRules]}>
-				<TextArea
+				<Select
 					style={{ width: '100%' }}
-					autoSize={props.componentAutoSize}
-					rows={props.componentRows}
 					mode={props.componentMode}
 					placeholder={props.componentPlaceholder}
 					onChange={props.componentOnChange}
-				/>
+					maxTagCount={props.componentMaxTagCount}>
+					{props.componentOptions.map((iterator, i) => {
+						return (
+							<Option
+								style={{
+									textTransform: 'capitalize',
+								}}
+								key={iterator}>
+								{iterator}
+							</Option>
+						)
+					})}
+				</Select>
 			</Form.Item>
 		</>
 	)
 }
 
-export default TextAreaField
+export default SelectConstantField
