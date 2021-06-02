@@ -6,7 +6,7 @@ import Moment from 'react-moment'
 import 'moment/locale/es'
 
 import { Row, Col } from 'antd'
-import { EyeOutlined, ClockCircleOutlined, UserOutlined } from '@ant-design/icons'
+import { EyeOutlined, ClockCircleOutlined, UserOutlined, BarChartOutlined } from '@ant-design/icons'
 
 import './style.css'
 
@@ -87,10 +87,6 @@ export default class Account extends React.Component {
 										src={this.props.account.interface.icon}
 										alt={this.props.account.type}
 									/>
-									<div className='mt10'>
-										<EyeOutlined style={{ color: '#ca0000', fontSize: '12px' }} />{' '}
-										{this.props.account.counter}
-									</div>
 								</h3>
 							</Col>
 							<Col xs={24} sm={24} md={24}>
@@ -101,6 +97,12 @@ export default class Account extends React.Component {
 									</Moment>
 								</h3>
 							</Col>
+							<div className='mt10'>
+								<EyeOutlined style={{ color: '#ca0000', fontSize: '12px' }} />{' '}
+								{this.props.account.counter_day} Hoy &nbsp; &nbsp;
+								<BarChartOutlined style={{ color: '#ca0000', fontSize: '12px' }} />{' '}
+								{this.props.account.interface.counter} Totales
+							</div>
 						</Row>
 					</div>
 				</div>
