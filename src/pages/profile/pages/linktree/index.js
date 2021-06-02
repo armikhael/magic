@@ -9,7 +9,7 @@ import InputField from '../../../../components/Form/Input'
 import { serviceGetData, serviceCreateData, serviceUpdateData } from './services'
 import insterfaceForm from './interface'
 
-const CreateLink = (props) => {
+const LinkTree = (props) => {
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
 	const [links, setLinks] = useState([])
@@ -160,4 +160,4 @@ const CreateLink = (props) => {
 	)
 }
 
-export default CreateLink
+export default LinkTree
