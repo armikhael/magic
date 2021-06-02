@@ -97,7 +97,11 @@ export default class AccountDetail extends React.Component {
 				}
 				return newItem
 			})
-			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
+			if (
+				date.getDate() <= iterator.day &&
+				date.getMonth() === iterator.month &&
+				filterCountry !== undefined
+			) {
 				itemFilter.push(iterator)
 			}
 		})
@@ -115,16 +119,117 @@ export default class AccountDetail extends React.Component {
 			<>
 				{this.state.detail !== null && (
 					<Content className='cv-container-main'>
+						<div className='cv-detail-content-mobil cv-xs'>
+							<img
+								className='cv-detail-img-main '
+								title={this.state.detail.name}
+								alt={this.state.detail.name}
+								src={this.state.image}
+							/>
+							<div
+								className='cv-detail-whatsapp-icon-mobil'
+								rel='noopener noreferrer'
+								target='_blank'
+								onClick={() => {
+									serviceEventGoogleAnalytics({
+										category: 'contacto',
+										action: 'click-contacto',
+										label: this.state.detail.name,
+									})
+									window.open(
+										`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
+									)
+								}}>
+								<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
+								&nbsp;
+								<span>Contactame</span>
+							</div>
+						</div>
 						<Row>
 							<Col xs={24} sm={24} md={18}>
-								<Row className='cv-detail-content-accoun'>
+								<Row className='cv-detail-content-accoun cv-md'>
 									<p className='cv-detail-content-accoun-p'>
 										¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
 										<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
 									</p>
 								</Row>
 								<Row className='cv-detail-content-accoun'>
-									<Col span={24} className='center'>
+									<div className='cv-xs cv-detail-content-accoun-mobil'>
+										<Row>
+											<Col span={6}>
+												<img
+													title={this.state.detail.name}
+													alt={this.state.detail.name}
+													className='cv-detail-account-img-main'
+													src={this.state.image}
+												/>
+											</Col>
+											<Col span={18} className='cv-detail-content-accoun-mobil'>
+												<h1 className='cv-detail-title-main'>
+													{this.state.detail.account}
+													{this.state.detail.eneable && (
+														<img
+															className='cv-detail-img-content-account-verified'
+															src='https://i.ibb.co/DwZbZB6/verificacion.png'
+															alt='verificado'
+															title='verificado'
+														/>
+													)}
+												</h1>
+												<Moment format='LLLL' withTitle className='cv-detail-moment-title-mobil'>
+													{this.state.detail.createdAt}
+												</Moment>
+												<a
+													href={this.state.detail.interface.link}
+													target='_blank'
+													rel='noopener noreferrer'>
+													<div className='cv-detail-account-content-info-account'>
+														<img
+															width='15px'
+															src={this.state.detail.interface.icon}
+															alt={this.state.detail.type}
+														/>
+														<h3>@{this.state.detail.account}</h3>
+													</div>
+												</a>
+											</Col>
+										</Row>
+										<hr className='cv-detail-hr'></hr>
+										<br></br>
+										<h3 className='cv-detail-account-content-info-country'>
+											{this.state.detail.country}
+										</h3>
+										<Link to={`/category/${this.state.detail.categories[0]}`}>
+											<span className='cv-detail-account-category-title'>
+												{this.state.detail.categories[0]}
+											</span>
+										</Link>
+										<p>Cantidad de Visitas: {this.state.detail.counter}</p>
+										<h3 className='cv-detail-account-content-info-email'>
+											{this.state.detail.email}
+										</h3>
+										<div className='mt10 mb10'>
+											<UserOutlined />{' '}
+											<span className='cv-detail-followers'>
+												{this.state.detail.interface.followers}
+											</span>{' '}
+											Seguidores
+										</div>
+										<h3 className='cv-detail-account-content-info-detail'>
+											{this.state.detail.biography}
+										</h3>
+										<br></br>
+										<div>
+											{this.state.detail.categories.map(function (item, i) {
+												return (
+													<Link to={`/category/${item}`} key={i}>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+													</Link>
+												)
+											})}
+										</div>
+									</div>
+									<Col span={24}>
 										<span
 											className='cv-detail-whatsapp-icon'
 											rel='noopener noreferrer'
@@ -144,7 +249,7 @@ export default class AccountDetail extends React.Component {
 											<span>Contactame</span>
 										</span>
 									</Col>
-									<Col span={24} className='cv-detail-content-account-detail'>
+									<Col span={24} className='cv-detail-content-account-detail cv-md'>
 										<h1 className='cv-detail-title-main'>
 											{this.state.detail.account}
 											{this.state.detail.eneable && (
@@ -168,11 +273,7 @@ export default class AccountDetail extends React.Component {
 										</h3>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col
-													xs={24}
-													sm={24}
-													md={7}
-													className='cv-detail-account-img-main-content'>
+												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -220,9 +321,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}

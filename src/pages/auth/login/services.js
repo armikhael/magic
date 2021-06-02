@@ -40,10 +40,11 @@ const authLoginServices = async (item, redirect) => {
 				localStorage.setItem(
 					'user',
 					JSON.stringify({
-						email: response.data.data.email,
-						image: response.data.data.image,
-						first_name: response.data.data.first_name,
-						last_name: response.data.data.last_name,
+						email: response.data.data.user.email,
+						image: response.data.data.user.image,
+						first_name: response.data.data.user.first_name,
+						last_name: response.data.data.user.last_name,
+						red_social: response.data.data.red_social,
 					})
 				)
 				let timer = setTimeout(() => {
@@ -59,10 +60,11 @@ const authLoginServices = async (item, redirect) => {
 			returnResponse = response.data
 		})
 		.catch((error) => {
+			console.log(error)
 			returnResponse = error.response
 			notification['error']({
-				message: `Problemas de Servicios`,
-				description: `process.env.REACT_APP_HOST/auth/login`,
+				message: `Ups`,
+				description: `Estamos en mantenimiento, intente mas tarde`,
 			})
 		})
 	return returnResponse

@@ -6,13 +6,15 @@ import { Row, Col } from 'antd'
 
 import Account from '../../../../components/Account'
 
+import './style.css'
+
 export default class AccountsRelations extends React.Component {
 	render() {
 		return (
 			<>
 				<Row className='cv-detail-accounts-relations-conente'>
 					<Col xs={24} sm={24} md={24}>
-						<h3>Cuentas Relacionadas</h3>
+						<h3 className='cv-detail-title-accounts-relations'>Cuentas Relacionadas</h3>
 					</Col>
 					{this.props.relations.map(function (item, i) {
 						return (
