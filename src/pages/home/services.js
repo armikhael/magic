@@ -8,6 +8,7 @@ export default async function serviceGetAccounts(item) {
 		url: `${process.env.REACT_APP_HOST}/account?page=${item}&limit=10`,
 	})
 		.then((response) => {
+			console.log(response.data)
 			returnResponse = response
 		})
 		.catch((error) => {
