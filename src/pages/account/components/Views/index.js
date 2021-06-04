@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react'
 import {
-	NodeIndexOutlined,
 	AuditOutlined,
 	QuestionCircleOutlined,
 	NotificationOutlined,
@@ -122,40 +121,6 @@ export default function Views(props) {
 											})
 											window.open(
 												`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un PRODUCTO por una mención en tu cuenta`
-											)
-										}}>
-										<a href={'/#'} className='cv-detail-actiones-title-a'>
-											Click aquí
-										</a>
-									</Popconfirm>
-								</p>
-							}
-						/>
-						<Comment
-							author={
-								<a href={'/#'} className='cv-detail-actiones-title'>
-									{' '}
-									Sorteo x Mención
-								</a>
-							}
-							avatar={<NodeIndexOutlined style={{ fontSize: '26px' }} />}
-							content={
-								<p>
-									¡Aumenta la participacón!
-									<br />
-									<Popconfirm
-										title='Entregarás un producto al influencer para que haga un "SORTEO" en su cuenta (cada influencer tiene sus propias normas) ¿Estás de acuerdo?'
-										okText='Si'
-										cancelText='No'
-										icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
-										onConfirm={() => {
-											serviceEventGoogleAnalytics({
-												category: 'intercambio',
-												action: 'click-sorteo',
-												label: props.detail.name,
-											})
-											window.open(
-												`${process.env.REACT_APP_WHATSAPP}?phone=${props.detail.code}${props.detail.phone}&text=Hola ${props.detail.account}, te encontre en cuentasvirales.com y me gustaría darte un producto para hacer un SORTEO`
 											)
 										}}>
 										<a href={'/#'} className='cv-detail-actiones-title-a'>
