@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification } from 'antd'
+import { Form, Button, notification, Card } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
@@ -12,7 +12,7 @@ import { serviceCreateData } from './services'
 import insterfaceForm from './interface'
 import './style.css'
 
-const AccountUser = (props) => {
+export default function AccountUser(props) {
 	const history = useHistory()
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
@@ -48,44 +48,37 @@ const AccountUser = (props) => {
 	return (
 		<>
 			{data !== undefined && (
-				<ul>
-					<br></br>
-					<br></br>
-					<li>
-						Creación de la cuenta
+				<div className='cv-account-wizzard-content'>
+					<Card className='cv-account-wizzard-card' title='Creación de la cuenta' bordered={false}>
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
-							<div className='ph-auth-login-form-container'>
-								<SelectField
-									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'Red Social'}
-									componentName={'type'}
-									componentMode={'single'}
-									componentPlaceholder={'Seleccione una opción'}
-									componentOptions={redSocial}
-									componentRules={'rulesSelect'}
-								/>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'account'}
-									componentLabel={'Nombre de tu usuario'}
-									componentRules={'rulesAccount'}
-									componentPlaceholder={'Usuario'}
-									componentType={'text'}
-									componentValue={data.account}
-								/>
-							</div>
-
-							<Form.Item>
-								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
+							<SelectField
+								componentClass={'cv-auth-login-field-input'}
+								componentLabel={'Red Social'}
+								componentName={'type'}
+								componentMode={'single'}
+								componentPlaceholder={'Seleccione una opción'}
+								componentOptions={redSocial}
+								componentRules={'rulesSelect'}
+							/>
+							<InputField
+								componentClass={'cv-auth-login-field-input'}
+								componentName={'account'}
+								componentLabel={'Nombre de tu usuario'}
+								componentRules={'rulesAccount'}
+								componentPlaceholder={'Usuario'}
+								componentType={'text'}
+								componentValue={data.account}
+							/>
+							<br></br>
+							<Form.Item className='cv-right'>
+								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 									Siguiente
 								</Button>
 							</Form.Item>
 						</Form>
-					</li>
-				</ul>
+					</Card>
+				</div>
 			)}
 		</>
 	)
 }
-
-export default AccountUser

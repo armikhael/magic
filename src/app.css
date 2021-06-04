@@ -66,6 +66,10 @@ p {
 	text-align: center;
 }
 
+.cv-right {
+	text-align: right;
+}
+
 .cv-xs {
 	display: none;
 }
