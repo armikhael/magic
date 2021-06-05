@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-const serviceViewAccount = async (item) => {
+const serviceAccountDetail = async (item, email) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -46,7 +46,7 @@ const serviceGetPromotions = async (item) => {
 	return returnResponse
 }
 
-const serviceGetLnks = async (item) => {
+const serviceGetLinks = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -61,4 +61,19 @@ const serviceGetLnks = async (item) => {
 	return returnResponse
 }
 
-export { serviceViewAccount, serviceGetPromotions, serviceGetLnks }
+const serviceGetPermissions = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/account/permissions/${item}`,
+	})
+		.then((response) => {
+			returnResponse = response.data.data
+		})
+		.catch((e) => {
+			returnResponse = e.response.data
+		})
+	return returnResponse
+}
+
+export { serviceAccountDetail, serviceGetPromotions, serviceGetLinks, serviceGetPermissions }

@@ -17,7 +17,7 @@ import Views from './components/Views'
 import Promotion from './components/Promotion'
 
 import './style.css'
-import { serviceViewAccount, serviceGetPromotions, serviceGetLnks } from './services'
+import { serviceAccountDetail, serviceGetPromotions, serviceGetLinks, serviceGetPermissions } from './services'
 
 const { Content } = Layout
 
@@ -30,6 +30,7 @@ export default class AccountDetail extends React.Component {
 		promotion: [],
 		links: [],
 		errored: false,
+		permissions: undefined,
 	}
 
 	async componentDidMount() {
@@ -45,25 +46,38 @@ export default class AccountDetail extends React.Component {
 				return this.props.match.params.name.includes(item)
 			})
 			if (includeName !== undefined) {
-				serviceViewAccount(this.props.match.params.name).then((response) => {
-					this.setState({
-						loading: false,
-						image: response.account[0].image,
-						detail: response.account[0],
-						relations: response.relations,
-						asociation: response.asociation,
-						views: response.statitics_view,
-						totalView: response.total_week_view,
-					})
+				const accountDetail = await serviceAccountDetail(this.props.match.params.name)
+				this.setState({
+					image: accountDetail.account[0].image,
+					detail: accountDetail.account[0],
+					relations: accountDetail.relations,
+					asociation: accountDetail.asociation,
+					views: accountDetail.statitics_view,
+					totalView: accountDetail.total_week_view,
+				})
 
-					serviceGetPromotions().then(({ data }) => {
+				const promotion = await serviceGetPromotions()
+				console.log('promotion', promotion)
+				this.setState({
+					promotion: this.handleVerifyPromotion(promotion.data, this.state.detail),
+				})
+				if (localStorage.getItem('user')) {
+					const userProfile = JSON.parse(localStorage.getItem('user'))
+					console.log(userProfile.email)
+					if (userProfile.email !== undefined) {
+						const permissions = await serviceGetPermissions(userProfile.email)
+						console.log('permissions', permissions)
 						this.setState({
-							promotion: this.handleVerifyPromotion(data, response.account[0]),
+							permissions: permissions,
 						})
-					})
+					}
+				}
+
+				this.setState({
+					loading: false,
 				})
 			} else {
-				serviceGetLnks(this.props.match.params.name).then((response) => {
+				serviceGetLinks(this.props.match.params.name).then((response) => {
 					this.setState({
 						loading: false,
 						links: response[0].links,
@@ -97,11 +111,7 @@ export default class AccountDetail extends React.Component {
 				}
 				return newItem
 			})
-			if (
-				date.getDate() <= iterator.day &&
-				date.getMonth() === iterator.month &&
-				filterCountry !== undefined
-			) {
+			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
 				itemFilter.push(iterator)
 			}
 		})
@@ -176,7 +186,10 @@ export default class AccountDetail extends React.Component {
 														/>
 													)}
 												</h1>
-												<Moment format='LLLL' withTitle className='cv-detail-moment-title-mobil'>
+												<Moment
+													format='LLLL'
+													withTitle
+													className='cv-detail-moment-title-mobil'>
 													{this.state.detail.createdAt}
 												</Moment>
 												<a
@@ -223,7 +236,9 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+														<span className='cv-detail-category-tag'>
+															#{item}&nbsp;&nbsp;
+														</span>
 													</Link>
 												)
 											})}
@@ -273,7 +288,11 @@ export default class AccountDetail extends React.Component {
 										</h3>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
+												<Col
+													xs={24}
+													sm={24}
+													md={7}
+													className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -321,7 +340,9 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+														<span className='cv-detail-category-tag'>
+															#{item}&nbsp;&nbsp;
+														</span>
 													</Link>
 												)
 											})}
@@ -333,6 +354,7 @@ export default class AccountDetail extends React.Component {
 										views={this.state.views}
 										total={this.state.totalView}
 										detail={this.state.detail}
+										permissions={this.state.permissions}
 									/>
 									<AccountsRelations relations={this.state.relations} />
 								</div>
@@ -390,7 +412,9 @@ export default class AccountDetail extends React.Component {
 									views={this.state.views}
 									total={this.state.totalView}
 									detail={this.state.detail}
+									permissions={this.state.permissions}
 								/>
+
 								<div className='cv-detail-accounts-user-publicidad'>
 									<Promotion
 										promotion={this.state.promotion}

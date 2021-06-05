@@ -33,20 +33,19 @@ const authLoginServices = async (item, redirect) => {
 		.then((response) => {
 			console.log(response)
 			if (response.data.statusCode <= 200) {
+				localStorage.setItem(
+					'user',
+					JSON.stringify({
+						email: response.data.data.email,
+						image: response.data.data.image,
+						first_name: response.data.data.first_name,
+						last_name: response.data.data.last_name,
+					})
+				)
 				notification['success']({
 					message: `!Bienvenido a Cuentas Virales!`,
 					description: `Registra tus cuentas y comienza a vender...`,
 				})
-				localStorage.setItem(
-					'user',
-					JSON.stringify({
-						email: response.data.data.user.email,
-						image: response.data.data.user.image,
-						first_name: response.data.data.user.first_name,
-						last_name: response.data.data.user.last_name,
-						red_social: response.data.data.red_social,
-					})
-				)
 				let timer = setTimeout(() => {
 					redirect.history.push('/')
 				}, 1000)
@@ -54,7 +53,7 @@ const authLoginServices = async (item, redirect) => {
 			} else {
 				notification['warning']({
 					message: `Problema para Iniciar Sesión`,
-					description: `${response.data.data.message}...`,
+					description: `${response.data.message}...`,
 				})
 			}
 			returnResponse = response.data
