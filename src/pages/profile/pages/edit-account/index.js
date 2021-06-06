@@ -192,6 +192,7 @@ export default class EditAccount extends React.Component {
 			}
 
 			await serviceUpdateAccount(body).then((data) => {
+				console.log(data)
 				if (data.statusCode === 500) {
 					notification['error']({
 						message: `Ups!`,
