@@ -3,6 +3,7 @@
 import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
+import publicIp from 'public-ip'
 
 import { Row, Col, List, Avatar, Layout, notification } from 'antd'
 import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
@@ -41,12 +42,13 @@ export default class AccountDetail extends React.Component {
 		})
 
 		try {
+			const isIp = await this.handleIp()
 			let redSocial = ['-instagram', '-facebook', '-tiktok']
 			const includeName = redSocial.find((item) => {
 				return this.props.match.params.name.includes(item)
 			})
 			if (includeName !== undefined) {
-				const accountDetail = await serviceAccountDetail(this.props.match.params.name)
+				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, views: isIp })
 				this.setState({
 					image: accountDetail.account[0].image,
 					detail: accountDetail.account[0],
@@ -90,6 +92,32 @@ export default class AccountDetail extends React.Component {
 				message: `Ups!`,
 				description: `Disculpe estamos en mantenimiento, intente más tarde`,
 			})
+		}
+	}
+
+	async handleIp() {
+		const ipv4 = await publicIp.v4()
+		let date = new Date()
+		let day = date.getDate()
+		let month = date.getMonth() + 1
+		let year = date.getFullYear()
+		let today = `${day}-${month}-${year}`
+		console.log(`${day}-${month}-${year}`)
+
+		if (localStorage.getItem('ip')) {
+			const localStorageIp = JSON.parse(localStorage.getItem('ip'))
+			const newData = { date: today, ip: ipv4 }
+			console.log('today', newData)
+			if (localStorageIp.date === newData.date && localStorageIp.ip === newData.ip) {
+				return false
+			} else {
+				localStorage.setItem('ip', JSON.stringify(newData))
+				return true
+			}
+		} else {
+			const newData = { date: `${day + 1}-${month}-${year}`, ip: ipv4 }
+			localStorage.setItem('ip', JSON.stringify(newData))
+			return true
 		}
 	}
 
@@ -160,7 +188,7 @@ export default class AccountDetail extends React.Component {
 								<Row className='cv-detail-content-accoun cv-md'>
 									<p className='cv-detail-content-accoun-p'>
 										¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
-										<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
+										<a href={`${process.env.REACT_APP_DOMAIN}/help/quienes-somos`}> click aquí</a>
 									</p>
 								</Row>
 								<Row className='cv-detail-content-accoun'>
