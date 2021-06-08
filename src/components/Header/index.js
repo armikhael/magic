@@ -1,7 +1,6 @@
 /** @format */
 
 import React from 'react'
-
 import { Layout, Row, Col } from 'antd'
 
 import Logo from './components/Logo/'

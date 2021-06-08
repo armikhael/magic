@@ -3,11 +3,13 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-const serviceAccountDetail = async (item, email) => {
+const serviceAccountDetail = async (item) => {
+	console.log('serviceAccountDetail', item)
 	let returnResponse
 	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account/detail/${item}`,
+		method: 'POST',
+		url: `${process.env.REACT_APP_HOST}/account/detail`,
+		data: item,
 	})
 		.then((response) => {
 			if (response.data.statusCode <= 200) {
