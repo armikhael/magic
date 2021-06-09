@@ -10,8 +10,6 @@ import { UserOutlined, HeartOutlined, ApiOutlined, WhatsAppOutlined } from '@ant
 import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
 
-import UploadImage from './components/UploadImage'
-
 import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 import './style.css'
 
@@ -103,7 +101,12 @@ export default class Profile extends React.Component {
 												return (
 													<Row className='cv-profile-card-account-content' key={i}>
 														<Col sm={24} md={6} className='cv-profile-upload-image'>
-															<UploadImage account={item} />
+															<img
+																className='cv-profile-main-info-inner-container-img'
+																src={item.image}
+																alt={item.name}
+																title={item.name}
+															/>
 														</Col>
 														<Col
 															sm={24}
@@ -165,15 +168,15 @@ export default class Profile extends React.Component {
 																		</li>
 
 																		<li>
-																			Cuenta de negocio:{' '}
+																			Negocio:
 																			{item.business.toString()}
 																		</li>
 																		<li>
-																			Participa en GoFoundme:
+																			GoFoundme:
 																			{item.gofoundme.toString()}
 																		</li>
 																		<li>
-																			Mencion x mencion:
+																			Mencion:
 																			{item.mention.toString()}
 																		</li>
 																		<li>
@@ -197,37 +200,27 @@ export default class Profile extends React.Component {
 																				</Button>
 																			</li>
 																		)}
+																		{item.eneable === true && (
+																			<li>
+																				<CopyToClipboard
+																					text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+																					<Button shape='round'>
+																						Copiar enlace
+																					</Button>
+																				</CopyToClipboard>
+																			</li>
+																		)}
+																		<li>
+																			<Button
+																				type='danger'
+																				shape='round'
+																				onClick={() => {
+																					this.handleDeleteAccount(item)
+																				}}>
+																				Eliminar
+																			</Button>
+																		</li>
 																	</ul>
-																</Col>
-																{item.eneable === true && (
-																	<Col
-																		className='mb15'
-																		xs={24}
-																		sm={24}
-																		md={24}
-																		lg={8}
-																		xl={8}>
-																		<CopyToClipboard
-																			text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																			<Button shape='round'>Copiar enlace</Button>
-																		</CopyToClipboard>
-																	</Col>
-																)}
-																<Col
-																	className='mb15'
-																	xs={24}
-																	sm={24}
-																	md={24}
-																	lg={6}
-																	xl={6}>
-																	<Button
-																		type='danger'
-																		shape='round'
-																		onClick={() => {
-																			this.handleDeleteAccount(item)
-																		}}>
-																		Eliminar
-																	</Button>
 																</Col>
 															</Row>
 														</Col>
