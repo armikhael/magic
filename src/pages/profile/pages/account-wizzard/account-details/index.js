@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification, Card } from 'antd'
+import { Form, Button, notification, Card, Divider } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import RadioField from '../../../../../components/Form/Radio'
@@ -33,6 +33,21 @@ const AccountDetails = (props) => {
 		console.log('useEffects')
 	}, [props])
 
+	const handleButtonSkip = () => {
+		if (isModify === true) {
+			return (
+				<>
+					<Button
+						onClick={() => {
+							history.push(`/profile/`)
+						}}
+						className={'cv-account-wizzard-button-submit'}>
+						Omitir
+					</Button>
+				</>
+			)
+		}
+	}
 	const handleOnFinish = (item) => {
 		item._id = data._id
 		serviceUpdateData(item).then((response) => {
@@ -56,10 +71,7 @@ const AccountDetails = (props) => {
 		<>
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
-					<Card
-						className='cv-account-wizzard-card mt20'
-						title='Datos de la cuenta'
-						bordered={false}>
+					<Card className='cv-account-wizzard-card mt20' title='Configuración (4/4)' bordered={false}>
 						Datos adicionales: {param}
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
@@ -99,10 +111,12 @@ const AccountDetails = (props) => {
 									componentOptions={[...CONSTANTS.BOOLEAN]}
 								/>
 							</div>
+							<Divider></Divider>
 							<Form.Item className='cv-right'>
 								<Button htmlType='submit' className={'cv-account-wizzard-button-submit'}>
 									{buttonText}
 								</Button>
+								{handleButtonSkip()}
 							</Form.Item>
 						</Form>
 					</Card>

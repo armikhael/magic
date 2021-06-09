@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification, Card } from 'antd'
+import { Form, Button, notification, Card, Divider } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
@@ -51,7 +51,7 @@ export default function AccountUser(props) {
 				<div className='cv-account-wizzard-content'>
 					<Card
 						className='cv-account-wizzard-card mt100'
-						title='Creación de la cuenta'
+						title='Creación de la cuenta (1/4)'
 						bordered={false}>
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<SelectField
@@ -72,7 +72,7 @@ export default function AccountUser(props) {
 								componentType={'text'}
 								componentValue={data.account}
 							/>
-							<br></br>
+							<Divider></Divider>
 							<Form.Item className='cv-right'>
 								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 									Siguiente

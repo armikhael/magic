@@ -59,6 +59,24 @@ const AccountPlans = (props) => {
 		)
 	}
 
+	const handleButtonSkip = () => {
+		let redirect = `/profile/account-details/${props.match.params.name}`
+		if (isModify === true) {
+			redirect = `/profile/`
+		}
+		return (
+			<>
+				<Button
+					onClick={() => {
+						history.push(redirect)
+					}}
+					className={'cv-account-wizzard-button-submit'}>
+					Omitir
+				</Button>
+			</>
+		)
+	}
+
 	const handleSubmit = () => {
 		let item = {}
 		item.plans = plans
@@ -85,11 +103,7 @@ const AccountPlans = (props) => {
 			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
-					<Card
-						className='cv-account-wizzard-card mt20'
-						title='Datos de la cuenta'
-						bordered={false}>
-						Datos de los paquetes
+					<Card className='cv-account-wizzard-card mt20' title='Datos de los Paquetes (3/4)' bordered={false}>
 						<Form id='formPlans' form={form} initialValues={data} onFinish={handleAddPlans}>
 							<div className='ph-auth-login-form-container'>
 								<SelectConstantField
@@ -137,41 +151,45 @@ const AccountPlans = (props) => {
 									Agregar Plan
 								</Button>
 							</Form.Item>
+
 							{plans.length > 0 && (
-								<List
-									header={<div>Enlaces Agregados</div>}
-									bordered
-									dataSource={plans}
-									renderItem={(item, key) => (
-										<List.Item>
-											<Typography.Text>
-												{item.quantity} - {item.description} - {item.price} - {item.currency}
-											</Typography.Text>
-											<Button
-												danger
-												type='link'
-												shape='round'
-												onClick={() => {
-													handleDelete(key)
-												}}>
-												Eliminar
-											</Button>
-										</List.Item>
-									)}
-								/>
+								<>
+									<Divider></Divider>
+									<List
+										header={<div>Enlaces Agregados</div>}
+										bordered
+										dataSource={plans}
+										renderItem={(item, key) => (
+											<List.Item>
+												<Typography.Text>
+													{item.quantity} - {item.description} - {item.price} -{' '}
+													{item.currency}
+												</Typography.Text>
+												<Button
+													danger
+													type='link'
+													shape='round'
+													onClick={() => {
+														handleDelete(key)
+													}}>
+													Eliminar
+												</Button>
+											</List.Item>
+										)}
+									/>
+								</>
 							)}
-							<br></br>
+							<Divider></Divider>
 							<Form.Item className='cv-right'>
 								<Button onClick={handleSubmit} className={'cv-account-wizzard-button-submit'}>
 									{buttonText}
 								</Button>
+								{handleButtonSkip()}
 							</Form.Item>
 						</Form>
-						<Divider></Divider>
 					</Card>
 				</div>
 			)}
-			<Divider></Divider>
 		</>
 	)
 }

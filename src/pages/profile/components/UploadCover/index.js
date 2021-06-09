@@ -14,9 +14,9 @@ export default function UploadCover(props) {
 			uid: '-1',
 			name: 'image.png',
 			status: 'done',
-			url: props.account.image_cover,
-			image: props.account.image_cover,
-			image_thumb: props.account.image_cover,
+			url: props.account.image_cover || process.env.REACT_APP_LOGO,
+			image: props.account.image_cover || process.env.REACT_APP_LOGO,
+			image_thumb: props.account.image_cover || process.env.REACT_APP_LOGO,
 		},
 	])
 	const [isButtom, setButtom] = useState(false)

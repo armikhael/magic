@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { Form, Button, notification, Col, Card, Row } from 'antd'
+import { Form, Button, notification, Col, Card, Row, Divider } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
@@ -91,6 +91,22 @@ const AccountBiography = (props) => {
 		console.log('entro por props')
 	}
 
+	const handleButtonSkip = () => {
+		if (isModify === true) {
+			return (
+				<>
+					<Button
+						onClick={() => {
+							history.push(`/profile/`)
+						}}
+						className={'cv-account-wizzard-button-submit'}>
+						Omitir
+					</Button>
+				</>
+			)
+		}
+	}
+
 	const handleOnFinish = (item) => {
 		item._id = data._id
 		item.code = code
@@ -119,7 +135,7 @@ const AccountBiography = (props) => {
 			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
-					<Card className='cv-account-wizzard-card mt20' title='Datos de la cuenta' bordered={false}>
+					<Card className='cv-account-wizzard-card mt20' title='Datos de la cuenta (2/4)' bordered={false}>
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
 								<SelectField
@@ -208,11 +224,12 @@ const AccountBiography = (props) => {
 									<UploadCover account={data} componentHandle={handleSetImageCover} />
 								</Col>
 							</Row>
-							<br></br>
+							<Divider></Divider>
 							<Form.Item className='cv-right'>
 								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 									{buttonText}
 								</Button>
+								{handleButtonSkip()}
 							</Form.Item>
 						</Form>
 					</Card>
