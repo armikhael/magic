@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, Divider, List, Typography, notification } from 'antd'
+import { Form, Button, Divider, List, Typography, notification, Card } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
 import SelectConstantField from '../../../../../components/Form/SelectConstant'
@@ -84,13 +84,11 @@ const AccountPlans = (props) => {
 		<>
 			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
-				<ul>
-					<br></br>
-					<br></br>
-					<li>
-						Cuenta: {data.account}, tipo de cuenta: {data.type}
-					</li>
-					<li>
+				<div className='cv-account-wizzard-content'>
+					<Card
+						className='cv-account-wizzard-card mt20'
+						title='Datos de la cuenta'
+						bordered={false}>
 						Datos de los paquetes
 						<Form id='formPlans' form={form} initialValues={data} onFinish={handleAddPlans}>
 							<div className='ph-auth-login-form-container'>
@@ -133,44 +131,45 @@ const AccountPlans = (props) => {
 									componentRules={'required'}
 								/>
 							</div>
+							<br></br>
 							<Form.Item>
 								<Button htmlType='submit' className={'cv-auth-login-main-button-submit'}>
 									Agregar Plan
 								</Button>
 							</Form.Item>
-
-							<Form.Item>
-								<Button onClick={handleSubmit} className={'cv-auth-login-main-button-submit'}>
+							{plans.length > 0 && (
+								<List
+									header={<div>Enlaces Agregados</div>}
+									bordered
+									dataSource={plans}
+									renderItem={(item, key) => (
+										<List.Item>
+											<Typography.Text>
+												{item.quantity} - {item.description} - {item.price} - {item.currency}
+											</Typography.Text>
+											<Button
+												danger
+												type='link'
+												shape='round'
+												onClick={() => {
+													handleDelete(key)
+												}}>
+												Eliminar
+											</Button>
+										</List.Item>
+									)}
+								/>
+							)}
+							<br></br>
+							<Form.Item className='cv-right'>
+								<Button onClick={handleSubmit} className={'cv-account-wizzard-button-submit'}>
 									{buttonText}
 								</Button>
 							</Form.Item>
 						</Form>
 						<Divider></Divider>
-						{plans.length > 0 && (
-							<List
-								header={<div>Enlaces Agregados</div>}
-								bordered
-								dataSource={plans}
-								renderItem={(item, key) => (
-									<List.Item>
-										<Typography.Text>
-											{item.quantity} - {item.description} - {item.price} - {item.currency}
-										</Typography.Text>
-										<Button
-											danger
-											type='link'
-											shape='round'
-											onClick={() => {
-												handleDelete(key)
-											}}>
-											Eliminar
-										</Button>
-									</List.Item>
-								)}
-							/>
-						)}
-					</li>
-				</ul>
+					</Card>
+				</div>
 			)}
 			<Divider></Divider>
 		</>

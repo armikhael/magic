@@ -49,7 +49,10 @@ export default function AccountUser(props) {
 		<>
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
-					<Card className='cv-account-wizzard-card' title='Creación de la cuenta' bordered={false}>
+					<Card
+						className='cv-account-wizzard-card mt100'
+						title='Creación de la cuenta'
+						bordered={false}>
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<SelectField
 								componentClass={'cv-auth-login-field-input'}

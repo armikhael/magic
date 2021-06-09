@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification } from 'antd'
+import { Form, Button, notification, Card } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import RadioField from '../../../../../components/Form/Radio'
@@ -55,10 +55,11 @@ const AccountDetails = (props) => {
 	return (
 		<>
 			{data !== undefined && (
-				<ul>
-					<br></br>
-					<br></br>
-					<li>
+				<div className='cv-account-wizzard-content'>
+					<Card
+						className='cv-account-wizzard-card mt20'
+						title='Datos de la cuenta'
+						bordered={false}>
 						Datos adicionales: {param}
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
@@ -98,14 +99,14 @@ const AccountDetails = (props) => {
 									componentOptions={[...CONSTANTS.BOOLEAN]}
 								/>
 							</div>
-							<Form.Item>
-								<Button htmlType='submit' className={'cv-auth-login-main-button-submit'}>
+							<Form.Item className='cv-right'>
+								<Button htmlType='submit' className={'cv-account-wizzard-button-submit'}>
 									{buttonText}
 								</Button>
 							</Form.Item>
 						</Form>
-					</li>
-				</ul>
+					</Card>
+				</div>
 			)}
 		</>
 	)

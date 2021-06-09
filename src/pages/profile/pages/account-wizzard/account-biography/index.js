@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification, Col } from 'antd'
+
+import { Form, Button, notification, Col, Card, Row } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
@@ -108,21 +109,13 @@ const AccountBiography = (props) => {
 		<>
 			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
-				<ul>
-					<br></br>
-					<br></br>
-					<li>
-						Datos de la cuenta
+				<div className='cv-account-wizzard-content'>
+					<Card
+						className='cv-account-wizzard-card mt20'
+						title='Datos de la cuenta'
+						bordered={false}>
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
-								<Col sm={24} md={6} className='cv-profile-upload-image'>
-									<UploadImage account={data} componentHandle={handleSetImage} />
-								</Col>
-
-								<Col sm={24} md={6} className='cv-profile-upload-image'>
-									<UploadCover account={data} componentHandle={handleSetImage} />
-								</Col>
-
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
 									componentLabel={'Red Social'}
@@ -143,7 +136,6 @@ const AccountBiography = (props) => {
 									componentValue={data.account}
 									componentDisabled={isEdit}
 								/>
-
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'followers'}
@@ -153,7 +145,6 @@ const AccountBiography = (props) => {
 									componentRules={'rulesFollowers'}
 									componentValue={data.followers}
 								/>
-
 								<TextAreaField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'biography'}
@@ -163,7 +154,6 @@ const AccountBiography = (props) => {
 									componentRules={'required'}
 									componentValue={data.biography}
 								/>
-
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
 									componentLabel={'¿País de residencia?'}
@@ -173,7 +163,6 @@ const AccountBiography = (props) => {
 									componentRules={'rulesSelect'}
 									componentOptions={countries}
 								/>
-
 								<InputField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'phone'}
@@ -183,7 +172,6 @@ const AccountBiography = (props) => {
 									componentRules={'rulesPhone'}
 									componentValue={data.phone}
 								/>
-
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
 									componentLabel={'Categorías'}
@@ -194,7 +182,6 @@ const AccountBiography = (props) => {
 									componentRules={'rulesSelect'}
 									componentMaxTagCount={5}
 								/>
-
 								<TextAreaField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'faq'}
@@ -205,15 +192,25 @@ const AccountBiography = (props) => {
 									componentValue={data.faq}
 								/>
 							</div>
-
-							<Form.Item>
-								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
+							<Row>
+								<Col sm={12} md={12} className='cv-profile-upload-image p10'>
+									Imagen de Pefil
+									<UploadImage account={data} componentHandle={handleSetImage} />
+								</Col>
+								<Col sm={12} md={12} className='cv-profile-upload-image p10'>
+									Imagen de Cover
+									<UploadCover account={data} componentHandle={handleSetImage} />
+								</Col>
+							</Row>
+							<br></br>
+							<Form.Item className='cv-right'>
+								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 									{buttonText}
 								</Button>
 							</Form.Item>
 						</Form>
-					</li>
-				</ul>
+					</Card>
+				</div>
 			)}
 		</>
 	)
