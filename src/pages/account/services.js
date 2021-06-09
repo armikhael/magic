@@ -4,7 +4,6 @@ import axios from 'axios'
 import { notification } from 'antd'
 
 const serviceAccountDetail = async (item) => {
-	console.log('serviceAccountDetail', item)
 	let returnResponse
 	await axios({
 		method: 'POST',
@@ -21,9 +20,8 @@ const serviceAccountDetail = async (item) => {
 				})
 			}
 		})
-		.catch((error) => {
-			returnResponse = error.response.data
-			console.log(process.env.REACT_APP_HOST, error)
+		.catch((e) => {
+			returnResponse = e.response.data
 			notification['error']({
 				message: `Error`,
 				description: `Error de conexión, intente mas tarde`,

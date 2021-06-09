@@ -51,6 +51,7 @@ export default class AccountDetail extends React.Component {
 				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, views: isIp })
 				this.setState({
 					image: accountDetail.account[0].image,
+					image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
 					detail: accountDetail.account[0],
 					relations: accountDetail.relations,
 					asociation: accountDetail.asociation,
@@ -59,7 +60,7 @@ export default class AccountDetail extends React.Component {
 				})
 
 				const promotion = await serviceGetPromotions()
-				console.log('promotion', promotion)
+
 				this.setState({
 					promotion: this.handleVerifyPromotion(promotion.data, this.state.detail),
 				})
@@ -102,12 +103,10 @@ export default class AccountDetail extends React.Component {
 		let month = date.getMonth() + 1
 		let year = date.getFullYear()
 		let today = `${day}-${month}-${year}`
-		console.log(`${day}-${month}-${year}`)
 
 		if (localStorage.getItem('ip')) {
 			const localStorageIp = JSON.parse(localStorage.getItem('ip'))
 			const newData = { date: today, ip: ipv4 }
-			console.log('today', newData)
 			if (localStorageIp.date === newData.date && localStorageIp.ip === newData.ip) {
 				return false
 			} else {
@@ -162,7 +161,7 @@ export default class AccountDetail extends React.Component {
 								className='cv-detail-img-main '
 								title={this.state.detail.name}
 								alt={this.state.detail.name}
-								src={this.state.image}
+								src={this.state.image_cover}
 							/>
 							<div
 								className='cv-detail-whatsapp-icon-mobil'
