@@ -22,7 +22,6 @@ export default function UploadImage(props) {
 	const [isButtom, setButtom] = useState(false)
 
 	const beforeUpload = (file) => {
-		console.log('lol')
 		console.log('beforeUpload', file)
 		const isSize = file.size / 1024 / 1024 <= 0.1
 		if (!isSize) {
@@ -45,13 +44,14 @@ export default function UploadImage(props) {
 		let formData = new FormData()
 		formData.append('image', fileList[0].originFileObj)
 		formData.append('name', props.account.name)
-		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
+		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
 			console.log('imagen subida', response)
 			props.account.image = response.image.url
 			props.account.image_thumb = response.thumb.url
 			serviceUpdateData(props.account).then((response) => {
 				console.log('imagen guardada', response.data.image)
+				setButtom(false)
 				if (props.componentHandle) {
 					handleComponent(response.data.image)
 				}
@@ -94,7 +94,7 @@ export default function UploadImage(props) {
 			<br />
 			{isButtom && (
 				<Button className='cv-upload-img-update' type='primary' onClick={handleSaveImage}>
-					Actualizar
+					Confirmar
 				</Button>
 			)}
 		</>

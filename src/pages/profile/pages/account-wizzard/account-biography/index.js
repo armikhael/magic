@@ -30,7 +30,8 @@ const AccountBiography = (props) => {
 	const [code, setCode] = useState()
 	const [isModify, setIsModify] = useState(false)
 	const [buttonText, setButtonText] = useState('Continuar')
-	const [image, setImage] = useState()
+	const [imageProfile, setImageProfile] = useState(process.env.REACT_APP_LOGO)
+	const [imageCover, setImageCover] = useState(process.env.REACT_APP_LOGO)
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -78,15 +79,23 @@ const AccountBiography = (props) => {
 		setCode(findCurrency.code)
 	}
 
-	const handleSetImage = (item) => {
-		setImage(item)
+	const handleSetImageProfile = (item) => {
+		console.log(item)
+		setImageProfile(item)
+		console.log('entro por props')
+	}
+
+	const handleSetImageCover = (item) => {
+		console.log(item)
+		setImageCover(item)
 		console.log('entro por props')
 	}
 
 	const handleOnFinish = (item) => {
 		item._id = data._id
 		item.code = code
-		item.image = image
+		item.image = imageProfile
+		item.image_cover = imageCover
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
@@ -110,10 +119,7 @@ const AccountBiography = (props) => {
 			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
-					<Card
-						className='cv-account-wizzard-card mt20'
-						title='Datos de la cuenta'
-						bordered={false}>
+					<Card className='cv-account-wizzard-card mt20' title='Datos de la cuenta' bordered={false}>
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
 								<SelectField
@@ -195,11 +201,11 @@ const AccountBiography = (props) => {
 							<Row>
 								<Col sm={12} md={12} className='cv-profile-upload-image p10'>
 									Imagen de Pefil
-									<UploadImage account={data} componentHandle={handleSetImage} />
+									<UploadImage account={data} componentHandle={handleSetImageProfile} />
 								</Col>
 								<Col sm={12} md={12} className='cv-profile-upload-image p10'>
 									Imagen de Cover
-									<UploadCover account={data} componentHandle={handleSetImage} />
+									<UploadCover account={data} componentHandle={handleSetImageCover} />
 								</Col>
 							</Row>
 							<br></br>

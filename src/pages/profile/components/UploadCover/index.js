@@ -43,10 +43,11 @@ export default function UploadCover(props) {
 		let formData = new FormData()
 		formData.append('image', fileList[0].originFileObj)
 		formData.append('name', `${props.account.name}-cover`)
-		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
+		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
 			props.account.image_cover = response.image.url
 			serviceUpdateData(props.account).then((response) => {
+				setButtom(false)
 				if (props.componentHandle) {
 					handleComponent(response.data.image)
 				}
@@ -89,7 +90,7 @@ export default function UploadCover(props) {
 			<br />
 			{isButtom && (
 				<Button className='cv-upload-img-update' type='primary' onClick={handleSaveImage}>
-					Actualizar
+					Confirmar
 				</Button>
 			)}
 		</>
