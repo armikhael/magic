@@ -14,7 +14,6 @@ const AccountDetails = (props) => {
 	const history = useHistory()
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
-	const [param, setParam] = useState()
 	const [isModify, setIsModify] = useState(false)
 	const [buttonText, setButtonText] = useState('Finalizar')
 
@@ -28,7 +27,6 @@ const AccountDetails = (props) => {
 			setIsModify(true)
 			setButtonText('Actualizar')
 		}
-		setParam(props.match.params.name)
 		fetchData(props.match.params.name)
 		console.log('useEffects')
 	}, [props])
@@ -72,7 +70,6 @@ const AccountDetails = (props) => {
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
 					<Card className='cv-account-wizzard-card mt20' title='Configuración (4/4)' bordered={false}>
-						Datos adicionales: {param}
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<div className='ph-auth-login-form-container'>
 								<RadioField

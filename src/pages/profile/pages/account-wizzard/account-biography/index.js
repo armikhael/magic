@@ -20,7 +20,6 @@ import { serviceGetData, serviceUpdateData } from './services'
 const AccountBiography = (props) => {
 	const history = useHistory()
 	const [form] = Form.useForm()
-	const [param, setParam] = useState()
 	const [data, setData] = useState()
 	const [isEdit, setEdit] = useState(false)
 	const [categories, setCategories] = useState([])
@@ -45,7 +44,6 @@ const AccountBiography = (props) => {
 			setIsModify(true)
 			setButtonText('Actualizar')
 		}
-		setParam(props.match.params.name)
 		fetchData(props.match.params.name)
 		serviceGetCategories().then((data) => {
 			let result = data.map((item) => {
@@ -132,7 +130,6 @@ const AccountBiography = (props) => {
 
 	return (
 		<>
-			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
 					<Card className='cv-account-wizzard-card mt20' title='Datos de la cuenta (2/4)' bordered={false}>

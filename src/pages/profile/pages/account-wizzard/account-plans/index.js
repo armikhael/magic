@@ -14,9 +14,7 @@ import { serviceGetData, serviceUpdateData } from './services'
 const AccountPlans = (props) => {
 	const history = useHistory()
 	const [form] = Form.useForm()
-	const [param, setParam] = useState()
 	const [data, setData] = useState()
-	const [isEdit, setEdit] = useState(false)
 	const [quantities, setQuantities] = useState([])
 	const [concepts, setConcepts] = useState([])
 	const [currencies, setCurrencies] = useState()
@@ -37,9 +35,7 @@ const AccountPlans = (props) => {
 			setIsModify(true)
 			setButtonText('Actualizar')
 		}
-		setParam(props.match.params.name)
 		fetchData(props.match.params.name)
-		setEdit(true)
 		setQuantities([...CONSTANTS.QUANTITY_POST])
 		setCurrencies([...CONSTANTS.CURRENCY])
 		console.log('useEffects')
@@ -100,7 +96,6 @@ const AccountPlans = (props) => {
 
 	return (
 		<>
-			{isEdit === true && <p>Parametro: {param}</p>}
 			{data !== undefined && (
 				<div className='cv-account-wizzard-content'>
 					<Card className='cv-account-wizzard-card mt20' title='Datos de los Paquetes (3/4)' bordered={false}>
