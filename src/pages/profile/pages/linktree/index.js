@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Divider, List, Typography, Card } from 'antd'
+import { LinkOutlined, DeleteOutlined } from '@ant-design/icons'
 
+import Loading from '../../../../components/Loading/Loading'
 import InputField from '../../../../components/Form/Input'
 
 import { serviceGetData, serviceCreateData, serviceUpdateData } from './services'
@@ -70,98 +72,112 @@ const LinkTree = (props) => {
 
 	return (
 		<>
+			{data === undefined && <Loading />}
 			{data !== undefined && (
-				<div className='cv-linktree-content'>
-					<Card className='cv-linktree-card mt20' title='Creación linktree' bordered={false}>
-						<Form name='form' form={form} initialValues={data} onFinish={handleAddElement}>
-							<div className='ph-auth-login-form-container'>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'name'}
-									componentLabel={'Nombre del Enlace'}
-									componentRule={true}
-									componentPlaceholder={'Nombre del enlace'}
-									componentType={'text'}
-									componentRules={'rulesUser'}
-									componentValue={data.name}
-									componentOnChange={handleChangeName}
-									componentDisabled={isDisabled}
-								/>
+				<>
+					<div className='cv-linktree-content'>
+						<Card className='cv-linktree-card mt20' title='Creación Enlaces Arañas' bordered={false}>
+							<Form name='form' form={form} initialValues={data} onFinish={handleAddElement}>
+								<div className='ph-auth-login-form-container'>
+									<InputField
+										componentClass={'cv-auth-login-field-input'}
+										componentName={'name'}
+										componentLabel={'Nombre Personalizado'}
+										componentRule={true}
+										componentPlaceholder={'Ejemplo: cuentasvirales'}
+										componentType={'text'}
+										componentRules={'rulesUser'}
+										componentValue={data.name}
+										componentOnChange={handleChangeName}
+										componentDisabled={isDisabled}
+									/>
 
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'title'}
-									componentLabel={'Nombre del enlace'}
-									componentRule={true}
-									componentPlaceholder={'Nombre del enlace'}
-									componentType={'text'}
-									componentRules={'required'}
-									componentValue={data.title}
-								/>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'url'}
-									componentLabel={'Enlace'}
-									componentRule={true}
-									componentPlaceholder={'Enlace'}
-									componentType={''}
-									componentRules={'rulesUrl'}
-									componentValue={data.url}
-								/>
-							</div>
-							<Form.Item>
-								<Button
-									htmlType={'submit'}
-									className={'cv-linktree-button-submit cv-linktree-button-add'}>
-									Agregar
-								</Button>
-								<Divider></Divider>
-								<div className='cv-right'>
-									<Button
-										className={'cv-linktree-button-submit'}
-										onClick={() => {
-											handleSubmit()
-										}}>
-										Enviar
-									</Button>
+									<InputField
+										componentClass={'cv-auth-login-field-input'}
+										componentName={'title'}
+										componentLabel={'Nombre del enlace'}
+										componentRule={true}
+										componentPlaceholder={'Nombre del enlace'}
+										componentType={'text'}
+										componentRules={'required'}
+										componentValue={data.title}
+									/>
+									<InputField
+										componentClass={'cv-auth-login-field-input'}
+										componentName={'url'}
+										componentLabel={'Enlace'}
+										componentRule={true}
+										componentPlaceholder={'Enlace'}
+										componentType={''}
+										componentRules={'rulesUrl'}
+										componentValue={data.url}
+									/>
 								</div>
-							</Form.Item>
-						</Form>
-					</Card>
-				</div>
-			)}
-			<div className='cv-linktree-content'>
-				<Card
-					className='cv-linktree-card mt20'
-					title={`Regisros: ${links.length}`}
-					bordered={false}>
-					<p>Tu enlace personalizado quedaría así: cuentasvirales.com/{name}</p>
-					<Divider></Divider>
-					{links.length > 0 && (
-						<List
-							header={<div>Enlaces Agregados</div>}
-							bordered
-							dataSource={links}
-							renderItem={(item, key) => (
-								<List.Item>
-									<Typography.Text>
-										{item.title} - {item.url}
-									</Typography.Text>
+								<Form.Item>
 									<Button
-										danger
-										type='link'
-										shape='round'
-										onClick={() => {
-											handleDelete(key)
-										}}>
-										Eliminar
+										htmlType={'submit'}
+										className={'cv-linktree-button-submit cv-linktree-button-add'}>
+										Agregar
 									</Button>
-								</List.Item>
+									<Divider></Divider>
+									<div className='cv-right'>
+										<Button
+											className={'cv-linktree-button-submit'}
+											onClick={() => {
+												handleSubmit()
+											}}>
+											Enviar
+										</Button>
+									</div>
+								</Form.Item>
+							</Form>
+						</Card>
+					</div>
+
+					<div className='cv-linktree-content'>
+						<Card
+							className='cv-linktree-card mt20'
+							title={`Cantidad de Enlaces: ${links.length}`}
+							bordered={false}>
+							{links.length > 0 && (
+								<List
+									header={<div>Enlaces Agregados</div>}
+									bordered
+									dataSource={links}
+									renderItem={(item, key) => (
+										<List.Item
+											actions={[
+												<Button
+													key={key}
+													type='link'
+													shape='round'
+													icon={<LinkOutlined />}
+													onClick={() => {
+														window.open(item.url)
+													}}>
+													Ver
+												</Button>,
+												<Button
+													key={key}
+													danger
+													type='link'
+													shape='round'
+													icon={<DeleteOutlined />}
+													onClick={() => {
+														handleDelete(key)
+													}}>
+													Eliminar
+												</Button>,
+											]}>
+											<Typography.Text>{item.title} </Typography.Text>
+										</List.Item>
+									)}
+								/>
 							)}
-						/>
-					)}
-				</Card>
-			</div>
+						</Card>
+					</div>
+				</>
+			)}
 		</>
 	)
 }
