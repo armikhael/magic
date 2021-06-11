@@ -1,13 +1,14 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Divider, List, Typography } from 'antd'
+import { Form, Button, Divider, List, Typography, Card } from 'antd'
 
 import InputField from '../../../../components/Form/Input'
 
 import { serviceGetData, serviceCreateData, serviceUpdateData } from './services'
 import insterfaceForm from './interface'
+
+import './style.css'
 
 const LinkTree = (props) => {
 	const [form] = Form.useForm()
@@ -70,14 +71,8 @@ const LinkTree = (props) => {
 	return (
 		<>
 			{data !== undefined && (
-				<ul>
-					<li>
-						<Link to={`/profile/edit-link/${name}`}> Editar </Link>
-					</li>
-					<li>
-						<Link to={'/profile/create-link'}> Crear </Link>
-					</li>
-					<li>
+				<div className='cv-linktree-content'>
+					<Card className='cv-linktree-card mt20' title='Creación linktree' bordered={false}>
 						<Form name='form' form={form} initialValues={data} onFinish={handleAddElement}>
 							<div className='ph-auth-login-form-container'>
 								<InputField
@@ -115,47 +110,58 @@ const LinkTree = (props) => {
 								/>
 							</div>
 							<Form.Item>
-								<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
+								<Button
+									htmlType={'submit'}
+									className={'cv-linktree-button-submit cv-linktree-button-add'}>
 									Agregar
 								</Button>
-								<Button
-									className={'cv-auth-login-main-button-submit'}
-									onClick={() => {
-										handleSubmit()
-									}}>
-									Enviar
-								</Button>
+								<Divider></Divider>
+								<div className='cv-right'>
+									<Button
+										className={'cv-linktree-button-submit'}
+										onClick={() => {
+											handleSubmit()
+										}}>
+										Enviar
+									</Button>
+								</div>
 							</Form.Item>
 						</Form>
-					</li>
-				</ul>
+					</Card>
+				</div>
 			)}
-			<p>Regisros: {links.length}</p>
-			<p>Tu enlace personalizado quedaría así: cuentasvirales.com/{name}</p>
-			<Divider></Divider>
-			{links.length > 0 && (
-				<List
-					header={<div>Enlaces Agregados</div>}
-					bordered
-					dataSource={links}
-					renderItem={(item, key) => (
-						<List.Item>
-							<Typography.Text>
-								{item.title} - {item.url}
-							</Typography.Text>
-							<Button
-								danger
-								type='link'
-								shape='round'
-								onClick={() => {
-									handleDelete(key)
-								}}>
-								Eliminar
-							</Button>
-						</List.Item>
+			<div className='cv-linktree-content'>
+				<Card
+					className='cv-linktree-card mt20'
+					title={`Regisros: ${links.length}`}
+					bordered={false}>
+					<p>Tu enlace personalizado quedaría así: cuentasvirales.com/{name}</p>
+					<Divider></Divider>
+					{links.length > 0 && (
+						<List
+							header={<div>Enlaces Agregados</div>}
+							bordered
+							dataSource={links}
+							renderItem={(item, key) => (
+								<List.Item>
+									<Typography.Text>
+										{item.title} - {item.url}
+									</Typography.Text>
+									<Button
+										danger
+										type='link'
+										shape='round'
+										onClick={() => {
+											handleDelete(key)
+										}}>
+										Eliminar
+									</Button>
+								</List.Item>
+							)}
+						/>
 					)}
-				/>
-			)}
+				</Card>
+			</div>
 		</>
 	)
 }
