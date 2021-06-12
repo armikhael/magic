@@ -9,6 +9,7 @@ import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
 import Filters from '../../components/Filters'
 import PageError from '../../components/Errors/PageError'
+import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import './style.css'
 import { serviceGetAccountByCategory } from './services'
@@ -27,23 +28,30 @@ export default class Category extends React.Component {
 	}
 
 	handleList = () => {
-		serviceGetAccountByCategory(this.props.match.params.name.replaceAll('-', ' '), this.state.page, 'descViews').then(
-			(response) => {
-				if (response.statusCode === 200) {
-					this.setState({
-						list: [...this.state.list, ...response.data],
-						page: this.state.page + 1,
-						loading: false,
-					})
-				} else {
-					this.setState({ loading: false, error: response })
-				}
+		serviceGetAccountByCategory(
+			this.props.match.params.name.replaceAll('-', ' '),
+			this.state.page,
+			'descViews'
+		).then((response) => {
+			if (response.statusCode === 200) {
+				this.setState({
+					list: [...this.state.list, ...response.data],
+					page: this.state.page + 1,
+					loading: false,
+				})
+			} else {
+				this.setState({ loading: false, error: response })
 			}
-		)
+		})
 	}
 
 	handleMenuClick = (item) => {
-		console.log('click')
+		console.log('click', item.item.props.name)
+		serviceEventGoogleAnalytics({
+			category: 'filter',
+			action: 'click',
+			label: item.item.props.name,
+		})
 		serviceGetAccountByCategory(this.props.match.params.name.replaceAll('-', ' '), 1, item.item.props.name).then(
 			(response) => {
 				if (response.statusCode === 200) {

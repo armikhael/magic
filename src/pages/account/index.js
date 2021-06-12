@@ -10,7 +10,7 @@ import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
-import { serviceEventGoogleAnalytics } from '../../components/ServiceCommons/EventsGoogleAnalitycs'
+import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'

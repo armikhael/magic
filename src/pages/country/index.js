@@ -9,6 +9,7 @@ import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
 import PageError from '../../components/Errors/PageError'
 import Filters from '../../components/Filters'
+import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import './style.css'
 import { serviceGetAccountByCountry } from './service'
@@ -26,23 +27,30 @@ export default class Country extends React.Component {
 	}
 
 	handleList = () => {
-		serviceGetAccountByCountry(this.props.match.params.name.replaceAll('-', ' '), this.state.page, 'descViews').then(
-			(response) => {
-				if (response.statusCode === 200) {
-					this.setState({
-						list: [...this.state.list, ...response.data],
-						page: this.state.page + 1,
-						loading: false,
-					})
-				} else {
-					this.setState({ loading: false, error: response })
-				}
+		serviceGetAccountByCountry(
+			this.props.match.params.name.replaceAll('-', ' '),
+			this.state.page,
+			'descViews'
+		).then((response) => {
+			if (response.statusCode === 200) {
+				this.setState({
+					list: [...this.state.list, ...response.data],
+					page: this.state.page + 1,
+					loading: false,
+				})
+			} else {
+				this.setState({ loading: false, error: response })
 			}
-		)
+		})
 	}
 
 	handleMenuClick = (item) => {
-		console.log('click')
+		console.log('click', item.item.props.name)
+		serviceEventGoogleAnalytics({
+			category: 'filter',
+			action: 'click',
+			label: item.item.props.name,
+		})
 		serviceGetAccountByCountry(this.props.match.params.name.replaceAll('-', ' '), 1, item.item.props.name).then(
 			(response) => {
 				if (response.statusCode === 200) {

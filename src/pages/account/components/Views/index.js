@@ -11,7 +11,7 @@ import {
 import { Line } from '@ant-design/charts'
 import { Row, Col, Comment, Popconfirm } from 'antd'
 
-import { serviceEventGoogleAnalytics } from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
+import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import './style.css'
 
