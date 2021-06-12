@@ -3,15 +3,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-
 import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Tag } from 'antd'
-import { UserOutlined, HeartOutlined, ApiOutlined, WhatsAppOutlined } from '@ant-design/icons'
+import {
+	UserOutlined,
+	HeartOutlined,
+	ApiOutlined,
+	WhatsAppOutlined,
+	CloseOutlined,
+	CopyOutlined,
+} from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
 
-import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 import './style.css'
+import ModalConfiguration from './components/ModalConfiguration'
+import ModalEdit from './components/ModalEdit'
+import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 
 const { Content, Header } = Layout
 const { Text } = Typography
@@ -30,6 +38,7 @@ export default class Profile extends React.Component {
 
 	componentDidMount() {
 		serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
+			console.log(response)
 			this.setState({
 				accounts: response,
 				loading: false,
@@ -144,83 +153,54 @@ export default class Profile extends React.Component {
 																	md={24}
 																	lg={5}
 																	xl={5}>
-																	<ul>
-																		<li>
-																			<Button
-																				shape='round'
-																				href={`/profile/account-biography/${item.name}/modify`}>
-																				Editar Biografía
-																			</Button>
-																		</li>
-																		<li>
-																			<Button
-																				shape='round'
-																				href={`/profile/account-plans/${item.name}/modify`}>
-																				Editar Planes
-																			</Button>
-																		</li>
-																		<li>
-																			<Button
-																				shape='round'
-																				href={`/profile/account-details/${item.name}/modify`}>
-																				Editar Filtros
-																			</Button>
-																		</li>
+																	{item.eneable !== true && (
+																		<Button
+																			style={{ margin: '0px 5px' }}
+																			shape='round'
+																			href={`/profile/account-activation/${item.name}/modify`}>
+																			Activar Cuenta
+																		</Button>
+																	)}
 
-																		<li>
-																			Negocio:
-																			{item.business.toString()}
-																		</li>
-																		<li>
-																			GoFoundme:
-																			{item.gofoundme.toString()}
-																		</li>
-																		<li>
-																			Mencion:
-																			{item.mention.toString()}
-																		</li>
-																		<li>
-																			Sorteos:
-																			{item.mention.toString()}
-																		</li>
-																		<li>
-																			productos:
-																			{item.product.toString()}
-																		</li>
-																		<li>
-																			activada:
-																			{item.eneable.toString()}
-																		</li>
-																		{item.eneable !== true && (
-																			<li>
+																	<Button
+																		style={{ margin: '0px 5px' }}
+																		type='danger'
+																		shape='circle'
+																		onClick={() => {
+																			this.handleDeleteAccount(item)
+																		}}>
+																		<CloseOutlined />
+																	</Button>
+
+																	{item.eneable === true && (
+																		<>
+																			<ModalEdit
+																				componentData={item}
+																				componentHeader={
+																					'Modificar Información'
+																				}
+																			/>
+																			<ModalConfiguration
+																				componentData={item}
+																				componentHeader={'Condiguración'}
+																			/>
+																			<CopyToClipboard
+																				text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
 																				<Button
-																					shape='round'
-																					href={`/profile/account-activation/${item.name}/modify`}>
-																					Confirmar Cuenta
+																					style={{ margin: '0px 5px' }}
+																					shape='circle'
+																					onClick={() => {
+																						notification['success']({
+																							message: '¡Excelente!',
+																							description: `Enlace Copiado.`,
+																							key: i,
+																						})
+																					}}>
+																					<CopyOutlined />
 																				</Button>
-																			</li>
-																		)}
-																		{item.eneable === true && (
-																			<li>
-																				<CopyToClipboard
-																					text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																					<Button shape='round'>
-																						Copiar enlace
-																					</Button>
-																				</CopyToClipboard>
-																			</li>
-																		)}
-																		<li>
-																			<Button
-																				type='danger'
-																				shape='round'
-																				onClick={() => {
-																					this.handleDeleteAccount(item)
-																				}}>
-																				Eliminar
-																			</Button>
-																		</li>
-																	</ul>
+																			</CopyToClipboard>
+																		</>
+																	)}
 																</Col>
 															</Row>
 														</Col>

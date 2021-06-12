@@ -97,7 +97,7 @@ export default function Views(props) {
 											onConfirm={() => {
 												serviceEventGoogleAnalytics({
 													category: 'intercambio',
-													action: 'click-mencion',
+													action: 'click-like',
 													label: props.detail.name,
 												})
 
