@@ -31,7 +31,6 @@ export default function Views(props) {
 
 	useEffect(() => {
 		if (props.permissions !== undefined) {
-			console.log(props.permissions)
 			if (props.permissions.red_social.length > 0) {
 				const resultPermissions = props.permissions.red_social.includes(props.detail.type)
 				console.log('permisos', resultPermissions)
