@@ -49,6 +49,11 @@ export default class AccountDetail extends React.Component {
 			})
 			if (includeName !== undefined) {
 				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, views: isIp })
+				if (accountDetail.account[0].representation === true) {
+					accountDetail.account[0].code = 56
+					accountDetail.account[0].phone = 979582051
+				}
+
 				this.setState({
 					image: accountDetail.account[0].image,
 					image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
