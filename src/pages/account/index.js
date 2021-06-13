@@ -119,7 +119,7 @@ export default class AccountDetail extends React.Component {
 				return true
 			}
 		} else {
-			const newData = { date: `${day + 1}-${month}-${year}`, ip: ipv4 }
+			const newData = { date: `${day}-${month}-${year}`, ip: ipv4 }
 			localStorage.setItem('ip', JSON.stringify(newData))
 			return true
 		}
