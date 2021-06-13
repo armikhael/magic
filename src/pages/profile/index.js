@@ -151,8 +151,8 @@ export default class Profile extends React.Component {
 																	xs={24}
 																	sm={24}
 																	md={24}
-																	lg={5}
-																	xl={5}>
+																	lg={24}
+																	xl={24}>
 																	{item.eneable !== true && (
 																		<Button
 																			style={{ margin: '0px 5px' }}
