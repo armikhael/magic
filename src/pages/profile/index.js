@@ -11,6 +11,7 @@ import {
 	WhatsAppOutlined,
 	CloseOutlined,
 	CopyOutlined,
+	EyeOutlined,
 } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -33,6 +34,7 @@ export default class Profile extends React.Component {
 			loading: true,
 			redirect: false,
 			loadingChangePassword: false,
+			links: [],
 		}
 	}
 
@@ -40,8 +42,9 @@ export default class Profile extends React.Component {
 		serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
 			console.log(response)
 			this.setState({
-				accounts: response,
+				accounts: response.accounts,
 				loading: false,
+				links: response.links,
 			})
 		})
 	}
@@ -66,7 +69,7 @@ export default class Profile extends React.Component {
 						serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
 							console.log(response)
 							this.setState({
-								accounts: response,
+								accounts: response.accounts,
 							})
 						})
 					})
@@ -277,6 +280,40 @@ export default class Profile extends React.Component {
 										</Row>
 									</Layout>
 								</Card>
+								<Row className='cv-profile-content-accoun'>
+									<p>
+										Enlaces Personalizados
+										{this.state.links.length > 0 && (
+											<>
+												<a href={`${process.env.REACT_APP_DOMAIN}/${this.state.links[0].name}`}>
+													<Button style={{ margin: '0px 5px' }} shape='circle'>
+														<EyeOutlined />
+													</Button>
+												</a>
+
+												<CopyToClipboard
+													text={`${process.env.REACT_APP_DOMAIN}/${this.state.links[0].name}`}>
+													<Button
+														style={{ margin: '0px 5px' }}
+														shape='circle'
+														onClick={() => {
+															notification['success']({
+																message: '¡Excelente!',
+																description: `Enlace Copiado.`,
+															})
+														}}>
+														<CopyOutlined />
+													</Button>
+												</CopyToClipboard>
+											</>
+										)}
+										{this.state.links.length <= 0 && (
+											<a href={`${process.env.REACT_APP_DOMAIN}/profile/linktree`}>
+												Crear Enlaces Multiple
+											</a>
+										)}
+									</p>
+								</Row>
 								<Row className='cv-profile-content-accoun'>
 									<p>
 										<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}>
