@@ -1,7 +1,8 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Form, Button, Divider, List, Typography, Card } from 'antd'
+import { useHistory } from 'react-router-dom'
+import { Form, Button, Divider, List, Typography, Card, notification } from 'antd'
 import { LinkOutlined, DeleteOutlined } from '@ant-design/icons'
 
 import Loading from '../../../../components/Loading/Loading'
@@ -13,7 +14,9 @@ import insterfaceForm from './interface'
 import './style.css'
 
 const LinkTree = (props) => {
+	const history = useHistory()
 	const [form] = Form.useForm()
+	const [user] = useState(JSON.parse(localStorage.getItem('user')))
 	const [data, setData] = useState()
 	const [links, setLinks] = useState([])
 	const [name, setName] = useState()
@@ -63,8 +66,24 @@ const LinkTree = (props) => {
 		let newData = data
 		newData.name = name
 		newData.links = [...links]
+		newData.email = user.email
 		if (isEdit === false) {
-			await serviceCreateData(newData)
+			const response = await serviceCreateData(newData)
+			if (response.statusCode === 200) {
+				notification['success']({
+					message: `¡Felicidades!`,
+					description: `Tus enlaces personalizados han sido creados`,
+				})
+
+				setTimeout(() => {
+					history.push(`/profile`)
+				}, 1000)
+			} else {
+				notification['error']({
+					message: `¡Ups!`,
+					description: response.message,
+				})
+			}
 		} else {
 			await serviceUpdateData(newData)
 		}
