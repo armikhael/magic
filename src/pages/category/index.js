@@ -21,6 +21,7 @@ export default class Category extends React.Component {
 		list: [],
 		page: 1,
 		hasMore: true,
+		orderBy: 'descViews',
 	}
 
 	componentDidMount() {
@@ -31,7 +32,7 @@ export default class Category extends React.Component {
 		serviceGetAccountByCategory(
 			this.props.match.params.name.replaceAll('-', ' '),
 			this.state.page,
-			'descViews'
+			this.state.orderBy
 		).then((response) => {
 			if (response.statusCode === 200) {
 				this.setState({
@@ -52,13 +53,11 @@ export default class Category extends React.Component {
 			action: 'click',
 			label: item.item.props.name,
 		})
+		this.setState({ list: [], loading: true, orderBy: item.item.props.name })
 		serviceGetAccountByCategory(this.props.match.params.name.replaceAll('-', ' '), 1, item.item.props.name).then(
 			(response) => {
 				if (response.statusCode === 200) {
-					this.setState({
-						list: response.data,
-						loading: false,
-					})
+					this.setState({ list: response.data, loading: false })
 				} else {
 					this.setState({ loading: false, error: response })
 				}
