@@ -55,9 +55,10 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/linktree/:name' component={LinkTree} />
 				<PrivateRoute exact path='/profile/post-create' component={Post} />
 				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />
-				PostView
+
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
+
 				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={AccountDetail} />
 				<Route component={NotFound} />
