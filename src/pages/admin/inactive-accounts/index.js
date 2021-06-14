@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Button, notification } from 'antd'
+import { Layout, Button, notification, Divider } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '@ant-design/icons'
 import { serviceGetAccountsInactives, serviceActiveAccount, serviceDeleteAccount } from './services'
@@ -142,7 +142,7 @@ export default class InactiveAccounts extends React.Component {
 												}}>
 												activar cuenta
 											</Button>
-											<hr></hr>
+											<Divider></Divider>
 										</li>
 									</ul>
 								)
