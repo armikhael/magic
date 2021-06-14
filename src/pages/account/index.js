@@ -4,7 +4,6 @@ import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import publicIp from 'public-ip'
-
 import { Row, Col, List, Avatar, Layout, notification } from 'antd'
 import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 
@@ -34,6 +33,7 @@ export default class AccountDetail extends React.Component {
 		pageError: false,
 		permissions: undefined,
 		representation: false,
+		textContact: 'Contactame',
 	}
 
 	async componentDidMount() {
@@ -53,7 +53,7 @@ export default class AccountDetail extends React.Component {
 				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, views: isIp })
 				console.log(accountDetail)
 				if (accountDetail.account[0].representation === true) {
-					this.setState({ representation: true })
+					this.setState({ representation: true, textContact: 'Intercambios' })
 					accountDetail.account[0].code = 56
 					accountDetail.account[0].phone = 979582051
 				}
@@ -196,13 +196,20 @@ export default class AccountDetail extends React.Component {
 										action: 'click-contacto',
 										label: this.state.detail.name,
 									})
-									window.open(
-										`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
-									)
+									console.log(this.state.representation)
+									if (this.state.representation === true) {
+										window.open(
+											`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+por+medio+de+intercambios`
+										)
+									} else {
+										window.open(
+											`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
+										)
+									}
 								}}>
 								<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
 								&nbsp;
-								<span>Contactame</span>
+								<span>{this.state.textContact}</span>
 							</div>
 						</div>
 						<Row>
@@ -305,13 +312,19 @@ export default class AccountDetail extends React.Component {
 													action: 'click-contacto',
 													label: this.state.detail.name,
 												})
-												window.open(
-													`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola%20${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
-												)
+												if (this.state.representation === true) {
+													window.open(
+														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+por+medio+de+intercambios`
+													)
+												} else {
+													window.open(
+														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
+													)
+												}
 											}}>
 											<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
 											&nbsp;
-											<span>Contactame</span>
+											<span>{this.state.textContact}</span>
 										</span>
 									</Col>
 									<Col span={24} className='cv-detail-content-account-detail cv-md'>
@@ -431,7 +444,7 @@ export default class AccountDetail extends React.Component {
 													onClick={() => {
 														console.log('contratacion')
 														serviceEventGoogleAnalytics({
-															category: 'pago',
+															category: 'planes',
 															action: 'click-contratacion',
 															label: this.state.detail.name,
 														})

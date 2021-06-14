@@ -4,6 +4,8 @@ import React from 'react'
 import { List, Layout, Card, Typography } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 
+import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
+
 import './style.css'
 const { Content } = Layout
 
@@ -29,6 +31,11 @@ const LinkTree = (props) => {
 									style={{ cursor: 'pointer' }}
 									onClick={() => {
 										window.open(item.url)
+										serviceEventGoogleAnalytics({
+											category: 'enlace-personalizado',
+											action: 'click',
+											label: `Boton número ${key}`,
+										})
 									}}
 									actions={[<RightOutlined />]}>
 									<Typography.Text>{item.title} </Typography.Text>
