@@ -35,6 +35,7 @@ const LinkTree = (props) => {
 								</List.Item>
 							)}
 						/>
+						<p> ¿Cómo crear estos enlaces? Click Aquí</p>
 					</Card>
 				</div>
 			</Content>

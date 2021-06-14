@@ -31,7 +31,7 @@ export default class AccountDetail extends React.Component {
 		loading: true,
 		promotion: [],
 		links: [],
-		errored: false,
+		pageError: false,
 		permissions: undefined,
 		representation: false,
 	}
@@ -90,10 +90,24 @@ export default class AccountDetail extends React.Component {
 				})
 			} else {
 				serviceGetLinks(this.props.match.params.name).then((response) => {
-					this.setState({
-						loading: false,
-						links: response[0].links,
-					})
+					console.log(response)
+
+					if (response.length > 0) {
+						serviceEventGoogleAnalytics({
+							category: 'enlace-personalizado',
+							action: 'view',
+							label: this.props.match.params.name,
+						})
+						this.setState({
+							loading: false,
+							links: response[0].links,
+						})
+					} else {
+						this.setState({
+							loading: false,
+							pageError: { statusCode: 404, message: 'Página no encontrada' },
+						})
+					}
 				})
 			}
 		} catch (e) {
@@ -132,7 +146,7 @@ export default class AccountDetail extends React.Component {
 	handleOnError = () => {
 		this.setState({
 			image: `${process.env.REACT_APP_LOGO}`,
-			errored: true,
+			pageError: true,
 		})
 	}
 
@@ -158,8 +172,8 @@ export default class AccountDetail extends React.Component {
 		if (this.state.loading) {
 			return <Loading />
 		}
-		if (this.state.error) {
-			return <PageError detailError={this.state.error} />
+		if (this.state.pageError) {
+			return <PageError detailError={this.state.pageError} />
 		}
 		return (
 			<>
@@ -386,61 +400,58 @@ export default class AccountDetail extends React.Component {
 									</Col>
 								</Row>
 								<div className='cv-detail-accounts-user-email-md'>
-									{this.state.representation === false && (
-										<Views
-											views={this.state.views}
-											total={this.state.totalView}
-											detail={this.state.detail}
-											permissions={this.state.permissions}
-										/>
-									)}
+									<Views
+										views={this.state.views}
+										total={this.state.totalView}
+										detail={this.state.detail}
+										permissions={this.state.permissions}
+									/>
 
 									<AccountsRelations relations={this.state.relations} />
 								</div>
 							</Col>
 							<Col xs={24} sm={24} md={6}>
-								{this.state.representation === false && (
-									<div className='cv-detail-content-plans'>
-										<div className='cv-detail-content-plans-main'>
-											<div className='cv-detail-plans-content-images'>
-												{this.state.promotion.length > 0 && (
-													<Promotion
-														promotion={this.state.promotion}
-														detailAccount={this.state.detail}></Promotion>
-												)}
-											</div>
-											<h3 className='cv-detail-plans-title'>Planes</h3>
-											<div className='cv-detail-plans-hr'></div>
-											<List
-												className='cv-detail-plans-list'
-												itemLayout='horizontal'
-												dataSource={this.state.detail.plans}
-												renderItem={(item) => (
-													<span
-														onClick={() => {
-															console.log('contratacion')
-															serviceEventGoogleAnalytics({
-																category: 'pago',
-																action: 'click-contratacion',
-																label: this.state.detail.name,
-															})
-															window.open(
-																`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
-															)
-														}}>
-														<List.Item actions={[<WhatsAppOutlined />]}>
-															<List.Item.Meta
-																avatar={<Avatar src={this.state.detail.image} />}
-																title={item.description}
-																description={`Precio: ${item.price} ${item.currency}`}
-															/>
-														</List.Item>
-													</span>
-												)}
-											/>
+								<div className='cv-detail-content-plans'>
+									<div className='cv-detail-content-plans-main'>
+										<div className='cv-detail-plans-content-images'>
+											{this.state.promotion.length > 0 && (
+												<Promotion
+													promotion={this.state.promotion}
+													detailAccount={this.state.detail}></Promotion>
+											)}
 										</div>
+										<h3 className='cv-detail-plans-title'>Planes</h3>
+										<div className='cv-detail-plans-hr'></div>
+										<List
+											className='cv-detail-plans-list'
+											itemLayout='horizontal'
+											dataSource={this.state.detail.plans}
+											renderItem={(item) => (
+												<span
+													onClick={() => {
+														console.log('contratacion')
+														serviceEventGoogleAnalytics({
+															category: 'pago',
+															action: 'click-contratacion',
+															label: this.state.detail.name,
+														})
+														window.open(
+															`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
+														)
+													}}>
+													<List.Item actions={[<WhatsAppOutlined />]}>
+														<List.Item.Meta
+															avatar={<Avatar src={this.state.detail.image} />}
+															title={item.description}
+															description={`Precio: ${item.price} ${item.currency}`}
+														/>
+													</List.Item>
+												</span>
+											)}
+										/>
 									</div>
-								)}
+								</div>
+
 								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 							</Col>
 							<div className='cv-detail-accounts-user-email-xs'>
