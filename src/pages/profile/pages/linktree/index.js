@@ -22,6 +22,7 @@ const LinkTree = (props) => {
 	const [name, setName] = useState()
 	const [isEdit, setEdit] = useState(false)
 	const [isDisabled, setDisabled] = useState(false)
+	const [textButton, setTextButton] = useState('Enviar')
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -38,6 +39,7 @@ const LinkTree = (props) => {
 			fetchData(props.match.params.name)
 			setEdit(true)
 			setDisabled(true)
+			setTextButton('Actualizar')
 			setName(props.match.params.name)
 		} else {
 			setData(insterfaceForm())
@@ -85,7 +87,21 @@ const LinkTree = (props) => {
 				})
 			}
 		} else {
-			await serviceUpdateData(newData)
+			const response = await serviceUpdateData(newData)
+			if (response.statusCode === 200) {
+				notification['success']({
+					message: `¡Felicidades!`,
+					description: `Tus enlaces han sido actualizados`,
+				})
+				setTimeout(() => {
+					history.push(`/profile`)
+				}, 1000)
+			} else {
+				notification['error']({
+					message: `¡Ups!`,
+					description: response.message,
+				})
+			}
 		}
 	}
 
@@ -145,7 +161,7 @@ const LinkTree = (props) => {
 											onClick={() => {
 												handleSubmit()
 											}}>
-											Enviar
+											{textButton}
 										</Button>
 									</div>
 								</Form.Item>

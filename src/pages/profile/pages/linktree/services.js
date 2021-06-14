@@ -41,7 +41,7 @@ const serviceUpdateData = async (item) => {
 		data: item,
 	})
 		.then((response) => {
-			returnResponse = response
+			returnResponse = response.data
 		})
 		.catch((e) => {
 			returnResponse = e.response.data

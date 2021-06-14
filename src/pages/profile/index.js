@@ -4,15 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Tag } from 'antd'
-import {
-	UserOutlined,
-	HeartOutlined,
-	ApiOutlined,
-	WhatsAppOutlined,
-	CloseOutlined,
-	CopyOutlined,
-	EyeOutlined,
-} from '@ant-design/icons'
+import { UserOutlined, HeartOutlined, ApiOutlined, CloseOutlined, CopyOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
@@ -20,6 +12,7 @@ import InputField from '../../components/Input'
 import './style.css'
 import ModalConfiguration from './components/ModalConfiguration'
 import ModalEdit from './components/ModalEdit'
+import LinkTree from './components/LinkTree'
 import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 
 const { Content, Header } = Layout
@@ -281,47 +274,7 @@ export default class Profile extends React.Component {
 									</Layout>
 								</Card>
 								<Row className='cv-profile-content-accoun'>
-									<p>
-										Enlaces Personalizados
-										{this.state.links.length > 0 && (
-											<>
-												<a href={`${process.env.REACT_APP_DOMAIN}/${this.state.links[0].name}`}>
-													<Button style={{ margin: '0px 5px' }} shape='circle'>
-														<EyeOutlined />
-													</Button>
-												</a>
-
-												<CopyToClipboard
-													text={`${process.env.REACT_APP_DOMAIN}/${this.state.links[0].name}`}>
-													<Button
-														style={{ margin: '0px 5px' }}
-														shape='circle'
-														onClick={() => {
-															notification['success']({
-																message: '¡Excelente!',
-																description: `Enlace Copiado.`,
-															})
-														}}>
-														<CopyOutlined />
-													</Button>
-												</CopyToClipboard>
-											</>
-										)}
-										{this.state.links.length <= 0 && (
-											<a href={`${process.env.REACT_APP_DOMAIN}/profile/linktree`}>
-												Crear Enlaces Multiple
-											</a>
-										)}
-									</p>
-								</Row>
-								<Row className='cv-profile-content-accoun'>
-									<p>
-										<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}>
-											<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
-										</a>
-										&nbsp;¿Quieres unirte al grupo de Micro - Influencers?
-										<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}> ¡ENTRAR! </a>
-									</p>
+									<LinkTree componentData={this.state.links} />
 								</Row>
 								{this.state.userProfile.autentication !== 'google' && (
 									<Card className='cv-profile-main-container'>

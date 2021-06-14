@@ -16,6 +16,7 @@ import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
 import Promotion from './components/Promotion'
+import LinkTree from './components/LinkTree'
 
 import './style.css'
 import { serviceAccountDetail, serviceGetPromotions, serviceGetLinks, serviceGetPermissions } from './services'
@@ -455,22 +456,7 @@ export default class AccountDetail extends React.Component {
 					</Content>
 				)}
 
-				{this.state.links.length > 0 && (
-					<Content className='cv-container-main'>
-						<Row>
-							<ul>
-								Links Asociados
-								{this.state.links.map((item, key) => {
-									return (
-										<li key={key}>
-											{item.title} - {item.url}
-										</li>
-									)
-								})}
-							</ul>
-						</Row>
-					</Content>
-				)}
+				{this.state.links.length > 0 && <LinkTree componentData={this.state.links} />}
 			</>
 		)
 	}
