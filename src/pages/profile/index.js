@@ -10,10 +10,11 @@ import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
 
 import './style.css'
+import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 import ModalConfiguration from './components/ModalConfiguration'
 import ModalEdit from './components/ModalEdit'
 import LinkTree from './components/LinkTree'
-import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
+import serviceDeleteLinktree from './components/LinkTree/service'
 
 const { Content, Header } = Layout
 const { Text } = Typography
@@ -85,9 +86,22 @@ export default class Profile extends React.Component {
 		})
 	}
 
-	handleDeleteLinkTree = (item) => {
-		console.log(item)
-		this.setState({ links: [] })
+	handleDeleteLinkTree = async (item) => {
+		console.log(item._id)
+		const response = await serviceDeleteLinktree(item._id)
+		console.log(response)
+		if (response.statusCode === 200) {
+			this.setState({ links: response.data })
+			notification['success']({
+				message: `¡Felicidades!`,
+				description: `El enlace ha sido eliminado correctamente`,
+			})
+		} else {
+			notification['error']({
+				message: `¡Ups!`,
+				description: response.message,
+			})
+		}
 	}
 	render() {
 		if (this.state.loading) {

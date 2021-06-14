@@ -44,7 +44,7 @@ const LinkTree = (props) => {
 								<CopyOutlined />
 							</Button>
 						</CopyToClipboard>
-						{/* <CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${props.componentData[0].name}`}>
+						<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${props.componentData[0].name}`}>
 							<Button
 								style={{ margin: '0px 5px' }}
 								type='danger'
@@ -54,7 +54,7 @@ const LinkTree = (props) => {
 								}}>
 								<CloseOutlined />
 							</Button>
-						</CopyToClipboard> */}
+						</CopyToClipboard>
 					</>
 				)}
 				{props.componentData.length <= 0 && (
