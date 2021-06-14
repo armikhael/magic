@@ -3,17 +3,18 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Button, notification } from 'antd'
-import { EditOutlined, EyeOutlined, CopyOutlined } from '@ant-design/icons'
+import { EditOutlined, EyeOutlined, CopyOutlined, CloseOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const LinkTree = (props) => {
 	const history = useHistory()
+
 	return (
 		<>
 			<p>
-				Enlace Personalizado
 				{props.componentData.length > 0 && (
 					<>
+						Enlace Personalizado
 						<Button
 							style={{ margin: '0px 5px' }}
 							shape='circle'
@@ -22,7 +23,6 @@ const LinkTree = (props) => {
 							}}>
 							<EditOutlined />
 						</Button>
-
 						<Button
 							style={{ margin: '0px 5px' }}
 							shape='circle'
@@ -31,7 +31,6 @@ const LinkTree = (props) => {
 							}}>
 							<EyeOutlined />
 						</Button>
-
 						<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${props.componentData[0].name}`}>
 							<Button
 								style={{ margin: '0px 5px' }}
@@ -45,10 +44,24 @@ const LinkTree = (props) => {
 								<CopyOutlined />
 							</Button>
 						</CopyToClipboard>
+						<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${props.componentData[0].name}`}>
+							<Button
+								style={{ margin: '0px 5px' }}
+								type='danger'
+								shape='circle'
+								onClick={() => {
+									props.componentDelete(props.componentData[0])
+								}}>
+								<CloseOutlined />
+							</Button>
+						</CopyToClipboard>
 					</>
 				)}
 				{props.componentData.length <= 0 && (
-					<a href={`${process.env.REACT_APP_DOMAIN}/profile/linktree`}>Crear Enlaces Multiple</a>
+					<>
+						<img width='19px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
+						<a href={`${process.env.REACT_APP_DOMAIN}/profile/linktree`}> Crear Enlaces Multiple</a>
+					</>
 				)}
 			</p>
 		</>
