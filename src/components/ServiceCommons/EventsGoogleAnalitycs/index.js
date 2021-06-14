@@ -10,4 +10,4 @@ const serviceEventGoogleAnalytics = async (item) => {
 	})
 }
 
-export { serviceEventGoogleAnalytics }
+export default serviceEventGoogleAnalytics

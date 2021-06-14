@@ -4,7 +4,7 @@ export const rulesValidation = {
 	required: [
 		{
 			required: true,
-			message: 'Debe seleccionar una opción',
+			message: 'Este campo es requerido de forma obligatoria',
 		},
 	],
 	rulesEmail: [
@@ -47,10 +47,6 @@ export const rulesValidation = {
 		{
 			required: true,
 			message: 'Ingrese sú número telefónico',
-		},
-		{
-			min: 7,
-			message: 'Minimo 7 caracteres!',
 		},
 		{
 			validator: (_, value) => {

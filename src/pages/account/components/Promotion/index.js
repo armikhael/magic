@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import AwesomeSwiper from 'react-awesome-swiper'
 
-import { serviceEventGoogleAnalytics } from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
+import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 export default class Promotion extends Component {
 	state = {

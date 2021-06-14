@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-
 import { Input, Menu, Dropdown, Row, Col, Tag } from 'antd'
+
+import serviceEventGoogleAnalytics from '../../../ServiceCommons/EventsGoogleAnalitycs'
 
 import './style.css'
 import { serviceGetCategories } from './services'
-import { serviceEventGoogleAnalytics } from '../../../ServiceCommons/EventsGoogleAnalitycs'
 
 const { Search } = Input
 

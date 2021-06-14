@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 
-import { Upload, Button } from 'antd'
+import { Upload, Button, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
-import { serviceUploadImage, serviceUpdateImage } from './services'
+import { serviceUploadImage, serviceUpdateData } from './services'
 import './style.css'
 
 export default function UploadImage(props) {
@@ -21,6 +21,18 @@ export default function UploadImage(props) {
 	])
 	const [isButtom, setButtom] = useState(false)
 
+	const beforeUpload = (file) => {
+		console.log('beforeUpload', file)
+		const isSize = file.size / 1024 / 1024 <= 0.1
+		if (!isSize) {
+			notification['error']({
+				message: `Ups!`,
+				description: `La imagen es muy pesada, reduce un poco mas el peso`,
+			})
+		}
+		return isSize
+	}
+
 	const handleOnChange = ({ fileList: item }) => {
 		setFileList(item)
 		if (item.length > 0) {
@@ -32,9 +44,18 @@ export default function UploadImage(props) {
 		let formData = new FormData()
 		formData.append('image', fileList[0].originFileObj)
 		formData.append('name', props.account.name)
-		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
+		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
-			serviceUpdateImage(props.account._id, response).then((response) => {})
+			console.log('imagen subida', response)
+			props.account.image = response.image.url
+			props.account.image_thumb = response.thumb.url
+			serviceUpdateData(props.account).then((response) => {
+				console.log('imagen guardada', response.data.image)
+				setButtom(false)
+				if (props.componentHandle) {
+					handleComponent(response.data.image)
+				}
+			})
 		})
 	}
 
@@ -53,6 +74,8 @@ export default function UploadImage(props) {
 		imgWindow.document.write(image.outerHTML)
 	}
 
+	const handleComponent = props.componentHandle
+
 	return (
 		<>
 			<ImgCrop>
@@ -61,14 +84,17 @@ export default function UploadImage(props) {
 					listType='picture-card'
 					fileList={fileList}
 					onChange={handleOnChange}
-					onPreview={handleOnPreview}>
+					onPreview={handleOnPreview}
+					beforeUpload={beforeUpload}
+					progress={{ strokeWidth: 2, showInfo: false }}
+					accept={props.componentAccept || '.jpeg, .png, jpeg'}>
 					{fileList.length < 1 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
 			<br />
 			{isButtom && (
 				<Button className='cv-upload-img-update' type='primary' onClick={handleSaveImage}>
-					Actualizar
+					Confirmar
 				</Button>
 			)}
 		</>

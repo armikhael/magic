@@ -154,12 +154,6 @@ export default class Login extends React.Component {
 											</Link>
 										</div>
 									</div>
-									{/* 							
-									<FacebookLogin
-										appId="1859534864215755"
-										fields="name,email,picture"
-										callback={this.handleFacebookAuth} />
-										*/}
 									<br />
 									<p className='cv-login-title-termi-condi'>
 										Al continuar, aceptas las Condiciones del servicio y la Política de privacidad

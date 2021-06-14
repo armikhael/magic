@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Button, notification } from 'antd'
+import { Layout, Button, notification, Divider } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '@ant-design/icons'
 import { serviceGetAccountsInactives, serviceActiveAccount, serviceDeleteAccount } from './services'
@@ -79,26 +79,29 @@ export default class InactiveAccounts extends React.Component {
 							{this.state.list.map((item, i) => {
 								return (
 									<ul key={i}>
+										<li> id: {item._id}</li>
+										<li> seguidores: {item.followers}</li>
 										<li>
-											<Button shape='round' onClick={() => this.handleDeleteAccount(item)}>
+											<Button type='danger' onClick={() => this.handleDeleteAccount(item)}>
 												Eliminar cuenta
 											</Button>
 										</li>
-										<li> id: {item._id}</li>
-										<li> cuenta: {item.name}</li>
-										<li> seguidores: {item.followers}</li>
 										<li>
-											phone: {item.code}
-											{item.phone}
+											<CopyToClipboard text={`${item.name}`}>
+												<Button>
+													Copiar Usuario <CopyOutlined />
+												</Button>
+											</CopyToClipboard>
+										</li>
+										<li>
 											<CopyToClipboard text={`${item.code}${item.phone}`}>
-												<Button shape='round'>
-													Copiar <CopyOutlined />
+												<Button>
+													Copiar Teléfono <CopyOutlined />
 												</Button>
 											</CopyToClipboard>
 										</li>
 										<li>
 											<Button
-												shape='round'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola! ${item.account} te escribimos de cuentasvirales.com para informarte que te enviamos el código de activación a tu cuenta de ${item.type}`}
 												target='__blank'>
 												Whatsapp: Código de activación
@@ -106,44 +109,40 @@ export default class InactiveAccounts extends React.Component {
 										</li>
 										<li>
 											<Button
-												shape='round'
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola! ${item.account} te escribimos de cuentasvirales.com para saber si necesitas ayuda con la activación de tu cuenta de ${item.type}`}
 												target='__blank'>
 												Whatsapp: Soporte
 											</Button>
 										</li>
 										<li>
-											token: {btoa(item.name)}
-											<CopyToClipboard
-												text={`Hola! este código es el que debes ingresar para activar tu perfil en cuentasvirales.com, ingresa el siguiente código \n\n  ${btoa(
-													item.name
-												)}`}>
-												<Button shape='round'>
-													Copiar <CopyOutlined />
+											<CopyToClipboard text={btoa(item.name)}>
+												<Button>
+													Copiar Código de Activación <CopyOutlined />
 												</Button>
 											</CopyToClipboard>
 										</li>
+
 										<li>
-											verificar:
-											<a href={item.interface.link} target='__blank'>
-												{item.account}
-											</a>{' '}
-											--
+											<Button href={item.interface.link} target='__blank'>
+												Ir a la cuenta de: {item.account}
+											</Button>
+										</li>
+										<li>
 											<CopyToClipboard text={item.account}>
-												<Button shape='round'>
+												<Button>
 													Copiar <CopyOutlined />
 												</Button>
 											</CopyToClipboard>
 										</li>
 										<li>
 											<Button
-												shape='round'
+												type='primary'
 												onClick={() => {
 													this.handleActiveAccount(item)
 												}}>
 												activar cuenta
 											</Button>
-											<hr></hr>
+											<Divider></Divider>
 										</li>
 									</ul>
 								)

@@ -11,7 +11,7 @@ import {
 import { Line } from '@ant-design/charts'
 import { Row, Col, Comment, Popconfirm } from 'antd'
 
-import { serviceEventGoogleAnalytics } from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
+import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import './style.css'
 
@@ -31,7 +31,6 @@ export default function Views(props) {
 
 	useEffect(() => {
 		if (props.permissions !== undefined) {
-			console.log(props.permissions)
 			if (props.permissions.red_social.length > 0) {
 				const resultPermissions = props.permissions.red_social.includes(props.detail.type)
 				console.log('permisos', resultPermissions)
@@ -97,7 +96,7 @@ export default function Views(props) {
 											onConfirm={() => {
 												serviceEventGoogleAnalytics({
 													category: 'intercambio',
-													action: 'click-mencion',
+													action: 'click-like',
 													label: props.detail.name,
 												})
 

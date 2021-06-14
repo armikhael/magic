@@ -17,6 +17,7 @@ export default function Help(props) {
 	useEffect(() => {
 		serviceGetData({ type: 'help' })
 			.then((response) => {
+				console.log(response)
 				setData(response)
 			})
 			.catch((e) => {

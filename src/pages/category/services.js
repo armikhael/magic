@@ -3,7 +3,6 @@
 import axios from 'axios'
 
 const serviceGetAccountByCategory = async (name, page, sort) => {
-	console.log(name, page, sort)
 	let returnResponse
 	await axios({
 		method: 'GET',

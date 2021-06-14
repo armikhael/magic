@@ -2,9 +2,7 @@
 
 const insterfaceForm = () => {
 	return {
-		name: 'nuevoEnlace',
-		title: null,
-		url: null,
+		account: '',
 	}
 }
 

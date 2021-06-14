@@ -3,18 +3,20 @@
 import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
+import publicIp from 'public-ip'
 
 import { Row, Col, List, Avatar, Layout, notification } from 'antd'
 import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
-import { serviceEventGoogleAnalytics } from '../../components/ServiceCommons/EventsGoogleAnalitycs'
+import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
 import Promotion from './components/Promotion'
+import LinkTree from './components/LinkTree'
 
 import './style.css'
 import { serviceAccountDetail, serviceGetPromotions, serviceGetLinks, serviceGetPermissions } from './services'
@@ -31,6 +33,7 @@ export default class AccountDetail extends React.Component {
 		links: [],
 		errored: false,
 		permissions: undefined,
+		representation: false,
 	}
 
 	async componentDidMount() {
@@ -41,14 +44,23 @@ export default class AccountDetail extends React.Component {
 		})
 
 		try {
+			const isIp = await this.handleIp()
 			let redSocial = ['-instagram', '-facebook', '-tiktok']
 			const includeName = redSocial.find((item) => {
 				return this.props.match.params.name.includes(item)
 			})
 			if (includeName !== undefined) {
-				const accountDetail = await serviceAccountDetail(this.props.match.params.name)
+				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, views: isIp })
+				console.log(accountDetail)
+				if (accountDetail.account[0].representation === true) {
+					this.setState({ representation: true })
+					accountDetail.account[0].code = 56
+					accountDetail.account[0].phone = 979582051
+				}
+
 				this.setState({
 					image: accountDetail.account[0].image,
+					image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
 					detail: accountDetail.account[0],
 					relations: accountDetail.relations,
 					asociation: accountDetail.asociation,
@@ -57,7 +69,7 @@ export default class AccountDetail extends React.Component {
 				})
 
 				const promotion = await serviceGetPromotions()
-				console.log('promotion', promotion)
+
 				this.setState({
 					promotion: this.handleVerifyPromotion(promotion.data, this.state.detail),
 				})
@@ -90,6 +102,30 @@ export default class AccountDetail extends React.Component {
 				message: `Ups!`,
 				description: `Disculpe estamos en mantenimiento, intente más tarde`,
 			})
+		}
+	}
+
+	async handleIp() {
+		const ipv4 = await publicIp.v4()
+		let date = new Date()
+		let day = date.getDate()
+		let month = date.getMonth() + 1
+		let year = date.getFullYear()
+		let today = `${day}-${month}-${year}`
+
+		if (localStorage.getItem('ip')) {
+			const localStorageIp = JSON.parse(localStorage.getItem('ip'))
+			const newData = { date: today, ip: ipv4 }
+			if (localStorageIp.date === newData.date && localStorageIp.ip === newData.ip) {
+				return false
+			} else {
+				localStorage.setItem('ip', JSON.stringify(newData))
+				return true
+			}
+		} else {
+			const newData = { date: `${day}-${month}-${year}`, ip: ipv4 }
+			localStorage.setItem('ip', JSON.stringify(newData))
+			return true
 		}
 	}
 
@@ -134,7 +170,7 @@ export default class AccountDetail extends React.Component {
 								className='cv-detail-img-main '
 								title={this.state.detail.name}
 								alt={this.state.detail.name}
-								src={this.state.image}
+								src={this.state.image_cover}
 							/>
 							<div
 								className='cv-detail-whatsapp-icon-mobil'
@@ -160,7 +196,7 @@ export default class AccountDetail extends React.Component {
 								<Row className='cv-detail-content-accoun cv-md'>
 									<p className='cv-detail-content-accoun-p'>
 										¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
-										<a href={`${process.env.REACT_APP_DOMAIN}/help/cuentas-virales`}> click aquí</a>
+										<a href={`${process.env.REACT_APP_DOMAIN}/help/quienes-somos`}> click aquí</a>
 									</p>
 								</Row>
 								<Row className='cv-detail-content-accoun'>
@@ -350,61 +386,61 @@ export default class AccountDetail extends React.Component {
 									</Col>
 								</Row>
 								<div className='cv-detail-accounts-user-email-md'>
-									<Views
-										views={this.state.views}
-										total={this.state.totalView}
-										detail={this.state.detail}
-										permissions={this.state.permissions}
-									/>
+									{this.state.representation === false && (
+										<Views
+											views={this.state.views}
+											total={this.state.totalView}
+											detail={this.state.detail}
+											permissions={this.state.permissions}
+										/>
+									)}
+
 									<AccountsRelations relations={this.state.relations} />
 								</div>
 							</Col>
 							<Col xs={24} sm={24} md={6}>
-								<div className='cv-detail-content-plans'>
-									<div className='cv-detail-content-plans-main'>
-										<div className='cv-detail-plans-content-images'>
-											{this.state.promotion.length > 0 && (
-												<Promotion
-													promotion={this.state.promotion}
-													detailAccount={this.state.detail}></Promotion>
-											)}
+								{this.state.representation === false && (
+									<div className='cv-detail-content-plans'>
+										<div className='cv-detail-content-plans-main'>
+											<div className='cv-detail-plans-content-images'>
+												{this.state.promotion.length > 0 && (
+													<Promotion
+														promotion={this.state.promotion}
+														detailAccount={this.state.detail}></Promotion>
+												)}
+											</div>
+											<h3 className='cv-detail-plans-title'>Planes</h3>
+											<div className='cv-detail-plans-hr'></div>
+											<List
+												className='cv-detail-plans-list'
+												itemLayout='horizontal'
+												dataSource={this.state.detail.plans}
+												renderItem={(item) => (
+													<span
+														onClick={() => {
+															console.log('contratacion')
+															serviceEventGoogleAnalytics({
+																category: 'pago',
+																action: 'click-contratacion',
+																label: this.state.detail.name,
+															})
+															window.open(
+																`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
+															)
+														}}>
+														<List.Item actions={[<WhatsAppOutlined />]}>
+															<List.Item.Meta
+																avatar={<Avatar src={this.state.detail.image} />}
+																title={item.description}
+																description={`Precio: ${item.price} ${item.currency}`}
+															/>
+														</List.Item>
+													</span>
+												)}
+											/>
 										</div>
-										<h3 className='cv-detail-plans-title'>Planes</h3>
-										<div className='cv-detail-plans-hr'></div>
-										<List
-											className='cv-detail-plans-list'
-											itemLayout='horizontal'
-											dataSource={this.state.detail.plans}
-											renderItem={(item) => (
-												<span
-													onClick={() => {
-														console.log('contratacion')
-														serviceEventGoogleAnalytics({
-															category: 'pago',
-															action: 'click-contratacion',
-															label: this.state.detail.name,
-														})
-														window.open(
-															`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
-														)
-													}}>
-													<List.Item actions={[<WhatsAppOutlined />]}>
-														<List.Item.Meta
-															avatar={<Avatar src={this.state.detail.image} />}
-															title={item.description}
-															description={`Precio: ${item.price} ${item.currency}`}
-														/>
-													</List.Item>
-												</span>
-											)}
-										/>
 									</div>
-								</div>
-								{/* <div className='cv-account-detail-content'>
-								<a rel='noopener noreferrer' href={`${config.linkYoutube}`} target='_blank'>
-									<img width='100%' src='https://i.ibb.co/kSX3Zdt/burger-king2.gif' alt='Publicidad' />
-								</a>
-								</div> */}
+								)}
 								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 							</Col>
 							<div className='cv-detail-accounts-user-email-xs'>
@@ -414,34 +450,13 @@ export default class AccountDetail extends React.Component {
 									detail={this.state.detail}
 									permissions={this.state.permissions}
 								/>
-
-								<div className='cv-detail-accounts-user-publicidad'>
-									<Promotion
-										promotion={this.state.promotion}
-										detailAccount={this.state.detail}></Promotion>
-								</div>
 								<AccountsRelations relations={this.state.relations} />
 							</div>
 						</Row>
 					</Content>
 				)}
 
-				{this.state.links.length > 0 && (
-					<Content className='cv-container-main'>
-						<Row>
-							<ul>
-								Links Asociados
-								{this.state.links.map((item, key) => {
-									return (
-										<li key={key}>
-											{item.title} - {item.url}
-										</li>
-									)
-								})}
-							</ul>
-						</Row>
-					</Content>
-				)}
+				{this.state.links.length > 0 && <LinkTree componentData={this.state.links} />}
 			</>
 		)
 	}

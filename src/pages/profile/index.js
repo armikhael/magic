@@ -3,22 +3,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-
-import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Input, Tag } from 'antd'
-import { UserOutlined, HeartOutlined, ApiOutlined, WhatsAppOutlined } from '@ant-design/icons'
+import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form, Tag } from 'antd'
+import { UserOutlined, HeartOutlined, ApiOutlined, CloseOutlined, CopyOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
 
-import UploadImage from './components/UploadImage'
-
-import {
-	serviceGetAccountsByEmail,
-	serviceDeleteAccount,
-	serviceChangePassword,
-	serviceActiveAccount,
-} from './services'
 import './style.css'
+import ModalConfiguration from './components/ModalConfiguration'
+import ModalEdit from './components/ModalEdit'
+import LinkTree from './components/LinkTree'
+import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
 
 const { Content, Header } = Layout
 const { Text } = Typography
@@ -32,14 +27,17 @@ export default class Profile extends React.Component {
 			loading: true,
 			redirect: false,
 			loadingChangePassword: false,
+			links: [],
 		}
 	}
 
 	componentDidMount() {
 		serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
+			console.log(response)
 			this.setState({
-				accounts: response,
+				accounts: response.accounts,
 				loading: false,
+				links: response.links,
 			})
 		})
 	}
@@ -60,10 +58,13 @@ export default class Profile extends React.Component {
 						id: item._id,
 						email: this.state.userProfile.email,
 					}).then((response) => {
-						this.setState({
-							accounts: response,
-						})
 						notification.close('notiAccountDelete')
+						serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
+							console.log(response)
+							this.setState({
+								accounts: response.accounts,
+							})
+						})
 					})
 				}>
 				<h3 className='ph-profile-address-button-delete-title'>Confirmar</h3>
@@ -82,29 +83,6 @@ export default class Profile extends React.Component {
 		this.setState({
 			[e.target.name]: e.target.value,
 		})
-	}
-
-	handleConfirmAccount = (item) => {
-		if (this.state.code === btoa(item.name)) {
-			serviceActiveAccount(item)
-				.then((response) => {
-					this.setState({
-						accounts: response.data,
-					})
-				})
-				.catch((e) => {
-					console.log(e)
-				})
-			notification['success']({
-				message: 'Excelente!',
-				description: `Su cuenta ha sido activada con éxito`,
-			})
-		} else {
-			notification['error']({
-				message: 'Ups!',
-				description: `El código es incorrecto`,
-			})
-		}
 	}
 
 	render() {
@@ -128,7 +106,12 @@ export default class Profile extends React.Component {
 												return (
 													<Row className='cv-profile-card-account-content' key={i}>
 														<Col sm={24} md={6} className='cv-profile-upload-image'>
-															<UploadImage account={item} />
+															<img
+																className='cv-profile-main-info-inner-container-img'
+																src={item.image}
+																alt={item.name}
+																title={item.name}
+															/>
 														</Col>
 														<Col
 															sm={24}
@@ -164,66 +147,58 @@ export default class Profile extends React.Component {
 																	xs={24}
 																	sm={24}
 																	md={24}
-																	lg={5}
-																	xl={5}>
+																	lg={24}
+																	xl={24}>
+																	{item.eneable !== true && (
+																		<Button
+																			style={{ margin: '0px 5px' }}
+																			shape='round'
+																			href={`/profile/account-activation/${item.name}/modify`}>
+																			Activar Cuenta
+																		</Button>
+																	)}
+
 																	<Button
-																		shape='round'
-																		href={`/profile/edit-account/${item.name}`}>
-																		Editar
-																	</Button>
-																</Col>
-																{item.eneable === true && (
-																	<Col
-																		className='mb15'
-																		xs={24}
-																		sm={24}
-																		md={24}
-																		lg={8}
-																		xl={8}>
-																		<CopyToClipboard
-																			text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-																			<Button shape='round'>Copiar enlace</Button>
-																		</CopyToClipboard>
-																	</Col>
-																)}
-																<Col
-																	className='mb15'
-																	xs={24}
-																	sm={24}
-																	md={24}
-																	lg={6}
-																	xl={6}>
-																	<Button
+																		style={{ margin: '0px 5px' }}
 																		type='danger'
-																		shape='round'
+																		shape='circle'
 																		onClick={() => {
 																			this.handleDeleteAccount(item)
 																		}}>
-																		Eliminar
+																		<CloseOutlined />
 																	</Button>
+
+																	{item.eneable === true && (
+																		<>
+																			<ModalEdit
+																				componentData={item}
+																				componentHeader={
+																					'Modificar Información'
+																				}
+																			/>
+																			<ModalConfiguration
+																				componentData={item}
+																				componentHeader={'Condiguración'}
+																			/>
+																			<CopyToClipboard
+																				text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+																				<Button
+																					style={{ margin: '0px 5px' }}
+																					shape='circle'
+																					onClick={() => {
+																						notification['success']({
+																							message: '¡Excelente!',
+																							description: `Enlace Copiado.`,
+																							key: i,
+																						})
+																					}}>
+																					<CopyOutlined />
+																				</Button>
+																			</CopyToClipboard>
+																		</>
+																	)}
 																</Col>
 															</Row>
-															{item.eneable === false && (
-																<Row>
-																	<Form layout='vertical'>
-																		<Form.Item
-																			className={'cv-auth-login-field-input'}
-																			label={'Código de confirmación'}
-																			name='code'
-																			onChange={this.handleChangeInput}>
-																			<Input name='code' />
-																		</Form.Item>
-																		<Button
-																			type='danger'
-																			shape='round'
-																			onClick={() => {
-																				this.handleConfirmAccount(item)
-																			}}>
-																			Confirmar Cuenta
-																		</Button>
-																	</Form>
-																</Row>
-															)}
 														</Col>
 													</Row>
 												)
@@ -299,13 +274,7 @@ export default class Profile extends React.Component {
 									</Layout>
 								</Card>
 								<Row className='cv-profile-content-accoun'>
-									<p>
-										<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}>
-											<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
-										</a>
-										&nbsp;¿Quieres unirte al grupo de Micro - Influencers?
-										<a href={`https://chat.whatsapp.com/JBljFK7g0DkFnvjTihz6ga`}> ¡ENTRAR! </a>
-									</p>
+									<LinkTree componentData={this.state.links} />
 								</Row>
 								{this.state.userProfile.autentication !== 'google' && (
 									<Card className='cv-profile-main-container'>

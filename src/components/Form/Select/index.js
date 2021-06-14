@@ -3,6 +3,7 @@
 import React from 'react'
 
 import { Form, Select } from 'antd'
+import { rulesValidation } from '../Rules'
 import './style.css'
 
 const { Option } = Select
@@ -10,15 +11,21 @@ const SelectField = (props) => {
 	return (
 		<>
 			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>
-			<Form.Item name={props.componentName}>
+			<Form.Item name={props.componentName} rules={rulesValidation[props.componentRules]}>
 				<Select
 					style={{ width: '100%' }}
 					mode={props.componentMode}
 					placeholder={props.componentPlaceholder}
-					onChange={props.componentFunction}>
-					{props.componentOptions.map((iterator) => {
+					onChange={props.componentOnChange}
+					maxTagCount={props.componentMaxTagCount}
+					disabled={props.componentDisabled}>
+					{props.componentOptions.map((iterator, i) => {
 						return (
-							<Option value={iterator.value} key={iterator.name}>
+							<Option
+								style={{
+									textTransform: 'capitalize',
+								}}
+								key={iterator.value}>
 								{iterator.name}
 							</Option>
 						)

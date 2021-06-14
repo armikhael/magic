@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-
 import { Row, Col, Menu, Dropdown } from 'antd'
 
 import SideBar from './components/SideBar'
@@ -46,7 +45,7 @@ export default class User extends React.Component {
 							<Col xs={12} sm={12} md={{ span: 24, offset: 0 }}>
 								<Row align='middle'>
 									<Col xs={12} sm={12} md={12}>
-										<Link to={`/profile/create-account`}>
+										<Link to={`/profile/account-user`}>
 											<div className='cv-header-user-icon-login-content'>
 												<img
 													className='cv-heder-user-icon-add-account'
@@ -57,8 +56,8 @@ export default class User extends React.Component {
 											</div>
 										</Link>
 									</Col>
-									<Col xs={12} sm={12} md={12}>
-										<Dropdown overlay={menu} placement='bottomRight' arrow>
+									<Col xs={6} sm={6} md={6}>
+										<Dropdown shape={'circle'} overlay={menu} placement='bottomRight' arrow>
 											<img
 												className='cv-heder-user-image-user'
 												src={JSON.parse(localStorage.getItem('user')).image}

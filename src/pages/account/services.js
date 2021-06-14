@@ -3,11 +3,12 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-const serviceAccountDetail = async (item, email) => {
+const serviceAccountDetail = async (item) => {
 	let returnResponse
 	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account/detail/${item}`,
+		method: 'POST',
+		url: `${process.env.REACT_APP_HOST}/account/detail`,
+		data: item,
 	})
 		.then((response) => {
 			if (response.data.statusCode <= 200) {
@@ -19,9 +20,8 @@ const serviceAccountDetail = async (item, email) => {
 				})
 			}
 		})
-		.catch((error) => {
-			returnResponse = error.response.data
-			console.log(process.env.REACT_APP_HOST, error)
+		.catch((e) => {
+			returnResponse = e.response.data
 			notification['error']({
 				message: `Error`,
 				description: `Error de conexión, intente mas tarde`,

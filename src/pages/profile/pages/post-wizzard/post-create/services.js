@@ -6,7 +6,7 @@ const serviceGetData = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/link/${item}`,
+		url: `${process.env.REACT_APP_HOST}/post/${item}`,
 	})
 		.then((response) => {
 			returnResponse = response.data.data[0]
@@ -21,7 +21,7 @@ const serviceCreateData = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'POST',
-		url: `${process.env.REACT_APP_HOST}/link/`,
+		url: `${process.env.REACT_APP_HOST}/post/`,
 		data: item,
 	})
 		.then((response) => {
@@ -37,7 +37,7 @@ const serviceUpdateData = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'PUT',
-		url: `${process.env.REACT_APP_HOST}/link/`,
+		url: `${process.env.REACT_APP_HOST}/post/`,
 		data: item,
 	})
 		.then((response) => {

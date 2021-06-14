@@ -6,10 +6,11 @@ import { Provider } from 'react-redux'
 import generateStore from './redux/store'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
-
 import './app.css'
 import Routers from './routers/Routers'
 const store = generateStore()
+
+if (process.env.REACT_APP_ENVIROMENT !== 'develop') console.log = () => {}
 
 ReactDOM.render(
 	<Provider store={store}>

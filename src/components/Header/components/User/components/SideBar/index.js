@@ -4,12 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Drawer, Row, Col } from 'antd'
-import {
-	QuestionOutlined,
-	HomeOutlined,
-	CloseSquareOutlined,
-	UserOutlined,
-} from '@ant-design/icons'
+import { QuestionOutlined, HomeOutlined, CloseSquareOutlined, UserOutlined } from '@ant-design/icons'
 
 import './style.css'
 
@@ -105,19 +100,23 @@ export default class SideBar extends React.Component {
 					</div>
 				)}
 				<div className='cv-header-user-sidebar-list'>
-					<Link to={`/profile/create-account`}>
+					<Link to={`/profile/account-user`}>
 						<div className='cv-header-user-icon-login-content'>
-							<img
-								width='19px'
-								src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
-								alt='Crear Cuenta'
-							/>{' '}
+							<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />{' '}
 							<span className='ml10'>Publicate</span>
 						</div>
 					</Link>
 				</div>
 				<div className='cv-header-user-sidebar-list'>
-					<Link to={`/help/cuentas-virales`}>
+					<Link to={`/profile/linktree`}>
+						<div className='cv-header-user-icon-login-content'>
+							<img width='19px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
+							<span className='ml10'>Multiples Enlaces</span>
+						</div>
+					</Link>
+				</div>
+				<div className='cv-header-user-sidebar-list'>
+					<Link to={`/help/quienes-somos`}>
 						<div className='cv-header-user-icon-login-content'>
 							<QuestionOutlined style={{ fontSize: 22 }} />
 							<span className='ml10'>Ayuda</span>

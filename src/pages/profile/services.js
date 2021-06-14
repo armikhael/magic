@@ -3,11 +3,11 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-const serviceGetAccountsByEmail = async (data) => {
+const serviceGetAccountsByEmail = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account/email/${data}`,
+		url: `${process.env.REACT_APP_HOST}/profile/by-email/${item}`,
 	})
 		.then((response) => {
 			returnResponse = response.data

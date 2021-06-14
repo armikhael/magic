@@ -1,8 +1,9 @@
 /** @format */
 
 import React from 'react'
-
 import { Form, Input } from 'antd'
+
+import { rulesValidation } from '../Rules'
 import './style.css'
 
 const { TextArea } = Input
@@ -10,14 +11,14 @@ const TextAreaField = (props) => {
 	return (
 		<>
 			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>
-			<Form.Item name={props.componentName}>
+			<Form.Item name={props.componentName} rules={rulesValidation[props.componentRules]}>
 				<TextArea
 					style={{ width: '100%' }}
 					autoSize={props.componentAutoSize}
-					size={props.componentSize}
+					rows={props.componentRows}
 					mode={props.componentMode}
 					placeholder={props.componentPlaceholder}
-					onChange={props.componentFunction}
+					onChange={props.componentOnChange}
 				/>
 			</Form.Item>
 		</>

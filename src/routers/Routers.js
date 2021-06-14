@@ -11,10 +11,14 @@ import Test from '../pages/test'
 
 import Home from '../pages/home'
 import Profile from '../pages/profile'
-import Activation from '../pages/profile/pages/activation'
-import CreateAccount from '../pages/profile/pages/create-account'
-import EditAccount from '../pages/profile/pages/edit-account'
-import CreateLink from '../pages/profile/pages/create-link'
+import AccountUser from '../pages/profile/pages/account-wizzard/account-user'
+import AccountBiography from '../pages/profile/pages/account-wizzard/account-biography'
+import AccountPlans from '../pages/profile/pages/account-wizzard/account-plans'
+import AccountDetails from '../pages/profile/pages/account-wizzard/account-details'
+import AccountActivation from '../pages/profile/pages/account-wizzard/account-activation'
+import LinkTree from '../pages/profile/pages/linktree'
+import Post from '../pages/profile/pages/post-wizzard/post-create'
+import PostView from '../pages/profile/pages/post-wizzard/post-view'
 import Category from '../pages/category'
 import Country from '../pages/country'
 import AccountDetail from '../pages/account'
@@ -41,20 +45,21 @@ const Routers = () => (
 				<Route exact path='/country/:name' component={Country} />
 				<Route exact path='/results/:name' component={Results} />
 				<Route exact path='/help/:name' component={Help} />
-
 				<PrivateRoute exact path='/profile' component={Profile} />
-				<PrivateRoute exact path='/profile/create-account' component={CreateAccount} />
-				<PrivateRoute exact path='/profile/activation/:type' component={Activation} />
-				<PrivateRoute exact path='/profile/edit-account/:name' component={EditAccount} />
-				<PrivateRoute exact path='/profile/create-link/' component={CreateLink} />
-				<PrivateRoute exact path='/profile/edit-link/:name' component={CreateLink} />
-
+				<PrivateRoute exact path='/profile/account-user' component={AccountUser} />
+				<PrivateRoute exact path='/profile/account-biography/:name/:modify?' component={AccountBiography} />
+				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />
+				<PrivateRoute exact path='/profile/account-details/:name/:modify?' component={AccountDetails} />
+				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
+				<PrivateRoute exact path='/profile/linktree/' component={LinkTree} />
+				<PrivateRoute exact path='/profile/linktree/:name' component={LinkTree} />
+				<PrivateRoute exact path='/profile/post-create' component={Post} />
+				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />
+				PostView
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
 				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
-
 				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={AccountDetail} />
-
 				<Route component={NotFound} />
 			</Switch>
 		</Layout>
