@@ -53,7 +53,7 @@ const serviceGetLinks = async (item) => {
 		url: `${process.env.REACT_APP_HOST}/link/${item}`,
 	})
 		.then((response) => {
-			returnResponse = response.data.data
+			returnResponse = response.data
 		})
 		.catch((e) => {
 			returnResponse = e.response.data

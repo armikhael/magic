@@ -31,7 +31,7 @@ export default class AccountDetail extends React.Component {
 		loading: true,
 		promotion: [],
 		links: [],
-		errored: false,
+		pageError: false,
 		permissions: undefined,
 		representation: false,
 	}
@@ -90,10 +90,18 @@ export default class AccountDetail extends React.Component {
 				})
 			} else {
 				serviceGetLinks(this.props.match.params.name).then((response) => {
-					this.setState({
-						loading: false,
-						links: response[0].links,
-					})
+					console.log(response)
+					if (response.data.length > 0) {
+						this.setState({
+							loading: false,
+							links: response[0].links,
+						})
+					} else {
+						this.setState({
+							loading: false,
+							pageError: { statusCode: 404, message: 'Página no encontrada' },
+						})
+					}
 				})
 			}
 		} catch (e) {
@@ -132,7 +140,7 @@ export default class AccountDetail extends React.Component {
 	handleOnError = () => {
 		this.setState({
 			image: `${process.env.REACT_APP_LOGO}`,
-			errored: true,
+			pageError: true,
 		})
 	}
 
@@ -158,8 +166,8 @@ export default class AccountDetail extends React.Component {
 		if (this.state.loading) {
 			return <Loading />
 		}
-		if (this.state.error) {
-			return <PageError detailError={this.state.error} />
+		if (this.state.pageError) {
+			return <PageError detailError={this.state.pageError} />
 		}
 		return (
 			<>

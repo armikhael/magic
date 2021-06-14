@@ -12,9 +12,11 @@ class PageError extends React.Component {
 				title={this.props.detailError.statusCode}
 				subTitle={this.props.detailError.message}
 				extra={
-					<Button type='primary'>
-						<NavLink to='/'>Back Home</NavLink>
-					</Button>
+					<>
+						<Button type='primary'>
+							<NavLink to='/'>VOLVER</NavLink>
+						</Button>
+					</>
 				}
 			/>
 		)
