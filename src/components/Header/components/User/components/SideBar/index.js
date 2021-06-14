@@ -110,7 +110,7 @@ export default class SideBar extends React.Component {
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/profile/linktree`}>
 						<div className='cv-header-user-icon-login-content'>
-							<img width='19px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
+							<img width='18px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
 							<span className='ml10'>Multiples Enlaces</span>
 						</div>
 					</Link>

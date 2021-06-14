@@ -85,6 +85,10 @@ export default class Profile extends React.Component {
 		})
 	}
 
+	handleDeleteLinkTree = (item) => {
+		console.log(item)
+		this.setState({ links: [] })
+	}
 	render() {
 		if (this.state.loading) {
 			return <Loading />
@@ -274,7 +278,10 @@ export default class Profile extends React.Component {
 									</Layout>
 								</Card>
 								<Row className='cv-profile-content-accoun'>
-									<LinkTree componentData={this.state.links} />
+									<LinkTree
+										componentData={this.state.links}
+										componentDelete={this.handleDeleteLinkTree}
+									/>
 								</Row>
 								{this.state.userProfile.autentication !== 'google' && (
 									<Card className='cv-profile-main-container'>
