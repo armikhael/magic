@@ -91,7 +91,7 @@ export default class AccountDetail extends React.Component {
 			} else {
 				serviceGetLinks(this.props.match.params.name).then((response) => {
 					console.log(response)
-					if (response.data.length > 0) {
+					if (response.length > 0) {
 						this.setState({
 							loading: false,
 							links: response[0].links,
