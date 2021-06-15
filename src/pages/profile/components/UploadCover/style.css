@@ -31,6 +31,7 @@
 	bottom: 2px;
 	right: 27px;
 	border-radius: 50px;
+	margin-top: 20px;
 }
 
 @media (max-width: 768px) {
