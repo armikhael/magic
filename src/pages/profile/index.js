@@ -103,6 +103,7 @@ export default class Profile extends React.Component {
 			})
 		}
 	}
+
 	render() {
 		if (this.state.loading) {
 			return <Loading />
@@ -126,7 +127,7 @@ export default class Profile extends React.Component {
 														<Col sm={24} md={6} className='cv-profile-upload-image'>
 															<img
 																className='cv-profile-main-info-inner-container-img'
-																src={item.image}
+																src={item.image || process.env.REACT_APP_LOGO}
 																alt={item.name}
 																title={item.name}
 															/>
