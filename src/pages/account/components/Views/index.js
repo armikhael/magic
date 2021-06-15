@@ -80,6 +80,7 @@ export default function Views(props) {
 					</Col>
 					<Col xs={24} sm={24} md={12} className='cv-detail-content-actiones-btn'>
 						<p>Intercambios:</p>
+
 						{props.detail.representation === false && (
 							<>
 								<Comment
