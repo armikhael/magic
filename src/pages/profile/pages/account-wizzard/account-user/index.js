@@ -29,7 +29,6 @@ export default function AccountUser(props) {
 	const handleOnFinish = (item) => {
 		item.email = user.email
 		item.name = `${item.account}-${item.type}`
-		item.image = process.env.REACT_APP_LOGO
 		console.log(item)
 		serviceCreateData(item).then((response) => {
 			console.log(response)

@@ -59,7 +59,7 @@ const ModalConfiguration = (props) => {
 					</li>
 					<li>
 						Marca Personal:{' '}
-						{props.componentData.business === true ? (
+						{props.componentData.business === false ? (
 							<CheckCircleTwoTone twoToneColor='#52c41a' />
 						) : (
 							<CloseCircleTwoTone twoToneColor='#eb2f96' />

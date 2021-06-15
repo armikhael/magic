@@ -14,9 +14,9 @@ export default function UploadCover(props) {
 			uid: '-1',
 			name: 'image.png',
 			status: 'done',
-			url: props.account.image_cover || process.env.REACT_APP_LOGO,
-			image: props.account.image_cover || process.env.REACT_APP_LOGO,
-			image_thumb: props.account.image_cover || process.env.REACT_APP_LOGO,
+			url: props.account.image_cover,
+			image: props.account.image_cover,
+			image_thumb: props.account.image_cover,
 		},
 	])
 	const [isButtom, setButtom] = useState(false)
@@ -45,11 +45,12 @@ export default function UploadCover(props) {
 		formData.append('name', `${props.account.name}-cover`)
 		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
+			console.log(response.image.url)
 			props.account.image_cover = response.image.url
 			serviceUpdateData(props.account).then((response) => {
 				setButtom(false)
 				if (props.componentHandle) {
-					handleComponent(response.data.image)
+					handleComponent(response.data.image_cover)
 				}
 			})
 		})

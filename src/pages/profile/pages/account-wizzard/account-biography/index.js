@@ -29,13 +29,16 @@ const AccountBiography = (props) => {
 	const [code, setCode] = useState()
 	const [isModify, setIsModify] = useState(false)
 	const [buttonText, setButtonText] = useState('Continuar')
-	const [imageProfile, setImageProfile] = useState(process.env.REACT_APP_LOGO)
-	const [imageCover, setImageCover] = useState(process.env.REACT_APP_LOGO)
+	const [imageProfile, setImageProfile] = useState(null)
+	const [imageCover, setImageCover] = useState(null)
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
 		console.log(response)
 		setData(response)
+		setCode(response.code)
+		setImageProfile(response.image)
+		setImageCover(response.image_cover)
 		setEdit(true)
 	}
 
@@ -106,10 +109,21 @@ const AccountBiography = (props) => {
 	}
 
 	const handleOnFinish = (item) => {
+		console.log('imageProfile', imageProfile)
+		console.log('imageCover', imageCover)
+		if (imageProfile === undefined || imageCover === undefined) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Aún falta cargar las imagenes solicitadas`,
+			})
+			return
+		}
+
 		item._id = data._id
 		item.code = code
 		item.image = imageProfile
 		item.image_cover = imageCover
+		console.log(item)
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
@@ -204,7 +218,7 @@ const AccountBiography = (props) => {
 								<TextAreaField
 									componentClass={'cv-auth-login-field-input'}
 									componentName={'faq'}
-									componentLabel={'Condiciones del Servicio'}
+									componentLabel={'Términos y Condiciones'}
 									componentPlaceholder={'Coloca tu condiciones'}
 									componentRows={4}
 									componentRules={'required'}
