@@ -87,9 +87,9 @@ export default class InactiveAccounts extends React.Component {
 											</Button>
 										</li>
 										<li>
-											<CopyToClipboard text={`${item.name}`}>
+											<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
 												<Button>
-													Copiar Usuario <CopyOutlined />
+													Copiar Enlace: {item.name} <CopyOutlined />
 												</Button>
 											</CopyToClipboard>
 										</li>
@@ -104,14 +104,7 @@ export default class InactiveAccounts extends React.Component {
 											<Button
 												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola! ${item.account} te escribimos de cuentasvirales.com para informarte que te enviamos el código de activación a tu cuenta de ${item.type}`}
 												target='__blank'>
-												Whatsapp: Código de activación
-											</Button>
-										</li>
-										<li>
-											<Button
-												href={`${process.env.REACT_APP_WHATSAPP}?phone=${item.code}${item.phone}&text=Hola! ${item.account} te escribimos de cuentasvirales.com para saber si necesitas ayuda con la activación de tu cuenta de ${item.type}`}
-												target='__blank'>
-												Whatsapp: Soporte
+												Ir al WhatsApp
 											</Button>
 										</li>
 										<li>
@@ -126,13 +119,6 @@ export default class InactiveAccounts extends React.Component {
 											<Button href={item.interface.link} target='__blank'>
 												Ir a la cuenta de: {item.account}
 											</Button>
-										</li>
-										<li>
-											<CopyToClipboard text={item.account}>
-												<Button>
-													Copiar <CopyOutlined />
-												</Button>
-											</CopyToClipboard>
 										</li>
 										<li>
 											<Button
