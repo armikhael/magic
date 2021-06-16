@@ -58,4 +58,5 @@ export const CONSTANTS = {
 		{ name: 'No', value: false },
 		{ name: 'Si', value: true },
 	],
+	FORMAT: '.jpeg, .png, .jpg',
 }

@@ -5,25 +5,24 @@ import React, { useState } from 'react'
 import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
-import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
-
-import { serviceUploadImage, serviceUpdateData } from './services'
+import { serviceUploadImage } from './services'
 import './style.css'
 
-export default function UploadCover(props) {
+export default function UploadOneImage(props) {
 	const [count, setCount] = useState(0)
 	const [fileList, setFileList] = useState([
 		{
 			uid: '-1',
 			name: 'image.png',
 			status: 'done',
-			url: props.account.image_cover,
-			image: props.account.image_cover,
-			image_thumb: props.account.image_cover,
+			url: props.componentData.image,
+			image: props.componentData.image,
+			image_thumb: props.componentData.image,
 		},
 	])
 
 	const beforeUpload = (file) => {
+		console.log('beforeUpload', file)
 		const isSize = file.size / 1024 / 1024 <= 0.1
 		if (!isSize) {
 			notification['error']({
@@ -35,7 +34,6 @@ export default function UploadCover(props) {
 	}
 
 	const handleOnChange = ({ fileList: item }) => {
-		console.log('handleOnChange', item)
 		setFileList(item)
 		if (item.length > 0) {
 			if (count === 0) {
@@ -50,18 +48,14 @@ export default function UploadCover(props) {
 
 	const handleSaveImage = (item) => {
 		console.log('handleSaveImage', item)
+		console.log('name', props.componentName)
 		let formData = new FormData()
 		formData.append('image', item[0].originFileObj)
-		formData.append('name', `${props.account.name}-cover`)
+		formData.append('name', props.componentName)
 		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
-			console.log(response.image.url)
-			props.account.image_cover = response.image.url
-			serviceUpdateData(props.account).then((response) => {
-				if (props.componentHandle) {
-					props.componentHandle(response.data.image)
-				}
-			})
+			console.log('imagen subida', response)
+			props.componentHandle(response.image.url)
 		})
 	}
 
@@ -91,7 +85,7 @@ export default function UploadCover(props) {
 					onPreview={handleOnPreview}
 					beforeUpload={beforeUpload}
 					progress={{ strokeWidth: 2, showInfo: false }}
-					accept={props.componentAccept || CONSTANTS.FORMAT}>
+					accept={props.componentAccept || '.jpeg, .png, jpeg'}>
 					{fileList.length < 1 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
