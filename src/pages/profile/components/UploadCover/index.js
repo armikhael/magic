@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
+import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
+
 import { serviceUploadImage, serviceUpdateData } from './services'
 import './style.css'
 
@@ -89,7 +91,7 @@ export default function UploadCover(props) {
 					onPreview={handleOnPreview}
 					beforeUpload={beforeUpload}
 					progress={{ strokeWidth: 2, showInfo: false }}
-					accept={props.componentAccept || '.jpeg, .png, jpeg'}>
+					accept={props.componentAccept || CONSTANTS.FORMAT}>
 					{fileList.length < 1 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
