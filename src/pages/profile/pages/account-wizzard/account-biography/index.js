@@ -126,11 +126,11 @@ const AccountBiography = (props) => {
 			console.log(response)
 			if (response.statusCode === 200) {
 				console.log(response.data.name)
-				// if (isModify === false) {
-				// 	history.push(`/profile/account-plans/${response.data.name}`)
-				// } else {
-				// 	history.push(`/profile`)
-				// }
+				if (isModify === false) {
+					history.push(`/profile/account-plans/${response.data.name}`)
+				} else {
+					history.push(`/profile`)
+				}
 			} else {
 				notification['error']({
 					message: `Ups!`,
