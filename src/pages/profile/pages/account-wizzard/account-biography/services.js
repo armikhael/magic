@@ -3,7 +3,6 @@
 import axios from 'axios'
 
 const serviceGetData = async (item) => {
-	console.log('name:', item)
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -20,7 +19,6 @@ const serviceGetData = async (item) => {
 }
 
 const serviceUpdateData = async (body) => {
-	console.log(body)
 	let returnResponse
 	await axios({
 		method: 'PUT',
