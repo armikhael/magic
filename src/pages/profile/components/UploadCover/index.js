@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react'
 
-import { Upload, Button, notification } from 'antd'
+import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
 import { serviceUploadImage, serviceUpdateData } from './services'
 import './style.css'
 
 export default function UploadCover(props) {
+	const [count, setCount] = useState(0)
 	const [fileList, setFileList] = useState([
 		{
 			uid: '-1',
@@ -19,7 +20,6 @@ export default function UploadCover(props) {
 			image_thumb: props.account.image_cover,
 		},
 	])
-	const [isButtom, setButtom] = useState(false)
 
 	const beforeUpload = (file) => {
 		const isSize = file.size / 1024 / 1024 <= 0.1
@@ -33,24 +33,31 @@ export default function UploadCover(props) {
 	}
 
 	const handleOnChange = ({ fileList: item }) => {
+		console.log('handleOnChange', item)
 		setFileList(item)
 		if (item.length > 0) {
-			setButtom(true)
+			if (count === 0) {
+				handleSaveImage(item)
+				setCount(1)
+			}
+		} else {
+			setCount(0)
+			props.componentHandle(undefined)
 		}
 	}
 
-	const handleSaveImage = () => {
+	const handleSaveImage = (item) => {
+		console.log('handleSaveImage', item)
 		let formData = new FormData()
-		formData.append('image', fileList[0].originFileObj)
+		formData.append('image', item[0].originFileObj)
 		formData.append('name', `${props.account.name}-cover`)
 		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
 			console.log(response.image.url)
 			props.account.image_cover = response.image.url
 			serviceUpdateData(props.account).then((response) => {
-				setButtom(false)
 				if (props.componentHandle) {
-					handleComponent(response.data.image_cover)
+					props.componentHandle(response.data.image)
 				}
 			})
 		})
@@ -71,8 +78,6 @@ export default function UploadCover(props) {
 		imgWindow.document.write(image.outerHTML)
 	}
 
-	const handleComponent = props.componentHandle
-
 	return (
 		<>
 			<ImgCrop>
@@ -88,12 +93,6 @@ export default function UploadCover(props) {
 					{fileList.length < 1 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
-			<br />
-			{isButtom && (
-				<Button className='cv-upload-img-update' type='primary' onClick={handleSaveImage}>
-					Confirmar
-				</Button>
-			)}
 		</>
 	)
 }

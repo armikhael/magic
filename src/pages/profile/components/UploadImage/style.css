@@ -1,4 +1,7 @@
 /** @format */
+.ant-tooltip-content {
+	display: none;
+}
 
 .cv-upload-img .ant-upload-list-picture-card .ant-upload-list-item {
 	float: left;

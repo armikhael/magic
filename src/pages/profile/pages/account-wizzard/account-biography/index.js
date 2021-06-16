@@ -29,8 +29,8 @@ const AccountBiography = (props) => {
 	const [code, setCode] = useState()
 	const [isModify, setIsModify] = useState(false)
 	const [buttonText, setButtonText] = useState('Continuar')
-	const [imageProfile, setImageProfile] = useState(null)
-	const [imageCover, setImageCover] = useState(null)
+	const [imageProfile, setImageProfile] = useState(undefined)
+	const [imageCover, setImageCover] = useState(undefined)
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -121,8 +121,6 @@ const AccountBiography = (props) => {
 
 		item._id = data._id
 		item.code = code
-		item.image = imageProfile
-		item.image_cover = imageCover
 		console.log(item)
 		serviceUpdateData(item).then((response) => {
 			console.log(response)

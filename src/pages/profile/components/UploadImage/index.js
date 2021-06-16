@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react'
 
-import { Upload, Button, notification } from 'antd'
+import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
 
 import { serviceUploadImage, serviceUpdateData } from './services'
 import './style.css'
 
 export default function UploadImage(props) {
+	const [count, setCount] = useState(0)
 	const [fileList, setFileList] = useState([
 		{
 			uid: '-1',
@@ -19,7 +20,6 @@ export default function UploadImage(props) {
 			image_thumb: props.account.image_thumb,
 		},
 	])
-	const [isButtom, setButtom] = useState(false)
 
 	const beforeUpload = (file) => {
 		console.log('beforeUpload', file)
@@ -36,14 +36,22 @@ export default function UploadImage(props) {
 	const handleOnChange = ({ fileList: item }) => {
 		setFileList(item)
 		if (item.length > 0) {
-			setButtom(true)
+			if (count === 0) {
+				handleSaveImage(item)
+				setCount(1)
+			}
+		} else {
+			setCount(0)
+			props.componentHandle(undefined)
 		}
 	}
 
-	const handleSaveImage = () => {
+	const handleSaveImage = (item) => {
+		console.log('handleSaveImage', item)
+		console.log('name', props.account.name)
 		let formData = new FormData()
-		formData.append('image', fileList[0].originFileObj)
-		formData.append('name', props.account.name)
+		formData.append('image', item[0].originFileObj)
+		formData.append('name', `${props.account.name}`)
 		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
 			console.log('imagen subida', response)
@@ -51,9 +59,8 @@ export default function UploadImage(props) {
 			props.account.image_thumb = response.thumb.url
 			serviceUpdateData(props.account).then((response) => {
 				console.log('imagen guardada', response.data.image)
-				setButtom(false)
 				if (props.componentHandle) {
-					handleComponent(response.data.image)
+					props.componentHandle(response.data.image)
 				}
 			})
 		})
@@ -74,8 +81,6 @@ export default function UploadImage(props) {
 		imgWindow.document.write(image.outerHTML)
 	}
 
-	const handleComponent = props.componentHandle
-
 	return (
 		<>
 			<ImgCrop>
@@ -91,12 +96,6 @@ export default function UploadImage(props) {
 					{fileList.length < 1 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
-			<br />
-			{isButtom && (
-				<Button className='cv-upload-img-update' type='primary' onClick={handleSaveImage}>
-					Confirmar
-				</Button>
-			)}
 		</>
 	)
 }
