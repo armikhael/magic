@@ -19,7 +19,7 @@ const LinkTree = (props) => {
 					}}>
 					Ver
 				</span>,
-				<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+				<CopyToClipboard text={`${process.env.REACT_APP_LINKTREE}/${item.name}`}>
 					<span
 						onClick={() => {
 							notification['success']({

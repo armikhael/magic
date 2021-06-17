@@ -26,10 +26,12 @@ const menu = (
 
 function Layout(props) {
 	const handleLayouts = () => {
+		let location = props.location.pathname.split('/')
 		if (
 			props.location.pathname === '/auth/login' ||
 			props.location.pathname === '/auth/recovery' ||
-			props.location.pathname === '/auth/register'
+			props.location.pathname === '/auth/register' ||
+			location[1] === 'linktree'
 		) {
 			return <>{props.children}</>
 		} else {
