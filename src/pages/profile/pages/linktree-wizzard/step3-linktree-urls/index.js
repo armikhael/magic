@@ -14,7 +14,6 @@ export default function LinkTreeUrl(props) {
 	const history = useHistory()
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
-	const [isModify, setIsModify] = useState(false)
 	const [buttonText, setButtonText] = useState('Finalizar')
 	const [links, setLinks] = useState([])
 
@@ -27,7 +26,6 @@ export default function LinkTreeUrl(props) {
 
 	useEffect(() => {
 		if (props.match.params.modify) {
-			setIsModify(true)
 			setButtonText('Actualizar')
 		}
 		console.log(props.match.params.name)
@@ -55,17 +53,13 @@ export default function LinkTreeUrl(props) {
 			console.log(response)
 			if (response.statusCode === 200) {
 				console.log(response.data.name)
-				if (isModify === false) {
-					notification['success']({
-						message: `Felicidades!`,
-						description: `Ahora te mostraremos como se ven tus enlaces`,
-					})
-					setTimeout(() => {
-						history.push(`/${response.data.name}`)
-					}, 2000)
-				} else {
-					history.push(`/profile`)
-				}
+				notification['success']({
+					message: `Felicidades!`,
+					description: `Ahora te mostraremos como se ven tus enlaces`,
+				})
+				setTimeout(() => {
+					history.push(`/${response.data.name}`)
+				}, 2000)
 			} else {
 				notification['error']({
 					message: `Ups!`,

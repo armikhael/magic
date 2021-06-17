@@ -26,7 +26,13 @@ export default function LinkTreeName(props) {
 			console.log(response)
 			if (response.statusCode === 200) {
 				console.log(response.data)
-				history.push(`/profile/linktree-info/${response.data.name}`)
+				notification['success']({
+					message: `Felicidades!`,
+					description: `Fue reservado tu nombre de forma exitosa.`,
+				})
+				setTimeout(() => {
+					history.push(`/profile/linktree-info/${response.data.name}`)
+				}, 2000)
 			} else {
 				notification['error']({
 					message: `Ups!`,

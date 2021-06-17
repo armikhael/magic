@@ -2,68 +2,77 @@
 
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button, notification, Row, Col } from 'antd'
-import { EditOutlined, EyeOutlined, CopyOutlined, CloseOutlined } from '@ant-design/icons'
+import { notification, Row, List, Comment, Button } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+
+import ModalEditLinktree from '../ModalEditLinktree'
 
 const LinkTree = (props) => {
 	const history = useHistory()
-
+	const data = props.componentData.map((item, key) => {
+		return {
+			actions: [
+				<ModalEditLinktree componentData={item} componentHeader={'Modificar Información'} />,
+				<span
+					onClick={() => {
+						history.push(`/${item.name}`)
+					}}>
+					Ver
+				</span>,
+				<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+					<span
+						onClick={() => {
+							notification['success']({
+								message: '¡Excelente!',
+								description: `Enlace Copiado.`,
+							})
+						}}>
+						Copiar
+					</span>
+				</CopyToClipboard>,
+				<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+					<span
+						onClick={() => {
+							props.componentDelete(item)
+						}}>
+						Eliminar
+					</span>
+				</CopyToClipboard>,
+			],
+			author: item.name,
+			avatar: item.image,
+			content: <>{item.description}</>,
+		}
+	})
 	return (
 		<>
 			{props.componentData.length > 0 && (
 				<>
-					{props.componentData.map((iterator, key) => {
-						return (
-							<Row key={key}>
-								<Col md={12} sm={12} xs={12}>
-									Enlace: {iterator.name}
-								</Col>
-								<Col md={12} sm={12} xs={12}>
-									<Button
-										style={{ margin: '0px 5px' }}
-										shape='circle'
-										onClick={() => {
-											history.push(`/profile/linktree/${iterator.name}`)
-										}}>
-										<EditOutlined />
-									</Button>
-									<Button
-										style={{ margin: '0px 5px' }}
-										shape='circle'
-										onClick={() => {
-											history.push(`/${iterator.name}`)
-										}}>
-										<EyeOutlined />
-									</Button>
-									<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${iterator.name}`}>
-										<Button
-											style={{ margin: '0px 5px' }}
-											shape='circle'
-											onClick={() => {
-												notification['success']({
-													message: '¡Excelente!',
-													description: `Enlace Copiado.`,
-												})
-											}}>
-											<CopyOutlined />
-										</Button>
-									</CopyToClipboard>
-									<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${iterator.name}`}>
-										<Button
-											style={{ margin: '0px 5px' }}
-											type='danger'
-											shape='circle'
-											onClick={() => {
-												props.componentDelete(iterator)
-											}}>
-											<CloseOutlined />
-										</Button>
-									</CopyToClipboard>
-								</Col>
-							</Row>
-						)
-					})}
+					<Row>
+						<List
+							className='comment-list'
+							header={`${data.length} Enlaces`}
+							itemLayout='horizontal'
+							dataSource={data}
+							renderItem={(item) => (
+								<li>
+									<Comment
+										actions={item.actions}
+										author={item.author}
+										avatar={item.avatar}
+										content={item.content}
+									/>
+								</li>
+							)}
+						/>
+						<Button
+							onClick={() => {
+								history.push(`/profile/linktree-name`)
+							}}
+							className={'cv-account-wizzard-button-submit'}>
+							Crear Nuevo
+						</Button>
+					</Row>
 				</>
 			)}
 			{props.componentData.length <= 0 && (

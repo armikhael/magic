@@ -57,7 +57,13 @@ export default function LinkTreeInfo(props) {
 				if (isModify === false) {
 					history.push(`/profile/linktree-urls/${response.data.name}`)
 				} else {
-					history.push(`/profile`)
+					notification['success']({
+						message: `Felicidades!`,
+						description: `Ahora te mostraremos como se ven tus cambios`,
+					})
+					setTimeout(() => {
+						history.push(`/${response.data.name}`)
+					}, 2000)
 				}
 			} else {
 				notification['error']({

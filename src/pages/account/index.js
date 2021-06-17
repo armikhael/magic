@@ -29,7 +29,7 @@ export default class AccountDetail extends React.Component {
 		relations: null,
 		loading: true,
 		promotion: [],
-		links: [],
+		links: null,
 		pageError: false,
 		permissions: undefined,
 		representation: false,
@@ -100,7 +100,7 @@ export default class AccountDetail extends React.Component {
 						})
 						this.setState({
 							loading: false,
-							links: response[0].links,
+							links: response[0],
 						})
 					} else {
 						this.setState({
@@ -480,7 +480,7 @@ export default class AccountDetail extends React.Component {
 					</Content>
 				)}
 
-				{this.state.links.length > 0 && <LinkTree componentData={this.state.links} />}
+				{this.state.links !== null && <LinkTree componentData={this.state.links} />}
 			</>
 		)
 	}
