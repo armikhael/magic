@@ -51,7 +51,7 @@ const LinkTree = (props) => {
 					<Row>
 						<List
 							className='comment-list'
-							header={`${data.length} Enlaces`}
+							header={`${data.length} Enlaces Creados`}
 							itemLayout='horizontal'
 							dataSource={data}
 							renderItem={(item) => (
