@@ -6,8 +6,7 @@ const serviceDelete = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'DELETE',
-		url: `${process.env.REACT_APP_HOST}/link`,
-		data: item,
+		url: `${process.env.REACT_APP_HOST}/account/${item.id}`,
 	})
 		.then((response) => {
 			returnResponse = response.data
@@ -18,4 +17,4 @@ const serviceDelete = async (item) => {
 	return returnResponse
 }
 
-export default serviceDelete
+export { serviceDelete }

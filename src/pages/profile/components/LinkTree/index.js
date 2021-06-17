@@ -44,6 +44,7 @@ const LinkTree = (props) => {
 			content: <>{item.description}</>,
 		}
 	})
+
 	return (
 		<>
 			{props.componentData.length > 0 && (

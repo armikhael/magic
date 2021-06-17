@@ -18,21 +18,6 @@ const serviceGetAccountsByEmail = async (item) => {
 	return returnResponse
 }
 
-const serviceDeleteAccount = async (item) => {
-	let returnResponse
-	await axios({
-		method: 'DELETE',
-		url: `${process.env.REACT_APP_HOST}/account/${item.id}`,
-	})
-		.then((response) => {
-			returnResponse = response.data
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
-	return returnResponse
-}
-
 const serviceChangePassword = async (item, email) => {
 	let returnResponse
 	await axios({
@@ -80,4 +65,4 @@ const serviceActiveAccount = async (item) => {
 	return returnResponse
 }
 
-export { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword, serviceActiveAccount }
+export { serviceGetAccountsByEmail, serviceChangePassword, serviceActiveAccount }

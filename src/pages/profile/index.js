@@ -1,15 +1,14 @@
 /** @format */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Layout, Row, Col, Card, Result, Typography, Button, notification, Form } from 'antd'
+import { Layout, Row, Col, Card, Typography, Button, notification, Form } from 'antd'
 import { UserOutlined, HeartOutlined, ApiOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import InputField from '../../components/Input'
 
 import './style.css'
-import { serviceGetAccountsByEmail, serviceDeleteAccount, serviceChangePassword } from './services'
+import { serviceGetAccountsByEmail, serviceChangePassword } from './services'
 import LinkTree from './components/LinkTree'
 import Accounts from './components/Accounts'
 
@@ -46,35 +45,6 @@ export default class Profile extends React.Component {
 		this.setState({ loadingChangePassword: true })
 		serviceChangePassword(item, this.state.userProfile.email).then(() => {
 			this.setState({ loadingChangePassword: false })
-		})
-	}
-
-	handleDeleteAccount = async (item) => {
-		let btn = (
-			<Button
-				className='ph-profile-address-button-delete'
-				onClick={() =>
-					serviceDeleteAccount({
-						id: item._id,
-						email: this.state.userProfile.email,
-					}).then((response) => {
-						notification.close('notiAccountDelete')
-						serviceGetAccountsByEmail(this.state.userProfile.email).then((response) => {
-							console.log(response)
-							this.setState({
-								accounts: response.accounts,
-							})
-						})
-					})
-				}>
-				<h3 className='ph-profile-address-button-delete-title'>Confirmar</h3>
-			</Button>
-		)
-		notification['error']({
-			message: 'Eliminar Cuenta',
-			description: `Estas seguro que quieres eliminar la cuenta "${item.account}".`,
-			btn,
-			key: 'notiAccountDelete',
 		})
 	}
 
@@ -121,32 +91,7 @@ export default class Profile extends React.Component {
 								<Row>
 									<Col xs={24} sm={24} md={24} lg={24} xl={24}>
 										<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-											<Accounts
-												componentData={this.state.accounts}
-												componentDelete={this.handleDeleteAccount}
-											/>
-
-											{(() => {
-												if (this.state.accounts.length === 0) {
-													return (
-														<div className='cv-profile-card-account-content'>
-															<Result
-																status='error'
-																title='Cuentas Registradas'
-																subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
-																extra={[
-																	<Link
-																		key='profile-link-add-account'
-																		to={`/profile/create-account`}>
-																		<Button key='profile-button-add-account'>
-																			Registrar Cuenta
-																		</Button>
-																	</Link>,
-																]}></Result>
-														</div>
-													)
-												}
-											})()}
+											<Accounts componentData={this.state.accounts} />
 										</Col>
 									</Col>
 								</Row>
