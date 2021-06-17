@@ -1,15 +1,36 @@
 /** @format */
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { notification, Row, List, Comment, Button } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import ModalEditLinktree from '../ModalEditLinktree'
 
+import serviceDelete from './service'
+
 const LinkTree = (props) => {
 	const history = useHistory()
-	const data = props.componentData.map((item, key) => {
+	const [data, setData] = useState(props.componentData)
+
+	const handleDelete = async (item) => {
+		const response = await serviceDelete(item)
+		console.log(response)
+		if (response.statusCode === 200) {
+			setData(response.data)
+			notification['success']({
+				message: `¡Felicidades!`,
+				description: `El enlace ha sido eliminado correctamente`,
+			})
+		} else {
+			notification['error']({
+				message: `¡Ups!`,
+				description: response.message,
+			})
+		}
+	}
+
+	const render = data.map((item, key) => {
 		return {
 			actions: [
 				<ModalEditLinktree componentData={item} componentHeader={'Modificar Información'} />,
@@ -33,7 +54,7 @@ const LinkTree = (props) => {
 				<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
 					<span
 						onClick={() => {
-							props.componentDelete(item)
+							handleDelete(item)
 						}}>
 						Eliminar
 					</span>
@@ -47,14 +68,14 @@ const LinkTree = (props) => {
 
 	return (
 		<>
-			{props.componentData.length > 0 && (
+			{data.length > 0 && (
 				<>
 					<Row>
 						<List
 							className='comment-list'
-							header={`${data.length} Enlaces Creados`}
+							header={`${render.length} Enlaces Creados`}
 							itemLayout='horizontal'
-							dataSource={data}
+							dataSource={render}
 							renderItem={(item) => (
 								<li>
 									<Comment

@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { Layout, Row, Col, Card, Typography, notification } from 'antd'
+import { Layout, Row, Col, Card, Typography } from 'antd'
 import { UserOutlined, HeartOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -11,8 +11,6 @@ import LinkTree from './components/LinkTree'
 import Accounts from './components/Accounts'
 import ChangePassword from './components/ChangePassword'
 import { serviceGetAccountsByEmail } from './services'
-
-import serviceDeleteLinktree from './components/LinkTree/service'
 
 const { Content, Header } = Layout
 const { Text } = Typography
@@ -39,25 +37,6 @@ export default class Profile extends React.Component {
 				links: response.links,
 			})
 		})
-	}
-
-	handleDeleteLinkTree = async (item) => {
-		console.log(item)
-		const response = await serviceDeleteLinktree(item)
-		console.log(response)
-
-		if (response.statusCode === 200) {
-			this.setState({ links: response.data })
-			notification['success']({
-				message: `¡Felicidades!`,
-				description: `El enlace ha sido eliminado correctamente`,
-			})
-		} else {
-			notification['error']({
-				message: `¡Ups!`,
-				description: response.message,
-			})
-		}
 	}
 
 	render() {
