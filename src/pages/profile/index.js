@@ -87,9 +87,10 @@ export default class Profile extends React.Component {
 	}
 
 	handleDeleteLinkTree = async (item) => {
-		console.log(item._id)
-		const response = await serviceDeleteLinktree(item._id)
+		console.log(item)
+		const response = await serviceDeleteLinktree(item)
 		console.log(response)
+
 		if (response.statusCode === 200) {
 			this.setState({ links: response.data })
 			notification['success']({

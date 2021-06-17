@@ -10,22 +10,26 @@ import './style.css'
 const { Content } = Layout
 
 const LinkTree = (props) => {
+	console.log('LinkTree', props.componentData)
 	return (
 		<>
 			<Content className='cv-container-main'>
 				<div className='cv-linktree-content' style={{ borderRadius: '20px' }}>
 					<Card className='cv-linktree-card mt20' bordered={false} style={{ textAlign: 'center' }}>
 						<img
-							width='48px'
-							src='https://i.ibb.co/M93R2Gh/link.png'
+							width='128px'
+							src={props.componentData.image || 'https://i.ibb.co/M93R2Gh/link.png'}
 							alt='Multiples enlaces'
-							style={{ margin: '20px 0px' }}
+							style={{ margin: '20px 0px', borderRadius: '10px' }}
 						/>
+						<h3 style={{ margin: '5% 10%' }}>{props.componentData.account}</h3>
+
+						<p style={{ margin: '5% 10%' }}>{props.componentData.description}</p>
 
 						<List
 							style={{ borderRadius: '10px' }}
 							bordered
-							dataSource={props.componentData}
+							dataSource={props.componentData.links}
 							renderItem={(item, key) => (
 								<List.Item
 									style={{ cursor: 'pointer' }}
@@ -42,7 +46,6 @@ const LinkTree = (props) => {
 								</List.Item>
 							)}
 						/>
-						<p> ¿Cómo crear estos enlaces? Click Aquí</p>
 					</Card>
 				</div>
 			</Content>

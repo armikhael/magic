@@ -16,7 +16,9 @@ import AccountBiography from '../pages/profile/pages/account-wizzard/account-bio
 import AccountPlans from '../pages/profile/pages/account-wizzard/account-plans'
 import AccountDetails from '../pages/profile/pages/account-wizzard/account-details'
 import AccountActivation from '../pages/profile/pages/account-wizzard/account-activation'
-import LinkTree from '../pages/profile/pages/linktree'
+import LinkTreeName from '../pages/profile/pages/linktree-wizzard/step1-linktree-name'
+import LinkTreeInfo from '../pages/profile/pages/linktree-wizzard/step2-linktree-info'
+import LinkTreeUrl from '../pages/profile/pages/linktree-wizzard/step3-linktree-urls'
 import Post from '../pages/profile/pages/post-wizzard/post-create'
 import PostView from '../pages/profile/pages/post-wizzard/post-view'
 import Category from '../pages/category'
@@ -51,8 +53,9 @@ const Routers = () => (
 				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />
 				<PrivateRoute exact path='/profile/account-details/:name/:modify?' component={AccountDetails} />
 				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
-				<PrivateRoute exact path='/profile/linktree/' component={LinkTree} />
-				<PrivateRoute exact path='/profile/linktree/:name' component={LinkTree} />
+				<PrivateRoute exact path='/profile/linktree-name/' component={LinkTreeName} />
+				<PrivateRoute exact path='/profile/linktree-info/:name/:modify?' component={LinkTreeInfo} />
+				<PrivateRoute exact path='/profile/linktree-urls/:name/:modify?' component={LinkTreeUrl} />
 				<PrivateRoute exact path='/profile/post-create' component={Post} />
 				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />
 
