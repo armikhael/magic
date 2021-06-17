@@ -10,6 +10,7 @@ import TextAreaField from '../../../../../components/Form/TextArea'
 import UploadOneImage from '../../../../../components/UploadOneImage'
 
 import { serviceGetData, serviceUpdateData } from './services'
+import './style.css'
 
 export default function LinkTreeInfo(props) {
 	const history = useHistory()
@@ -17,7 +18,6 @@ export default function LinkTreeInfo(props) {
 	const [data, setData] = useState()
 	const [isModify, setIsModify] = useState(false)
 	const [image, setImage] = useState(undefined)
-	const [edit, setEdit] = useState(false)
 	const [buttonText, setButtonText] = useState('Siguiente')
 
 	const fetchData = async (param) => {
@@ -25,7 +25,6 @@ export default function LinkTreeInfo(props) {
 		console.log('response', response.data[0])
 		setData(response.data[0])
 		setImage(response.data[0].image)
-		setEdit(true)
 	}
 
 	useEffect(() => {
