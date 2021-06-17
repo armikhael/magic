@@ -9,27 +9,13 @@ const serviceGetData = async (item) => {
 		url: `${process.env.REACT_APP_HOST}/link/${item}`,
 	})
 		.then((response) => {
-			returnResponse = response.data.data[0]
-		})
-		.catch((e) => {
-			returnResponse = e.response.data
-		})
-	return returnResponse
-}
-
-const serviceCreateData = async (item) => {
-	let returnResponse
-	await axios({
-		method: 'POST',
-		url: `${process.env.REACT_APP_HOST}/link/`,
-		data: item,
-	})
-		.then((response) => {
+			console.log(response.data)
 			returnResponse = response.data
 		})
-		.catch((e) => {
-			returnResponse = e.response.data.data
+		.catch((error) => {
+			returnResponse = error.response.data
 		})
+
 	return returnResponse
 }
 
@@ -49,4 +35,4 @@ const serviceUpdateData = async (item) => {
 	return returnResponse
 }
 
-export { serviceGetData, serviceCreateData, serviceUpdateData }
+export { serviceGetData, serviceUpdateData }
