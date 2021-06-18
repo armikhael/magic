@@ -219,7 +219,6 @@ const AccountBiography = (props) => {
 									componentLabel={'Términos y Condiciones'}
 									componentPlaceholder={'Coloca tu condiciones'}
 									componentRows={4}
-									componentRules={'required'}
 									componentValue={data.faq}
 								/>
 							</div>

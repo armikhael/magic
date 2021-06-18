@@ -3,6 +3,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Menu, Dropdown } from 'antd'
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
 
 import SideBar from './components/SideBar'
 
@@ -11,7 +12,20 @@ import './style.css'
 const menu = (
 	<Menu>
 		<Menu.Item>
-			<Link to={`/profile`}>Perfil</Link>
+			<Link to={`/profile`}>
+				<div className='cv-header-user-icon-login-content'>
+					<UserOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Perfil</span>
+				</div>
+			</Link>
+		</Menu.Item>
+		<Menu.Item>
+			<Link to={`/profile`}>
+				<div className='cv-header-user-icon-login-content'>
+					<img width='16px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
+					<span className='ml10'>Ver mis Enlaces</span>
+				</div>
+			</Link>
 		</Menu.Item>
 		<Menu.Item>
 			<Link
@@ -19,7 +33,10 @@ const menu = (
 					localStorage.removeItem('user')
 				}}
 				to={`/`}>
-				Cerrar Sesión
+				<div className='cv-header-user-icon-login-content'>
+					<LogoutOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Cerrar Sesión</span>
+				</div>
 			</Link>
 		</Menu.Item>
 	</Menu>
