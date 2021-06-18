@@ -68,41 +68,31 @@ const LinkTree = (props) => {
 
 	return (
 		<>
-			{data.length > 0 && (
-				<>
-					<Row>
-						<List
-							className='comment-list'
-							header={`${render.length} Enlaces Creados`}
-							itemLayout='horizontal'
-							dataSource={render}
-							renderItem={(item) => (
-								<li>
-									<Comment
-										actions={item.actions}
-										author={item.author}
-										avatar={item.avatar}
-										content={item.content}
-									/>
-								</li>
-							)}
-						/>
-						<Button
-							onClick={() => {
-								history.push(`/profile/linktree-name`)
-							}}
-							className={'cv-account-wizzard-button-submit'}>
-							Crear Nuevo
-						</Button>
-					</Row>
-				</>
-			)}
-			{props.componentData.length <= 0 && (
-				<>
-					<img width='19px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
-					<a href={`${process.env.REACT_APP_DOMAIN}/profile/linktree`}> Crear Enlaces Multiple</a>
-				</>
-			)}
+			<Row id='linktree'>
+				<List
+					className='comment-list'
+					header={`Enlaces Personalizados`}
+					itemLayout='horizontal'
+					dataSource={render}
+					renderItem={(item) => (
+						<li>
+							<Comment
+								actions={item.actions}
+								author={item.author}
+								avatar={item.avatar}
+								content={item.content}
+							/>
+						</li>
+					)}
+				/>
+				<Button
+					onClick={() => {
+						history.push(`/profile/linktree-name`)
+					}}
+					className={'cv-account-wizzard-button-submit'}>
+					Crear Nuevo
+				</Button>
+			</Row>
 		</>
 	)
 }

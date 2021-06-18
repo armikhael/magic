@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Layout, Row, Col, Card, Typography } from 'antd'
-import { UserOutlined, HeartOutlined } from '@ant-design/icons'
+import { LinkOutlined, HeartOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 
@@ -64,10 +64,17 @@ export default class Profile extends React.Component {
 							<Col xs={24} sm={24} md={10}>
 								<Content>
 									<Header className='cv-perfil-title-main-container'>
-										<UserOutlined className='cv-perfil-title-main-icon' />
-										<h3 className='cv-perfil-title-main-title'>Perfil de Usuario</h3>
+										<LinkOutlined className='cv-perfil-title-main-icon' />
+										<h3 className='cv-perfil-title-main-title'>Enlaces Personalizados</h3>
 									</Header>
 								</Content>
+								<Card className='cv-profile-main-container'>
+									<LinkTree
+										componentData={this.state.links}
+										componentDelete={this.handleDeleteLinkTree}
+									/>
+								</Card>
+
 								<Card className='cv-profile-main-container'>
 									<Layout className='cv-profile-container'>
 										<Row>
@@ -106,12 +113,7 @@ export default class Profile extends React.Component {
 										</Row>
 									</Layout>
 								</Card>
-								<Row className='cv-profile-content-accoun'>
-									<LinkTree
-										componentData={this.state.links}
-										componentDelete={this.handleDeleteLinkTree}
-									/>
-								</Row>
+
 								<ChangePassword componentData={this.state.userProfile} />
 							</Col>
 						</Row>
