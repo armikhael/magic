@@ -1,17 +1,50 @@
 /** @format */
 
-import React from 'react'
-import { notification, Row, Button, Col, Tag } from 'antd'
+import React, { useState } from 'react'
+import { notification, Row, Button, Col, Tag, Result } from 'antd'
+import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CloseOutlined, CopyOutlined } from '@ant-design/icons'
 
 import ModalEdit from '../../components/ModalEdit'
 import ModalConfiguration from '../../components/ModalConfiguration'
+import { serviceDelete } from './service'
 
 const Accounts = (props) => {
+	const [data, setData] = useState(props.componentData)
+	const handleDeleteAccount = (item) => {
+		let btn = (
+			<Button
+				className='ph-profile-address-button-delete'
+				onClick={() => {
+					setData(
+						data.filter((iterator, key) => {
+							return iterator._id !== item._id
+						})
+					)
+					serviceDelete({
+						id: item._id,
+						email: item.email,
+					}).then((response) => {
+						console.log('serviceDelete', response)
+						notification.close('notiAccountDelete')
+					})
+				}}>
+				<h3 className='ph-profile-address-button-delete-title'>Confirmar</h3>
+			</Button>
+		)
+
+		notification['error']({
+			message: 'Eliminar Cuenta',
+			description: `Estas seguro que quieres eliminar la cuenta "${item.account}".`,
+			btn,
+			key: 'notiAccountDelete',
+		})
+	}
+
 	return (
 		<>
-			{props.componentData.map((item, i) => {
+			{data.map((item, i) => {
 				return (
 					<Row className='cv-profile-card-account-content' key={i}>
 						<Col sm={24} md={6} className='cv-profile-upload-image'>
@@ -77,7 +110,7 @@ const Accounts = (props) => {
 										type='danger'
 										shape='circle'
 										onClick={() => {
-											props.componentDelete(item)
+											handleDeleteAccount(item)
 										}}>
 										<CloseOutlined />
 									</Button>
@@ -87,6 +120,24 @@ const Accounts = (props) => {
 					</Row>
 				)
 			})}
+
+			{(() => {
+				if (data.length === 0) {
+					return (
+						<div className='cv-profile-card-account-content'>
+							<Result
+								status='error'
+								title='Cuentas Registradas'
+								subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
+								extra={[
+									<Link key='profile-link-add-account' to={`/profile/create-account`}>
+										<Button key='profile-button-add-account'>Registrar Cuenta</Button>
+									</Link>,
+								]}></Result>
+						</div>
+					)
+				}
+			})()}
 		</>
 	)
 }

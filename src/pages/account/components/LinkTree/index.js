@@ -10,6 +10,11 @@ import './style.css'
 const { Content } = Layout
 
 const LinkTree = (props) => {
+	serviceEventGoogleAnalytics({
+		category: 'enlace-personalizado',
+		action: 'view',
+		label: props.componentData.name,
+	})
 	console.log('LinkTree', props.componentData)
 	return (
 		<>
@@ -24,7 +29,7 @@ const LinkTree = (props) => {
 						/>
 						<h3 style={{ margin: '5% 10%' }}>{props.componentData.account}</h3>
 
-						<p style={{ margin: '5% 10%' }}>{props.componentData.description}</p>
+						<p style={{ margin: '5% 5%' }}>{props.componentData.description}</p>
 
 						<List
 							style={{ borderRadius: '10px' }}

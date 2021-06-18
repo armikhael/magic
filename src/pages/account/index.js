@@ -3,22 +3,22 @@
 import React from 'react'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
-import publicIp from 'public-ip'
-import { Row, Col, List, Avatar, Layout, notification } from 'antd'
+import { Row, Col, Layout, notification } from 'antd'
 import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
+import serviceIp from '../../components/ServiceCommons/Ip'
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
-import Promotion from './components/Promotion'
 import LinkTree from './components/LinkTree'
+import Plans from './components/Plans'
 
 import './style.css'
-import { serviceAccountDetail, serviceGetPromotions, serviceGetLinks, serviceGetPermissions } from './services'
+import { serviceAccountDetail, serviceGetLinks, serviceGetPermissions } from './services'
 
 const { Content } = Layout
 
@@ -42,9 +42,8 @@ export default class AccountDetail extends React.Component {
 			action: 'view',
 			label: this.props.match.params.name,
 		})
-
 		try {
-			const isIp = await this.handleIp()
+			const isIp = await serviceIp()
 			let redSocial = ['-instagram', '-facebook', '-tiktok']
 			const includeName = redSocial.find((item) => {
 				return this.props.match.params.name.includes(item)
@@ -68,11 +67,6 @@ export default class AccountDetail extends React.Component {
 					totalView: accountDetail.total_week_view,
 				})
 
-				const promotion = await serviceGetPromotions()
-
-				this.setState({
-					promotion: this.handleVerifyPromotion(promotion.data, this.state.detail),
-				})
 				if (localStorage.getItem('user')) {
 					const userProfile = JSON.parse(localStorage.getItem('user'))
 					console.log(userProfile.email)
@@ -91,13 +85,7 @@ export default class AccountDetail extends React.Component {
 			} else {
 				serviceGetLinks(this.props.match.params.name).then((response) => {
 					console.log(response)
-
 					if (response.length > 0) {
-						serviceEventGoogleAnalytics({
-							category: 'enlace-personalizado',
-							action: 'view',
-							label: this.props.match.params.name,
-						})
 						this.setState({
 							loading: false,
 							links: response[0],
@@ -119,53 +107,11 @@ export default class AccountDetail extends React.Component {
 		}
 	}
 
-	async handleIp() {
-		const ipv4 = await publicIp.v4()
-		let date = new Date()
-		let day = date.getDate()
-		let month = date.getMonth() + 1
-		let year = date.getFullYear()
-		let today = `${day}-${month}-${year}`
-
-		if (localStorage.getItem('ip')) {
-			const localStorageIp = JSON.parse(localStorage.getItem('ip'))
-			const newData = { date: today, ip: ipv4 }
-			if (localStorageIp.date === newData.date && localStorageIp.ip === newData.ip) {
-				return false
-			} else {
-				localStorage.setItem('ip', JSON.stringify(newData))
-				return true
-			}
-		} else {
-			const newData = { date: `${day}-${month}-${year}`, ip: ipv4 }
-			localStorage.setItem('ip', JSON.stringify(newData))
-			return true
-		}
-	}
-
 	handleOnError = () => {
 		this.setState({
 			image: `${process.env.REACT_APP_LOGO}`,
 			pageError: true,
 		})
-	}
-
-	handleVerifyPromotion = (promotion, account) => {
-		const date = new Date()
-		let itemFilter = []
-		promotion.forEach((iterator) => {
-			let filterCountry = iterator.country.find((item) => {
-				let newItem = ''
-				if (item === account.country || item === 'all') {
-					newItem = item
-				}
-				return newItem
-			})
-			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
-				itemFilter.push(iterator)
-			}
-		})
-		return itemFilter
 	}
 
 	render() {
@@ -424,47 +370,7 @@ export default class AccountDetail extends React.Component {
 								</div>
 							</Col>
 							<Col xs={24} sm={24} md={6}>
-								<div className='cv-detail-content-plans'>
-									<div className='cv-detail-content-plans-main'>
-										<div className='cv-detail-plans-content-images'>
-											{this.state.promotion.length > 0 && (
-												<Promotion
-													promotion={this.state.promotion}
-													detailAccount={this.state.detail}></Promotion>
-											)}
-										</div>
-										<h3 className='cv-detail-plans-title'>Planes</h3>
-										<div className='cv-detail-plans-hr'></div>
-										<List
-											className='cv-detail-plans-list'
-											itemLayout='horizontal'
-											dataSource={this.state.detail.plans}
-											renderItem={(item) => (
-												<span
-													onClick={() => {
-														console.log('contratacion')
-														serviceEventGoogleAnalytics({
-															category: 'planes',
-															action: 'click-contratacion',
-															label: this.state.detail.name,
-														})
-														window.open(
-															`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola ${this.state.detail.account},+te+encontre+en+cuentasvirales.com+y+quisiera+este+paquete+publicitario:+${item.description} por ${item.price} ${item.currency}`
-														)
-													}}>
-													<List.Item actions={[<WhatsAppOutlined />]}>
-														<List.Item.Meta
-															avatar={<Avatar src={this.state.detail.image} />}
-															title={item.description}
-															description={`Precio: ${item.price} ${item.currency}`}
-														/>
-													</List.Item>
-												</span>
-											)}
-										/>
-									</div>
-								</div>
-
+								<Plans componentData={this.state.detail} />
 								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
 							</Col>
 							<div className='cv-detail-accounts-user-email-xs'>
