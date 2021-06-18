@@ -42,7 +42,6 @@ export default class AccountDetail extends React.Component {
 			action: 'view',
 			label: this.props.match.params.name,
 		})
-
 		try {
 			const isIp = await serviceIp()
 			let redSocial = ['-instagram', '-facebook', '-tiktok']
@@ -86,13 +85,7 @@ export default class AccountDetail extends React.Component {
 			} else {
 				serviceGetLinks(this.props.match.params.name).then((response) => {
 					console.log(response)
-
 					if (response.length > 0) {
-						serviceEventGoogleAnalytics({
-							category: 'enlace-personalizado',
-							action: 'view',
-							label: this.props.match.params.name,
-						})
 						this.setState({
 							loading: false,
 							links: response[0],
@@ -119,24 +112,6 @@ export default class AccountDetail extends React.Component {
 			image: `${process.env.REACT_APP_LOGO}`,
 			pageError: true,
 		})
-	}
-
-	handleVerifyPromotion = (promotion, account) => {
-		const date = new Date()
-		let itemFilter = []
-		promotion.forEach((iterator) => {
-			let filterCountry = iterator.country.find((item) => {
-				let newItem = ''
-				if (item === account.country || item === 'all') {
-					newItem = item
-				}
-				return newItem
-			})
-			if (date.getDate() <= iterator.day && date.getMonth() === iterator.month && filterCountry !== undefined) {
-				itemFilter.push(iterator)
-			}
-		})
-		return itemFilter
 	}
 
 	render() {
