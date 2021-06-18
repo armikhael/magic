@@ -24,7 +24,7 @@ const LinkTree = (props) => {
 						/>
 						<h3 style={{ margin: '5% 10%' }}>{props.componentData.account}</h3>
 
-						<p style={{ margin: '5% 10%' }}>{props.componentData.description}</p>
+						<p style={{ margin: '5% 5%' }}>{props.componentData.description}</p>
 
 						<List
 							style={{ borderRadius: '10px' }}
