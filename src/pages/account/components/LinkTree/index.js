@@ -10,6 +10,11 @@ import './style.css'
 const { Content } = Layout
 
 const LinkTree = (props) => {
+	serviceEventGoogleAnalytics({
+		category: 'enlace-personalizado',
+		action: 'view',
+		label: props.componentData.name,
+	})
 	console.log('LinkTree', props.componentData)
 	return (
 		<>
