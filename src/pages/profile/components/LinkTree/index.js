@@ -68,23 +68,23 @@ const LinkTree = (props) => {
 
 	return (
 		<>
-			<Row id='linktree'>
-				<List
-					className='comment-list'
-					header={`Enlaces Personalizados`}
-					itemLayout='horizontal'
-					dataSource={render}
-					renderItem={(item) => (
-						<li>
-							<Comment
-								actions={item.actions}
-								author={item.author}
-								avatar={item.avatar}
-								content={item.content}
-							/>
-						</li>
-					)}
-				/>
+			<List
+				className='comment-list'
+				header={`Enlaces Personalizados`}
+				itemLayout='horizontal'
+				dataSource={render}
+				renderItem={(item) => (
+					<List.Item>
+						<Comment
+							actions={item.actions}
+							author={item.author}
+							avatar={item.avatar}
+							content={item.content}
+						/>
+					</List.Item>
+				)}
+			/>
+			<Row>
 				<Button
 					onClick={() => {
 						history.push(`/profile/linktree-name`)
