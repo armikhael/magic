@@ -44,7 +44,7 @@ const authLoginServices = async (item, redirect) => {
 				)
 				notification['success']({
 					message: `!Bienvenido a Cuentas Virales!`,
-					description: `Registra tus cuentas y comienza a vender...`,
+					description: `Ahora registra tus cuentas de redes sociales`,
 				})
 				let timer = setTimeout(() => {
 					redirect.history.push('/profile')

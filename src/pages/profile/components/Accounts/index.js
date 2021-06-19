@@ -1,8 +1,8 @@
 /** @format */
 
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { notification, Row, Button, Col, Tag, Result } from 'antd'
-import { Link } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CloseOutlined, CopyOutlined } from '@ant-design/icons'
 
@@ -11,6 +11,7 @@ import ModalConfiguration from '../../components/ModalConfiguration'
 import { serviceDelete } from './service'
 
 const Accounts = (props) => {
+	const history = useHistory()
 	const [data, setData] = useState(props.componentData)
 	const handleDeleteAccount = (item) => {
 		let btn = (
@@ -130,9 +131,13 @@ const Accounts = (props) => {
 								title='Cuentas Registradas'
 								subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
 								extra={[
-									<Link key='profile-link-add-account' to={`/profile/create-account`}>
-										<Button key='profile-button-add-account'>Registrar Cuenta</Button>
-									</Link>,
+									<Button
+										onClick={() => {
+											history.push(`profile/account-user`)
+										}}
+										className={'cv-account-wizzard-button-submit'}>
+										Agregar
+									</Button>,
 								]}></Result>
 						</div>
 					)
