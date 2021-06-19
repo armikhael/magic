@@ -57,11 +57,13 @@ const AccountActivation = (props) => {
 			serviceUpdateData(item).then((response) => {
 				console.log(response)
 				if (response.statusCode === 200) {
-					history.push(`/profile`)
 					notification['success']({
 						message: `Felicidades!`,
-						description: `Su cuenta ha sido activada`,
+						description: `Ahora veremos como se ve tu cuenta`,
 					})
+					setTimeout(() => {
+						history.push(`/${response.data.name}`)
+					}, 1000)
 				} else {
 					notification['error']({
 						message: `Ups!`,
