@@ -9,6 +9,7 @@ const serviceIp = async () => {
 	let year = date.getFullYear()
 	let today = `${day}-${month}-${year}`
 
+	console.log(localStorage.getItem('ip'))
 	if (localStorage.getItem('ip')) {
 		const localStorageIp = JSON.parse(localStorage.getItem('ip'))
 		const newData = { date: today, ip: ipv4 }

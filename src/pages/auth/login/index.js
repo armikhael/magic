@@ -48,7 +48,7 @@ export default class Login extends React.Component {
 			this.setState({
 				email: item.email,
 			})
-			this.props.history.push('/')
+			this.props.history.push('/profile')
 		})
 	}
 
