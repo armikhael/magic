@@ -47,7 +47,7 @@ const authLoginServices = async (item, redirect) => {
 					description: `Registra tus cuentas y comienza a vender...`,
 				})
 				let timer = setTimeout(() => {
-					redirect.history.push('/')
+					redirect.history.push('/profile')
 				}, 1000)
 				return () => clearTimeout(timer)
 			} else {

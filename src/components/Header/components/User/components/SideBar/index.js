@@ -103,7 +103,7 @@ export default class SideBar extends React.Component {
 					<Link to={`/profile/account-user`}>
 						<div className='cv-header-user-icon-login-content'>
 							<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />{' '}
-							<span className='ml10'>Publicate</span>
+							<span className='ml10'>Publicar Cuenta</span>
 						</div>
 					</Link>
 				</div>

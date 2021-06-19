@@ -69,7 +69,7 @@ export default class User extends React.Component {
 													src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
 													alt='Agregar Cuenta'
 												/>{' '}
-												<span className='ml10'>Publicate</span>
+												<span className='ml10'>Publicar</span>
 											</div>
 										</Link>
 									</Col>
