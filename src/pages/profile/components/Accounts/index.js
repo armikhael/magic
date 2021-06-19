@@ -129,7 +129,7 @@ const Accounts = (props) => {
 							<Result
 								status='error'
 								title='Cuentas Registradas'
-								subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
+								subTitle='No tienes ninguna red social registrada, para poder registrar una solo debes hacer click en el siguiente boton o en Menú también encontraras un acceso directo.'
 								extra={[
 									<Button
 										onClick={() => {

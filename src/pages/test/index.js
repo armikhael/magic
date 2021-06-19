@@ -66,7 +66,7 @@ export default function UploadImgAccounts() {
 		<>
 			<Row>
 				<Col span={6}>
-					<br></br>
+					Test 1<br></br>
 					<Search placeholder='Nombre de Cuenta' onSearch={hableSearchAccount} enterButton />
 					<br></br>
 					<ImgCrop>

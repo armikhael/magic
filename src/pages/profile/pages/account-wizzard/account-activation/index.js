@@ -59,11 +59,11 @@ const AccountActivation = (props) => {
 				if (response.statusCode === 200) {
 					notification['success']({
 						message: `Felicidades!`,
-						description: `Fue reservado tu nombre de forma exitosa.`,
+						description: `Ahora veremos como se ve tu cuenta`,
 					})
 					setTimeout(() => {
 						history.push(`/${response.data.name}`)
-					}, 2000)
+					}, 1000)
 				} else {
 					notification['error']({
 						message: `Ups!`,
