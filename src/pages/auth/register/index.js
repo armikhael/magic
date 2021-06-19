@@ -54,7 +54,7 @@ export default class Register extends React.Component {
 											<ModalTutorial
 												componentHeader={'¿Cómo crear mi cuenta?'}
 												componentData={{
-													url: 'https://drive.google.com/file/d/1tDFjPaEE_3uo5606B4mOpK_kGoSD0UOi/preview',
+													id: 565086971,
 												}}
 											/>
 										</center>

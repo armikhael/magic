@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { Modal } from 'antd'
+import Vimeo from '@u-wave/react-vimeo'
 
 import './style.css'
 
@@ -25,12 +26,7 @@ export default function ModalTutorial(props) {
 				¿Ayuda?
 			</span>
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-				<iframe
-					title='modal-tutorial'
-					src={`${props.componentData.url}`}
-					width='360'
-					height='640'
-					frameBorder='0'></iframe>
+				<Vimeo video={`${props.componentData.id}`} width='360' height='640' autoplay />
 			</Modal>
 		</>
 	)
