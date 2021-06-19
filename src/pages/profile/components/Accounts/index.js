@@ -128,10 +128,14 @@ const Accounts = (props) => {
 							<Result
 								status='error'
 								title='Cuentas Registradas'
-								subTitle='No tienes ninguna cuenta registrada, para poder registrar una solo debes hacer click en boton "Registrar cuentas" o en Menú también encontraras un acceso directo.'
+								subTitle='No tienes ninguna red social registrada, para poder registrar una solo debes hacer click en el siguiente boton o en Menú también encontraras un acceso directo.'
 								extra={[
-									<Link key='profile-link-add-account' to={`/profile/create-account`}>
-										<Button key='profile-button-add-account'>Registrar Cuenta</Button>
+									<Link key='profile-link-add-account' to={`/profile/account-user`}>
+										<Button
+											key='profile-button-add-account'
+											className={'cv-account-wizzard-button-submit'}>
+											Agregar
+										</Button>
 									</Link>,
 								]}></Result>
 						</div>

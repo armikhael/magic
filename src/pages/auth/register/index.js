@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { Layout, Row, Col, Button, Form, Divider } from 'antd'
 
 import InputField from '../../../components/Input'
+import ModalTutorial from '../../../components/ModalTutorial'
 
 import { authRegisterServices } from './services'
 import './style.css'
@@ -49,6 +50,14 @@ export default class Register extends React.Component {
 										<p className='cv-login-sub-title-register'>Encuentra las mejores cuentas</p>
 									</div>
 									<div className='cv-login-content-redes-main'>
+										<center>
+											<ModalTutorial
+												componentHeader={'¿Cómo crear mi cuenta?'}
+												componentData={{
+													url: 'https://drive.google.com/file/d/1tDFjPaEE_3uo5606B4mOpK_kGoSD0UOi/preview',
+												}}
+											/>
+										</center>
 										<Form
 											name='normal_login'
 											initialValues={{ remember: true }}
