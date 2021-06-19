@@ -160,12 +160,6 @@ export default class AccountDetail extends React.Component {
 						</div>
 						<Row>
 							<Col xs={24} sm={24} md={18}>
-								<Row className='cv-detail-content-accoun cv-md'>
-									<p className='cv-detail-content-accoun-p'>
-										¿Quieres conocer cómo funciona Cuentas Virales? haz{' '}
-										<a href={`${process.env.REACT_APP_DOMAIN}/help/quienes-somos`}> click aquí</a>
-									</p>
-								</Row>
 								<Row className='cv-detail-content-accoun'>
 									<div className='cv-xs cv-detail-content-accoun-mobil'>
 										<Row>
