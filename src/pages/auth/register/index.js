@@ -116,7 +116,7 @@ export default class Register extends React.Component {
 										<Divider />
 										<div className='cv-login-conten-register'>
 											<Link to={`/auth/login`}>
-												¿Tienes cuaenta? <span>Inicia Sesión</span>
+												¿Tienes cuenta? <span>Inicia Sesión</span>
 											</Link>
 										</div>
 									</div>

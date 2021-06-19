@@ -90,47 +90,57 @@ export default class SideBar extends React.Component {
 					</Link>
 				</div>
 				{localStorage.getItem('user') && (
-					<div className='cv-header-user-sidebar-list'>
-						<Link to={`/profile`}>
-							<div className='cv-header-user-icon-login-content'>
-								<UserOutlined style={{ fontSize: 22 }} />
-								<span className='ml10'>Perfil</span>
-							</div>
-						</Link>
-					</div>
+					<>
+						<div className='cv-header-user-sidebar-list'>
+							<Link to={`/profile`}>
+								<div className='cv-header-user-icon-login-content'>
+									<UserOutlined style={{ fontSize: 22 }} />
+									<span className='ml10'>Perfil</span>
+								</div>
+							</Link>
+						</div>
+						<div className='cv-header-user-sidebar-list'>
+							<Link to={`/profile/account-user`}>
+								<div className='cv-header-user-icon-login-content'>
+									<img
+										width='19px'
+										src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+										alt='Crear Cuenta'
+									/>{' '}
+									<span className='ml10'>Publicar Cuenta</span>
+								</div>
+							</Link>
+						</div>
+						<div className='cv-header-user-sidebar-list'>
+							<Link to={`/profile`}>
+								<div className='cv-header-user-icon-login-content'>
+									<img
+										width='19px'
+										src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+										alt='Crear Cuenta'
+									/>{' '}
+									<span className='ml10'>Ver Mis Cuentas</span>
+								</div>
+							</Link>
+						</div>
+						<div className='cv-header-user-sidebar-list'>
+							<Link to={`/profile/linktree-name`}>
+								<div className='cv-header-user-icon-login-content'>
+									<img width='18px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
+									<span className='ml10'>Crear Enlaces </span>
+								</div>
+							</Link>
+						</div>
+						<div className='cv-header-user-sidebar-list'>
+							<Link to={`/profile`}>
+								<div className='cv-header-user-icon-login-content'>
+									<img width='18px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
+									<span className='ml10'>Mis Enlaces</span>
+								</div>
+							</Link>
+						</div>
+					</>
 				)}
-				<div className='cv-header-user-sidebar-list'>
-					<Link to={`/profile/account-user`}>
-						<div className='cv-header-user-icon-login-content'>
-							<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />{' '}
-							<span className='ml10'>Publicar Cuenta</span>
-						</div>
-					</Link>
-				</div>
-				<div className='cv-header-user-sidebar-list'>
-					<Link to={`/profile`}>
-						<div className='cv-header-user-icon-login-content'>
-							<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />{' '}
-							<span className='ml10'>Ver Mis Cuentas</span>
-						</div>
-					</Link>
-				</div>
-				<div className='cv-header-user-sidebar-list'>
-					<Link to={`/profile/linktree-name`}>
-						<div className='cv-header-user-icon-login-content'>
-							<img width='18px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
-							<span className='ml10'>Crear Enlaces </span>
-						</div>
-					</Link>
-				</div>
-				<div className='cv-header-user-sidebar-list'>
-					<Link to={`/profile`}>
-						<div className='cv-header-user-icon-login-content'>
-							<img width='18px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
-							<span className='ml10'>Mis Enlaces</span>
-						</div>
-					</Link>
-				</div>
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/help/quienes-somos`}>
 						<div className='cv-header-user-icon-login-content'>
