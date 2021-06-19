@@ -22,7 +22,7 @@ export default function ModalTutorial(props) {
 	}
 	return (
 		<>
-			<span style={{ margin: '0px 5px', cursor: 'pointer' }} onClick={showModal} shape='circle'>
+			<span style={{ margin: '0px 5px', cursor: 'pointer', color: '#EC3E73' }} onClick={showModal} shape='circle'>
 				¿Ayuda?
 			</span>
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
