@@ -1,8 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { List, Layout, Card, Typography } from 'antd'
-import { RightOutlined } from '@ant-design/icons'
+import { Layout, Card, Typography, Button } from 'antd'
 
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
@@ -28,16 +27,13 @@ const LinkTree = (props) => {
 							style={{ margin: '20px 0px', borderRadius: '10px' }}
 						/>
 						<h3 style={{ margin: '5% 10%' }}>{props.componentData.account}</h3>
-
 						<p style={{ margin: '5% 5%' }}>{props.componentData.description}</p>
-
-						<List
-							style={{ borderRadius: '10px' }}
-							bordered
-							dataSource={props.componentData.links}
-							renderItem={(item, key) => (
-								<List.Item
-									style={{ cursor: 'pointer' }}
+						{props.componentData.links.map((item, key) => {
+							return (
+								<Button
+									block
+									style={{ margin: '8px 0px' }}
+									shape='round'
 									onClick={() => {
 										window.open(item.url)
 										serviceEventGoogleAnalytics({
@@ -45,12 +41,11 @@ const LinkTree = (props) => {
 											action: 'click',
 											label: `Boton número ${key}`,
 										})
-									}}
-									actions={[<RightOutlined />]}>
-									<Typography.Text>{item.title} </Typography.Text>
-								</List.Item>
-							)}
-						/>
+									}}>
+									<Typography.Text>{item.title}</Typography.Text>
+								</Button>
+							)
+						})}
 					</Card>
 				</div>
 			</Content>
