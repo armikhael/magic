@@ -17,7 +17,7 @@ const LinkTree = (props) => {
 	return (
 		<>
 			<Helmet>
-				<title>@{props.componentData.account} | Cuentas Virales</title>
+				<title>@{props.componentData.name} | Cuentas Virales</title>
 				<link rel='canonical' href={'https://www.cuentasvirales.com/' + props.componentData.name} />
 			</Helmet>
 			<div className='cv-linktree-content'>

@@ -63,7 +63,7 @@ const Routers = (props) => (
 				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
 
 				<Route exact path='/token/:email' component={userAccounts} />
-				<Route exact path='/:name' component={AccountDetail} />
+				<Route exact path='/:name' component={AccountDetail} staticContext={false} />
 				<Route component={NotFound} />
 			</Switch>
 		</Layout>
