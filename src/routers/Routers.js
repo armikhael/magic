@@ -35,7 +35,7 @@ import InactiveAccounts from '../pages/admin/inactive-accounts'
 import UploadImgAccounts from '../pages/admin/upload-img-accounts'
 import LinkTree from '../pages/linktree'
 
-const Routers = () => (
+const Routers = (props) => (
 	<BrowserRouter forceRefresh={true}>
 		<Layout>
 			<Switch>
@@ -50,22 +50,10 @@ const Routers = () => (
 				<Route exact path='/help/:name' component={Help} />
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/account-user' component={AccountUser} />
-				<PrivateRoute
-					exact
-					path='/profile/account-biography/:name/:modify?'
-					component={AccountBiography}
-				/>
+				<PrivateRoute exact path='/profile/account-biography/:name/:modify?' component={AccountBiography} />
 				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />
-				<PrivateRoute
-					exact
-					path='/profile/account-details/:name/:modify?'
-					component={AccountDetails}
-				/>
-				<PrivateRoute
-					exact
-					path='/profile/account-activation/:name/:modify?'
-					component={AccountActivation}
-				/>
+				<PrivateRoute exact path='/profile/account-details/:name/:modify?' component={AccountDetails} />
+				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
 				<PrivateRoute exact path='/profile/linktree-name/' component={LinkTreeName} />
 				<PrivateRoute exact path='/profile/linktree-info/:name/:modify?' component={LinkTreeInfo} />
 				<PrivateRoute exact path='/profile/linktree-urls/:name/:modify?' component={LinkTreeUrl} />

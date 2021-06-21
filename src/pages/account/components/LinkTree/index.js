@@ -14,7 +14,6 @@ const LinkTree = (props) => {
 		action: 'view',
 		label: props.componentData.name,
 	})
-	console.log('LinkTree', props.componentData)
 	return (
 		<>
 			<Content className='cv-container-main'>
@@ -31,6 +30,7 @@ const LinkTree = (props) => {
 						{props.componentData.links.map((item, key) => {
 							return (
 								<Button
+									key={key.toString()}
 									block
 									style={{ margin: '8px 0px' }}
 									shape='round'
@@ -39,7 +39,7 @@ const LinkTree = (props) => {
 										serviceEventGoogleAnalytics({
 											category: 'enlace-personalizado',
 											action: 'click',
-											label: `Boton número ${key}`,
+											label: `boton ${key}`,
 										})
 									}}>
 									<Typography.Text>{item.title}</Typography.Text>
