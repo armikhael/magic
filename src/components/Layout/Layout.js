@@ -7,6 +7,7 @@ import { Button, Dropdown, Menu } from 'antd'
 import { QuestionOutlined } from '@ant-design/icons'
 
 import Header from '../../components/Header/'
+import { CONSTANTS } from '../../components/ServiceCommons/Constant'
 import { config } from '../../components/ServiceCommons/Config'
 
 import './style.css'
@@ -26,12 +27,14 @@ const menu = (
 
 function Layout(props) {
 	const handleLayouts = () => {
-		let location = props.location.pathname.split('/')
+		const validLinkTree = CONSTANTS.SLUG_ADMITED.find((item) => {
+			return props.location.pathname.includes(item)
+		})
 		if (
 			props.location.pathname === '/auth/login' ||
 			props.location.pathname === '/auth/recovery' ||
 			props.location.pathname === '/auth/register' ||
-			location[1] === 'linktree'
+			validLinkTree === undefined
 		) {
 			return <>{props.children}</>
 		} else {
