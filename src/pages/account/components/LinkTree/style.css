@@ -1,16 +1,63 @@
 /** @format */
 
-.cv-linktree-card {
-	border-radius: 10px !important;
-	color: black !important;
+.cv-linktree-content {
+	text-align: center;
+	padding: 24px 12px;
+	height: 100%;
+	width: 100%;
+	max-width: 680px;
+	margin: 0px auto;
 }
-.ant-typography {
-	color: black !important;
+
+.cv-linktree-img {
+	margin-top: 12px;
+	margin-bottom: 16px;
+	border-radius: 50%;
+	width: 96px;
+	height: 96px;
 }
-h3 {
-	font-weight: bold;
-	font-size: 18px;
+
+.cv-linktree-title {
+	font-size: 16px;
+	line-height: 1.5;
+	font-weight: 900;
 }
-.ant-btn-round {
-	border-color: #ed5394;
+
+.cv-linktree-description {
+	text-align: center;
+	line-height: 1.5;
+	font-size: 14px;
+}
+
+.cv-linktree-link {
+	border: 2px solid #210358;
+	background-color: #210358;
+	color: rgb(255, 255, 255);
+	margin-bottom: 16px;
+	padding: 17px;
+	font-weight: 900;
+	border-radius: 7px;
+}
+
+.cv-linktree-link-icon {
+	float: left;
+	font-size: 19px;
+}
+
+.cv-linktree-logo-content {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+}
+
+.cv-linktree-logo {
+	color: #424346;
+	font-weight: 900;
+	font-size: 14px;
+	text-align: center;
+}
+
+.cv-linktree-logo img {
+	width: 35px;
 }
