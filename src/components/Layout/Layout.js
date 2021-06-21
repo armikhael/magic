@@ -27,14 +27,15 @@ const menu = (
 
 function Layout(props) {
 	const handleLayouts = () => {
-		const validLinkTree = CONSTANTS.SLUG_ADMITED.find((item) => {
+		let validLinkTree = CONSTANTS.SLUG_ADMITED.find((item) => {
 			return props.location.pathname.includes(item)
 		})
+		const splitRoute = props.location.pathname.split('/')
 		if (
 			props.location.pathname === '/auth/login' ||
 			props.location.pathname === '/auth/recovery' ||
 			props.location.pathname === '/auth/register' ||
-			validLinkTree === undefined
+			(splitRoute[0] === '' && splitRoute[1] !== '' && splitRoute[2] === undefined && validLinkTree === undefined)
 		) {
 			return <>{props.children}</>
 		} else {
