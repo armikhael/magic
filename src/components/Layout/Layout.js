@@ -26,12 +26,28 @@ const menu = (
 )
 
 function Layout(props) {
+	const handleBody = () => {
+		return (
+			<>
+				<Header />
+				<div className='cv-layout-br'></div>
+				{props.children}
+				<Dropdown overlay={menu} placement='topRight' arrow>
+					<Button className='cv-layout-btn-help' shape='circle' icon={<QuestionOutlined />} size={'large'} />
+				</Dropdown>
+			</>
+		)
+	}
 	const handleLayouts = () => {
 		let validLinkTree = CONSTANTS.SLUG_ADMITED.find((item) => {
 			return props.location.pathname.includes(item)
 		})
 		const splitRoute = props.location.pathname.split('/')
-		if (
+		const routeAdmited = ['profile', 'test']
+
+		if (routeAdmited.includes(splitRoute[1]) === true) {
+			return handleBody()
+		} else if (
 			props.location.pathname === '/auth/login' ||
 			props.location.pathname === '/auth/recovery' ||
 			props.location.pathname === '/auth/register' ||
@@ -39,23 +55,10 @@ function Layout(props) {
 		) {
 			return <>{props.children}</>
 		} else {
-			return (
-				<>
-					<Header />
-					<div className='cv-layout-br'></div>
-					{props.children}
-					<Dropdown overlay={menu} placement='topRight' arrow>
-						<Button
-							className='cv-layout-btn-help'
-							shape='circle'
-							icon={<QuestionOutlined />}
-							size={'large'}
-						/>
-					</Dropdown>
-				</>
-			)
+			return handleBody()
 		}
 	}
+
 	return <React.Fragment>{handleLayouts()}</React.Fragment>
 }
 
