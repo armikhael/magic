@@ -118,7 +118,7 @@ export default class User extends React.Component {
 								className='cv-header-user-icon-menu'
 								src='https://i.ibb.co/mzMWjY8/categorias.png'
 								alt='Menu'
-							/>{' '}
+							/>
 						</Col>
 					</Row>
 					<SideBar handleOpenMenu={() => this.handleOpenMenu(false)} menu={this.state.menu} />
