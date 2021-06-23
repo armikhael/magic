@@ -16,7 +16,6 @@ const serviceGetData = async () => {
 		},
 	})
 		.then((response) => {
-			console.log(response.data)
 			returnResponse = response.data
 		})
 		.catch((error) => {

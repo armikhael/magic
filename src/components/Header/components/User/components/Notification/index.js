@@ -1,42 +1,58 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Button, Popover } from 'antd'
+import Moment from 'react-moment'
+import 'moment/locale/es'
+
+import { Dropdown, Menu, Badge, Row, Col } from 'antd'
 import { NotificationOutlined } from '@ant-design/icons'
 
 import { serviceGetData } from './services'
 import './style.css'
 
-const Notification = (props) => {
+export default function Notification() {
 	const [data, setData] = useState([])
 
-	const fetchData = async () => {
-		const response = await serviceGetData()
-		console.log('response', response.data)
-		setData(response.data.data)
-	}
-	useEffect(() => {
-		fetchData()
-	}, [])
-
-	const content = data.map((item, key) => {
+	const menu = data.map((item, key) => {
 		return (
-			<p key={key.toString()}>
-				<img style={{ width: '12px' }} src={item.image} alt={item.title} />
-				<span>&nbsp;{item.title}</span>
-			</p>
+			<Menu.Item key={key}>
+				<Row key={key.toString()}>
+					<Col xs={3} sm={3} md={3}>
+						<img className='cv-header-notifi-list-img' src={item.image} alt={item.title} />
+					</Col>
+					<Col xs={21} sm={21} md={21} className='cv-header-notifi-list-content'>
+						<h3 className='cv-header-notifi-list-title'>{item.title}</h3>
+						<h3 className='cv-header-notifi-list-moment'>
+							<Moment format='D MMM YYYY' withTitle>
+								{item.createdAt}
+							</Moment>
+						</h3>
+					</Col>
+				</Row>
+				<hr className='cv-header-notifi-list-hr'></hr>
+			</Menu.Item>
 		)
 	})
 
+	useEffect(() => {
+		serviceGetData().then((response) => {
+			console.log(response.data.data)
+			setData(response.data.data)
+		})
+	}, [])
+
 	return (
 		<>
-			<Popover content={content} title='Title' trigger='hover'>
-				<Button style={{ margin: '0px 5px' }} shape='circle'>
+			<Dropdown
+				overlayClassName='cv-header-notifi-content'
+				shape={'circle'}
+				overlay={<Menu>{menu}</Menu>}
+				placement='bottomCenter'
+				arrow>
+				<Badge dot>
 					<NotificationOutlined />
-				</Button>
-			</Popover>
+				</Badge>
+			</Dropdown>
 		</>
 	)
 }
-
-export default Notification
