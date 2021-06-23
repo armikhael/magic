@@ -2,16 +2,41 @@
 
 import React, { useEffect, useState } from 'react'
 import Moment from 'react-moment'
-import 'moment/locale/es'
-
 import { Dropdown, Menu, Badge, Row, Col } from 'antd'
 import { NotificationOutlined } from '@ant-design/icons'
+import 'moment/locale/es'
+import lodash from 'lodash'
 
 import { serviceGetData } from './services'
 import './style.css'
 
 export default function Notification() {
 	const [data, setData] = useState([])
+
+	useEffect(() => {
+		serviceGetData().then((response) => {
+			setData([response.data.data[0]])
+			handleSetInterval(response.data.data)
+		})
+		console.log('useEffect')
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+	const handleSetInterval = async (item) => {
+		item = lodash.shuffle(item)
+		let newArray = []
+		for (var i = 1; i < item.length; i++) {
+			console.log(item[i])
+			item[i].key = i
+			newArray.push(item[i])
+			let orderBy = lodash.orderBy(newArray, ['key'], ['desc'])
+			setData([...orderBy])
+			await sleep(5000)
+		}
+	}
+
+	const sleep = (item) => {
+		return new Promise((resolve) => setTimeout(resolve, item))
+	}
 
 	const menu = data.map((item, key) => {
 		return (
@@ -37,13 +62,6 @@ export default function Notification() {
 			</Menu.Item>
 		)
 	})
-
-	useEffect(() => {
-		serviceGetData().then((response) => {
-			console.log(response.data.data)
-			setData(response.data.data)
-		})
-	}, [])
 
 	return (
 		<>
