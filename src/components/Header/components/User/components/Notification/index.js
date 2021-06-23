@@ -16,7 +16,11 @@ export default function Notification() {
 	const menu = data.map((item, key) => {
 		return (
 			<Menu.Item key={key}>
-				<Row key={key.toString()}>
+				<Row
+					key={key.toString()}
+					onClick={() => {
+						window.open(item.redirect)
+					}}>
 					<Col xs={3} sm={3} md={3}>
 						<img className='cv-header-notifi-list-img' src={item.image} alt={item.title} />
 					</Col>
