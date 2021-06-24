@@ -212,7 +212,7 @@ export default class AccountDetail extends React.Component {
 												{this.state.detail.categories[0]}
 											</span>
 										</Link>
-										<p>Cantidad de Visitas: {this.state.detail.counter}</p>
+										<p>Visitas de Hoy: {this.state.detail.counter_day}</p>
 										<h3 className='cv-detail-account-content-info-email'>
 											{this.state.detail.email}
 										</h3>
