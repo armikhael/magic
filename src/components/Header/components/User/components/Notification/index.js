@@ -7,6 +7,7 @@ import { NotificationOutlined } from '@ant-design/icons'
 import 'moment/locale/es'
 import lodash from 'lodash'
 
+import serviceEventGoogleAnalytics from '../../../../../ServiceCommons/EventsGoogleAnalitycs'
 import { serviceGetData } from './services'
 import './style.css'
 
@@ -27,6 +28,11 @@ export default function Notification() {
 				<Row
 					key={key.toString()}
 					onClick={() => {
+						serviceEventGoogleAnalytics({
+							category: 'notification',
+							action: 'click',
+							label: item.title,
+						})
 						window.open(item.redirect)
 					}}>
 					<Col xs={3} sm={3} md={3}>
