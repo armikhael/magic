@@ -51,6 +51,6 @@
 		display: none;
 	}
 	.cv-header-user-mobil {
-		display: block;
+		display: flex;
 	}
 }

@@ -6,7 +6,7 @@ import { Row, Col, Menu, Dropdown } from 'antd'
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
 
 import SideBar from './components/SideBar'
-// import Notification from './components/Notification'
+import Notification from './components/Notification'
 
 import './style.css'
 
@@ -74,7 +74,7 @@ export default class User extends React.Component {
 											</div>
 										</Link>
 									</Col>
-									{/* <Notification /> */}
+									<Notification />
 									<Col xs={6} sm={6} md={6}>
 										<Dropdown shape={'circle'} overlay={menu} placement='bottomRight' arrow>
 											<img
@@ -112,7 +112,10 @@ export default class User extends React.Component {
 						)}
 					</Row>
 					<Row align='middle' className='cv-header-user-mobil'>
-						<Col xs={24} sm={24} md={24}>
+						<Col xs={4} sm={4} md={4}>
+							<Notification />
+						</Col>
+						<Col xs={20} sm={20} md={20}>
 							<img
 								onClick={() => this.handleOpenMenu(true)}
 								className='cv-header-user-icon-menu'
