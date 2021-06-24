@@ -112,7 +112,10 @@ export default class User extends React.Component {
 						)}
 					</Row>
 					<Row align='middle' className='cv-header-user-mobil'>
-						<Col xs={24} sm={24} md={24}>
+						<Col xs={4} sm={4} md={4}>
+							<Notification />
+						</Col>
+						<Col xs={20} sm={20} md={20}>
 							<img
 								onClick={() => this.handleOpenMenu(true)}
 								className='cv-header-user-icon-menu'
