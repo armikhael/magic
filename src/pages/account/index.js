@@ -9,7 +9,6 @@ import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
-import serviceIp from '../../components/ServiceCommons/Ip'
 
 import CreateUser from './components/CreateUser'
 import AccountsRelations from './components/AccountsRelations'
@@ -43,13 +42,12 @@ export default class AccountDetail extends React.Component {
 			label: this.props.match.params.name,
 		})
 		try {
-			const isIp = await serviceIp()
 			let redSocial = ['-instagram', '-facebook', '-tiktok']
 			const includeName = redSocial.find((item) => {
 				return this.props.match.params.name.includes(item)
 			})
 			if (includeName !== undefined) {
-				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, views: isIp })
+				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name })
 				console.log(accountDetail)
 				if (accountDetail.account[0].representation === true) {
 					this.setState({ representation: true, textContact: 'Intercambios' })
@@ -214,7 +212,7 @@ export default class AccountDetail extends React.Component {
 												{this.state.detail.categories[0]}
 											</span>
 										</Link>
-										<p>Cantidad de Visitas: {this.state.detail.counter}</p>
+										<p>Visitas de Hoy: {this.state.detail.counter_day}</p>
 										<h3 className='cv-detail-account-content-info-email'>
 											{this.state.detail.email}
 										</h3>

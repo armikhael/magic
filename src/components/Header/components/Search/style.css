@@ -101,7 +101,7 @@
 
 @media (max-width: 768px) {
 	.cv-header-search-input {
-		width: 85%;
+		width: 100%;
 	}
 	.cv-header-search-input .ant-input-suffix {
 		width: 50px;
