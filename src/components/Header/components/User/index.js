@@ -6,7 +6,7 @@ import { Row, Col, Menu, Dropdown } from 'antd'
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
 
 import SideBar from './components/SideBar'
-// import Notification from './components/Notification'
+import Notification from './components/Notification'
 
 import './style.css'
 
@@ -74,7 +74,7 @@ export default class User extends React.Component {
 											</div>
 										</Link>
 									</Col>
-									{/* <Notification /> */}
+									<Notification />
 									<Col xs={6} sm={6} md={6}>
 										<Dropdown shape={'circle'} overlay={menu} placement='bottomRight' arrow>
 											<img
