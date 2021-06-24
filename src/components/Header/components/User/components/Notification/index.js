@@ -31,7 +31,7 @@ export default function Notification() {
 						serviceEventGoogleAnalytics({
 							category: 'notification',
 							action: 'click',
-							label: item.title,
+							label: `${item.title}`,
 						})
 						window.open(item.redirect)
 					}}>
