@@ -3,7 +3,7 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { Layout } from 'antd'
+import { Layout, notification } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import ListMasonry from '../../components/ListMasonry/'
@@ -31,11 +31,16 @@ export default class Home extends React.Component {
 
 	handleList = () => {
 		serviceGetAccounts(this.state.page).then((response) => {
-			if (response.data.statusCode === 200) {
+			if (response.statusCode === 200) {
 				this.setState({
 					list: [...this.state.list, ...response.data],
 					page: this.state.page + 1,
 					loading: false,
+				})
+			} else {
+				notification['error']({
+					message: `Error ${response.data.statusCode}`,
+					description: `Problemas con el servico.`,
 				})
 			}
 		})

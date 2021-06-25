@@ -1,6 +1,5 @@
 /** @format */
 import axios from 'axios'
-import { notification } from 'antd'
 
 export default async function serviceGetAccounts(item) {
 	let returnResponse
@@ -14,15 +13,7 @@ export default async function serviceGetAccounts(item) {
 		},
 	})
 		.then((response) => {
-			if (response.data.statusCode === 200) {
-				returnResponse = response
-			} else {
-				notification['error']({
-					message: `Error ${response.data.statusCode}`,
-					description: `Problemas con el servico.`,
-				})
-				returnResponse = response
-			}
+			returnResponse = response.data
 		})
 		.catch((error) => {
 			returnResponse = error.response.data
