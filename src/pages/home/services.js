@@ -6,7 +6,12 @@ export default async function serviceGetAccounts(item) {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account?page=${item}&limit=10`,
+		url: `${process.env.REACT_APP_HOST}/account`,
+		params: {
+			query: { eneable: true },
+			sort: { counter_day: -1, counter: -1 },
+			page: item,
+		},
 	})
 		.then((response) => {
 			if (response.data.statusCode === 200) {

@@ -33,7 +33,7 @@ export default class Home extends React.Component {
 		serviceGetAccounts(this.state.page).then((response) => {
 			if (response.data.statusCode === 200) {
 				this.setState({
-					list: [...this.state.list, ...response.data.data],
+					list: [...this.state.list, ...response.data],
 					page: this.state.page + 1,
 					loading: false,
 				})

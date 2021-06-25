@@ -4,7 +4,6 @@ import axios from 'axios'
 
 const serviceGetData = async () => {
 	const date = new Date()
-	console.log(date.getMonth(), date.getDate())
 	let returnResponse
 	await axios({
 		method: 'GET',
