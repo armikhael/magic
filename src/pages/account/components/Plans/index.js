@@ -12,9 +12,9 @@ const Plans = (props) => {
 	const plansRepresentation = [
 		{ name: 'Promocionar un Producto' },
 		{ name: 'Promocionar un Servicio' },
-		{ name: 'Promocionar un Sorteo' },
 		{ name: 'Promocionar una Cuenta' },
 	]
+
 	return (
 		<>
 			<div className='cv-detail-content-plans'>
