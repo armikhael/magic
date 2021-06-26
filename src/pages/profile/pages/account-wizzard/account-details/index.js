@@ -79,34 +79,34 @@ const AccountDetails = (props) => {
 									componentButtonStyle={'solid'}
 									componentOptions={[...CONSTANTS.TYPE_ACCOUNT]}
 								/>
+
 								<RadioField
 									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'¿Harías publicidad "Gratis" a personas de GoFounMe?'}
+									componentLabel={'¿Harías publicidad "Gratis" para ayudar a otras personas?'}
 									componentName={'gofoundme'}
 									componentButtonStyle={'solid'}
 									componentOptions={[...CONSTANTS.BOOLEAN]}
 								/>
-								<RadioField
-									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'¿Harías publicidad con otras cuentas?'}
-									componentName={'mention'}
-									componentButtonStyle={'solid'}
-									componentOptions={[...CONSTANTS.BOOLEAN]}
-								/>
-								<RadioField
-									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'¿Harías sorteos con otras cuentas?'}
-									componentName={'lottery'}
-									componentButtonStyle={'solid'}
-									componentOptions={[...CONSTANTS.BOOLEAN]}
-								/>
-								<RadioField
-									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'¿Aceptarías productos por publicidad?'}
-									componentName={'product'}
-									componentButtonStyle={'solid'}
-									componentOptions={[...CONSTANTS.BOOLEAN]}
-								/>
+
+								{data.followers >= 1000 && (
+									<>
+										<RadioField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'¿Quieres que te representemos con otras marcas?'}
+											componentName={'representation'}
+											componentButtonStyle={'solid'}
+											componentOptions={[...CONSTANTS.BOOLEAN]}
+										/>
+										<a
+											href={
+												'https://drive.google.com/file/d/19B0NUi2gnho072zJJmhy8HxZYsnr7DqD/view?usp=sharing'
+											}
+											target='_blank'
+											rel='noopener noreferrer'>
+											Políticas de Representación
+										</a>
+									</>
+								)}
 							</div>
 							<Divider></Divider>
 							<Form.Item className='cv-right'>
