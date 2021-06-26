@@ -107,6 +107,26 @@ const AccountDetails = (props) => {
 									componentButtonStyle={'solid'}
 									componentOptions={[...CONSTANTS.BOOLEAN]}
 								/>
+
+								{data.followers >= 5000 && (
+									<>
+										<RadioField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'¿Quieres que te representemos con otras marcas?'}
+											componentName={'representation'}
+											componentButtonStyle={'solid'}
+											componentOptions={[...CONSTANTS.BOOLEAN]}
+										/>
+										<a
+											href={
+												'https://drive.google.com/file/d/19B0NUi2gnho072zJJmhy8HxZYsnr7DqD/view?usp=sharing'
+											}
+											target='_blank'
+											rel='noopener noreferrer'>
+											Políticas de Representación
+										</a>
+									</>
+								)}
 							</div>
 							<Divider></Divider>
 							<Form.Item className='cv-right'>
