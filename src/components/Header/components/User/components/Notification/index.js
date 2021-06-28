@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import Moment from 'react-moment'
 import 'moment/locale/es'
 import lodash from 'lodash'
 
@@ -40,11 +39,7 @@ export default function Notification() {
 					</Col>
 					<Col xs={20} sm={20} md={20} className='cv-header-notifi-list-content'>
 						<h3 className='cv-header-notifi-list-title'>{item.title}</h3>
-						<h3 className='cv-header-notifi-list-moment'>
-							<Moment format='D MMM YYYY' withTitle>
-								{item.createdAt}
-							</Moment>
-						</h3>
+						<h3 className='cv-header-notifi-list-moment'>{item.followers} Seguidores</h3>
 					</Col>
 				</Row>
 			</Menu.Item>
