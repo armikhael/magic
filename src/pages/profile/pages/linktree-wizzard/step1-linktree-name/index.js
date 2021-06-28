@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { Form, Button, notification, Card, Divider } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
+import ModalTutorial from '../../../../../components/ModalTutorial'
 
 import { serviceCreateData } from './services'
 import './style.css'
@@ -50,6 +51,11 @@ export default function LinkTreeName(props) {
 						className='cv-account-wizzard-card mt100'
 						title='Creación de la cuenta (1/3)'
 						bordered={false}>
+						<ModalTutorial
+							componentTitle={'¿Necesitas Ayuda? - Tutorial'}
+							componentHeader={'Registrar Multiples Enlaces'}
+							componentData={{ video: 568578004 }}
+						/>
 						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 							<InputField
 								componentClass={'cv-auth-login-field-input'}
