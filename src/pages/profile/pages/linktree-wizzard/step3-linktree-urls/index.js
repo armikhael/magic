@@ -55,10 +55,10 @@ export default function LinkTreeUrl(props) {
 				console.log(response.data.name)
 				notification['success']({
 					message: `Felicidades!`,
-					description: `Ahora te mostraremos como se ven tus enlaces`,
+					description: `Tus enlaces han sido actualizados`,
 				})
 				setTimeout(() => {
-					history.push(`/${response.data.name}`)
+					history.push(`/profile`)
 				}, 2000)
 			} else {
 				notification['error']({
