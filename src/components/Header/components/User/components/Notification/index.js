@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from 'react'
 import Moment from 'react-moment'
-import { Dropdown, Menu, Badge, Row, Col } from 'antd'
-import { NotificationOutlined } from '@ant-design/icons'
 import 'moment/locale/es'
 import lodash from 'lodash'
+
+import { Dropdown, Menu, Row, Col } from 'antd'
+import { EllipsisOutlined, FileDoneOutlined } from '@ant-design/icons'
 
 import serviceEventGoogleAnalytics from '../../../../../ServiceCommons/EventsGoogleAnalitycs'
 import { serviceGetData } from './services'
@@ -16,18 +17,16 @@ export default function Notification() {
 
 	useEffect(() => {
 		serviceGetData().then((response) => {
-			console.log(response.data)
-			const suffle = lodash.shuffle(response.data.data)
+			const suffle = lodash.shuffle(response.data)
 			setData(suffle)
 		})
-		console.log('useEffect')
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+	}, [])
 
 	const menu = data.map((item, key) => {
 		return (
-			<Menu.Item key={key}>
+			<Menu.Item key={key} className='cv-header-notifi-content-menu-item'>
 				<Row
-					key={key.toString()}
+					className='cv-header-notifi-content-menu-item-row'
 					onClick={() => {
 						serviceEventGoogleAnalytics({
 							category: 'notification',
@@ -36,10 +35,10 @@ export default function Notification() {
 						})
 						window.open(item.redirect)
 					}}>
-					<Col xs={3} sm={3} md={3}>
+					<Col xs={4} sm={4} md={4}>
 						<img className='cv-header-notifi-list-img' src={item.image} alt={item.title} />
 					</Col>
-					<Col xs={21} sm={21} md={21} className='cv-header-notifi-list-content'>
+					<Col xs={20} sm={20} md={20} className='cv-header-notifi-list-content'>
 						<h3 className='cv-header-notifi-list-title'>{item.title}</h3>
 						<h3 className='cv-header-notifi-list-moment'>
 							<Moment format='D MMM YYYY' withTitle>
@@ -48,22 +47,52 @@ export default function Notification() {
 						</h3>
 					</Col>
 				</Row>
-				<hr className='cv-header-notifi-list-hr'></hr>
 			</Menu.Item>
 		)
 	})
 
+	const menuNotifi = (
+		<Menu>
+			<Menu.Item
+				onClick={() => {
+					window.open(
+						'https://api.whatsapp.com/send?phone=56979582051&text=Hola!%20Me%20gustar%C3%ADa%20aparecer%20en%20cuentasvirales.com'
+					)
+				}}>
+				<FileDoneOutlined style={{ color: '#f61073' }} /> Quiero Aparecer Aquí
+			</Menu.Item>
+		</Menu>
+	)
+
 	return (
 		<>
 			<Dropdown
-				overlayClassName='cv-header-notifi-content'
+				trigger={['click']}
 				shape={'circle'}
-				overlay={<Menu>{menu}</Menu>}
-				placement='bottomCenter'
-				arrow>
-				<Badge dot>
-					<NotificationOutlined />
-				</Badge>
+				overlay={
+					<Menu className='cv-header-notifi-content-menu'>
+						<div className='cv-header-notifi-content-title'>
+							<Row>
+								<Col xs={20} sm={20} md={20}>
+									<h3>Notificaciones</h3>
+								</Col>
+								<Col xs={4} sm={4} md={4} className='cv-header-notifi-title-icon'>
+									<Dropdown trigger={['click']} overlay={menuNotifi} placement='bottomRight'>
+										<EllipsisOutlined className='cv-header-notifi-title-icon-i' />
+									</Dropdown>
+								</Col>
+							</Row>
+						</div>
+						{menu}
+					</Menu>
+				}
+				placement='bottomCenter'>
+				<img
+					width='20px'
+					src='https://i.ibb.co/52F1BcC/notificacion.png'
+					title='Notification'
+					alt='Notification'
+				/>
 			</Dropdown>
 		</>
 	)
