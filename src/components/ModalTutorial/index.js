@@ -22,11 +22,11 @@ export default function ModalTutorial(props) {
 	}
 	return (
 		<>
-			<span style={{ margin: '0px 5px', cursor: 'pointer', color: '#EC3E73' }} onClick={showModal} shape='circle'>
-				¿Ayuda?
-			</span>
+			<p style={{ textAlign: 'center', cursor: 'pointer', color: '#EC3E73' }} onClick={showModal} shape='circle'>
+				{props.componentTitle}
+			</p>
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-				<Vimeo video={`${props.componentData.id}`} width='360' height='640' autoplay />
+				<Vimeo video={`${props.componentData.video}`} autoplay responsive={true} />
 			</Modal>
 		</>
 	)
