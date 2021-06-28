@@ -53,10 +53,14 @@ export default function Notification() {
 
 	const menuNotifi = (
 		<Menu>
-			<Menu.Item>
-				<FileDoneOutlined style={{ color: '#f61073' }} /> Publicate
+			<Menu.Item
+				onClick={() => {
+					window.open(
+						'https://api.whatsapp.com/send?phone=56979582051&text=Hola!%20Me%20gustar%C3%ADa%20aparecer%20en%20cuentasvirales.com'
+					)
+				}}>
+				<FileDoneOutlined style={{ color: '#f61073' }} /> Quiero Aparecer Aquí
 			</Menu.Item>
-			<Menu.Item>¿Quieres ser el Primero?</Menu.Item>
 		</Menu>
 	)
 
