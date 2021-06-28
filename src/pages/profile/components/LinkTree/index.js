@@ -36,7 +36,7 @@ const LinkTree = (props) => {
 				<ModalEditLinktree componentData={item} componentHeader={'Modificar Información'} />,
 				<span
 					onClick={() => {
-						history.push(`/${item.name}`)
+						window.open(`/${item.name}`)
 					}}>
 					Ver
 				</span>,
