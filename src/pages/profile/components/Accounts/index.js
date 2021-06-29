@@ -138,28 +138,24 @@ const Accounts = (props) => {
 				)
 			})}
 
-			{(() => {
-				if (data.length === 0) {
-					return (
-						<div className='cv-profile-card-account-content'>
-							<Result
-								status='error'
-								title='Cuentas Registradas'
-								subTitle='No tienes ninguna red social registrada, para poder registrar una solo debes hacer click en el siguiente boton o en Menú también encontraras un acceso directo.'
-								extra={[
-									<Button
-										onClick={() => {
-											history.push(`/profile/account-user`)
-										}}
-										className={'cv-account-wizzard-button-submit'}
-										key={'button'}>
-										Agregar
-									</Button>,
-								]}></Result>
-						</div>
-					)
-				}
-			})()}
+			{data.length <= 0 && (
+				<div className='cv-profile-card-account-content'>
+					<Result
+						status='error'
+						title='Cuentas Registradas'
+						subTitle='No tienes ninguna red social registrada, para poder registrar una solo debes hacer click en el siguiente boton o en Menú también encontraras un acceso directo.'
+						extra={[
+							<Button
+								onClick={() => {
+									history.push(`/profile/account-user`)
+								}}
+								className={'cv-account-wizzard-button-submit'}
+								key={'button'}>
+								Registrar
+							</Button>,
+						]}></Result>
+				</div>
+			)}
 		</>
 	)
 }

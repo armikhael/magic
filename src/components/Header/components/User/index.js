@@ -36,7 +36,14 @@ const menu = (
 				</div>
 			</Link>
 		</Menu.Item>
-
+		<Menu.Item>
+			<Link to={`/profile/change-password`}>
+				<div className='cv-header-user-icon-login-content'>
+					<img width='16px' src='https://i.ibb.co/dQbp0fY/seguridad.png' alt='Multiples enlaces' />
+					<span className='ml10'>Cambiar Contraseña</span>
+				</div>
+			</Link>
+		</Menu.Item>
 		<Menu.Item>
 			<Link
 				onClick={() => {

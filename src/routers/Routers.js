@@ -13,6 +13,7 @@ import Home from '../pages/home'
 import Profile from '../pages/profile'
 import ListAccount from '../pages/profile/pages/list-account'
 import ListLinkTree from '../pages/profile/pages/list-linktree'
+import ChangePassword from '../pages/profile/pages/change-password'
 import AccountUser from '../pages/profile/pages/account-wizzard/account-user'
 import AccountBiography from '../pages/profile/pages/account-wizzard/account-biography'
 import AccountPlans from '../pages/profile/pages/account-wizzard/account-plans'
@@ -52,6 +53,7 @@ const Routers = (props) => (
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/accounts' component={ListAccount} />
 				<PrivateRoute exact path='/profile/linktree' component={ListLinkTree} />
+				<PrivateRoute exact path='/profile/change-password' component={ChangePassword} />
 				<PrivateRoute exact path='/profile/account-user' component={AccountUser} />
 				<PrivateRoute exact path='/profile/account-biography/:name/:modify?' component={AccountBiography} />
 				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />

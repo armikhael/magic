@@ -36,41 +36,21 @@ const ListLinkTree = (props) => {
 
 	return (
 		<>
-			{data.length > 0 && (
-				<div className='cv-content-main'>
-					<Layout className='cv-perfil-main-container'>
-						<Row>
-							<Col xs={24} sm={24} md={10}>
-								<Content>
-									<Header className='cv-perfil-title-main-container'>
-										<LinkOutlined className='cv-perfil-title-main-icon' />
-										<h3 className='cv-perfil-title-main-title'>Enlaces Personalizados</h3>
-									</Header>
-								</Content>
-								<Card className='cv-profile-main-container'>
-									<LinkTree componentData={data} />
-								</Card>
-							</Col>
-						</Row>
-						<Row>
-							<Button
-								onClick={() => {
-									history.push(`/linktree-name`)
-								}}
-								className={'cv-account-wizzard-button-submit'}>
-								Crear Nuevo
-							</Button>
-						</Row>
-					</Layout>
-				</div>
-			)}
+			<div className='cv-content-main'>
+				<Layout className='cv-perfil-main-container'>
+					<Row>
+						<Col xs={24} sm={24} md={10}>
+							<Content>
+								<Header className='cv-perfil-title-main-container'>
+									<LinkOutlined className='cv-perfil-title-main-icon' />
+									<h3 className='cv-perfil-title-main-title'>Enlaces Personalizados</h3>
+								</Header>
+							</Content>
 
-			{data.length <= 0 && (
-				<div className='cv-content-main'>
-					<Layout className='cv-perfil-main-container'>
-						<Row>
-							<Col xs={24} sm={24} md={10}>
-								<Card className='cv-profile-main-container'>
+							<Card className='cv-profile-main-container'>
+								{data.length > 0 && <LinkTree componentData={data} />}
+
+								{data.length <= 0 && (
 									<Result
 										status='error'
 										title='Enlaces Registrados'
@@ -82,15 +62,26 @@ const ListLinkTree = (props) => {
 													history.push(`/profile/linktree-name`)
 												}}
 												className={'cv-account-wizzard-button-submit'}>
-												Agregar
+												Registrar
 											</Button>,
 										]}></Result>
-								</Card>
-							</Col>
+								)}
+							</Card>
+						</Col>
+					</Row>
+					{data.length > 0 && (
+						<Row>
+							<Button
+								onClick={() => {
+									history.push(`/linktree-name`)
+								}}
+								className={'cv-account-wizzard-button-submit'}>
+								Agregar
+							</Button>
 						</Row>
-					</Layout>
-				</div>
-			)}
+					)}
+				</Layout>
+			</div>
 		</>
 	)
 }

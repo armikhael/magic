@@ -1,6 +1,6 @@
 /** @format */
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout, Card, Button, Form, notification } from 'antd'
 import { ApiOutlined } from '@ant-design/icons'
 
@@ -10,9 +10,10 @@ import { serviceUpdateData } from './services'
 
 const ChangePassword = (props) => {
 	const [form] = Form.useForm()
+	const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
 	const handleOnFinish = (item) => {
-		item.email = props.componentData.email
+		item.email = user.email
 		console.log(item)
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
@@ -33,7 +34,7 @@ const ChangePassword = (props) => {
 
 	return (
 		<>
-			{props.componentData.autentication !== 'google' && (
+			{user.autentication !== 'google' && (
 				<Card className='cv-profile-main-container'>
 					<h3 className='cv-perfil-title-main-title'>
 						<ApiOutlined className='cv-perfil-title-main-icon' />
