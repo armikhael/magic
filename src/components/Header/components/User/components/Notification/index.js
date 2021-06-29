@@ -16,6 +16,7 @@ export default function Notification() {
 
 	useEffect(() => {
 		serviceGetData().then((response) => {
+			console.log(response)
 			const suffle = lodash.shuffle(response.data)
 			setData(suffle)
 		})
