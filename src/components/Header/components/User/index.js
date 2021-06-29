@@ -21,13 +21,22 @@ const menu = (
 			</Link>
 		</Menu.Item>
 		<Menu.Item>
-			<Link to={`/profile`}>
+			<Link to={`/profile/accounts`}>
 				<div className='cv-header-user-icon-login-content'>
 					<img width='16px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
-					<span className='ml10'>Ver mis Enlaces</span>
+					<span className='ml10'>Mis Cuentas</span>
 				</div>
 			</Link>
 		</Menu.Item>
+		<Menu.Item>
+			<Link to={`/profile/linktree`}>
+				<div className='cv-header-user-icon-login-content'>
+					<img width='16px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
+					<span className='ml10'>Mis Enlaces</span>
+				</div>
+			</Link>
+		</Menu.Item>
+
 		<Menu.Item>
 			<Link
 				onClick={() => {

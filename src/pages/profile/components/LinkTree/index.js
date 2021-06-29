@@ -1,8 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { notification, Row, List, Comment, Button } from 'antd'
+import { notification, List, Comment } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import ModalEditLinktree from '../ModalEditLinktree'
@@ -10,7 +9,6 @@ import ModalEditLinktree from '../ModalEditLinktree'
 import serviceDelete from './service'
 
 const LinkTree = (props) => {
-	const history = useHistory()
 	const [data, setData] = useState(props.componentData)
 
 	const handleDelete = async (item) => {
@@ -73,9 +71,10 @@ const LinkTree = (props) => {
 				header={`Enlaces Personalizados`}
 				itemLayout='horizontal'
 				dataSource={render}
-				renderItem={(item) => (
+				renderItem={(item, i) => (
 					<List.Item>
 						<Comment
+							key={i}
 							actions={item.actions}
 							author={item.author}
 							avatar={item.avatar}
@@ -84,15 +83,6 @@ const LinkTree = (props) => {
 					</List.Item>
 				)}
 			/>
-			<Row>
-				<Button
-					onClick={() => {
-						history.push(`/profile/linktree-name`)
-					}}
-					className={'cv-account-wizzard-button-submit'}>
-					Crear Nuevo
-				</Button>
-			</Row>
 		</>
 	)
 }

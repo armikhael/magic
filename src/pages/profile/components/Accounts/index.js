@@ -149,7 +149,7 @@ const Accounts = (props) => {
 								extra={[
 									<Button
 										onClick={() => {
-											history.push(`profile/account-user`)
+											history.push(`/profile/account-user`)
 										}}
 										className={'cv-account-wizzard-button-submit'}>
 										Agregar
