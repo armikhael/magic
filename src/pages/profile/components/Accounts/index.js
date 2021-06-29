@@ -151,7 +151,8 @@ const Accounts = (props) => {
 										onClick={() => {
 											history.push(`/profile/account-user`)
 										}}
-										className={'cv-account-wizzard-button-submit'}>
+										className={'cv-account-wizzard-button-submit'}
+										key={'button'}>
 										Agregar
 									</Button>,
 								]}></Result>

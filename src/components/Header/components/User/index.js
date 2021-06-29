@@ -23,7 +23,7 @@ const menu = (
 		<Menu.Item>
 			<Link to={`/profile/accounts`}>
 				<div className='cv-header-user-icon-login-content'>
-					<img width='16px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
+					<img width='16px' src='https://i.ibb.co/4YMC9HP/miscuentas.png' alt='Multiples enlaces' />
 					<span className='ml10'>Mis Cuentas</span>
 				</div>
 			</Link>
@@ -31,7 +31,7 @@ const menu = (
 		<Menu.Item>
 			<Link to={`/profile/linktree`}>
 				<div className='cv-header-user-icon-login-content'>
-					<img width='16px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
+					<img width='16px' src='https://i.ibb.co/W3mYPYP/links.png' alt='Multiples enlaces' />
 					<span className='ml10'>Mis Enlaces</span>
 				</div>
 			</Link>

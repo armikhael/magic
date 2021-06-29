@@ -4,7 +4,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Drawer, Row, Col } from 'antd'
-import { QuestionOutlined, HomeOutlined, CloseSquareOutlined, UserOutlined } from '@ant-design/icons'
+import { QuestionOutlined, CloseSquareOutlined, UserOutlined } from '@ant-design/icons'
+
+import ModalOption from '../ModalOption'
 
 import './style.css'
 
@@ -84,7 +86,7 @@ export default class SideBar extends React.Component {
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/`}>
 						<div className='cv-header-user-icon-login-content'>
-							<HomeOutlined style={{ fontSize: 22 }} />
+							<img width='19px' src='https://i.postimg.cc/YSQXZWCP/logo.jpg' alt='Inicio' />
 							<span className='ml10'>Inicio</span>
 						</div>
 					</Link>
@@ -99,24 +101,18 @@ export default class SideBar extends React.Component {
 								</div>
 							</Link>
 						</div>
-						<div className='cv-header-user-sidebar-list'>
-							<Link to={`/profile/account-user`}>
-								<div className='cv-header-user-icon-login-content'>
-									<img
-										width='19px'
-										src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
-										alt='Crear Cuenta'
-									/>
-									<span className='ml10'>Publicarme</span>
-								</div>
-							</Link>
+						<div className='cv-header-user-sidebar-list' style={{ cursor: 'pointer' }}>
+							<div className='cv-header-user-icon-login-content'>
+								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
+								<ModalOption componentTitle={'Publicarme'} />
+							</div>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/accounts`}>
 								<div className='cv-header-user-icon-login-content'>
 									<img
 										width='19px'
-										src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+										src='https://i.ibb.co/4YMC9HP/miscuentas.png'
 										alt='Crear Cuenta'
 									/>
 									<span className='ml10'>Mis Cuentas</span>
@@ -126,7 +122,11 @@ export default class SideBar extends React.Component {
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/linktree`}>
 								<div className='cv-header-user-icon-login-content'>
-									<img width='18px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />{' '}
+									<img
+										width='18px'
+										src='https://i.ibb.co/W3mYPYP/links.png'
+										alt='Multiples enlaces'
+									/>
 									<span className='ml10'>Mis Enlaces</span>
 								</div>
 							</Link>
