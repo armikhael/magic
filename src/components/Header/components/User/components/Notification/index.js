@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react'
 import 'moment/locale/es'
 import lodash from 'lodash'
 
-import { Dropdown, Menu, Row, Col } from 'antd'
-import { EllipsisOutlined, FileDoneOutlined } from '@ant-design/icons'
+import { Dropdown, Menu, Row, Col, Badge } from 'antd'
+import { EllipsisOutlined, FileDoneOutlined, NotificationOutlined } from '@ant-design/icons'
 
 import serviceEventGoogleAnalytics from '../../../../../ServiceCommons/EventsGoogleAnalitycs'
 import { serviceGetData } from './services'
@@ -16,7 +16,6 @@ export default function Notification() {
 
 	useEffect(() => {
 		serviceGetData().then((response) => {
-			console.log(response)
 			const suffle = lodash.shuffle(response.data)
 			setData(suffle)
 		})
@@ -55,7 +54,7 @@ export default function Notification() {
 						'https://api.whatsapp.com/send?phone=56979582051&text=Hola!%20Me%20gustar%C3%ADa%20aparecer%20en%20cuentasvirales.com'
 					)
 				}}>
-				<FileDoneOutlined style={{ color: '#f61073' }} /> Quiero Aparecer Aquí
+				<FileDoneOutlined style={{ color: '#f61073' }} /> Quiero aparecer aquí
 			</Menu.Item>
 		</Menu>
 	)
@@ -70,7 +69,7 @@ export default function Notification() {
 						<div className='cv-header-notifi-content-title'>
 							<Row>
 								<Col xs={20} sm={20} md={20}>
-									<h3>Notificaciones</h3>
+									<h3>Recomendaciones</h3>
 								</Col>
 								<Col xs={4} sm={4} md={4} className='cv-header-notifi-title-icon'>
 									<Dropdown trigger={['click']} overlay={menuNotifi} placement='bottomRight'>
@@ -83,12 +82,9 @@ export default function Notification() {
 					</Menu>
 				}
 				placement='bottomCenter'>
-				<img
-					width='20px'
-					src='https://i.ibb.co/52F1BcC/notificacion.png'
-					title='Notification'
-					alt='Notification'
-				/>
+				<Badge dot>
+					<NotificationOutlined style={{ fontSize: '20px', color: '#200159' }} />
+				</Badge>
 			</Dropdown>
 		</>
 	)

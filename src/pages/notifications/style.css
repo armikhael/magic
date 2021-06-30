@@ -1,0 +1,22 @@
+/** @format */
+
+.cv-notifications {
+	padding: 20px;
+	padding-bottom: 0px;
+}
+
+.cv-notifications-content-menu-item-div {
+	margin: 10px 20px;
+}
+
+.cv-notifications-content-menu-item-row {
+	background-color: #f3f3f3;
+	border-radius: 3px;
+	padding: 10px 10px;
+}
+
+.cv-notifications-notifi-list-title {
+	margin-top: 6px;
+	font-size: 16px;
+	margin-bottom: 0px;
+}
