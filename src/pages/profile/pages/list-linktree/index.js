@@ -73,7 +73,7 @@ const ListLinkTree = (props) => {
 						<Row>
 							<Button
 								onClick={() => {
-									history.push(`/linktree-name`)
+									history.push(`/profile/linktree-name`)
 								}}
 								className={'cv-account-wizzard-button-submit'}>
 								Agregar

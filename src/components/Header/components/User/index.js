@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Menu, Dropdown } from 'antd'
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
 
+import ModalOption from './components/ModalOption'
 import SideBar from './components/SideBar'
 import Notification from './components/Notification'
 
@@ -79,16 +80,16 @@ export default class User extends React.Component {
 							<Col xs={12} sm={12} md={{ span: 24, offset: 0 }}>
 								<Row align='middle'>
 									<Col xs={12} sm={12} md={12}>
-										<Link to={`/profile/account-user`}>
-											<div className='cv-header-user-icon-login-content'>
-												<img
-													className='cv-heder-user-icon-add-account'
-													src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
-													alt='Agregar Cuenta'
-												/>{' '}
-												<span className='ml10'>Publicarme</span>
-											</div>
-										</Link>
+										<div
+											className='cv-header-user-icon-login-content'
+											style={{ cursor: 'pointer' }}>
+											<img
+												className='cv-heder-user-icon-add-account'
+												src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+												alt='Agregar Cuenta'
+											/>
+											<ModalOption componentTitle={'Publicarme'} />
+										</div>
 									</Col>
 									<Notification />
 									<Col xs={6} sm={6} md={6}>

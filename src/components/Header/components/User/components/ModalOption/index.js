@@ -29,13 +29,13 @@ const ModalOption = (props) => {
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 				<Row>
 					<Col xs={12} sm={12} md={12}>
-						<Link to={`/profile/accounts`}>
+						<Link to={`/profile/account-user`}>
 							<img width='128px' src='https://i.ibb.co/4YMC9HP/miscuentas.png' alt='Multiples enlaces' />
 							<p>Marca Personal</p>
 						</Link>
 					</Col>
 					<Col xs={12} sm={12} md={12}>
-						<Link to={`/profile/linktree`}>
+						<Link to={`/profile/linktree-name`}>
 							<img width='128px' src='https://i.ibb.co/W3mYPYP/links.png' alt='Multiples enlaces' />
 							<p>Enlaces Personalizados</p>
 						</Link>

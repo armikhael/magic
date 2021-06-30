@@ -51,7 +51,7 @@ export default class SideBar extends React.Component {
 											className='cv-header-user-icon-login'
 											src='https://i.ibb.co/0C5Mpp9/iniciar-sesion.png'
 											alt='Crear Cuenta'
-										/>{' '}
+										/>
 										Crear Cuenta
 									</div>
 								</Link>
