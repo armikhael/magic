@@ -85,19 +85,18 @@ const Accounts = (props) => {
 
 										{item.eneable === true && (
 											<>
-												<ModalEdit
-													componentData={item}
-													componentHeader={'Modificar Información'}
-												/>
 												<ModalConfiguration
 													componentData={item}
 													componentHeader={'Condiguración'}
 												/>
-												<CopyToClipboard
-													text={`${process.env.REACT_APP_LINKTREE}/${item.name}`}>
+												<ModalEdit
+													componentData={item}
+													componentHeader={'Modificar Información'}
+												/>
+												<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
 													<Button
 														style={{ margin: '0px 5px' }}
-														shape='circle'
+														shape='round'
 														onClick={() => {
 															notification['success']({
 																message: '¡Excelente!',
@@ -106,6 +105,7 @@ const Accounts = (props) => {
 															})
 														}}>
 														<CopyOutlined />
+														Enlace
 													</Button>
 												</CopyToClipboard>
 											</>
@@ -114,11 +114,12 @@ const Accounts = (props) => {
 										<Button
 											style={{ margin: '0px 5px' }}
 											type='danger'
-											shape='circle'
+											shape='round'
 											onClick={() => {
 												handleDeleteAccount(item)
 											}}>
 											<CloseOutlined />
+											Eliminar
 										</Button>
 									</Col>
 								</Row>

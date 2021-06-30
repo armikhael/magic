@@ -9,7 +9,6 @@ import Loading from '../../components/Loading/Loading'
 import './style.css'
 import LinkTree from './components/LinkTree'
 import Accounts from './components/Accounts'
-import ChangePassword from './components/ChangePassword'
 import { serviceGetAccountsByEmail } from './services'
 
 const { Content, Header } = Layout
@@ -113,8 +112,6 @@ export default class Profile extends React.Component {
 										</Row>
 									</Layout>
 								</Card>
-
-								<ChangePassword componentData={this.state.userProfile} />
 							</Col>
 						</Row>
 					</Layout>

@@ -20,7 +20,7 @@ const ModalConfiguration = (props) => {
 	}
 	return (
 		<>
-			<Button style={{ margin: '0px 5px' }} onClick={showModal} shape='circle'>
+			<Button style={{ margin: '0px 5px' }} onClick={showModal} shape='round'>
 				<SettingOutlined />
 			</Button>
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
