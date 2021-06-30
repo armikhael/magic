@@ -94,7 +94,7 @@ const Accounts = (props) => {
 													componentHeader={'Condiguración'}
 												/>
 												<CopyToClipboard
-													text={`${process.env.REACT_APP_LINKTREE}/${item.name}`}>
+													text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
 													<Button
 														style={{ margin: '0px 5px' }}
 														shape='circle'
