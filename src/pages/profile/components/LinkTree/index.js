@@ -49,14 +49,12 @@ const LinkTree = (props) => {
 						Copiar
 					</span>
 				</CopyToClipboard>,
-				<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
-					<span
-						onClick={() => {
-							handleDelete(item)
-						}}>
-						Eliminar
-					</span>
-				</CopyToClipboard>,
+				<span
+					onClick={() => {
+						handleDelete(item)
+					}}>
+					Eliminar
+				</span>,
 			],
 			author: item.name,
 			avatar: item.image,
