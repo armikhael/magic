@@ -94,7 +94,7 @@ const Accounts = (props) => {
 													componentHeader={'Modificar Información'}
 												/>
 												<CopyToClipboard
-													text={`${process.env.REACT_APP_CUENTAS_VITALES}/${item.name}`}>
+													text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
 													<Button
 														style={{ margin: '0px 5px' }}
 														shape='round'
