@@ -83,7 +83,7 @@ export default function Notification() {
 				}
 				placement='bottomCenter'>
 				<Badge dot>
-					<NotificationOutlined style={{ fontSize: '20px', color: '#200159' }} />
+					<NotificationOutlined style={{ fontSize: '20px', color: '#200159', cursor: 'pointer' }} />
 				</Badge>
 			</Dropdown>
 		</>
