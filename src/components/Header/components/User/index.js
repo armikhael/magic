@@ -115,7 +115,9 @@ export default class User extends React.Component {
 						<Col xs={4} sm={4} md={4}>
 							<a href='/notifications'>
 								<Badge dot>
-									<NotificationOutlined style={{ fontSize: '20px', color: '#200159' }} />
+									<NotificationOutlined
+										style={{ fontSize: '20px', color: '#200159', cursor: 'pointer' }}
+									/>
 								</Badge>
 							</a>
 						</Col>
