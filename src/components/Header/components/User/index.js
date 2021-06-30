@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Menu, Dropdown } from 'antd'
-import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
+import { Row, Col, Menu, Dropdown, Badge } from 'antd'
+import { UserOutlined, LogoutOutlined, NotificationOutlined } from '@ant-design/icons'
 
 import SideBar from './components/SideBar'
 import Notification from './components/Notification'
@@ -113,7 +113,11 @@ export default class User extends React.Component {
 					</Row>
 					<Row align='middle' className='cv-header-user-mobil'>
 						<Col xs={4} sm={4} md={4}>
-							<Notification />
+							<a href='/notifications'>
+								<Badge dot>
+									<NotificationOutlined style={{ fontSize: '20px', color: '#200159' }} />
+								</Badge>
+							</a>
 						</Col>
 						<Col xs={20} sm={20} md={20}>
 							<img
