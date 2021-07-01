@@ -75,6 +75,10 @@ export default class User extends React.Component {
 										</Link>
 									</Col>
 
+									<Col xs={4} sm={4} md={4}>
+										<Notification />
+									</Col>
+
 									<Col xs={6} sm={6} md={6}>
 										<Dropdown shape={'circle'} overlay={menu} placement='bottomRight' arrow>
 											<img
