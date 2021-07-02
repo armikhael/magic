@@ -58,7 +58,7 @@ const AccountPlans = (props) => {
 	const handleButtonSkip = () => {
 		let redirect = `/profile/account-details/${props.match.params.name}`
 		if (isModify === true) {
-			redirect = `/profile/`
+			redirect = `/profile/accounts`
 		}
 		return (
 			<>
@@ -83,7 +83,7 @@ const AccountPlans = (props) => {
 				if (isModify === false) {
 					history.push(`/profile/account-details/${response.data.name}`)
 				} else {
-					history.push(`/profile`)
+					history.push(`/profile/accounts`)
 				}
 			} else {
 				notification['error']({

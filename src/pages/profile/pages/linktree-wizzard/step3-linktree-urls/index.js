@@ -66,7 +66,7 @@ export default function LinkTreeUrl(props) {
 					description: `Tus enlaces han sido actualizados`,
 				})
 				setTimeout(() => {
-					history.push(`/profile`)
+					history.push(`/profile/linktree`)
 				}, 2000)
 			} else {
 				notification['error']({

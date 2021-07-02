@@ -37,7 +37,7 @@ const AccountDetails = (props) => {
 				<>
 					<Button
 						onClick={() => {
-							history.push(`/profile/`)
+							history.push(`/profile/accounts`)
 						}}
 						className={'cv-account-wizzard-button-submit'}>
 						Omitir
@@ -54,7 +54,7 @@ const AccountDetails = (props) => {
 				if (isModify === false) {
 					history.push(`/profile/account-activation/${response.data.name}`)
 				} else {
-					history.push(`/profile`)
+					history.push(`/profile/accounts`)
 				}
 			} else {
 				notification['error']({
