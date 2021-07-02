@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, Divider, List, Typography, Card, notification } from 'antd'
+import { Form, Button, Divider, Card, notification } from 'antd'
 import { LinkOutlined, DeleteOutlined } from '@ant-design/icons'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import InputField from '../../../../../components/Form/Input'
 
@@ -21,7 +22,14 @@ export default function LinkTreeUrl(props) {
 		const response = await serviceGetData(param)
 		console.log('response', response.data[0])
 		setData(response.data[0])
-		setLinks(response.data[0].links)
+		const newLinks = response.data[0].links.map((item, key) => {
+			return {
+				id: key.toString(),
+				title: item.title,
+				url: item.url,
+			}
+		})
+		setLinks(newLinks)
 	}
 
 	useEffect(() => {
@@ -34,7 +42,7 @@ export default function LinkTreeUrl(props) {
 	}, [props])
 
 	const handleAddElement = (item) => {
-		setLinks((links) => [...links, { title: item.title, url: item.url }])
+		setLinks((links) => [...links, { id: links.length, title: item.title, url: item.url }])
 		form.resetFields(['title', 'url'])
 	}
 
@@ -68,6 +76,19 @@ export default function LinkTreeUrl(props) {
 			}
 		})
 	}
+
+	const handleOnDragEnd = (result) => {
+		if (!result.destination) return
+		const items = Array.from(links)
+		const [reOrderItem] = items.splice(result.source.index, 1)
+		items.splice(result.destination.index, 0, reOrderItem)
+		setLinks(items)
+		let item = data
+		item.links = items
+		console.log(item)
+		serviceUpdateData(item)
+	}
+
 	return (
 		<>
 			{data !== undefined && (
@@ -123,41 +144,64 @@ export default function LinkTreeUrl(props) {
 							className='cv-linktree-card mt20'
 							title={`Cantidad de Enlaces: ${links.length}`}
 							bordered={false}>
-							{links.length > 0 && (
-								<List
-									header={<div>Enlaces Agregados</div>}
-									bordered
-									dataSource={links}
-									renderItem={(item, key) => (
-										<List.Item
-											actions={[
-												<Button
-													key={key}
-													type='link'
-													shape='round'
-													icon={<LinkOutlined />}
-													onClick={() => {
-														window.open(item.url)
-													}}>
-													Ver
-												</Button>,
-												<Button
-													key={key}
-													danger
-													type='link'
-													shape='round'
-													icon={<DeleteOutlined />}
-													onClick={() => {
-														handleDelete(key)
-													}}>
-													Eliminar
-												</Button>,
-											]}>
-											<Typography.Text>{item.title} </Typography.Text>
-										</List.Item>
+							<DragDropContext onDragEnd={handleOnDragEnd}>
+								<Droppable droppableId='characters'>
+									{(provided) => (
+										<ul className='characters' {...provided.droppableProps} ref={provided.innerRef}>
+											{links.map((item, key) => {
+												return (
+													<Draggable
+														key={item.id.toString()}
+														draggableId={item.id.toString()}
+														index={key}>
+														{(provided) => (
+															<li
+																ref={provided.innerRef}
+																{...provided.draggableProps}
+																{...provided.dragHandleProps}>
+																<div className='characters-thumb'>
+																	<img
+																		src={'https://i.postimg.cc/YSQXZWCP/logo.jpg'}
+																		alt={`${item.title} Thumb`}
+																	/>
+																</div>
+																<p>{item.title}</p>
+																<Button
+																	type='link'
+																	shape='round'
+																	icon={<LinkOutlined />}
+																	onClick={() => {
+																		window.open(item.url)
+																	}}>
+																	Ver
+																</Button>
+
+																<Button
+																	danger
+																	type='link'
+																	shape='round'
+																	icon={<DeleteOutlined />}
+																	onClick={() => {
+																		handleDelete(key)
+																	}}>
+																	Eliminar
+																</Button>
+																<div className='characters-thumb'>
+																	<img
+																		src={'https://i.ibb.co/NCmMyV7/drag-flick.png'}
+																		alt={`${item.title} Thumb`}
+																	/>
+																</div>
+															</li>
+														)}
+													</Draggable>
+												)
+											})}
+											{provided.placeholder}
+										</ul>
 									)}
-								/>
-							)}
+								</Droppable>
+							</DragDropContext>
 						</Card>
 					</div>
 				</div>

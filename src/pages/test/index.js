@@ -1,92 +1,82 @@
 /** @format */
 
 import React, { useState } from 'react'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import './style.css'
 
-import { Upload, Button } from 'antd'
-import { Row, Col, Input } from 'antd'
-import ImgCrop from 'antd-img-crop'
+const finalSpaceCharacters = [
+	{
+		id: 'gary',
+		name: 'Gary Goodspeed',
+		thumb: '/images/gary.png',
+	},
+	{
+		id: 'cato',
+		name: 'Little Cato',
+		thumb: '/images/cato.png',
+	},
+	{
+		id: 'kvn',
+		name: 'KVN',
+		thumb: '/images/kvn.png',
+	},
+	{
+		id: 'mooncake',
+		name: 'Mooncake',
+		thumb: '/images/mooncake.png',
+	},
+	{
+		id: 'quinn',
+		name: 'Quinn Ergon',
+		thumb: '/images/quinn.png',
+	},
+]
 
-import { serviceGetAccount, serviceUploadImage, serviceUpdateImage } from './services'
+export default function App() {
+	const [characters, updateCharacters] = useState(finalSpaceCharacters)
 
-export default function UploadImgAccounts() {
-	const { Search } = Input
-	const [fileList, setFileList] = useState([])
-	const [isButtom, setButtom] = useState(false)
-	const [isAccount, setAccount] = useState(null)
-
-	const hableSearchAccount = (item) => {
-		serviceGetAccount(item).then((response) => {
-			setFileList([
-				{
-					uid: '-1',
-					name: 'image.png',
-					status: 'done',
-					url: response.image,
-					image: response.image,
-					image_thumb: response.image_thumb,
-				},
-			])
-			setAccount(response)
-		})
-	}
-
-	const handleOnChange = ({ fileList: item }) => {
-		setFileList(item)
-		if (item.length > 0) {
-			setButtom(true)
-		}
-	}
-
-	const handleSaveImage = () => {
-		let formData = new FormData()
-		formData.append('image', fileList[0].originFileObj)
-		formData.append('name', isAccount.name)
-		formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
-		serviceUploadImage(formData).then((response) => {
-			serviceUpdateImage(isAccount._id, response).then((response) => {})
-		})
-	}
-
-	const handleOnPreview = async (item) => {
-		let src = item.url
-		if (!src) {
-			src = await new Promise((resolve) => {
-				let reader = new FileReader()
-				reader.readAsDataURL(item.originFileObj)
-				reader.onload = () => resolve(reader.result)
-			})
-		}
-		let image = new Image()
-		image.src = src
-		let imgWindow = window.open(src)
-		imgWindow.document.write(image.outerHTML)
+	function handleOnDragEnd(result) {
+		if (!result.destination) return
+		const items = Array.from(characters)
+		const [reorderedItem] = items.splice(result.source.index, 1)
+		items.splice(result.destination.index, 0, reorderedItem)
+		updateCharacters(items)
 	}
 
 	return (
-		<>
-			<Row>
-				<Col span={6}>
-					Test 1<br></br>
-					<Search placeholder='Nombre de Cuenta' onSearch={hableSearchAccount} enterButton />
-					<br></br>
-					<ImgCrop>
-						<Upload
-							className='cv-upload-img'
-							listType='picture-card'
-							fileList={fileList}
-							onChange={handleOnChange}
-							onPreview={handleOnPreview}>
-							{fileList.length < 1 && '+ Imagen'}
-						</Upload>
-					</ImgCrop>
-					<br />
-					{isButtom && (
-						<Button type='primary' onClick={handleSaveImage}>
-							Enviar
-						</Button>
-					)}
-				</Col>
-			</Row>
-		</>
+		<div className='App'>
+			<header className='App-header'>
+				<h1>Final Space Characters</h1>
+				<DragDropContext onDragEnd={handleOnDragEnd}>
+					<Droppable droppableId='characters'>
+						{(provided) => (
+							<ul className='characters' {...provided.droppableProps} ref={provided.innerRef}>
+								{characters.map(({ id, name, thumb }, index) => {
+									return (
+										<Draggable key={id} draggableId={id} index={index}>
+											{(provided) => (
+												<li
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}>
+													<div className='characters-thumb'>
+														<img src={thumb} alt={`${name} Thumb`} />
+													</div>
+													<p>{name}</p>
+												</li>
+											)}
+										</Draggable>
+									)
+								})}
+								{provided.placeholder}
+							</ul>
+						)}
+					</Droppable>
+				</DragDropContext>
+			</header>
+			<p>
+				Images from <a href='https://final-space.fandom.com/wiki/Final_Space_Wiki'>Final Space Wiki</a>
+			</p>
+		</div>
 	)
 }
