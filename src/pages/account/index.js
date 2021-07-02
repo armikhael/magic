@@ -50,7 +50,7 @@ export default class AccountDetail extends React.Component {
 				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name })
 				console.log(accountDetail)
 				if (accountDetail.account[0].representation === true) {
-					this.setState({ representation: true, textContact: 'Intercambios' })
+					this.setState({ representation: true, textContact: 'Publicidad y Canjes' })
 					accountDetail.account[0].code = 56
 					accountDetail.account[0].phone = 979582051
 				}
@@ -140,16 +140,9 @@ export default class AccountDetail extends React.Component {
 										action: 'click-contacto',
 										label: this.state.detail.name,
 									})
-									console.log(this.state.representation)
-									if (this.state.representation === true) {
-										window.open(
-											`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+por+medio+de+intercambios`
-										)
-									} else {
-										window.open(
-											`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
-										)
-									}
+									window.open(
+										`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+publicid`
+									)
 								}}>
 								<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
 								&nbsp;

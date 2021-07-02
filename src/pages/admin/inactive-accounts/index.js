@@ -87,9 +87,17 @@ export default class InactiveAccounts extends React.Component {
 											</Button>
 										</li>
 										<li>
-											<CopyToClipboard text={`${process.env.REACT_APP_DOMAIN}/${item.name}`}>
+											<CopyToClipboard
+												text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
 												<Button>
 													Copiar Enlace: {item.name} <CopyOutlined />
+												</Button>
+											</CopyToClipboard>
+										</li>
+										<li>
+											<CopyToClipboard text={`${item.account}`}>
+												<Button>
+													Copiar Cuenta: {item.account} <CopyOutlined />
 												</Button>
 											</CopyToClipboard>
 										</li>

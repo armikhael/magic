@@ -7,9 +7,11 @@ class AdminRoute extends React.Component {
 	render() {
 		let admin = [
 			'diego.carciente@gmail.com',
+			'diego.carciente@pharol.cl',
 			'carlosarmikhael@gmail.com',
 			'carlos.espinoza@pharol.cl',
 			'yasbarrera2@gmail.com',
+			'cuentasvirales@gmail.com',
 		]
 
 		let isAuthenticated = JSON.parse(localStorage.getItem('user'))
