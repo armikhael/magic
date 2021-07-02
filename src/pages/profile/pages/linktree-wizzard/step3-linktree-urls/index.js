@@ -186,6 +186,12 @@ export default function LinkTreeUrl(props) {
 																	}}>
 																	Eliminar
 																</Button>
+																<div className='characters-thumb'>
+																	<img
+																		src={'https://i.ibb.co/NCmMyV7/drag-flick.png'}
+																		alt={`${item.title} Thumb`}
+																	/>
+																</div>
 															</li>
 														)}
 													</Draggable>
