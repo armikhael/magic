@@ -39,13 +39,11 @@ const ListAccount = (props) => {
 							<Col xs={24} sm={24} md={14}>
 								<Header className='cv-perfil-title-main-container'>
 									<HeartOutlined className='cv-perfil-title-main-icon' />
-									<h3 className='cv-perfil-title-main-title'>Cuentas Asociadas</h3>
+									<h3 className='cv-perfil-title-main-title'>Mis Cuentas</h3>
 								</Header>
 								<Row>
 									<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-										<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-											<Accounts componentData={data} />
-										</Col>
+										<Accounts componentData={data} />
 									</Col>
 								</Row>
 							</Col>

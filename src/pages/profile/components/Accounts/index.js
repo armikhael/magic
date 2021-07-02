@@ -45,10 +45,10 @@ const Accounts = (props) => {
 
 	return (
 		<>
-			{data.map((item, i) => {
+			{data.map((item, key) => {
 				return (
-					<>
-						<Row className='cv-profile-card-account-content' key={i}>
+					<div key={key.toString()}>
+						<Row className='cv-profile-card-account-content'>
 							<Col sm={24} md={6} className='cv-profile-upload-image'>
 								<img
 									className='cv-profile-main-info-inner-container-img'
@@ -102,7 +102,7 @@ const Accounts = (props) => {
 															notification['success']({
 																message: '¡Excelente!',
 																description: `Enlace Copiado.`,
-																key: i,
+																key: key,
 															})
 														}}>
 														<CopyOutlined />
@@ -113,6 +113,7 @@ const Accounts = (props) => {
 										)}
 
 										<Button
+											key={key.toString()}
 											style={{ margin: '0px 5px' }}
 											type='danger'
 											shape='round'
@@ -127,7 +128,7 @@ const Accounts = (props) => {
 							</Col>
 						</Row>
 
-						<Row>
+						<Row key={`${key}-2`}>
 							<Button
 								onClick={() => {
 									history.push(`/profile/account-user`)
@@ -136,7 +137,7 @@ const Accounts = (props) => {
 								Agregar
 							</Button>
 						</Row>
-					</>
+					</div>
 				)
 			})}
 
