@@ -74,7 +74,11 @@ export default class User extends React.Component {
 											</div>
 										</Link>
 									</Col>
-									<Notification />
+
+									<Col xs={4} sm={4} md={4}>
+										<Notification />
+									</Col>
+
 									<Col xs={6} sm={6} md={6}>
 										<Dropdown shape={'circle'} overlay={menu} placement='bottomRight' arrow>
 											<img
@@ -90,12 +94,15 @@ export default class User extends React.Component {
 						{!localStorage.getItem('user') && (
 							<Col xs={12} sm={12} md={24}>
 								<Row align='middle'>
-									<Col xs={12} sm={12} md={12}>
+									<Col xs={4} sm={4} md={4}>
+										<Notification />
+									</Col>
+									<Col xs={10} sm={10} md={10}>
 										<Link to={`/auth/login`}>
 											<div className='cv-header-user-icon-init-sesion'>Iniciar sesión</div>
 										</Link>
 									</Col>
-									<Col xs={12} sm={12} md={12}>
+									<Col xs={10} sm={10} md={10}>
 										<Link to={`/auth/register`}>
 											<div className='cv-header-user-icon-login-content'>
 												<img
