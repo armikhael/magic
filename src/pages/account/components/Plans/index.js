@@ -11,8 +11,9 @@ import './style.css'
 const Plans = (props) => {
 	const plansRepresentation = [
 		{ name: 'Promocionar un Producto' },
-		{ name: 'Promocionar un Servicio' },
 		{ name: 'Promocionar una Cuenta' },
+		{ name: 'Enviar un saludo' },
+		{ name: 'Felicitar a un ser querido' },
 	]
 
 	return (

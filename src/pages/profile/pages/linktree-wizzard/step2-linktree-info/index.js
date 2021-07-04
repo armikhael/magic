@@ -59,10 +59,10 @@ export default function LinkTreeInfo(props) {
 				} else {
 					notification['success']({
 						message: `Felicidades!`,
-						description: `Ahora te mostraremos como se ven tus cambios`,
+						description: `Se ha atualizado con éxito`,
 					})
 					setTimeout(() => {
-						history.push(`/${response.data.name}`)
+						history.push(`/profile/linktree`)
 					}, 2000)
 				}
 			} else {

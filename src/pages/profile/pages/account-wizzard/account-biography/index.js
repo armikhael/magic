@@ -98,7 +98,7 @@ const AccountBiography = (props) => {
 				<>
 					<Button
 						onClick={() => {
-							history.push(`/profile/`)
+							history.push(`/profile/accounts`)
 						}}
 						className={'cv-account-wizzard-button-submit'}>
 						Omitir
@@ -129,7 +129,7 @@ const AccountBiography = (props) => {
 				if (isModify === false) {
 					history.push(`/profile/account-plans/${response.data.name}`)
 				} else {
-					history.push(`/profile`)
+					history.push(`/profile/accounts`)
 				}
 			} else {
 				notification['error']({

@@ -23,6 +23,7 @@
 		"public-ip": "^4.0.4",
 		"react": "^16.13.1",
 		"react-awesome-swiper": "^1.4.16",
+		"react-beautiful-dnd": "^13.1.0",
 		"react-copy-to-clipboard": "^5.0.2",
 		"react-dom": "^16.13.1",
 		"react-facebook-login": "^4.1.1",
