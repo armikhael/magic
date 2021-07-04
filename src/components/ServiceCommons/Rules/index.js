@@ -93,7 +93,7 @@ export const rules = {
 				if (value >= 3000) {
 					return Promise.resolve()
 				}
-				return Promise.reject('Debes contar con al menos 5000 seguidores')
+				return Promise.reject('Debes contar con al menos 3000 seguidores')
 			},
 		},
 	],
