@@ -82,6 +82,11 @@ p {
 	display: none;
 }
 
+.cv-content-main {
+	max-width: 1300px;
+	margin: auto;
+}
+
 @media only screen and (max-width: 768px) {
 	.cv-md {
 		display: none;
