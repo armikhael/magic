@@ -104,7 +104,7 @@ export default class Profile extends React.Component {
 							</div>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<Link to={`profile/change-password`}>
+							<Link to={`/profile/change-password`}>
 								<div className='cv-profile-card-item'>
 									<div className='cv-profile-card-item-img'>
 										<SafetyOutlined className='cv-profile-card-item-img-icon' />
@@ -117,7 +117,7 @@ export default class Profile extends React.Component {
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<Link to={`help/quienes-somos`}>
+							<Link to={`/help/quienes-somos`}>
 								<div className='cv-profile-card-item'>
 									<div className='cv-profile-card-item-img'>
 										<QuestionOutlined className='cv-profile-card-item-img-icon' />
@@ -150,32 +150,40 @@ export default class Profile extends React.Component {
 					<hr className='cv-profile-hr'></hr>
 					<Row>
 						<Col xs={24} sm={6} md={6}>
-							<div className='cv-profile-card-item-link'>
-								<a href='/' rel='noopener noreferrer'>
-									¿Quieres publicidad?
-								</a>
-							</div>
+							<Link to={`help/posicionamiento`}>
+								<div className='cv-profile-card-item-link'>
+									<a href='/' rel='noopener noreferrer'>
+										¿Quieres publicidad?
+									</a>
+								</div>
+							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<div className='cv-profile-card-item-link'>
-								<a href='/' rel='noopener noreferrer'>
-									¿Necesitas ganar más seguidores?
-								</a>
-							</div>
+							<Link to={`/help/posicionamiento`}>
+								<div className='cv-profile-card-item-link'>
+									<a href='/' rel='noopener noreferrer'>
+										¿Necesitas ganar más seguidores?
+									</a>
+								</div>
+							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<div className='cv-profile-card-item-link'>
-								<a href='/' rel='noopener noreferrer'>
-									Preguntas Frecuentes.
-								</a>
-							</div>
+							<Link to={`/help/quienes-somos`}>
+								<div className='cv-profile-card-item-link'>
+									<a href='/' rel='noopener noreferrer'>
+										Preguntas Frecuentes.
+									</a>
+								</div>
+							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<div className='cv-profile-card-item-link'>
-								<a href='/' rel='noopener noreferrer'>
-									Políticas de Privacidad.
-								</a>
-							</div>
+							<Link to={`/help/faq`}>
+								<div className='cv-profile-card-item-link'>
+									<a href='/' rel='noopener noreferrer'>
+										Políticas de Privacidad.
+									</a>
+								</div>
+							</Link>
 						</Col>
 					</Row>
 				</div>
