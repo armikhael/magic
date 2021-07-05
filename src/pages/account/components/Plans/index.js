@@ -1,6 +1,6 @@
 /** @format */
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { List, Avatar } from 'antd'
 import { WhatsAppOutlined } from '@ant-design/icons'
 
@@ -9,18 +9,26 @@ import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/E
 import './style.css'
 
 const Plans = (props) => {
+	const [text, setText] = useState('Planes')
+
+	useEffect(() => {
+		if (props.componentData.representation === true) {
+			setText('Servicios Publicitarios')
+		}
+	}, [props])
 	const plansRepresentation = [
-		{ name: 'Promocionar un Producto' },
-		{ name: 'Promocionar una Cuenta' },
-		{ name: 'Enviar un saludo' },
-		{ name: 'Felicitar a un ser querido' },
+		{ name: 'Un Producto' },
+		{ name: 'Una Cuenta' },
+		{ name: 'Un Saludo' },
+		{ name: 'Un Evento' },
+		{ name: 'Un Cumpleaños' },
 	]
 
 	return (
 		<>
 			<div className='cv-detail-content-plans'>
 				<div className='cv-detail-content-plans-main'>
-					<h3 className='cv-detail-plans-title'>Planes</h3>
+					<h3 className='cv-detail-plans-title'>{text}</h3>
 					<div className='cv-detail-plans-hr'></div>
 
 					{props.componentData.representation === true && (
