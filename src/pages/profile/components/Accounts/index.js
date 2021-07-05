@@ -127,19 +127,21 @@ const Accounts = (props) => {
 								</Row>
 							</Col>
 						</Row>
-
-						<Row key={`${key}-2`}>
-							<Button
-								onClick={() => {
-									history.push(`/profile/account-user`)
-								}}
-								className={'cv-account-wizzard-button-submit'}>
-								Agregar
-							</Button>
-						</Row>
 					</div>
 				)
 			})}
+
+			{data.length > 0 && (
+				<Row>
+					<Button
+						onClick={() => {
+							history.push(`/profile/account-user`)
+						}}
+						className={'cv-account-wizzard-button-submit'}>
+						Agregar
+					</Button>
+				</Row>
+			)}
 
 			{data.length <= 0 && (
 				<div className='cv-profile-card-account-content'>

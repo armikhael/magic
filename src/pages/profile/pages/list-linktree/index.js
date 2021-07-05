@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Layout, Row, Col, Card, Button, Result } from 'antd'
+import { Layout, Row, Card, Button, Result } from 'antd'
 import { LinkOutlined } from '@ant-design/icons'
 
 import Loading from '../../../../components/Loading/Loading'
@@ -36,39 +36,39 @@ const ListLinkTree = (props) => {
 
 	return (
 		<>
-			<div className='cv-content-main'>
+			<div>
 				<Layout className='cv-perfil-main-container'>
 					<Row>
-						<Col xs={24} sm={24} md={10}>
-							<Content>
-								<Header className='cv-perfil-title-main-container'>
-									<LinkOutlined className='cv-perfil-title-main-icon' />
-									<h3 className='cv-perfil-title-main-title'>Mis Enlaces</h3>
-								</Header>
-							</Content>
-
-							<Card className='cv-profile-main-container'>
-								{data.length > 0 && <LinkTree componentData={data} />}
-
-								{data.length <= 0 && (
-									<Result
-										status='error'
-										title='Enlaces Registrados'
-										subTitle='No tienes ningún enlace personalizado todavía.'
-										extra={[
-											<Button
-												key='button'
-												onClick={() => {
-													history.push(`/profile/linktree-name`)
-												}}
-												className={'cv-account-wizzard-button-submit'}>
-												Registrar
-											</Button>,
-										]}></Result>
-								)}
-							</Card>
-						</Col>
+						<Content>
+							<Header className='cv-perfil-title-main-container'>
+								<LinkOutlined className='cv-perfil-title-main-icon' />
+								<h3 className='cv-perfil-title-main-title'>Mis Enlaces</h3>
+							</Header>
+						</Content>
 					</Row>
+					<Row>
+						<Card className='cv-profile-main-container'>
+							{data.length > 0 && <LinkTree componentData={data} />}
+
+							{data.length <= 0 && (
+								<Result
+									status='error'
+									title='Enlaces Registrados'
+									subTitle='No tienes ningún enlace personalizado todavía.'
+									extra={[
+										<Button
+											key='button'
+											onClick={() => {
+												history.push(`/profile/linktree-name`)
+											}}
+											className={'cv-account-wizzard-button-submit'}>
+											Registrar
+										</Button>,
+									]}></Result>
+							)}
+						</Card>
+					</Row>
+
 					{data.length > 0 && (
 						<Row>
 							<Button

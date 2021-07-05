@@ -1,5 +1,7 @@
 /** @format */
-
+p {
+	color: #000000;
+}
 .cv-profile-header {
 	background-color: transparent;
 	display: flex;
