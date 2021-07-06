@@ -79,8 +79,10 @@ export default class InactiveAccounts extends React.Component {
 							{this.state.list.map((item, i) => {
 								return (
 									<ul key={i}>
-										<li> id: {item._id}</li>
 										<li> seguidores: {item.followers}</li>
+										<li>
+											<img width='150' src={item.image} alt={item.name} />
+										</li>
 										<li>
 											<Button type='danger' onClick={() => this.handleDeleteAccount(item)}>
 												Eliminar cuenta
