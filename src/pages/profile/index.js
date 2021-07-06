@@ -87,7 +87,7 @@ export default class Profile extends React.Component {
 									</div>
 									<div className='cv-profile-card-item-title'>
 										<h3>Crea tu enlace</h3>
-										<p>Especialmente para Negocios.</p>
+										<p>Especialmente para crear menú de opciones en tu negocio.</p>
 									</div>
 								</div>
 							</Link>
