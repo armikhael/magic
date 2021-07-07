@@ -151,38 +151,22 @@ export default class Profile extends React.Component {
 					<Row>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`help/posicionamiento`}>
-								<div className='cv-profile-card-item-link'>
-									<a href='/' rel='noopener noreferrer'>
-										¿Quieres publicidad?
-									</a>
-								</div>
+								<div className='cv-profile-card-item-link'>¿Quieres publicidad?</div>
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`/help/posicionamiento`}>
-								<div className='cv-profile-card-item-link'>
-									<a href='/' rel='noopener noreferrer'>
-										¿Necesitas ganar más seguidores?
-									</a>
-								</div>
+								<div className='cv-profile-card-item-link'>¿Necesitas ganar más seguidores?</div>
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`/help/quienes-somos`}>
-								<div className='cv-profile-card-item-link'>
-									<a href='/' rel='noopener noreferrer'>
-										Preguntas Frecuentes.
-									</a>
-								</div>
+								<div className='cv-profile-card-item-link'>Preguntas Frecuentes.</div>
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`/help/faq`}>
-								<div className='cv-profile-card-item-link'>
-									<a href='/' rel='noopener noreferrer'>
-										Políticas de Privacidad.
-									</a>
-								</div>
+								<div className='cv-profile-card-item-link'>Políticas de Privacidad.</div>
 							</Link>
 						</Col>
 					</Row>

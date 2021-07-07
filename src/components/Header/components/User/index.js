@@ -3,7 +3,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Menu, Dropdown, Badge } from 'antd'
-import { UserOutlined, LogoutOutlined, NotificationOutlined } from '@ant-design/icons'
+import {
+	UserOutlined,
+	LogoutOutlined,
+	NotificationOutlined,
+	TeamOutlined,
+	LinkOutlined,
+	SafetyOutlined,
+} from '@ant-design/icons'
 
 import ModalOption from './components/ModalOption'
 import SideBar from './components/SideBar'
@@ -16,7 +23,7 @@ const menu = (
 		<Menu.Item>
 			<Link to={`/profile`}>
 				<div className='cv-header-user-icon-login-content'>
-					<UserOutlined style={{ fontSize: 16 }} />
+					<UserOutlined style={{ fontSize: '19px' }} className='cv-profile-card-item-img-icon' />
 					<span className='ml10'>Perfil</span>
 				</div>
 			</Link>
@@ -24,7 +31,7 @@ const menu = (
 		<Menu.Item>
 			<Link to={`/profile/accounts`}>
 				<div className='cv-header-user-icon-login-content'>
-					<img width='16px' src='https://i.ibb.co/4YMC9HP/miscuentas.png' alt='Multiples enlaces' />
+					<TeamOutlined style={{ fontSize: '19px' }} className='cv-profile-card-item-img-icon' />
 					<span className='ml10'>Mis Cuentas</span>
 				</div>
 			</Link>
@@ -32,7 +39,7 @@ const menu = (
 		<Menu.Item>
 			<Link to={`/profile/linktree`}>
 				<div className='cv-header-user-icon-login-content'>
-					<img width='16px' src='https://i.ibb.co/W3mYPYP/links.png' alt='Multiples enlaces' />
+					<LinkOutlined style={{ fontSize: '19px' }} className='cv-profile-card-item-img-icon' />
 					<span className='ml10'>Mis Enlaces</span>
 				</div>
 			</Link>
@@ -40,7 +47,7 @@ const menu = (
 		<Menu.Item>
 			<Link to={`/profile/change-password`}>
 				<div className='cv-header-user-icon-login-content'>
-					<img width='16px' src='https://i.ibb.co/dQbp0fY/seguridad.png' alt='Multiples enlaces' />
+					<SafetyOutlined style={{ fontSize: '19px' }} className='cv-profile-card-item-img-icon' />
 					<span className='ml10'>Cambiar Contraseña</span>
 				</div>
 			</Link>
@@ -52,7 +59,7 @@ const menu = (
 				}}
 				to={`/`}>
 				<div className='cv-header-user-icon-login-content'>
-					<LogoutOutlined style={{ fontSize: 16 }} />
+					<LogoutOutlined style={{ fontSize: '19px' }} className='cv-profile-card-item-img-icon' />
 					<span className='ml10'>Cerrar Sesión</span>
 				</div>
 			</Link>

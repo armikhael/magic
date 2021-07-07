@@ -35,16 +35,15 @@ const ListAccount = (props) => {
 			{data !== undefined && (
 				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
-						<Row>
-							<Header className='cv-perfil-title-main-container'>
-								<HeartOutlined className='cv-perfil-title-main-icon' />
-								<h3 className='cv-perfil-title-main-title'>Mis Cuentas</h3>
-							</Header>
-							<Row>
-								<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-									<Accounts componentData={data} />
-								</Col>
-							</Row>
+						<Row justify='center'>
+							<Col xs={22} sm={20} xl={16}>
+								<Header className='cv-perfil-title-main-container'>
+									<HeartOutlined className='cv-perfil-title-main-icon' />
+									<h3 className='cv-perfil-title-main-title'>Mis Cuentas</h3>
+								</Header>
+
+								<Accounts componentData={data} />
+							</Col>
 						</Row>
 					</Layout>
 				</div>

@@ -4,7 +4,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Drawer, Row, Col } from 'antd'
-import { QuestionOutlined, CloseSquareOutlined, UserOutlined } from '@ant-design/icons'
+import {
+	QuestionOutlined,
+	CloseSquareOutlined,
+	UserOutlined,
+	TeamOutlined,
+	LinkOutlined,
+	SafetyOutlined,
+	UserAddOutlined,
+} from '@ant-design/icons'
 
 import ModalOption from '../ModalOption'
 
@@ -96,24 +104,23 @@ export default class SideBar extends React.Component {
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile`}>
 								<div className='cv-header-user-icon-login-content'>
-									<UserOutlined style={{ fontSize: 22 }} />
+									<UserOutlined style={{ fontSize: 19 }} className='cv-profile-card-item-img-icon' />
 									<span className='ml10'>Perfil</span>
 								</div>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list' style={{ cursor: 'pointer' }}>
 							<div className='cv-header-user-icon-login-content'>
-								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
+								<UserAddOutlined style={{ fontSize: 19 }} className='cv-profile-card-item-img-icon' />
 								<ModalOption componentTitle={'Publicarme'} />
 							</div>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/accounts`}>
 								<div className='cv-header-user-icon-login-content'>
-									<img
-										width='19px'
-										src='https://i.ibb.co/4YMC9HP/miscuentas.png'
-										alt='Crear Cuenta'
+									<TeamOutlined
+										style={{ fontSize: '19px' }}
+										className='cv-profile-card-item-img-icon'
 									/>
 									<span className='ml10'>Mis Cuentas</span>
 								</div>
@@ -122,10 +129,9 @@ export default class SideBar extends React.Component {
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/linktree`}>
 								<div className='cv-header-user-icon-login-content'>
-									<img
-										width='18px'
-										src='https://i.ibb.co/W3mYPYP/links.png'
-										alt='Multiples enlaces'
+									<LinkOutlined
+										style={{ fontSize: '19px' }}
+										className='cv-profile-card-item-img-icon'
 									/>
 									<span className='ml10'>Mis Enlaces</span>
 								</div>
@@ -134,10 +140,9 @@ export default class SideBar extends React.Component {
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/change-password`}>
 								<div className='cv-header-user-icon-login-content'>
-									<img
-										width='18px'
-										src='https://i.ibb.co/dQbp0fY/seguridad.png'
-										alt='Multiples enlaces'
+									<SafetyOutlined
+										style={{ fontSize: '19px' }}
+										className='cv-profile-card-item-img-icon'
 									/>
 									<span className='ml10'>Cambiar Contraseña</span>
 								</div>
@@ -148,7 +153,7 @@ export default class SideBar extends React.Component {
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/help/quienes-somos`}>
 						<div className='cv-header-user-icon-login-content'>
-							<QuestionOutlined style={{ fontSize: 22 }} />
+							<QuestionOutlined style={{ fontSize: '19px' }} className='cv-profile-card-item-img-icon' />
 							<span className='ml10'>Ayuda</span>
 						</div>
 					</Link>
