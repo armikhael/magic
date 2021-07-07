@@ -56,9 +56,8 @@ export default function Notifications() {
 			</Row>
 			{data.map(function (item, key) {
 				return (
-					<div className='cv-notifications-content-menu-item-div'>
+					<div className='cv-notifications-content-menu-item-div' key={key.toString()}>
 						<Row
-							key={key}
 							className='cv-notifications-content-menu-item-row'
 							onClick={() => {
 								serviceEventGoogleAnalytics({
