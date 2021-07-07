@@ -41,7 +41,7 @@ export default class Profile extends React.Component {
 					</Header>
 					<Row className='mt15'>
 						<Col xs={24} sm={6} md={6}>
-							<Link to={`profile/accounts`}>
+							<Link to={`/profile/accounts`}>
 								<div className='cv-profile-card-item'>
 									<div className='cv-profile-card-item-img'>
 										<TeamOutlined className='cv-profile-card-item-img-icon' />
@@ -54,7 +54,7 @@ export default class Profile extends React.Component {
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<Link to={`profile/account-user`}>
+							<Link to={`/profile/account-user`}>
 								<div className='cv-profile-card-item'>
 									<div className='cv-profile-card-item-img'>
 										<UsergroupAddOutlined className='cv-profile-card-item-img-icon' />

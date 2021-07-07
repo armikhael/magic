@@ -82,8 +82,8 @@ const AccountActivation = (props) => {
 	return (
 		<>
 			{data !== undefined && (
-				<Row justify={'center'}>
-					<Col sm={24} md={16}>
+				<Row justify='center'>
+					<Col xs={23} sm={20} xl={10}>
 						<Content className='cv-profile-activation-content'>
 							<Result
 								className='cv-profile-activation-result'
@@ -133,9 +133,9 @@ const AccountActivation = (props) => {
 									/>
 								</div>
 
-								<Form.Item>
-									<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
-										Activar Cuenta
+								<Form.Item className='cv-right'>
+									<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+										Activar
 									</Button>
 								</Form.Item>
 							</Form>
