@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useState } from 'react'
-import { Layout, Card, Button, Form, notification } from 'antd'
+import { Layout, Card, Button, Form, notification, Row, Col } from 'antd'
 import { ApiOutlined } from '@ant-design/icons'
 
 import InputField from '../../../../components/Form/Input'
 
 import { serviceUpdateData } from './services'
+const { Header } = Layout
 
 const ChangePassword = (props) => {
 	const [form] = Form.useForm()
@@ -35,41 +36,48 @@ const ChangePassword = (props) => {
 	return (
 		<>
 			{user.autentication !== 'google' && (
-				<Card className='cv-profile-main-container'>
-					<h3 className='cv-perfil-title-main-title'>
-						<ApiOutlined className='cv-perfil-title-main-icon' />
-						Cambiar Contraseña
-					</h3>
-					<br />
-					<Layout className='cv-profile-container'>
-						<Form form={form} onFinish={handleOnFinish}>
-							<div className='ph-auth-login-form-container'>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'password'}
-									componentLabel={'Contraseña Actual'}
-									componentRules={'rulesPassword'}
-									componentPlaceholder={'Ingrese su contraseña'}
-									componentType={'password'}
-								/>
+				<Layout className='cv-perfil-main-container'>
+					<Row justify='center'>
+						<Col xs={22} sm={12} md={8}>
+							<Header className='cv-perfil-title-main-container'>
+								<ApiOutlined className='cv-perfil-title-main-icon' />
+								<h3 className='cv-perfil-title-main-title'>Cambiar Contraseña</h3>
+							</Header>
+							<Card className='cv-profile-main-container'>
+								<Layout className='cv-profile-container'>
+									<Form form={form} onFinish={handleOnFinish}>
+										<div className='ph-auth-login-form-container'>
+											<InputField
+												componentClass={'cv-auth-login-field-input'}
+												componentName={'password'}
+												componentLabel={'Contraseña Actual'}
+												componentRules={'rulesPassword'}
+												componentPlaceholder={'Ingrese su contraseña'}
+												componentType={'password'}
+											/>
 
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'new_password'}
-									componentLabel={'Contraseña Actual'}
-									componentRules={'rulesPassword'}
-									componentPlaceholder={'Ingrese tu nueva contraseña'}
-									componentType={'password'}
-								/>
-								<Form.Item>
-									<Button htmlType={'submit'} className={'cv-profile-button-submit-change-password'}>
-										Confirmar
-									</Button>
-								</Form.Item>
-							</div>
-						</Form>
-					</Layout>
-				</Card>
+											<InputField
+												componentClass={'cv-auth-login-field-input'}
+												componentName={'new_password'}
+												componentLabel={'Contraseña Actual'}
+												componentRules={'rulesPassword'}
+												componentPlaceholder={'Ingrese tu nueva contraseña'}
+												componentType={'password'}
+											/>
+											<Form.Item>
+												<Button
+													htmlType={'submit'}
+													className={'cv-profile-button-submit-change-password'}>
+													Confirmar
+												</Button>
+											</Form.Item>
+										</div>
+									</Form>
+								</Layout>
+							</Card>
+						</Col>
+					</Row>
+				</Layout>
 			)}
 		</>
 	)
