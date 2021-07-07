@@ -37,6 +37,15 @@
 	padding: 10px 15px;
 }
 
+.cv-header-user-sidebar-list-icon {
+	color: #797979;
+}
+
+.cv-header-user-sidebar-list-title {
+	color: #797979;
+	margin-left: 10px;
+}
+
 .cv-header-user-sidebar-list-cs {
 	position: absolute;
 	bottom: 10px;

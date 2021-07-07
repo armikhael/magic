@@ -4,9 +4,17 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Drawer, Row, Col } from 'antd'
-import { QuestionOutlined, CloseSquareOutlined, UserOutlined } from '@ant-design/icons'
-
-import ModalOption from '../ModalOption'
+import {
+	QuestionOutlined,
+	CloseSquareOutlined,
+	UserOutlined,
+	HomeOutlined,
+	UsergroupAddOutlined,
+	SubnodeOutlined,
+	LinkOutlined,
+	SafetyOutlined,
+	TeamOutlined,
+} from '@ant-design/icons'
 
 import './style.css'
 
@@ -85,72 +93,89 @@ export default class SideBar extends React.Component {
 				<hr className='cv-header-user-sidebar-hr' />
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/`}>
-						<div className='cv-header-user-icon-login-content'>
-							<img width='19px' src='https://i.postimg.cc/YSQXZWCP/logo.jpg' alt='Inicio' />
-							<span className='ml10'>Inicio</span>
-						</div>
+						<HomeOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
+						<span className='cv-header-user-sidebar-list-title'>Inicio</span>
 					</Link>
 				</div>
 				{localStorage.getItem('user') && (
 					<>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile`}>
+								<UserOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
+								<span className='cv-header-user-sidebar-list-title'>Perfil</span>
+							</Link>
+						</div>
+						<div className='cv-header-user-sidebar-list'>
+							<div className='cv-header-user-icon-login-content'>
+								<img
+									width='19px'
+									src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+									alt='Crear Cuenta'
+								/>
+								<span className='cv-header-user-sidebar-list-title'>Publicarme</span>
+							</div>
+						</div>
+						<div className='cv-header-user-sidebar-list ml10'>
+							<Link to={`profile/account-user`}>
 								<div className='cv-header-user-icon-login-content'>
-									<UserOutlined style={{ fontSize: 22 }} />
-									<span className='ml10'>Perfil</span>
+									<UsergroupAddOutlined
+										className='cv-header-user-sidebar-list-icon'
+										style={{ fontSize: 22 }}
+									/>
+									<span className='cv-header-user-sidebar-list-title'>Crea tu cuenta</span>
 								</div>
 							</Link>
 						</div>
-						<div className='cv-header-user-sidebar-list' style={{ cursor: 'pointer' }}>
-							<div className='cv-header-user-icon-login-content'>
-								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
-								<ModalOption componentTitle={'Publicarme'} />
-							</div>
+						<div className='cv-header-user-sidebar-list ml10'>
+							<Link to={`/profile/linktree-name`}>
+								<div className='cv-header-user-icon-login-content'>
+									<SubnodeOutlined
+										className='cv-header-user-sidebar-list-icon'
+										style={{ fontSize: 22 }}
+									/>
+									<span className='cv-header-user-sidebar-list-title'>Crea tu enlace</span>
+								</div>
+							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/accounts`}>
-								<div className='cv-header-user-icon-login-content'>
-									<img
-										width='19px'
-										src='https://i.ibb.co/4YMC9HP/miscuentas.png'
-										alt='Crear Cuenta'
-									/>
-									<span className='ml10'>Mis Cuentas</span>
-								</div>
+								<TeamOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
+								<span className='cv-header-user-sidebar-list-title'>Mis Cuentas</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/linktree`}>
-								<div className='cv-header-user-icon-login-content'>
-									<img
-										width='18px'
-										src='https://i.ibb.co/W3mYPYP/links.png'
-										alt='Multiples enlaces'
-									/>
-									<span className='ml10'>Mis Enlaces</span>
-								</div>
+								<LinkOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
+								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/change-password`}>
-								<div className='cv-header-user-icon-login-content'>
-									<img
-										width='18px'
-										src='https://i.ibb.co/dQbp0fY/seguridad.png'
-										alt='Multiples enlaces'
-									/>
-									<span className='ml10'>Cambiar Contraseña</span>
-								</div>
+								<SafetyOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
+								<span className='cv-header-user-sidebar-list-title'>Cambiar Contraseña</span>
 							</Link>
 						</div>
 					</>
 				)}
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/help/quienes-somos`}>
-						<div className='cv-header-user-icon-login-content'>
-							<QuestionOutlined style={{ fontSize: 22 }} />
-							<span className='ml10'>Ayuda</span>
-						</div>
+						<QuestionOutlined
+							className='cv-header-user-sidebar-list-icon'
+							style={{ fontSize: 22 }}
+						/>
+						<span className='cv-header-user-sidebar-list-title'>Ayuda</span>
 					</Link>
 				</div>
 				{localStorage.getItem('user') && (
