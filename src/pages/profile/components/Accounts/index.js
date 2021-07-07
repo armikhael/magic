@@ -45,10 +45,10 @@ const Accounts = (props) => {
 
 	return (
 		<>
-			{data.map((item, i) => {
+			{data.map((item, key) => {
 				return (
-					<>
-						<Row className='cv-profile-card-account-content' key={i}>
+					<div key={key.toString()}>
+						<Row className='cv-profile-card-account-content'>
 							<Col sm={24} md={6} className='cv-profile-upload-image'>
 								<img
 									className='cv-profile-main-info-inner-container-img'
@@ -85,80 +85,82 @@ const Accounts = (props) => {
 
 										{item.eneable === true && (
 											<>
-												<ModalEdit
-													componentData={item}
-													componentHeader={'Modificar Información'}
-												/>
 												<ModalConfiguration
 													componentData={item}
 													componentHeader={'Condiguración'}
+												/>
+												<ModalEdit
+													componentData={item}
+													componentHeader={'Modificar Información'}
 												/>
 												<CopyToClipboard
 													text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
 													<Button
 														style={{ margin: '0px 5px' }}
-														shape='circle'
+														shape='round'
 														onClick={() => {
 															notification['success']({
 																message: '¡Excelente!',
 																description: `Enlace Copiado.`,
-																key: i,
+																key: key,
 															})
 														}}>
 														<CopyOutlined />
+														Enlace
 													</Button>
 												</CopyToClipboard>
 											</>
 										)}
 
 										<Button
+											key={key.toString()}
 											style={{ margin: '0px 5px' }}
 											type='danger'
-											shape='circle'
+											shape='round'
 											onClick={() => {
 												handleDeleteAccount(item)
 											}}>
 											<CloseOutlined />
+											Eliminar
 										</Button>
 									</Col>
 								</Row>
 							</Col>
 						</Row>
+					</div>
+				)
+			})}
 
-						<Row>
+			{data.length > 0 && (
+				<Row>
+					<Button
+						onClick={() => {
+							history.push(`/profile/account-user`)
+						}}
+						className={'cv-account-wizzard-button-submit'}>
+						Agregar
+					</Button>
+				</Row>
+			)}
+
+			{data.length <= 0 && (
+				<div className='cv-profile-card-account-content'>
+					<Result
+						status='error'
+						title='Cuentas Registradas'
+						subTitle='No tienes ninguna red social registrada, para poder registrar una solo debes hacer click en el siguiente boton o en Menú también encontraras un acceso directo.'
+						extra={[
 							<Button
 								onClick={() => {
 									history.push(`/profile/account-user`)
 								}}
-								className={'cv-account-wizzard-button-submit'}>
-								Agregar
-							</Button>
-						</Row>
-					</>
-				)
-			})}
-
-			{(() => {
-				if (data.length === 0) {
-					return (
-						<div className='cv-profile-card-account-content'>
-							<Result
-								status='error'
-								title='Cuentas Registradas'
-								subTitle='No tienes ninguna red social registrada, para poder registrar una solo debes hacer click en el siguiente boton o en Menú también encontraras un acceso directo.'
-								extra={[
-									<Button
-										onClick={() => {
-											history.push(`profile/account-user`)
-										}}
-										className={'cv-account-wizzard-button-submit'}>
-										Agregar
-									</Button>,
-								]}></Result>
-						</div>
-					)
-				}
-			})()}
+								className={'cv-account-wizzard-button-submit'}
+								key={'button'}>
+								Registrar
+							</Button>,
+						]}></Result>
+				</div>
+			)}
 		</>
 	)
 }

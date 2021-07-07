@@ -86,10 +86,10 @@ export const rulesValidation = {
 		},
 		{
 			validator: (_, value) => {
-				if (value >= 300) {
+				if (value >= 3000) {
 					return Promise.resolve()
 				}
-				return Promise.reject('Debes contar con al menos 300 seguidores')
+				return Promise.reject('Debes contar con al menos 3.000 seguidores')
 			},
 		},
 		{

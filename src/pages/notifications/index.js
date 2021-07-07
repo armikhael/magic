@@ -8,16 +8,20 @@ import { Dropdown, Menu, Row, Col } from 'antd'
 import { EllipsisOutlined, FileDoneOutlined } from '@ant-design/icons'
 
 import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
+import Loading from '../../components/Loading/Loading'
+
 import { serviceGetData } from './services'
 import './style.css'
 
 export default function Notifications() {
 	const [data, setData] = useState([])
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		serviceGetData().then((response) => {
 			const suffle = lodash.shuffle(response.data)
 			setData(suffle)
+			setLoading(false)
 		})
 	}, [])
 
@@ -34,6 +38,10 @@ export default function Notifications() {
 		</Menu>
 	)
 
+	if (loading === true) {
+		return <Loading />
+	}
+
 	return (
 		<>
 			<Row className='cv-notifications'>
@@ -48,9 +56,8 @@ export default function Notifications() {
 			</Row>
 			{data.map(function (item, key) {
 				return (
-					<div className='cv-notifications-content-menu-item-div'>
+					<div className='cv-notifications-content-menu-item-div' key={key.toString()}>
 						<Row
-							key={key}
 							className='cv-notifications-content-menu-item-row'
 							onClick={() => {
 								serviceEventGoogleAnalytics({

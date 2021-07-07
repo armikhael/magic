@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, Divider, List, Typography, Card, notification } from 'antd'
+import { Form, Button, Card, notification, Row, Col } from 'antd'
 import { LinkOutlined, DeleteOutlined } from '@ant-design/icons'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import InputField from '../../../../../components/Form/Input'
 
@@ -21,7 +22,14 @@ export default function LinkTreeUrl(props) {
 		const response = await serviceGetData(param)
 		console.log('response', response.data[0])
 		setData(response.data[0])
-		setLinks(response.data[0].links)
+		const newLinks = response.data[0].links.map((item, key) => {
+			return {
+				id: key.toString(),
+				title: item.title,
+				url: item.url,
+			}
+		})
+		setLinks(newLinks)
 	}
 
 	useEffect(() => {
@@ -34,7 +42,7 @@ export default function LinkTreeUrl(props) {
 	}, [props])
 
 	const handleAddElement = (item) => {
-		setLinks((links) => [...links, { title: item.title, url: item.url }])
+		setLinks((links) => [...links, { id: links.length, title: item.title, url: item.url }])
 		form.resetFields(['title', 'url'])
 	}
 
@@ -58,7 +66,7 @@ export default function LinkTreeUrl(props) {
 					description: `Tus enlaces han sido actualizados`,
 				})
 				setTimeout(() => {
-					history.push(`/profile`)
+					history.push(`/profile/linktree`)
 				}, 2000)
 			} else {
 				notification['error']({
@@ -68,99 +76,143 @@ export default function LinkTreeUrl(props) {
 			}
 		})
 	}
+
+	const handleOnDragEnd = (result) => {
+		if (!result.destination) return
+		const items = Array.from(links)
+		const [reOrderItem] = items.splice(result.source.index, 1)
+		items.splice(result.destination.index, 0, reOrderItem)
+		setLinks(items)
+		let item = data
+		item.links = items
+		console.log(item)
+		serviceUpdateData(item)
+	}
+
 	return (
 		<>
 			{data !== undefined && (
-				<div className='cv-account-wizzard-content'>
-					<Card
-						className='cv-account-wizzard-card mt20'
-						title='Enlaces Perconalizados (3/3)'
-						bordered={false}>
-						<Form form={form} initialValues={data} onFinish={handleAddElement}>
-							<div className='ph-auth-login-form-container'>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'title'}
-									componentLabel={'Titulo del Enlace'}
-									componentRules={'required'}
-									componentPlaceholder={'Nombre del enlace'}
-									componentType={'text'}
-									componentValue={data.title}
-								/>
+				<Row justify='center'>
+					<Col xs={23} sm={20} xl={10}>
+						<div className='cv-account-wizzard-content'>
+							<Card
+								className='cv-account-wizzard-card mt20'
+								title='Enlaces Perconalizados (3/3)'
+								bordered={false}>
+								<Form form={form} initialValues={data} onFinish={handleAddElement}>
+									<div className='ph-auth-login-form-container'>
+										<InputField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'title'}
+											componentLabel={'Titulo del Enlace'}
+											componentRules={'required'}
+											componentPlaceholder={'Nombre del enlace'}
+											componentType={'text'}
+											componentValue={data.title}
+										/>
 
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'url'}
-									componentLabel={'Enlace Externo'}
-									componentRules={'required'}
-									componentPlaceholder={'Copia el link aquí'}
-									componentType={'text'}
-									componentValue={data.url}
-								/>
-							</div>
-							<Divider></Divider>
-							<Form.Item>
-								<Button
-									htmlType={'submit'}
-									className={'cv-linktree-button-submit cv-linktree-button-add'}>
-									Agregar
-								</Button>
-								<div className='cv-right'>
-									<Button
-										className={'cv-linktree-button-submit'}
-										onClick={() => {
-											handleSubmit()
-										}}>
-										{buttonText}
-									</Button>
-								</div>
-							</Form.Item>
-						</Form>
-					</Card>
+										<InputField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'url'}
+											componentLabel={'Enlace Externo'}
+											componentRules={'required'}
+											componentPlaceholder={'Copia el link aquí'}
+											componentType={'text'}
+											componentValue={data.url}
+										/>
+									</div>
+									<Form.Item>
+										<Button
+											htmlType={'submit'}
+											className={'cv-linktree-button-submit cv-linktree-button-add'}>
+											Agregar
+										</Button>
+										<div className='cv-right'>
+											<Button
+												className={'cv-linktree-button-submit'}
+												onClick={() => {
+													handleSubmit()
+												}}>
+												{buttonText}
+											</Button>
+										</div>
+									</Form.Item>
+								</Form>
+							</Card>
 
-					<div className='cv-linktree-content'>
-						<Card
-							className='cv-linktree-card mt20'
-							title={`Cantidad de Enlaces: ${links.length}`}
-							bordered={false}>
-							{links.length > 0 && (
-								<List
-									header={<div>Enlaces Agregados</div>}
-									bordered
-									dataSource={links}
-									renderItem={(item, key) => (
-										<List.Item
-											actions={[
-												<Button
-													key={key}
-													type='link'
-													shape='round'
-													icon={<LinkOutlined />}
-													onClick={() => {
-														window.open(item.url)
-													}}>
-													Ver
-												</Button>,
-												<Button
-													key={key}
-													danger
-													type='link'
-													shape='round'
-													icon={<DeleteOutlined />}
-													onClick={() => {
-														handleDelete(key)
-													}}>
-													Eliminar
-												</Button>,
-											]}>
-											<Typography.Text>{item.title} </Typography.Text>
-										</List.Item>
-									)}
-								/>
-							)}
-						</Card>
-					</div>
-				</div>
+							<Card
+								className='cv-linktree-card mt20'
+								title={`Cantidad de Enlaces: ${links.length}`}
+								bordered={false}>
+								<DragDropContext onDragEnd={handleOnDragEnd}>
+									<Droppable droppableId='characters'>
+										{(provided) => (
+											<ul
+												className='characters'
+												{...provided.droppableProps}
+												ref={provided.innerRef}>
+												{links.map((item, key) => {
+													return (
+														<Draggable
+															key={item.id.toString()}
+															draggableId={item.id.toString()}
+															index={key}>
+															{(provided) => (
+																<li
+																	ref={provided.innerRef}
+																	{...provided.draggableProps}
+																	{...provided.dragHandleProps}>
+																	<div className='characters-thumb'>
+																		<img
+																			src={
+																				'https://i.postimg.cc/YSQXZWCP/logo.jpg'
+																			}
+																			alt={`${item.title} Thumb`}
+																		/>
+																	</div>
+																	<p>{item.title}</p>
+																	<Button
+																		type='link'
+																		shape='round'
+																		icon={<LinkOutlined />}
+																		onClick={() => {
+																			window.open(item.url)
+																		}}>
+																		Ver
+																	</Button>
+
+																	<Button
+																		danger
+																		type='link'
+																		shape='round'
+																		icon={<DeleteOutlined />}
+																		onClick={() => {
+																			handleDelete(key)
+																		}}>
+																		Eliminar
+																	</Button>
+																	<div className='characters-thumb'>
+																		<img
+																			src={
+																				'https://i.ibb.co/NCmMyV7/drag-flick.png'
+																			}
+																			alt={`${item.title} Thumb`}
+																		/>
+																	</div>
+																</li>
+															)}
+														</Draggable>
+													)
+												})}
+												{provided.placeholder}
+											</ul>
+										)}
+									</Droppable>
+								</DragDropContext>
+							</Card>
+						</div>
+					</Col>
+				</Row>
 			)}
 		</>
 	)

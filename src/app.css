@@ -76,10 +76,16 @@ p {
 
 .cv-right {
 	text-align: right;
+	margin-top: 25px;
 }
 
 .cv-xs {
 	display: none;
+}
+
+.cv-content-main {
+	max-width: 1300px;
+	margin: auto;
 }
 
 @media only screen and (max-width: 768px) {

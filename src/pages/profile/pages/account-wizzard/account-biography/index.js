@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { Form, Button, notification, Col, Card, Row, Divider } from 'antd'
+import { Form, Button, notification, Col, Card, Row } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
@@ -98,7 +98,7 @@ const AccountBiography = (props) => {
 				<>
 					<Button
 						onClick={() => {
-							history.push(`/profile/`)
+							history.push(`/profile/accounts`)
 						}}
 						className={'cv-account-wizzard-button-submit'}>
 						Omitir
@@ -129,7 +129,7 @@ const AccountBiography = (props) => {
 				if (isModify === false) {
 					history.push(`/profile/account-plans/${response.data.name}`)
 				} else {
-					history.push(`/profile`)
+					history.push(`/profile/accounts`)
 				}
 			} else {
 				notification['error']({
@@ -143,105 +143,111 @@ const AccountBiography = (props) => {
 	return (
 		<>
 			{data !== undefined && (
-				<div className='cv-account-wizzard-content'>
-					<Card className='cv-account-wizzard-card mt20' title='Datos de la cuenta (2/4)' bordered={false}>
-						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
-							<div className='ph-auth-login-form-container'>
-								<SelectField
-									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'Red Social'}
-									componentName={'type'}
-									componentMode={'single'}
-									componentPlaceholder={'Seleccione una opción'}
-									componentOptions={redSocial}
-									componentDisabled={isEdit}
-									componentRules={'rulesSelect'}
-								/>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'account'}
-									componentLabel={'Nombre de tu usuario'}
-									componentRules={'rulesAccount'}
-									componentPlaceholder={'Usuario'}
-									componentType={'text'}
-									componentValue={data.account}
-									componentDisabled={isEdit}
-								/>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'followers'}
-									componentLabel={'Cantidad de Seguidores'}
-									componentPlaceholder={'Seguidores'}
-									componentType={'text'}
-									componentRules={'rulesFollowers'}
-									componentValue={data.followers}
-								/>
-								<TextAreaField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'biography'}
-									componentLabel={'Biografía'}
-									componentPlaceholder={'Resumen'}
-									componentRows={4}
-									componentRules={'required'}
-									componentValue={data.biography}
-								/>
-								<SelectField
-									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'¿País de residencia?'}
-									componentName={'country'}
-									componentOnChange={handleChangeCountry}
-									componentPlaceholder={'Seleccione una opción'}
-									componentRules={'rulesSelect'}
-									componentOptions={countries}
-								/>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'phone'}
-									componentLabel={'Número de Conacto'}
-									componentPlaceholder={'WhatsApp'}
-									componentType={'text'}
-									componentRules={'rulesPhone'}
-									componentValue={data.phone}
-								/>
-								<SelectField
-									componentClass={'cv-auth-login-field-input'}
-									componentLabel={'Categorías'}
-									componentName={'categories'}
-									componentMode={'multiple'}
-									componentPlaceholder={'Seleccione una opción'}
-									componentOptions={categories}
-									componentRules={'rulesSelect'}
-									componentMaxTagCount={5}
-								/>
-								<TextAreaField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'faq'}
-									componentLabel={'Términos y Condiciones'}
-									componentPlaceholder={'Coloca tu condiciones'}
-									componentRows={4}
-									componentValue={data.faq}
-								/>
-							</div>
-							<Row>
-								<Col sm={12} md={12} className='cv-profile-upload-image p10'>
-									Imagen de Pefil
-									<UploadImage account={data} componentHandle={handleSetImageProfile} />
-								</Col>
-								<Col sm={12} md={12} className='cv-profile-upload-image p10'>
-									Imagen de Cover
-									<UploadCover account={data} componentHandle={handleSetImageCover} />
-								</Col>
-							</Row>
-							<Divider></Divider>
-							<Form.Item className='cv-right'>
-								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
-									{buttonText}
-								</Button>
-								{handleButtonSkip()}
-							</Form.Item>
-						</Form>
-					</Card>
-				</div>
+				<Row justify='center'>
+					<Col xs={23} sm={20} xl={12}>
+						<div className='cv-account-wizzard-content'>
+							<Card
+								className='cv-account-wizzard-card mt20'
+								title='Datos de la cuenta (2/4)'
+								bordered={false}>
+								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
+									<div className='ph-auth-login-form-container'>
+										<SelectField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'Red Social'}
+											componentName={'type'}
+											componentMode={'single'}
+											componentPlaceholder={'Seleccione una opción'}
+											componentOptions={redSocial}
+											componentDisabled={isEdit}
+											componentRules={'rulesSelect'}
+										/>
+										<InputField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'account'}
+											componentLabel={'Nombre de tu usuario'}
+											componentRules={'rulesAccount'}
+											componentPlaceholder={'Usuario'}
+											componentType={'text'}
+											componentValue={data.account}
+											componentDisabled={isEdit}
+										/>
+										<InputField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'followers'}
+											componentLabel={'Cantidad de Seguidores'}
+											componentPlaceholder={'Seguidores'}
+											componentType={'text'}
+											componentRules={'rulesFollowers'}
+											componentValue={data.followers}
+										/>
+										<TextAreaField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'biography'}
+											componentLabel={'Biografía'}
+											componentPlaceholder={'Resumen'}
+											componentRows={4}
+											componentRules={'required'}
+											componentValue={data.biography}
+										/>
+										<SelectField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'¿País de residencia?'}
+											componentName={'country'}
+											componentOnChange={handleChangeCountry}
+											componentPlaceholder={'Seleccione una opción'}
+											componentRules={'rulesSelect'}
+											componentOptions={countries}
+										/>
+										<InputField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'phone'}
+											componentLabel={'Número de Conacto'}
+											componentPlaceholder={'WhatsApp'}
+											componentType={'text'}
+											componentRules={'rulesPhone'}
+											componentValue={data.phone}
+										/>
+										<SelectField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'Categorías'}
+											componentName={'categories'}
+											componentMode={'multiple'}
+											componentPlaceholder={'Seleccione una opción'}
+											componentOptions={categories}
+											componentRules={'rulesSelect'}
+											componentMaxTagCount={5}
+										/>
+										<TextAreaField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'faq'}
+											componentLabel={'Términos y Condiciones'}
+											componentPlaceholder={'Coloca tu condiciones'}
+											componentRows={4}
+											componentValue={data.faq}
+										/>
+									</div>
+									<Row>
+										<Col sm={12} md={12} className='cv-profile-upload-image p10'>
+											Imagen de Pefil
+											<UploadImage account={data} componentHandle={handleSetImageProfile} />
+										</Col>
+										<Col sm={12} md={12} className='cv-profile-upload-image p10'>
+											Imagen de Portada
+											<UploadCover account={data} componentHandle={handleSetImageCover} />
+										</Col>
+									</Row>
+									<Form.Item className='cv-right'>
+										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+											{buttonText}
+										</Button>
+										{handleButtonSkip()}
+									</Form.Item>
+								</Form>
+							</Card>
+						</div>
+					</Col>
+				</Row>
 			)}
 		</>
 	)

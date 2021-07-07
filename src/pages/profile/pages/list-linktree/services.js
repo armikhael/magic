@@ -2,11 +2,11 @@
 
 import axios from 'axios'
 
-const serviceGetData = async () => {
+const serviceGetData = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/promotion/`,
+		url: `${process.env.REACT_APP_HOST}/profile/by-email/${item}`,
 	})
 		.then((response) => {
 			returnResponse = response.data
@@ -14,7 +14,6 @@ const serviceGetData = async () => {
 		.catch((error) => {
 			returnResponse = error.response.data
 		})
-
 	return returnResponse
 }
 

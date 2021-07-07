@@ -3,7 +3,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Menu, Dropdown, Badge } from 'antd'
-import { UserOutlined, LogoutOutlined, NotificationOutlined } from '@ant-design/icons'
+import {
+	UserOutlined,
+	ExportOutlined,
+	NotificationOutlined,
+	TeamOutlined,
+	LinkOutlined,
+	SafetyOutlined,
+	SubnodeOutlined,
+	UsergroupAddOutlined,
+} from '@ant-design/icons'
 
 import SideBar from './components/SideBar'
 import Notification from './components/Notification'
@@ -21,10 +30,26 @@ const menu = (
 			</Link>
 		</Menu.Item>
 		<Menu.Item>
-			<Link to={`/profile`}>
+			<Link to={`/profile/accounts`}>
 				<div className='cv-header-user-icon-login-content'>
-					<img width='16px' src='https://i.ibb.co/M93R2Gh/link.png' alt='Multiples enlaces' />
-					<span className='ml10'>Ver mis Enlaces</span>
+					<TeamOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Mis Cuentas</span>
+				</div>
+			</Link>
+		</Menu.Item>
+		<Menu.Item>
+			<Link to={`/profile/linktree`}>
+				<div className='cv-header-user-icon-login-content'>
+					<LinkOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Mis Enlaces</span>
+				</div>
+			</Link>
+		</Menu.Item>
+		<Menu.Item>
+			<Link to={`/profile/change-password`}>
+				<div className='cv-header-user-icon-login-content'>
+					<SafetyOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Cambiar Contraseña</span>
 				</div>
 			</Link>
 		</Menu.Item>
@@ -35,8 +60,29 @@ const menu = (
 				}}
 				to={`/`}>
 				<div className='cv-header-user-icon-login-content'>
-					<LogoutOutlined style={{ fontSize: 16 }} />
+					<ExportOutlined style={{ fontSize: 16 }} />
 					<span className='ml10'>Cerrar Sesión</span>
+				</div>
+			</Link>
+		</Menu.Item>
+	</Menu>
+)
+
+const publish = (
+	<Menu>
+		<Menu.Item>
+			<Link to={`/profile/account-user`}>
+				<div className='cv-header-user-icon-login-content'>
+					<UsergroupAddOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Publica tu Cuenta</span>
+				</div>
+			</Link>
+		</Menu.Item>
+		<Menu.Item>
+			<Link to={`/profile/linktree-name`}>
+				<div className='cv-header-user-icon-login-content'>
+					<SubnodeOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Publica tu Enlace</span>
 				</div>
 			</Link>
 		</Menu.Item>
@@ -63,22 +109,22 @@ export default class User extends React.Component {
 							<Col xs={12} sm={12} md={{ span: 24, offset: 0 }}>
 								<Row align='middle'>
 									<Col xs={12} sm={12} md={12}>
-										<Link to={`/profile/account-user`}>
-											<div className='cv-header-user-icon-login-content'>
+										<Dropdown shape={'circle'} overlay={publish} placement='bottomCenter' arrow>
+											<div
+												className='cv-header-user-icon-login-content'
+												style={{ cursor: 'pointer' }}>
 												<img
 													className='cv-heder-user-icon-add-account'
 													src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
 													alt='Agregar Cuenta'
-												/>{' '}
-												<span className='ml10'>Publicarme</span>
+												/>
+												<span>Publicarme</span>
 											</div>
-										</Link>
+										</Dropdown>
 									</Col>
-
 									<Col xs={4} sm={4} md={4}>
 										<Notification />
 									</Col>
-
 									<Col xs={6} sm={6} md={6}>
 										<Dropdown shape={'circle'} overlay={menu} placement='bottomRight' arrow>
 											<img

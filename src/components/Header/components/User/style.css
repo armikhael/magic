@@ -32,6 +32,11 @@
 	color: #200159;
 }
 
+.cv-header-user-icon-login-content > span {
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
 .cv-header-user-icon-login {
 	width: 30px;
 }

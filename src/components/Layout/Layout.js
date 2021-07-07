@@ -8,16 +8,13 @@ import { QuestionOutlined } from '@ant-design/icons'
 
 import Header from '../../components/Header/'
 import { CONSTANTS } from '../../components/ServiceCommons/Constant'
-import { config } from '../../components/ServiceCommons/Config'
 
 import './style.css'
 
 const menu = (
 	<Menu>
 		<Menu.Item>
-			<a target='_blank' rel='noopener noreferrer' href={`${config.linkSoporte}`}>
-				Contáctanos
-			</a>
+			<Link to={`/help/posicionamiento`}>Posicionamiento</Link>
 		</Menu.Item>
 		<Menu.Item>
 			<Link to={`/help/quienes-somos`}>Preguntas Frecuentes</Link>
@@ -33,12 +30,7 @@ function Layout(props) {
 				<div className='cv-layout-br'></div>
 				{props.children}
 				<Dropdown overlay={menu} placement='topRight' arrow>
-					<Button
-						className='cv-layout-btn-help'
-						shape='circle'
-						icon={<QuestionOutlined />}
-						size={'large'}
-					/>
+					<Button className='cv-layout-btn-help' shape='circle' icon={<QuestionOutlined />} size={'large'} />
 				</Dropdown>
 			</>
 		)
@@ -56,10 +48,7 @@ function Layout(props) {
 			props.location.pathname === '/auth/login' ||
 			props.location.pathname === '/auth/recovery' ||
 			props.location.pathname === '/auth/register' ||
-			(splitRoute[0] === '' &&
-				splitRoute[1] !== '' &&
-				splitRoute[2] === undefined &&
-				validLinkTree === undefined)
+			(splitRoute[0] === '' && splitRoute[1] !== '' && splitRoute[2] === undefined && validLinkTree === undefined)
 		) {
 			return <>{props.children}</>
 		} else {

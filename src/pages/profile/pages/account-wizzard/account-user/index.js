@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification, Card, Divider } from 'antd'
+import { Form, Button, notification, Card, Row, Col } from 'antd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
@@ -47,39 +47,42 @@ export default function AccountUser(props) {
 	return (
 		<>
 			{data !== undefined && (
-				<div className='cv-account-wizzard-content'>
-					<Card
-						className='cv-account-wizzard-card mt100'
-						title='Creación de la cuenta (1/4)'
-						bordered={false}>
-						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
-							<SelectField
-								componentClass={'cv-auth-login-field-input'}
-								componentLabel={'Red Social'}
-								componentName={'type'}
-								componentMode={'single'}
-								componentPlaceholder={'Seleccione una opción'}
-								componentOptions={redSocial}
-								componentRules={'rulesSelect'}
-							/>
-							<InputField
-								componentClass={'cv-auth-login-field-input'}
-								componentName={'account'}
-								componentLabel={'Nombre de tu usuario'}
-								componentRules={'rulesAccount'}
-								componentPlaceholder={'Usuario'}
-								componentType={'text'}
-								componentValue={data.account}
-							/>
-							<Divider></Divider>
-							<Form.Item className='cv-right'>
-								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
-									Siguiente
-								</Button>
-							</Form.Item>
-						</Form>
-					</Card>
-				</div>
+				<Row justify='center'>
+					<Col xs={23} sm={20} xl={10}>
+						<div className='cv-account-wizzard-content'>
+							<Card
+								className='cv-account-wizzard-card mt100'
+								title='Creación de la cuenta (1/4)'
+								bordered={false}>
+								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
+									<SelectField
+										componentClass={'cv-auth-login-field-input'}
+										componentLabel={'Red Social'}
+										componentName={'type'}
+										componentMode={'single'}
+										componentPlaceholder={'Seleccione una opción'}
+										componentOptions={redSocial}
+										componentRules={'rulesSelect'}
+									/>
+									<InputField
+										componentClass={'cv-auth-login-field-input'}
+										componentName={'account'}
+										componentLabel={'Nombre de tu usuario'}
+										componentRules={'rulesAccount'}
+										componentPlaceholder={'Usuario'}
+										componentType={'text'}
+										componentValue={data.account}
+									/>
+									<Form.Item className='cv-right'>
+										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+											Siguiente
+										</Button>
+									</Form.Item>
+								</Form>
+							</Card>
+						</div>
+					</Col>
+				</Row>
 			)}
 		</>
 	)

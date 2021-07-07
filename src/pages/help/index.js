@@ -5,6 +5,7 @@ import renderHTML from 'react-render-html'
 import { Link } from 'react-router-dom'
 import { Layout, Row, Col, notification } from 'antd'
 import InstagramEmbed from 'react-instagram-embed'
+import Vimeo from '@u-wave/react-vimeo'
 
 import { serviceGetData } from './service'
 import './style.css'
@@ -80,6 +81,10 @@ export default function Help(props) {
 																allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
 																allowFullScreen
 																title='AboutUs'></iframe>
+														)}
+
+														{item.url_type === 'vimeo' && (
+															<Vimeo video={item.url_embed} autoplay responsive={true} />
 														)}
 
 														{item.url_type === 'instagram' && (
