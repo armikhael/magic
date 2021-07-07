@@ -76,14 +76,6 @@ const AccountDetails = (props) => {
 									<div className='ph-auth-login-form-container'>
 										<RadioField
 											componentClass={'cv-auth-login-field-input'}
-											componentLabel={'¿Cómo defines tu cuenta?'}
-											componentName={'business'}
-											componentButtonStyle={'solid'}
-											componentOptions={[...CONSTANTS.TYPE_ACCOUNT]}
-										/>
-
-										<RadioField
-											componentClass={'cv-auth-login-field-input'}
 											componentLabel={'¿Harías publicidad "Gratis" para ayudar a otras personas?'}
 											componentName={'gofoundme'}
 											componentButtonStyle={'solid'}

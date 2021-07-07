@@ -114,9 +114,9 @@ const AccountActivation = (props) => {
 											key='profile'
 											shape='round'
 											onClick={() => {
-												history.push(`/profile/`)
+												history.push(`/profile/accounts`)
 											}}>
-											Ir al Perfil
+											Mis Cuentas
 										</Button>
 									</h3>,
 								]}
