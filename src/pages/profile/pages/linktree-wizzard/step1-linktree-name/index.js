@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Form, Button, notification, Card, Divider } from 'antd'
+import { Form, Button, notification, Card, Row, Col } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
 import ModalTutorial from '../../../../../components/ModalTutorial'
@@ -46,35 +46,38 @@ export default function LinkTreeName(props) {
 	return (
 		<>
 			{data !== undefined && (
-				<div className='cv-account-wizzard-content'>
-					<Card
-						className='cv-account-wizzard-card mt100'
-						title='Creación de la cuenta (1/3)'
-						bordered={false}>
-						<ModalTutorial
-							componentTitle={'¿Necesitas Ayuda? - Tutorial'}
-							componentHeader={'Registrar Multiples Enlaces'}
-							componentData={{ video: 568578004 }}
-						/>
-						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
-							<InputField
-								componentClass={'cv-auth-login-field-input'}
-								componentName={'name'}
-								componentLabel={'Nombre Personalizado de tu enlace'}
-								componentRules={'rulesAccount'}
-								componentPlaceholder={'Escribe el nombre de tu enlace'}
-								componentType={'text'}
-								componentValue={data.name}
-							/>
-							<Divider></Divider>
-							<Form.Item className='cv-right'>
-								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
-									Siguiente
-								</Button>
-							</Form.Item>
-						</Form>
-					</Card>
-				</div>
+				<Row justify='center'>
+					<Col xs={23} sm={20} xl={10}>
+						<div className='cv-account-wizzard-content'>
+							<Card
+								className='cv-account-wizzard-card mt100'
+								title='Creación de la cuenta (1/3)'
+								bordered={false}>
+								<ModalTutorial
+									componentTitle={'¿Necesitas Ayuda? - Tutorial'}
+									componentHeader={'Registrar Multiples Enlaces'}
+									componentData={{ video: 568578004 }}
+								/>
+								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
+									<InputField
+										componentClass={'cv-auth-login-field-input'}
+										componentName={'name'}
+										componentLabel={'¿Qué nombre deseas que tenga tu enlace?'}
+										componentRules={'rulesAccount'}
+										componentPlaceholder={'Este nombre debe ser único, suerte.'}
+										componentType={'text'}
+										componentValue={data.name}
+									/>
+									<Form.Item className='cv-right'>
+										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+											Siguiente
+										</Button>
+									</Form.Item>
+								</Form>
+							</Card>
+						</div>
+					</Col>
+				</Row>
 			)}
 		</>
 	)

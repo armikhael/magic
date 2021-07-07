@@ -8,7 +8,8 @@
 .cv-linktree-card {
 	width: 800px;
 	max-width: 90%;
-	margin: 0 auto;
+	margin: 0 auto 35px;
+	border-radius: 10px;
 }
 
 .cv-linktree-button-submit {
@@ -27,6 +28,7 @@
 
 .cv-linktree-button-add {
 	background-color: #210257;
+	margin-top: 15px;
 }
 
 .App {
@@ -62,8 +64,8 @@
 .characters li {
 	display: flex;
 	align-items: center;
-	border: solid 2px #d0d0d0;
-	border-radius: 0.2em;
+	border: solid 1px #fde3eb;
+	border-radius: 5px;
 	padding: 0.5em 0.8em 0.5em 0.5em;
 	margin-bottom: 1em;
 }
@@ -88,4 +90,7 @@
 	display: block;
 	width: 100%;
 	height: auto;
+}
+.cv-linktree-button {
+	float: right;
 }

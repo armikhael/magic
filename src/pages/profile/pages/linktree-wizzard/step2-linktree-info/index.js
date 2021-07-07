@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { Form, Button, notification, Col, Card, Row, Divider } from 'antd'
+import { Form, Button, notification, Col, Card, Row } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
 import TextAreaField from '../../../../../components/Form/TextArea'
@@ -77,49 +77,53 @@ export default function LinkTreeInfo(props) {
 	return (
 		<>
 			{data !== undefined && (
-				<div className='cv-account-wizzard-content'>
-					<Card className='cv-account-wizzard-card mt20' title='Mensaje de Bienvenida (2/3)' bordered={false}>
-						<Form form={form} initialValues={data} onFinish={handleOnFinish}>
-							<div className='ph-auth-login-form-container'>
-								<InputField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'account'}
-									componentLabel={'Nombre de tu cuenta'}
-									componentRules={'required'}
-									componentPlaceholder={'Ingresa el nombre a mostrar'}
-									componentType={'text'}
-									componentValue={data.account}
-								/>
-								<TextAreaField
-									componentClass={'cv-auth-login-field-input'}
-									componentName={'description'}
-									componentLabel={'Escribe un mensaje de Bienvenida'}
-									componentPlaceholder={'Escribe tu mensaje'}
-									componentRows={4}
-									componentRules={'required'}
-									componentValue={data.description}
-								/>
-							</div>
-							<Row>
-								<Col sm={12} md={12} className='cv-profile-upload-image p10'>
-									Imagen de Pefil
-									<UploadOneImage
-										componentData={data}
-										componentHandle={(e) => {
-											setImage(e)
-										}}
-									/>
-								</Col>
-							</Row>
-							<Divider></Divider>
-							<Form.Item className='cv-right'>
-								<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
-									{buttonText}
-								</Button>
-							</Form.Item>
-						</Form>
-					</Card>
-				</div>
+				<Row justify='center'>
+					<Col xs={23} sm={20} xl={10}>
+						<div className='cv-account-wizzard-content'>
+							<Card
+								className='cv-account-wizzard-card mt20'
+								title='Mensaje de Bienvenida (2/3)'
+								bordered={false}>
+								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
+									<div className='ph-auth-login-form-container'>
+										<InputField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'account'}
+											componentLabel={'Nombre de tu empresa'}
+											componentRules={'required'}
+											componentPlaceholder={'Ingresa el nombre a mostrar'}
+											componentType={'text'}
+											componentValue={data.account}
+										/>
+										<TextAreaField
+											componentClass={'cv-auth-login-field-input'}
+											componentName={'description'}
+											componentLabel={'Resumen de tu empresa'}
+											componentPlaceholder={'Una pequeña biografía'}
+											componentRows={4}
+											componentRules={'required'}
+											componentValue={data.description}
+										/>
+									</div>
+									<Row>
+										Imagen de Pefil
+										<UploadOneImage
+											componentData={data}
+											componentHandle={(e) => {
+												setImage(e)
+											}}
+										/>
+									</Row>
+									<Form.Item className='cv-right'>
+										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+											{buttonText}
+										</Button>
+									</Form.Item>
+								</Form>
+							</Card>
+						</div>
+					</Col>
+				</Row>
 			)}
 		</>
 	)

@@ -39,7 +39,7 @@ const ListLinkTree = (props) => {
 			<div>
 				<Layout className='cv-perfil-main-container'>
 					<Row justify='center'>
-						<Col xs={22} sm={20} xl={14}>
+						<Col xs={22} sm={20} xl={10}>
 							<Header className='cv-perfil-title-main-container'>
 								<LinkOutlined className='cv-perfil-title-main-icon' />
 								<h3 className='cv-perfil-title-main-title'>Mis Enlaces</h3>
