@@ -130,24 +130,26 @@ export default class AccountDetail extends React.Component {
 								alt={this.state.detail.name}
 								src={this.state.image_cover}
 							/>
-							<div
-								className='cv-detail-whatsapp-icon-mobil'
-								rel='noopener noreferrer'
-								target='_blank'
-								onClick={() => {
-									serviceEventGoogleAnalytics({
-										category: 'contacto',
-										action: 'click-contacto',
-										label: this.state.detail.name,
-									})
-									window.open(
-										`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+publicid`
-									)
-								}}>
-								<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
-								&nbsp;
-								<span>{this.state.textContact}</span>
-							</div>
+							{this.state.representation === false && (
+								<div
+									className='cv-detail-whatsapp-icon-mobil'
+									rel='noopener noreferrer'
+									target='_blank'
+									onClick={() => {
+										serviceEventGoogleAnalytics({
+											category: 'contacto',
+											action: 'click-contacto',
+											label: this.state.detail.name,
+										})
+										window.open(
+											`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+publicid`
+										)
+									}}>
+									<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
+									&nbsp;
+									<span>{this.state.textContact}</span>
+								</div>
+							)}
 						</div>
 						<Row>
 							<Col xs={24} sm={24} md={18}>
@@ -356,7 +358,7 @@ export default class AccountDetail extends React.Component {
 							</Col>
 							<Col xs={24} sm={24} md={6}>
 								<Plans componentData={this.state.detail} />
-								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
+								<CreateUser componentData={this.state.detail} asociation={this.state.asociation} />
 							</Col>
 							<div className='cv-detail-accounts-user-email-xs'>
 								<Views

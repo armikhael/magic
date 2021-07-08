@@ -3,9 +3,12 @@
 import React, { useState, useEffect } from 'react'
 import { List, Avatar } from 'antd'
 import { WhatsAppOutlined } from '@ant-design/icons'
+import { HeartOutlined, UserOutlined, EnvironmentOutlined, SmileOutlined } from '@ant-design/icons'
+import { Row, Comment } from 'antd'
 
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
+import ModalService from '../ModalService'
 import './style.css'
 
 const Plans = (props) => {
@@ -16,52 +19,15 @@ const Plans = (props) => {
 			setText('Servicios Publicitarios')
 		}
 	}, [props])
-	const plansRepresentation = [
-		{ name: 'Un Producto' },
-		{ name: 'Una Cuenta' },
-		{ name: 'Un Saludo' },
-		{ name: 'Un Evento' },
-		{ name: 'Un Cumpleaños' },
-	]
 
 	return (
 		<>
-			<div className='cv-detail-content-plans'>
-				<div className='cv-detail-content-plans-main'>
-					<h3 className='cv-detail-plans-title'>{text}</h3>
-					<div className='cv-detail-plans-hr'></div>
+			{props.componentData.representation === false && (
+				<div className='cv-detail-content-plans'>
+					<div className='cv-detail-content-plans-main'>
+						<h3 className='cv-detail-plans-title'>{text}</h3>
+						<div className='cv-detail-plans-hr'></div>
 
-					{props.componentData.representation === true && (
-						<List
-							className='cv-detail-plans-list'
-							itemLayout='horizontal'
-							dataSource={plansRepresentation}
-							renderItem={(item) => (
-								<span
-									onClick={() => {
-										console.log('contratacion')
-										serviceEventGoogleAnalytics({
-											category: 'planes',
-											action: 'click-contratacion',
-											label: props.componentData.name,
-										})
-										window.open(
-											`${process.env.REACT_APP_WHATSAPP}?phone=${props.componentData.code}${props.componentData.phone}&text=Hola ${props.componentData.account},+te+encontre+en+cuentasvirales.com+y+quisiera+el+servicio+de:+${item.name}`
-										)
-									}}>
-									<List.Item actions={[<WhatsAppOutlined />]}>
-										<List.Item.Meta
-											avatar={<Avatar src={props.componentData.image} />}
-											title={item.name}
-											description={`A Convenir`}
-										/>
-									</List.Item>
-								</span>
-							)}
-						/>
-					)}
-
-					{props.componentData.representation === false && (
 						<List
 							className='cv-detail-plans-list'
 							itemLayout='horizontal'
@@ -89,9 +55,90 @@ const Plans = (props) => {
 								</span>
 							)}
 						/>
-					)}
+					</div>
 				</div>
-			</div>
+			)}
+
+			{props.componentData.representation === true && (
+				<div className='cv-detail-content-plans'>
+					<div className='cv-detail-content-plans-main'>
+						<h3 className='cv-detail-plans-title'>{text}</h3>
+						<div className='cv-detail-plans-hr'></div>
+
+						<Row>
+							<Comment
+								author={<p className='cv-detail-actiones-title'>Promocionar un Producto</p>}
+								avatar={<HeartOutlined style={{ fontSize: '26px' }} />}
+								content={
+									<p>
+										Incrementa la confianza de tus clientes
+										<br />
+										<ModalService
+											componentHeader={'Condiciones del Servicio'}
+											componentDescription={`Para este servicio deberás entregar un producto de tu marca para crear generar el contenido correspondiente con ${props.componentData.account} `}
+											componentData={props.componentData}
+											componentType={'Promocionar un Producto'}
+											componentCategory={'contrato-producto'}
+										/>
+									</p>
+								}
+							/>
+							<Comment
+								author={<p className='cv-detail-actiones-title'>Promocionar un Servicio </p>}
+								avatar={<EnvironmentOutlined style={{ fontSize: '26px' }} />}
+								content={
+									<p>
+										Crea una sorpresa a un amig@
+										<br />
+										<ModalService
+											componentHeader={'Condiciones del Servicio'}
+											componentDescription={`Es necesario específicar que servicio en particular deseas promover y dicho servicio debe estar cerca de la localidad de ${props.componentData.account}`}
+											componentData={props.componentData}
+											componentType={'Promocionar un Servicio'}
+											componentCategory={'contrato-servicio'}
+										/>
+									</p>
+								}
+							/>
+							<Comment
+								author={<p className='cv-detail-actiones-title'>Promocionar una Cuenta</p>}
+								avatar={<UserOutlined style={{ fontSize: '26px' }} />}
+								content={
+									<p>
+										Crece de forma natural y aumenta tu comunidad
+										<br />
+										<ModalService
+											componentHeader={'Condiciones del Servicio'}
+											componentDescription={`Debes contar con al menos 6 publicaciones en tu cuenta y tenerla pública durante el proceso publicitario`}
+											componentData={props.componentData}
+											componentType={'Promocionar una Cuenta'}
+											componentCategory={'contrato-cuenta'}
+										/>
+									</p>
+								}
+							/>
+
+							<Comment
+								author={<p className='cv-detail-actiones-title'>Enviar un Saludo ó Felicitación</p>}
+								avatar={<SmileOutlined style={{ fontSize: '26px' }} />}
+								content={
+									<p>
+										Crea una experiencia única para tu amig@
+										<br />
+										<ModalService
+											componentHeader={'Condiciones del Servicio'}
+											componentDescription={`Si tu amig@ es fan de  ${props.componentData.account} sólo tienes que indicarnos el tipo de saludo o felicitaciones que quisieras enviar a tu amig@ especial y de esa manera crearemos una experiencia única.`}
+											componentData={props.componentData}
+											componentType={'Enviar un Saludo'}
+											componentCategory={'contrato-saludo'}
+										/>
+									</p>
+								}
+							/>
+						</Row>
+					</div>
+				</div>
+			)}
 		</>
 	)
 }
