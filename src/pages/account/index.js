@@ -11,6 +11,7 @@ import PageError from '../../components/Errors/PageError'
 import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import CreateUser from './components/CreateUser'
+import InterestAccounts from './components/InterestAccounts'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
 import LinkTree from './components/LinkTree'
@@ -33,6 +34,7 @@ export default class AccountDetail extends React.Component {
 		permissions: undefined,
 		representation: false,
 		textContact: 'Contactame',
+		promotions: null,
 	}
 
 	async componentDidMount() {
@@ -63,6 +65,7 @@ export default class AccountDetail extends React.Component {
 					asociation: accountDetail.asociation,
 					views: accountDetail.statitics_view,
 					totalView: accountDetail.total_week_view,
+					promotions: accountDetail.promotions,
 				})
 
 				if (localStorage.getItem('user')) {
@@ -174,10 +177,7 @@ export default class AccountDetail extends React.Component {
 														/>
 													)}
 												</h1>
-												<Moment
-													format='LLLL'
-													withTitle
-													className='cv-detail-moment-title-mobil'>
+												<Moment format='LLLL' withTitle className='cv-detail-moment-title-mobil'>
 													{this.state.detail.createdAt}
 												</Moment>
 												<a
@@ -224,9 +224,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}
@@ -282,11 +280,7 @@ export default class AccountDetail extends React.Component {
 										</h3>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col
-													xs={24}
-													sm={24}
-													md={7}
-													className='cv-detail-account-img-main-content'>
+												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -334,9 +328,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}
@@ -357,6 +349,7 @@ export default class AccountDetail extends React.Component {
 							<Col xs={24} sm={24} md={6}>
 								<Plans componentData={this.state.detail} />
 								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
+								<InterestAccounts interestAccounts={this.state.promotions} />
 							</Col>
 							<div className='cv-detail-accounts-user-email-xs'>
 								<Views
