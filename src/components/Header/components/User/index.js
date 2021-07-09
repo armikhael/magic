@@ -74,7 +74,7 @@ const publish = (
 			<Link to={`/profile/account-user`}>
 				<div className='cv-header-user-icon-login-content'>
 					<UsergroupAddOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Publica tu Cuenta</span>
+					<span className='ml10'>Publicar mi cuenta</span>
 				</div>
 			</Link>
 		</Menu.Item>
@@ -82,7 +82,7 @@ const publish = (
 			<Link to={`/profile/linktree-name`}>
 				<div className='cv-header-user-icon-login-content'>
 					<SubnodeOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Publica tu Enlace</span>
+					<span className='ml10'>Crear mi enlace</span>
 				</div>
 			</Link>
 		</Menu.Item>

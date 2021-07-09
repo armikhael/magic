@@ -12,6 +12,7 @@
 
 .cv-header-notifi-content-menu-item-row {
 	padding-top: 5px;
+	cursor: pointer;
 }
 
 .cv-header-notifi-list-img {

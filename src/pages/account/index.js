@@ -11,6 +11,7 @@ import PageError from '../../components/Errors/PageError'
 import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 
 import CreateUser from './components/CreateUser'
+import InterestAccounts from './components/InterestAccounts'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
 import LinkTree from './components/LinkTree'
@@ -33,6 +34,7 @@ export default class AccountDetail extends React.Component {
 		permissions: undefined,
 		representation: false,
 		textContact: 'Contactame',
+		promotions: null,
 	}
 
 	async componentDidMount() {
@@ -63,6 +65,7 @@ export default class AccountDetail extends React.Component {
 					asociation: accountDetail.asociation,
 					views: accountDetail.statitics_view,
 					totalView: accountDetail.total_week_view,
+					promotions: accountDetail.promotions,
 				})
 
 				if (localStorage.getItem('user')) {
@@ -130,24 +133,26 @@ export default class AccountDetail extends React.Component {
 								alt={this.state.detail.name}
 								src={this.state.image_cover}
 							/>
-							<div
-								className='cv-detail-whatsapp-icon-mobil'
-								rel='noopener noreferrer'
-								target='_blank'
-								onClick={() => {
-									serviceEventGoogleAnalytics({
-										category: 'contacto',
-										action: 'click-contacto',
-										label: this.state.detail.name,
-									})
-									window.open(
-										`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+publicid`
-									)
-								}}>
-								<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
-								&nbsp;
-								<span>{this.state.textContact}</span>
-							</div>
+							{this.state.representation === false && (
+								<div
+									className='cv-detail-whatsapp-icon-mobil'
+									rel='noopener noreferrer'
+									target='_blank'
+									onClick={() => {
+										serviceEventGoogleAnalytics({
+											category: 'contacto',
+											action: 'click-contacto',
+											label: this.state.detail.name,
+										})
+										window.open(
+											`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+publicid`
+										)
+									}}>
+									<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
+									&nbsp;
+									<span>{this.state.textContact}</span>
+								</div>
+							)}
 						</div>
 						<Row>
 							<Col xs={24} sm={24} md={18}>
@@ -356,7 +361,8 @@ export default class AccountDetail extends React.Component {
 							</Col>
 							<Col xs={24} sm={24} md={6}>
 								<Plans componentData={this.state.detail} />
-								<CreateUser email={this.state.detail.email} asociation={this.state.asociation} />
+								<CreateUser componentData={this.state.detail} asociation={this.state.asociation} />
+								<InterestAccounts interestAccounts={this.state.promotions} />
 							</Col>
 							<div className='cv-detail-accounts-user-email-xs'>
 								<Views
