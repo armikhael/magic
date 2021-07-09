@@ -60,7 +60,7 @@ export default class Profile extends React.Component {
 										<UsergroupAddOutlined className='cv-profile-card-item-img-icon' />
 									</div>
 									<div className='cv-profile-card-item-title'>
-										<h3>Crea tu cuenta</h3>
+										<h3>Publicar cuenta</h3>
 										<p>Especialmente para Marcas Personales.</p>
 									</div>
 								</div>
@@ -86,7 +86,7 @@ export default class Profile extends React.Component {
 										<SubnodeOutlined className='cv-profile-card-item-img-icon' />
 									</div>
 									<div className='cv-profile-card-item-title'>
-										<h3>Crea tu enlace</h3>
+										<h3>Crear enlace</h3>
 										<p>Especialmente para crear menú de opciones en tu negocio.</p>
 									</div>
 								</div>

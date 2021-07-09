@@ -1,82 +1,44 @@
 /** @format */
 
-import React, { useState } from 'react'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import './style.css'
-
-const finalSpaceCharacters = [
-	{
-		id: 'gary',
-		name: 'Gary Goodspeed',
-		thumb: '/images/gary.png',
-	},
-	{
-		id: 'cato',
-		name: 'Little Cato',
-		thumb: '/images/cato.png',
-	},
-	{
-		id: 'kvn',
-		name: 'KVN',
-		thumb: '/images/kvn.png',
-	},
-	{
-		id: 'mooncake',
-		name: 'Mooncake',
-		thumb: '/images/mooncake.png',
-	},
-	{
-		id: 'quinn',
-		name: 'Quinn Ergon',
-		thumb: '/images/quinn.png',
-	},
-]
+import React from 'react'
 
 export default function App() {
-	const [characters, updateCharacters] = useState(finalSpaceCharacters)
-
-	function handleOnDragEnd(result) {
-		if (!result.destination) return
-		const items = Array.from(characters)
-		const [reorderedItem] = items.splice(result.source.index, 1)
-		items.splice(result.destination.index, 0, reorderedItem)
-		updateCharacters(items)
-	}
-
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<h1>Final Space Characters</h1>
-				<DragDropContext onDragEnd={handleOnDragEnd}>
-					<Droppable droppableId='characters'>
-						{(provided) => (
-							<ul className='characters' {...provided.droppableProps} ref={provided.innerRef}>
-								{characters.map(({ id, name, thumb }, index) => {
-									return (
-										<Draggable key={id} draggableId={id} index={index}>
-											{(provided) => (
-												<li
-													ref={provided.innerRef}
-													{...provided.draggableProps}
-													{...provided.dragHandleProps}>
-													<div className='characters-thumb'>
-														<img src={thumb} alt={`${name} Thumb`} />
-													</div>
-													<p>{name}</p>
-												</li>
-											)}
-										</Draggable>
-									)
-								})}
-								{provided.placeholder}
-							</ul>
-						)}
-					</Droppable>
-				</DragDropContext>
-			</header>
-			<p>
-				Images from <a href='https://final-space.fandom.com/wiki/Final_Space_Wiki'>Final Space Wiki</a>
-			</p>
-		</div>
+		<>
+			<p> ¿Cuales son los beneficios?</p>
+			<ul>
+				<li>
+					<p>Como Marca Personal</p>
+					<ul>
+						<li>Una peresentación mucho mas profesional para las marcas interesadas</li>
+						<li>Tus precios disponibles y visibles las 24 horas, los 7 días de la semana</li>
+						<li>Indicar las condiciones de tus servicios publicitarios y tipos de publicación</li>
+						<li>Evitas responder lo mismo una y otra vez</li>
+						<li>Las marcas interesadas llegan de forma concreta sin hacerte perder tiempo</li>
+						<li>Es completamente gratuito</li>
+						<li>Contarás con actualizaciones constantemente, herramientas para gestionar mejor tu marca</li>
+					</ul>
+					<img
+						src='https://i.ibb.co/xzTkjZQ/Captura-de-pantalla-2021-07-08-a-las-22-43-29.png'
+						alt='img'></img>
+				</li>
+				<li>
+					<p>Como de Negocio (Multiples Enlaces)</p>
+					<ul>
+						<li>Un menú de opciones para tus clientes</li>
+						<li>Completamente Gratuito</li>
+						<li>Enlaces ilimitados</li>
+						<li>Mayor facilidad de contacto con las diferentes áreas de tu empresa</li>
+						<li>Disponible 24/7 para tus clientes</li>
+						<li>Agrupar enlaces y redes sociales en un sólo lugar</li>
+						<li>Diferenciar los intereses de tus clientes y derivarlo al enlace correspondiente</li>
+						<li>Tener una herramienta que apoye tu imagen corporativa</li>
+					</ul>
+					<img
+						src='https://i.ibb.co/0K5C9pd/Captura-de-pantalla-2021-07-08-a-las-22-46-44.png'
+						alt='img'></img>
+				</li>
+			</ul>
+		</>
 	)
 }

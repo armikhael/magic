@@ -118,7 +118,7 @@ export default class SideBar extends React.Component {
 										className='cv-header-user-sidebar-list-icon'
 										style={{ fontSize: 22 }}
 									/>
-									<span className='cv-header-user-sidebar-list-title'>Crea tu cuenta</span>
+									<span className='cv-header-user-sidebar-list-title'>Publicar mi cuenta</span>
 								</div>
 							</Link>
 						</div>
@@ -129,7 +129,7 @@ export default class SideBar extends React.Component {
 										className='cv-header-user-sidebar-list-icon'
 										style={{ fontSize: 22 }}
 									/>
-									<span className='cv-header-user-sidebar-list-title'>Crea tu enlace</span>
+									<span className='cv-header-user-sidebar-list-title'>Crear mi enlace</span>
 								</div>
 							</Link>
 						</div>
