@@ -33,6 +33,7 @@ import Register from '../pages/auth/register'
 import Recovery from '../pages/auth/recovery'
 import NotFound from '../pages/not-found'
 import Results from '../pages/results'
+import Search from '../pages/search'
 import Help from '../pages/help'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
 import UploadImgAccounts from '../pages/admin/upload-img-accounts'
@@ -50,6 +51,7 @@ const Routers = (props) => (
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/country/:name' component={Country} />
 				<Route exact path='/results/:name' component={Results} />
+				<Route exact path='/search/:any' component={Search} />
 				<Route exact path='/help/:name' component={Help} />
 				<Route exact path='/notifications' component={Notifications} />
 

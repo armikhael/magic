@@ -28,7 +28,7 @@ export default class Filters extends React.Component {
 			<>
 				<div className='cv-category-content-title'>
 					<h1 className='cv-category-title'>
-						{this.props.section}: {this.props.title}
+						{this.props.section}
 						<Dropdown.Button overlay={menu} style={{ float: 'right' }} icon={<FilterOutlined />}>
 							Filtrar
 						</Dropdown.Button>
