@@ -10,16 +10,16 @@ export default class Filters extends React.Component {
 	render() {
 		const menu = (
 			<Menu onClick={this.props.handleMenuClick}>
-				<Menu.Item key='descFollowers' name='descFollowers'>
+				<Menu.Item key='moreFollowers' name='moreFollowers'>
 					Más seguidores
 				</Menu.Item>
-				<Menu.Item key='ascFollowers' name='ascFollowers'>
+				<Menu.Item key='lessFollowers' name='lessFollowers'>
 					Menos seguidores
 				</Menu.Item>
-				<Menu.Item key='descViews' name='descViews'>
+				<Menu.Item key='moreViews' name='moreViews'>
 					Más visitas
 				</Menu.Item>
-				<Menu.Item key='ascViews' name='ascViews'>
+				<Menu.Item key='lessViews' name='lessViews'>
 					Menos visitas
 				</Menu.Item>
 			</Menu>

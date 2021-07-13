@@ -2,13 +2,14 @@
 
 import axios from 'axios'
 
-const serviceGetCategories = async () => {
+const serviceGetData = async () => {
 	let returnResponse
 	await axios({
 		method: 'GET',
 		url: `${process.env.REACT_APP_HOST}/home/`,
 	})
 		.then((response) => {
+			console.log(response.data)
 			returnResponse = response.data
 		})
 		.catch((error) => {
@@ -17,4 +18,4 @@ const serviceGetCategories = async () => {
 	return returnResponse
 }
 
-export { serviceGetCategories }
+export { serviceGetData }

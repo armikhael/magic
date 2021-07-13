@@ -36,7 +36,6 @@ import Results from '../pages/results'
 import Search from '../pages/search'
 import Help from '../pages/help'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
-import UploadImgAccounts from '../pages/admin/upload-img-accounts'
 import Notifications from '../pages/notifications'
 
 const Routers = (props) => (
@@ -71,7 +70,6 @@ const Routers = (props) => (
 				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />
 
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
-				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
 
 				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={AccountDetail} staticContext={false} />

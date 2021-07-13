@@ -8,7 +8,7 @@ import serviceEventGoogleAnalytics from '../../../ServiceCommons/EventsGoogleAna
 import { CONSTANTS } from '../../../ServiceCommons/Constant'
 
 import './style.css'
-import { serviceGetCategories } from './services'
+import { serviceGetData } from './services'
 
 const { Search } = Input
 
@@ -20,10 +20,11 @@ export default function SearchNavbar() {
 		men_categories: [],
 		man_categories: [],
 		mix_categories: [],
+		representation: [],
 	})
 
 	useEffect(() => {
-		serviceGetCategories().then((response) => {
+		serviceGetData().then((response) => {
 			setMenu(response)
 		})
 	}, [])
@@ -34,6 +35,29 @@ export default function SearchNavbar() {
 
 	const menu = (
 		<Menu className='cv-header-search-menu'>
+			<h3 className='cv-headr-title-search-menu'>Destacados</h3>
+			<Menu.Item>
+				<div className='cv-header-search-conetent-country'>
+					{isMenu.representation.map((item, i) => {
+						return (
+							<Tag key={i} className='cv-header-search-tag'>
+								<Link
+									onClick={() => {
+										serviceEventGoogleAnalytics({
+											category: 'click-representation',
+											action: 'click',
+											label: item.name,
+										})
+									}}
+									to={`/${item.name}`}>
+									{item.account}
+								</Link>
+							</Tag>
+						)
+					})}
+				</div>
+			</Menu.Item>
+
 			<h3 className='cv-headr-title-search-menu'>Países</h3>
 			<Menu.Item>
 				<div className='cv-header-search-conetent-country'>
