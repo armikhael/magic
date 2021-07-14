@@ -3,6 +3,7 @@
 const insterfaceForm = () => {
 	return {
 		account: '',
+		followers: '',
 	}
 }
 

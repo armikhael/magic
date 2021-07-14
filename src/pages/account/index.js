@@ -237,32 +237,34 @@ export default class AccountDetail extends React.Component {
 											})}
 										</div>
 									</div>
-									<Col span={24}>
-										<span
-											className='cv-detail-whatsapp-icon'
-											rel='noopener noreferrer'
-											target='_blank'
-											onClick={() => {
-												serviceEventGoogleAnalytics({
-													category: 'contacto',
-													action: 'click-contacto',
-													label: this.state.detail.name,
-												})
-												if (this.state.representation === true) {
-													window.open(
-														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+por+medio+de+intercambios`
-													)
-												} else {
-													window.open(
-														`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
-													)
-												}
-											}}>
-											<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
-											&nbsp;
-											<span>{this.state.textContact}</span>
-										</span>
-									</Col>
+									{this.state.representation === false && (
+										<Col span={24}>
+											<span
+												className='cv-detail-whatsapp-icon'
+												rel='noopener noreferrer'
+												target='_blank'
+												onClick={() => {
+													serviceEventGoogleAnalytics({
+														category: 'contacto',
+														action: 'click-contacto',
+														label: this.state.detail.name,
+													})
+													if (this.state.representation === true) {
+														window.open(
+															`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+quisiera+conocer+tus+servicios+por+medio+de+intercambios`
+														)
+													} else {
+														window.open(
+															`${process.env.REACT_APP_WHATSAPP}?phone=${this.state.detail.code}${this.state.detail.phone}&text=Hola+${this.state.detail.account}, te+encontre+en+cuentasvirales.com+y+queria+conocer+más+sobre+tus+servicios+publicitarios`
+														)
+													}
+												}}>
+												<WhatsAppOutlined className='cv-detail-whatsapp-icon-i' />
+												&nbsp;
+												<span>{this.state.textContact}</span>
+											</span>
+										</Col>
+									)}
 									<Col span={24} className='cv-detail-content-account-detail cv-md'>
 										<h1 className='cv-detail-title-main'>
 											{this.state.detail.account}

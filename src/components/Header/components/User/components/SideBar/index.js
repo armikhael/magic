@@ -108,7 +108,7 @@ export default class SideBar extends React.Component {
 						<div className='cv-header-user-sidebar-list'>
 							<div className='cv-header-user-icon-login-content'>
 								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
-								<span className='cv-header-user-sidebar-list-title'>Publicarme</span>
+								<span className='cv-header-user-sidebar-list-title'>Publicar</span>
 							</div>
 						</div>
 						<div className='cv-header-user-sidebar-list ml10'>
@@ -118,7 +118,7 @@ export default class SideBar extends React.Component {
 										className='cv-header-user-sidebar-list-icon'
 										style={{ fontSize: 22 }}
 									/>
-									<span className='cv-header-user-sidebar-list-title'>Publicar mi cuenta</span>
+									<span className='cv-header-user-sidebar-list-title'>Mi Cuenta</span>
 								</div>
 							</Link>
 						</div>
@@ -129,7 +129,7 @@ export default class SideBar extends React.Component {
 										className='cv-header-user-sidebar-list-icon'
 										style={{ fontSize: 22 }}
 									/>
-									<span className='cv-header-user-sidebar-list-title'>Crear mi enlace</span>
+									<span className='cv-header-user-sidebar-list-title'>Mi Negocio</span>
 								</div>
 							</Link>
 						</div>
