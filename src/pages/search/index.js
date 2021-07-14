@@ -34,9 +34,8 @@ const Search = (props) => {
 		moreViewToday: { counter_day: -1 },
 	}
 	const [orderBy, setOrderBy] = useState(sortDictionary['moreViewToday'])
-
 	const handleList = async (item) => {
-		const response = await serviceGetData({ query: query, page: page, sort: orderBy })
+		const response = await serviceGetData({ query: item, page: page, sort: orderBy })
 		console.log(response)
 		if (response.statusCode === 200) {
 			setList([...list, ...response.data])
@@ -49,9 +48,9 @@ const Search = (props) => {
 	}
 
 	useEffect(() => {
-		handleList(props)
-		console.log('useEffect')
-	}, [props])
+		handleList()
+		console.log('useEffect') // eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	const handleMenuClick = async (item) => {
 		setList([])

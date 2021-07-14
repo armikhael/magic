@@ -40,19 +40,18 @@ export default function SearchNavbar() {
 				<div className='cv-header-search-conetent-country'>
 					{isMenu.representation.map((item, i) => {
 						return (
-							<Tag key={i} className='cv-header-search-tag'>
-								<Link
-									onClick={() => {
-										serviceEventGoogleAnalytics({
-											category: 'click-representation',
-											action: 'click',
-											label: item.name,
-										})
-									}}
-									to={`/${item.name}`}>
-									{item.account}
-								</Link>
-							</Tag>
+							<Link
+								onClick={() => {
+									serviceEventGoogleAnalytics({
+										category: 'click-representation',
+										action: 'click',
+										label: item.name,
+									})
+								}}
+								to={`/${item.name}`}
+								key={i}>
+								<img src={item.image} alt={item.name} className='cv-header-search-img'></img>
+							</Link>
 						)
 					})}
 				</div>

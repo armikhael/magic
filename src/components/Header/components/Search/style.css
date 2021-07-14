@@ -1,12 +1,17 @@
 /** @format */
-
+.cv-header-search-img {
+	width: 64px;
+	margin: 2px 5px;
+	border-radius: 5px;
+	overflow-x: scroll;
+}
 .cv-header-search-menu {
 	height: 80vh;
 	width: 97%;
 	overflow-y: scroll;
 	margin-left: 12px;
 	position: absolute;
-	border-radius: 0 0 8px 8px !important;
+	border-radius: 8px !important;
 }
 
 .cv-headr-title-search-menu {
@@ -101,6 +106,9 @@
 }
 
 @media (max-width: 768px) {
+	.cv-header-search-img {
+		width: 48px;
+	}
 	.cv-header-search-input {
 		width: 100%;
 	}
@@ -118,6 +126,10 @@
 }
 
 @media (max-width: 401px) {
+	.cv-header-search-img {
+		width: 32px;
+	}
+
 	.cv-header-search-input {
 		width: 95%;
 	}
