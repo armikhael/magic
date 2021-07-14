@@ -74,7 +74,7 @@ const publish = (
 			<Link to={`/profile/account-user`}>
 				<div className='cv-header-user-icon-login-content'>
 					<UsergroupAddOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Publicar mi cuenta</span>
+					<span className='ml10'>Mi Cuenta</span>
 				</div>
 			</Link>
 		</Menu.Item>
@@ -82,7 +82,7 @@ const publish = (
 			<Link to={`/profile/linktree-name`}>
 				<div className='cv-header-user-icon-login-content'>
 					<SubnodeOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Crear mi enlace</span>
+					<span className='ml10'>Mi Negocio</span>
 				</div>
 			</Link>
 		</Menu.Item>
@@ -118,7 +118,7 @@ export default class User extends React.Component {
 													src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
 													alt='Agregar Cuenta'
 												/>
-												<span>Publicarme</span>
+												<span>Publicar</span>
 											</div>
 										</Dropdown>
 									</Col>

@@ -73,6 +73,17 @@ export default function AccountUser(props) {
 										componentType={'text'}
 										componentValue={data.account}
 									/>
+
+									<InputField
+										componentClass={'cv-auth-login-field-input'}
+										componentName={'followers'}
+										componentLabel={'Cantidad de Seguidores'}
+										componentPlaceholder={'Seguidores'}
+										componentType={'text'}
+										componentRules={'rulesFollowers'}
+										componentValue={data.followers}
+									/>
+
 									<Form.Item className='cv-right'>
 										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 											Siguiente

@@ -33,9 +33,9 @@ import Register from '../pages/auth/register'
 import Recovery from '../pages/auth/recovery'
 import NotFound from '../pages/not-found'
 import Results from '../pages/results'
+import Search from '../pages/search'
 import Help from '../pages/help'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
-import UploadImgAccounts from '../pages/admin/upload-img-accounts'
 import Notifications from '../pages/notifications'
 
 const Routers = (props) => (
@@ -50,6 +50,7 @@ const Routers = (props) => (
 				<Route exact path='/category/:name' component={Category} />
 				<Route exact path='/country/:name' component={Country} />
 				<Route exact path='/results/:name' component={Results} />
+				<Route exact path='/search/:any' component={Search} />
 				<Route exact path='/help/:name' component={Help} />
 				<Route exact path='/notifications' component={Notifications} />
 
@@ -69,7 +70,6 @@ const Routers = (props) => (
 				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />
 
 				<AdminRoute exact path='/admin/inactive-accounts' component={InactiveAccounts} />
-				<AdminRoute exact path='/admin/upload-img-accounts' component={UploadImgAccounts} />
 
 				<Route exact path='/token/:email' component={userAccounts} />
 				<Route exact path='/:name' component={AccountDetail} staticContext={false} />

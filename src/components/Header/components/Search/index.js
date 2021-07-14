@@ -5,9 +5,10 @@ import { Link, useHistory } from 'react-router-dom'
 import { Input, Menu, Dropdown, Row, Col, Tag } from 'antd'
 
 import serviceEventGoogleAnalytics from '../../../ServiceCommons/EventsGoogleAnalitycs'
+import { CONSTANTS } from '../../../ServiceCommons/Constant'
 
 import './style.css'
-import { serviceGetCategories } from './services'
+import { serviceGetData } from './services'
 
 const { Search } = Input
 
@@ -19,10 +20,11 @@ export default function SearchNavbar() {
 		men_categories: [],
 		man_categories: [],
 		mix_categories: [],
+		representation: [],
 	})
 
 	useEffect(() => {
-		serviceGetCategories().then((response) => {
+		serviceGetData().then((response) => {
 			setMenu(response)
 		})
 	}, [])
@@ -33,6 +35,28 @@ export default function SearchNavbar() {
 
 	const menu = (
 		<Menu className='cv-header-search-menu'>
+			<h3 className='cv-headr-title-search-menu'>Destacados</h3>
+			<Menu.Item>
+				<div className='cv-header-search-conetent-country'>
+					{isMenu.representation.map((item, i) => {
+						return (
+							<Link
+								onClick={() => {
+									serviceEventGoogleAnalytics({
+										category: 'click-representation',
+										action: 'click',
+										label: item.name,
+									})
+								}}
+								to={`/${item.name}`}
+								key={i}>
+								<img src={item.image} alt={item.name} className='cv-header-search-img'></img>
+							</Link>
+						)
+					})}
+				</div>
+			</Menu.Item>
+
 			<h3 className='cv-headr-title-search-menu'>Países</h3>
 			<Menu.Item>
 				<div className='cv-header-search-conetent-country'>
@@ -47,7 +71,7 @@ export default function SearchNavbar() {
 											label: item.slug,
 										})
 									}}
-									to={`/country/${item.slug}`}>
+									to={`/search/q?country=${item.slug}`}>
 									{item.name}
 								</Link>
 							</Tag>
@@ -55,6 +79,30 @@ export default function SearchNavbar() {
 					})}
 				</div>
 			</Menu.Item>
+
+			<h3 className='cv-headr-title-search-menu'>Redes Sociales</h3>
+			<Menu.Item>
+				<div className='cv-header-search-conetent-country'>
+					{CONSTANTS.RED_SOCIAL.map((item, i) => {
+						return (
+							<Tag key={i} className='cv-header-search-tag'>
+								<Link
+									onClick={() => {
+										serviceEventGoogleAnalytics({
+											category: 'click-red-social',
+											action: 'click',
+											label: item.value,
+										})
+									}}
+									to={`/search/q?type=${item.value}`}>
+									{item.name}
+								</Link>
+							</Tag>
+						)
+					})}
+				</div>
+			</Menu.Item>
+
 			<h3 className='cv-headr-title-search-menu'>Para ellas</h3>
 			<Menu.Item>
 				<Row>
@@ -74,7 +122,7 @@ export default function SearchNavbar() {
 											})
 										}}
 										className='cv-header-search-submenu-title'
-										to={`/category/${item.slug}`}>
+										to={`/search/q?categories=${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>

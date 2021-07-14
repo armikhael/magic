@@ -1,19 +1,20 @@
 /** @format */
+/** @format */
 
 import axios from 'axios'
 
-const serviceGetData = async () => {
+const serviceGetData = async (item) => {
 	let returnResponse
 	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/home/`,
+		method: 'POST',
+		url: `${process.env.REACT_APP_HOST}/account/search`,
+		data: item,
 	})
 		.then((response) => {
-			console.log(response.data)
 			returnResponse = response.data
 		})
 		.catch((error) => {
-			returnResponse = error.response
+			returnResponse = error.response.data
 		})
 	return returnResponse
 }

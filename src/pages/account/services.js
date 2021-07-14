@@ -7,7 +7,7 @@ const serviceAccountDetail = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'POST',
-		url: `${process.env.REACT_APP_HOST}/account/detail`,
+		url: `${process.env.REACT_APP_HOST}/account/get-detail`,
 		data: item,
 	})
 		.then((response) => {
