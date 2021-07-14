@@ -48,7 +48,7 @@ const Search = (props) => {
 	}
 
 	useEffect(() => {
-		handleList()
+		handleList(query)
 		console.log('useEffect') // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
