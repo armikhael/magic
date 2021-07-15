@@ -27,7 +27,6 @@ export default function AccountUser(props) {
 					value: iterator.name,
 				}
 			})
-			console.log(mapRedSocial)
 			setRedSocial([...mapRedSocial])
 		})
 		setData(insterfaceForm())
@@ -39,7 +38,6 @@ export default function AccountUser(props) {
 	const handleOnFinish = (item) => {
 		item.email = user.email
 		item.name = `${item.account}-${item.type}`
-		console.log(item)
 		serviceCreateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {

@@ -6,6 +6,7 @@ import { Form, Button, List, Typography, notification, Card, Row, Col } from 'an
 
 import InputField from '../../../../../components/Form/Input'
 import SelectConstantField from '../../../../../components/Form/SelectConstant'
+import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 
@@ -25,9 +26,14 @@ const AccountPlans = (props) => {
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
+		const responseRedSocial = await serviceGetRedSocial()
+		const filterRedSocial = responseRedSocial.filter((iterator) => {
+			return iterator.name === response.type
+		})
+		console.log(filterRedSocial)
 		setData(response)
 		setPlans(response.plans)
-		setConcepts([...CONSTANTS.TYPE_POST[response.type]])
+		setConcepts([...filterRedSocial[0].options])
 	}
 
 	useEffect(() => {

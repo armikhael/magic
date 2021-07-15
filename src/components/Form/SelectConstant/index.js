@@ -20,15 +20,7 @@ const SelectConstantField = (props) => {
 					onChange={props.componentOnChange}
 					maxTagCount={props.componentMaxTagCount}>
 					{props.componentOptions.map((iterator, i) => {
-						return (
-							<Option
-								style={{
-									textTransform: 'capitalize',
-								}}
-								key={iterator}>
-								{iterator}
-							</Option>
-						)
+						return <Option key={iterator}>{iterator}</Option>
 					})}
 				</Select>
 			</Form.Item>
