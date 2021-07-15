@@ -6,8 +6,9 @@ import { Form, Button, notification, Card, Row, Col } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
+import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
-import { serviceCreateData, serviceGetData } from './services'
+import { serviceCreateData } from './services'
 import insterfaceForm from './interface'
 import './style.css'
 
@@ -19,8 +20,8 @@ export default function AccountUser(props) {
 	const [user, setUser] = useState()
 
 	useEffect(() => {
-		serviceGetData().then((response) => {
-			const mapRedSocial = response.data.map((iterator) => {
+		serviceGetRedSocial().then((response) => {
+			const mapRedSocial = response.map((iterator) => {
 				return {
 					name: iterator.label,
 					value: iterator.name,

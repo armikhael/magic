@@ -11,6 +11,7 @@ import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
 import { serviceGetCategories } from '../../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../../components/ServiceCommons/GetCountry'
+import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
 import UploadImage from '../../../components/UploadImage'
 import UploadCover from '../../../components/UploadCover'
@@ -36,6 +37,18 @@ const AccountBiography = (props) => {
 		const response = await serviceGetData(param)
 		console.log(response)
 		setData(response)
+
+		const responseRedSocial = await serviceGetRedSocial()
+		const filterRedSocial = responseRedSocial.filter((iterator) => {
+			return iterator.name === response.type
+		})
+		const mapRedSocial = filterRedSocial.map((iterator) => {
+			return {
+				name: iterator.label,
+				value: iterator.name,
+			}
+		})
+		setRedSocial([...mapRedSocial])
 		setCode(response.code)
 		setImageProfile(response.image)
 		setImageCover(response.image_cover)
