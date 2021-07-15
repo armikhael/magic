@@ -2,10 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-
 import queryString from 'query-string'
 import InfiniteScroll from 'react-infinite-scroll-component'
-
 import { Layout } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
@@ -35,15 +33,25 @@ const Search = (props) => {
 	}
 	const [orderBy, setOrderBy] = useState(sortDictionary['moreViewToday'])
 	const handleList = async () => {
-		const response = await serviceGetData({ query: query, page: page, sort: orderBy })
-		console.log(response)
-		if (response.statusCode === 200) {
-			setList([...list, ...response.data])
-			setPage(page + 1)
-			setLoading(false)
-		} else {
-			setLoading(false)
-			setError(response)
+		try {
+			const response = await serviceGetData({ query: query, page: page, sort: orderBy })
+			console.log(response)
+			if (response.statusCode === 200) {
+				setList([...list, ...response.data])
+				setPage(page + 1)
+				setLoading(false)
+			} else {
+				setLoading(false)
+				setError({
+					statusCode: 500,
+					message: 'Acción no permitida',
+				})
+			}
+		} catch (error) {
+			setError({
+				statusCode: 500,
+				message: 'Error inesperado',
+			})
 		}
 	}
 

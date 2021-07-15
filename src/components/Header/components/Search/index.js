@@ -153,7 +153,7 @@ export default function SearchNavbar() {
 											})
 										}}
 										className='cv-header-search-submenu-title'
-										to={`/category/${item.slug}`}>
+										to={`/search/q?categories=${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
@@ -181,7 +181,7 @@ export default function SearchNavbar() {
 											})
 										}}
 										className='cv-header-search-submenu-title'
-										to={`/category/${item.slug}`}>
+										to={`/search/q?categories=${item.slug}`}>
 										{item.name}
 									</Link>
 								</div>
