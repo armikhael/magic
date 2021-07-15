@@ -35,7 +35,10 @@ export default function SearchNavbar() {
 
 	const menu = (
 		<Menu className='cv-header-search-menu'>
-			<h3 className='cv-headr-title-search-menu'>Destacados</h3>
+			<h3 className='cv-headr-title-search-menu'>
+				{' '}
+				Destacados<a href='/search/q?representation=true'> Ver Todos</a>
+			</h3>
 			<Menu.Item>
 				<div className='cv-header-search-conetent-country'>
 					{isMenu.representation.map((item, i) => {
