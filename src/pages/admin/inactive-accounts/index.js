@@ -4,7 +4,7 @@ import React from 'react'
 import { Layout, Button, notification, Divider } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '@ant-design/icons'
-import { serviceGetAccountsInactives, serviceActiveAccount, serviceDeleteAccount } from './services'
+import { serviceGetAccountsInactives, serviceDeleteAccount } from './services'
 import './style.css'
 
 const { Content } = Layout
@@ -24,7 +24,7 @@ export default class InactiveAccounts extends React.Component {
 	handleActiveAccount = async (item) => {
 		item.image = this.state.image
 		console.log(item)
-		serviceActiveAccount(item)
+		serviceGetAccountsInactives(item)
 			.then((response) => {
 				this.setState({ list: response.data })
 				notification['success']({

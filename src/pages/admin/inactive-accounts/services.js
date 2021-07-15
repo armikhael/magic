@@ -1,5 +1,4 @@
 /** @format */
-/** @format */
 
 import axios from 'axios'
 
@@ -8,22 +7,6 @@ const serviceGetAccountsInactives = async (item) => {
 	await axios({
 		method: 'GET',
 		url: `${process.env.REACT_APP_HOST}/admin/inactive/`,
-	})
-		.then((response) => {
-			returnResponse = response.data
-		})
-		.catch((error) => {
-			returnResponse = error.response.data
-		})
-	return returnResponse
-}
-
-const serviceActiveAccount = async (item) => {
-	let returnResponse
-	await axios({
-		method: 'PUT',
-		url: `${process.env.REACT_APP_HOST}/account/active/`,
-		data: item,
 	})
 		.then((response) => {
 			returnResponse = response.data
@@ -49,4 +32,4 @@ const serviceDeleteAccount = async (item) => {
 	return returnResponse
 }
 
-export { serviceGetAccountsInactives, serviceActiveAccount, serviceDeleteAccount }
+export { serviceGetAccountsInactives, serviceDeleteAccount }
