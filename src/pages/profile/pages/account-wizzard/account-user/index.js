@@ -4,11 +4,10 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Form, Button, notification, Card, Row, Col } from 'antd'
 
-import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
 
-import { serviceCreateData } from './services'
+import { serviceCreateData, serviceGetData } from './services'
 import insterfaceForm from './interface'
 import './style.css'
 
@@ -20,8 +19,18 @@ export default function AccountUser(props) {
 	const [user, setUser] = useState()
 
 	useEffect(() => {
+		serviceGetData().then((response) => {
+			const mapRedSocial = response.data.map((iterator) => {
+				return {
+					name: iterator.label,
+					value: iterator.name,
+				}
+			})
+			console.log(mapRedSocial)
+			setRedSocial([...mapRedSocial])
+		})
 		setData(insterfaceForm())
-		setRedSocial([...CONSTANTS.RED_SOCIAL])
+
 		setUser(JSON.parse(localStorage.getItem('user')))
 		console.log('useEffects')
 	}, [props])
