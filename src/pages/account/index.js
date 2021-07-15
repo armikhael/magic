@@ -9,6 +9,7 @@ import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
+import { CONSTANTS } from '../../components/ServiceCommons/Constant'
 
 import CreateUser from './components/CreateUser'
 import InterestAccounts from './components/InterestAccounts'
@@ -17,8 +18,8 @@ import Views from './components/Views'
 import LinkTree from './components/LinkTree'
 import Plans from './components/Plans'
 
-import './style.css'
 import { serviceAccountDetail, serviceGetLinks, serviceGetPermissions } from './services'
+import './style.css'
 
 const { Content } = Layout
 
@@ -44,8 +45,7 @@ export default class AccountDetail extends React.Component {
 			label: this.props.match.params.name,
 		})
 		try {
-			let redSocial = ['-instagram', '-facebook', '-tiktok']
-			const includeName = redSocial.find((item) => {
+			const includeName = CONSTANTS.SLUG_ADMITED.find((item) => {
 				return this.props.match.params.name.includes(item)
 			})
 			if (includeName !== undefined) {

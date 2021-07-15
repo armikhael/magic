@@ -3,7 +3,7 @@
 export const CONSTANTS = {
 	QUANTITY_POST: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 	TIMES: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
-	SLUG_ADMITED: ['-instagram', '-facebook', '-tiktok'],
+	SLUG_ADMITED: ['-instagram', '-facebook', '-tiktok', '-youtube'],
 	RED_SOCIAL: [
 		{
 			name: 'Instagram',
@@ -16,6 +16,10 @@ export const CONSTANTS = {
 		{
 			name: 'TikTok',
 			value: 'tiktok',
+		},
+		{
+			name: 'YouTube',
+			value: 'youtube',
 		},
 	],
 	TYPE_POST: {
