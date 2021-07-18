@@ -24,7 +24,7 @@ export default function UploadCover(props) {
 	])
 
 	const beforeUpload = (file) => {
-		const isSize = file.size / 1024 / 1024 <= 0.1
+		const isSize = file.size / 1024 / 1024 <= 0.5
 		if (!isSize) {
 			notification['error']({
 				message: `Ups!`,

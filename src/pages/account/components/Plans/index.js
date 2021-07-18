@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { List, Avatar } from 'antd'
 import { WhatsAppOutlined } from '@ant-design/icons'
-import { HeartOutlined, UserOutlined, EnvironmentOutlined, SmileOutlined } from '@ant-design/icons'
+import { HeartOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons'
 import { Row, Comment } from 'antd'
 
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
@@ -75,7 +75,21 @@ const Plans = (props) => {
 										<br />
 										<ModalService
 											componentHeader={'Condiciones del Servicio'}
-											componentDescription={`Para este servicio deberás entregar un producto de tu marca para crear generar el contenido correspondiente con ${props.componentData.account} `}
+											componentDescription={`
+											Debes entregarnos un producto de tu marca para generar el contenido correspondiente con ${
+												props.componentData.account
+											}, promocionar tu producto tiene un costo de: 
+											<br> 
+											<p style="font-size:24px; text-align:center">${parseInt(props.componentData.followers / 1000)} Dólares</p> 
+											<p>Nota: Puedes hacer el pago en tu moneda local</p>
+											<p>Promocionar tu producto inclye: </p>
+											<ul>
+												<li>Una historia</li>
+												<li>Un Reels</li>
+												<li>Una Publicación en el Feed</li>
+											</ul>
+											<p style="text-align:center">¿Estas de acuerdo?</p>
+											`}
 											componentData={props.componentData}
 											componentType={'Promocionar un Producto'}
 											componentCategory={'contrato-producto'}
@@ -83,23 +97,7 @@ const Plans = (props) => {
 									</p>
 								}
 							/>
-							<Comment
-								author={<p className='cv-detail-actiones-title'>Promocionar un Servicio </p>}
-								avatar={<EnvironmentOutlined style={{ fontSize: '26px' }} />}
-								content={
-									<p>
-										Crea una sorpresa a un amig@
-										<br />
-										<ModalService
-											componentHeader={'Condiciones del Servicio'}
-											componentDescription={`Es necesario específicar que servicio en particular deseas promover y dicho servicio debe estar cerca de la localidad de ${props.componentData.account}`}
-											componentData={props.componentData}
-											componentType={'Promocionar un Servicio'}
-											componentCategory={'contrato-servicio'}
-										/>
-									</p>
-								}
-							/>
+
 							<Comment
 								author={<p className='cv-detail-actiones-title'>Promocionar una Cuenta</p>}
 								avatar={<UserOutlined style={{ fontSize: '26px' }} />}
@@ -109,7 +107,10 @@ const Plans = (props) => {
 										<br />
 										<ModalService
 											componentHeader={'Condiciones del Servicio'}
-											componentDescription={`Debes contar con al menos 6 publicaciones en tu cuenta y tenerla pública durante el proceso publicitario`}
+											componentDescription={`
+											Este método es usado para viralizar tu cuenta en el menor tiempo posible, logra que tu cuenta pueda generar mayor confianza y que puedas destacar sobre tu competencia.
+											<p style="text-align:center; margin-top: 15px;">¿Quieres conocer los paquetes?</p> 
+											`}
 											componentData={props.componentData}
 											componentType={'Promocionar una Cuenta'}
 											componentCategory={'contrato-cuenta'}

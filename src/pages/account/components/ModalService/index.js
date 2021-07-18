@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react'
+import renderHTML from 'react-render-html'
 import { Modal } from 'antd'
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
@@ -32,7 +33,7 @@ const ModalService = (props) => {
 				Click aquí
 			</span>
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-				<p>{props.componentDescription}</p>
+				{renderHTML(props.componentDescription)}
 			</Modal>
 		</>
 	)

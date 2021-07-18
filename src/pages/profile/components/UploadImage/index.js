@@ -25,7 +25,7 @@ export default function UploadImage(props) {
 
 	const beforeUpload = (file) => {
 		console.log('beforeUpload', file)
-		const isSize = file.size / 1024 / 1024 <= 0.1
+		const isSize = file.size / 1024 / 1024 <= 0.5
 		if (!isSize) {
 			notification['error']({
 				message: `Ups!`,
