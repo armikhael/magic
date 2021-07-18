@@ -82,7 +82,7 @@ const AccountDetails = (props) => {
 											componentOptions={[...CONSTANTS.BOOLEAN]}
 										/>
 
-										{data.followers >= 10000 && (
+										{data.followers >= 35000 && (
 											<>
 												<RadioField
 													componentClass={'cv-auth-login-field-input'}
