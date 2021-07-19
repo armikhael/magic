@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { Button } from 'antd'
+import { Button, notification } from 'antd'
 
 import { LinkOutlined } from '@ant-design/icons'
 
@@ -11,13 +11,14 @@ import { ColorPicker, useColor } from 'react-color-palette'
 
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
+import { serviceUpdateData } from './services'
 import './style.css'
 
 const LinkTree = (props) => {
-	const [background, setBackground] = useColor('hex', '#FFFFFF')
-	const [link, setLink] = useColor('hex', '#210358')
-	const [text, setText] = useColor('hex', '#FFFFFF')
-	const [icon, setIcon] = useColor('hex', '#FFFFFF')
+	const [background, setBackground] = useColor('hex', props.componentData.color.background)
+	const [link, setLink] = useColor('hex', props.componentData.color.link)
+	const [text, setText] = useColor('hex', props.componentData.color.text)
+	const [icon, setIcon] = useColor('hex', props.componentData.color.icon)
 	const [user] = useState(JSON.parse(localStorage.getItem('user')))
 	const [current, setCurrent] = useState({
 		color: background,
@@ -29,6 +30,32 @@ const LinkTree = (props) => {
 		action: 'view',
 		label: props.componentData.name,
 	})
+
+	const handleUpdate = () => {
+		const item = {
+			background: background.hex,
+			text: text.hex,
+			icon: icon.hex,
+			link: link.hex,
+		}
+		props.componentData.color = item
+		console.log(props.componentData)
+		serviceUpdateData(props.componentData).then((response) => {
+			console.log(response)
+			if (response.statusCode === 200) {
+				console.log(response.data.name)
+				notification['success']({
+					message: `Felicidades!`,
+					description: `Tus enlaces han sido actualizados`,
+				})
+			} else {
+				notification['error']({
+					message: `Ups!`,
+					description: `${response.message}`,
+				})
+			}
+		})
+	}
 
 	return (
 		<>
@@ -105,6 +132,14 @@ const LinkTree = (props) => {
 							})
 						}}>
 						Iconos
+					</Button>
+
+					<Button
+						className={'cv-linktree-button-submit'}
+						onClick={() => {
+							handleUpdate()
+						}}>
+						Actualizar
 					</Button>
 
 					<ColorPicker
