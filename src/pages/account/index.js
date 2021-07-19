@@ -53,8 +53,6 @@ export default class AccountDetail extends React.Component {
 				console.log(accountDetail)
 				if (accountDetail.account[0].representation === true) {
 					this.setState({ representation: true, textContact: 'Publicidad y Canjes' })
-					accountDetail.account[0].code = 56
-					accountDetail.account[0].phone = 979582051
 				}
 
 				this.setState({
