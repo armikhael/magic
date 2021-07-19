@@ -11,10 +11,12 @@ import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/E
 import './style.css'
 
 const Plans = (props) => {
-	const [text, setText] = useState('Planes')
+	const [text, setText] = useState('Planes Publicitarios')
 
 	useEffect(() => {
-		setText('Servicios Publicitarios')
+		if (props.componentData.plans.length <= 0) {
+			setText('Servicios Publicitarios')
+		}
 	}, [props])
 
 	const handleRedirect = (item) => {
