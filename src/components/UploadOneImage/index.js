@@ -23,7 +23,7 @@ export default function UploadOneImage(props) {
 
 	const beforeUpload = (file) => {
 		console.log('beforeUpload', file)
-		const isSize = file.size / 1024 / 1024 <= 0.1
+		const isSize = file.size / 1024 / 1024 <= 0.5
 		if (!isSize) {
 			notification['error']({
 				message: `Ups!`,
@@ -48,10 +48,10 @@ export default function UploadOneImage(props) {
 
 	const handleSaveImage = (item) => {
 		console.log('handleSaveImage', item)
-		console.log('name', props.componentName)
+		console.log('name', props.componentData.name)
 		let formData = new FormData()
 		formData.append('image', item[0].originFileObj)
-		formData.append('name', props.componentName)
+		formData.append('name', props.componentData.name)
 		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
 			console.log('imagen subida', response)

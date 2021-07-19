@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute/'
 import AdminRoute from './components/AdminRoute'
 
 import Test from '../pages/test'
+import TestClass from '../pages/test/test-class'
 
 import Home from '../pages/home'
 import Profile from '../pages/profile'
@@ -44,6 +45,7 @@ const Routers = (props) => (
 			<Switch>
 				<Route exact path='/' component={Home} />
 				<Route exact path='/test' component={Test} />
+				<Route exact path='/test-class' component={TestClass} />
 				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/auth/register' component={Register} />
 				<Route exact path='/auth/recovery' component={Recovery} />

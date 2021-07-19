@@ -1,5 +1,36 @@
 /** @format */
 
+.cv-linktree-content {
+	position: relative;
+	width: 100%;
+}
+
+.cv-linktree-card {
+	width: 800px;
+	max-width: 90%;
+	margin: 0 auto 35px;
+	border-radius: 10px;
+}
+
+.cv-linktree-button-submit {
+	color: #fff;
+	font-weight: 900;
+	font-size: 16px;
+	height: 39px;
+	background-color: #f61073;
+	border-radius: 50px;
+	padding: 6px;
+	width: 150px;
+	max-width: 100%;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.cv-linktree-button-add {
+	background-color: #210257;
+	margin-top: 15px;
+}
+
 .App {
 	text-align: center;
 }
@@ -33,8 +64,8 @@
 .characters li {
 	display: flex;
 	align-items: center;
-	border: solid 2px #d0d0d0;
-	border-radius: 0.2em;
+	border: solid 1px #fde3eb;
+	border-radius: 5px;
 	padding: 0.5em 0.8em 0.5em 0.5em;
 	margin-bottom: 1em;
 }
@@ -50,7 +81,7 @@
 	flex-shrink: 0;
 	width: 2em;
 	height: 2em;
-	background-color: #e8e8e8;
+	background-color: #ffffff;
 	padding: 0.5em;
 	margin-right: 0.5em;
 }
@@ -59,4 +90,7 @@
 	display: block;
 	width: 100%;
 	height: auto;
+}
+.cv-linktree-button {
+	float: right;
 }
