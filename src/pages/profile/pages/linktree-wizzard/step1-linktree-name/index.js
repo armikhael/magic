@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import { Form, Button, notification, Card, Row, Col } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
-import ModalTutorial from '../../../../../components/ModalTutorial'
 
 import { serviceCreateData } from './services'
 import './style.css'
