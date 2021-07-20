@@ -128,14 +128,14 @@ const LinkTreeColor = (props) => {
 						onClick={() => {
 							setCurrent('link')
 						}}>
-						Enlaces
+						Botones
 					</Radio.Button>
 					<Radio.Button
 						value='text'
 						onClick={() => {
 							setCurrent('text')
 						}}>
-						Texto
+						Textos
 					</Radio.Button>
 					<Radio.Button
 						value='icon'
