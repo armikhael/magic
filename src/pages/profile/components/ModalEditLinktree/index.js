@@ -35,6 +35,13 @@ const ModalEditLinktree = (props) => {
 					href={`/profile/linktree-urls/${props.componentData.name}/modify`}>
 					Editar Enlaces
 				</Button>
+				<Button
+					block
+					style={{ margin: '8px 0px' }}
+					shape='round'
+					href={`/profile/linktree-color/${props.componentData.name}/modify`}>
+					Editar Colores
+				</Button>
 			</Modal>
 		</>
 	)

@@ -1,56 +1,66 @@
 /** @format */
-import renderHTML from 'react-render-html'
-import React from 'react'
-import { Layout, Row, Col } from 'antd'
-
-const { Content } = Layout
-
-const html = `
-
-<div style="width:50%; margin: 0px auto; text-align: center">
-    <img style="width:100%; border-radius: 10px;" style="border-radius: 10px;" src="https://i.ibb.co/9gxfHB7/d119.jpg" alt="logo">
-    <p style="margin: 10px; font-weight: bold; font-size: 18px;">Cuentas Virales, la aplicación de Publicidad Creativa</p>
-</div>
-<p style="text-align:center"> ¿Quienes Somos? 🤔 </p>
-<p> Una agencia publicitaria con más de 5 años de trayectoria realizando publicidad a distintas marcas con técnicas de "Growth Hacking" bien conocido como crecimiento exponencial dentro de las redes sociales.</p>
-<ul>
-    <li><a href="https://www.instagram.com/publicidadcreativa/" target="_blank" > Nuestra Agencia</a></li>
-    <li><a href="https://www.instagram.com/cuentasvirales/" target="_blank" > Nuestro Portafolio</a></li>
-</ul>
-<p style="text-align:center"> ¿Qué dicen de Nosotros? 🧐  </p>
-<p> Sabemos que las acciones hablan mucho mas que las palabras y es por eso que te dejaremos algunos enlaces para que nos conozcas un poco más.</p>
-<ul>
-    <li><a href="https://www.facebook.com/publicidadcreativafb/reviews/?ref=page_internal" target="_blank" > ¿Qué dicen de nosotros?</a></li>
-</ul>
-
-<p style="text-align:center">¿Con quién hemos trabajamos? 🥸</p>
-<p> 
-    Principalmente con Marcas Personales y Emprendimientos, ayudándolos a formar comunicades mucho más amplias para competir dentro del mercado de las redes sociales y para demoostrarte hechos los resultados de otras marcas te dejamos nuestro portafolio de
-</p>
-<ul>
-    <li><a href="https://drive.google.com/drive/folders/1qma_VjX-goRTLxtiCtdXx5S0htV4CI9M?usp=sharing"> Clientes Atendidos </a></li>
-</ul>
-
-
-
-`
+import React, { useState } from 'react'
+import { Button } from 'antd'
+import 'react-color-palette/lib/css/styles.css'
+import { ColorPicker, useColor } from 'react-color-palette'
 
 export default function App() {
+	const [background, setBackground] = useColor('hex', '#121212')
+	const [text, setText] = useColor('hex', '#FFFFFF')
+	const [icon, setIcon] = useColor('hex', '#FFFFFF')
+	const [current, setCurrent] = useState({
+		color: background,
+		method: setBackground,
+	})
+
 	return (
 		<>
-			<Content className='cv-container-main'>
-				<div className='cv-help-content'>
-					<h1 className='cv-help-title'>¿Necesitas Ayuda?</h1>
-				</div>
-				<Layout>
-					<Row>
-						<Col xs={24} sm={24} md={8}></Col>
-						<Col xs={24} sm={24} md={16}>
-							<div className='cv-help-content'>{renderHTML(html)}</div>
-						</Col>
-					</Row>
-				</Layout>
-			</Content>
+			<div style={{ width: '300px', height: '50px', background: background.hex, marginTop: '20px' }}>
+				<div
+					style={{
+						width: '20px',
+						height: '30px',
+						background: icon.hex,
+						margin: '10px',
+						float: 'left',
+					}}></div>
+				<span style={{ color: text.hex, margin: '10px', float: 'left' }}>Letra </span>
+			</div>
+
+			<Button
+				className={'cv-linktree-button-submit'}
+				onClick={() => {
+					setCurrent({
+						color: background,
+						method: setBackground,
+					})
+				}}>
+				Fondo
+			</Button>
+
+			<Button
+				className={'cv-linktree-button-submit'}
+				onClick={() => {
+					setCurrent({
+						color: text,
+						method: setText,
+					})
+				}}>
+				Texto
+			</Button>
+
+			<Button
+				className={'cv-linktree-button-submit'}
+				onClick={() => {
+					setCurrent({
+						color: icon,
+						method: setIcon,
+					})
+				}}>
+				Iconos
+			</Button>
+
+			<ColorPicker width={250} height={150} color={current.color} onChange={current.method} hideHSV hideRGB />
 		</>
 	)
 }

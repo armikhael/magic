@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute/'
 import AdminRoute from './components/AdminRoute'
 
 import Test from '../pages/test'
+import TestClass from '../pages/test/test-class'
 
 import Home from '../pages/home'
 import Profile from '../pages/profile'
@@ -22,6 +23,7 @@ import AccountActivation from '../pages/profile/pages/account-wizzard/account-ac
 import LinkTreeName from '../pages/profile/pages/linktree-wizzard/step1-linktree-name'
 import LinkTreeInfo from '../pages/profile/pages/linktree-wizzard/step2-linktree-info'
 import LinkTreeUrl from '../pages/profile/pages/linktree-wizzard/step3-linktree-urls'
+import LinkTreeColor from '../pages/profile/pages/linktree-wizzard/step4-linktree-color'
 import Post from '../pages/profile/pages/post-wizzard/post-create'
 import PostView from '../pages/profile/pages/post-wizzard/post-view'
 import Category from '../pages/category'
@@ -44,6 +46,7 @@ const Routers = (props) => (
 			<Switch>
 				<Route exact path='/' component={Home} />
 				<Route exact path='/test' component={Test} />
+				<Route exact path='/test-class' component={TestClass} />
 				<Route exact path='/auth/login' component={Login} />
 				<Route exact path='/auth/register' component={Register} />
 				<Route exact path='/auth/recovery' component={Recovery} />
@@ -66,6 +69,7 @@ const Routers = (props) => (
 				<PrivateRoute exact path='/profile/linktree-name/' component={LinkTreeName} />
 				<PrivateRoute exact path='/profile/linktree-info/:name/:modify?' component={LinkTreeInfo} />
 				<PrivateRoute exact path='/profile/linktree-urls/:name/:modify?' component={LinkTreeUrl} />
+				<PrivateRoute exact path='/profile/linktree-color/:name/:modify?' component={LinkTreeColor} />
 				<PrivateRoute exact path='/profile/post-create' component={Post} />
 				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />
 
