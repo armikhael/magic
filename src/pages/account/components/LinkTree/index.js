@@ -1,6 +1,6 @@
 /** @format */
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { LinkOutlined } from '@ant-design/icons'
 
@@ -9,6 +9,10 @@ import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/E
 import './style.css'
 
 const LinkTree = (props) => {
+	const [link] = useState(props.componentData.color.link || '#210358')
+	const [text] = useState(props.componentData.color.text || '#FFFFFF')
+	const [icon] = useState(props.componentData.color.icon || '#FFFFFF')
+
 	serviceEventGoogleAnalytics({
 		category: 'enlace-personalizado',
 		action: 'view',
@@ -35,9 +39,9 @@ const LinkTree = (props) => {
 					{props.componentData.links.map((item, key) => {
 						return (
 							<a href={item.url} target='_blank' key={key} rel='noopener noreferrer'>
-								<div className='cv-linktree-link'>
-									<LinkOutlined className='cv-linktree-link-icon' />
-									<span>{item.title}</span>
+								<div className='cv-linktree-link' style={{ background: link }}>
+									<LinkOutlined className='cv-linktree-link-icon' style={{ color: icon }} />
+									<span style={{ color: text }}>{item.title}</span>
 								</div>
 							</a>
 						)

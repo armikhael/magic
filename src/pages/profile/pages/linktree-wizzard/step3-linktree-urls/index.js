@@ -17,6 +17,7 @@ export default function LinkTreeUrl(props) {
 	const [data, setData] = useState()
 	const [buttonText, setButtonText] = useState('Finalizar')
 	const [links, setLinks] = useState([])
+	const [isModify, setIsModify] = useState(false)
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -35,6 +36,7 @@ export default function LinkTreeUrl(props) {
 	useEffect(() => {
 		if (props.match.params.modify) {
 			setButtonText('Actualizar')
+			setIsModify(true)
 		}
 		console.log(props.match.params.name)
 		fetchData(props.match.params.name)
@@ -60,14 +62,17 @@ export default function LinkTreeUrl(props) {
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
-				console.log(response.data.name)
-				notification['success']({
-					message: `Felicidades!`,
-					description: `Tus enlaces han sido actualizados`,
-				})
-				setTimeout(() => {
-					history.push(`/profile/linktree`)
-				}, 2000)
+				if (isModify === false) {
+					history.push(`/profile/linktree-color/${response.data.name}`)
+				} else {
+					notification['success']({
+						message: `Felicidades!`,
+						description: `Se ha atualizado con éxito`,
+					})
+					setTimeout(() => {
+						history.push(`/profile/linktree`)
+					}, 2000)
+				}
 			} else {
 				notification['error']({
 					message: `Ups!`,
