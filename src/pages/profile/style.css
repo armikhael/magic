@@ -13,6 +13,7 @@ p {
 	margin-top: 40px;
 	color: #797979;
 	font-weight: 900;
+	width: 100%;
 }
 
 .cv-profile-card-item {
@@ -126,20 +127,6 @@ p {
 	background-color: #ffffff;
 }
 
-.cv-profile-button-submit-change-password {
-	color: #fff;
-	font-weight: 900;
-	font-size: 16px;
-	height: 39px;
-	background-color: #f61073;
-	border-radius: 50px;
-	padding: 6px;
-	width: 200px;
-	max-width: 100%;
-	margin: 0 auto;
-	cursor: pointer;
-}
-
 .cv-profile-main-info-container {
 	height: 100%;
 }
@@ -233,5 +220,9 @@ p {
 	}
 	.cv-profile-upload-image {
 		width: 100%;
+	}
+	.cv-profile-header {
+		padding: 0;
+		text-align: center;
 	}
 }

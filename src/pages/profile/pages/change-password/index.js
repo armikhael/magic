@@ -1,23 +1,23 @@
 /** @format */
 
 import React, { useState } from 'react'
-import { Layout, Card, Button, Form, notification, Row, Col } from 'antd'
-import { ApiOutlined } from '@ant-design/icons'
+import { Layout, Card, Button, Form, notification, Row, Col, Result } from 'antd'
+import { SafetyOutlined, SmileOutlined } from '@ant-design/icons'
 
 import InputField from '../../../../components/Form/Input'
 
 import { serviceUpdateData } from './services'
+import './style.css'
+
 const { Header } = Layout
 
-const ChangePassword = (props) => {
+export default function ChangePassword() {
 	const [form] = Form.useForm()
 	const [user] = useState(JSON.parse(localStorage.getItem('user')))
 
 	const handleOnFinish = (item) => {
 		item.email = user.email
-		console.log(item)
 		serviceUpdateData(item).then((response) => {
-			console.log(response)
 			form.resetFields(['password', 'new_password'])
 			if (response.statusCode === 200) {
 				notification['success']({
@@ -35,14 +35,22 @@ const ChangePassword = (props) => {
 
 	return (
 		<>
-			{user.autentication !== 'google' && (
-				<Layout className='cv-perfil-main-container'>
-					<Row justify='center'>
-						<Col xs={22} sm={12} md={8}>
-							<Header className='cv-perfil-title-main-container'>
-								<ApiOutlined className='cv-perfil-title-main-icon' />
-								<h3 className='cv-perfil-title-main-title'>Cambiar Contraseña</h3>
-							</Header>
+			<div className='cv-content-main'>
+				<Header className='cv-profile-header'>
+					<h3 className='cv-profile-header-title'>
+						{' '}
+						<SafetyOutlined className='cv-profile-card-item-img-icon' /> Cambiar contraseña
+					</h3>
+				</Header>
+				<div className='cv-profile-header-sub-title'>
+					<a href='/profile' rel='noopener noreferrer'>
+						{' '}
+						Tu cuenta
+					</a>
+				</div>
+				<Row justify='center'>
+					{user.autentication !== 'google' && (
+						<Col xs={24} sm={24} md={16} className='cv-profile-content-change-password'>
 							<Card className='cv-profile-main-container'>
 								<Layout className='cv-profile-container'>
 									<Form form={form} onFinish={handleOnFinish}>
@@ -64,23 +72,39 @@ const ChangePassword = (props) => {
 												componentPlaceholder={'Ingrese tu nueva contraseña'}
 												componentType={'password'}
 											/>
-											<Form.Item>
-												<Button
-													htmlType={'submit'}
-													className={'cv-profile-button-submit-change-password'}>
-													Confirmar
-												</Button>
-											</Form.Item>
+											<div className={'cv-profile-button-submit-change-password-content'}>
+												<Form.Item>
+													<Button
+														htmlType={'submit'}
+														className={'cv-profile-button-submit-change-password'}>
+														Confirmar
+													</Button>
+												</Form.Item>
+											</div>
 										</div>
 									</Form>
 								</Layout>
 							</Card>
 						</Col>
-					</Row>
-				</Layout>
-			)}
+					)}
+					{user.autentication === 'google' && (
+						<Col xs={24} sm={24} md={16} className='cv-profile-content-change-password'>
+							<Card className='cv-profile-main-container'>
+								<Result
+									icon={<SmileOutlined />}
+									title='Google sesión'
+									subTitle='Si iniciaste sesión con Google no es necesario que cambies tu contraseña.'
+									extra={
+										<Button href='/profile' type='primary'>
+											Tu cuenta
+										</Button>
+									}
+								/>
+							</Card>
+						</Col>
+					)}
+				</Row>
+			</div>
 		</>
 	)
 }
-
-export default ChangePassword
