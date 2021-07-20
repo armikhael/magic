@@ -50,7 +50,7 @@ export default function LinkTreeName(props) {
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card mt100'
-								title='Creación de la cuenta (1/3)'
+								title='Creación de mis enlaces (1/3)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<InputField
