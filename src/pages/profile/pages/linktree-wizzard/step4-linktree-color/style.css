@@ -1,0 +1,67 @@
+/** @format */
+
+.rcp-light {
+	--rcp-background: #ffffff;
+	--rcp-input-text: #111111;
+	--rcp-input-border: rgba(0, 0, 0, 0.1);
+	--rcp-input-label: #717171;
+}
+.cv-linktree-content {
+	text-align: center;
+	padding: 24px 12px;
+	height: 100%;
+	width: 100%;
+	max-width: 680px;
+	margin: 0px auto;
+}
+
+.cv-linktree-img {
+	margin-top: 12px;
+	margin-bottom: 16px;
+	border-radius: 50%;
+	width: 96px;
+	height: 96px;
+}
+
+.cv-linktree-title {
+	font-size: 16px;
+	line-height: 1.5;
+	font-weight: 900;
+}
+
+.cv-linktree-description {
+	text-align: center;
+	line-height: 1.5;
+	font-size: 14px;
+}
+
+.cv-linktree-link {
+	border: 2px solid #210358;
+	background-color: #210358;
+	color: rgb(255, 255, 255);
+	margin-bottom: 16px;
+	padding: 17px;
+	font-weight: 900;
+	border-radius: 7px;
+}
+
+.cv-linktree-link-icon {
+	float: left;
+	font-size: 19px;
+}
+
+.cv-linktree-logo-content {
+	width: 100%;
+	height: 50px;
+}
+
+.cv-linktree-logo {
+	color: #424346;
+	font-weight: 900;
+	font-size: 14px;
+	text-align: center;
+}
+
+.cv-linktree-logo img {
+	width: 35px;
+}
