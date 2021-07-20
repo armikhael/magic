@@ -15,7 +15,7 @@ export default function LinkTreeUrl(props) {
 	const history = useHistory()
 	const [form] = Form.useForm()
 	const [data, setData] = useState()
-	const [buttonText, setButtonText] = useState('Finalizar')
+	const [buttonText, setButtonText] = useState('Siguiente')
 	const [links, setLinks] = useState([])
 	const [isModify, setIsModify] = useState(false)
 
