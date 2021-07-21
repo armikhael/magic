@@ -1,13 +1,12 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Layout, Row, Col, Button, Form, Divider } from 'antd'
 
 import InputField from '../../../components/Input'
 import ModalTutorial from '../../../components/ModalTutorial'
-import Loading from '../../../components/Loading/Loading'
 
 import { authRegisterServices } from './services'
 import './style.css'
@@ -16,7 +15,6 @@ const { Content } = Layout
 
 const Register = (props) => {
 	const history = useHistory()
-	const [loading, setLoading] = useState(false)
 
 	const handleOnFinish = (item) => {
 		authRegisterServices(item).then((response) => {
@@ -36,9 +34,6 @@ const Register = (props) => {
 		})
 	}
 
-	if (loading) {
-		return <Loading />
-	}
 	return (
 		<>
 			<div className='cv-login-content'>

@@ -46,10 +46,9 @@ const authLoginServices = async (item, redirect) => {
 					message: `!Bienvenido a Cuentas Virales!`,
 					description: `Ahora registra tus cuentas de redes sociales`,
 				})
-				let timer = setTimeout(() => {
+				setTimeout(() => {
 					redirect.history.push('/profile')
 				}, 1000)
-				return () => clearTimeout(timer)
 			} else {
 				notification['warning']({
 					message: `Problema para Iniciar Sesión`,
