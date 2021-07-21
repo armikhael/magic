@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-const authRegisterServices = async (item, redirect) => {
+const authRegisterServices = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'POST',
@@ -11,16 +11,11 @@ const authRegisterServices = async (item, redirect) => {
 		data: item,
 	})
 		.then((response) => {
-			console.log(response)
 			if (response.data.statusCode <= 200) {
 				notification['success']({
 					message: `!Bienvenido a Cuentas Virales!`,
 					description: `Su cuenta fue registrada con exito...`,
 				})
-				let timer = setTimeout(() => {
-					redirect.history.push('/auth/login')
-				}, 7000)
-				return () => clearTimeout(timer)
 			} else {
 				notification['warning']({
 					message: `Problema para Iniciar Sesión`,

@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-
 import { Form, Button, notification, Col, Card, Row } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
