@@ -76,5 +76,8 @@ https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-f
 
 ### Slug Max Size 500M (Hacer esto por consola):
 
-heroku plugins:install heroku-repo heroku repo:gc --app front-cuentas-virales heroku repo:purge_cache --app
-front-cuentas-virales
+heroku plugins:install heroku-repo
+
+heroku repo:gc --app front-cuentas-virales
+
+heroku repo:purge_cache --app front-cuentas-virales
