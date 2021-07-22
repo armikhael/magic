@@ -52,7 +52,10 @@ export default class AccountDetail extends React.Component {
 				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name })
 				console.log(accountDetail)
 				if (accountDetail.account[0].representation === true) {
-					this.setState({ representation: true, textContact: 'Publicidad y Canjes' })
+					this.setState({
+						representation: true,
+						textContact: 'Publicidad y Canjes',
+					})
 				}
 
 				this.setState({

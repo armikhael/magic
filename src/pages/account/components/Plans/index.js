@@ -17,6 +17,11 @@ const Plans = (props) => {
 		if (props.componentData.plans.length <= 0) {
 			setText('Servicios Publicitarios')
 		}
+
+		if (props.componentData.representation === true) {
+			props.componentData.code = '56'
+			props.componentData.phone = '979582051'
+		}
 	}, [props])
 
 	const handleRedirect = (item) => {
@@ -32,7 +37,7 @@ const Plans = (props) => {
 
 	return (
 		<>
-			{props.componentData.plans.length > 0 && (
+			{props.componentData.plans.length > 0 && props.componentData.representation === false && (
 				<div className='cv-detail-content-plans'>
 					<div className='cv-detail-content-plans-main'>
 						<h3 className='cv-detail-plans-title'>{text}</h3>
@@ -67,7 +72,7 @@ const Plans = (props) => {
 				</div>
 			)}
 
-			{props.componentData.plans.length <= 0 && (
+			{(props.componentData.plans.length <= 0 || props.componentData.representation === true) && (
 				<div className='cv-detail-content-plans'>
 					<div className='cv-detail-content-plans-main'>
 						<h3 className='cv-detail-plans-title'>{text}</h3>
