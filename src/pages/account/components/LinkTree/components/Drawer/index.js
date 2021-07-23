@@ -1,0 +1,86 @@
+/** @format */
+
+import React, { useState, useEffect } from 'react'
+import { Button, Drawer, List } from 'antd'
+import { AlertOutlined, RightOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
+
+import serviceEventGoogleAnalytics from '../../../../../../components/ServiceCommons/EventsGoogleAnalitycs'
+
+import './style.css'
+
+const DrawerLinktree = (props) => {
+	const [showDrawer, setShowDrawer] = useState(false)
+
+	useEffect(() => {
+		console.log('useEffect')
+	}, [props])
+
+	const data = [
+		{ key: '1', text: '¿Tener un enlace como este?', link: '/help/mis-enlaces' },
+		{ key: '2', text: '¿Crecer en Instagram?', link: '/help/posicionamiento' },
+	]
+
+	return (
+		<>
+			<Button
+				className='cv-layout-btn-help'
+				shape='circle'
+				icon={<AlertOutlined />}
+				size={'large'}
+				style={{ color: '#ec3f7c' }}
+				onClick={() => {
+					setShowDrawer(true)
+				}}
+			/>
+			<Drawer
+				title='¿En qué te podemos ayudar?'
+				placement={'bottom'}
+				closable={false}
+				onClose={() => {
+					setShowDrawer(false)
+				}}
+				visible={showDrawer}
+				key={'bottom'}>
+				<List
+					size='large'
+					dataSource={data}
+					renderItem={(item) => (
+						<List.Item
+							actions={[
+								<Link
+									key={item.key}
+									to={item.link}
+									onClick={() => {
+										serviceEventGoogleAnalytics({
+											action: 'click',
+											category: 'ayuda-publicitaria',
+											label: item.text,
+										})
+										console.log('clickDrawer')
+									}}>
+									<RightOutlined />
+								</Link>,
+							]}>
+							<Link
+								key={item.key}
+								to={item.link}
+								onClick={() => {
+									serviceEventGoogleAnalytics({
+										action: 'click',
+										category: 'ayuda-publicitaria',
+										label: item.text,
+									})
+									console.log('clickDrawer')
+								}}>
+								{item.text}{' '}
+							</Link>
+						</List.Item>
+					)}
+				/>
+			</Drawer>
+		</>
+	)
+}
+
+export default DrawerLinktree
