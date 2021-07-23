@@ -1,14 +1,19 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { LinkOutlined } from '@ant-design/icons'
 
+import Loading from '../../../../components/Loading/Loading'
+import PageError from '../../../../components/Errors/PageError'
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
+import DrawerLinktree from './components/Drawer'
 import './style.css'
 
 const LinkTree = (props) => {
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(false)
 	const [link] = useState(props.componentData.color.link || '#210358')
 	const [text] = useState(props.componentData.color.text || '#FFFFFF')
 	const [icon] = useState(props.componentData.color.icon || '#FFFFFF')
@@ -18,6 +23,25 @@ const LinkTree = (props) => {
 		action: 'view',
 		label: props.componentData.name,
 	})
+
+	useEffect(() => {
+		console.log('useEffect')
+		if (props.componentData) {
+			setLoading(false)
+		} else {
+			setError({
+				statusCode: 404,
+				message: 'Enlace no encontrado',
+			})
+		}
+	}, [props])
+
+	if (loading) {
+		return <Loading />
+	}
+	if (error) {
+		return <PageError detailError={error} />
+	}
 	return (
 		<>
 			<Helmet>
@@ -57,6 +81,7 @@ const LinkTree = (props) => {
 					</h3>
 				</a>
 			</div>
+			<DrawerLinktree />
 		</>
 	)
 }
