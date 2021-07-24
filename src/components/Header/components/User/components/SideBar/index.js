@@ -112,7 +112,7 @@ export default class SideBar extends React.Component {
 							</div>
 						</div>
 						<div className='cv-header-user-sidebar-list ml10'>
-							<Link to={`profile/account-user`}>
+							<Link to={`/profile/account-user`}>
 								<div className='cv-header-user-icon-login-content'>
 									<UsergroupAddOutlined
 										className='cv-header-user-sidebar-list-icon'

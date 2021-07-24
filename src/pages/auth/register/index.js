@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Layout, Row, Col, Button, Form, Divider } from 'antd'
 
-import InputField from '../../../components/Input'
-import ModalTutorial from '../../../components/ModalTutorial'
+import InputField from '../../../components/Form/Input'
+import SelectField from '../../../components/Form/Select'
+
+import { CONSTANTS } from '../../../components/ServiceCommons/Constant'
 
 import { authRegisterServices } from './services'
 import './style.css'
@@ -17,6 +19,7 @@ const Register = (props) => {
 	const history = useHistory()
 
 	const handleOnFinish = (item) => {
+		console.log(item)
 		authRegisterServices(item).then((response) => {
 			console.log(response)
 			localStorage.setItem(
@@ -29,7 +32,11 @@ const Register = (props) => {
 				})
 			)
 			setTimeout(() => {
-				history.push('/profile')
+				if (item.type_account === 'bussiness') {
+					history.push('/profile/linktree-name')
+				} else {
+					history.push('/profile/account-user')
+				}
 			}, 2000)
 		})
 	}
@@ -60,58 +67,63 @@ const Register = (props) => {
 									<p className='cv-login-sub-title-register'>Encuentra las mejores cuentas</p>
 								</div>
 								<div className='cv-login-content-redes-main'>
-									<center>
-										<ModalTutorial
-											componentHeader={'¿Cómo crear mi cuenta?'}
-											componentData={{
-												id: 565086971,
-											}}
-										/>
-									</center>
 									<Form
 										name='normal_login'
 										initialValues={{ remember: true }}
 										onFinish={handleOnFinish}>
 										<div className='ph-auth-login-form-container'>
 											<InputField
-												className={'cv-auth-login-field-input'}
-												inputName={'first_name'}
-												inputNameLabel={'Nombres'}
-												inputNameRule={true}
-												inputNameMessage={'Ingrese su Nombre'}
-												inputNameType={'text'}
-												inputNameIcon={''}
-												inputNameRules={'rulesText'}
+												componentClass={'cv-auth-login-field-input'}
+												componentName={'first_name'}
+												componentLabel={'Nombre'}
+												componentRules={'required'}
+												componentPlaceholder={'Ingrese su Nombre'}
+												componentType={'text'}
+												componentValue={''}
+												componentDisabled={false}
 											/>
+
 											<InputField
-												className={'cv-auth-login-field-input'}
-												inputName={'last_name'}
-												inputNameLabel={'Apellidos'}
-												inputNameRule={true}
-												inputNameMessage={'Ingrese su Apellido'}
-												inputNameType={'text'}
-												inputNameIcon={''}
-												inputNameRules={'rulesText'}
+												componentClass={'cv-auth-login-field-input'}
+												componentName={'last_name'}
+												componentLabel={'Apellido'}
+												componentRules={'required'}
+												componentPlaceholder={'Ingrese su Apellido'}
+												componentType={'text'}
+												componentValue={''}
+												componentDisabled={false}
 											/>
-											<InputField
-												className={'cv-auth-login-field-input'}
-												inputName={'email'}
-												inputNameLabel={'Correo electrónico'}
-												inputNameRule={true}
-												inputNameMessage={'Ingrese su E-mail'}
-												inputNameType={'text'}
-												inputNameIcon={''}
-												inputNameRules={'rulesEmail'}
+											<SelectField
+												componentClass={'cv-auth-login-field-input'}
+												componentLabel={'¿Tipo de Cuenta?'}
+												componentName={'type_account'}
+												componentMode={'single'}
+												componentPlaceholder={'Seleccione una opción'}
+												componentOptions={[...CONSTANTS.TYPE_ACCOUNT]}
+												componentRules={'rulesSelect'}
+												componentMaxTagCount={5}
 											/>
+
 											<InputField
-												className={'cv-auth-login-field-input'}
-												inputName={'password'}
-												inputNameLabel={'Contraseña'}
-												inputNameRule={true}
-												inputNameMessage={'Ingrese su contraseña'}
-												inputNameType={'password'}
-												inputNameIcon={''}
-												inputNameRules={'rulesPassword'}
+												componentClass={'cv-auth-login-field-input'}
+												componentName={'email'}
+												componentLabel={'Correo electrónico'}
+												componentRules={'rulesEmail'}
+												componentPlaceholder={'Ingrese su E-mail'}
+												componentType={'text'}
+												componentValue={''}
+												componentDisabled={false}
+											/>
+
+											<InputField
+												componentClass={'cv-auth-login-field-input'}
+												componentName={'password'}
+												componentLabel={'Contraseña'}
+												componentRules={'rulesPassword'}
+												componentPlaceholder={'Ingrese su contraseña'}
+												componentType={'password'}
+												componentValue={''}
+												componentDisabled={false}
 											/>
 										</div>
 										<Form.Item>
