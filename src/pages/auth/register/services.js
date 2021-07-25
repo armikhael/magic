@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-const authRegisterServices = async (item) => {
+const serviceAuthSignin = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'POST',
@@ -11,27 +11,16 @@ const authRegisterServices = async (item) => {
 		data: item,
 	})
 		.then((response) => {
-			if (response.data.statusCode <= 200) {
-				notification['success']({
-					message: `!Bienvenido a Cuentas Virales!`,
-					description: `Su cuenta fue registrada con exito...`,
-				})
-			} else {
-				notification['warning']({
-					message: `Problema para Iniciar Sesión`,
-					description: `${response.data.data.message}...`,
-				})
-			}
 			returnResponse = response.data
 		})
 		.catch((error) => {
 			returnResponse = error.response.data
 			notification['error']({
-				message: `Problemas de Servicios`,
-				description: `process.env.REACT_APP_HOST/auth/signin`,
+				message: `Lo sentimos!`,
+				description: `Error inesperado, intente mas tarde`,
 			})
 		})
 	return returnResponse
 }
 
-export { authRegisterServices }
+export { serviceAuthSignin }

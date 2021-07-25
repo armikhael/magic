@@ -3,14 +3,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { Layout, Row, Col, Button, Form, Divider } from 'antd'
+import { Layout, Row, Col, Button, Form, Divider, notification } from 'antd'
 
 import InputField from '../../../components/Form/Input'
 import SelectField from '../../../components/Form/Select'
 
 import { CONSTANTS } from '../../../components/ServiceCommons/Constant'
 
-import { authRegisterServices } from './services'
+import { serviceAuthSignin } from './services'
 import './style.css'
 
 const { Content } = Layout
@@ -20,24 +20,37 @@ const Register = (props) => {
 
 	const handleOnFinish = (item) => {
 		console.log(item)
-		authRegisterServices(item).then((response) => {
-			console.log(response)
-			localStorage.setItem(
-				'user',
-				JSON.stringify({
-					email: response.data.email,
-					image: response.data.image,
-					first_name: response.data.first_name,
-					last_name: response.data.last_name,
+		serviceAuthSignin(item).then((response) => {
+			if (response.statusCode <= 200) {
+				console.log(response)
+				notification['success']({
+					message: `!Bienvenido a Cuentas Virales!`,
+					description: `Su cuenta fue registrada con exito...`,
 				})
-			)
-			setTimeout(() => {
-				if (item.type_account === 'bussiness') {
-					history.push('/profile/linktree-name')
-				} else {
-					history.push('/profile/account-user')
-				}
-			}, 2000)
+
+				localStorage.setItem(
+					'user',
+					JSON.stringify({
+						email: response.data.email,
+						image: response.data.image,
+						first_name: response.data.first_name,
+						last_name: response.data.last_name,
+					})
+				)
+
+				setTimeout(() => {
+					if (item.type_account === 'bussiness') {
+						history.push('/profile/linktree-name')
+					} else {
+						history.push('/profile/account-user')
+					}
+				}, 2000)
+			} else {
+				notification['warning']({
+					message: `Problema para Iniciar Sesión`,
+					description: `${response.message}...`,
+				})
+			}
 		})
 	}
 
