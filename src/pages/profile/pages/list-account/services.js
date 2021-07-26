@@ -1,6 +1,7 @@
 /** @format */
 
 import axios from 'axios'
+import { notification } from 'antd'
 
 const serviceGetData = async (item) => {
 	let returnResponse
@@ -9,7 +10,14 @@ const serviceGetData = async (item) => {
 		url: `${process.env.REACT_APP_HOST}/profile/by-email/${item}`,
 	})
 		.then((response) => {
-			returnResponse = response.data
+			if (response.data.statusCode === 200) {
+				returnResponse = response.data
+			} else {
+				notification['error']({
+					message: `Error ${response.data.statusCode}`,
+					description: `Problemas con el servico.`,
+				})
+			}
 		})
 		.catch((error) => {
 			returnResponse = error.response.data
