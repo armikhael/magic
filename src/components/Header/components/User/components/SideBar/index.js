@@ -3,7 +3,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { Drawer, Row, Col } from 'antd'
+import { Drawer, Row, Col, Modal } from 'antd'
 import {
 	QuestionOutlined,
 	CloseSquareOutlined,
@@ -14,11 +14,16 @@ import {
 	LinkOutlined,
 	SafetyOutlined,
 	TeamOutlined,
+	ExclamationCircleOutlined,
 } from '@ant-design/icons'
 
 import './style.css'
 
 export default class SideBar extends React.Component {
+	handleCloseSesion = () => {
+		window.location.href = '/'
+		localStorage.removeItem('user')
+	}
 	render() {
 		return (
 			<Drawer
@@ -101,13 +106,20 @@ export default class SideBar extends React.Component {
 					<>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile`}>
-								<UserOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
+								<UserOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
 								<span className='cv-header-user-sidebar-list-title'>Perfil</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<div className='cv-header-user-icon-login-content'>
-								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
+								<img
+									width='19px'
+									src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+									alt='Crear Cuenta'
+								/>
 								<span className='cv-header-user-sidebar-list-title'>Publicar</span>
 							</div>
 						</div>
@@ -135,19 +147,28 @@ export default class SideBar extends React.Component {
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/accounts`}>
-								<TeamOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
+								<TeamOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
 								<span className='cv-header-user-sidebar-list-title'>Mis Cuentas</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/linktree`}>
-								<LinkOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
+								<LinkOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
 								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/change-password`}>
-								<SafetyOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
+								<SafetyOutlined
+									className='cv-header-user-sidebar-list-icon'
+									style={{ fontSize: 22 }}
+								/>
 								<span className='cv-header-user-sidebar-list-title'>Cambiar Contraseña</span>
 							</Link>
 						</div>
@@ -155,23 +176,32 @@ export default class SideBar extends React.Component {
 				)}
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/help/quienes-somos`}>
-						<QuestionOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
+						<QuestionOutlined
+							className='cv-header-user-sidebar-list-icon'
+							style={{ fontSize: 22 }}
+						/>
 						<span className='cv-header-user-sidebar-list-title'>Ayuda</span>
 					</Link>
 				</div>
 				{localStorage.getItem('user') && (
 					<div className='cv-header-user-sidebar-list cv-header-user-sidebar-list-cs'>
 						<hr className='cv-header-user-sidebar-hr mb10' />
-						<Link
-							to={`/`}
+
+						<div
+							className='cv-header-user-icon-login-content'
 							onClick={() => {
-								localStorage.removeItem('user')
+								Modal.confirm({
+									title: 'Cerrar seción',
+									icon: <ExclamationCircleOutlined />,
+									content: '¿Estas seguro que queires cerrar tu seción?',
+									okText: 'Confirmar',
+									onOk: this.handleCloseSesion,
+									cancelText: 'Cancelar',
+								})
 							}}>
-							<div className='cv-header-user-icon-login-content'>
-								<CloseSquareOutlined style={{ fontSize: 22 }} />
-								<span className='ml10'>Cerrar sesión</span>
-							</div>
-						</Link>
+							<CloseSquareOutlined style={{ fontSize: 22 }} />
+							<span className='ml10'>Cerrar sesión</span>
+						</div>
 					</div>
 				)}
 			</Drawer>

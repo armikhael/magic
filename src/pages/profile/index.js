@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Layout, Row, Col } from 'antd'
+import { Layout, Row, Col, Modal } from 'antd'
 import {
 	LinkOutlined,
 	UserOutlined,
@@ -12,6 +12,7 @@ import {
 	TeamOutlined,
 	UsergroupAddOutlined,
 	SubnodeOutlined,
+	ExclamationCircleOutlined,
 } from '@ant-design/icons'
 
 import Loading from '../../components/Loading/Loading'
@@ -27,6 +28,11 @@ export default class Profile extends React.Component {
 			userProfile: JSON.parse(localStorage.getItem('user')),
 			loading: false,
 		}
+	}
+
+	handleCloseSesion = () => {
+		window.location.href = '/'
+		localStorage.removeItem('user')
 	}
 
 	render() {
@@ -130,21 +136,26 @@ export default class Profile extends React.Component {
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<Link
+							<div
+								className='cv-profile-card-item'
 								onClick={() => {
-									localStorage.removeItem('user')
-								}}
-								to={`/`}>
-								<div className='cv-profile-card-item'>
-									<div className='cv-profile-card-item-img'>
-										<ExportOutlined className='cv-profile-card-item-img-icon' />
-									</div>
-									<div className='cv-profile-card-item-title'>
-										<h3>Cerrar seción</h3>
-										<p>¿Deseas cerrar sesión en tu cuenta? no olvides visitarnos</p>
-									</div>
+									Modal.confirm({
+										title: 'Cerrar seción',
+										icon: <ExclamationCircleOutlined />,
+										content: '¿Estas seguro que queires cerrar tu seción?',
+										okText: 'Confirmar',
+										onOk: this.handleCloseSesion,
+										cancelText: 'Cancelar',
+									})
+								}}>
+								<div className='cv-profile-card-item-img'>
+									<ExportOutlined className='cv-profile-card-item-img-icon' />
 								</div>
-							</Link>
+								<div className='cv-profile-card-item-title'>
+									<h3>Cerrar seción</h3>
+									<p>¿Deseas cerrar sesión en tu cuenta? no olvides visitarnos</p>
+								</div>
+							</div>
 						</Col>
 					</Row>
 					<hr className='cv-profile-hr'></hr>
