@@ -5,6 +5,7 @@ import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 import { Row, Col, Layout, notification } from 'antd'
 import { WhatsAppOutlined, UserOutlined } from '@ant-design/icons'
+import publicIp from 'public-ip'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
@@ -49,7 +50,8 @@ export default class AccountDetail extends React.Component {
 				return this.props.match.params.name.includes(item)
 			})
 			if (includeName !== undefined) {
-				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name })
+				const ipv4 = await publicIp.v4()
+				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, ip: ipv4 })
 				console.log(accountDetail)
 				if (accountDetail.account[0].representation === true) {
 					this.setState({
