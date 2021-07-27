@@ -7,6 +7,7 @@ import { HeartOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons'
 import { Row, Comment } from 'antd'
 
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
+import ModalService from '../ModalService'
 
 import './style.css'
 
@@ -86,70 +87,73 @@ const Plans = (props) => {
 									<p>
 										Incrementa la confianza de tus clientes
 										<br />
-										<span
-											onClick={() => {
-												handleRedirect({
-													data: props.componentData,
-													action: 'click',
-													category: 'promocion-producto',
-													label: props.componentData.name,
-													concept: `te encontre en cuentasvirales.com y quisiera más información de tus servicios publicitarios para Promocionar un Producto`,
-												})
-											}}
-											className='cv-detail-actiones-title-a'
-											style={{ cursor: 'pointer' }}>
-											Click aquí
-										</span>
+										<ModalService
+											componentHeader={'Incluye:'}
+											componentCategory={'promocion-producto'}
+											componentData={props.componentData}
+											componentType={'Promocionar un Producto'}
+											componentValue={Math.round(props.componentData.followers / 2 / 1000)}
+											componentDescription={`
+												<lu>
+													<li>1 Historia destapando el producto.</li>
+													<li>1 Reels creando contenido de los beneficios.</li>
+													<li>1 Publicación modelando el procducto.</li>
+													<li>Importante: Es necesario el producto en físico.</li>
+												</ul>
+												<p style="magin-top: 10px;">Valor: <span style="font-size: 32px">${Math.round(
+													props.componentData.followers / 2 / 1000
+												)} </span>Dólares</p>
+											`}
+										/>
 									</p>
 								}
 							/>
+							{props.componentData.followers >= 10000 && (
+								<Comment
+									author={<p className='cv-detail-actiones-title'>Promocionar una Cuenta</p>}
+									avatar={<UserOutlined style={{ fontSize: '26px' }} />}
+									content={
+										<p>
+											Crece de forma natural y aumenta tu comunidad
+											<br />
+											<ModalService
+												componentHeader={'Incluye:'}
+												componentCategory={'promocion-cuenta'}
+												componentData={props.componentData}
+												componentType={'Promocionar una Cuenta'}
+												componentValue={Math.round(props.componentData.followers / 4 / 1000)}
+												componentDescription={`
+												<lu>
+													<li>1 Historia de alguna publicación que este dentro de tu perfil</li>
+												</ul>
+												<p>Valor: <span style="font-size: 32px">${Math.round(props.componentData.followers / 4 / 1000)} </span>Dólares</p>
+											`}
+											/>
+										</p>
+									}
+								/>
+							)}
 
 							<Comment
-								author={<p className='cv-detail-actiones-title'>Promocionar una Cuenta</p>}
-								avatar={<UserOutlined style={{ fontSize: '26px' }} />}
-								content={
-									<p>
-										Crece de forma natural y aumenta tu comunidad
-										<br />
-										<span
-											onClick={() => {
-												handleRedirect({
-													data: props.componentData,
-													action: 'click',
-													category: 'promocion-cuenta',
-													label: props.componentData.name,
-													concept: `te encontre en cuentasvirales.com y quisiera más información de tus servicios publicitarios para Promocionar una Cuenta`,
-												})
-											}}
-											className='cv-detail-actiones-title-a'
-											style={{ cursor: 'pointer' }}>
-											Click aquí
-										</span>
-									</p>
-								}
-							/>
-
-							<Comment
-								author={<p className='cv-detail-actiones-title'>Enviar un Saludo ó Felicitación</p>}
+								author={<p className='cv-detail-actiones-title'>Interacción</p>}
 								avatar={<SmileOutlined style={{ fontSize: '26px' }} />}
 								content={
 									<p>
-										Crea una experiencia única para tu amig@
+										Recibe interacción para crear impacto
 										<br />
-										<span
-											onClick={() => {
-												handleRedirect({
-													data: props.componentData,
-													action: 'click',
-													category: 'enviar-saludo',
-													label: props.componentData.name,
-													concept: `te encontre en cuentasvirales.com y quisiera más información de tus servicios publicitarios para Enviar un Saludo`,
-												})
-											}}
-											className='cv-detail-actiones-title-a'
-											style={{ cursor: 'pointer' }}>
-											Click aquí
-										</span>
+										<ModalService
+											componentHeader={'Incluye:'}
+											componentCategory={'promocion-interaccion'}
+											componentData={props.componentData}
+											componentType={'Interacción'}
+											componentValue={Math.round(props.componentData.followers / 10 / 1000)}
+											componentDescription={`
+												<lu>
+													<li>Dejará likes y comentarios tus primeras 9 publicaciones</li>
+												</ul>
+												<p>Valor: <span style="font-size: 32px">${Math.round(props.componentData.followers / 10 / 1000)} </span>Dólares</p>
+											`}
+										/>
 									</p>
 								}
 							/>

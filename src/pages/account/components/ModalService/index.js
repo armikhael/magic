@@ -20,7 +20,7 @@ const ModalService = (props) => {
 			label: props.componentData.name,
 		})
 		window.open(
-			`${process.env.REACT_APP_WHATSAPP}?phone=${props.componentData.code}${props.componentData.phone}&text=Hola ${props.componentData.account}, te encontre en cuentasvirales.com y me interesa: ${props.componentType}`
+			`${process.env.REACT_APP_WHATSAPP}?phone=${props.componentData.code}${props.componentData.phone}&text=Hola ${props.componentData.account}, te encontre desde ${process.env.REACT_APP_DOMAIN}/${props.componentData.name} y me interesa: ${props.componentType} por ${props.componentValue} dólares`
 		)
 	}
 
@@ -34,6 +34,7 @@ const ModalService = (props) => {
 			</span>
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 				{renderHTML(props.componentDescription)}
+				<p> Puedes realizar depósitos o transferencias en tu moneda local.</p>
 			</Modal>
 		</>
 	)
