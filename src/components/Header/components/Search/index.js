@@ -37,7 +37,11 @@ export default function SearchNavbar() {
 		<Menu className='cv-header-search-menu'>
 			<h3 className='cv-headr-title-search-menu'>
 				{' '}
-				Destacados<a href='/search/q?representation=true'> Ver Todos</a>
+				Destacados{' '}
+				<a className='cv-headr-title-sub-search-menu' href='/search/q?representation=true'>
+					{' '}
+					Ver todos
+				</a>
 			</h3>
 			<Menu.Item>
 				<div className='cv-header-search-conetent-country'>

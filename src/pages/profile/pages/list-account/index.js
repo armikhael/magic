@@ -11,28 +11,25 @@ import { serviceGetData } from './services'
 
 const { Header } = Layout
 
-const ListAccount = (props) => {
-	const [data, setData] = useState()
-	const [loading, setLoading] = useState(true)
-	const [user] = useState(JSON.parse(localStorage.getItem('user')))
-
-	const fetchData = async (item) => {
-		const response = await serviceGetData(item.email)
-		setLoading(false)
-		setData(response.accounts)
-	}
+export default function ListAccount() {
+	const [isData, setData] = useState()
+	const [isloading, setLoading] = useState(true)
 
 	useEffect(() => {
-		fetchData(user)
-		console.log('useEffects')
-	}, [user])
+		serviceGetData(JSON.parse(localStorage.getItem('user')).email).then((response) => {
+			if (response) {
+				setData(response.accounts)
+				setLoading(false)
+			}
+		})
+	}, [])
 
-	if (loading === true) {
+	if (isloading === true) {
 		return <Loading />
 	}
 	return (
 		<>
-			{data !== undefined && (
+			{isData && (
 				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
 						<Row justify='center'>
@@ -41,8 +38,7 @@ const ListAccount = (props) => {
 									<HeartOutlined className='cv-perfil-title-main-icon' />
 									<h3 className='cv-perfil-title-main-title'>Mis Cuentas</h3>
 								</Header>
-
-								<Accounts componentData={data} />
+								<Accounts componentData={isData} />
 							</Col>
 						</Row>
 					</Layout>
@@ -51,5 +47,3 @@ const ListAccount = (props) => {
 		</>
 	)
 }
-
-export default ListAccount
