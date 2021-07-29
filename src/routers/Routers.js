@@ -54,7 +54,7 @@ const Routers = (props) => (
 				<Route exact path='/country/:name' component={Country} />
 				<Route exact path='/results/:name' component={Results} />
 				<Route exact path='/search/:any' component={Search} />
-				<Route exact path='/help/:name' component={Help} />
+				<Route exact path='/help/:name/:account?' component={Help} />
 				<Route exact path='/notifications' component={Notifications} />
 
 				<PrivateRoute exact path='/profile' component={Profile} />

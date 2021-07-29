@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { List, Avatar } from 'antd'
 import { WhatsAppOutlined } from '@ant-design/icons'
 import { HeartOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons'
@@ -81,6 +82,22 @@ const Plans = (props) => {
 
 						<Row>
 							<Comment
+								author={<p className='cv-detail-actiones-title'>Posicionar una Cuenta</p>}
+								avatar={<UserOutlined style={{ fontSize: '26px' }} />}
+								content={
+									<p>
+										Aumento de Seguidores
+										<br />
+										<Link
+											to={`/help/posicionamiento/${props.componentData.name}`}
+											className='cv-detail-actiones-title-a'>
+											Click aquí
+										</Link>
+									</p>
+								}
+							/>
+
+							<Comment
 								author={<p className='cv-detail-actiones-title'>Promocionar un Producto</p>}
 								avatar={<HeartOutlined style={{ fontSize: '26px' }} />}
 								content={
@@ -108,31 +125,6 @@ const Plans = (props) => {
 									</p>
 								}
 							/>
-							{props.componentData.followers >= 10000 && (
-								<Comment
-									author={<p className='cv-detail-actiones-title'>Promocionar una Cuenta</p>}
-									avatar={<UserOutlined style={{ fontSize: '26px' }} />}
-									content={
-										<p>
-											Crece de forma natural y aumenta tu comunidad
-											<br />
-											<ModalService
-												componentHeader={'Incluye:'}
-												componentCategory={'promocion-cuenta'}
-												componentData={props.componentData}
-												componentType={'Promocionar una Cuenta'}
-												componentValue={Math.round(props.componentData.followers / 4 / 1000)}
-												componentDescription={`
-												<lu>
-													<li>1 Historia de alguna publicación que este dentro de tu perfil</li>
-												</ul>
-												<p>Valor: <span style="font-size: 32px">${Math.round(props.componentData.followers / 4 / 1000)} </span>Dólares</p>
-											`}
-											/>
-										</p>
-									}
-								/>
-							)}
 
 							<Comment
 								author={<p className='cv-detail-actiones-title'>Interacción</p>}

@@ -1,7 +1,8 @@
 /** @format */
 
 import React, { useEffect } from 'react'
-import { NotificationOutlined, HeartOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
+import { NotificationOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { Line } from '@ant-design/charts'
 import { Row, Col, Comment } from 'antd'
 
@@ -45,19 +46,17 @@ export default function Views(props) {
 							<p>Intercambios Publicitarios:</p>
 
 							<Comment
-								author={<p className='cv-detail-actiones-title'>Mención x Publicidad</p>}
+								author={<p className='cv-detail-actiones-title'>Posicionar una Cuenta</p>}
 								avatar={<NotificationOutlined style={{ fontSize: '26px' }} />}
 								content={
 									<p>
-										¡Aumenta el engagement de tu cuenta!
+										Aumento de Seguidores
 										<br />
-										<ModalService
-											componentHeader={'¿Cuál es el objetivo?'}
-											componentDescription={`Recomendarse entre cuentas para darse a conocer entre mas personas. Siempre recomendamos comenzar por influencers que esten cerca de tí.`}
-											componentData={props.detail}
-											componentType={'Mención x Publicidad'}
-											componentCategory={'intercambio-mencion'}
-										/>
+										<Link
+											to={`/help/posicionamiento/${props.detail.name}`}
+											className='cv-detail-actiones-title-a'>
+											Click aquí
+										</Link>
 									</p>
 								}
 							/>
@@ -82,7 +81,7 @@ export default function Views(props) {
 
 							<Comment
 								author={<p className='cv-detail-actiones-title'>Producto x Publicidad</p>}
-								avatar={<HeartOutlined style={{ fontSize: '26px' }} />}
+								avatar={<ShoppingCartOutlined style={{ fontSize: '26px' }} />}
 								content={
 									<p>
 										¡Aumenta las ventas de tu negocio!

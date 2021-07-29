@@ -1,5 +1,10 @@
 /** @format */
 
+.cv-help-button {
+	text-align: center;
+	background: #ec3f7c;
+	color: white;
+}
 .cv-help-content {
 	border: #fff;
 	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
