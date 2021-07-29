@@ -20,7 +20,7 @@ const ModalService = (props) => {
 			label: props.componentData.name,
 		})
 		window.open(
-			`${process.env.REACT_APP_WHATSAPP}?phone=${props.componentData.code}${props.componentData.phone}&text=Hola ${props.componentData.account}, te encontre desde cuentasvirales.com/${props.componentData.name} y me interesa: ${props.componentType} por ${props.componentValue} dólares`
+			`${process.env.REACT_APP_WHATSAPP}?phone=${props.componentData.code}${props.componentData.phone}&text=Hola ${props.componentData.account}, te encontre desde cuentasvirales.com y me interesa: ${props.componentType} por ${props.componentValue} dólares`
 		)
 	}
 
