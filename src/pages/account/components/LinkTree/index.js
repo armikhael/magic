@@ -63,7 +63,7 @@ const LinkTree = (props) => {
 					{props.componentData.links.map((item, key) => {
 						return (
 							<a href={item.url} target='_blank' key={key} rel='noopener noreferrer'>
-								<div className='cv-linktree-link' style={{ background: link }}>
+								<div className='cv-linktree-link' style={{ background: link, borderColor: link }}>
 									<LinkOutlined className='cv-linktree-link-icon' style={{ color: icon }} />
 									<span style={{ color: text }}>{item.title}</span>
 								</div>

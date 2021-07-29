@@ -18,7 +18,7 @@ const DrawerLinktree = (props) => {
 
 	const data = [
 		{ key: '1', text: '¿Tener un enlace como este?', link: '/help/mis-enlaces' },
-		{ key: '2', text: '¿Crecer en Instagram?', link: '/help/posicionamiento' },
+		{ key: '2', text: '¿Ganar Seguidores en Instagram?', link: '/help/posicionamiento' },
 	]
 
 	return (

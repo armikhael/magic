@@ -7,6 +7,7 @@ import { Layout, Row, Col, notification, Button } from 'antd'
 import InstagramEmbed from 'react-instagram-embed'
 import Vimeo from '@u-wave/react-vimeo'
 
+import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 
@@ -22,6 +23,11 @@ export default function Help(props) {
 	const [phone] = useState('56979582051')
 	useEffect(() => {
 		console.log(props)
+		serviceEventGoogleAnalytics({
+			action: 'views',
+			category: 'help',
+			label: props.match.params.name,
+		})
 		serviceGetData({ type: 'help' })
 			.then((response) => {
 				console.log(response)
