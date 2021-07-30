@@ -60,7 +60,7 @@ export default function Help(props) {
 								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola vengo de cuentasvirales.com donde vi la información que ustedes ofrecen el servicio de posicionamiento y me interesa el paquete de:`
 							)
 						}}>
-						Quiero contratar el servicio
+						Solicitar atención de un Ejecutivo
 					</Button>
 				)}
 
@@ -73,7 +73,7 @@ export default function Help(props) {
 								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola, desde el perfil de ${props.match.params.account} vi que en cuentasvirales.com ofrecen el servicio de posicionamiento y me interesa el paquete de:`
 							)
 						}}>
-						Quiero contratar el servicio
+						Solicitar atención de un Ejecutivo
 					</Button>
 				)}
 			</Row>
