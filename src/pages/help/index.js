@@ -24,7 +24,7 @@ export default function Help(props) {
 	useEffect(() => {
 		console.log(props)
 		serviceEventGoogleAnalytics({
-			action: 'views',
+			action: 'view',
 			category: 'help',
 			label: props.match.params.name,
 		})
