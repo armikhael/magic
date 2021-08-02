@@ -39,10 +39,10 @@ const Register = (props) => {
 				)
 
 				setTimeout(() => {
-					if (item.type_account === 'bussiness') {
-						history.push('/profile/linktree-name')
-					} else {
+					if (item.type_account === 'model') {
 						history.push('/profile/account-user')
+					} else {
+						history.push('/profile/linktree-name')
 					}
 				}, 2000)
 			} else {

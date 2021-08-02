@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { Layout, Row, Col, Modal } from 'antd'
 import {
 	LinkOutlined,
-	UserOutlined,
 	ExportOutlined,
 	QuestionOutlined,
 	SafetyOutlined,
@@ -45,7 +44,14 @@ export default class Profile extends React.Component {
 					<Header className='cv-profile-header'>
 						<h3 className='cv-profile-header-title'>Tu cuenta</h3>
 					</Header>
+
 					<Row className='mt15'>
+						<Col xs={24} sm={24} md={24}>
+							<p>
+								<span className='cv-profile-card-item-img-icon'>1 </span>
+								Herramientas para Modelos, Actores, Cantantes, Mascotas, Bailarines.
+							</p>
+						</Col>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`/profile/accounts`}>
 								<div className='cv-profile-card-item'>
@@ -66,11 +72,20 @@ export default class Profile extends React.Component {
 										<UsergroupAddOutlined className='cv-profile-card-item-img-icon' />
 									</div>
 									<div className='cv-profile-card-item-title'>
-										<h3>Publicar cuenta</h3>
+										<h3>Crear cuenta</h3>
 										<p>Especialmente para Marcas Personales.</p>
 									</div>
 								</div>
 							</Link>
+						</Col>
+					</Row>
+					<Row className='mt15'>
+						<Col xs={24} sm={24} md={24}>
+							<p>
+								<span className='cv-profile-card-item-img-icon'>2 </span>
+								Herramientas para Negocios, Diseñadores, Creadores de Contenido, Empresas, Marketing de
+								Referidos, Profesores.
+							</p>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`/profile/linktree`}>
@@ -98,16 +113,13 @@ export default class Profile extends React.Component {
 								</div>
 							</Link>
 						</Col>
-						<Col xs={24} sm={6} md={6}>
-							<div className='cv-profile-card-item'>
-								<div className='cv-profile-card-item-img'>
-									<UserOutlined className='cv-profile-card-item-img-icon' />
-								</div>
-								<div className='cv-profile-card-item-title'>
-									<h3>Datos personales</h3>
-									<p>Aquí puedes encontrar todos tus datos personales.</p>
-								</div>
-							</div>
+					</Row>
+					<Row className='mt15'>
+						<Col xs={24} sm={24} md={24}>
+							<p>
+								<span className='cv-profile-card-item-img-icon'>3 </span>
+								Opciones generales de configuración
+							</p>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`/profile/change-password`}>
