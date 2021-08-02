@@ -88,7 +88,8 @@ export default class AccountDetail extends React.Component {
 					})
 				} else {
 					this.setState({
-						pageError: { statusCode: 509, message: 'Este usuario no esta habilitado' },
+						loading: false,
+						pageError: { statusCode: 404, message: 'Este usuario no existe o no esta habilitado' },
 					})
 				}
 			} else {
