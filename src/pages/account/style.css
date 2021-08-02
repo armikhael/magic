@@ -182,6 +182,7 @@
 	color: #5c5c5c;
 	font-weight: 400;
 	font-style: italic;
+	float: left;
 }
 
 .cv-detail-category-tag:hover {
