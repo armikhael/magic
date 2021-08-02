@@ -70,9 +70,12 @@ export default function Notifications() {
 							<Col xs={4} sm={4} md={4}>
 								<img className='cv-header-notifi-list-img' src={item.image} alt={item.title} />
 							</Col>
-							<Col xs={20} sm={20} md={20} className='cv-header-notifi-list-content'>
+							<Col xs={15} sm={15} md={15} className='cv-header-notifi-list-content'>
 								<h3 className='cv-notifications-notifi-list-title'>{item.title}</h3>
 								<h3 className='cv-header-notifi-list-moment'>{item.followers} Seguidores</h3>
+							</Col>
+							<Col xs={5} sm={5} md={5} className='cv-header-notifi-btn-content'>
+								<div className='cv-header-notifi-btn'>Seguir</div>
 							</Col>
 						</Row>
 					</div>
