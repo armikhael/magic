@@ -82,10 +82,15 @@ export default class AccountDetail extends React.Component {
 						})
 					}
 				}
-
-				this.setState({
-					loading: false,
-				})
+				if (accountDetail.account[0].eneable === true) {
+					this.setState({
+						loading: false,
+					})
+				} else {
+					this.setState({
+						pageError: { statusCode: 509, message: 'Este usuario no esta habilitado' },
+					})
+				}
 			} else {
 				serviceGetLinks(this.props.match.params.name).then((response) => {
 					console.log(response)

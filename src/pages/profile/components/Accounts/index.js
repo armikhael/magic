@@ -82,17 +82,14 @@ const Accounts = (props) => {
 												Activar Cuenta
 											</Button>
 										)}
-
+										<ModalEdit componentData={item} componentHeader={'Modificar Información'} />
 										{item.eneable === true && (
 											<>
 												<ModalConfiguration
 													componentData={item}
 													componentHeader={'Condiguración'}
 												/>
-												<ModalEdit
-													componentData={item}
-													componentHeader={'Modificar Información'}
-												/>
+
 												<CopyToClipboard
 													text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
 													<Button
@@ -101,12 +98,12 @@ const Accounts = (props) => {
 														onClick={() => {
 															notification['success']({
 																message: '¡Excelente!',
-																description: `Enlace Copiado.`,
+																description: `Enlace copiado, listo para compartir.`,
 																key: key,
 															})
 														}}>
 														<CopyOutlined />
-														Enlace
+														Compartir
 													</Button>
 												</CopyToClipboard>
 											</>
