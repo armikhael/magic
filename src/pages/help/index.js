@@ -57,7 +57,7 @@ export default function Help(props) {
 						className={'cv-help-button'}
 						onClick={() => {
 							window.open(
-								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola vengo de cuentasvirales.com donde vi la información que ustedes ofrecen el servicio de posicionamiento y me interesa el paquete de:`
+								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola vengo de cuentasvirales.com donde vi la información que ustedes ofrecen el servicio de posicionamiento y me interesa recibir mayor información`
 							)
 						}}>
 						Solicitar atención de un Ejecutivo
@@ -70,7 +70,7 @@ export default function Help(props) {
 						className={'cv-help-button'}
 						onClick={() => {
 							window.open(
-								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola, desde el perfil de ${props.match.params.account} vi que en cuentasvirales.com ofrecen el servicio de posicionamiento y me interesa el paquete de:`
+								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola, desde el perfil de ${props.match.params.account} vi que en cuentasvirales.com ofrecen el servicio de posicionamiento y me interesa recibir mayor información`
 							)
 						}}>
 						Solicitar atención de un Ejecutivo
