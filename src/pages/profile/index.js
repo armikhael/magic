@@ -47,7 +47,7 @@ export default class Profile extends React.Component {
 
 					<Row className='mt15'>
 						<Col xs={24} sm={24} md={24}>
-							<p>
+							<p style={{ marginLeft: '20px' }}>
 								<span className='cv-profile-card-item-img-icon'>1 </span>
 								Herramientas para Modelos, Actores, Cantantes, Mascotas, Bailarines.
 							</p>
@@ -81,7 +81,7 @@ export default class Profile extends React.Component {
 					</Row>
 					<Row className='mt15'>
 						<Col xs={24} sm={24} md={24}>
-							<p>
+							<p style={{ marginLeft: '20px' }}>
 								<span className='cv-profile-card-item-img-icon'>2 </span>
 								Herramientas para Negocios, Diseñadores, Creadores de Contenido, Empresas, Marketing de
 								Referidos, Profesores.
@@ -116,7 +116,7 @@ export default class Profile extends React.Component {
 					</Row>
 					<Row className='mt15'>
 						<Col xs={24} sm={24} md={24}>
-							<p>
+							<p style={{ marginLeft: '20px' }}>
 								<span className='cv-profile-card-item-img-icon'>3 </span>
 								Opciones generales de configuración
 							</p>
