@@ -242,13 +242,16 @@ const AccountBiography = (props) => {
 									</div>
 									<Row>
 										<Col sm={12} md={12} className='cv-profile-upload-image p10'>
-											Imagen de Pefil
+											Imagen de Pefil (Obligatoria)
 											<UploadImage account={data} componentHandle={handleSetImageProfile} />
 										</Col>
 										<Col sm={12} md={12} className='cv-profile-upload-image p10'>
-											Imagen de Portada
+											Imagen de Portada (Obligatoria)
 											<UploadCover account={data} componentHandle={handleSetImageCover} />
 										</Col>
+										<a href='https://api.whatsapp.com/send?phone=56979582051&text=Hola!%20tengo%20problemas%20para%20cargar%20las%20im%C3%A1genes%20en%20cuentas%20virales'>
+											¿Problemas para cargar tus imágenes?
+										</a>
 									</Row>
 									<Form.Item className='cv-right'>
 										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
