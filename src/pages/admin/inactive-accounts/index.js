@@ -79,6 +79,7 @@ export default class InactiveAccounts extends React.Component {
 							{this.state.list.map((item, i) => {
 								return (
 									<ul key={i}>
+										<li> Fecha de Registro: {item.createdAt}</li>
 										<li> seguidores: {item.followers}</li>
 										<li>
 											<img width='150' src={item.image} alt={item.name} />
@@ -138,8 +139,9 @@ export default class InactiveAccounts extends React.Component {
 												}}>
 												activar cuenta
 											</Button>
-											<Divider></Divider>
 										</li>
+
+										<Divider></Divider>
 									</ul>
 								)
 							})}
