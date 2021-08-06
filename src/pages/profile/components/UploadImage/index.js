@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
@@ -22,6 +22,13 @@ export default function UploadImage(props) {
 			image_thumb: props.account.image_thumb,
 		},
 	])
+
+	useEffect(() => {
+		if (!props.account.image) {
+			setFileList([])
+		}
+		console.log('useEffect')
+	}, [props])
 
 	const beforeUpload = (file) => {
 		console.log('beforeUpload', file)

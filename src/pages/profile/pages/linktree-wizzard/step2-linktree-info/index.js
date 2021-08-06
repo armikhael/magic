@@ -23,7 +23,9 @@ export default function LinkTreeInfo(props) {
 		const response = await serviceGetData(param)
 		console.log('response', response.data[0])
 		setData(response.data[0])
-		setImage(response.data[0].image)
+		if (response.data[0].image) {
+			setImage(response.data[0].image)
+		}
 	}
 
 	useEffect(() => {

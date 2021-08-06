@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
@@ -20,6 +20,14 @@ export default function UploadOneImage(props) {
 			image_thumb: props.componentData.image,
 		},
 	])
+
+	useEffect(() => {
+		console.log('useEffect', props.componentData)
+		if (!props.componentData.image) {
+			setFileList([])
+		}
+		console.log('useEffect')
+	}, [props])
 
 	const beforeUpload = (file) => {
 		console.log('beforeUpload', file)
@@ -55,6 +63,7 @@ export default function UploadOneImage(props) {
 		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
 		serviceUploadImage(formData).then((response) => {
 			console.log('imagen subida', response)
+			props.componentData.image = response.image.url
 			props.componentHandle(response.image.url)
 		})
 	}
@@ -86,7 +95,7 @@ export default function UploadOneImage(props) {
 					beforeUpload={beforeUpload}
 					progress={{ strokeWidth: 2, showInfo: false }}
 					accept={props.componentAccept || CONSTANTS.FORMAT}>
-					{fileList.length < 1 && '+ Imagen'}
+					{fileList.length <= 0 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
 		</>
