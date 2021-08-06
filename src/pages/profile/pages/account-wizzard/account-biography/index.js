@@ -94,15 +94,11 @@ const AccountBiography = (props) => {
 	}
 
 	const handleSetImageProfile = (item) => {
-		console.log(item)
 		setImageProfile(item)
-		console.log('entro por props')
 	}
 
 	const handleSetImageCover = (item) => {
-		console.log(item)
 		setImageCover(item)
-		console.log('entro por props')
 	}
 
 	const handleButtonSkip = () => {

@@ -6,8 +6,7 @@ const serviceDelete = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'DELETE',
-		url: `${process.env.REACT_APP_HOST}/link/`,
-		data: item,
+		url: `${process.env.REACT_APP_HOST}/link/${item._id}`,
 	})
 		.then((response) => {
 			returnResponse = response.data

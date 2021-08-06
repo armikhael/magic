@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
@@ -22,6 +22,13 @@ export default function UploadCover(props) {
 			image_thumb: props.account.image_cover,
 		},
 	])
+
+	useEffect(() => {
+		if (!props.account.image_cover) {
+			setFileList([])
+		}
+		console.log('useEffect')
+	}, [props])
 
 	const beforeUpload = (file) => {
 		const isSize = file.size / 1024 / 1024 <= 0.5
