@@ -22,6 +22,7 @@ export default function LinkTreeUrl(props) {
 	const [links, setLinks] = useState([])
 	const [isModify, setIsModify] = useState(false)
 	const [radio, setRadio] = useState('web')
+	const [textButton, setTextButton] = useState('Agregar enlace')
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -59,7 +60,7 @@ export default function LinkTreeUrl(props) {
 					url: `https://api.whatsapp.com/send?phone=${item.number}&text=${item.message}`,
 				},
 			])
-			form.resetFields(['message'])
+			form.resetFields(['message', 'title'])
 		} else {
 			setLinks((links) => [...links, { id: links.length, title: item.title, url: item.url }])
 			form.resetFields(['title', 'url'])
@@ -120,7 +121,7 @@ export default function LinkTreeUrl(props) {
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card mt20'
-								title='Enlaces Perconalizados (3/3)'
+								title='Enlaces Personalizados (3/3)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleAddElement}>
 									<div className='ph-auth-login-form-container'>
@@ -143,8 +144,14 @@ export default function LinkTreeUrl(props) {
 											componentOnChange={(e) => {
 												console.log(e.target.value)
 												setRadio(e.target.value)
+												if (e.target.value === 'whatsapp') {
+													setTextButton('Generar enlace de WhatsApp')
+												} else {
+													setTextButton('Agregar Enlace')
+												}
 											}}
 										/>
+
 										{radio === 'whatsapp' && (
 											<>
 												<InputField
@@ -152,7 +159,7 @@ export default function LinkTreeUrl(props) {
 													componentName={'number'}
 													componentLabel={'Coloca tu número aquí'}
 													componentRules={'required'}
-													componentPlaceholder={'Copia el link aquí'}
+													componentPlaceholder={'Ingresa tu número de WhatsApp'}
 													componentType={'text'}
 													componentValue={''}
 												/>
@@ -160,31 +167,38 @@ export default function LinkTreeUrl(props) {
 												<TextAreaField
 													componentClass={'cv-auth-login-field-input'}
 													componentName={'message'}
-													componentLabel={'Mensaje personalizado'}
-													componentPlaceholder={'Escribe un mensaje personalizado'}
+													componentLabel={'Mensaje para WhatsApp'}
+													componentPlaceholder={
+														'Escribe un mensaje personalizado para que sepas que necesita tu cliente'
+													}
 													componentRows={4}
 													componentRules={'required'}
 													componentValue={data.description}
 												/>
+												<p>Ejemplo: Hola! me interesaría recibir su catálogo</p>
 											</>
 										)}
+
 										{radio !== 'whatsapp' && (
-											<InputField
-												componentClass={'cv-auth-login-field-input'}
-												componentName={'url'}
-												componentLabel={`Coloca aquí tu enlace`}
-												componentRules={'required'}
-												componentPlaceholder={'Copia el link aquí'}
-												componentType={'text'}
-												componentValue={data.url}
-											/>
+											<>
+												<InputField
+													componentClass={'cv-auth-login-field-input'}
+													componentName={'url'}
+													componentLabel={`Coloca aquí tu enlace`}
+													componentRules={'required'}
+													componentPlaceholder={'Copia tu link aquí'}
+													componentType={'text'}
+													componentValue={data.url}
+												/>
+												<p>Ejemplo: https://www.cuentasvirales.com/</p>
+											</>
 										)}
 									</div>
 									<Form.Item>
 										<Button
 											htmlType={'submit'}
 											className={'cv-linktree-button-submit cv-linktree-button-add'}>
-											Agregar
+											{textButton}
 										</Button>
 										<div className='cv-right'>
 											<Button
