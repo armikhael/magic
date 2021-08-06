@@ -6,7 +6,10 @@ import { Form, Button, Card, notification, Row, Col } from 'antd'
 import { LinkOutlined, DeleteOutlined } from '@ant-design/icons'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
+import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
+import RadioField from '../../../../../components/Form/Radio'
+import TextAreaField from '../../../../../components/Form/TextArea'
 
 import { serviceGetData, serviceUpdateData } from './services'
 import './style.css'
@@ -18,10 +21,12 @@ export default function LinkTreeUrl(props) {
 	const [buttonText, setButtonText] = useState('Siguiente')
 	const [links, setLinks] = useState([])
 	const [isModify, setIsModify] = useState(false)
+	const [radio, setRadio] = useState('web')
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
 		console.log('response', response.data[0])
+		response.data[0].type = 'web'
 		setData(response.data[0])
 		const newLinks = response.data[0].links.map((item, key) => {
 			return {
@@ -44,8 +49,21 @@ export default function LinkTreeUrl(props) {
 	}, [props])
 
 	const handleAddElement = (item) => {
-		setLinks((links) => [...links, { id: links.length, title: item.title, url: item.url }])
-		form.resetFields(['title', 'url'])
+		console.log(item)
+		if (item.type === 'whatsapp') {
+			setLinks((links) => [
+				...links,
+				{
+					id: links.length,
+					title: item.title,
+					url: `https://api.whatsapp.com/send?phone=${item.number}&text=${item.message}`,
+				},
+			])
+			form.resetFields(['message'])
+		} else {
+			setLinks((links) => [...links, { id: links.length, title: item.title, url: item.url }])
+			form.resetFields(['title', 'url'])
+		}
 	}
 
 	const handleDelete = (e) => {
@@ -115,16 +133,52 @@ export default function LinkTreeUrl(props) {
 											componentType={'text'}
 											componentValue={data.title}
 										/>
-
-										<InputField
+										<RadioField
 											componentClass={'cv-auth-login-field-input'}
-											componentName={'url'}
-											componentLabel={'Enlace Externo'}
-											componentRules={'required'}
-											componentPlaceholder={'Copia el link aquí'}
-											componentType={'text'}
-											componentValue={data.url}
+											componentLabel={'¿Que tipo de link es?'}
+											componentName={'type'}
+											componentButtonStyle={'solid'}
+											componentOptions={[...CONSTANTS.TYPE_LINK]}
+											componentDefaultValue={'web'}
+											componentOnChange={(e) => {
+												console.log(e.target.value)
+												setRadio(e.target.value)
+											}}
 										/>
+										{radio === 'whatsapp' && (
+											<>
+												<InputField
+													componentClass={'cv-auth-login-field-input'}
+													componentName={'number'}
+													componentLabel={'Coloca tu número aquí'}
+													componentRules={'required'}
+													componentPlaceholder={'Copia el link aquí'}
+													componentType={'text'}
+													componentValue={''}
+												/>
+
+												<TextAreaField
+													componentClass={'cv-auth-login-field-input'}
+													componentName={'message'}
+													componentLabel={'Mensaje personalizado'}
+													componentPlaceholder={'Escribe un mensaje personalizado'}
+													componentRows={4}
+													componentRules={'required'}
+													componentValue={data.description}
+												/>
+											</>
+										)}
+										{radio !== 'whatsapp' && (
+											<InputField
+												componentClass={'cv-auth-login-field-input'}
+												componentName={'url'}
+												componentLabel={`Coloca aquí tu enlace`}
+												componentRules={'required'}
+												componentPlaceholder={'Copia el link aquí'}
+												componentType={'text'}
+												componentValue={data.url}
+											/>
+										)}
 									</div>
 									<Form.Item>
 										<Button

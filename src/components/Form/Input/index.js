@@ -21,6 +21,7 @@ const InputField = (props) => {
 					placeholder={props.componentPlaceholder}
 					onChange={props.componentOnChange}
 					disabled={props.componentDisabled}
+					addonBefore={props.componentBefore}
 				/>
 			</Form.Item>
 		</>

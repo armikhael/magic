@@ -13,7 +13,7 @@ const RadioField = (props) => {
 		<>
 			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>
 			<Form.Item name={props.componentName} rules={rulesValidation[props.componentRules]}>
-				<Radio.Group buttonStyle={'solid'}>
+				<Radio.Group buttonStyle={'solid'} onChange={props.componentOnChange}>
 					{props.componentOptions.map((iterator, i) => {
 						return (
 							<Radio.Button key={i} value={iterator.value}>
