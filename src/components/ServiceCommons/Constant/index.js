@@ -64,4 +64,8 @@ export const CONSTANTS = {
 		{ name: 'Si', value: true },
 	],
 	FORMAT: '.jpeg, .png, .jpg',
+	TYPE_LINK: [
+		{ name: 'Web / Red Social', value: 'web' },
+		{ name: 'WhatsApp', value: 'whatsapp' },
+	],
 }

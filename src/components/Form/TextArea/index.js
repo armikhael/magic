@@ -13,7 +13,7 @@ const TextAreaField = (props) => {
 			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>
 			<Form.Item name={props.componentName} rules={rulesValidation[props.componentRules]}>
 				<TextArea
-					style={{ width: '100%' }}
+					style={{ width: '100%', borderRadius: '10px' }}
 					autoSize={props.componentAutoSize}
 					rows={props.componentRows}
 					mode={props.componentMode}
