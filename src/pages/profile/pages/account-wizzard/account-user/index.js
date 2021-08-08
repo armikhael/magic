@@ -93,6 +93,7 @@ export default function AccountUser(props) {
 										componentRules={'rulesSelect'}
 										componentOnChange={(e) => setType(e)}
 									/>
+
 									<InputField
 										componentClass={'cv-auth-login-field-input'}
 										componentName={'account'}
@@ -103,7 +104,7 @@ export default function AccountUser(props) {
 										componentValue={data.account}
 										componentOnChange={(e) => setName(e.target.value)}
 									/>
-									{name}-{type}
+
 									<InputField
 										componentClass={'cv-auth-login-field-input'}
 										componentName={'followers'}
