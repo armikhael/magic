@@ -48,7 +48,7 @@ export default class Account extends React.Component {
 					<div className='cv-masonry-item-card-titles'>
 						<Link to={`/${this.props.account.name}`}>
 							<h3 className='cv-masonry-item-title'>
-								{this.props.account.eneable && (
+								{this.props.account.representation === true && (
 									<img
 										width='15px'
 										src='https://i.ibb.co/DwZbZB6/verificacion.png'

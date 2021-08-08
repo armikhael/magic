@@ -1,7 +1,6 @@
 /** @format */
 
 import axios from 'axios'
-// import { notification } from 'antd'
 
 const serviceUploadImage = async (item) => {
 	let returnResponse
