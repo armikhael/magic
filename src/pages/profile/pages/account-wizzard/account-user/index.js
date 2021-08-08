@@ -6,6 +6,7 @@ import { Form, Button, notification, Card, Row, Col } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
+import UploadImage from '../../../../../components/UploadImage'
 import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
 import { serviceCreateData } from './services'
@@ -18,6 +19,11 @@ export default function AccountUser(props) {
 	const [data, setData] = useState()
 	const [redSocial, setRedSocial] = useState([])
 	const [user, setUser] = useState()
+	const [imageProfile, setImageProfile] = useState(undefined)
+	const [imageCover, setImageCover] = useState(undefined)
+	const [name, setName] = useState()
+	const [type, setType] = useState()
+	const [followers, setFollowers] = useState()
 
 	useEffect(() => {
 		serviceGetRedSocial().then((response) => {
@@ -36,8 +42,22 @@ export default function AccountUser(props) {
 	}, [props])
 
 	const handleOnFinish = (item) => {
+		console.log('imageProfile', imageProfile)
+		console.log('imageCover', imageCover)
+		if (imageProfile === undefined || imageCover === undefined) {
+			notification['error']({
+				message: `Ups!`,
+				description: `Aún falta cargar las imagenes solicitadas`,
+			})
+			return
+		}
+
 		item.email = user.email
 		item.name = `${item.account}-${item.type}`
+		item.image = imageProfile
+		item.image_thumb = imageProfile
+		item.image_cover = imageCover
+		console.log(item)
 		serviceCreateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
@@ -71,7 +91,9 @@ export default function AccountUser(props) {
 										componentPlaceholder={'Seleccione una opción'}
 										componentOptions={redSocial}
 										componentRules={'rulesSelect'}
+										componentOnChange={(e) => setType(e)}
 									/>
+
 									<InputField
 										componentClass={'cv-auth-login-field-input'}
 										componentName={'account'}
@@ -80,6 +102,7 @@ export default function AccountUser(props) {
 										componentPlaceholder={'Usuario'}
 										componentType={'text'}
 										componentValue={data.account}
+										componentOnChange={(e) => setName(e.target.value)}
 									/>
 
 									<InputField
@@ -90,8 +113,34 @@ export default function AccountUser(props) {
 										componentType={'text'}
 										componentRules={'rulesFollowers'}
 										componentValue={data.followers}
+										componentOnChange={(e) => setFollowers(e.target.value)}
 									/>
+									{name !== undefined && type !== undefined && followers >= 1000 && (
+										<>
+											<Row>
+												Imagen de Pefil (obligatoria)
+												<UploadImage
+													componentName={`${name}-${type}`}
+													componentHandle={(e) => {
+														setImageProfile(e)
+													}}
+												/>
+											</Row>
+											<Row>
+												Imagen de Portada (obligatoria)
+												<UploadImage
+													componentName={`${name}-${type}-cover`}
+													componentHandle={(e) => {
+														setImageCover(e)
+													}}
+												/>
+											</Row>
 
+											<a href='https://www.instagram.com/cuentasvirales/'>
+												¿Problemas para cargar tus imágenes?
+											</a>
+										</>
+									)}
 									<Form.Item className='cv-right'>
 										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 											Siguiente

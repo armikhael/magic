@@ -1,50 +1,58 @@
 /** @format */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { Upload, Button } from 'antd'
+import { Upload, notification } from 'antd'
 import ImgCrop from 'antd-img-crop'
-
+import { CONSTANTS } from '../ServiceCommons/Constant'
 import { serviceUploadImage } from './services'
 import './style.css'
 
-export default function UploadImage(props) {
-	const [fileList, setFileList] = useState([
-		{
-			uid: '-1',
-			name: 'image.png',
-			status: 'done',
-			url: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
-			image: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
-			image_thumb: 'https://i.postimg.cc/YSQXZWCP/logo.jpg',
-		},
-	])
-	const [isButtom, setButtom] = useState(false)
+export default function UploadOneImage(props) {
+	const [count, setCount] = useState(0)
+	const [fileList, setFileList] = useState([])
+
+	useEffect(() => {
+		console.log('useEffect', props.componentName)
+	}, [props])
+
+	const beforeUpload = (file) => {
+		console.log('beforeUpload', file)
+		const isSize = file.size / 1024 / 1024 <= 0.5
+		if (!isSize) {
+			notification['error']({
+				message: `Ups!`,
+				description: `La imagen es muy pesada, reduce un poco mas el peso`,
+			})
+		}
+		return isSize
+	}
 
 	const handleOnChange = ({ fileList: item }) => {
+		console.log('handleOnChange', item)
 		setFileList(item)
 		if (item.length > 0) {
-			setButtom(true)
+			if (count === 0) {
+				handleSaveImage(item)
+				setCount(1)
+			}
+		} else {
+			setCount(0)
+			props.componentHandle(undefined)
 		}
 	}
 
-	const handleSaveImage = () => {
-		if (fileList[0].size <= 40000) {
-			let formData = new FormData()
-			console.log()
-			formData.append('image', fileList[0].originFileObj)
-			formData.append('name', fileList[0].name + fileList[0].uid)
-			formData.append('key', 'a37ed9ea9a4369226c2d0c16e8c5d076')
-
-			console.log(formData)
-			serviceUploadImage(formData).then((response) => {
-				console.log(response)
-				handleReturnState(response.image.url)
-			})
-			setButtom(false)
-		} else {
-			alert('El peso de la imagen es muy alto')
-		}
+	const handleSaveImage = (item) => {
+		console.log('handleSaveImage', item)
+		console.log('name', props.componentName)
+		let formData = new FormData()
+		formData.append('image', item[0].originFileObj)
+		formData.append('name', `${props.componentName}`)
+		formData.append('key', process.env.REACT_APP_IMBB_API_KEY)
+		serviceUploadImage(formData).then((response) => {
+			console.log('imagen subida', response)
+			props.componentHandle(response.image.url)
+		})
 	}
 
 	const handleOnPreview = async (item) => {
@@ -62,27 +70,21 @@ export default function UploadImage(props) {
 		imgWindow.document.write(image.outerHTML)
 	}
 
-	const handleReturnState = props.componentFunction
 	return (
 		<>
-			<p>{props.componentLabel}</p>
 			<ImgCrop>
 				<Upload
-					name={props.componentName}
 					className='cv-upload-img'
 					listType='picture-card'
 					fileList={fileList}
 					onChange={handleOnChange}
-					onPreview={handleOnPreview}>
-					{fileList.length < 1 && '+ Imagen'}
+					onPreview={handleOnPreview}
+					beforeUpload={beforeUpload}
+					progress={{ strokeWidth: 2, showInfo: false }}
+					accept={props.componentAccept || CONSTANTS.FORMAT}>
+					{fileList.length <= 0 && '+ Imagen'}
 				</Upload>
 			</ImgCrop>
-			<br />
-			{isButtom && (
-				<Button type='danger' onClick={handleSaveImage}>
-					Confirmar Imagen
-				</Button>
-			)}
 		</>
 	)
 }
