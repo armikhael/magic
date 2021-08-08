@@ -157,12 +157,15 @@ export default function LinkTreeUrl(props) {
 												<InputField
 													componentClass={'cv-auth-login-field-input'}
 													componentName={'number'}
-													componentLabel={'Coloca tu número aquí'}
-													componentRules={'required'}
+													componentLabel={
+														'Coloca tu número aquí con el código de área de tu país'
+													}
+													componentRules={'rulesPhone'}
 													componentPlaceholder={'Ingresa tu número de WhatsApp'}
 													componentType={'text'}
 													componentValue={''}
 												/>
+												<p>Ejemplo: 56999999999</p>
 
 												<TextAreaField
 													componentClass={'cv-auth-login-field-input'}
@@ -251,7 +254,7 @@ export default function LinkTreeUrl(props) {
 																		onClick={() => {
 																			window.open(item.url)
 																		}}>
-																		Ver
+																		Probar
 																	</Button>
 
 																	<Button
