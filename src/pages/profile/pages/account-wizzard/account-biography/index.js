@@ -94,11 +94,15 @@ const AccountBiography = (props) => {
 	}
 
 	const handleSetImageProfile = (item) => {
+		console.log(item)
 		setImageProfile(item)
+		console.log('entro por props')
 	}
 
 	const handleSetImageCover = (item) => {
+		console.log(item)
 		setImageCover(item)
+		console.log('entro por props')
 	}
 
 	const handleButtonSkip = () => {
@@ -245,9 +249,6 @@ const AccountBiography = (props) => {
 											Imagen de Portada (Obligatoria)
 											<UploadCover account={data} componentHandle={handleSetImageCover} />
 										</Col>
-										<a href='https://api.whatsapp.com/send?phone=56979582051&text=Hola!%20tengo%20problemas%20para%20cargar%20las%20im%C3%A1genes%20en%20cuentas%20virales'>
-											¿Problemas para cargar tus imágenes?
-										</a>
 									</Row>
 									<Form.Item className='cv-right'>
 										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
