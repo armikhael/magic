@@ -13,6 +13,17 @@ export default class Slider extends React.Component {
 			<>
 				<Carousel className='cv-home-carousel-content cv-home-slider-web ' autoplay>
 					<div>
+						<span
+							style={{ cursor: 'pointer' }}
+							onClick={() => {
+								window.open(
+									`${process.env.REACT_APP_WHATSAPP}?phone=573106044125&text=Hola Cesar, vi un anuncio en cuentasvirales.com sobre una Master Class, me podrías dar más información por favor`
+								)
+							}}>
+							<img width='100%' src='https://i.ibb.co/sHc3dxs/web.jpg' alt='Master Class Web' />
+						</span>
+					</div>
+					<div>
 						<Link to={`/help/quienes-somos`}>
 							<img width='100%' src='https://i.ibb.co/pZ5PV4H/d112.jpg' alt='Quienes Somos' />
 						</Link>
@@ -29,6 +40,17 @@ export default class Slider extends React.Component {
 					</div>
 				</Carousel>
 				<Carousel className='cv-home-carousel-content cv-home-slider-mobil' autoplay>
+					<div>
+						<span
+							style={{ cursor: 'pointer' }}
+							onClick={() => {
+								window.open(
+									`${process.env.REACT_APP_WHATSAPP}?phone=573106044125&text=Hola Cesar, vi un anuncio en cuentasvirales.com sobre una Master Class, me podrías dar más información por favor`
+								)
+							}}>
+							<img width='100%' src='https://i.ibb.co/2kvT2tq/movil.jpg' alt='Master Class Movil' />
+						</span>
+					</div>
 					<div>
 						<Link to={`/help/quienes-somos`}>
 							<img width='100%' src='https://i.ibb.co/hB2LFCf/d113.jpg' alt='Quienes Somos' />
