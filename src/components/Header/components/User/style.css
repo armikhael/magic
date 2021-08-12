@@ -19,13 +19,13 @@
 
 .cv-header-user-icon-init-sesion {
 	color: #200159;
-	font-weight: 900;
+	font-weight: 500;
 }
 
 .cv-header-user-icon-login-content {
 	border-radius: 8px;
 	color: #797979;
-	font-weight: 900;
+	font-weight: 500;
 }
 
 .cv-header-user-icon-login-content:hover {
@@ -35,6 +35,7 @@
 .cv-header-user-icon-login-content > span {
 	margin-left: 10px;
 	margin-top: 5px;
+	font-weight: 400;
 }
 
 .cv-header-user-icon-login {

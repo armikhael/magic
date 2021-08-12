@@ -34,7 +34,7 @@
 	margin: 0px;
 	padding: 0px;
 	color: #424346;
-	font-weight: 900;
+	font-weight: 700;
 	margin-top: 10px;
 	font-size: 23px;
 	cursor: pointer;
@@ -67,7 +67,7 @@
 
 .cv-auth-login-main-button-submit {
 	color: #fff;
-	font-weight: 900;
+	font-weight: 500;
 	font-size: 16px;
 	height: 39px;
 	background-color: #f61073;
@@ -173,7 +173,7 @@
 	margin: 0px;
 	padding: 0px;
 	font-size: 15px;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .cv-login-conten-register {
