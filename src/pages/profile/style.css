@@ -12,7 +12,7 @@ p {
 	font-size: 25px;
 	margin-top: 40px;
 	color: #797979;
-	font-weight: 900;
+	font-weight: 500;
 	width: 100%;
 }
 
@@ -45,7 +45,7 @@ p {
 }
 
 .cv-profile-card-item-title > h3 {
-	font-weight: 900;
+	font-weight: 500;
 	margin-bottom: 5px;
 }
 
@@ -109,7 +109,7 @@ p {
 
 .cv-profile-account-detail-title {
 	text-transform: uppercase;
-	font-weight: 900;
+	font-weight: 500;
 	color: #5d5d5d;
 }
 

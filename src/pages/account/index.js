@@ -51,7 +51,10 @@ export default class AccountDetail extends React.Component {
 			})
 			if (includeName !== undefined) {
 				const ipv4 = await publicIp.v4()
-				const accountDetail = await serviceAccountDetail({ name: this.props.match.params.name, ip: ipv4 })
+				const accountDetail = await serviceAccountDetail({
+					name: this.props.match.params.name,
+					ip: ipv4,
+				})
 				console.log(accountDetail)
 				if (accountDetail.account[0].representation === true) {
 					this.setState({
@@ -188,10 +191,7 @@ export default class AccountDetail extends React.Component {
 														/>
 													)}
 												</h1>
-												<Moment
-													format='LLLL'
-													withTitle
-													className='cv-detail-moment-title-mobil'>
+												<Moment format='LLLL' withTitle className='cv-detail-moment-title-mobil'>
 													{this.state.detail.createdAt}
 												</Moment>
 												<a
@@ -238,9 +238,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}
@@ -275,6 +273,30 @@ export default class AccountDetail extends React.Component {
 										</Col>
 									)}
 									<Col span={24} className='cv-detail-content-account-detail cv-md'>
+										{this.state.detail.point >= 1 && (
+											<Row
+												className={`${
+													this.state.representation
+														? 'cv-detail-account-vlc-content-top'
+														: 'cv-detail-account-vlc-content-bottom'
+												} cv-detail-account-vlc-content`}>
+												<Col xs={24} sm={24} md={8}>
+													<img
+														width='100%'
+														src='https://i.ibb.co/pfFwf3X/pngwing-com.png'
+														alt='VLC'
+														title='VLC'
+													/>
+												</Col>
+												<Col xs={24} sm={24} md={12} className='pl10'>
+													<span className='cv-detail-account-vlc-title'>ViralCoint</span> <br />
+													<span className='cv-detail-account-vlc-title-sub'>
+														{this.state.detail.point} <span>VLC</span>
+													</span>{' '}
+													<br />
+												</Col>
+											</Row>
+										)}
 										<h1 className='cv-detail-title-main'>
 											{this.state.detail.account}
 											{this.state.detail.eneable && (
@@ -290,19 +312,15 @@ export default class AccountDetail extends React.Component {
 											<Moment format='LLLL' withTitle>
 												{this.state.detail.createdAt}
 											</Moment>
-											<Link to={`/category/${this.state.detail.categories[0]}`}>
-												<span className='cv-detail-account-category-title'>
-													{this.state.detail.categories[0]}
-												</span>
-											</Link>
 										</h3>
+										<Link to={`/category/${this.state.detail.categories[0]}`}>
+											<span className='cv-detail-account-category-title'>
+												{this.state.detail.categories[0]}
+											</span>
+										</Link>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col
-													xs={24}
-													sm={24}
-													md={7}
-													className='cv-detail-account-img-main-content'>
+												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -350,9 +368,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}

@@ -18,7 +18,7 @@
 	border-radius: 8px;
 	color: #fff;
 	background-color: #f61073;
-	font-weight: 900;
+	font-weight: 600;
 	cursor: pointer;
 }
 
@@ -60,7 +60,7 @@
 	border-radius: 8px;
 	color: #fff;
 	background-color: #f61073;
-	font-weight: 900;
+	font-weight: 600;
 	cursor: pointer;
 }
 
@@ -81,6 +81,34 @@
 	position: relative;
 }
 
+.cv-detail-account-vlc-content {
+	position: absolute;
+	right: 0;
+	width: 130px;
+}
+
+.cv-detail-account-vlc-content-top {
+	top: 0;
+}
+
+.cv-detail-account-vlc-content-bottom {
+	bottom: 0;
+}
+
+.cv-detail-account-vlc-title {
+	font-weight: 700;
+}
+
+.cv-detail-account-vlc-title-sub {
+	font-weight: 500;
+	color: #8e8e8e;
+}
+
+.cv-detail-account-vlc-title-sub span {
+	font-size: 9px;
+	font-weight: 100;
+}
+
 .cv-detail-img-content-account-verified {
 	width: 45px;
 	margin-top: -7px;
@@ -88,7 +116,7 @@
 }
 
 .cv-detail-title-main {
-	font-weight: 900;
+	font-weight: 00;
 	color: #53565d;
 	line-height: 50px;
 	text-decoration: none;
@@ -99,7 +127,9 @@
 
 .cv-detail-sub-title {
 	font-size: 14px;
-	color: #3c5b68;
+	color: #7d7d7d;
+	font-weight: 400;
+	margin-top: 10px;
 }
 
 .cv-detail-account-category-title {
@@ -109,10 +139,10 @@
 	line-height: 14px;
 	color: #fff;
 	border-radius: 4px;
-	font-weight: 900;
+	font-weight: 600;
 	margin-right: 10px;
+	margin-bottom: 10px;
 	cursor: pointer;
-	float: right;
 	text-transform: uppercase;
 }
 
@@ -136,7 +166,7 @@
 
 .cv-detail-account-content-info {
 	padding: 10px 40px;
-	margin-top: 25px;
+	margin-top: 0px;
 }
 
 .cv-detail-account-content-info-country {
@@ -154,7 +184,7 @@
 	margin-left: 10px;
 	font-size: 14px;
 	color: #f61073;
-	font-weight: 900;
+	font-weight: 600;
 	margin-top: 3px;
 }
 
@@ -166,7 +196,7 @@
 
 .cv-detail-followers {
 	color: #f61073;
-	font-weight: 900;
+	font-weight: 500;
 }
 
 .cv-detail-account-descript {
@@ -255,6 +285,7 @@
 	margin-top: 30px;
 	color: #2c2d2f;
 	font-size: 17px;
+	font-weight: 400;
 }
 
 .cv-detail-plans-hr {
@@ -323,6 +354,10 @@
 	border-radius: 12px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+.cv-detail-account-content-info-detail {
+	font-weight: 300;
 }
 
 @media (max-width: 768px) {

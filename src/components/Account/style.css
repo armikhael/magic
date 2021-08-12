@@ -103,7 +103,7 @@
 .cv-masonry-item-title {
 	margin-top: 8px;
 	margin-bottom: 5px;
-	font-weight: 700;
+	font-weight: 500;
 	color: #2c2d2f;
 	font-size: 18px;
 	line-height: 32px;
@@ -119,7 +119,7 @@
 
 .cv-masonry-followers {
 	color: #f61073;
-	font-weight: 900;
+	font-weight: 600;
 }
 
 .cv-masonry-item-card-more {
@@ -128,7 +128,7 @@
 }
 
 .cv-masonry-item-card-more-title {
-	font-weight: 700;
+	font-weight: 500;
 	display: inline-block;
 	color: #111;
 	background-color: #fff;
@@ -147,7 +147,7 @@
 
 .cv-masonry-item-gird-date-card-title {
 	font-size: 12px;
-	font-weight: 700;
+	font-weight: 300;
 	color: #777777;
 }
 
@@ -172,7 +172,7 @@
 	line-height: 14px;
 	color: #5d5d5d;
 	border-radius: 4px;
-	font-weight: 900;
+	font-weight: 400;
 	margin-right: 10px;
 	cursor: pointer;
 	text-transform: uppercase;

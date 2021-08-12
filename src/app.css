@@ -17,6 +17,11 @@ p {
 	font-family: 'Montserrat', sans-serif;
 }
 
+li,
+p {
+	font-weight: 400;
+}
+
 .mt10 {
 	margin-top: 10px !important;
 }
@@ -51,6 +56,10 @@ p {
 
 .p10 {
 	padding: 10px;
+}
+
+.pl10 {
+	padding-left: 10px;
 }
 
 .p20 {
