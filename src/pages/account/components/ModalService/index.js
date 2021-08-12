@@ -34,7 +34,6 @@ const ModalService = (props) => {
 			</span>
 			<Modal title={props.componentHeader} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 				{renderHTML(props.componentDescription)}
-				<p> Puedes realizar depósitos o transferencias en tu moneda local.</p>
 			</Modal>
 		</>
 	)

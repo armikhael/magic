@@ -88,7 +88,7 @@ export default function Views(props) {
 										<br />
 										<ModalService
 											componentHeader={'¿Cuál es el objetivo?'}
-											componentDescription={`Que el influencer pueda hablar de tu producto, beneficios, probar la calidad del mismo y compartirlo con su comunidad, de esta manera generas mas confianza lo que hace que tus ventas aumenten.`}
+											componentDescription={`Que ${props.detail.account} pueda hablar de tu producto, beneficios, probar la calidad del mismo y compartirlo con su comunidad, de esta manera generas mas confianza lo que hace que tus ventas aumenten.`}
 											componentData={props.detail}
 											componentType={'Producto x Publicidad'}
 											componentCategory={'intercambio-producto'}
