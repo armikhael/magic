@@ -1,6 +1,7 @@
 /** @format */
 
 export const CONSTANTS = {
+	MIN_FOLLOWERS: 50000,
 	QUANTITY_POST: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 	TIMES: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 	SLUG_ADMITED: ['-instagram', '-facebook', '-tiktok', '-youtube'],
@@ -10,16 +11,8 @@ export const CONSTANTS = {
 			value: 'instagram',
 		},
 		{
-			name: 'Facebook',
-			value: 'facebook',
-		},
-		{
 			name: 'TikTok',
 			value: 'tiktok',
-		},
-		{
-			name: 'YouTube',
-			value: 'youtube',
 		},
 	],
 	TYPE_POST: {

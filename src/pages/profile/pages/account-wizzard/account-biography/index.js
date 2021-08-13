@@ -139,7 +139,9 @@ const AccountBiography = (props) => {
 			console.log(response)
 			if (response.statusCode === 200) {
 				console.log(response.data.name)
-				if (isModify === false) {
+				if (isModify === false && response.data.followers <= CONSTANTS.MIN_FOLLOWERS) {
+					history.push(`/profile/account-details/${response.data.name}`)
+				} else if (isModify === false && response.data.followers > CONSTANTS.MIN_FOLLOWERS) {
 					history.push(`/profile/account-plans/${response.data.name}`)
 				} else {
 					history.push(`/profile/accounts`)
