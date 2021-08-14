@@ -21,26 +21,6 @@ export default class InactiveAccounts extends React.Component {
 		})
 	}
 
-	handleActiveAccount = async (item) => {
-		item.image = this.state.image
-		console.log(item)
-		serviceGetAccountsInactives(item)
-			.then((response) => {
-				this.setState({ list: response.data })
-				notification['success']({
-					message: `Great!`,
-					description: `Activada con exito`,
-				})
-			})
-			.catch((error) => {
-				console.log(error)
-				notification['error']({
-					message: `Ups!`,
-					description: `Algo inesperado ocurrió`,
-				})
-			})
-	}
-
 	handleDeleteAccount = async (item) => {
 		console.log(item._id)
 		serviceDeleteAccount(item._id)
@@ -129,15 +109,6 @@ export default class InactiveAccounts extends React.Component {
 										<li>
 											<Button href={item.interface.link} target='__blank'>
 												Ir a la cuenta de: {item.account}
-											</Button>
-										</li>
-										<li>
-											<Button
-												type='primary'
-												onClick={() => {
-													this.handleActiveAccount(item)
-												}}>
-												activar cuenta
 											</Button>
 										</li>
 

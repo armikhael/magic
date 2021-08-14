@@ -107,7 +107,7 @@ export default function LinkTreeInfo(props) {
 										/>
 									</div>
 									<Row>
-										Imagen de Pefil
+										Imagen de Perfil
 										<UploadOneImage
 											componentData={data}
 											componentHandle={(e) => {

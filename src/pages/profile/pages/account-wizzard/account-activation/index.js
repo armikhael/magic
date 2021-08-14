@@ -59,10 +59,10 @@ const AccountActivation = (props) => {
 				if (response.statusCode === 200) {
 					notification['success']({
 						message: `Felicidades!`,
-						description: `Ahora veremos como se ve tu cuenta`,
+						description: `Ahora te enseñaremos un truco`,
 					})
 					setTimeout(() => {
-						history.push(`/${response.data.name}`)
+						history.push(`/profile/account-finish/${response.data.name}`)
 					}, 1000)
 				} else {
 					notification['error']({

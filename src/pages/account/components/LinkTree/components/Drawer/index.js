@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button, Drawer, List } from 'antd'
-import { AlertOutlined, RightOutlined } from '@ant-design/icons'
+import { BellOutlined, RightOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
 import serviceEventGoogleAnalytics from '../../../../../../components/ServiceCommons/EventsGoogleAnalitycs'
@@ -26,7 +26,7 @@ const DrawerLinktree = (props) => {
 			<Button
 				className='cv-layout-btn-help'
 				shape='circle'
-				icon={<AlertOutlined />}
+				icon={<BellOutlined />}
 				size={'large'}
 				style={{ color: '#ec3f7c' }}
 				onClick={() => {

@@ -218,7 +218,7 @@ export default function LinkTreeUrl(props) {
 
 							<Card
 								className='cv-linktree-card mt20'
-								title={`Cantidad de Enlaces: ${links.length}`}
+								title={`Enlaces Agregados: ${links.length}`}
 								bordered={false}>
 								<DragDropContext onDragEnd={handleOnDragEnd}>
 									<Droppable droppableId='characters'>

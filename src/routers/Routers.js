@@ -20,6 +20,7 @@ import AccountBiography from '../pages/profile/pages/account-wizzard/account-bio
 import AccountPlans from '../pages/profile/pages/account-wizzard/account-plans'
 import AccountDetails from '../pages/profile/pages/account-wizzard/account-details'
 import AccountActivation from '../pages/profile/pages/account-wizzard/account-activation'
+import AccountFinish from '../pages/profile/pages/account-wizzard/account-finish'
 import LinkTreeName from '../pages/profile/pages/linktree-wizzard/step1-linktree-name'
 import LinkTreeInfo from '../pages/profile/pages/linktree-wizzard/step2-linktree-info'
 import LinkTreeUrl from '../pages/profile/pages/linktree-wizzard/step3-linktree-urls'
@@ -66,6 +67,7 @@ const Routers = (props) => (
 				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />
 				<PrivateRoute exact path='/profile/account-details/:name/:modify?' component={AccountDetails} />
 				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
+				<PrivateRoute exact path='/profile/account-finish/:name/' component={AccountFinish} />
 				<PrivateRoute exact path='/profile/linktree-name/' component={LinkTreeName} />
 				<PrivateRoute exact path='/profile/linktree-info/:name/:modify?' component={LinkTreeInfo} />
 				<PrivateRoute exact path='/profile/linktree-urls/:name/:modify?' component={LinkTreeUrl} />
