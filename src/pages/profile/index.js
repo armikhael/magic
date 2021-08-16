@@ -44,88 +44,73 @@ export default class Profile extends React.Component {
 					<Header className='cv-profile-header'>
 						<h3 className='cv-profile-header-title'>Tu cuenta</h3>
 					</Header>
-
 					<Row className='mt15'>
-						<Col xs={24} sm={24} md={24}>
-							<p style={{ marginLeft: '20px' }}>
-								<span className='cv-profile-card-item-img-icon'>1 </span>
-								Herramientas para Modelos, Actores, Cantantes, Mascotas, Bailarines.
-							</p>
-						</Col>
-						<Col xs={24} sm={6} md={6}>
-							<Link to={`/profile/accounts`}>
-								<div className='cv-profile-card-item'>
-									<div className='cv-profile-card-item-img'>
-										<TeamOutlined className='cv-profile-card-item-img-icon' />
-									</div>
-									<div className='cv-profile-card-item-title'>
-										<h3>Mis cuentas</h3>
-										<p>Aquí puedes encontrar tus cuentas registrardas.</p>
-									</div>
+						<Col xs={24} sm={12} md={12}>
+							<div className='cv-profile-card-item'>
+								<span className='cv-profile-number'>1</span>
+								<TeamOutlined className='cv-profile-card-item-img-icon' />
+								<h3>Mis cuentas</h3>
+								<div className='cv-profile-card-item-title'>
+									<p>
+										Herramientas para Modelos, Actores, Cantantes, Mascotas, Bailarines. Aquí puedes
+										encontrar tus cuentas registrardas. Especialmente para Marcas Personales
+									</p>
 								</div>
-							</Link>
+								<br />
+								<Row>
+									<Col xs={12} sm={12} md={12} className='p10'>
+										<Link to={`/profile/accounts`}>
+											<div className='cv-profile-card-btn'>Lista de Cuentas</div>
+										</Link>
+									</Col>
+									<Col xs={12} sm={12} md={12} className='p10'>
+										<Link to={`/profile/account-user`}>
+											<div className='cv-profile-card-btn'>
+												<UsergroupAddOutlined className='cv-profile-card-btn-i' />
+												Crear Cuenta
+											</div>
+										</Link>
+									</Col>
+								</Row>
+							</div>
 						</Col>
-						<Col xs={24} sm={6} md={6}>
-							<Link to={`/profile/account-user`}>
-								<div className='cv-profile-card-item'>
-									<div className='cv-profile-card-item-img'>
-										<UsergroupAddOutlined className='cv-profile-card-item-img-icon' />
-									</div>
-									<div className='cv-profile-card-item-title'>
-										<h3>Crear cuenta</h3>
-										<p>Especialmente para Marcas Personales.</p>
-									</div>
+						<Col xs={24} sm={12} md={12}>
+							<div className='cv-profile-card-item'>
+								<span className='cv-profile-number'>2</span>
+								<LinkOutlined className='cv-profile-card-item-img-icon' />
+								<h3>Mis enlaces</h3>
+								<div className='cv-profile-card-item-title'>
+									<p>
+										Herramientas para Negocios, Diseñadores, Creadores de Contenido, Empresas,
+										Marketing de Referidos, Profesores. Aquí puedes encontrar todos tus enlaces
+										registrados.
+									</p>
 								</div>
-							</Link>
+								<br />
+								<Row>
+									<Col xs={12} sm={12} md={12} className='p10'>
+										<Link to={`/profile/accounts`}>
+											<div className='cv-profile-card-btn'>Lista de Enales</div>
+										</Link>
+									</Col>
+									<Col xs={12} sm={12} md={12} className='p10'>
+										<Link to={`/profile/account-user`}>
+											<div className='cv-profile-card-btn'>
+												<SubnodeOutlined className='cv-profile-card-btn-i' />
+												Crear Enlace
+											</div>
+										</Link>
+									</Col>
+								</Row>
+							</div>
 						</Col>
 					</Row>
 					<Row className='mt15'>
-						<Col xs={24} sm={24} md={24}>
-							<p style={{ marginLeft: '20px' }}>
-								<span className='cv-profile-card-item-img-icon'>2 </span>
-								Herramientas para Negocios, Diseñadores, Creadores de Contenido, Empresas, Marketing
-								de Referidos, Profesores.
-							</p>
-						</Col>
-						<Col xs={24} sm={6} md={6}>
-							<Link to={`/profile/linktree`}>
-								<div className='cv-profile-card-item'>
-									<div className='cv-profile-card-item-img'>
-										<LinkOutlined className='cv-profile-card-item-img-icon' />
-									</div>
-									<div className='cv-profile-card-item-title'>
-										<h3>Mis enlaces</h3>
-										<p>Aquí puedes encontrar todos tus enlaces registrados.</p>
-									</div>
-								</div>
-							</Link>
-						</Col>
-						<Col xs={24} sm={6} md={6}>
-							<Link to={`/profile/linktree-name`}>
-								<div className='cv-profile-card-item'>
-									<div className='cv-profile-card-item-img'>
-										<SubnodeOutlined className='cv-profile-card-item-img-icon' />
-									</div>
-									<div className='cv-profile-card-item-title'>
-										<h3>Crear enlace</h3>
-										<p>Especialmente para crear menú de opciones en tu negocio.</p>
-									</div>
-								</div>
-							</Link>
-						</Col>
-					</Row>
-					<Row className='mt15'>
-						<Col xs={24} sm={24} md={24}>
-							<p style={{ marginLeft: '20px' }}>
-								<span className='cv-profile-card-item-img-icon'>3 </span>
-								Opciones generales de configuración
-							</p>
-						</Col>
-						<Col xs={24} sm={6} md={6}>
+						<Col xs={24} sm={8} md={8}>
 							<Link to={`/profile/change-password`}>
-								<div className='cv-profile-card-item'>
+								<div className='cv-profile-card-item-tre'>
 									<div className='cv-profile-card-item-img'>
-										<SafetyOutlined className='cv-profile-card-item-img-icon' />
+										<SafetyOutlined className='cv-profile-card-item-img-icon-tre' />
 									</div>
 									<div className='cv-profile-card-item-title'>
 										<h3>Cambiar contraseña</h3>
@@ -134,11 +119,11 @@ export default class Profile extends React.Component {
 								</div>
 							</Link>
 						</Col>
-						<Col xs={24} sm={6} md={6}>
+						<Col xs={24} sm={8} md={8}>
 							<Link to={`/help/quienes-somos`}>
-								<div className='cv-profile-card-item'>
+								<div className='cv-profile-card-item-tre'>
 									<div className='cv-profile-card-item-img'>
-										<QuestionOutlined className='cv-profile-card-item-img-icon' />
+										<QuestionOutlined className='cv-profile-card-item-img-icon-tre' />
 									</div>
 									<div className='cv-profile-card-item-title'>
 										<h3>Preguntas frecuentes</h3>
@@ -147,9 +132,9 @@ export default class Profile extends React.Component {
 								</div>
 							</Link>
 						</Col>
-						<Col xs={24} sm={6} md={6}>
+						<Col xs={24} sm={8} md={8}>
 							<div
-								className='cv-profile-card-item'
+								className='cv-profile-card-item-tre'
 								onClick={() => {
 									Modal.confirm({
 										title: 'Cerrar seción',
@@ -161,7 +146,7 @@ export default class Profile extends React.Component {
 									})
 								}}>
 								<div className='cv-profile-card-item-img'>
-									<ExportOutlined className='cv-profile-card-item-img-icon' />
+									<ExportOutlined className='cv-profile-card-item-img-icon-tre' />
 								</div>
 								<div className='cv-profile-card-item-title'>
 									<h3>Cerrar seción</h3>
@@ -193,6 +178,8 @@ export default class Profile extends React.Component {
 							</Link>
 						</Col>
 					</Row>
+					<br></br>
+					<br></br>
 				</div>
 			</>
 		)

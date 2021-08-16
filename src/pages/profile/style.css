@@ -17,8 +17,19 @@ p {
 }
 
 .cv-profile-card-item {
+	padding: 15px 50px;
+	margin: 15px;
+	border: #fff;
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	background-color: #fff;
+	border-radius: 8px;
+	position: relative;
+	text-align: center;
+}
+
+.cv-profile-card-item-tre {
 	padding: 15px;
-	margin: 10px;
+	margin: 15px;
 	border: #fff;
 	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
 	background-color: #fff;
@@ -27,8 +38,21 @@ p {
 	cursor: pointer;
 }
 
-.cv-profile-card-item:hover {
+.cv-profile-card-item:hover,
+.cv-profile-card-item-tre:hover {
 	box-shadow: 0px 7px 14px 0px rgb(158 162 181 / 40%);
+}
+
+.cv-profile-number {
+	position: absolute;
+	top: 8px;
+	left: -16px;
+	font-size: 16px;
+	font-weight: 500;
+	background: #f61073;
+	color: #fff;
+	padding: 5px 12px;
+	border-radius: 50px;
 }
 
 .cv-profile-card-item-img {
@@ -36,8 +60,17 @@ p {
 }
 
 .cv-profile-card-item-img-icon {
-	font-size: 30px;
+	font-size: 50px;
 	color: #f61073;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.cv-profile-card-item-img-icon-tre {
+	font-size: 35px;
+	color: #f61073;
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 .cv-profile-card-item-title {
@@ -52,6 +85,26 @@ p {
 .cv-profile-card-item-title > p {
 	margin-bottom: 6px;
 	font-size: 13px;
+}
+
+.cv-profile-card-btn {
+	background: #f9f9f9;
+	padding: 10px 10px;
+	border-radius: 6px;
+	border: 1px solid #ececec;
+	font-weight: 500;
+	cursor: pointer;
+	color: #6d6d6d;
+}
+
+.cv-profile-card-btn:hover {
+	border: 1px solid #ddd;
+}
+
+.cv-profile-card-btn-i {
+	font-size: 20px;
+	float: left;
+	color: #f61073;
 }
 
 .cv-profile-hr {
@@ -224,5 +277,8 @@ p {
 	.cv-profile-header {
 		padding: 0;
 		text-align: center;
+	}
+	.cv-profile-card-item {
+		padding: 15px 20px;
 	}
 }
