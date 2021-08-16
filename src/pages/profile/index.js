@@ -83,8 +83,8 @@ export default class Profile extends React.Component {
 						<Col xs={24} sm={24} md={24}>
 							<p style={{ marginLeft: '20px' }}>
 								<span className='cv-profile-card-item-img-icon'>2 </span>
-								Herramientas para Negocios, Diseñadores, Creadores de Contenido, Empresas, Marketing de
-								Referidos, Profesores.
+								Herramientas para Negocios, Diseñadores, Creadores de Contenido, Empresas, Marketing
+								de Referidos, Profesores.
 							</p>
 						</Col>
 						<Col xs={24} sm={6} md={6}>

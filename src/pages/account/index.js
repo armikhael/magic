@@ -191,10 +191,7 @@ export default class AccountDetail extends React.Component {
 														/>
 													)}
 												</h1>
-												<Moment
-													format='LLLL'
-													withTitle
-													className='cv-detail-moment-title-mobil'>
+												<Moment format='LLLL' withTitle className='cv-detail-moment-title-mobil'>
 													{this.state.detail.createdAt}
 												</Moment>
 												<a
@@ -236,14 +233,29 @@ export default class AccountDetail extends React.Component {
 										<h3 className='cv-detail-account-content-info-detail'>
 											{this.state.detail.biography}
 										</h3>
+										<Row className={`cv-detail-account-vlc-content-mobil`}>
+											<Col xs={8} sm={8} md={8}>
+												<img
+													width='100%'
+													src='https://i.ibb.co/pfFwf3X/pngwing-com.png'
+													alt='VLC'
+													title='VLC'
+												/>
+											</Col>
+											<Col xs={12} sm={12} md={12} className='pl10'>
+												<span className='cv-detail-account-vlc-title'>ViralCoin</span> <br />
+												<span className='cv-detail-account-vlc-title-sub'>
+													{this.state.detail.point} <span>VLC</span>
+												</span>{' '}
+												<br />
+											</Col>
+										</Row>
 										<br></br>
 										<div>
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}
@@ -294,8 +306,7 @@ export default class AccountDetail extends React.Component {
 													/>
 												</Col>
 												<Col xs={24} sm={24} md={12} className='pl10'>
-													<span className='cv-detail-account-vlc-title'>ViralCoin</span>{' '}
-													<br />
+													<span className='cv-detail-account-vlc-title'>ViralCoin</span> <br />
 													<span className='cv-detail-account-vlc-title-sub'>
 														{this.state.detail.point} <span>VLC</span>
 													</span>{' '}
@@ -326,11 +337,7 @@ export default class AccountDetail extends React.Component {
 										</Link>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col
-													xs={24}
-													sm={24}
-													md={7}
-													className='cv-detail-account-img-main-content'>
+												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -378,9 +385,7 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>
-															#{item}&nbsp;&nbsp;
-														</span>
+														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
 													</Link>
 												)
 											})}

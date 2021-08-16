@@ -95,6 +95,12 @@
 	bottom: 0;
 }
 
+.cv-detail-account-vlc-content-mobil {
+	width: 130px;
+	margin-top: 10px;
+	margin: 0 auto;
+}
+
 .cv-detail-account-vlc-title {
 	font-weight: 700;
 }
