@@ -24,7 +24,7 @@ const DrawerLinktree = (props) => {
 	return (
 		<>
 			<Button
-				className='cv-layout-btn-help'
+				className='cv-account-btn-linktree'
 				shape='circle'
 				icon={<BellOutlined />}
 				size={'large'}
