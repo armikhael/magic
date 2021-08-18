@@ -111,7 +111,7 @@ const LinkTreeColor = (props) => {
 					{data.links.map((item, key) => {
 						return (
 							<a href={item.url} target='_blank' key={key} rel='noopener noreferrer'>
-								<div className='cv-linktree-link' style={{ background: link.hex }}>
+								<div className='cv-linktree-link' style={{ background: link.hex, borderColor: link }}>
 									<LinkOutlined className='cv-linktree-link-icon' style={{ color: icon.hex }} />
 									<span style={{ color: text.hex }}>{item.title}</span>
 								</div>

@@ -20,56 +20,48 @@ const Plans = (props) => {
 		instagram: [
 			{
 				description: 'Historia',
-				price: ((props.componentData.followers / 1000) * 0.15).toFixed(0),
-				currency: 'Dólar(es)',
+				type: 'por Canje / Intercambio',
+				// price: ((props.componentData.followers / 1000) * 0.6).toFixed(0),
+				// currency: 'Dólar(es)',
 			},
 			{
 				description: 'Publicación',
-				price: ((props.componentData.followers / 1000) * 0.3).toFixed(0),
-				currency: 'Dólar(es)',
+				type: 'por Canje / Intercambio',
 			},
 			{
 				description: 'Carousel',
-				price: ((props.componentData.followers / 1000) * 0.45).toFixed(0),
-				currency: 'Dólar(es)',
+				type: 'por Canje / Intercambio',
 			},
 			{
 				description: 'Reels',
-				price: ((props.componentData.followers / 1000) * 0.6).toFixed(0),
-				currency: 'Dólar(es)',
+				type: 'por Canje / Intercambio',
 			},
 			{
 				description: 'Video',
-				price: ((props.componentData.followers / 1000) * 0.85).toFixed(0),
-				currency: 'Dólar(es)',
+				type: 'por Canje / Intercambio',
 			},
 			{
 				description: 'IGTV',
-				price: ((props.componentData.followers / 1000) * 1).toFixed(0),
-				currency: 'Dólar(es)',
+				type: 'por Canje / Intercambio',
 			},
 		],
 
 		tiktok: [
 			{
-				description: 'Video 15 segundos',
-				price: ((props.componentData.followers / 1000) * 0.15).toFixed(0),
-				currency: 'Dólar(es)',
+				description: 'Video de 15 segundos',
+				type: 'por Canje / Intercambio',
 			},
 			{
-				description: 'Video 30 segundos',
-				price: ((props.componentData.followers / 1000) * 0.3).toFixed(0),
-				currency: 'Dólar(es)',
+				description: 'Video de 30 segundos',
+				type: 'por Canje / Intercambio',
 			},
 			{
-				description: 'Video 45 segundos',
-				price: ((props.componentData.followers / 1000) * 0.45).toFixed(0),
-				currency: 'Dólar(es)',
+				description: 'Video de 45 segundos',
+				type: 'por Canje / Intercambio',
 			},
 			{
-				description: 'Video 60 segundos',
-				price: ((props.componentData.followers / 1000) * 0.6).toFixed(0),
-				currency: 'Dólar(es)',
+				description: 'Video de 60 segundos',
+				type: 'por Canje / Intercambio',
 			},
 		],
 	}
@@ -126,14 +118,14 @@ const Plans = (props) => {
 											action: 'click',
 											category: 'contratacion',
 											label: props.componentData.name,
-											concept: `te encontre en cuentasvirales.com y quisiera contratar tu publicidad de: ${item.description} por ${item.price} ${item.currency}`,
+											concept: `te encontre en cuentasvirales.com y quisiera contratar tu publicidad de: ${item.description} ${item.type}`,
 										})
 									}}>
 									<List.Item actions={[<WhatsAppOutlined />]}>
 										<List.Item.Meta
 											avatar={<Avatar src={props.componentData.image} />}
 											title={`${item.description}`}
-											description={`Precio: ${item.price} ${item.currency}`}
+											description={item.type}
 										/>
 									</List.Item>
 								</span>

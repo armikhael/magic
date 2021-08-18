@@ -20,7 +20,7 @@
 .cv-linktree-title {
 	font-size: 16px;
 	line-height: 1.5;
-	font-weight: 900;
+	font-weight: 700;
 }
 
 .cv-linktree-description {
@@ -35,7 +35,7 @@
 	color: rgb(255, 255, 255);
 	margin-bottom: 16px;
 	padding: 17px;
-	font-weight: 900;
+	font-weight: 700;
 	border-radius: 7px;
 }
 
@@ -51,7 +51,7 @@
 
 .cv-linktree-logo {
 	color: #424346;
-	font-weight: 900;
+	font-weight: 700;
 	font-size: 14px;
 	text-align: center;
 }
