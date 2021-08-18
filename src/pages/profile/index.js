@@ -89,12 +89,12 @@ export default class Profile extends React.Component {
 								<br />
 								<Row>
 									<Col xs={12} sm={12} md={12} className='p10'>
-										<Link to={`/profile/accounts`}>
+										<Link to={`/profile/linktree`}>
 											<div className='cv-profile-card-btn'>Lista de Enales</div>
 										</Link>
 									</Col>
 									<Col xs={12} sm={12} md={12} className='p10'>
-										<Link to={`/profile/account-user`}>
+										<Link to={`/profile/linktree-name`}>
 											<div className='cv-profile-card-btn'>
 												<SubnodeOutlined className='cv-profile-card-btn-i' />
 												Crear Enlace
