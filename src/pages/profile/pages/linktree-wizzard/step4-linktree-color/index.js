@@ -67,7 +67,7 @@ const LinkTreeColor = (props) => {
 					description: `Tus enlaces han sido actualizados`,
 				})
 				setTimeout(() => {
-					history.push(`/profile/linktree`)
+					history.push(`/profile/linktree-finish/${response.data.name}`)
 				}, 2000)
 			} else {
 				notification['error']({
@@ -158,7 +158,7 @@ const LinkTreeColor = (props) => {
 					onClick={() => {
 						handleUpdate()
 					}}>
-					Actualizar
+					Siguiente
 				</Button>
 			</Row>
 		</>

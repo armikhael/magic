@@ -10,7 +10,7 @@ import './style.css'
 
 const { Content } = Layout
 
-const AccountFinish = (props) => {
+const LinkTreeFinish = (props) => {
 	const history = useHistory()
 
 	useEffect(() => {
@@ -27,21 +27,20 @@ const AccountFinish = (props) => {
 							status='success'
 							title='¡Bienvenid@ a Cuentas Virales!'
 							subTitle={
-								'Para aumentar las posibilidades de contratación por marcas interesadas, te dejamos este truco que las modelos estan haciendo dentro de sus cuentas.'
+								'Para la experiencia de tus clientes y aumentar las ventas puedes hacer lo que ya otros negocios estan haciendo'
 							}
 							extra={[
 								<br key='br' />,
 								<img
 									key='img'
 									className='cv-profile-activation-img-logo'
-									src={'https://i.ibb.co/3CGGDSX/ejemplos.jpg'}
-									style={{ width: '100%' }}
-									alt='Cuentas'
+									src={'https://i.ibb.co/nkCnHgQ/enlaces.jpg'}
+									style={{ width: '100%', cursor: 'pointer' }}
+									alt='Enlaces'
 								/>,
 								<p>Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio Web"</p>,
 
-								<CopyToClipboard
-									text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${props.match.params.name}`}>
+								<CopyToClipboard text={`${process.env.REACT_APP_LINKTREE}/${props.match.params.name}`}>
 									<Button
 										style={{ margin: '0px 5px' }}
 										shape='round'
@@ -53,7 +52,7 @@ const AccountFinish = (props) => {
 											})
 										}}>
 										<CopyOutlined />
-										Copiar Enlace: cuentasvirales.com/{props.match.params.name}
+										Copiar Enlace: cvirales.com/{props.match.params.name}
 									</Button>
 								</CopyToClipboard>,
 								<h3 key='h3-profile'>
@@ -62,9 +61,9 @@ const AccountFinish = (props) => {
 										shape='round'
 										style={{ marginTop: '10px' }}
 										onClick={() => {
-											history.push(`/${props.match.params.name}`)
+											history.push(`/profile/linktree`)
 										}}>
-										Ver mi página
+										Mis Enlaces
 									</Button>
 								</h3>,
 							]}
@@ -76,4 +75,4 @@ const AccountFinish = (props) => {
 	)
 }
 
-export default AccountFinish
+export default LinkTreeFinish

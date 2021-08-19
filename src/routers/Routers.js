@@ -25,6 +25,7 @@ import LinkTreeName from '../pages/profile/pages/linktree-wizzard/step1-linktree
 import LinkTreeInfo from '../pages/profile/pages/linktree-wizzard/step2-linktree-info'
 import LinkTreeUrl from '../pages/profile/pages/linktree-wizzard/step3-linktree-urls'
 import LinkTreeColor from '../pages/profile/pages/linktree-wizzard/step4-linktree-color'
+import LinkTreeFinish from '../pages/profile/pages/linktree-wizzard/step5-linktree-finish'
 import Post from '../pages/profile/pages/post-wizzard/post-create'
 import PostView from '../pages/profile/pages/post-wizzard/post-view'
 import Category from '../pages/category'
@@ -72,6 +73,7 @@ const Routers = (props) => (
 				<PrivateRoute exact path='/profile/linktree-info/:name/:modify?' component={LinkTreeInfo} />
 				<PrivateRoute exact path='/profile/linktree-urls/:name/:modify?' component={LinkTreeUrl} />
 				<PrivateRoute exact path='/profile/linktree-color/:name/:modify?' component={LinkTreeColor} />
+				<PrivateRoute exact path='/profile/linktree-finish/:name/' component={LinkTreeFinish} />
 				<PrivateRoute exact path='/profile/post-create' component={Post} />
 				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />
 
