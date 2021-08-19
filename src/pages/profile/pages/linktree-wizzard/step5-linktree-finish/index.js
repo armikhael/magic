@@ -61,6 +61,17 @@ const LinkTreeFinish = (props) => {
 										shape='round'
 										style={{ marginTop: '10px' }}
 										onClick={() => {
+											history.push(`/${props.match.params.name}`)
+										}}>
+										Ver mi página
+									</Button>
+								</h3>,
+								<h3 key='h3-profile'>
+									<Button
+										key='profile'
+										shape='round'
+										style={{ marginTop: '10px' }}
+										onClick={() => {
 											history.push(`/profile/linktree`)
 										}}>
 										Mis Enlaces

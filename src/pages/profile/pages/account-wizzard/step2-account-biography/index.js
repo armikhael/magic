@@ -236,7 +236,7 @@ const AccountBiography = (props) => {
 										<TextAreaField
 											componentClass={'cv-auth-login-field-input'}
 											componentName={'faq'}
-											componentLabel={'Términos y Condiciones'}
+											componentLabel={'Términos y Condiciones (Opcional)'}
 											componentPlaceholder={'Coloca tu condiciones'}
 											componentRows={4}
 											componentValue={data.faq}

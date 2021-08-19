@@ -106,20 +106,13 @@ export default class SideBar extends React.Component {
 					<>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile`}>
-								<UserOutlined
-									className='cv-header-user-sidebar-list-icon'
-									style={{ fontSize: 22 }}
-								/>
+								<UserOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
 								<span className='cv-header-user-sidebar-list-title'>Perfil</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<div className='cv-header-user-icon-login-content'>
-								<img
-									width='19px'
-									src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
-									alt='Crear Cuenta'
-								/>
+								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
 								<span className='cv-header-user-sidebar-list-title'>Publicar</span>
 							</div>
 						</div>
@@ -147,28 +140,19 @@ export default class SideBar extends React.Component {
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/accounts`}>
-								<TeamOutlined
-									className='cv-header-user-sidebar-list-icon'
-									style={{ fontSize: 22 }}
-								/>
+								<TeamOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
 								<span className='cv-header-user-sidebar-list-title'>Mis Cuentas</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/linktree`}>
-								<LinkOutlined
-									className='cv-header-user-sidebar-list-icon'
-									style={{ fontSize: 22 }}
-								/>
+								<LinkOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
 								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/change-password`}>
-								<SafetyOutlined
-									className='cv-header-user-sidebar-list-icon'
-									style={{ fontSize: 22 }}
-								/>
+								<SafetyOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
 								<span className='cv-header-user-sidebar-list-title'>Cambiar Contraseña</span>
 							</Link>
 						</div>
@@ -176,10 +160,7 @@ export default class SideBar extends React.Component {
 				)}
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/help/quienes-somos`}>
-						<QuestionOutlined
-							className='cv-header-user-sidebar-list-icon'
-							style={{ fontSize: 22 }}
-						/>
+						<QuestionOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
 						<span className='cv-header-user-sidebar-list-title'>Ayuda</span>
 					</Link>
 				</div>
