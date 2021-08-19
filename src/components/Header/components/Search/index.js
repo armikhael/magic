@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Input, Menu, Dropdown, Row, Col, Tag } from 'antd'
+import { Input, Menu, Dropdown, Tag } from 'antd'
 
 import serviceEventGoogleAnalytics from '../../../ServiceCommons/EventsGoogleAnalitycs'
 import { CONSTANTS } from '../../../ServiceCommons/Constant'
@@ -16,10 +16,6 @@ export default function SearchNavbar() {
 	let history = useHistory()
 	const [isMenu, setMenu] = useState({
 		countries: [],
-		categories: [],
-		men_categories: [],
-		man_categories: [],
-		mix_categories: [],
 		representation: [],
 	})
 
@@ -108,91 +104,6 @@ export default function SearchNavbar() {
 						)
 					})}
 				</div>
-			</Menu.Item>
-
-			<h3 className='cv-headr-title-search-menu'>Para ellas</h3>
-			<Menu.Item>
-				<Row>
-					{isMenu.men_categories.map((item, i) => {
-						return (
-							<Col xs={12} sm={12} md={6} key={i}>
-								<div className='cv-header-search-content-category-main'>
-									<div
-										className='cv-header-search-content-category'
-										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link
-										onClick={() => {
-											serviceEventGoogleAnalytics({
-												category: 'click-category',
-												action: 'click',
-												label: item.slug,
-											})
-										}}
-										className='cv-header-search-submenu-title'
-										to={`/search/q?categories=${item.slug}`}>
-										{item.name}
-									</Link>
-								</div>
-							</Col>
-						)
-					})}
-				</Row>
-			</Menu.Item>
-			<h3 className='cv-headr-title-search-menu'>Para ellos</h3>
-			<Menu.Item>
-				<Row>
-					{isMenu.man_categories.map((item, i) => {
-						return (
-							<Col xs={12} sm={12} md={6} key={i}>
-								<div className='cv-header-search-content-category-main'>
-									<div
-										className='cv-header-search-content-category'
-										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link
-										onClick={() => {
-											serviceEventGoogleAnalytics({
-												category: 'click-category',
-												action: 'click',
-												label: item.slug,
-											})
-										}}
-										className='cv-header-search-submenu-title'
-										to={`/search/q?categories=${item.slug}`}>
-										{item.name}
-									</Link>
-								</div>
-							</Col>
-						)
-					})}
-				</Row>
-			</Menu.Item>
-			<h3 className='cv-headr-title-search-menu'>Para todos</h3>
-			<Menu.Item>
-				<Row>
-					{isMenu.mix_categories.map((item, i) => {
-						return (
-							<Col xs={12} sm={12} md={6} key={i}>
-								<div className='cv-header-search-content-category-main'>
-									<div
-										className='cv-header-search-content-category'
-										style={{ backgroundImage: 'url(' + item.image + ')' }}></div>
-									<Link
-										onClick={() => {
-											serviceEventGoogleAnalytics({
-												category: 'click-category',
-												action: 'click',
-												label: item.slug,
-											})
-										}}
-										className='cv-header-search-submenu-title'
-										to={`/search/q?categories=${item.slug}`}>
-										{item.name}
-									</Link>
-								</div>
-							</Col>
-						)
-					})}
-				</Row>
 			</Menu.Item>
 		</Menu>
 	)

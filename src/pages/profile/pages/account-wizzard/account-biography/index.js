@@ -227,7 +227,7 @@ const AccountBiography = (props) => {
 											componentClass={'cv-auth-login-field-input'}
 											componentLabel={'Categorías'}
 											componentName={'categories'}
-											componentMode={'multiple'}
+											componentMode={'single'}
 											componentPlaceholder={'Seleccione una opción'}
 											componentOptions={categories}
 											componentRules={'rulesSelect'}

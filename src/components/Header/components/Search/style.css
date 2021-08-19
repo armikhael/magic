@@ -6,7 +6,7 @@
 	overflow-x: scroll;
 }
 .cv-header-search-menu {
-	height: 80vh;
+	height: auto;
 	width: 97%;
 	overflow-y: scroll;
 	margin-left: 12px;
