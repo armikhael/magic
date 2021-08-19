@@ -73,7 +73,7 @@ export default class SideBar extends React.Component {
 					</>
 				)}
 				{localStorage.getItem('user') && (
-					<Link to={`/profile/create-account`}>
+					<Link to={`/profile`}>
 						<Row className='cv-header-user-sidebar-content-row'>
 							<Col xs={7} sm={7} md={7}>
 								<img
@@ -89,7 +89,7 @@ export default class SideBar extends React.Component {
 									{JSON.parse(localStorage.getItem('user')).last_name}
 								</h3>
 								<p className='cv-header-user-sidebar-sub-title'>
-									Comienza a registrar tus cuentas y a vender...
+									Ya formas parte de nuestro portafolio de Latinoamérica.
 								</p>
 							</Col>
 						</Row>
