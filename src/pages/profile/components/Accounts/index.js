@@ -1,18 +1,31 @@
 /** @format */
 
-import React, { useState } from 'react'
+import lodash from 'lodash'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { notification, Row, Button, Col, Tag, Result } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CloseOutlined, CopyOutlined } from '@ant-design/icons'
 
+import Loading from '../../../../components/Loading/Loading'
 import ModalEdit from '../../components/ModalEdit'
 import ModalConfiguration from '../../components/ModalConfiguration'
 import { serviceDelete } from './service'
 
 const Accounts = (props) => {
 	const history = useHistory()
-	const [data, setData] = useState(props.componentData)
+	const [data, setData] = useState(lodash.orderBy(props.componentData, ['eneable'], ['asc']))
+	const [loading, setLoading] = useState(true)
+	const [count, setCount] = useState()
+
+	useEffect(() => {
+		const check = props.componentData.filter((item) => {
+			return item.eneable === false
+		})
+		setCount(check)
+		setLoading(false)
+	}, [props])
+
 	const handleDeleteAccount = (item) => {
 		let btn = (
 			<Button
@@ -43,8 +56,13 @@ const Accounts = (props) => {
 		})
 	}
 
+	if (loading) {
+		return <Loading />
+	}
+
 	return (
 		<>
+			{count.length > 0 && <>Tienes {count.length} cuenta(s) pendiente(s) por activación</>}
 			{data.map((item, key) => {
 				return (
 					<div key={key.toString()}>
@@ -74,14 +92,6 @@ const Accounts = (props) => {
 										</Tag>
 									</Col>
 									<Col className='mb15' xs={24} sm={24} md={24} lg={24} xl={24}>
-										{item.eneable !== true && (
-											<Button
-												style={{ margin: '0px 5px' }}
-												shape='round'
-												href={`/profile/account-activation/${item.name}/modify`}>
-												Activar Cuenta
-											</Button>
-										)}
 										<ModalEdit componentData={item} componentHeader={'Modificar Información'} />
 										{item.eneable === true && (
 											<>
@@ -121,13 +131,24 @@ const Accounts = (props) => {
 											Eliminar
 										</Button>
 									</Col>
+									{item.eneable !== true && (
+										<Row justify='center'>
+											<Col xs={4} sm={4} md={4}>
+												<Button
+													style={{ margin: '0px 5px' }}
+													shape='round'
+													href={`/profile/account-activation/${item.name}/modify`}>
+													Activar Cuenta
+												</Button>
+											</Col>
+										</Row>
+									)}
 								</Row>
 							</Col>
 						</Row>
 					</div>
 				)
 			})}
-
 			{data.length > 0 && (
 				<Row>
 					<Button
@@ -139,7 +160,6 @@ const Accounts = (props) => {
 					</Button>
 				</Row>
 			)}
-
 			{data.length <= 0 && (
 				<div className='cv-profile-card-account-content'>
 					<Result

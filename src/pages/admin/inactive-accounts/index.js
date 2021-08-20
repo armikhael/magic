@@ -4,7 +4,7 @@ import React from 'react'
 import { Layout, Button, notification, Divider } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '@ant-design/icons'
-import { serviceGetAccountsInactives, serviceDeleteAccount } from './services'
+import { serviceGetAccountsInactives, serviceDeleteAccount, serviceUpdateData } from './services'
 import './style.css'
 
 const { Content } = Layout
@@ -40,11 +40,26 @@ export default class InactiveAccounts extends React.Component {
 			})
 	}
 
-	handleChangeInput = (e) => {
-		console.log('write', e.target.name, e.target.value)
-		this.setState({
-			[e.target.name]: e.target.value,
-		})
+	handleEneableAccount = async (item) => {
+		console.log(item)
+		item.eneable = true
+		try {
+			const responseUpdate = await serviceUpdateData(item)
+			this.setState({ list: responseUpdate.data })
+			notification['success']({
+				message: `Great!`,
+				description: `Eliminada con exito`,
+			})
+
+			const responseList = await serviceGetAccountsInactives()
+			this.setState({ list: responseList.data })
+		} catch (error) {
+			console.log(error)
+			notification['error']({
+				message: `Ups!`,
+				description: `Algo inesperado ocurrió`,
+			})
+		}
 	}
 
 	render() {
@@ -98,17 +113,20 @@ export default class InactiveAccounts extends React.Component {
 												Ir al WhatsApp
 											</Button>
 										</li>
-										<li>
-											<CopyToClipboard text={btoa(item.name)}>
-												<Button>
-													Copiar Código de Activación <CopyOutlined />
-												</Button>
-											</CopyToClipboard>
-										</li>
+										<li>Código de Activación: {btoa(item.name)}</li>
 
 										<li>
 											<Button href={item.interface.link} target='__blank'>
 												Ir a la cuenta de: {item.account}
+											</Button>
+										</li>
+
+										<li>
+											<Button
+												onClick={() => {
+													this.handleEneableAccount(item)
+												}}>
+												Activar cuenta: {item.account}
 											</Button>
 										</li>
 
