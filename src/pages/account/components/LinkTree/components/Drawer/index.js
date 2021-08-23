@@ -23,6 +23,7 @@ const DrawerLinktree = (props) => {
 
 	return (
 		<>
+			<div id='loader'></div>
 			<Button
 				className='cv-account-btn-linktree'
 				shape='circle'
