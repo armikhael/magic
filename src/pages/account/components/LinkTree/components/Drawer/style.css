@@ -24,44 +24,16 @@
 #loader {
 	display: block;
 	position: fixed;
-	right: -7px;
-	bottom: 3px;
-	width: 90px;
-	height: 90px;
-	border-radius: 50%;
-	border: 3px solid transparent;
-	border-top-color: #fa0a70;
-	-webkit-animation: spin 1.7s linear infinite;
-	animation: spin 1.7s linear infinite;
-	z-index: 11;
-}
-
-#loader:before {
-	content: '';
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	right: 5px;
-	bottom: 5px;
+	right: 8px;
+	bottom: 18px;
+	width: 60px;
+	height: 60px;
 	border-radius: 50%;
 	border: 3px solid transparent;
 	border-top-color: #210359;
-	-webkit-animation: spin-reverse 0.6s linear infinite;
-	animation: spin-reverse 0.6s linear infinite;
-}
-
-#loader:after {
-	content: '';
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	right: 15px;
-	bottom: 15px;
-	border-radius: 50%;
-	border: 3px solid transparent;
-	border-top-color: #f9c922;
-	-webkit-animation: spin 1s linear infinite;
-	animation: spin 1s linear infinite;
+	border-bottom-color: #ec3e72;
+	animation: spin 1.7s linear infinite;
+	z-index: 11;
 }
 
 @-webkit-keyframes spin {
