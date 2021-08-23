@@ -75,6 +75,13 @@ export default function LinkTreeUrl(props) {
 		)
 	}
 	const handleSubmit = () => {
+		if (links.length <= 0) {
+			notification['error']({
+				message: `Ups!`,
+				description: `No tienes ningún enlace creado`,
+			})
+			return
+		}
 		let item = data
 		item.links = links
 		console.log(item)
