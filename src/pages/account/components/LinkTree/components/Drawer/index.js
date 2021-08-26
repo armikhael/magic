@@ -31,6 +31,11 @@ const DrawerLinktree = (props) => {
 				size={'large'}
 				style={{ color: '#ec3f7c' }}
 				onClick={() => {
+					serviceEventGoogleAnalytics({
+						action: 'click',
+						category: 'ayuda-publicitaria',
+						label: 'boton principal (campana)',
+					})
 					setShowDrawer(true)
 				}}
 			/>
