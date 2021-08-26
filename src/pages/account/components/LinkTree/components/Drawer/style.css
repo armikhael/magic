@@ -9,6 +9,10 @@
 	height: 45px !important;
 }
 
+.cv-pulse {
+	animation: pulse 2s infinite;
+}
+
 .cv-account-btn-linktree:hover > .anticon-question {
 	font-size: 25px;
 }
@@ -66,5 +70,34 @@
 	}
 	100% {
 		transform: rotate(-360deg);
+	}
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
+	}
+	50% {
+		-webkit-transform: scale(0.8);
+		transform: scale(0.8);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+@keyframes pulse {
+	0% {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
+	}
+	50% {
+		-webkit-transform: scale(0.8);
+		transform: scale(0.8);
+	}
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
 	}
 }

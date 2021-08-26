@@ -27,7 +27,7 @@ const DrawerLinktree = (props) => {
 			<Button
 				className='cv-account-btn-linktree'
 				shape='circle'
-				icon={<BellOutlined />}
+				icon={<BellOutlined className='cv-pulse' />}
 				size={'large'}
 				style={{ color: '#ec3f7c' }}
 				onClick={() => {
