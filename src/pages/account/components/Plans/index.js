@@ -99,7 +99,7 @@ const Plans = (props) => {
 
 	return (
 		<>
-			{props.componentData.representation === false && (
+			{props.componentData.representation === false && props.componentData.followers <= CONSTANTS.MIN_FOLLOWERS && (
 				<div className='cv-detail-content-plans'>
 					<div className='cv-detail-content-plans-main'>
 						<h3 className='cv-detail-plans-title'>{text}</h3>
@@ -125,6 +125,41 @@ const Plans = (props) => {
 											avatar={<Avatar src={props.componentData.image} />}
 											title={`${item.description}`}
 											description={item.type}
+										/>
+									</List.Item>
+								</span>
+							)}
+						/>
+					</div>
+				</div>
+			)}
+
+			{props.componentData.representation === false && props.componentData.followers > CONSTANTS.MIN_FOLLOWERS && (
+				<div className='cv-detail-content-plans'>
+					<div className='cv-detail-content-plans-main'>
+						<h3 className='cv-detail-plans-title'>{text}</h3>
+						<div className='cv-detail-plans-hr'></div>
+
+						<List
+							className='cv-detail-plans-list'
+							itemLayout='horizontal'
+							dataSource={plans}
+							renderItem={(item) => (
+								<span
+									onClick={() => {
+										handleRedirect({
+											data: props.componentData,
+											action: 'click',
+											category: 'contratacion',
+											label: props.componentData.name,
+											concept: `te encontre en cuentasvirales.com y quisiera contratar tu publicidad de: ${item.description} por ${item.price} ${item.currency}`,
+										})
+									}}>
+									<List.Item actions={[<WhatsAppOutlined />]}>
+										<List.Item.Meta
+											avatar={<Avatar src={props.componentData.image} />}
+											title={`${item.description}`}
+											description={`${item.price} ${item.currency} `}
 										/>
 									</List.Item>
 								</span>
