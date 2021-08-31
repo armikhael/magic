@@ -1,0 +1,36 @@
+{
+	"carrusel": [
+		{
+			"icon": "https://i.ibb.co/mJcZpFf/contrasen-a.png",
+			"text": "Sin tener que entregar contraseña"
+		},
+		{
+			"icon": "https://i.ibb.co/Hz03gp1/crecimiento.png",
+			"text": "Crecimiento Real '100% Seguidores Reales'"
+		},
+		{
+			"icon": "https://i.ibb.co/Db5ddsF/paises.png",
+			"text": "Los países con mayor cantidad de personas"
+		},
+		{
+			"icon": "https://i.ibb.co/bJzBCRt/garantizar.png",
+			"text": "Garantizado"
+		},
+		{
+			"icon": "https://i.ibb.co/sV4zGCJ/planes.png",
+			"text": "Distintos planes de crecimiento"
+		},
+		{
+			"icon": "https://i.ibb.co/GJW3qJs/check.png",
+			"text": "Garantía de crecimiento en 72 horas ó devolución de tu dinero"
+		},
+		{
+			"icon": "https://i.ibb.co/FX8rmVN/bot.png",
+			"text": "No trabajamos con BOTS"
+		},
+		{
+			"icon": "https://i.ibb.co/DDJTSP0/alert.png",
+			"text": "Te dejaremos publicado hasta lograrlo"
+		}
+	]
+}

@@ -1,0 +1,205 @@
+/** @format */
+@import url('http://fonts.cdnfonts.com/css/billabong');
+
+.cv-buy-followers-content-section {
+	background-image: url('https://i.ibb.co/w46XjjM/fondo-header.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.cv-buy-followers-row-main {
+	padding-top: 40px;
+}
+
+.cv-buy-followers-title-dest {
+	color: #fff;
+	font-size: 25px;
+	font-weight: 300;
+}
+
+.cv-buy-followers-title-dest span {
+	font-weight: 500;
+}
+
+.cv-buy-followers-title-main {
+	font-family: 'Billabong', sans-serif;
+	color: #fff;
+	font-size: 85px;
+}
+
+.cv-buy-followers-img-main {
+	width: 350px;
+	max-width: 100%;
+}
+
+.cv-buy-followers-title-two {
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+
+.cv-buy-followers-title-two h3 {
+	font-size: 25px;
+	color: #5f5f5f;
+}
+
+.cv-buy-followers-title-two span {
+	color: #e1336f;
+}
+
+.cv-buy-followers-title-two p {
+	color: #5f5f5f;
+}
+
+.cv-buy-followers-swiper-slide {
+	padding: 15px;
+	margin: 15px;
+	border: #fff;
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	background-color: #fff;
+	border-radius: 12px;
+	text-align: center;
+	height: 150px;
+}
+
+.cv-buy-followers-swiper-slide img {
+	width: 40px;
+	max-width: 100%;
+	margin-bottom: 12px;
+	margin-top: 15px;
+}
+
+.cv-buy-followers-swiper-slide p {
+	font-size: 12px;
+}
+
+.cv-buy-followers-card {
+	padding: 35px 15px;
+	margin: 15px;
+	border: #fff;
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	background-color: #fff;
+	border-radius: 12px;
+}
+
+.cv-buy-followers-card h3 {
+	color: #5f5f5f;
+	font-size: 30px;
+}
+
+.cv-buy-followers-card-price {
+	font-size: 45px;
+}
+
+.cv-buy-followers-card-price span {
+	font-size: 12px;
+}
+
+.cv-buy-followers-card li {
+	list-style: none;
+	padding: 5px;
+}
+
+.cv-buy-followers-card-i {
+	color: #f61073;
+}
+
+.cv-buy-followers-btn-buy {
+	background-color: #f61073;
+	border-color: #f61073;
+	border-radius: 8px;
+	font-weight: 600;
+	padding: 0px 30px;
+}
+
+.cv-buy-followers-title-tre {
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+
+.cv-buy-followers-title-tre h3 {
+	font-size: 25px;
+	color: #5f5f5f;
+}
+
+.cv-buy-followers-title-tre span {
+	color: #e1336f;
+}
+
+.cv-buy-followers-title-tre p {
+	color: #5f5f5f;
+}
+
+.cv-buy-followers-card-reque {
+	padding: 15px 15px;
+	margin: 15px;
+	border: #fff;
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	background-color: #fff;
+	border-radius: 12px;
+	text-align: center;
+	height: auto;
+}
+
+.cv-buy-followers-card-reque img {
+	width: 100%;
+}
+
+.cv-buy-followers-card-reque h3 {
+	color: #5f5f5f;
+	padding: 10px;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.cv-buy-followers-tablet {
+	background: #fff;
+	padding: 20px;
+	padding-right: 60px;
+	border-radius: 8px;
+	position: relative;
+}
+
+.cv-buy-followers-tablet-btn {
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	background: #e2e2e2;
+	position: absolute;
+	right: 10px;
+	top: 45%;
+}
+
+@media (max-width: 768px) {
+	.cv-buy-followers-content-section {
+		background-size: auto;
+		text-align: center;
+	}
+	.cv-buy-followers-title-dest {
+		font-size: 15px;
+	}
+	.cv-buy-followers-title-main {
+		font-size: 50px;
+	}
+	.cv-buy-followers-row-main-col-publi {
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+	.cv-buy-followers-title-two {
+		margin: 0 15px;
+	}
+	.cv-buy-followers-title-two h3 {
+		margin-top: 20px;
+	}
+	.cv-buy-followers-title-tre {
+		margin-top: 0px;
+		margin-bottom: 10px;
+	}
+	.cv-buy-followers-tablet {
+		padding-right: 20px;
+		margin: 0 15px;
+	}
+	.cv-buy-followers-tablet-btn {
+		display: none;
+	}
+}
