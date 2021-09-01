@@ -11,7 +11,7 @@ const serviceGetData = async (item) => {
 			query: {
 				type: item.type,
 			},
-			sort: {},
+			sort: { ranking: 1 },
 			page: 0,
 		},
 	})
