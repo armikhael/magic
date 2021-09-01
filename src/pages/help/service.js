@@ -5,11 +5,14 @@ import axios from 'axios'
 const serviceGetData = async (item) => {
 	let returnResponse
 	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/post`,
-		params: {
-			type: item.type,
-			slug: item.slug,
+		method: 'POST',
+		url: `${process.env.REACT_APP_HOST}/post/search`,
+		data: {
+			query: {
+				type: item.type,
+			},
+			sort: {},
+			page: 0,
 		},
 	})
 		.then((response) => {
