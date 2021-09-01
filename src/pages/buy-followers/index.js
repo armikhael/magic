@@ -195,6 +195,15 @@ export default function BuyFollowers(props) {
 					<br></br>
 					<Row className='mt15' align='middle'>
 						<Col xs={24} sm={24} md={12} className=''>
+							<div className='cv-buy-followers-title-tre p20'>
+								<h3>¿Cómo funciona nuestro método?</h3>
+								<p>
+									Aparecerás en nuestra sección de recomendaciones hasta que logres la meta
+									solicitada. Si no ves cambios en 1 semana ¡Te devolvemos tú dinero!
+								</p>
+							</div>
+						</Col>
+						<Col xs={24} sm={24} md={12} className=''>
 							<div className='cv-buy-followers-tablet'>
 								<iframe
 									width='100%'
@@ -205,15 +214,6 @@ export default function BuyFollowers(props) {
 									frameBorder='0'
 									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
 								<div className='cv-buy-followers-tablet-btn'></div>
-							</div>
-						</Col>
-						<Col xs={24} sm={24} md={12} className=''>
-							<div className='cv-buy-followers-title-tre p20'>
-								<h3>¿Cómo funciona nuestro método?</h3>
-								<p>
-									Aparecerás en nuestra sección de recomendaciones hasta que logres la meta
-									solicitada. Si no ves cambios en 1 semana ¡Te devolvemos tú dinero!
-								</p>
 							</div>
 						</Col>
 					</Row>
@@ -236,7 +236,7 @@ export default function BuyFollowers(props) {
 									alt='cuenta pública'
 									title='cuenta pública'
 								/>
-								<h3>Tener la cuenta pública</h3>
+								<h3>Tener la cuenta pública durante el proceso</h3>
 							</div>
 						</Col>
 						<Col xs={12} sm={12} md={6} className=''>
@@ -246,13 +246,13 @@ export default function BuyFollowers(props) {
 									alt='Contar ccon 3 publicaciones'
 									title='Contar ccon 3 publicaciones'
 								/>
-								<h3>Contar cson 3 publicaciones</h3>
+								<h3>Contar mínimo con 3 publicaciones</h3>
 							</div>
 						</Col>
 						<Col xs={12} sm={12} md={6} className=''>
 							<div className='cv-buy-followers-card-reque'>
 								<img src='http://imgfz.com/i/elojRWr.png' alt='Publicidad' title='Publicidad' />
-								<h3>No pagar publicidad</h3>
+								<h3>No hacer publicidad durante el proceso</h3>
 							</div>
 						</Col>
 					</Row>
@@ -261,7 +261,7 @@ export default function BuyFollowers(props) {
 						<p>¡Tienes un 50% de regalo en tu primera compra!</p>
 					</div>
 					<Row justify='center'>
-						<Col xs={6} sm={6} md={6}>
+						<Col xs={20} sm={20} md={6}>
 							<Form>
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
