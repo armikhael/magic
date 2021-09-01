@@ -53,7 +53,7 @@ export default function Views(props) {
 										Aumento de Seguidores
 										<br />
 										<Link
-											to={`/help/posicionamiento/${props.detail.name}`}
+											to={`/buy-followers/${props.detail.name}`}
 											className='cv-detail-actiones-title-a'>
 											Click aquí
 										</Link>
