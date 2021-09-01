@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import 'moment/locale/es'
 import lodash from 'lodash'
 
@@ -13,6 +14,7 @@ import './style.css'
 
 export default function Notification() {
 	const [data, setData] = useState([])
+	const history = useHistory()
 
 	useEffect(() => {
 		serviceGetData().then((response) => {
@@ -53,9 +55,7 @@ export default function Notification() {
 		<Menu>
 			<Menu.Item
 				onClick={() => {
-					window.open(
-						'https://api.whatsapp.com/send?phone=56979582051&text=Hola!%20Me%20gustar%C3%ADa%20aparecer%20en%20cuentasvirales.com'
-					)
+					history.push('/buy-followers')
 				}}>
 				<FileDoneOutlined style={{ color: '#f61073' }} /> Quiero aparecer aquí
 			</Menu.Item>

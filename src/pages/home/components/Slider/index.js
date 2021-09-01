@@ -18,7 +18,7 @@ export default class Slider extends React.Component {
 						</Link>
 					</div>
 					<div>
-						<Link to={`/help/posicionamiento`}>
+						<Link to={`/buy-followers`}>
 							<img width='100%' src='https://i.ibb.co/GJB3LkQ/d114.jpg' alt='Posicionamiento' />
 						</Link>
 					</div>
@@ -35,7 +35,7 @@ export default class Slider extends React.Component {
 						</Link>
 					</div>
 					<div>
-						<Link to={`/help/posicionamiento`}>
+						<Link to={`/buy-followers`}>
 							<img width='100%' src='https://i.ibb.co/ZSf8J4w/d115.jpg' alt='Posicionamiento' />
 						</Link>
 					</div>
