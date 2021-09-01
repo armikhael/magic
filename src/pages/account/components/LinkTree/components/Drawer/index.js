@@ -1,9 +1,10 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react'
-import { Button, Drawer, List } from 'antd'
-import { BellOutlined, RightOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+
+import { Button, Drawer, List, Row, Col } from 'antd'
+import { BellOutlined, RightOutlined, RightCircleOutlined } from '@ant-design/icons'
 
 import serviceEventGoogleAnalytics from '../../../../../../components/ServiceCommons/EventsGoogleAnalitycs'
 
@@ -48,6 +49,26 @@ const DrawerLinktree = (props) => {
 				}}
 				visible={showDrawer}
 				key={'bottom'}>
+				<Row>
+					<Col xs={24} sm={24} md={8}>
+						<Row className='cv-account-linktree-content-card'>
+							<Col xs={3} sm={3} md={3}>
+								<img
+									src='https://i.postimg.cc/YSQXZWCP/logo.jpg'
+									title='Información'
+									alt='Información'
+								/>
+							</Col>
+							<Col xs={17} sm={17} md={17} className='cv-account-linktree-content-card-two'>
+								<h3>Lorem Ipsum</h3>
+								<p>Is simply dummy text of the printing and typesetting industry.</p>
+							</Col>
+							<Col xs={4} sm={4} md={4} className='cv-account-linktree-content-card-three'>
+								<RightCircleOutlined style={{ fontSize: '25px', color: '#797979' }} />
+							</Col>
+						</Row>
+					</Col>
+				</Row>
 				<List
 					size='large'
 					dataSource={data}
