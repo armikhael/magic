@@ -14,7 +14,7 @@ import './style.css'
 const menu = (
 	<Menu>
 		<Menu.Item>
-			<Link to={`/buy-followers`}>Posicionamiento</Link>
+			<Link to={`/pricing`}>Posicionamiento</Link>
 		</Menu.Item>
 		<Menu.Item>
 			<Link to={`/help/quienes-somos`}>Preguntas Frecuentes</Link>

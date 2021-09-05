@@ -55,7 +55,7 @@ export default function Notification() {
 		<Menu>
 			<Menu.Item
 				onClick={() => {
-					history.push('/buy-followers')
+					history.push('/pricing')
 				}}>
 				<FileDoneOutlined style={{ color: '#f61073' }} /> Quiero aparecer aquí
 			</Menu.Item>

@@ -185,7 +185,7 @@ const Plans = (props) => {
 										Aumento de Seguidores
 										<br />
 										<Link
-											to={`/buy-followers/${props.componentData.name}`}
+											to={`/pricing/${props.componentData.name}`}
 											className='cv-detail-actiones-title-a'>
 											Click aquí
 										</Link>

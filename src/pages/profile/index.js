@@ -163,7 +163,7 @@ export default class Profile extends React.Component {
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>
-							<Link to={`/buy-followers`}>
+							<Link to={`/pricing`}>
 								<div className='cv-profile-card-item-link'>¿Necesitas ganar más seguidores?</div>
 							</Link>
 						</Col>

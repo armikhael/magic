@@ -5,6 +5,7 @@ import { Layout, Row, Col, Button, Form } from 'antd'
 import { CheckCircleOutlined } from '@ant-design/icons'
 import AwesomeSwiper from 'react-awesome-swiper'
 
+import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
 import SelectField from '../../components/Form/Select'
 
 import data from './data.json'
@@ -12,7 +13,7 @@ import './style.css'
 
 const { Content } = Layout
 
-export default function BuyFollowers(props) {
+export default function Pricing(props) {
 	const swiper = {
 		config: {
 			swiperRef: null,
@@ -58,11 +59,16 @@ export default function BuyFollowers(props) {
 
 	useEffect(() => {
 		console.log('useEffects')
+		serviceEventGoogleAnalytics({
+			category: 'pricing',
+			action: 'view',
+			label: `Pagina Principal (Pricing)`,
+		})
 	}, [props])
 
-	const price300 = 15
-	const price500 = 25
-	const price1000 = 35
+	const price300 = 9
+	const price500 = 12
+	const price1000 = 15
 	const [plan300, setPlan300] = useState(price300)
 	const [plan500, setPlan500] = useState(price500)
 	const [plan1000, setPlan1000] = useState(price1000)
@@ -258,7 +264,7 @@ export default function BuyFollowers(props) {
 					</Row>
 					<div className='cv-buy-followers-title-two'>
 						<h3>Planes</h3>
-						<p>¡Tienes un 50% de regalo en tu primera compra!</p>
+						<p>¡En todos los paquetes publicitarios quedarás publicado hasta lograr la meta contratada!</p>
 					</div>
 					<Row justify='center'>
 						<Col xs={20} sm={20} md={6}>
@@ -296,9 +302,6 @@ export default function BuyFollowers(props) {
 									<li>
 										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Latinos
 									</li>
-									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 150 de regalo
-									</li>
 								</ul>
 								<center>
 									<h3 className='cv-buy-followers-card-price'>
@@ -312,7 +315,12 @@ export default function BuyFollowers(props) {
 										className='cv-buy-followers-btn-buy'
 										type='primary'
 										onClick={() => {
-											handleBuy({ plan: '450', amount: plan300, currency: typeCountry })
+											serviceEventGoogleAnalytics({
+												category: 'pricing',
+												action: 'click',
+												label: `300 Seguidores`,
+											})
+											handleBuy({ plan: '300', amount: plan300, currency: typeCountry })
 										}}>
 										Reservar Cupo
 									</Button>
@@ -331,9 +339,6 @@ export default function BuyFollowers(props) {
 									<li>
 										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Latinos
 									</li>
-									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 250 de regalo
-									</li>
 								</ul>
 								<center>
 									<h3 className='cv-buy-followers-card-price'>
@@ -348,7 +353,12 @@ export default function BuyFollowers(props) {
 										className='cv-buy-followers-btn-buy'
 										type='primary'
 										onClick={() => {
-											handleBuy({ plan: '750', amount: plan500, currency: typeCountry })
+											serviceEventGoogleAnalytics({
+												category: 'pricing',
+												action: 'click',
+												label: `500 Seguidores`,
+											})
+											handleBuy({ plan: '500', amount: plan500, currency: typeCountry })
 										}}>
 										Reservar Cupo
 									</Button>
@@ -367,9 +377,6 @@ export default function BuyFollowers(props) {
 									<li>
 										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Latinos
 									</li>
-									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 500 de regalo
-									</li>
 								</ul>
 								<center>
 									<h3 className='cv-buy-followers-card-price'>
@@ -383,7 +390,12 @@ export default function BuyFollowers(props) {
 										className='cv-buy-followers-btn-buy'
 										type='primary'
 										onClick={() => {
-											handleBuy({ plan: '1.500', amount: plan1000, currency: typeCountry })
+											serviceEventGoogleAnalytics({
+												category: 'pricing',
+												action: 'click',
+												label: `1000 Seguidores`,
+											})
+											handleBuy({ plan: '1000', amount: plan1000, currency: typeCountry })
 										}}>
 										Reservar Cupo
 									</Button>

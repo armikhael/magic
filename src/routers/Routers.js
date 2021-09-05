@@ -41,7 +41,7 @@ import Search from '../pages/search'
 import Help from '../pages/help'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
 import Notifications from '../pages/notifications'
-import BuyFollowers from '../pages/buy-followers'
+import Pricing from '../pages/pricing'
 
 const Routers = (props) => (
 	<BrowserRouter forceRefresh={true}>
@@ -59,7 +59,7 @@ const Routers = (props) => (
 				<Route exact path='/search/:any' component={Search} />
 				<Route exact path='/help/:name/:account?' component={Help} />
 				<Route exact path='/notifications' component={Notifications} />
-				<Route exact path='/buy-followers/:account?' component={BuyFollowers} />
+				<Route exact path='/pricing/:account?' component={Pricing} />
 
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/accounts' component={ListAccount} />
