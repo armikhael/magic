@@ -87,20 +87,20 @@ const DrawerLinktree = (props) => {
 							</Col>
 						</Row>
 					</Col>
-				</Row>
-
-				{data.map((item) => {
-					return (
-						<Row
-							onClick={() => {
-								serviceEventGoogleAnalytics({
-									action: 'click-linktree',
-									category: 'anuncios',
-									label: item.text,
-								})
-								history.push(item.link)
-							}}>
-							<Col xs={24} sm={24} md={8}>
+					{data.map((item) => {
+						return (
+							<Col
+								xs={24}
+								sm={24}
+								md={8}
+								onClick={() => {
+									serviceEventGoogleAnalytics({
+										action: 'click-linktree',
+										category: 'anuncios',
+										label: item.text,
+									})
+									history.push(item.link)
+								}}>
 								<Row className='cv-account-linktree-content-card'>
 									<Col xs={3} sm={3} md={3}>
 										<img
@@ -118,9 +118,9 @@ const DrawerLinktree = (props) => {
 									</Col>
 								</Row>
 							</Col>
-						</Row>
-					)
-				})}
+						)
+					})}
+				</Row>
 			</Drawer>
 		</>
 	)
