@@ -8,12 +8,9 @@ import {
 	QuestionOutlined,
 	CloseSquareOutlined,
 	UserOutlined,
-	HomeOutlined,
-	UsergroupAddOutlined,
+	SisternodeOutlined,
 	SubnodeOutlined,
-	LinkOutlined,
 	SafetyOutlined,
-	TeamOutlined,
 	ExclamationCircleOutlined,
 } from '@ant-design/icons'
 
@@ -98,7 +95,7 @@ export default class SideBar extends React.Component {
 				<hr className='cv-header-user-sidebar-hr' />
 				<div className='cv-header-user-sidebar-list'>
 					<Link to={`/`}>
-						<HomeOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
+						<img className='cv-header-logo' src={process.env.REACT_APP_LOGO} alt='Logo Cuentas Virales' />
 						<span className='cv-header-user-sidebar-list-title'>Inicio</span>
 					</Link>
 				</div>
@@ -107,49 +104,49 @@ export default class SideBar extends React.Component {
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile`}>
 								<UserOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
-								<span className='cv-header-user-sidebar-list-title'>Perfil</span>
+								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<div className='cv-header-user-icon-login-content'>
 								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
-								<span className='cv-header-user-sidebar-list-title'>Publicar</span>
+								<span className='cv-header-user-sidebar-list-title'>Crear Enlace</span>
 							</div>
 						</div>
 						<div className='cv-header-user-sidebar-list ml10'>
 							<Link to={`/profile/account-user`}>
 								<div className='cv-header-user-icon-login-content'>
-									<UsergroupAddOutlined
+									<SubnodeOutlined
 										className='cv-header-user-sidebar-list-icon'
 										style={{ fontSize: 22 }}
 									/>
-									<span className='cv-header-user-sidebar-list-title'>Mi Cuenta</span>
+									<span className='cv-header-user-sidebar-list-title'>Personal</span>
 								</div>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list ml10'>
 							<Link to={`/profile/linktree-name`}>
 								<div className='cv-header-user-icon-login-content'>
-									<SubnodeOutlined
+									<SisternodeOutlined
 										className='cv-header-user-sidebar-list-icon'
 										style={{ fontSize: 22 }}
 									/>
-									<span className='cv-header-user-sidebar-list-title'>Mis Enlaces</span>
+									<span className='cv-header-user-sidebar-list-title'>De Negocio</span>
 								</div>
 							</Link>
 						</div>
-						<div className='cv-header-user-sidebar-list'>
+						{/* <div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/accounts`}>
 								<TeamOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
-								<span className='cv-header-user-sidebar-list-title'>Mis Cuentas</span>
+								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces Personales</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/linktree`}>
 								<LinkOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
-								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces</span>
+								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces de Negocio</span>
 							</Link>
-						</div>
+						</div> */}
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/change-password`}>
 								<SafetyOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />

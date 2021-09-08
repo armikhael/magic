@@ -7,11 +7,9 @@ import {
 	UserOutlined,
 	ExportOutlined,
 	NotificationOutlined,
-	TeamOutlined,
-	LinkOutlined,
 	SafetyOutlined,
 	SubnodeOutlined,
-	UsergroupAddOutlined,
+	SisternodeOutlined,
 } from '@ant-design/icons'
 
 import SideBar from './components/SideBar'
@@ -25,15 +23,15 @@ const menu = (
 			<Link to={`/profile`}>
 				<div className='cv-header-user-icon-login-content'>
 					<UserOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Perfil</span>
+					<span className='ml10'>Mis Enlaces</span>
 				</div>
 			</Link>
 		</Menu.Item>
-		<Menu.Item>
+		{/* <Menu.Item>
 			<Link to={`/profile/accounts`}>
 				<div className='cv-header-user-icon-login-content'>
 					<TeamOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Mis Cuentas</span>
+					<span className='ml10'>Mis Cuentas Personales</span>
 				</div>
 			</Link>
 		</Menu.Item>
@@ -41,10 +39,10 @@ const menu = (
 			<Link to={`/profile/linktree`}>
 				<div className='cv-header-user-icon-login-content'>
 					<LinkOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Mis Enlaces</span>
+					<span className='ml10'>Mis Cuentas Empresariales</span>
 				</div>
 			</Link>
-		</Menu.Item>
+		</Menu.Item> */}
 		<Menu.Item>
 			<Link to={`/profile/change-password`}>
 				<div className='cv-header-user-icon-login-content'>
@@ -73,16 +71,16 @@ const publish = (
 		<Menu.Item>
 			<Link to={`/profile/account-user`}>
 				<div className='cv-header-user-icon-login-content'>
-					<UsergroupAddOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Una Cuenta</span>
+					<SubnodeOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>Personal</span>
 				</div>
 			</Link>
 		</Menu.Item>
 		<Menu.Item>
 			<Link to={`/profile/linktree-name`}>
 				<div className='cv-header-user-icon-login-content'>
-					<SubnodeOutlined style={{ fontSize: 16 }} />
-					<span className='ml10'>Un Enlace</span>
+					<SisternodeOutlined style={{ fontSize: 16 }} />
+					<span className='ml10'>De Negocio</span>
 				</div>
 			</Link>
 		</Menu.Item>
@@ -118,7 +116,7 @@ export default class User extends React.Component {
 													src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
 													alt='Agregar Cuenta'
 												/>
-												<span>Publicar</span>
+												<span>Crear Enlace</span>
 											</div>
 										</Dropdown>
 									</Col>

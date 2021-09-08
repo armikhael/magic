@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Layout, Row, Col } from 'antd'
-import { HeartOutlined } from '@ant-design/icons'
+import { SubnodeOutlined } from '@ant-design/icons'
 
 import Loading from '../../../../components/Loading/Loading'
 import Accounts from '../../components/Accounts'
@@ -35,8 +35,8 @@ export default function ListAccount() {
 						<Row justify='center'>
 							<Col xs={22} sm={20} xl={16}>
 								<Header className='cv-perfil-title-main-container'>
-									<HeartOutlined className='cv-perfil-title-main-icon' />
-									<h3 className='cv-perfil-title-main-title'>Mis Cuentas</h3>
+									<SubnodeOutlined className='cv-perfil-title-main-icon' />
+									<h3 className='cv-perfil-title-main-title'>Mis Enlaces Personales</h3>
 								</Header>
 								<Accounts componentData={isData} />
 							</Col>
