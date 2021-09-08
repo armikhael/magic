@@ -71,7 +71,10 @@ const AccountDetails = (props) => {
 				<Row justify='center'>
 					<Col xs={23} sm={20} xl={12}>
 						<div className='cv-account-wizzard-content'>
-							<Card className='cv-account-wizzard-card mt20' title='Configuración (4/4)' bordered={false}>
+							<Card
+								className='cv-account-wizzard-card mt20'
+								title='Configuración de tu cuenta (4/4)'
+								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>
 										<RadioField

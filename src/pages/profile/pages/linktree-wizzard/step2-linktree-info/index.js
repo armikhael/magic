@@ -83,7 +83,7 @@ export default function LinkTreeInfo(props) {
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card mt20'
-								title='Mensaje de Bienvenida (2/3)'
+								title='Información de tu negocio (2/3)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>

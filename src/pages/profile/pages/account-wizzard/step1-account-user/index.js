@@ -80,7 +80,7 @@ export default function AccountUser(props) {
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card mt100'
-								title='Creación de la cuenta (1/4)'
+								title='Creación de tu enlace personal (1/4)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<SelectField
