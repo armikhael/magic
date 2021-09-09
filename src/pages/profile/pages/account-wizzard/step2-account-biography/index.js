@@ -163,7 +163,7 @@ const AccountBiography = (props) => {
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card mt20'
-								title='Datos de la cuenta (2/4)'
+								title='Datos de tu cuenta (2/4)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>

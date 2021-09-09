@@ -14,48 +14,22 @@ const { Content } = Layout
 const AccountActivation = (props) => {
 	const history = useHistory()
 	const [data, setData] = useState()
-	const [urlRedirect, setUrlRedirect] = useState()
-	const [textActivation, setTextActivation] = useState()
 
 	useEffect(() => {
 		serviceGetData(props.match.params.name).then((response) => {
 			console.log('promesa', response)
 			setData(response)
-			handleText(response)
 		})
 		console.log('useEffects')
 	}, [props])
 
-	const handleText = (item) => {
-		if (item.type === 'instagram') {
-			setTextActivation(
-				'Ahora para activar tu cuenta solo debes enviarnos tu código de activación por Mensaje Directo (DM) a nuestro equipo Instagram'
-			)
-			setUrlRedirect('https://www.instagram.com/cuentasvirales')
-		}
-
-		if (item.type === 'tiktok') {
-			setTextActivation(
-				'Ahora para activar tu cuenta solo debes enviarnos tu código de activación por Mensaje Privado a nuestro equipo en TikTok'
-			)
-			setUrlRedirect('https://www.tiktok.com/@cuentasvirales')
-		}
-
-		if (item.type === 'facebook') {
-			setTextActivation(
-				'Ahora para activar tu cuenta solo debes enviarnos tu código de activación por Messenger a nuestro equipo en Facebook'
-			)
-			setUrlRedirect('https://www.facebook.com/c.viralesfb')
-		}
-	}
-
 	const handleOnFinish = (item) => {
 		notification['success']({
-			message: `Felicidades!`,
-			description: `Ahora te enseñaremos un truco`,
+			message: `¡Felicidades!`,
+			description: `Bienvenid@ a cuentas virales`,
 		})
 		setTimeout(() => {
-			history.push(`/profile/account-finish/${props.match.params.name}`)
+			history.push(`/profile`)
 		}, 1000)
 	}
 
@@ -69,9 +43,42 @@ const AccountActivation = (props) => {
 								className='cv-profile-activation-result'
 								status='success'
 								title='¡Sólo te queda un paso!'
-								subTitle={textActivation}
+								subTitle='Este último paso es necesario para certificar que alguien no haya registrado tu cuenta por ti.'
 								extra={[
-									<br key='br' />,
+									<p>
+										Sólo debes agregar el siguiente enlace en un lugar visible dentro de tu Red
+										Social, <b>Ejemplo...</b>
+									</p>,
+									<img
+										key='img'
+										className='cv-profile-activation-img-logo'
+										src={'https://i.ibb.co/3CGGDSX/ejemplos.jpg'}
+										style={{ width: '100%' }}
+										alt='Cuentas'
+									/>,
+									<p>
+										Las redes sociales tienen un espacio disponible llamado <b>"Sitio Web"</b>,
+										úsalo allí. De esa manera sabremos que efectivamente es tu cuenta.
+									</p>,
+
+									<h3 key='h3-code'>
+										<CopyToClipboard
+											text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${props.match.params.name}`}>
+											<Button
+												style={{ margin: '0px 5px' }}
+												shape='round'
+												onClick={() => {
+													notification['success']({
+														message: '¡Excelente!',
+														description: `Enlace copiado, listo para compartir.`,
+														key: 'copiar-enlace',
+													})
+												}}>
+												<CopyOutlined />
+												Copiar Enlace Personalizado
+											</Button>
+										</CopyToClipboard>
+									</h3>,
 									<img
 										key='img'
 										className='cv-profile-activation-img-logo'
@@ -79,23 +86,6 @@ const AccountActivation = (props) => {
 										style={{ width: 80 }}
 										alt='Cuentas Virales'
 									/>,
-									<h3 key='h3-code'>
-										<CopyToClipboard text={btoa(data.name)}>
-											<Button shape='round'>
-												Copiar Código de Activación <CopyOutlined />
-											</Button>
-										</CopyToClipboard>
-									</h3>,
-									<h3 key='h3-send'>
-										<Button
-											key='code'
-											shape='round'
-											onClick={() => {
-												window.open(urlRedirect)
-											}}>
-											Enviar Código
-										</Button>
-									</h3>,
 								]}
 							/>
 

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Layout, Row, Card, Button, Result, Col } from 'antd'
-import { LinkOutlined } from '@ant-design/icons'
+import { SisternodeOutlined } from '@ant-design/icons'
 
 import Loading from '../../../../components/Loading/Loading'
 import LinkTree from '../../components/LinkTree'
@@ -41,8 +41,8 @@ const ListLinkTree = (props) => {
 					<Row justify='center'>
 						<Col xs={22} sm={20} xl={10}>
 							<Header className='cv-perfil-title-main-container'>
-								<LinkOutlined className='cv-perfil-title-main-icon' />
-								<h3 className='cv-perfil-title-main-title'>Mis Enlaces</h3>
+								<SisternodeOutlined className='cv-perfil-title-main-icon' />
+								<h3 className='cv-perfil-title-main-title'>Mis Enlaces de Negocio</h3>
 							</Header>
 
 							<Card className='cv-profile-card-account-content'>

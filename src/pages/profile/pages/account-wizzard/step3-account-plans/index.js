@@ -109,7 +109,7 @@ const AccountPlans = (props) => {
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card mt20'
-								title='Datos de los Paquetes (3/4)'
+								title='Tus paquetes publicitarios (3/4)'
 								bordered={false}>
 								<Form id='formPlans' form={form} initialValues={data} onFinish={handleAddPlans}>
 									<div className='ph-auth-login-form-container'>

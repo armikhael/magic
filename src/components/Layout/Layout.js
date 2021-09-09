@@ -45,7 +45,7 @@ function Layout(props) {
 			return props.location.pathname.includes(item)
 		})
 		const splitRoute = props.location.pathname.split('/')
-		const routeAdmited = ['profile', 'test', 'notifications', 'buy-followers', 'models', 'company']
+		const routeAdmited = ['profile', 'test', 'notifications', 'pricing', 'models', 'company']
 
 		if (routeAdmited.includes(splitRoute[1]) === true) {
 			return handleBody()

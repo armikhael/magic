@@ -1,7 +1,7 @@
 /** @format */
 
 export const CONSTANTS = {
-	MIN_FOLLOWERS: 50000,
+	MIN_FOLLOWERS: 15000,
 	QUANTITY_POST: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 	TIMES: ['Hora(s)', 'Dia(s)', 'Semana(s)', 'Mes(es)', 'Año(s)'],
 	SLUG_ADMITED: ['-instagram', '-facebook', '-tiktok', '-youtube'],

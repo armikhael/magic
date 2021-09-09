@@ -1,4 +1,9 @@
 /** @format */
+.cv-header-logo {
+	width: 26px;
+	margin: 0;
+	padding: 0;
+}
 
 .cv-header-user-sidebar-content .ant-drawer-body {
 	padding: 10px;

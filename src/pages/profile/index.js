@@ -4,12 +4,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Layout, Row, Col, Modal } from 'antd'
 import {
-	LinkOutlined,
 	ExportOutlined,
 	QuestionOutlined,
 	SafetyOutlined,
-	TeamOutlined,
-	UsergroupAddOutlined,
+	SisternodeOutlined,
 	SubnodeOutlined,
 	ExclamationCircleOutlined,
 } from '@ant-design/icons'
@@ -42,32 +40,32 @@ export default class Profile extends React.Component {
 			<>
 				<div className='cv-content-main'>
 					<Header className='cv-profile-header'>
-						<h3 className='cv-profile-header-title'>Tu cuenta</h3>
+						<h3 className='cv-profile-header-title'>Mis Enlaces</h3>
 					</Header>
 					<Row className='mt15'>
 						<Col xs={24} sm={12} md={12}>
 							<div className='cv-profile-card-item'>
 								<span className='cv-profile-number'>1</span>
-								<TeamOutlined className='cv-profile-card-item-img-icon' />
-								<h3>Mis cuentas</h3>
+								<SubnodeOutlined className='cv-profile-card-item-img-icon' />
+								<h3>Mis Enlaces Personales</h3>
 								<div className='cv-profile-card-item-title'>
 									<p>
-										Herramientas para Modelos, Actores, Cantantes, Mascotas, Bailarines. Aquí puedes
-										encontrar tus cuentas registrardas. Especialmente para Marcas Personales
+										Enlaces diseñados especialmente para Modelos, Actores, Cantantes, Mascotas,
+										Bailarines, Personajes Públicos.
 									</p>
 								</div>
 								<br />
 								<Row>
 									<Col xs={12} sm={12} md={12} className='p10'>
 										<Link to={`/profile/accounts`}>
-											<div className='cv-profile-card-btn'>Lista de Cuentas</div>
+											<div className='cv-profile-card-btn'>Lista de Enlaces</div>
 										</Link>
 									</Col>
 									<Col xs={12} sm={12} md={12} className='p10'>
 										<Link to={`/profile/account-user`}>
 											<div className='cv-profile-card-btn'>
-												<UsergroupAddOutlined className='cv-profile-card-btn-i' />
-												Crear Cuenta
+												<SubnodeOutlined className='cv-profile-card-btn-i' />
+												Crear Enlace Personal
 											</div>
 										</Link>
 									</Col>
@@ -77,27 +75,26 @@ export default class Profile extends React.Component {
 						<Col xs={24} sm={12} md={12}>
 							<div className='cv-profile-card-item'>
 								<span className='cv-profile-number'>2</span>
-								<LinkOutlined className='cv-profile-card-item-img-icon' />
-								<h3>Mis enlaces</h3>
+								<SisternodeOutlined className='cv-profile-card-item-img-icon' />
+								<h3>Mis Enlaces de Negocio</h3>
 								<div className='cv-profile-card-item-title'>
 									<p>
-										Herramientas para Negocios, Diseñadores, Creadores de Contenido, Empresas,
-										Marketing de Referidos, Profesores. Aquí puedes encontrar todos tus enlaces
-										registrados.
+										Enlaces diseñados especialmente para Negocios, Diseñadores, Creadores de
+										Contenido, Empresas, Marketing de Referidos, Profesores.
 									</p>
 								</div>
 								<br />
 								<Row>
 									<Col xs={12} sm={12} md={12} className='p10'>
 										<Link to={`/profile/linktree`}>
-											<div className='cv-profile-card-btn'>Lista de Enales</div>
+											<div className='cv-profile-card-btn'>Lista de Enlaces</div>
 										</Link>
 									</Col>
 									<Col xs={12} sm={12} md={12} className='p10'>
 										<Link to={`/profile/linktree-name`}>
 											<div className='cv-profile-card-btn'>
-												<SubnodeOutlined className='cv-profile-card-btn-i' />
-												Crear Enlace
+												<SisternodeOutlined className='cv-profile-card-btn-i' />
+												Crear Enlace de Negocio
 											</div>
 										</Link>
 									</Col>
