@@ -1,0 +1,20 @@
+{
+	"carrusel": [
+		{
+			"icon": "https://i.ibb.co/DGYjyTW/free.png",
+			"text": "El registro es completamente Gratuito"
+		},
+		{
+			"icon": "https://i.ibb.co/yqNR3Pv/pass.png",
+			"text": "No te solicitaremos datos confidenciales de tu cuenta"
+		},
+		{
+			"icon": "https://i.ibb.co/qYgNg5P/Captura-de-Pantalla-2021-09-06-a-la-s-12-13.png",
+			"text": "Podràs agregar distintos enlaces "
+		},
+		{
+			"icon": "https://i.ibb.co/pxchDfR/Environment-Outlined.png",
+			"text": "Te ayudas tener un perfil más corpotativo"
+		}
+	]
+}

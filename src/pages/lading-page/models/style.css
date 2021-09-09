@@ -73,3 +73,33 @@
 	margin-top: 20px;
 	color: #fff;
 }
+
+@media (max-width: 768px) {
+	.cv-models-firts-title {
+		font-size: 18px;
+	}
+	.cv-models-row-firts {
+		padding-top: 30px;
+		text-align: center;
+	}
+	.cv-models-firts-img {
+		width: 100%;
+		padding: 20px;
+	}
+	.cv-models-title-two {
+		text-align: center;
+		margin-top: 60px;
+		margin-bottom: 40px;
+		padding: 10px;
+	}
+	.cv-models-content-section-two {
+		background-size: cover;
+		padding: 10px;
+	}
+	.cv-models-row-req-item img {
+		width: 52px;
+	}
+	.cv-models-row-req-item {
+		padding: 14px;
+	}
+}

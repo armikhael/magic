@@ -43,6 +43,7 @@ import InactiveAccounts from '../pages/admin/inactive-accounts'
 import Notifications from '../pages/notifications'
 import Pricing from '../pages/pricing'
 import Modeles from '../pages/lading-page/models'
+import Company from '../pages/lading-page/company'
 
 const Routers = (props) => (
 	<BrowserRouter forceRefresh={true}>
@@ -62,6 +63,7 @@ const Routers = (props) => (
 				<Route exact path='/notifications' component={Notifications} />
 				<Route exact path='/pricing/:account?' component={Pricing} />
 				<Route exact path='/models' component={Modeles} />
+				<Route exact path='/company' component={Company} />
 
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/accounts' component={ListAccount} />
