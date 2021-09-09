@@ -14,10 +14,7 @@ const serviceAccountDetail = async (item) => {
 			if (response.data.statusCode <= 200) {
 				returnResponse = response.data.data
 			} else {
-				notification['error']({
-					message: `Error ${response.data.statusCode}`,
-					description: `Problemas con el servico.`,
-				})
+				returnResponse = response.data
 			}
 		})
 		.catch((e) => {

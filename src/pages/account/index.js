@@ -55,7 +55,14 @@ export default class AccountDetail extends React.Component {
 					name: this.props.match.params.name,
 					ip: ipv4,
 				})
-				console.log(accountDetail)
+				console.log('accountDetail', accountDetail)
+				if (accountDetail.statusCode === 409) {
+					this.setState({
+						loading: false,
+						pageError: { statusCode: 404, message: 'Este usuario no existe o no esta habilitado' },
+					})
+					return
+				}
 				if (accountDetail.account[0].representation === true) {
 					this.setState({
 						representation: true,
@@ -191,7 +198,10 @@ export default class AccountDetail extends React.Component {
 														/>
 													)}
 												</h1>
-												<Moment format='LLLL' withTitle className='cv-detail-moment-title-mobil'>
+												<Moment
+													format='LLLL'
+													withTitle
+													className='cv-detail-moment-title-mobil'>
 													{this.state.detail.createdAt}
 												</Moment>
 												<a
@@ -255,7 +265,9 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+														<span className='cv-detail-category-tag'>
+															#{item}&nbsp;&nbsp;
+														</span>
 													</Link>
 												)
 											})}
@@ -306,7 +318,8 @@ export default class AccountDetail extends React.Component {
 													/>
 												</Col>
 												<Col xs={24} sm={24} md={12} className='pl10'>
-													<span className='cv-detail-account-vlc-title'>ViralCoin</span> <br />
+													<span className='cv-detail-account-vlc-title'>ViralCoin</span>{' '}
+													<br />
 													<span className='cv-detail-account-vlc-title-sub'>
 														{this.state.detail.point} <span>VLC</span>
 													</span>{' '}
@@ -337,7 +350,11 @@ export default class AccountDetail extends React.Component {
 										</Link>
 										<div className='cv-detail-account-img-main-contnet'>
 											<Row>
-												<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
+												<Col
+													xs={24}
+													sm={24}
+													md={7}
+													className='cv-detail-account-img-main-content'>
 													<img
 														title={this.state.detail.name}
 														alt={this.state.detail.name}
@@ -385,7 +402,9 @@ export default class AccountDetail extends React.Component {
 											{this.state.detail.categories.map(function (item, i) {
 												return (
 													<Link to={`/category/${item}`} key={i}>
-														<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+														<span className='cv-detail-category-tag'>
+															#{item}&nbsp;&nbsp;
+														</span>
 													</Link>
 												)
 											})}
