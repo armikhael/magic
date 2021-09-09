@@ -2,6 +2,7 @@
 
 import React from 'react'
 import AwesomeSwiper from 'react-awesome-swiper'
+import { useHistory } from 'react-router-dom'
 
 import { Layout, Row, Col, Button } from 'antd'
 
@@ -11,6 +12,7 @@ import './style.css'
 const { Content } = Layout
 
 export default function Modeles() {
+	const history = useHistory()
 	const swiper = {
 		config: {
 			swiperRef: null,
@@ -60,12 +62,20 @@ export default function Modeles() {
 					<Row className='cv-models-row-firts' align='middle'>
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
-								Se parte de la comunidad más <span>grande</span> de modelos de Latinoamérica de
-								forma <span className='cv-models-firts-title-900'>gratuita y simple</span>
+								Ya son más de <span className='cv-models-firts-title-900'>1000</span> modelos en
+								Latinoamérica usando nuestros{' '}
+								<span className='cv-models-firts-title-900'>enlaces personalizados</span> para gestionar
+								sus pautas publicitarias de una forma{' '}
+								<span className='cv-models-firts-title-900'>gratuita y simple</span>
 							</h3>
 							<br />
-							<Button className='cv-buy-followers-btn-buy' type='primary'>
-								Contactar
+							<Button
+								className='cv-buy-followers-btn-buy'
+								type='primary'
+								onClick={() => {
+									history.push('/auth/register')
+								}}>
+								Crear mi enlace
 							</Button>
 						</Col>
 						<Col xs={24} sm={24} md={12} className='center'>
@@ -79,7 +89,7 @@ export default function Modeles() {
 					</Row>
 					<div className='cv-models-title-two'>
 						<h3>
-							¿Por qué registrarte como <span>Modelo</span>?
+							¿Por qué crearme un enlace como <span className='cv-models-firts-title-900'>Modelo</span>?
 						</h3>
 						<p>Aquí te dejamos algunos de los beneficios más importantes</p>
 					</div>
@@ -102,9 +112,11 @@ export default function Modeles() {
 			</section>
 			<div className='cv-models-title-two'>
 				<h3>
-					¿Qué requisitos debo cumplir para <span>registrarme</span>?
+					¿Qué debo hacer para <span className='cv-models-firts-title-900'>registrarme</span>?
 				</h3>
-				<p>Aquí te dejamos algunos de los beneficios más importantes</p>
+				<p>
+					Debes cumplir con los siguientes <span>requisitos</span>
+				</p>
 			</div>
 			<section className='cv-models-content-section-two'>
 				<Content className='cv-container-main'>

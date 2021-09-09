@@ -6,7 +6,7 @@
 		},
 		{
 			"icon": "https://i.ibb.co/yqNR3Pv/pass.png",
-			"text": "No te solicitaremos datos confidenciales de tu cuenta"
+			"text": "No te solicitaremos datos sensibles de tu cuenta"
 		},
 		{
 			"icon": "https://i.ibb.co/pxchDfR/Environment-Outlined.png",
@@ -14,7 +14,7 @@
 		},
 		{
 			"icon": "https://i.ibb.co/kmLnMVb/Like-Outlined.png",
-			"text": "Las marcas te pueden encontral fácilmente"
+			"text": "Las marcas te pueden encontrar fácilmente"
 		},
 		{
 			"icon": "https://i.ibb.co/DGYjyTW/free.png",
@@ -22,15 +22,15 @@
 		},
 		{
 			"icon": "https://i.ibb.co/y6NjFnX/Unordered-List-Outlined.png",
-			"text": "Participar en nuestra selección para sesiones fotográficas de nuestros clientes"
+			"text": "Sesiones fotográficas para nuestros clientes"
 		},
 		{
 			"icon": "https://i.ibb.co/2d2CdbP/Check-Circle-Outlined.png",
-			"text": "Acceder a descuentos de nuestros planes de crecimiento para redes sociales"
+			"text": "Acceder a descuentos de crecimiento para redes sociales"
 		},
 		{
 			"icon": "https://i.ibb.co/gdHRjnC/Robot-Outlined.png",
-			"text": "Disfrutar de los premios que ofrecemos por los puntos acumulados"
+			"text": "Canjear puntos acumulados por premios"
 		}
 	]
 }

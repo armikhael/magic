@@ -2,6 +2,7 @@
 
 import React from 'react'
 import AwesomeSwiper from 'react-awesome-swiper'
+import { useHistory } from 'react-router-dom'
 
 import { Layout, Row, Col, Button } from 'antd'
 
@@ -11,6 +12,7 @@ import './style.css'
 const { Content } = Layout
 
 export default function Company() {
+	const history = useHistory()
 	const swiper = {
 		config: {
 			swiperRef: null,
@@ -60,13 +62,19 @@ export default function Company() {
 					<Row className='cv-models-row-firts' align='middle'>
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
-								<span className='cv-models-firts-title-900'>Mejora la gestión</span> de tu empresa y
-								de tus clientes en un sólo lugar, <span>da a conocer</span>
-								todas tus redes sociales y páginas webs en un mismo sitio
+								<span className='cv-models-firts-title-900'>Mejora la gestión</span> de tu empresa y de
+								tus clientes en un sólo lugar,{' '}
+								<span className='cv-models-firts-title-900'>administrando los enlaces</span> de todas
+								tus redes sociales y páginas webs en un mismo sitio
 							</h3>
 							<br />
-							<Button className='cv-buy-followers-btn-buy' type='primary'>
-								Contactar
+							<Button
+								className='cv-buy-followers-btn-buy'
+								type='primary'
+								onClick={() => {
+									history.push('/auth/register')
+								}}>
+								Crear mi enlace
 							</Button>
 						</Col>
 						<Col xs={24} sm={24} md={12} className='center'>
@@ -80,7 +88,7 @@ export default function Company() {
 					</Row>
 					<div className='cv-models-title-two'>
 						<h3>
-							¿Por qué registrarme como <span>Negocio </span>?
+							¿Por qué registrarme como <span className='cv-models-firts-title-900'>Negocio </span>?
 						</h3>
 						<p>Aquí te dejamos algunos de los beneficios más importantes</p>
 					</div>
@@ -103,9 +111,9 @@ export default function Company() {
 			</section>
 			<div className='cv-models-title-two'>
 				<h3>
-					¿Qué requisitos debo cumplir para <span>registrarme</span>?
+					¿A quién va dirigido este tipo de <span className='cv-models-firts-title-900'>enlaces</span>?
 				</h3>
-				<p>Aquí te dejamos algunos de los beneficios más importantes</p>
+				<p>Los negocios que estan usando estos enlaces son...</p>
 			</div>
 			<section className='cv-models-content-section-two'>
 				<Content className='cv-container-main'>
