@@ -30,7 +30,12 @@ function Layout(props) {
 				<div className='cv-layout-br'></div>
 				{props.children}
 				<Dropdown overlay={menu} placement='topRight' arrow>
-					<Button className='cv-layout-btn-help' shape='circle' icon={<QuestionOutlined />} size={'large'} />
+					<Button
+						className='cv-layout-btn-help'
+						shape='circle'
+						icon={<QuestionOutlined />}
+						size={'large'}
+					/>
 				</Dropdown>
 			</>
 		)
@@ -40,7 +45,7 @@ function Layout(props) {
 			return props.location.pathname.includes(item)
 		})
 		const splitRoute = props.location.pathname.split('/')
-		const routeAdmited = ['profile', 'test', 'notifications', 'buy-followers']
+		const routeAdmited = ['profile', 'test', 'notifications', 'buy-followers', 'models']
 
 		if (routeAdmited.includes(splitRoute[1]) === true) {
 			return handleBody()
@@ -48,7 +53,10 @@ function Layout(props) {
 			props.location.pathname === '/auth/login' ||
 			props.location.pathname === '/auth/recovery' ||
 			props.location.pathname === '/auth/register' ||
-			(splitRoute[0] === '' && splitRoute[1] !== '' && splitRoute[2] === undefined && validLinkTree === undefined)
+			(splitRoute[0] === '' &&
+				splitRoute[1] !== '' &&
+				splitRoute[2] === undefined &&
+				validLinkTree === undefined)
 		) {
 			return <>{props.children}</>
 		} else {

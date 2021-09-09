@@ -42,6 +42,7 @@ import Help from '../pages/help'
 import InactiveAccounts from '../pages/admin/inactive-accounts'
 import Notifications from '../pages/notifications'
 import Pricing from '../pages/pricing'
+import Modeles from '../pages/lading-page/models'
 
 const Routers = (props) => (
 	<BrowserRouter forceRefresh={true}>
@@ -60,21 +61,38 @@ const Routers = (props) => (
 				<Route exact path='/help/:name/:account?' component={Help} />
 				<Route exact path='/notifications' component={Notifications} />
 				<Route exact path='/pricing/:account?' component={Pricing} />
+				<Route exact path='/models' component={Modeles} />
 
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/profile/accounts' component={ListAccount} />
 				<PrivateRoute exact path='/profile/linktree' component={ListLinkTree} />
 				<PrivateRoute exact path='/profile/change-password' component={ChangePassword} />
 				<PrivateRoute exact path='/profile/account-user' component={AccountUser} />
-				<PrivateRoute exact path='/profile/account-biography/:name/:modify?' component={AccountBiography} />
+				<PrivateRoute
+					exact
+					path='/profile/account-biography/:name/:modify?'
+					component={AccountBiography}
+				/>
 				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />
-				<PrivateRoute exact path='/profile/account-details/:name/:modify?' component={AccountDetails} />
-				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
+				<PrivateRoute
+					exact
+					path='/profile/account-details/:name/:modify?'
+					component={AccountDetails}
+				/>
+				<PrivateRoute
+					exact
+					path='/profile/account-activation/:name/:modify?'
+					component={AccountActivation}
+				/>
 				<PrivateRoute exact path='/profile/account-finish/:name/' component={AccountFinish} />
 				<PrivateRoute exact path='/profile/linktree-name/' component={LinkTreeName} />
 				<PrivateRoute exact path='/profile/linktree-info/:name/:modify?' component={LinkTreeInfo} />
 				<PrivateRoute exact path='/profile/linktree-urls/:name/:modify?' component={LinkTreeUrl} />
-				<PrivateRoute exact path='/profile/linktree-color/:name/:modify?' component={LinkTreeColor} />
+				<PrivateRoute
+					exact
+					path='/profile/linktree-color/:name/:modify?'
+					component={LinkTreeColor}
+				/>
 				<PrivateRoute exact path='/profile/linktree-finish/:name/' component={LinkTreeFinish} />
 				<PrivateRoute exact path='/profile/post-create' component={Post} />
 				<PrivateRoute exact path='/profile/post-view/:id' component={PostView} />

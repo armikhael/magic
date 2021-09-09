@@ -1,0 +1,75 @@
+/** @format */
+
+.cv-models-content-section {
+	background-image: url('https://i.ibb.co/98b69QP/Trazado-3.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.cv-models-row-firts {
+	padding-top: 80px;
+}
+
+.cv-models-col-firts {
+	padding: 15px 50px;
+}
+
+.cv-models-firts-title {
+	color: #5f5f5f;
+	font-size: 33px;
+	font-weight: 300;
+}
+
+.cv-models-firts-title span {
+	color: #e1336f;
+}
+
+.cv-models-firts-title-900 {
+	font-weight: 600;
+}
+
+.cv-models-firts-img {
+	width: 100%;
+}
+
+.cv-models-title-two {
+	text-align: center;
+	margin-top: 120px;
+	margin-bottom: 40px;
+}
+
+.cv-models-title-two h3 {
+	font-size: 25px;
+	color: #5f5f5f;
+}
+
+.cv-models-title-two span {
+	color: #e1336f;
+}
+
+.cv-models-title-two p {
+	color: #5f5f5f;
+}
+
+.cv-models-content-section-two {
+	background-image: url('https://i.ibb.co/p3MK4Ly/Grupo-6-1.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding: 50px;
+}
+
+.cv-models-row-req-item {
+	display: flex;
+	padding: 25px;
+}
+
+.cv-models-row-req-item img {
+	width: 70px;
+	max-width: 100%;
+	margin-right: 10px;
+}
+
+.cv-models-row-req-item h3 {
+	margin-top: 20px;
+	color: #fff;
+}

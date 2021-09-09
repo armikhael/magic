@@ -1,0 +1,36 @@
+{
+	"carrusel": [
+		{
+			"icon": "https://i.ibb.co/DGYjyTW/free.png",
+			"text": "El registro es completamente Gratuito"
+		},
+		{
+			"icon": "https://i.ibb.co/yqNR3Pv/pass.png",
+			"text": "No te solicitaremos datos confidenciales de tu cuenta"
+		},
+		{
+			"icon": "https://i.ibb.co/pxchDfR/Environment-Outlined.png",
+			"text": "Tendrás tu perfil profesional enfocado para contrataciones"
+		},
+		{
+			"icon": "https://i.ibb.co/kmLnMVb/Like-Outlined.png",
+			"text": "Las marcas te pueden encontral fácilmente"
+		},
+		{
+			"icon": "https://i.ibb.co/DGYjyTW/free.png",
+			"text": "El registro es completamente Gratuito"
+		},
+		{
+			"icon": "https://i.ibb.co/y6NjFnX/Unordered-List-Outlined.png",
+			"text": "Participar en nuestra selección para sesiones fotográficas de nuestros clientes"
+		},
+		{
+			"icon": "https://i.ibb.co/2d2CdbP/Check-Circle-Outlined.png",
+			"text": "Acceder a descuentos de nuestros planes de crecimiento para redes sociales"
+		},
+		{
+			"icon": "https://i.ibb.co/gdHRjnC/Robot-Outlined.png",
+			"text": "Disfrutar de los premios que ofrecemos por los puntos acumulados"
+		}
+	]
+}
