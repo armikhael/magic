@@ -1,5 +1,10 @@
 /** @format */
-@import url('http://fonts.cdnfonts.com/css/billabong');
+@font-face {
+	font-family: 'Billabong';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Billabong'), url('https://fonts.cdnfonts.com/s/13949/Billabong.woff') format('woff');
+}
 
 .cv-buy-followers-content-section {
 	background-image: url('https://i.ibb.co/w46XjjM/fondo-header.png');
@@ -75,7 +80,7 @@
 
 .cv-buy-followers-card {
 	padding: 35px 15px;
-	margin: 15px;
+	margin: 30px;
 	border: #fff;
 	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
 	background-color: #fff;
@@ -95,9 +100,16 @@
 	font-size: 12px;
 }
 
+.cv-buy-followers-card ul {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
+}
+
 .cv-buy-followers-card li {
 	list-style: none;
 	padding: 5px;
+	text-align: center;
 }
 
 .cv-buy-followers-card-i {
@@ -108,7 +120,7 @@
 	background-color: #f61073;
 	border-color: #f61073;
 	border-radius: 8px;
-	font-weight: 600;
+	font-weight: 500;
 	padding: 0px 30px;
 }
 
@@ -132,7 +144,7 @@
 
 .cv-buy-followers-card-reque {
 	padding: 15px 15px;
-	margin: 15px;
+	margin: 30px;
 	border: #fff;
 	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
 	background-color: #fff;
@@ -201,5 +213,8 @@
 	}
 	.cv-buy-followers-tablet-btn {
 		display: none;
+	}
+	.cv-buy-followers-card {
+		margin: 15px;
 	}
 }

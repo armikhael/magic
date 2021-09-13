@@ -179,8 +179,8 @@ export default function Pricing(props) {
 							Método de Posicionamiento <span>100%</span> Orgánico en <span>Instagram</span>
 						</h3>
 						<p>
-							Conoce el método de crecimiento en instagram que utilizan Modelos y Negocios para hacer
-							crecer sus cuentas de forma explosiva de seguidores 100% orgánicos.
+							Conoce el método de crecimiento en instagram que utilizan Modelos y Negocios para
+							hacer crecer sus cuentas de forma explosiva de seguidores 100% orgánicos.
 						</p>
 					</div>
 					<AwesomeSwiper ref={(ref) => (swiper.swiperRef = ref)} config={swiper.config}>
@@ -199,75 +199,15 @@ export default function Pricing(props) {
 						</div>
 					</AwesomeSwiper>
 					<br></br>
-					<Row className='mt15' align='middle'>
-						<Col xs={24} sm={24} md={12} className=''>
-							<div className='cv-buy-followers-title-tre p20'>
-								<h3>¿Cómo funciona nuestro método?</h3>
-								<p>
-									Aparecerás en nuestra sección de recomendaciones hasta que logres la meta
-									solicitada. Si no ves cambios en 1 semana ¡Te devolvemos tú dinero!
-								</p>
-							</div>
-						</Col>
-						<Col xs={24} sm={24} md={12} className=''>
-							<div className='cv-buy-followers-tablet'>
-								<iframe
-									width='100%'
-									height='380'
-									autoPlay={false}
-									src='https://www.youtube.com/embed/aA0w_002Nxw'
-									title='Posicionamiento'
-									frameBorder='0'
-									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
-								<div className='cv-buy-followers-tablet-btn'></div>
-							</div>
-						</Col>
-					</Row>
-					<br></br>
-					<br></br>
-					<Row className='mt15' align='middle' justify='center'>
-						<Col xs={24} sm={24} md={6} className=''>
-							<div className='cv-buy-followers-title-tre p20'>
-								<h3>Requisitos</h3>
-								<p>
-									Estos son los requisitos mínimos que necesitamos para que nuestra estrategia
-									funcione.
-								</p>
-							</div>
-						</Col>
-						<Col xs={12} sm={12} md={6} className=''>
-							<div className='cv-buy-followers-card-reque'>
-								<img
-									src='https://i.ibb.co/bz5hq1g/cuenta.png'
-									alt='cuenta pública'
-									title='cuenta pública'
-								/>
-								<h3>Tener la cuenta pública durante el proceso</h3>
-							</div>
-						</Col>
-						<Col xs={12} sm={12} md={6} className=''>
-							<div className='cv-buy-followers-card-reque'>
-								<img
-									src='https://i.ibb.co/zGbxHyc/feed.png'
-									alt='Contar ccon 3 publicaciones'
-									title='Contar ccon 3 publicaciones'
-								/>
-								<h3>Contar mínimo con 3 publicaciones</h3>
-							</div>
-						</Col>
-						<Col xs={12} sm={12} md={6} className=''>
-							<div className='cv-buy-followers-card-reque'>
-								<img src='http://imgfz.com/i/elojRWr.png' alt='Publicidad' title='Publicidad' />
-								<h3>No hacer publicidad durante el proceso</h3>
-							</div>
-						</Col>
-					</Row>
 					<div className='cv-buy-followers-title-two'>
 						<h3>Planes</h3>
-						<p>¡En todos los paquetes publicitarios quedarás publicado hasta lograr la meta contratada!</p>
+						<p>
+							¡En todos los paquetes publicitarios quedarás publicado hasta lograr la meta
+							contratada!
+						</p>
 					</div>
 					<Row justify='center'>
-						<Col xs={20} sm={20} md={6}>
+						<Col xs={20} sm={20} md={6} className='center'>
 							<Form>
 								<SelectField
 									componentClass={'cv-auth-login-field-input'}
@@ -404,7 +344,69 @@ export default function Pricing(props) {
 						</Col>
 					</Row>
 					<br></br>
+					<Row className='mt15' align='middle'>
+						<Col xs={24} sm={24} md={12} className=''>
+							<div className='cv-buy-followers-title-tre p20'>
+								<h3>¿Cómo funciona nuestro método?</h3>
+								<p>
+									Aparecerás en nuestra sección de recomendaciones hasta que logres la meta
+									solicitada. Si no ves cambios en 1 semana ¡Te devolvemos tú dinero!
+								</p>
+							</div>
+						</Col>
+						<Col xs={24} sm={24} md={12} className=''>
+							<div className='cv-buy-followers-tablet'>
+								<iframe
+									width='100%'
+									height='380'
+									autoPlay={false}
+									src='https://www.youtube.com/embed/aA0w_002Nxw'
+									title='Posicionamiento'
+									frameBorder='0'
+									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
+								<div className='cv-buy-followers-tablet-btn'></div>
+							</div>
+						</Col>
+					</Row>
 					<br></br>
+					<br></br>
+					<Row className='mt15' align='middle' justify='center'>
+						<Col xs={24} sm={24} md={6} className=''>
+							<div className='cv-buy-followers-title-tre p20'>
+								<h3>Requisitos</h3>
+								<p>
+									Estos son los requisitos mínimos que necesitamos para que nuestra estrategia
+									funcione.
+								</p>
+							</div>
+						</Col>
+						<Col xs={12} sm={12} md={6} className=''>
+							<div className='cv-buy-followers-card-reque'>
+								<img
+									src='https://i.ibb.co/bz5hq1g/cuenta.png'
+									alt='cuenta pública'
+									title='cuenta pública'
+								/>
+								<h3>Tener la cuenta pública durante el proceso</h3>
+							</div>
+						</Col>
+						<Col xs={12} sm={12} md={6} className=''>
+							<div className='cv-buy-followers-card-reque'>
+								<img
+									src='https://i.ibb.co/zGbxHyc/feed.png'
+									alt='Contar ccon 3 publicaciones'
+									title='Contar ccon 3 publicaciones'
+								/>
+								<h3>Contar mínimo con 3 publicaciones</h3>
+							</div>
+						</Col>
+						<Col xs={12} sm={12} md={6} className=''>
+							<div className='cv-buy-followers-card-reque'>
+								<img src='http://imgfz.com/i/elojRWr.png' alt='Publicidad' title='Publicidad' />
+								<h3>No hacer publicidad durante el proceso</h3>
+							</div>
+						</Col>
+					</Row>
 				</Content>
 			</section>
 		</>
