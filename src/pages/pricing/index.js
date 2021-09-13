@@ -66,9 +66,9 @@ export default function Pricing(props) {
 		})
 	}, [props])
 
-	const price300 = 9
-	const price500 = 12
-	const price1000 = 15
+	const price300 = 12
+	const price500 = 17
+	const price1000 = 20
 	const [plan300, setPlan300] = useState(price300)
 	const [plan500, setPlan500] = useState(price500)
 	const [plan1000, setPlan1000] = useState(price1000)
