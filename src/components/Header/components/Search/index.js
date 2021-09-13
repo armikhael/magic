@@ -17,6 +17,7 @@ export default function SearchNavbar() {
 	const [isMenu, setMenu] = useState({
 		countries: [],
 		representation: [],
+		categories: [],
 	})
 
 	useEffect(() => {
@@ -75,6 +76,30 @@ export default function SearchNavbar() {
 										})
 									}}
 									to={`/search/q?country=${item.slug}`}>
+									{item.name}
+								</Link>
+							</Tag>
+						)
+					})}
+				</div>
+			</Menu.Item>
+
+			<h3 className='cv-headr-title-search-menu'>Categorias</h3>
+			<Menu.Item>
+				<div className='cv-header-search-conetent-country'>
+					{isMenu.categories.map((item, i) => {
+						return (
+							<Tag key={i} className='cv-header-search-tag'>
+								<Link
+									onClick={() => {
+										serviceEventGoogleAnalytics({
+											category: 'click-red-social',
+											action: 'click',
+											label: item.slug,
+										})
+									}}
+									to={`/search/q?categories=${item.slug}`}
+									style={{ textTransform: 'capitalize' }}>
 									{item.name}
 								</Link>
 							</Tag>
