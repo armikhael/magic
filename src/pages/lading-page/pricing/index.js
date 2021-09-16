@@ -5,8 +5,8 @@ import { Layout, Row, Col, Button, Form } from 'antd'
 import { CheckCircleOutlined } from '@ant-design/icons'
 import AwesomeSwiper from 'react-awesome-swiper'
 
-import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
-import SelectField from '../../components/Form/Select'
+import serviceEventGoogleAnalytics from '../../../components/ServiceCommons/EventsGoogleAnalitycs'
+import SelectField from '../../../components/Form/Select'
 
 import data from './data.json'
 import './style.css'
@@ -66,9 +66,9 @@ export default function Pricing(props) {
 		})
 	}, [props])
 
-	const price300 = 12
-	const price500 = 17
-	const price1000 = 20
+	const price300 = 9.99
+	const price500 = 19.99
+	const price1000 = 24.99
 	const [plan300, setPlan300] = useState(price300)
 	const [plan500, setPlan500] = useState(price500)
 	const [plan1000, setPlan1000] = useState(price1000)
@@ -179,8 +179,8 @@ export default function Pricing(props) {
 							Método de Posicionamiento <span>100%</span> Orgánico en <span>Instagram</span>
 						</h3>
 						<p>
-							Conoce el método de crecimiento en instagram que utilizan Modelos y Negocios para
-							hacer crecer sus cuentas de forma explosiva de seguidores 100% orgánicos.
+							Conoce el método de crecimiento en instagram que utilizan Modelos y Negocios para hacer
+							crecer sus cuentas de forma explosiva de seguidores 100% orgánicos.
 						</p>
 					</div>
 					<AwesomeSwiper ref={(ref) => (swiper.swiperRef = ref)} config={swiper.config}>
@@ -201,10 +201,7 @@ export default function Pricing(props) {
 					<br></br>
 					<div className='cv-buy-followers-title-two'>
 						<h3>Planes</h3>
-						<p>
-							¡En todos los paquetes publicitarios quedarás publicado hasta lograr la meta
-							contratada!
-						</p>
+						<p>¡En todos los paquetes publicitarios quedarás publicado hasta lograr la meta contratada!</p>
 					</div>
 					<Row justify='center'>
 						<Col xs={20} sm={20} md={6} className='center'>
@@ -244,6 +241,10 @@ export default function Pricing(props) {
 									</li>
 								</ul>
 								<center>
+									<p style={{ textDecoration: 'line-through' }}>
+										Antes: {(plan300 + plan300 / 2).toFixed(0)}
+									</p>
+									<p>Ahora</p>
 									<h3 className='cv-buy-followers-card-price'>
 										{plan300}{' '}
 										<span>
@@ -281,6 +282,10 @@ export default function Pricing(props) {
 									</li>
 								</ul>
 								<center>
+									<p style={{ textDecoration: 'line-through' }}>
+										Antes: {(plan500 + plan500 / 2).toFixed(0)}
+									</p>
+									<p>Ahora</p>
 									<h3 className='cv-buy-followers-card-price'>
 										{plan500}{' '}
 										<span>
@@ -319,6 +324,10 @@ export default function Pricing(props) {
 									</li>
 								</ul>
 								<center>
+									<p style={{ textDecoration: 'line-through' }}>
+										Antes: {(plan1000 + plan1000 / 2).toFixed(0)}
+									</p>
+									<p>Ahora</p>
 									<h3 className='cv-buy-followers-card-price'>
 										{plan1000}{' '}
 										<span>
