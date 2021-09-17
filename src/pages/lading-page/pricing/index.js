@@ -66,9 +66,9 @@ export default function Pricing(props) {
 		})
 	}, [props])
 
-	const price300 = 9.99
-	const price500 = 19.99
-	const price1000 = 24.99
+	const price300 = 15
+	const price500 = 25
+	const price1000 = 35
 	const [plan300, setPlan300] = useState(price300)
 	const [plan500, setPlan500] = useState(price500)
 	const [plan1000, setPlan1000] = useState(price1000)
@@ -241,10 +241,6 @@ export default function Pricing(props) {
 									</li>
 								</ul>
 								<center>
-									<p style={{ textDecoration: 'line-through' }}>
-										Antes: {(plan300 + plan300 / 2).toFixed(0)}
-									</p>
-									<p>Ahora</p>
 									<h3 className='cv-buy-followers-card-price'>
 										{plan300}{' '}
 										<span>
@@ -282,10 +278,6 @@ export default function Pricing(props) {
 									</li>
 								</ul>
 								<center>
-									<p style={{ textDecoration: 'line-through' }}>
-										Antes: {(plan500 + plan500 / 2).toFixed(0)}
-									</p>
-									<p>Ahora</p>
 									<h3 className='cv-buy-followers-card-price'>
 										{plan500}{' '}
 										<span>
@@ -324,10 +316,6 @@ export default function Pricing(props) {
 									</li>
 								</ul>
 								<center>
-									<p style={{ textDecoration: 'line-through' }}>
-										Antes: {(plan1000 + plan1000 / 2).toFixed(0)}
-									</p>
-									<p>Ahora</p>
 									<h3 className='cv-buy-followers-card-price'>
 										{plan1000}{' '}
 										<span>
@@ -369,7 +357,7 @@ export default function Pricing(props) {
 									width='100%'
 									height='380'
 									autoPlay={false}
-									src='https://www.youtube.com/embed/aA0w_002Nxw'
+									src='https://www.youtube.com/embed/A23KiJqvE6U'
 									title='Posicionamiento'
 									frameBorder='0'
 									allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
