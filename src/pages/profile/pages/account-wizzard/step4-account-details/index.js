@@ -19,6 +19,7 @@ const AccountDetails = (props) => {
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
+		console.log('init', response)
 		setData(response)
 	}
 
@@ -71,10 +72,7 @@ const AccountDetails = (props) => {
 				<Row justify='center'>
 					<Col xs={23} sm={20} xl={12}>
 						<div className='cv-account-wizzard-content'>
-							<Card
-								className='cv-account-wizzard-card mt20'
-								title='Configuración de tu cuenta (4/4)'
-								bordered={false}>
+							<Card className='cv-account-wizzard-card mt20' title='HMás sobre tí (4/4)' bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>
 										<RadioField
@@ -84,27 +82,49 @@ const AccountDetails = (props) => {
 											componentButtonStyle={'solid'}
 											componentOptions={[...CONSTANTS.BOOLEAN]}
 										/>
+									</div>
+									<div className='ph-auth-login-form-container'>
+										<RadioField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'¿Tienes experiencia en teatro?'}
+											componentName={'theater'}
+											componentButtonStyle={'solid'}
+											componentOptions={[...CONSTANTS.BOOLEAN]}
+										/>
+									</div>
+									<div className='ph-auth-login-form-container'>
+										<RadioField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'¿Tienes experiencia en cine?'}
+											componentName={'cinema'}
+											componentButtonStyle={'solid'}
+											componentOptions={[...CONSTANTS.BOOLEAN]}
+										/>
+									</div>
 
-										{data.followers >= 35000 && (
-											<>
+									<div className='ph-auth-login-form-container'>
+										<RadioField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'¿Tienes experiencia en sesiones de fotos?'}
+											componentName={'photoshoot'}
+											componentButtonStyle={'solid'}
+											componentOptions={[...CONSTANTS.BOOLEAN]}
+										/>
+									</div>
+
+									{data.categories[0] === 'modelo' && (
+										<>
+											<div className='ph-auth-login-form-container'>
 												<RadioField
 													componentClass={'cv-auth-login-field-input'}
-													componentLabel={'¿Quieres que te representemos con otras marcas?'}
-													componentName={'representation'}
+													componentLabel={'¿Tienes experiencia en pasarela?'}
+													componentName={'runway'}
 													componentButtonStyle={'solid'}
 													componentOptions={[...CONSTANTS.BOOLEAN]}
 												/>
-												<a
-													href={
-														'https://drive.google.com/file/d/19B0NUi2gnho072zJJmhy8HxZYsnr7DqD/view?usp=sharing'
-													}
-													target='_blank'
-													rel='noopener noreferrer'>
-													Políticas de Representación
-												</a>
-											</>
-										)}
-									</div>
+											</div>
+										</>
+									)}
 									<Form.Item className='cv-right'>
 										<Button htmlType='submit' className={'cv-account-wizzard-button-submit'}>
 											{buttonText}

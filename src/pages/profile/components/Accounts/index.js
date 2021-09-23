@@ -5,11 +5,10 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { notification, Row, Button, Col, Tag, Result } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { CloseOutlined, CopyOutlined } from '@ant-design/icons'
 
 import Loading from '../../../../components/Loading/Loading'
-import ModalEdit from '../../components/ModalEdit'
-import ModalConfiguration from '../../components/ModalConfiguration'
+import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
+
 import { serviceDelete } from './service'
 
 const Accounts = (props) => {
@@ -92,43 +91,65 @@ const Accounts = (props) => {
 										</Tag>
 									</Col>
 									<Col className='mb15' xs={24} sm={24} md={24} lg={24} xl={24}>
-										<ModalEdit componentData={item} componentHeader={'Modificar Información'} />
-										{item.eneable === true && (
-											<>
-												<ModalConfiguration
-													componentData={item}
-													componentHeader={'Condiguración'}
-												/>
+										<Button
+											block
+											style={{ margin: '4px 0px' }}
+											shape='round'
+											href={`/profile/account-biography/${item.name}/modify`}>
+											Editar Información
+										</Button>
+										<Button
+											block
+											style={{ margin: '4px 0px' }}
+											shape='round'
+											href={`/profile/account-biography/${item.name}/modify`}>
+											Editar Fotos
+										</Button>
+										{item.followers > CONSTANTS.MIN_FOLLOWERS && (
+											<Button
+												block
+												style={{ margin: '4px 0px' }}
+												shape='round'
+												href={`/profile/account-plans/${item.name}/modify`}>
+												Editar Planes
+											</Button>
+										)}
+										<Button
+											block
+											style={{ margin: '4px 0px' }}
+											shape='round'
+											href={`/profile/account-details/${item.name}/modify`}>
+											Editar Habilidades
+										</Button>
 
-												<CopyToClipboard
-													text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
-													<Button
-														style={{ margin: '0px 5px' }}
-														shape='round'
-														onClick={() => {
-															notification['success']({
-																message: '¡Excelente!',
-																description: `Enlace copiado, listo para compartir.`,
-																key: key,
-															})
-														}}>
-														<CopyOutlined />
-														Compartir
-													</Button>
-												</CopyToClipboard>
-											</>
+										{item.eneable === true && (
+											<CopyToClipboard
+												text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
+												<Button
+													block
+													style={{ margin: '4px 0px' }}
+													shape='round'
+													onClick={() => {
+														notification['success']({
+															message: '¡Excelente!',
+															description: `Enlace copiado, listo para compartir.`,
+															key: key,
+														})
+													}}>
+													Copiar mi enlace
+												</Button>
+											</CopyToClipboard>
 										)}
 
 										<Button
-											key={key.toString()}
-											style={{ margin: '0px 5px' }}
+											block
+											style={{ margin: '4px 0px' }}
 											type='danger'
 											shape='round'
 											onClick={() => {
 												handleDeleteAccount(item)
 											}}>
-											<CloseOutlined />
-											Eliminar
+											Eliminar Cuenta
 										</Button>
 									</Col>
 									{item.eneable !== true && (
