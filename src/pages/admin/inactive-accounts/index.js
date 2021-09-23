@@ -44,8 +44,7 @@ export default class InactiveAccounts extends React.Component {
 		console.log(item)
 		item.eneable = true
 		try {
-			const responseUpdate = await serviceUpdateData(item)
-			this.setState({ list: responseUpdate.data })
+			await serviceUpdateData(item)
 			notification['success']({
 				message: `Great!`,
 				description: `Eliminada con exito`,
