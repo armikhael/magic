@@ -1,1 +1,80 @@
 /** @format */
+
+.cv-home-header-content {
+	background: url(https://i.ibb.co/g4vwJdN/home.png);
+	background-size: 100% auto;
+}
+
+.cv-home-header-row {
+	padding: 0px 50px;
+	padding-bottom: 110px;
+}
+
+.cv-home-header-title-main {
+	color: #ffffff;
+	font-size: 30px;
+	font-weight: 300;
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+.cv-home-header-title-main span {
+	font-weight: 600;
+}
+
+.cv-home-header-col-first {
+	text-align: left;
+}
+
+.cv-home-header-col-first h3,
+.cv-home-header-col-second h3 {
+	color: #fff;
+	font-size: 27px;
+	font-weight: 400;
+}
+
+.cv-home-header-col-first p,
+.cv-home-header-col-second p {
+	color: #fff;
+	font-size: 15px;
+	font-weight: 200;
+}
+
+.cv-home-header-col-second {
+	text-align: right;
+	color: #fff;
+}
+
+.cv-home-header-col-button {
+	color: #e1336f;
+	font-weight: 500;
+	background: #fff;
+	border-radius: 4px;
+	padding: 10px 20px;
+}
+
+@media (max-width: 768px) {
+	.cv-home-header-content {
+		background: url(https://i.ibb.co/g4vwJdN/home.png) no-repeat center center
+			fixed;
+		font-size: 100%;
+		background-size: cover;
+	}
+	.cv-home-header-title-main {
+		font-size: 20px;
+	}
+	.cv-home-header-col-first h3,
+	.cv-home-header-col-second h3 {
+		font-size: 18px;
+	}
+	.cv-home-header-row {
+		padding: 0px 15px;
+		padding-bottom: 100px;
+	}
+	.cv-home-header-col-first p,
+	.cv-home-header-col-second p {
+		color: #fff;
+		font-size: 11px;
+		font-weight: 200;
+	}
+}
