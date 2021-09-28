@@ -88,7 +88,7 @@
 		padding: 20px;
 	}
 	.cv-models-title-two {
-		text-align: center;
+		text-align: center !important;
 		margin-top: 60px;
 		margin-bottom: 40px;
 		padding: 10px;
