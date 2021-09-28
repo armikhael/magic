@@ -60,6 +60,14 @@ export default function Company() {
 			<section className=''>
 				<Content className='cv-container-main'>
 					<Row className='cv-models-row-firts' align='middle'>
+						<Col xs={24} sm={24} md={12} className='center'>
+							<img
+								className='cv-models-firts-img'
+								src='https://i.ibb.co/c6FVtS2/Grupo-45.png'
+								title='Telefonos'
+								alt='Telefonos'
+							/>
+						</Col>
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
 								<span className='cv-models-firts-title-900'>
@@ -81,16 +89,8 @@ export default function Company() {
 								Crear mi enlace
 							</Button>
 						</Col>
-						<Col xs={24} sm={24} md={12} className='center'>
-							<img
-								className='cv-models-firts-img'
-								src='https://i.ibb.co/c6FVtS2/Grupo-45.png'
-								title='Telefonos'
-								alt='Telefonos'
-							/>
-						</Col>
 					</Row>
-					<div className='cv-models-title-two'>
+					<div className='cv-models-title-two cv-company-title-two'>
 						<h3>
 							¿Por qué registrarme como{' '}
 							<span className='cv-models-firts-title-900'>Negocio </span>?

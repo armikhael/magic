@@ -1,12 +1,10 @@
 /** @format */
 
 import React from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Layout, notification, Row, Col } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
-import ListMasonry from '../../components/ListMasonry/'
 import PageError from '../../components/Errors/PageError'
 
 import Models from '../lading-page/models'
@@ -19,23 +17,17 @@ const { Content } = Layout
 
 export default class Home extends React.Component {
 	state = {
-		page: 1,
 		list: [],
 		loading: true,
 		error: null,
-		hasMore: true,
 	}
 
 	componentDidMount() {
-		this.handleList()
-	}
-
-	handleList = () => {
-		serviceGetAccounts(this.state.page).then((response) => {
+		serviceGetAccounts().then((response) => {
 			if (response.statusCode === 200) {
+				console.log(response)
 				this.setState({
-					list: [...this.state.list, ...response.data],
-					page: this.state.page + 1,
+					list: response.data,
 					loading: false,
 				})
 			} else {
@@ -96,26 +88,34 @@ export default class Home extends React.Component {
 				</section>
 				<div id='models'>
 					<Models />
+					<Content className='cv-container-main'>
+						<div className='cv-models-title-account'>
+							<h3>
+								Lo mejor de
+								<span className='cv-models-firts-title-900'>
+									{' '}
+									Cuentas Virales
+								</span>
+							</h3>
+							<p>Aquí te dejamos algunos cuentas Personales</p>
+						</div>
+					</Content>
 				</div>
 				<div id='company'>
 					<Company />
+					<Content className='cv-container-main'>
+						<div className='cv-models-title-account'>
+							<h3>
+								Lo mejor de
+								<span className='cv-models-firts-title-900'>
+									{' '}
+									Cuentas Virales
+								</span>
+							</h3>
+							<p>Aquí te dejamos algunos de Empresas</p>
+						</div>
+					</Content>
 				</div>
-				<div className='cv-models-title-two'>
-					<h3>
-						Lo mejor de
-						<span className='cv-models-firts-title-900'> Cuentas Virales</span>
-					</h3>
-					<p>Aquí te dejamos algunos de ellas</p>
-				</div>
-				<Content className='cv-container-main'>
-					<InfiniteScroll
-						dataLength={this.state.list.length}
-						next={this.handleList}
-						hasMore={this.state.hasMore}
-						loader={<center></center>}>
-						<ListMasonry listMasonry={this.state.list} />
-					</InfiniteScroll>
-				</Content>
 			</>
 		)
 	}

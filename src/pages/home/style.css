@@ -53,6 +53,25 @@
 	padding: 10px 20px;
 }
 
+.cv-models-title-account {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 40px;
+}
+
+.cv-models-title-account h3 {
+	font-size: 25px;
+	color: #5f5f5f;
+}
+
+.cv-models-title-account span {
+	color: #e1336f;
+}
+
+.cv-models-title-account p {
+	color: #5f5f5f;
+}
+
 @media (max-width: 768px) {
 	.cv-home-header-content {
 		background: url(https://i.ibb.co/g4vwJdN/home.png) no-repeat center center

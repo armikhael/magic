@@ -1,16 +1,11 @@
 /** @format */
 import axios from 'axios'
 
-export default async function serviceGetAccounts(item) {
+export default async function serviceGetAccounts() {
 	let returnResponse
 	await axios({
-		method: 'POST',
-		url: `${process.env.REACT_APP_HOST}/account/search`,
-		data: {
-			query: { eneable: true },
-			sort: { counter_day: -1, counter: -1 },
-			page: item,
-		},
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/home/top`,
 	})
 		.then((response) => {
 			returnResponse = response.data
