@@ -29,7 +29,8 @@
 }
 
 .cv-models-firts-img {
-	width: 100%;
+	width: 480px;
+	max-width: 100%;
 }
 
 .cv-models-title-two {
@@ -83,7 +84,7 @@
 		text-align: center;
 	}
 	.cv-models-firts-img {
-		width: 100%;
+		width: 350px;
 		padding: 20px;
 	}
 	.cv-models-title-two {
@@ -101,5 +102,8 @@
 	}
 	.cv-models-row-req-item {
 		padding: 14px;
+	}
+	.cv-models-title-two h3 {
+		font-size: 17px;
 	}
 }

@@ -155,8 +155,10 @@
 .cv-login-content-reds-sociales-google:hover {
 	background: #cc311f;
 }
-.cv-login-content-reds-sociales-google:hover > .cv-login-content-reds-sociales-google-i,
-.cv-login-content-reds-sociales-google:hover > .cv-login-title-reds-sociales-google {
+.cv-login-content-reds-sociales-google:hover
+	> .cv-login-content-reds-sociales-google-i,
+.cv-login-content-reds-sociales-google:hover
+	> .cv-login-title-reds-sociales-google {
 	color: #fff;
 }
 
@@ -198,14 +200,16 @@
 
 @media screen and (max-width: 768px) {
 	.cv-login-content {
-		height: 120vh;
-		background-size: auto;
+		height: 140vh;
+		background-size: cover;
 	}
 	.cv-login-title-main {
 		font-size: 24px;
 		text-align: center;
 		margin-top: 50px;
 		margin-bottom: 30px;
+		padding: 10px;
+		font-weight: 100;
 	}
 	.cv-login-conteent-row {
 		height: 80vh;

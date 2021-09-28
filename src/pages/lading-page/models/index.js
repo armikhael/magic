@@ -41,11 +41,11 @@ export default function Modeles() {
 					spaceBetween: 10,
 				},
 				640: {
-					slidesPerView: 1,
+					slidesPerView: 2,
 					spaceBetween: 0,
 				},
 				320: {
-					slidesPerView: 1,
+					slidesPerView: 2,
 					spaceBetween: 0,
 				},
 				250: {
@@ -62,11 +62,16 @@ export default function Modeles() {
 					<Row className='cv-models-row-firts' align='middle'>
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
-								Ya son más de <span className='cv-models-firts-title-900'>1000</span> modelos en
-								Latinoamérica usando nuestros{' '}
-								<span className='cv-models-firts-title-900'>enlaces personalizados</span> para gestionar
-								sus pautas publicitarias de una forma{' '}
-								<span className='cv-models-firts-title-900'>gratuita y simple</span>
+								Ya son más de{' '}
+								<span className='cv-models-firts-title-900'>1000</span> modelos
+								en Latinoamérica usando nuestros{' '}
+								<span className='cv-models-firts-title-900'>
+									enlaces personalizados
+								</span>{' '}
+								para gestionar sus pautas publicitarias de una forma{' '}
+								<span className='cv-models-firts-title-900'>
+									gratuita y simple
+								</span>
 							</h3>
 							<br />
 							<Button
@@ -81,7 +86,7 @@ export default function Modeles() {
 						<Col xs={24} sm={24} md={12} className='center'>
 							<img
 								className='cv-models-firts-img'
-								src='https://i.ibb.co/MMjnkSQ/Grupo-35.png'
+								src='https://i.ibb.co/ccyGyw7/Grupo-46.png'
 								title='Telefonos'
 								alt='Telefonos'
 							/>
@@ -89,11 +94,14 @@ export default function Modeles() {
 					</Row>
 					<div className='cv-models-title-two'>
 						<h3>
-							¿Por qué crearme un enlace como <span className='cv-models-firts-title-900'>Modelo</span>?
+							¿Por qué crearme un enlace como{' '}
+							<span className='cv-models-firts-title-900'>Modelo</span>?
 						</h3>
 						<p>Aquí te dejamos algunos de los beneficios más importantes</p>
 					</div>
-					<AwesomeSwiper ref={(ref) => (swiper.swiperRef = ref)} config={swiper.config}>
+					<AwesomeSwiper
+						ref={(ref) => (swiper.swiperRef = ref)}
+						config={swiper.config}>
 						<div className='swiper-wrapper'>
 							{data.carrusel.map(function (item, i) {
 								return (
@@ -110,6 +118,7 @@ export default function Modeles() {
 					</AwesomeSwiper>
 				</Content>
 			</section>
+			{/* 
 			<div className='cv-models-title-two'>
 				<h3>
 					¿Qué debo hacer para <span className='cv-models-firts-title-900'>registrarme</span>?
@@ -175,6 +184,7 @@ export default function Modeles() {
 					</Row>
 				</Content>
 			</section>
+			*/}
 		</>
 	)
 }
