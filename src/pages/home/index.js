@@ -177,14 +177,14 @@ export default class Home extends React.Component {
 								{this.state.list.top_bussines.data.map(function (item, i) {
 									return (
 										<div className='swiper-slide m20' key={i}>
-											<a href={item.account}>
+											<a href={item.name}>
 												<div className='cv-home-company-content'>
 													<img
 														src={item.image}
 														title={item.name}
 														alt={item.name}
 													/>
-													<h3>{item.name}</h3>
+													<h3>{item.account}</h3>
 												</div>
 											</a>
 										</div>
