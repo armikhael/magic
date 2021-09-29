@@ -127,7 +127,7 @@ export default function Pricing(props) {
 		},
 		ARS: {
 			name: 'Pesos Argentinos',
-			value: 160,
+			value: 190,
 			currency: 'ARS',
 		},
 		PEN: {
