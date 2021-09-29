@@ -1,11 +1,13 @@
 /** @format */
 
 import React from 'react'
+import AwesomeSwiper from 'react-awesome-swiper'
 
 import { Layout, notification, Row, Col } from 'antd'
 
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
+import Account from '../../components/Account'
 
 import Models from '../lading-page/models'
 import Company from '../lading-page/company'
@@ -14,6 +16,46 @@ import './style.css'
 import serviceGetAccounts from './services'
 
 const { Content } = Layout
+
+const config = {
+	swiperRef: null,
+	spaceBetween: 0,
+	loop: true,
+	autoplay: {
+		delay: 3000,
+		stopOnLastSlide: false,
+		disableOnInteraction: true,
+	},
+	preloadImages: false,
+	lazy: true,
+	speed: 500,
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+	},
+	breakpoints: {
+		1024: {
+			slidesPerView: 5,
+			spaceBetween: 0,
+		},
+		768: {
+			slidesPerView: 3,
+			spaceBetween: 10,
+		},
+		640: {
+			slidesPerView: 2,
+			spaceBetween: 0,
+		},
+		320: {
+			slidesPerView: 2,
+			spaceBetween: 0,
+		},
+		250: {
+			slidesPerView: 1,
+			spaceBetween: 0,
+		},
+	},
+}
 
 export default class Home extends React.Component {
 	state = {
@@ -25,7 +67,6 @@ export default class Home extends React.Component {
 	componentDidMount() {
 		serviceGetAccounts().then((response) => {
 			if (response.statusCode === 200) {
-				console.log(response)
 				this.setState({
 					list: response.data,
 					loading: false,
@@ -99,6 +140,20 @@ export default class Home extends React.Component {
 							</h3>
 							<p>Aquí te dejamos algunos cuentas Personales</p>
 						</div>
+						<br />
+						<AwesomeSwiper
+							ref={(ref) => (config.swiperRef = ref)}
+							config={config}>
+							<div className='swiper-wrapper'>
+								{this.state.list.top_accounts.data.map(function (item, i) {
+									return (
+										<div className='swiper-slide' key={i}>
+											<Account account={item} accountBio={false} />
+										</div>
+									)
+								})}
+							</div>
+						</AwesomeSwiper>
 					</Content>
 				</div>
 				<div id='company'>
@@ -114,7 +169,31 @@ export default class Home extends React.Component {
 							</h3>
 							<p>Aquí te dejamos algunos de Empresas</p>
 						</div>
+						<br />
+						<AwesomeSwiper
+							ref={(ref) => (config.swiperRef = ref)}
+							config={config}>
+							<div className='swiper-wrapper'>
+								{this.state.list.top_bussines.data.map(function (item, i) {
+									return (
+										<div className='swiper-slide m20' key={i}>
+											<a href={item.account}>
+												<div className='cv-home-company-content'>
+													<img
+														src={item.image}
+														title={item.name}
+														alt={item.name}
+													/>
+													<h3>{item.name}</h3>
+												</div>
+											</a>
+										</div>
+									)
+								})}
+							</div>
+						</AwesomeSwiper>
 					</Content>
+					<br></br>
 				</div>
 			</>
 		)
