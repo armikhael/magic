@@ -24,6 +24,7 @@ export default function AccountUser(props) {
 	const [name, setName] = useState()
 	const [type, setType] = useState()
 	const [followers, setFollowers] = useState()
+	const [isButtonFollowers, setIsButtonFollowers] = useState(false)
 
 	useEffect(() => {
 		serviceGetRedSocial().then((response) => {
@@ -113,7 +114,15 @@ export default function AccountUser(props) {
 										componentType={'text'}
 										componentRules={'rulesFollowers'}
 										componentValue={data.followers}
-										componentOnChange={(e) => setFollowers(e.target.value)}
+										componentOnChange={(e) => {
+											console.log(e.target.value.length)
+											if (e.target.value.length <= 3) {
+												setIsButtonFollowers(true)
+											} else {
+												setIsButtonFollowers(false)
+											}
+											setFollowers(e.target.value)
+										}}
 									/>
 									{name !== undefined && type !== undefined && followers >= 1000 && (
 										<>
@@ -139,6 +148,15 @@ export default function AccountUser(props) {
 											<a href='https://www.instagram.com/cuentasvirales/'>
 												¿Problemas para cargar tus imágenes?
 											</a>
+										</>
+									)}
+									{isButtonFollowers === true && (
+										<>
+											<Row justify='center'>
+												<Button shape='round' onClick={() => history.push(`/pricing`)}>
+													Planes de crecimiento
+												</Button>
+											</Row>
 										</>
 									)}
 									<Form.Item className='cv-right'>

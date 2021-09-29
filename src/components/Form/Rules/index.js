@@ -89,7 +89,9 @@ export const rulesValidation = {
 				if (value >= 1000) {
 					return Promise.resolve()
 				}
-				return Promise.reject('Debes contar con al menos 1.000 seguidores')
+				return Promise.reject(
+					`Debes contar con al menos 1.000 seguidores, si necesitas ayuda para crecer revisa nuestros paquetes publicitarios`
+				)
 			},
 		},
 		{

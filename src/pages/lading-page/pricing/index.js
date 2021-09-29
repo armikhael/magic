@@ -66,7 +66,7 @@ export default function Pricing(props) {
 		})
 	}, [props])
 
-	const price300 = 15
+	const price300 = 5
 	const price500 = 25
 	const price1000 = 35
 	const [plan300, setPlan300] = useState(price300)
@@ -230,7 +230,7 @@ export default function Pricing(props) {
 						<Col xs={24} sm={24} md={8} className=''>
 							<div className='cv-buy-followers-card'>
 								<center>
-									<h3>300 Seguidores</h3>
+									<h3>100 Seguidores</h3>
 								</center>
 								<ul>
 									<li>
@@ -340,7 +340,7 @@ export default function Pricing(props) {
 							</div>
 						</Col>
 					</Row>
-					<br></br>
+					{/* <br></br>
 					<Row className='mt15' align='middle'>
 						<Col xs={24} sm={24} md={12} className=''>
 							<div className='cv-buy-followers-title-tre p20'>
@@ -364,7 +364,7 @@ export default function Pricing(props) {
 								<div className='cv-buy-followers-tablet-btn'></div>
 							</div>
 						</Col>
-					</Row>
+					</Row> */}
 					<br></br>
 					<br></br>
 					<Row className='mt15' align='middle' justify='center'>
