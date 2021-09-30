@@ -165,7 +165,7 @@ export default class Home extends React.Component {
 											<a href={item.name}>
 												<div className='cv-home-company-content'>
 													<img src={item.image} title={item.name} alt={item.name} />
-													<h3>{item.account}</h3>
+													<h3>{item.name}</h3>
 												</div>
 											</a>
 										</div>

@@ -86,7 +86,7 @@ export const rulesValidation = {
 		},
 		{
 			validator: (_, value) => {
-				if (value >= 1000) {
+				if (value >= 500) {
 					return Promise.resolve()
 				}
 				return Promise.reject(
