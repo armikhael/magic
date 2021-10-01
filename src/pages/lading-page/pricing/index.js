@@ -255,9 +255,9 @@ export default function Pricing(props) {
 											serviceEventGoogleAnalytics({
 												category: 'pricing',
 												action: 'click',
-												label: `300 Seguidores`,
+												label: `100 Seguidores`,
 											})
-											handleBuy({ plan: '300', amount: plan300, currency: typeCountry })
+											handleBuy({ plan: '100', amount: plan300, currency: typeCountry })
 										}}>
 										Reservar Cupo
 									</Button>
