@@ -124,7 +124,7 @@ export default function AccountUser(props) {
 											setFollowers(e.target.value)
 										}}
 									/>
-									{name !== undefined && type !== undefined && followers >= 1000 && (
+									{name !== undefined && type !== undefined && followers >= 500 && (
 										<>
 											<Row>
 												Imagen de Pefil (obligatoria)
