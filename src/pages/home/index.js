@@ -93,26 +93,31 @@ export default class Home extends React.Component {
 					<Content className='cv-container-main'>
 						<center>
 							<h1 className='cv-home-header-title-main'>
-								¡Crea tu enlace personalizado<br></br> de forma <span>gratuita</span>!
+								¡Crea tu enlace personalizado<br></br> de forma{' '}
+								<span>gratuita</span>!
 							</h1>
 						</center>
 						<Row className='cv-home-header-row'>
 							<Col xs={12} sm={12} md={12} className='cv-home-header-col-first'>
 								<h3>Enlaces Personales</h3>
 								<p>
-									Modelos, Artistas, Influencers, Cantantes… lorem ipsum dolor sit amet, consectetur
-									adipiscing, sed do eiusmod tempor.
+									Modelos, Artistas, Influencers, Cantantes… lorem ipsum dolor
+									sit amet, consectetur adipiscing, sed do eiusmod tempor.
 								</p>
 								<br />
 								<a href='#models' className='cv-home-header-col-button'>
 									¿Qué son?
 								</a>
 							</Col>
-							<Col xs={12} sm={12} md={12} className='cv-home-header-col-second'>
+							<Col
+								xs={12}
+								sm={12}
+								md={12}
+								className='cv-home-header-col-second'>
 								<h3>Enlaces de Negocio</h3>
 								<p>
-									Emprendimientos, Tiendas, Freelancers … lorem ipsum dolor sit amet, consectetur
-									adipiscing, sed do eiusmod tempor.
+									Emprendimientos, Tiendas, Freelancers … lorem ipsum dolor sit
+									amet, consectetur adipiscing, sed do eiusmod tempor.
 								</p>
 								<br />
 								<a href='#company' className='cv-home-header-col-button'>
@@ -128,12 +133,17 @@ export default class Home extends React.Component {
 						<div className='cv-models-title-account'>
 							<h3>
 								Lo mejor de
-								<span className='cv-models-firts-title-900'> Cuentas Virales</span>
+								<span className='cv-models-firts-title-900'>
+									{' '}
+									Cuentas Virales
+								</span>
 							</h3>
 							<p>Aquí te dejamos algunos cuentas Personales</p>
 						</div>
 						<br />
-						<AwesomeSwiper ref={(ref) => (config.swiperRef = ref)} config={config}>
+						<AwesomeSwiper
+							ref={(ref) => (config.swiperRef = ref)}
+							config={config}>
 							<div className='swiper-wrapper'>
 								{this.state.list.top_accounts.data.map(function (item, i) {
 									return (
@@ -152,19 +162,28 @@ export default class Home extends React.Component {
 						<div className='cv-models-title-account'>
 							<h3>
 								Lo mejor de
-								<span className='cv-models-firts-title-900'> Cuentas Virales</span>
+								<span className='cv-models-firts-title-900'>
+									{' '}
+									Cuentas Virales
+								</span>
 							</h3>
 							<p>Aquí te dejamos algunas de Empresas</p>
 						</div>
 						<br />
-						<AwesomeSwiper ref={(ref) => (config.swiperRef = ref)} config={config}>
+						<AwesomeSwiper
+							ref={(ref) => (config.swiperRef = ref)}
+							config={config}>
 							<div className='swiper-wrapper'>
 								{this.state.list.top_bussines.data.map(function (item, i) {
 									return (
 										<div className='swiper-slide m20' key={i}>
 											<a href={item.name}>
 												<div className='cv-home-company-content'>
-													<img src={item.image} title={item.name} alt={item.name} />
+													<img
+														src={item.image}
+														title={item.name}
+														alt={item.name}
+													/>
 													<h3>{item.name}</h3>
 												</div>
 											</a>

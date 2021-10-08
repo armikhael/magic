@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom'
 
 import { Layout, Row, Col, Button } from 'antd'
 
+import serviceEventGoogleAnalytics from '../../../components/ServiceCommons/EventsGoogleAnalitycs'
+
 import data from './data.json'
 import './style.css'
 
@@ -13,6 +15,18 @@ const { Content } = Layout
 
 export default function Company() {
 	const history = useHistory()
+	const handleClickEnlace = () => {
+		if (localStorage.getItem('user')) {
+			history.push('profile/linktree-name')
+			serviceEventGoogleAnalytics({
+				category: 'homee',
+				action: 'click-enlace-negocio',
+				label: 'btn home negocio',
+			})
+		} else {
+			history.push('/auth/register')
+		}
+	}
 	const swiper = {
 		config: {
 			swiperRef: null,
@@ -84,7 +98,7 @@ export default function Company() {
 								className='cv-buy-followers-btn-buy'
 								type='primary'
 								onClick={() => {
-									history.push('/auth/register')
+									handleClickEnlace()
 								}}>
 								Crear mi enlace
 							</Button>

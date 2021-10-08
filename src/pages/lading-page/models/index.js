@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom'
 
 import { Layout, Row, Col, Button } from 'antd'
 
+import serviceEventGoogleAnalytics from '../../../components/ServiceCommons/EventsGoogleAnalitycs'
+
 import data from './data.json'
 import './style.css'
 
@@ -13,6 +15,18 @@ const { Content } = Layout
 
 export default function Modeles() {
 	const history = useHistory()
+	const handleClickEnlace = () => {
+		if (localStorage.getItem('user')) {
+			history.push('profile/account-user')
+			serviceEventGoogleAnalytics({
+				category: 'homee',
+				action: 'click-enlace-modelos',
+				label: 'btn home modelos',
+			})
+		} else {
+			history.push('/auth/register')
+		}
+	}
 	const swiper = {
 		config: {
 			swiperRef: null,
@@ -78,7 +92,7 @@ export default function Modeles() {
 								className='cv-buy-followers-btn-buy'
 								type='primary'
 								onClick={() => {
-									history.push('/auth/register')
+									handleClickEnlace()
 								}}>
 								Crear mi enlace
 							</Button>
