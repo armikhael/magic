@@ -30,6 +30,10 @@
 	font-size: 14px;
 	margin-bottom: 0px;
 	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 120px;
 }
 
 .cv-header-notifi-list-moment {
