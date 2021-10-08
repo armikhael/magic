@@ -104,7 +104,8 @@
 	}
 	.cv-home-header-col-first h3,
 	.cv-home-header-col-second h3 {
-		font-size: 18px;
+		font-size: 16px;
+		font-weight: 600;
 	}
 	.cv-home-header-row {
 		padding: 0px 15px;
