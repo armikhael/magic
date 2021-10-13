@@ -99,10 +99,10 @@ export default class Home extends React.Component {
 						</center>
 						<Row className='cv-home-header-row'>
 							<Col xs={12} sm={12} md={12} className='cv-home-header-col-first'>
-								<h3>Enlaces Personales</h3>
+								<h3>Enlaces de Influencers</h3>
 								<p>
-									Modelos, Artistas, Influencers, Cantantes… lorem ipsum dolor
-									sit amet, consectetur adipiscing, sed do eiusmod tempor.
+									Modelos, Artistas, Influencers, Cantantes… Un espacio donde
+									podrás tener un perfil con todo lo que necesitas.
 								</p>
 								<br />
 								<a href='#models' className='cv-home-header-col-button'>
@@ -116,8 +116,8 @@ export default class Home extends React.Component {
 								className='cv-home-header-col-second'>
 								<h3>Enlaces de Negocio</h3>
 								<p>
-									Emprendimientos, Tiendas, Freelancers … lorem ipsum dolor sit
-									amet, consectetur adipiscing, sed do eiusmod tempor.
+									Emprendimientos, Tiendas, Freelancers … El mejor espacio para
+									colocar tus enlaces y biografía.
 								</p>
 								<br />
 								<a href='#company' className='cv-home-header-col-button'>
