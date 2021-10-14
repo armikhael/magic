@@ -10,13 +10,14 @@ import Loading from '../../../../components/Loading/Loading'
 import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 
 import { serviceDelete } from './service'
+import './style.css'
 
 const Accounts = (props) => {
 	const history = useHistory()
 	const [data, setData] = useState(lodash.orderBy(props.componentData, ['eneable'], ['asc']))
 	const [loading, setLoading] = useState(true)
 	const [count, setCount] = useState()
-
+	console.log(data, 'informacion de enlaces')
 	useEffect(() => {
 		const check = props.componentData.filter((item) => {
 			return item.eneable === false
@@ -61,112 +62,162 @@ const Accounts = (props) => {
 
 	return (
 		<>
-			{count.length > 0 && <>Tienes {count.length} cuenta(s) pendiente(s) por activación</>}
+			<div className='cv-profile-accounts-pending-titlle'>
+				{count.length > 0 && <>Tienes {count.length} cuenta(s) pendiente(s) por activación</>}
+			</div>
 			{data.map((item, key) => {
 				return (
 					<div key={key.toString()}>
-						<Row className='cv-profile-card-account-content'>
-							<Col sm={24} md={6} className='cv-profile-upload-image'>
-								<img
-									className='cv-profile-main-info-inner-container-img'
-									src={item.image || process.env.REACT_APP_LOGO}
-									alt={item.name}
-									title={item.name}
-								/>
-							</Col>
-							<Col sm={24} md={18} className='cv-profile-account-detail-acount'>
-								<Row>
-									<Col span={24}>
-										<h3 className='cv-profile-account-detail-title'>{item.account}</h3>
-									</Col>
-									<Col span={24} className='mt15'>
+						<div>
+							<div className='cv-profile-accounts-social-media'>
+								<Tag color='#EC428D' style={{ textTransform: 'capitalize' }}>
+									{item.type}
+								</Tag>
+							</div>
+
+							<div className='cv-profile-accounts-card-content'>
+								<div className='cv-profile-accounts-information-content'>
+									<Row>
+										<Col span={6} className='cv-profile-accounts-upload-image'>
+											<img
+												className='cv-profile-accounts-image'
+												src={item.image || process.env.REACT_APP_LOGO}
+												alt={item.name}
+												title={item.name}
+											/>
+										</Col>
+										<Col span={18}>
+											{' '}
+											<Row>
+												{' '}
+												<Col span={22}>
+													<h3 className='cv-profile-account-detail-title'>{item.account}</h3>
+												</Col>
+												<Col span={2}>
+													<Button
+														className='cv-profile-accounts-button-delete'
+														block
+														style={{ margin: '0px 0px' }}
+														type='danger'
+														shape='round'
+														onClick={() => {
+															handleDeleteAccount(item)
+														}}>
+														<img
+															className='cv-profile-account-icon-size'
+															src='https://i.ibb.co/rHMc9sY/Vector.png'
+															alt=''
+														/>
+													</Button>
+												</Col>
+											</Row>
+											<Row>
+												<Col span={2}>
+													<img
+														className='cv-profile-account-icon-size'
+														src='https://i.ibb.co/37hHcKc/User.png'
+														alt=''
+													/>
+												</Col>
+												<Col span={4} className='cv-profile-account-data'>
+													{item.followers}
+												</Col>
+												<Col span={2}>
+													<img
+														className='cv-profile-account-icon-size'
+														src='https://i.ibb.co/VjWS6c8/WhatsApp.png'
+														alt=''
+													/>
+												</Col>
+												<Col span={16} className='cv-profile-account-data'>
+													{item.phone}
+												</Col>
+											</Row>
+											<Row>
+												<Col span={2}>
+													{' '}
+													<img
+														className='cv-profile-account-icon-size'
+														src='https://i.ibb.co/pQ6Z6RJ/Mail.png'
+														alt=''
+													/>
+												</Col>
+												<Col span={22} className='cv-profile-account-data'>
+													{item.email}
+												</Col>
+											</Row>
+										</Col>
+									</Row>
+
+									<div>
 										{item.emailAccount}
-										<p>{item.biography}</p>
-									</Col>
-								</Row>
+										<p className='cv-profile-accounts-biography'>{item.biography}</p>
+									</div>
+								</div>
+
 								<Row>
-									<Col className='mb15' xs={24} sm={24} md={24} lg={5} xl={5}>
-										<Tag color='#EC428D' style={{ textTransform: 'capitalize' }}>
-											{item.type}
-										</Tag>
-									</Col>
-									<Col className='mb15' xs={24} sm={24} md={24} lg={24} xl={24}>
+									<Col span={12}>
 										<Button
+											className='cv-profile-accounts-button-edit-information'
 											block
-											style={{ margin: '4px 0px' }}
+											style={{ margin: '0px 0px' }}
 											shape='round'
 											href={`/profile/account-biography/${item.name}/modify`}>
 											Editar Información
 										</Button>
+									</Col>
+									<Col span={12}>
+										{' '}
 										<Button
+											className='cv-profile-accounts-button-edit-habilities'
 											block
-											style={{ margin: '4px 0px' }}
-											shape='round'
-											href={`/profile/account-biography/${item.name}/modify`}>
-											Editar Fotos
-										</Button>
-										{item.followers > CONSTANTS.MIN_FOLLOWERS && (
-											<Button
-												block
-												style={{ margin: '4px 0px' }}
-												shape='round'
-												href={`/profile/account-plans/${item.name}/modify`}>
-												Editar Planes
-											</Button>
-										)}
-										<Button
-											block
-											style={{ margin: '4px 0px' }}
+											style={{ margin: '0px 0px' }}
 											shape='round'
 											href={`/profile/account-details/${item.name}/modify`}>
 											Editar Habilidades
 										</Button>
-
-										{item.eneable === true && (
-											<CopyToClipboard
-												text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
-												<Button
-													block
-													style={{ margin: '4px 0px' }}
-													shape='round'
-													onClick={() => {
-														notification['success']({
-															message: '¡Excelente!',
-															description: `Enlace copiado, listo para compartir.`,
-															key: key,
-														})
-													}}>
-													Copiar mi enlace
-												</Button>
-											</CopyToClipboard>
-										)}
-
+									</Col>{' '}
+									{item.followers > CONSTANTS.MIN_FOLLOWERS && (
 										<Button
 											block
 											style={{ margin: '4px 0px' }}
-											type='danger'
 											shape='round'
-											onClick={() => {
-												handleDeleteAccount(item)
-											}}>
-											Eliminar Cuenta
+											href={`/profile/account-plans/${item.name}/modify`}>
+											Editar Planes
 										</Button>
-									</Col>
-									{item.eneable !== true && (
-										<Row justify='center'>
-											<Col xs={4} sm={4} md={4}>
-												<Button
-													style={{ margin: '0px 5px' }}
-													shape='round'
-													href={`/profile/account-activation/${item.name}/modify`}>
-													Activar Cuenta
-												</Button>
-											</Col>
-										</Row>
+									)}
+									{item.eneable === true && (
+										<CopyToClipboard text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
+											<Button
+												block
+												style={{ margin: '4px 0px' }}
+												shape='round'
+												onClick={() => {
+													notification['success']({
+														message: '¡Excelente!',
+														description: `Enlace copiado, listo para compartir.`,
+														key: key,
+													})
+												}}>
+												Copiar mi enlace
+											</Button>
+										</CopyToClipboard>
 									)}
 								</Row>
-							</Col>
-						</Row>
+							</div>
+						</div>
+						{item.eneable !== true && (
+							<Row justify='center'>
+								<Col xs={4} sm={4} md={4}>
+									<Button
+										style={{ margin: '0px 5px' }}
+										shape='round'
+										href={`/profile/account-activation/${item.name}/modify`}>
+										Activar Cuenta
+									</Button>
+								</Col>
+							</Row>
+						)}
 					</div>
 				)
 			})}

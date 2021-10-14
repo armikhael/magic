@@ -1,0 +1,98 @@
+/** @format */
+
+.cv-profile-accounts-pending-titlle {
+	color: #bfbfbf;
+	font-size: 14px;
+	padding-left: 32px;
+	margin-bottom: 34px;
+}
+
+.cv-profile-accounts-social-media {
+	position: absolute;
+	left: 280px;
+	top: 70px;
+	z-index: 1;
+}
+
+.cv-profile-accounts-card-content {
+	margin: 10px;
+	border: #fff;
+	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
+	background-color: #fff;
+	border-radius: 12px;
+	transition: all 0.3s ease;
+	overflow: hidden;
+	position: relative;
+	width: 400px;
+}
+
+.cv-profile-accounts-information-content {
+	padding: 16px;
+}
+
+.cv-profile-accounts-image {
+	border-radius: 50%;
+	width: 82px;
+	max-width: 100%;
+	border: 1px solid #d9d9d9;
+}
+
+.cv-profile-accounts-button-delete {
+	background: #fff1f0;
+	width: 30px;
+	height: 30px;
+	border: none;
+	padding: 0px;
+}
+
+.cv-profile-account-icon-size {
+	height: 12px;
+}
+
+.cv-profile-accounts-button-delete:hover {
+	background: #f8beba;
+	width: 24px;
+	width: 30px;
+	height: 30px;
+}
+
+.cv-profile-accounts-button-delete:focus {
+	background: #f8beba;
+	width: 24px;
+	width: 30px;
+	height: 30px;
+}
+
+.cv-profile-account-data {
+	color: #bfbfbf;
+	font-size: 12px;
+	font-weight: 500;
+	padding-top: 3px;
+}
+
+.cv-profile-accounts-biography {
+	color: #bfbfbf;
+	font-weight: 200;
+	margin-top: 24px;
+	font-size: 12px;
+}
+
+.cv-profile-accounts-button-edit-information {
+	border-radius: 0px 0px 0px 12px;
+	border-color: #f0f0f0;
+	height: 40px;
+	text-align: center;
+	padding: 0;
+	line-height: 39px !important;
+	font-size: 12px;
+}
+
+.cv-profile-accounts-button-edit-habilities {
+	border-radius: 0px 0px 12px 0px;
+	border-color: #f0f0f0;
+	height: 40px;
+	text-align: center;
+	padding: 0;
+	line-height: 39px !important;
+	font-size: 12px;
+}

@@ -8,6 +8,7 @@ import Loading from '../../../../components/Loading/Loading'
 import Accounts from '../../components/Accounts'
 
 import { serviceGetData } from './services'
+import './style.css'
 
 const { Header } = Layout
 
@@ -32,12 +33,13 @@ export default function ListAccount() {
 			{isData && (
 				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
-						<Row justify='center'>
+						<h1 className='cv-profile-list-account-main-title'>¡Te damos la bienvenida, Ana!</h1>
+						<Row>
 							<Col xs={22} sm={20} xl={16}>
-								<Header className='cv-perfil-title-main-container'>
-									<SubnodeOutlined className='cv-perfil-title-main-icon' />
-									<h3 className='cv-perfil-title-main-title'>Mis Enlaces Personales</h3>
-								</Header>
+								<div className='cv-profile-list-account-subtitle-main-container'>
+									<SubnodeOutlined className='cv-profile-list-account-main-icon' />
+									<h3 className='cv-profile-list-account-main-subtitle '>Mis Enlaces Personales</h3>
+								</div>
 								<Accounts componentData={isData} />
 							</Col>
 						</Row>
