@@ -30,17 +30,19 @@ const AccountFinish = (props) => {
 								'Para aumentar las posibilidades de contratación por marcas interesadas, te dejamos este truco que las modelos estan haciendo dentro de sus cuentas.'
 							}
 							extra={[
-								<br key='br' />,
 								<img
-									key='img'
+									key='img-profile'
 									className='cv-profile-activation-img-logo'
 									src={'https://i.ibb.co/3CGGDSX/ejemplos.jpg'}
 									style={{ width: '100%' }}
 									alt='Cuentas'
 								/>,
-								<p>Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio Web"</p>,
+								<p key='p-profile'>
+									Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio Web"
+								</p>,
 
 								<CopyToClipboard
+									key='copy-profile'
 									text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${props.match.params.name}`}>
 									<Button
 										style={{ margin: '0px 5px' }}

@@ -18,7 +18,7 @@ import ChangePassword from '../pages/profile/pages/change-password'
 import AccountUser from '../pages/profile/pages/account-wizzard/step1-account-user'
 import AccountBiography from '../pages/profile/pages/account-wizzard/step2-account-biography'
 import AccountPlans from '../pages/profile/pages/account-wizzard/step3-account-plans'
-import AccountDetails from '../pages/profile/pages/account-wizzard/step4-account-details'
+import AccountLinks from '../pages/profile/pages/account-wizzard/step4-account-links'
 import AccountActivation from '../pages/profile/pages/account-wizzard/step5-account-activation'
 import AccountFinish from '../pages/profile/pages/account-wizzard/step6-account-finish'
 import LinkTreeName from '../pages/profile/pages/linktree-wizzard/step1-linktree-name'
@@ -72,7 +72,7 @@ const Routers = (props) => (
 				<PrivateRoute exact path='/profile/account-user' component={AccountUser} />
 				<PrivateRoute exact path='/profile/account-biography/:name/:modify?' component={AccountBiography} />
 				<PrivateRoute exact path='/profile/account-plans/:name/:modify?' component={AccountPlans} />
-				<PrivateRoute exact path='/profile/account-details/:name/:modify?' component={AccountDetails} />
+				<PrivateRoute exact path='/profile/account-links/:name/:modify?' component={AccountLinks} />
 				<PrivateRoute exact path='/profile/account-activation/:name/:modify?' component={AccountActivation} />
 				<PrivateRoute exact path='/profile/account-finish/:name/' component={AccountFinish} />
 				<PrivateRoute exact path='/profile/linktree-name/' component={LinkTreeName} />
