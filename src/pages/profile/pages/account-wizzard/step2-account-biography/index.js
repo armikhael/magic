@@ -9,14 +9,13 @@ import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
-import { serviceGetCategories } from '../../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../../components/ServiceCommons/GetCountry'
 import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
 import UploadImage from '../../../components/UploadImage'
 import UploadCover from '../../../components/UploadCover'
 
-import { serviceGetData, serviceUpdateData } from './services'
+import { serviceGetData, serviceUpdateData, serviceGetCategories } from './services'
 
 const AccountBiography = (props) => {
 	const history = useHistory()

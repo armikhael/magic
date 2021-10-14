@@ -5,10 +5,11 @@ import { useHistory } from 'react-router-dom'
 import { Form, Button, notification, Col, Card, Row } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
+import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
 import UploadOneImage from '../../../../../components/UploadOneImage'
 
-import { serviceGetData, serviceUpdateData } from './services'
+import { serviceGetData, serviceUpdateData, serviceGetCategories } from './services'
 import './style.css'
 
 export default function LinkTreeInfo(props) {
@@ -18,6 +19,7 @@ export default function LinkTreeInfo(props) {
 	const [isModify, setIsModify] = useState(false)
 	const [image, setImage] = useState(undefined)
 	const [buttonText, setButtonText] = useState('Siguiente')
+	const [categories, setCategories] = useState([])
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
@@ -33,6 +35,17 @@ export default function LinkTreeInfo(props) {
 			setIsModify(true)
 			setButtonText('Actualizar')
 		}
+
+		serviceGetCategories().then((data) => {
+			let result = data.map((item) => {
+				return {
+					value: item.name,
+					name: item.name,
+				}
+			})
+			setCategories([...result])
+		})
+
 		console.log(props.match.params.name)
 		fetchData(props.match.params.name)
 		console.log('useEffects')
@@ -95,6 +108,16 @@ export default function LinkTreeInfo(props) {
 											componentPlaceholder={'Ingresa el nombre a mostrar'}
 											componentType={'text'}
 											componentValue={data.account}
+										/>
+										<SelectField
+											componentClass={'cv-auth-login-field-input'}
+											componentLabel={'Categorías'}
+											componentName={'categories'}
+											componentMode={'single'}
+											componentPlaceholder={'Seleccione una opción'}
+											componentOptions={categories}
+											componentRules={'rulesSelect'}
+											componentMaxTagCount={5}
 										/>
 										<TextAreaField
 											componentClass={'cv-auth-login-field-input'}
