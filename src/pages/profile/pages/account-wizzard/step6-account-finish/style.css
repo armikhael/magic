@@ -1,0 +1,28 @@
+/** @format */
+
+.cv-account-wizzard-finish-link-preview {
+	border: 1px Solid #d9d9d9;
+	border-radius: 50px;
+	margin-top: 15px;
+	padding: 2px 15px;
+	font-size: 14px;
+	background-color: #d9d9d9;
+	color: #777;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.cv-account-wizzard-finish-button-go-profile {
+	color: #fff;
+	font-weight: 900;
+	font-size: 16px;
+	height: 39px;
+	background-color: #f61073;
+	border-radius: 50px;
+	padding: 6px;
+	width: 150px;
+	max-width: 100%;
+	margin: 0 auto;
+	cursor: pointer;
+}

@@ -75,11 +75,11 @@ export default function AccountUser(props) {
 	return (
 		<>
 			{data !== undefined && (
-				<Row justify='center'>
-					<Col xs={23} sm={20} xl={10}>
+				<Row justify='center' className='cv-account-wizzard-global-content'>
+					<Col xs={23} sm={20} xl={10} className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
 							<Card
-								className='cv-account-wizzard-card mt100'
+								className='cv-account-wizzard-card'
 								title='Creación de tu enlace personal (1/4)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
@@ -117,23 +117,65 @@ export default function AccountUser(props) {
 									/>
 									{name !== undefined && type !== undefined && followers >= 200 && (
 										<>
-											<Row>
-												Imagen de Pefil (obligatoria)
-												<UploadImage
-													componentName={`${name}-${type}`}
-													componentHandle={(e) => {
-														setImageProfile(e)
-													}}
-												/>
+											<Row className='cv-account-wizzard-upload-image-container'>
+												<Col
+													span={24}
+													className='cv-account-wizzard-upload-image-desktop-title'>
+													Imagen de Pefil (obligatoria)
+												</Col>
+												<Col xs={10} sm={10} md={24}>
+													<UploadImage
+														componentName={`${name}-${type}`}
+														componentHandle={(e) => {
+															setImageProfile(e)
+														}}
+													/>
+												</Col>
+												<Col xs={14} sm={14} md={24}>
+													<div className='cv-account-wizzard-upload-image-mobile-title-container'>
+														<div>
+															<h3 className='cv-account-wizzard-upload-image-mobile-title'>
+																Imagen de Perfil
+															</h3>
+															<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
+																Click en el recuadro
+															</h3>
+															<h3 className='cv-account-wizzard-upload-image-mobile-description'>
+																(obligatoria)
+															</h3>
+														</div>
+													</div>
+												</Col>
 											</Row>
-											<Row>
-												Imagen de Portada (obligatoria)
-												<UploadImage
-													componentName={`${name}-${type}-cover`}
-													componentHandle={(e) => {
-														setImageCover(e)
-													}}
-												/>
+											<Row className='cv-account-wizzard-upload-image-container'>
+												<Col
+													span={24}
+													className='cv-account-wizzard-upload-image-desktop-title'>
+													Imagen de Portada (obligatoria)
+												</Col>
+												<Col xs={10} sm={10} md={24}>
+													<UploadImage
+														componentName={`${name}-${type}-cover`}
+														componentHandle={(e) => {
+															setImageCover(e)
+														}}
+													/>
+												</Col>
+												<Col xs={14} sm={14} md={24}>
+													<div className='cv-account-wizzard-upload-image-mobile-title-container'>
+														<div>
+															<h3 className='cv-account-wizzard-upload-image-mobile-title'>
+																Imagen de Portada
+															</h3>
+															<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
+																Click en el recuadro
+															</h3>
+															<h3 className='cv-account-wizzard-upload-image-mobile-description'>
+																(obligatoria)
+															</h3>
+														</div>
+													</div>
+												</Col>
 											</Row>
 
 											<a href='https://www.instagram.com/cuentasvirales/'>
@@ -143,7 +185,9 @@ export default function AccountUser(props) {
 									)}
 
 									<Form.Item className='cv-right'>
-										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+										<Button
+											htmlType={'submit'}
+											className={'cv-account-wizzard-button-submit'}>
 											Siguiente
 										</Button>
 									</Form.Item>

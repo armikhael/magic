@@ -1,0 +1,53 @@
+/** @format */
+
+.cv-account-wizard-social-example-title {
+	margin-bottom: 0;
+}
+
+.cv-account-wizard-social-links-container {
+	border: 1px solid #ddd;
+	border-radius: 8px;
+}
+
+.cv-account-wizard-social-links-title {
+	margin-top: 10px;
+	margin-bottom: 0;
+	padding: 0 15px;
+	color: #f61073;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.cv-account-wizard-social-links-container .characters li {
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}
+
+.cv-account-wizard-social-links-list-title {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.cv-account-wizard-social-links-list-spacer {
+	flex-grow: 1 !important;
+}
+
+@media (max-width: 600px) {
+	.cv-account-wizard-social-links-button-test-container {
+		padding: 4px 7px;
+	}
+
+	.cv-account-wizard-social-links-button-delete-container {
+		padding: 4px 7px;
+	}
+
+	.cv-account-wizard-social-links-button-delete {
+		display: none !important;
+	}
+
+	.cv-account-wizard-social-links-container .characters-thumb {
+		margin-right: 0;
+	}
+}

@@ -1,15 +1,59 @@
 /** @format */
 
+.cv-account-wizzard-global-content {
+	min-height: calc(100vh - 200px);
+}
+
+.cv-account-wizzard-main-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 5px;
+}
+
 .cv-account-wizzard-content {
 	position: relative;
 	width: 100%;
 }
 
 .cv-account-wizzard-card {
-	width: 800px;
-	max-width: 90%;
 	margin: 0 auto;
 	border-radius: 10px;
+}
+
+.cv-account-wizzard-upload-image-container {
+	margin: 25px 0;
+}
+
+.cv-account-wizzard-upload-image-mobile-title-container {
+	height: 100%;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.cv-account-wizzard-upload-image-mobile-title {
+	font-size: 12px;
+	font-weight: 500;
+	color: #808080;
+	margin-bottom: 0;
+}
+
+.cv-account-wizzard-upload-image-mobile-subtitle {
+	font-size: 11px;
+	font-weight: 300;
+	opacity: 0.9;
+	color: #808080;
+	margin-bottom: 0;
+}
+
+.cv-account-wizzard-upload-image-mobile-description {
+	font-size: 11px;
+	font-weight: 300;
+	opacity: 0.9;
+	color: #808080;
+	font-style: italic;
+	margin-bottom: 0;
 }
 
 .cv-account-wizzard-button-submit {
@@ -24,4 +68,32 @@
 	max-width: 100%;
 	margin: 0 auto;
 	cursor: pointer;
+}
+
+.cv-account-wizzard-main-content .ant-select-selection-placeholder,
+.cv-account-wizzard-main-content
+	.ant-select-single
+	.ant-select-selector
+	.ant-select-selection-item {
+	line-height: 39px !important;
+}
+
+.cv-account-wizzard-global-content .cv-upload-img .ant-upload.ant-upload-select-picture-card {
+	margin: 0;
+}
+
+@media (min-width: 601px) {
+	.cv-account-wizzard-upload-image-mobile-title-container {
+		display: none;
+	}
+}
+
+@media (max-width: 600px) {
+	.cv-account-wizzard-upload-image-desktop-title {
+		display: none;
+	}
+	.cv-account-wizzard-global-content .cv-upload-img .ant-upload.ant-upload-select-picture-card {
+		height: auto;
+		padding: 36% 0;
+	}
 }

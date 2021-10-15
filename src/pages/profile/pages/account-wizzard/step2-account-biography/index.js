@@ -157,11 +157,11 @@ const AccountBiography = (props) => {
 	return (
 		<>
 			{data !== undefined && (
-				<Row justify='center'>
-					<Col xs={23} sm={20} xl={12}>
+				<Row justify='center' className='cv-account-wizzard-global-content'>
+					<Col xs={23} sm={20} xl={12} className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
 							<Card
-								className='cv-account-wizzard-card mt20'
+								className='cv-account-wizzard-card'
 								title='Datos de tu cuenta (2/4)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
@@ -241,18 +241,64 @@ const AccountBiography = (props) => {
 											componentValue={data.faq}
 										/>
 									</div>
-									<Row>
-										<Col sm={12} md={12} className='cv-profile-upload-image p10'>
-											Imagen de Pefil (Obligatoria)
-											<UploadImage account={data} componentHandle={handleSetImageProfile} />
+									<Row className='cv-account-wizzard-upload-image-container'>
+										<Col
+											span={24}
+											className='cv-account-wizzard-upload-image-desktop-title'>
+											Imagen de Pefil (obligatoria)
 										</Col>
-										<Col sm={12} md={12} className='cv-profile-upload-image p10'>
-											Imagen de Portada (Obligatoria)
-											<UploadCover account={data} componentHandle={handleSetImageCover} />
+										<Col xs={10} sm={10} md={24}>
+											<UploadImage
+												account={data}
+												componentHandle={handleSetImageProfile}
+											/>
+										</Col>
+										<Col xs={14} sm={14} md={24}>
+											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
+												<div>
+													<h3 className='cv-account-wizzard-upload-image-mobile-title'>
+														Imagen de Perfil
+													</h3>
+													<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
+														Click en el recuadro
+													</h3>
+													<h3 className='cv-account-wizzard-upload-image-mobile-description'>
+														(obligatoria)
+													</h3>
+												</div>
+											</div>
+										</Col>
+										<Col
+											span={24}
+											className='cv-account-wizzard-upload-image-desktop-title'>
+											Imagen de Portada (obligatoria)
+										</Col>
+										<Col xs={10} sm={10} md={24}>
+											<UploadCover
+												account={data}
+												componentHandle={handleSetImageCover}
+											/>
+										</Col>
+										<Col xs={14} sm={14} md={24}>
+											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
+												<div>
+													<h3 className='cv-account-wizzard-upload-image-mobile-title'>
+														Imagen de Portada
+													</h3>
+													<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
+														Click en el recuadro
+													</h3>
+													<h3 className='cv-account-wizzard-upload-image-mobile-description'>
+														(obligatoria)
+													</h3>
+												</div>
+											</div>
 										</Col>
 									</Row>
 									<Form.Item className='cv-right'>
-										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+										<Button
+											htmlType={'submit'}
+											className={'cv-account-wizzard-button-submit'}>
 											{buttonText}
 										</Button>
 										{handleButtonSkip()}

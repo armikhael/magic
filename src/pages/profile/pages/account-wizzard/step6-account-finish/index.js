@@ -38,7 +38,8 @@ const AccountFinish = (props) => {
 									alt='Cuentas'
 								/>,
 								<p key='p-profile'>
-									Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio Web"
+									Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio
+									Web"
 								</p>,
 
 								<CopyToClipboard
@@ -55,11 +56,15 @@ const AccountFinish = (props) => {
 											})
 										}}>
 										<CopyOutlined />
-										Copiar Enlace: cuentasvirales.com/{props.match.params.name}
+										Copiar Enlace
 									</Button>
 								</CopyToClipboard>,
+								<h3 className='cv-account-wizzard-finish-link-preview'>
+									cuentasvirales.com/aml.barahona2-instagram
+								</h3>,
 								<h3 key='h3-profile'>
 									<Button
+										className='cv-account-wizzard-finish-button-go-profile'
 										key='profile'
 										shape='round'
 										style={{ marginTop: '10px' }}
