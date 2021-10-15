@@ -77,8 +77,8 @@ export default function Modeles() {
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
 								Ya son más de{' '}
-								<span className='cv-models-firts-title-900'>1000</span> modelos
-								en Latinoamérica usando nuestros{' '}
+								<span className='cv-models-firts-title-900'>1000</span>{' '}
+								Influencers en Latinoamérica usando nuestros{' '}
 								<span className='cv-models-firts-title-900'>
 									enlaces personalizados
 								</span>{' '}
@@ -109,7 +109,7 @@ export default function Modeles() {
 					<div className='cv-models-title-two'>
 						<h3>
 							¿Por qué crearme un enlace como{' '}
-							<span className='cv-models-firts-title-900'>Modelo</span>?
+							<span className='cv-models-firts-title-900'>Influencers</span>?
 						</h3>
 						<p>Aquí te dejamos algunos de los beneficios más importantes</p>
 					</div>
