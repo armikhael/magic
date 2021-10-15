@@ -24,7 +24,6 @@ export default function AccountUser(props) {
 	const [name, setName] = useState()
 	const [type, setType] = useState()
 	const [followers, setFollowers] = useState()
-	const [isButtonFollowers, setIsButtonFollowers] = useState(false)
 
 	useEffect(() => {
 		serviceGetRedSocial().then((response) => {
@@ -114,17 +113,9 @@ export default function AccountUser(props) {
 										componentType={'text'}
 										componentRules={'rulesFollowers'}
 										componentValue={data.followers}
-										componentOnChange={(e) => {
-											console.log(e.target.value.length)
-											if (e.target.value.length <= 3) {
-												setIsButtonFollowers(true)
-											} else {
-												setIsButtonFollowers(false)
-											}
-											setFollowers(e.target.value)
-										}}
+										componentOnChange={(e) => setFollowers(e.target.value)}
 									/>
-									{name !== undefined && type !== undefined && followers >= 500 && (
+									{name !== undefined && type !== undefined && followers >= 200 && (
 										<>
 											<Row>
 												Imagen de Pefil (obligatoria)
@@ -150,15 +141,7 @@ export default function AccountUser(props) {
 											</a>
 										</>
 									)}
-									{isButtonFollowers === true && (
-										<>
-											<Row justify='center'>
-												<Button shape='round' onClick={() => history.push(`/pricing`)}>
-													Planes de crecimiento
-												</Button>
-											</Row>
-										</>
-									)}
+
 									<Form.Item className='cv-right'>
 										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 											Siguiente

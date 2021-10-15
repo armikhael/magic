@@ -9,14 +9,13 @@ import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
-import { serviceGetCategories } from '../../../../../components/ServiceCommons/GetCategory'
 import { serviceGetCountry } from '../../../../../components/ServiceCommons/GetCountry'
 import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
 import UploadImage from '../../../components/UploadImage'
 import UploadCover from '../../../components/UploadCover'
 
-import { serviceGetData, serviceUpdateData } from './services'
+import { serviceGetData, serviceUpdateData, serviceGetCategories } from './services'
 
 const AccountBiography = (props) => {
 	const history = useHistory()
@@ -140,7 +139,7 @@ const AccountBiography = (props) => {
 			if (response.statusCode === 200) {
 				console.log(response.data.name)
 				if (isModify === false && response.data.followers <= CONSTANTS.MIN_FOLLOWERS) {
-					history.push(`/profile/account-details/${response.data.name}`)
+					history.push(`/profile/account-links/${response.data.name}`)
 				} else if (isModify === false && response.data.followers > CONSTANTS.MIN_FOLLOWERS) {
 					history.push(`/profile/account-plans/${response.data.name}`)
 				} else {

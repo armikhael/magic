@@ -173,8 +173,8 @@ const Accounts = (props) => {
 											block
 											style={{ margin: '0px 0px' }}
 											shape='round'
-											href={`/profile/account-details/${item.name}/modify`}>
-											Editar Habilidades
+											href={`/profile/account-links/${item.name}/modify`}>
+											Editar Links
 										</Button>
 									</Col>{' '}
 									{item.followers > CONSTANTS.MIN_FOLLOWERS && (

@@ -30,17 +30,21 @@ const LinkTreeFinish = (props) => {
 								'Para la experiencia de tus clientes y aumentar las ventas puedes hacer lo que ya otros negocios estan haciendo'
 							}
 							extra={[
-								<br key='br' />,
+								<br key='br-link' />,
 								<img
-									key='img'
+									key='img-link'
 									className='cv-profile-activation-img-logo'
 									src={'https://i.ibb.co/nkCnHgQ/enlaces.jpg'}
 									style={{ width: '100%', cursor: 'pointer' }}
 									alt='Enlaces'
 								/>,
-								<p>Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio Web"</p>,
+								<p key='p-link'>
+									Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio Web"
+								</p>,
 
-								<CopyToClipboard text={`${process.env.REACT_APP_LINKTREE}/${props.match.params.name}`}>
+								<CopyToClipboard
+									key='copy-link'
+									text={`${process.env.REACT_APP_LINKTREE}/${props.match.params.name}`}>
 									<Button
 										style={{ margin: '0px 5px' }}
 										shape='round'
@@ -55,9 +59,8 @@ const LinkTreeFinish = (props) => {
 										Copiar Enlace: cvirales.com/{props.match.params.name}
 									</Button>
 								</CopyToClipboard>,
-								<h3 key='h3-profile'>
+								<h3 key='h3-link'>
 									<Button
-										key='profile'
 										shape='round'
 										style={{ marginTop: '10px' }}
 										onClick={() => {
@@ -66,9 +69,8 @@ const LinkTreeFinish = (props) => {
 										Ver mi página
 									</Button>
 								</h3>,
-								<h3 key='h3-profile'>
+								<h3 key='h3-link-2'>
 									<Button
-										key='profile'
 										shape='round'
 										style={{ marginTop: '10px' }}
 										onClick={() => {
