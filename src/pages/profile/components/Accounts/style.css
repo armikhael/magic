@@ -7,11 +7,42 @@
 	margin-bottom: 34px;
 }
 
+.cv-profile-accounts-social-media-content {
+	padding: 0px 10px;
+}
+
 .cv-profile-accounts-social-media {
 	position: absolute;
 	left: 280px;
-	top: 70px;
+	top: 0px;
 	z-index: 1;
+}
+
+.cv-profile-accounts-button-active-position {
+	position: absolute;
+	left: -40px;
+	top: 30px;
+	z-index: 1;
+}
+
+.cv-profile-accounts-button-active-style {
+	background-color: #f61073;
+	border: none;
+	border-radius: 6px;
+	color: white;
+	font-size: 12px;
+	height: 27px;
+	line-height: 27px !important;
+}
+
+.cv-profile-accounts-button-active-style:hover {
+	background-color: white;
+	border: 1px solid #f61073;
+	border-radius: 6px;
+	color: #f61073;
+	font-size: 12px;
+	height: 27px;
+	line-height: 27px !important;
 }
 
 .cv-profile-accounts-card-content {
@@ -75,6 +106,12 @@
 	font-weight: 200;
 	margin-top: 24px;
 	font-size: 12px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 .cv-profile-accounts-button-edit-information {
@@ -87,7 +124,7 @@
 	font-size: 12px;
 }
 
-.cv-profile-accounts-button-edit-habilities {
+.cv-profile-accounts-button-edit-links {
 	border-radius: 0px 0px 12px 0px;
 	border-color: #f0f0f0;
 	height: 40px;
@@ -95,4 +132,13 @@
 	padding: 0;
 	line-height: 39px !important;
 	font-size: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+	.cv-profile-accounts-button-active-position {
+		position: absolute;
+		left: 0px;
+		top: 90px;
+		z-index: 1;
+	}
 }

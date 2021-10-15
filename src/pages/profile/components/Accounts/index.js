@@ -65,16 +65,34 @@ const Accounts = (props) => {
 			<div className='cv-profile-accounts-pending-titlle'>
 				{count.length > 0 && <>Tienes {count.length} cuenta(s) pendiente(s) por activación</>}
 			</div>
-			{data.map((item, key) => {
-				return (
-					<div key={key.toString()}>
-						<div>
+			<Row>
+				{data.map((item, key) => {
+					return (
+						<Col
+							xs={24}
+							sm={24}
+							md={8}
+							xl={8}
+							className='cv-profile-accounts-social-media-content'
+							key={key.toString()}>
 							<div className='cv-profile-accounts-social-media'>
 								<Tag color='#EC428D' style={{ textTransform: 'capitalize' }}>
 									{item.type}
 								</Tag>
 							</div>
-
+							{item.eneable !== true && (
+								<Row className='cv-profile-accounts-button-active-position ' justify='center'>
+									<Col xs={4} sm={4} md={4}>
+										<Button
+											className='cv-profile-accounts-button-active-style'
+											style={{ margin: '0px 5px' }}
+											shape='round'
+											href={`/profile/account-activation/${item.name}/modify`}>
+											Activar
+										</Button>
+									</Col>
+								</Row>
+							)}
 							<div className='cv-profile-accounts-card-content'>
 								<div className='cv-profile-accounts-information-content'>
 									<Row>
@@ -120,7 +138,7 @@ const Accounts = (props) => {
 													/>
 												</Col>
 												<Col span={4} className='cv-profile-account-data'>
-													{item.followers}
+													{item.interface.followers}
 												</Col>
 												<Col span={2}>
 													<img
@@ -169,7 +187,7 @@ const Accounts = (props) => {
 									<Col span={12}>
 										{' '}
 										<Button
-											className='cv-profile-accounts-button-edit-habilities'
+											className='cv-profile-accounts-button-edit-links'
 											block
 											style={{ margin: '0px 0px' }}
 											shape='round'
@@ -205,33 +223,10 @@ const Accounts = (props) => {
 									)}
 								</Row>
 							</div>
-						</div>
-						{item.eneable !== true && (
-							<Row justify='center'>
-								<Col xs={4} sm={4} md={4}>
-									<Button
-										style={{ margin: '0px 5px' }}
-										shape='round'
-										href={`/profile/account-activation/${item.name}/modify`}>
-										Activar Cuenta
-									</Button>
-								</Col>
-							</Row>
-						)}
-					</div>
-				)
-			})}
-			{data.length > 0 && (
-				<Row>
-					<Button
-						onClick={() => {
-							history.push(`/profile/account-user`)
-						}}
-						className={'cv-account-wizzard-button-submit'}>
-						Agregar
-					</Button>
-				</Row>
-			)}
+						</Col>
+					)
+				})}
+			</Row>
 			{data.length <= 0 && (
 				<div className='cv-profile-card-account-content'>
 					<Result

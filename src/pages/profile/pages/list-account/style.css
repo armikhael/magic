@@ -6,6 +6,17 @@
 	margin-bottom: 50px;
 }
 
+.cv-profile-list-account-button-add {
+	background-color: none;
+	border: 1px solid #f61073;
+	border-radius: 8px;
+	color: #f61073;
+	font-size: 15px;
+	font-weight: 700;
+	padding: 0px 25px;
+	margin-top: 55px;
+}
+
 .cv-profile-list-account-subtitle-main-container {
 	background-color: transparent;
 	display: flex;
