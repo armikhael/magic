@@ -1,13 +1,15 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react'
-import { Layout, Row, Col } from 'antd'
+import { Layout, Row, Col, Button } from 'antd'
 import { SubnodeOutlined } from '@ant-design/icons'
 
 import Loading from '../../../../components/Loading/Loading'
 import Accounts from '../../components/Accounts'
 
 import { serviceGetData } from './services'
+import './style.css'
+import { PlusOutlined } from '@ant-design/icons'
 
 const { Header } = Layout
 
@@ -32,12 +34,32 @@ export default function ListAccount() {
 			{isData && (
 				<div className='cv-content-main'>
 					<Layout className='cv-perfil-main-container'>
-						<Row justify='center'>
-							<Col xs={22} sm={20} xl={16}>
-								<Header className='cv-perfil-title-main-container'>
-									<SubnodeOutlined className='cv-perfil-title-main-icon' />
-									<h3 className='cv-perfil-title-main-title'>Mis Enlaces Personales</h3>
-								</Header>
+						<Row>
+							<Col span={21}>
+								<h1 className='cv-profile-list-account-main-title'>
+									¡Te damos la bienvenida, Ana!
+								</h1>
+							</Col>
+							<Col span={3}>
+								{isData.length > 0 && (
+									<Button
+										className='cv-profile-list-account-button-add '
+										onClick={() => {
+											window.location.href = `/profile/account-user`
+										}}
+										icon={<PlusOutlined />}>
+										Agregar cuenta
+									</Button>
+								)}
+							</Col>
+						</Row>
+
+						<Row>
+							<Col xs={24} sm={24} md={24} xl={24}>
+								<div className='cv-profile-list-account-subtitle-main-container'>
+									<SubnodeOutlined className='cv-profile-list-account-main-icon' />
+									<h3 className='cv-profile-list-account-main-subtitle '>Mis Enlaces Personales</h3>
+								</div>
 								<Accounts componentData={isData} />
 							</Col>
 						</Row>
