@@ -205,9 +205,7 @@ export default function LinkTreeUrl(props) {
 										)}
 									</div>
 									<Form.Item>
-										<Button
-											htmlType={'submit'}
-											className={'cv-linktree-button-submit cv-linktree-button-add'}>
+										<Button htmlType={'submit'} className={'cv-linktree-button-add'}>
 											{textButton}
 										</Button>
 									</Form.Item>

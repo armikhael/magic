@@ -84,7 +84,7 @@ export default function AccountUser(props) {
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<SelectField
-										componentClass={'cv-auth-login-field-input'}
+										componentClass={'cv-global-select-field-input'}
 										componentLabel={'Red Social'}
 										componentName={'type'}
 										componentMode={'single'}

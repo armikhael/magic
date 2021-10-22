@@ -9,7 +9,6 @@ import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
 
 import UploadImages from '../../../../../components/UploadImages'
-import UploadOneImage from '../../../../../components/UploadOneImage'
 
 import { serviceGetData, serviceUpdateData, serviceGetCategories } from './services'
 import './style.css'
@@ -138,13 +137,7 @@ export default function LinkTreeInfo(props) {
 											setImage(e)
 										}}
 									/>
-									<UploadOneImage
-										title={'Imagen de Perfil'}
-										componentData={data}
-										componentHandle={(e) => {
-											setImage(e)
-										}}
-									/>
+
 									<Form.Item className='cv-right'>
 										<Button
 											htmlType={'submit'}
