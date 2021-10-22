@@ -59,8 +59,10 @@ const AccountFinish = (props) => {
 										Copiar Enlace
 									</Button>
 								</CopyToClipboard>,
-								<h3 className='cv-account-wizzard-finish-link-preview'>
-									cuentasvirales.com/aml.barahona2-instagram
+								<h3
+									key='h3-link-preview'
+									className='cv-account-wizzard-finish-link-preview'>
+									cuentasvirales.com/{props.match.params.name}
 								</h3>,
 								<h3 key='h3-profile'>
 									<Button

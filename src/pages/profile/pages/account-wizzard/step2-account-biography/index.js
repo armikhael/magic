@@ -167,7 +167,7 @@ const AccountBiography = (props) => {
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>
 										<SelectField
-											componentClass={'cv-auth-login-field-input'}
+											componentClass={'cv-global-select-field-input'}
 											componentLabel={'Red Social'}
 											componentName={'type'}
 											componentMode={'single'}
@@ -205,7 +205,7 @@ const AccountBiography = (props) => {
 											componentValue={data.biography}
 										/>
 										<SelectField
-											componentClass={'cv-auth-login-field-input'}
+											componentClass={'cv-global-select-field-input'}
 											componentLabel={'¿País de residencia?'}
 											componentName={'country'}
 											componentOnChange={handleChangeCountry}
@@ -223,7 +223,7 @@ const AccountBiography = (props) => {
 											componentValue={data.phone}
 										/>
 										<SelectField
-											componentClass={'cv-auth-login-field-input'}
+											componentClass={'cv-global-select-field-input'}
 											componentLabel={'Categorías'}
 											componentName={'categories'}
 											componentMode={'single'}
@@ -242,18 +242,13 @@ const AccountBiography = (props) => {
 										/>
 									</div>
 									<Row className='cv-account-wizzard-upload-image-container'>
-										<Col
-											span={24}
-											className='cv-account-wizzard-upload-image-desktop-title'>
-											Imagen de Pefil (obligatoria)
-										</Col>
-										<Col xs={10} sm={10} md={24}>
+										<Col xs={10} sm={10} md={8}>
 											<UploadImage
 												account={data}
 												componentHandle={handleSetImageProfile}
 											/>
 										</Col>
-										<Col xs={14} sm={14} md={24}>
+										<Col xs={14} sm={14} md={16}>
 											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
 												<div>
 													<h3 className='cv-account-wizzard-upload-image-mobile-title'>
@@ -268,18 +263,15 @@ const AccountBiography = (props) => {
 												</div>
 											</div>
 										</Col>
-										<Col
-											span={24}
-											className='cv-account-wizzard-upload-image-desktop-title'>
-											Imagen de Portada (obligatoria)
-										</Col>
-										<Col xs={10} sm={10} md={24}>
+									</Row>
+									<Row className='cv-account-wizzard-upload-image-container'>
+										<Col xs={10} sm={10} md={8}>
 											<UploadCover
 												account={data}
 												componentHandle={handleSetImageCover}
 											/>
 										</Col>
-										<Col xs={14} sm={14} md={24}>
+										<Col xs={14} sm={14} md={16}>
 											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
 												<div>
 													<h3 className='cv-account-wizzard-upload-image-mobile-title'>

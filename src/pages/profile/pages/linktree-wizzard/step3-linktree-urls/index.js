@@ -205,11 +205,86 @@ export default function LinkTreeUrl(props) {
 										)}
 									</div>
 									<Form.Item>
-										<Button
-											htmlType={'submit'}
-											className={'cv-linktree-button-submit cv-linktree-button-add'}>
+										<Button htmlType={'submit'} className={'cv-linktree-button-add'}>
 											{textButton}
 										</Button>
+									</Form.Item>
+									<div className='cv-account-wizard-social-links-container'>
+										<h3 className='cv-account-wizard-social-links-title'>{`Enlaces Agregados: ${links.length}`}</h3>
+										<DragDropContext onDragEnd={handleOnDragEnd}>
+											<Droppable droppableId='characters'>
+												{(provided) => (
+													<ul
+														className='characters'
+														{...provided.droppableProps}
+														ref={provided.innerRef}>
+														{links.map((item, key) => {
+															return (
+																<Draggable
+																	key={item.id.toString()}
+																	draggableId={item.id.toString()}
+																	index={key}>
+																	{(provided) => (
+																		<li
+																			ref={provided.innerRef}
+																			{...provided.draggableProps}
+																			{...provided.dragHandleProps}>
+																			<div className='characters-thumb'>
+																				<img
+																					src={
+																						'https://i.postimg.cc/YSQXZWCP/logo.jpg'
+																					}
+																					alt={`${item.title} Thumb`}
+																				/>
+																			</div>
+																			<p className='cv-account-wizard-social-links-list-title'>
+																				{item.title}
+																			</p>
+																			<div className='cv-account-wizard-social-links-list-spacer'></div>
+																			<Button
+																				className='cv-account-wizard-social-links-button-test-container'
+																				type='link'
+																				shape='round'
+																				icon={<LinkOutlined />}
+																				onClick={() => {
+																					window.open(item.url)
+																				}}>
+																				Probar
+																			</Button>
+
+																			<Button
+																				className='cv-account-wizard-social-links-button-delete-container'
+																				danger
+																				type='link'
+																				shape='round'
+																				icon={<DeleteOutlined />}
+																				onClick={() => {
+																					handleDelete(key)
+																				}}>
+																				<span className='cv-account-wizard-social-links-button-delete'>
+																					Eliminar
+																				</span>
+																			</Button>
+																			<div className='characters-thumb'>
+																				<img
+																					src={
+																						'https://i.ibb.co/NCmMyV7/drag-flick.png'
+																					}
+																					alt={`${item.title} Thumb`}
+																				/>
+																			</div>
+																		</li>
+																	)}
+																</Draggable>
+															)
+														})}
+														{provided.placeholder}
+													</ul>
+												)}
+											</Droppable>
+										</DragDropContext>
+									</div>
+									<Form.Item>
 										<div className='cv-right'>
 											<Button
 												className={'cv-linktree-button-submit'}
@@ -221,77 +296,6 @@ export default function LinkTreeUrl(props) {
 										</div>
 									</Form.Item>
 								</Form>
-							</Card>
-
-							<Card
-								className='cv-linktree-card mt20'
-								title={`Enlaces Agregados: ${links.length}`}
-								bordered={false}>
-								<DragDropContext onDragEnd={handleOnDragEnd}>
-									<Droppable droppableId='characters'>
-										{(provided) => (
-											<ul
-												className='characters'
-												{...provided.droppableProps}
-												ref={provided.innerRef}>
-												{links.map((item, key) => {
-													return (
-														<Draggable
-															key={item.id.toString()}
-															draggableId={item.id.toString()}
-															index={key}>
-															{(provided) => (
-																<li
-																	ref={provided.innerRef}
-																	{...provided.draggableProps}
-																	{...provided.dragHandleProps}>
-																	<div className='characters-thumb'>
-																		<img
-																			src={
-																				'https://i.postimg.cc/YSQXZWCP/logo.jpg'
-																			}
-																			alt={`${item.title} Thumb`}
-																		/>
-																	</div>
-																	<p>{item.title}</p>
-																	<Button
-																		type='link'
-																		shape='round'
-																		icon={<LinkOutlined />}
-																		onClick={() => {
-																			window.open(item.url)
-																		}}>
-																		Probar
-																	</Button>
-
-																	<Button
-																		danger
-																		type='link'
-																		shape='round'
-																		icon={<DeleteOutlined />}
-																		onClick={() => {
-																			handleDelete(key)
-																		}}>
-																		Eliminar
-																	</Button>
-																	<div className='characters-thumb'>
-																		<img
-																			src={
-																				'https://i.ibb.co/NCmMyV7/drag-flick.png'
-																			}
-																			alt={`${item.title} Thumb`}
-																		/>
-																	</div>
-																</li>
-															)}
-														</Draggable>
-													)
-												})}
-												{provided.placeholder}
-											</ul>
-										)}
-									</Droppable>
-								</DragDropContext>
 							</Card>
 						</div>
 					</Col>

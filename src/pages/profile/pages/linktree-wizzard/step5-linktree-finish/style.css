@@ -10,9 +10,6 @@
 	padding: 15px 30px;
 }
 
-.cv-profile-activation-result {
-}
-
 .cv-profile-activation-title-code {
 	color: #545454;
 	font-size: 25px;
@@ -22,6 +19,22 @@
 	margin-top: 30px;
 	margin-right: 0px;
 	margin-bottom: 10px;
+}
+
+.cv-account-wizzard-finish-button-secondary-go-links {
+	color: #f61073;
+	font-weight: 500;
+	font-size: 14px;
+	height: 30px;
+	background-color: #ffffff;
+	border: 1px solid #f61073;
+	border-radius: 50px;
+	padding: 6px;
+	width: 100%;
+	max-width: 120px;
+	margin: 0 auto;
+	cursor: pointer;
+	line-height: 0.5715;
 }
 
 @media (max-width: 768px) {

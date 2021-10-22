@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button, notification, Radio, Row } from 'antd'
+import { Button, notification, Radio, Row, Card } from 'antd'
 import { LinkOutlined } from '@ant-design/icons'
 import { ColorPicker, useColor } from 'react-color-palette'
 import 'react-color-palette/lib/css/styles.css'
@@ -82,11 +82,38 @@ const LinkTreeColor = (props) => {
 	const handleChangeColor = () => {
 		switch (current) {
 			case 'link':
-				return <ColorPicker width={250} height={150} color={link} onChange={setLink} hideHSV hideRGB />
+				return (
+					<ColorPicker
+						width={250}
+						height={150}
+						color={link}
+						onChange={setLink}
+						hideHSV
+						hideRGB
+					/>
+				)
 			case 'icon':
-				return <ColorPicker width={250} height={150} color={icon} onChange={setIcon} hideHSV hideRGB />
+				return (
+					<ColorPicker
+						width={250}
+						height={150}
+						color={icon}
+						onChange={setIcon}
+						hideHSV
+						hideRGB
+					/>
+				)
 			case 'text':
-				return <ColorPicker width={250} height={150} color={text} onChange={setText} hideHSV hideRGB />
+				return (
+					<ColorPicker
+						width={250}
+						height={150}
+						color={text}
+						onChange={setText}
+						hideHSV
+						hideRGB
+					/>
+				)
 
 			default:
 				break
@@ -101,18 +128,30 @@ const LinkTreeColor = (props) => {
 	}
 
 	return (
-		<>
-			<div className='cv-linktree-content'>
-				<img className='cv-linktree-img' src={data.image} alt={data.account} title={data.account} />
-				<h1 className='cv-linktree-title'>{data.account}</h1>
-				<p className='cv-linktree-description'>{data.description}</p>
+		<Card className='cv-linktree-colors-global-container'>
+			<div>
+				<div className='cv-linktree-colors-main-container'>
+					<img
+						className='cv-linktree-colors-img'
+						src={data.image}
+						alt={data.account}
+						title={data.account}
+					/>
+					<h1 className='cv-linktree-colors-title'>{data.account}</h1>
+					<p className='cv-linktree-colors-description'>{data.description}</p>
+				</div>
 				<br></br>
 				<div>
 					{data.links.map((item, key) => {
 						return (
 							<a href={item.url} target='_blank' key={key} rel='noopener noreferrer'>
-								<div className='cv-linktree-link' style={{ background: link.hex, borderColor: link }}>
-									<LinkOutlined className='cv-linktree-link-icon' style={{ color: icon.hex }} />
+								<div
+									className='cv-linktree-link'
+									style={{ background: link.hex, borderColor: link }}>
+									<LinkOutlined
+										className='cv-linktree-link-icon'
+										style={{ color: icon.hex }}
+									/>
 									<span style={{ color: text.hex }}>{item.title}</span>
 								</div>
 							</a>
@@ -122,8 +161,12 @@ const LinkTreeColor = (props) => {
 			</div>
 
 			<Row justify='center' style={{ margin: '20px 0px' }}>
-				<Radio.Group value={radio} onChange={(e) => setRadio(e.target.value)}>
+				<Radio.Group
+					className='cv-linktree-colors-radio-button-group'
+					value={radio}
+					onChange={(e) => setRadio(e.target.value)}>
 					<Radio.Button
+						className='cv-linktree-colors-radio-button-1'
 						value='link'
 						onClick={() => {
 							setCurrent('link')
@@ -131,6 +174,7 @@ const LinkTreeColor = (props) => {
 						Botones
 					</Radio.Button>
 					<Radio.Button
+						className='cv-linktree-colors-radio-button-2'
 						value='text'
 						onClick={() => {
 							setCurrent('text')
@@ -138,6 +182,7 @@ const LinkTreeColor = (props) => {
 						Textos
 					</Radio.Button>
 					<Radio.Button
+						className='cv-linktree-colors-radio-button-3'
 						value='icon'
 						onClick={() => {
 							setCurrent('icon')
@@ -147,7 +192,10 @@ const LinkTreeColor = (props) => {
 				</Radio.Group>
 			</Row>
 
-			<Row justify='center' style={{ margin: '20px 0px' }}>
+			<Row
+				className='cv-linktree-colors-range-description-container'
+				justify='center'
+				style={{ margin: '20px 0px' }}>
 				{handleChangeColor(current)}
 			</Row>
 
@@ -161,7 +209,7 @@ const LinkTreeColor = (props) => {
 					Siguiente
 				</Button>
 			</Row>
-		</>
+		</Card>
 	)
 }
 

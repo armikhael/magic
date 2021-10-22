@@ -6,7 +6,7 @@ import { Form, Button, notification, Card, Row, Col } from 'antd'
 
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
-import UploadImage from '../../../../../components/UploadImage'
+import UploadImagesAlt from '../../../../../components/UploadImagesAlt'
 import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
 import { serviceCreateData } from './services'
@@ -84,7 +84,7 @@ export default function AccountUser(props) {
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<SelectField
-										componentClass={'cv-auth-login-field-input'}
+										componentClass={'cv-global-select-field-input'}
 										componentLabel={'Red Social'}
 										componentName={'type'}
 										componentMode={'single'}
@@ -117,66 +117,21 @@ export default function AccountUser(props) {
 									/>
 									{name !== undefined && type !== undefined && followers >= 200 && (
 										<>
-											<Row className='cv-account-wizzard-upload-image-container'>
-												<Col
-													span={24}
-													className='cv-account-wizzard-upload-image-desktop-title'>
-													Imagen de Pefil (obligatoria)
-												</Col>
-												<Col xs={10} sm={10} md={24}>
-													<UploadImage
-														componentName={`${name}-${type}`}
-														componentHandle={(e) => {
-															setImageProfile(e)
-														}}
-													/>
-												</Col>
-												<Col xs={14} sm={14} md={24}>
-													<div className='cv-account-wizzard-upload-image-mobile-title-container'>
-														<div>
-															<h3 className='cv-account-wizzard-upload-image-mobile-title'>
-																Imagen de Perfil
-															</h3>
-															<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
-																Click en el recuadro
-															</h3>
-															<h3 className='cv-account-wizzard-upload-image-mobile-description'>
-																(obligatoria)
-															</h3>
-														</div>
-													</div>
-												</Col>
-											</Row>
-											<Row className='cv-account-wizzard-upload-image-container'>
-												<Col
-													span={24}
-													className='cv-account-wizzard-upload-image-desktop-title'>
-													Imagen de Portada (obligatoria)
-												</Col>
-												<Col xs={10} sm={10} md={24}>
-													<UploadImage
-														componentName={`${name}-${type}-cover`}
-														componentHandle={(e) => {
-															setImageCover(e)
-														}}
-													/>
-												</Col>
-												<Col xs={14} sm={14} md={24}>
-													<div className='cv-account-wizzard-upload-image-mobile-title-container'>
-														<div>
-															<h3 className='cv-account-wizzard-upload-image-mobile-title'>
-																Imagen de Portada
-															</h3>
-															<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
-																Click en el recuadro
-															</h3>
-															<h3 className='cv-account-wizzard-upload-image-mobile-description'>
-																(obligatoria)
-															</h3>
-														</div>
-													</div>
-												</Col>
-											</Row>
+											<UploadImagesAlt
+												title={'Imagen de Pefil'}
+												componentName={`${name}-${type}`}
+												componentHandle={(e) => {
+													setImageProfile(e)
+												}}
+											/>
+
+											<UploadImagesAlt
+												title={'Imagen de Portada'}
+												componentName={`${name}-${type}-cover`}
+												componentHandle={(e) => {
+													setImageCover(e)
+												}}
+											/>
 
 											<a href='https://www.instagram.com/cuentasvirales/'>
 												¿Problemas para cargar tus imágenes?
