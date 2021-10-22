@@ -23,8 +23,7 @@
 
 .cv-upload-images .ant-upload.ant-upload-select-picture-card {
 	width: 100%;
-	height: auto;
-	padding: 36% 0;
+	height: 150px;
 	margin: 0 !important;
 	cursor: pointer;
 }
@@ -80,5 +79,11 @@
 	}
 	.cv-upload-images-update {
 		right: 40%;
+	}
+}
+
+@media (max-width: 575px) {
+	.cv-upload-images .ant-upload.ant-upload-select-picture-card {
+		height: 120px;
 	}
 }
