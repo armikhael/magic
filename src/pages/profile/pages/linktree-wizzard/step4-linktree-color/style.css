@@ -1,5 +1,74 @@
 /** @format */
 
+.cv-linktree-colors-global-container {
+	width: 100%;
+	max-width: 750px;
+	margin: auto;
+	border: none;
+	background-color: #f9f9f9;
+}
+
+.cv-linktree-colors-global-container .ant-card-body {
+	margin: 10px;
+	background-color: #ffffff;
+	border-radius: 8px;
+	padding: 20px;
+}
+
+.cv-linktree-colors-main-container {
+	border: 1px solid #eee;
+	border-radius: 8px;
+	padding: 15px;
+	text-align: center;
+	width: 100%;
+	max-width: 300px;
+	margin: auto;
+}
+
+.cv-linktree-colors-radio-button-group .ant-radio-button-wrapper:hover {
+	color: rgba(0, 0, 0, 0.65);
+}
+
+.cv-linktree-colors-radio-button-1 {
+	border-radius: 8px 0 0 8px !important;
+}
+
+.cv-linktree-colors-radio-button-1.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child {
+	border-radius: 8px 0 0 8px !important;
+	border-color: #f61073 !important;
+	color: #f61073 !important;
+	box-shadow: none !important;
+}
+
+.cv-linktree-colors-radio-button-2.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+	border-color: #f61073 !important;
+	color: #f61073 !important;
+	box-shadow: none !important;
+}
+
+.cv-linktree-colors-radio-button-2.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):before {
+	background-color: #f61073 !important;
+}
+
+.cv-linktree-colors-radio-button-3 {
+	border-radius: 0 8px 8px 0 !important;
+}
+
+.cv-linktree-colors-radio-button-3.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+	border-color: #f61073 !important;
+	color: #f61073 !important;
+	box-shadow: none !important;
+}
+
+.cv-linktree-colors-radio-button-3.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):before {
+	background-color: #f61073 !important;
+}
+
+.cv-linktree-colors-range-description-container .rcp-body {
+	border: 1px solid #eee;
+	border-radius: 0 0 10px 10px;
+}
+
 .rcp-light {
 	--rcp-background: #ffffff;
 	--rcp-input-text: #111111;
@@ -15,24 +84,34 @@
 	margin: 0px auto;
 }
 
-.cv-linktree-img {
-	margin-top: 12px;
+.cv-linktree-colors-img {
+	margin-top: 0;
 	margin-bottom: 16px;
 	border-radius: 50%;
-	width: 96px;
-	height: 96px;
+	width: 100%;
+	max-width: 96px;
+	height: auto;
 }
 
-.cv-linktree-title {
-	font-size: 16px;
+.cv-linktree-colors-title {
+	font-size: 17px;
+	text-transform: uppercase;
 	line-height: 1.5;
 	font-weight: 900;
+	color: #f61073;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
-.cv-linktree-description {
+.cv-linktree-colors-description {
 	text-align: center;
 	line-height: 1.5;
 	font-size: 14px;
+	margin-bottom: 0;
+	font-style: italic;
+	color: #555;
+	font-weight: 600;
 }
 
 .cv-linktree-link {

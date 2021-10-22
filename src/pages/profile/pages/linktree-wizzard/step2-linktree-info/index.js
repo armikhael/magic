@@ -7,6 +7,8 @@ import { Form, Button, notification, Col, Card, Row } from 'antd'
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
+
+import UploadImages from '../../../../../components/UploadImages'
 import UploadOneImage from '../../../../../components/UploadOneImage'
 
 import { serviceGetData, serviceUpdateData, serviceGetCategories } from './services'
@@ -110,7 +112,7 @@ export default function LinkTreeInfo(props) {
 											componentValue={data.account}
 										/>
 										<SelectField
-											componentClass={'cv-auth-login-field-input'}
+											componentClass={'cv-global-select-field-input'}
 											componentLabel={'Categorías'}
 											componentName={'categories'}
 											componentMode={'single'}
@@ -129,17 +131,24 @@ export default function LinkTreeInfo(props) {
 											componentValue={data.description}
 										/>
 									</div>
-									<Row>
-										Imagen de Perfil
-										<UploadOneImage
-											componentData={data}
-											componentHandle={(e) => {
-												setImage(e)
-											}}
-										/>
-									</Row>
+									<UploadImages
+										title={'Imagen de Perfil'}
+										componentData={data}
+										componentHandle={(e) => {
+											setImage(e)
+										}}
+									/>
+									<UploadOneImage
+										title={'Imagen de Perfil'}
+										componentData={data}
+										componentHandle={(e) => {
+											setImage(e)
+										}}
+									/>
 									<Form.Item className='cv-right'>
-										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+										<Button
+											htmlType={'submit'}
+											className={'cv-account-wizzard-button-submit'}>
 											{buttonText}
 										</Button>
 									</Form.Item>

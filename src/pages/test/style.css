@@ -12,7 +12,10 @@
 	border-radius: 10px;
 }
 
-.cv-linktree-button-submit {
+.cv-linktree-button-submit,
+.cv-linktree-button-submit:hover,
+.cv-linktree-button-submit:active,
+.cv-linktree-button-submit:focus {
 	color: #fff;
 	font-weight: 900;
 	font-size: 16px;
@@ -24,6 +27,7 @@
 	max-width: 100%;
 	margin: 0 auto;
 	cursor: pointer;
+	border: none;
 }
 
 .cv-linktree-button-add {

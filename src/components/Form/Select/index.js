@@ -13,6 +13,7 @@ const SelectField = (props) => {
 			<h3 className='ph-login-main-form-label'>{props.componentLabel}</h3>
 			<Form.Item name={props.componentName} rules={rulesValidation[props.componentRules]}>
 				<Select
+					className={props.componentClass}
 					style={{ width: '100%' }}
 					mode={props.componentMode}
 					placeholder={props.componentPlaceholder}

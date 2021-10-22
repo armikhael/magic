@@ -39,7 +39,8 @@ const LinkTreeFinish = (props) => {
 									alt='Enlaces'
 								/>,
 								<p key='p-link'>
-									Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio Web"
+									Sólo debes colocar el siguiente enlace en tu red social donde diga "Sitio
+									Web"
 								</p>,
 
 								<CopyToClipboard
@@ -56,11 +57,17 @@ const LinkTreeFinish = (props) => {
 											})
 										}}>
 										<CopyOutlined />
-										Copiar Enlace: cvirales.com/{props.match.params.name}
+										Copiar Enlace:
 									</Button>
 								</CopyToClipboard>,
+								<h3
+									key='h3-link-preview'
+									className='cv-account-wizzard-finish-link-preview'>
+									cvirales.com/{props.match.params.name}
+								</h3>,
 								<h3 key='h3-link'>
 									<Button
+										className='cv-account-wizzard-finish-button-go-profile'
 										shape='round'
 										style={{ marginTop: '10px' }}
 										onClick={() => {
@@ -71,6 +78,7 @@ const LinkTreeFinish = (props) => {
 								</h3>,
 								<h3 key='h3-link-2'>
 									<Button
+										className='cv-account-wizzard-finish-button-secondary-go-links'
 										shape='round'
 										style={{ marginTop: '10px' }}
 										onClick={() => {
