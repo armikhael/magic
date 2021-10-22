@@ -23,6 +23,17 @@
 
 .cv-account-wizzard-upload-image-container {
 	margin: 25px 0;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 10px 10px 5px 10px;
+}
+
+.cv-account-wizzard-upload-image-container .ant-upload-list-picture-card .ant-upload-list-item {
+	margin: 0 !important;
+}
+
+.cv-account-wizzard-upload-image-container .ant-upload-list-picture-card-container {
+	margin: 0 !important;
 }
 
 .cv-account-wizzard-upload-image-mobile-title-container {
@@ -80,12 +91,6 @@
 
 .cv-account-wizzard-global-content .cv-upload-img .ant-upload.ant-upload-select-picture-card {
 	margin: 0;
-}
-
-@media (min-width: 601px) {
-	.cv-account-wizzard-upload-image-mobile-title-container {
-		display: none;
-	}
 }
 
 @media (max-width: 600px) {
