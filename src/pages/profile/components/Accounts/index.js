@@ -14,7 +14,9 @@ import './style.css'
 
 const Accounts = (props) => {
 	const history = useHistory()
-	const [data, setData] = useState(lodash.orderBy(props.componentData, ['eneable'], ['asc']))
+	const [data, setData] = useState(
+		lodash.orderBy(props.componentData, ['eneable'], ['asc'])
+	)
 	const [loading, setLoading] = useState(true)
 	const [count, setCount] = useState()
 	console.log(data, 'informacion de enlaces')
@@ -63,7 +65,9 @@ const Accounts = (props) => {
 	return (
 		<>
 			<div className='cv-profile-accounts-pending-titlle'>
-				{count.length > 0 && <>Tienes {count.length} cuenta(s) pendiente(s) por activación</>}
+				{count.length > 0 && (
+					<>Tienes {count.length} cuenta(s) pendiente(s) por activación</>
+				)}
 			</div>
 			<Row>
 				{data.map((item, key) => {
@@ -80,6 +84,7 @@ const Accounts = (props) => {
 									{item.type}
 								</Tag>
 							</div>
+							{/* 
 							{item.eneable !== true && (
 								<Row className='cv-profile-accounts-button-active-position ' justify='center'>
 									<Col xs={4} sm={4} md={4}>
@@ -93,6 +98,7 @@ const Accounts = (props) => {
 									</Col>
 								</Row>
 							)}
+							*/}
 							<div className='cv-profile-accounts-card-content'>
 								<div className='cv-profile-accounts-information-content'>
 									<Row>
@@ -109,7 +115,9 @@ const Accounts = (props) => {
 											<Row>
 												{' '}
 												<Col span={22}>
-													<h3 className='cv-profile-account-detail-title'>{item.account}</h3>
+													<h3 className='cv-profile-account-detail-title'>
+														{item.account}
+													</h3>
 												</Col>
 												<Col span={2}>
 													<Button
@@ -169,7 +177,9 @@ const Accounts = (props) => {
 
 									<div>
 										{item.emailAccount}
-										<p className='cv-profile-accounts-biography'>{item.biography}</p>
+										<p className='cv-profile-accounts-biography'>
+											{item.biography}
+										</p>
 									</div>
 								</div>
 
@@ -205,7 +215,8 @@ const Accounts = (props) => {
 										</Button>
 									)}
 									{item.eneable === true && (
-										<CopyToClipboard text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
+										<CopyToClipboard
+											text={`${process.env.REACT_APP_CUENTAS_VIRALES}/${item.name}`}>
 											<Button
 												block
 												style={{ margin: '4px 0px' }}

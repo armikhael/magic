@@ -31,9 +31,30 @@
 
 .cv-profile-list-account-main-subtitle {
 	background-color: transparent;
-	display: flex;
-	align-items: center;
 	color: #5f5f5f;
 	font-weight: 400;
 	margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+	.cv-profile-list-account-main-title {
+		margin-bottom: 10px;
+		text-align: center;
+		font-size: 20px;
+	}
+	.cv-profile-list-account-button-add {
+		margin-top: 10px;
+	}
+	.cv-profile-list-account-button-add-content {
+		text-align: center;
+	}
+	.cv-profile-list-account-subtitle-main-container {
+		margin-top: 20px;
+		display: block;
+		text-align: center;
+	}
+	.cv-profile-accounts-pending-titlle {
+		text-align: center;
+		padding-left: 0px;
+	}
 }
