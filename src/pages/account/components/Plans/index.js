@@ -2,10 +2,15 @@
 
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { List, Avatar } from 'antd'
-import { WhatsAppOutlined } from '@ant-design/icons'
-import { HeartOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons'
-import { Row, Comment } from 'antd'
+
+import { List, Avatar, Row, Comment } from 'antd'
+import {
+	HeartOutlined,
+	UserOutlined,
+	SmileOutlined,
+	LinkOutlined,
+	WhatsAppOutlined,
+} from '@ant-design/icons'
 
 import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
@@ -69,22 +74,21 @@ const Plans = (props) => {
 		if (props.componentData.plans.length <= 0) {
 			setText('Servicios Publicitarios')
 		}
-
 		if (props.componentData.representation === true) {
 			props.componentData.code = '56'
 			props.componentData.phone = '979582051'
 		}
-
 		if (props.componentData.followers <= CONSTANTS.MIN_FOLLOWERS) {
 			setPlans(DEFAULT_PLANS[props.componentData.type])
-		} else if (props.componentData.followers >= CONSTANTS.MIN_FOLLOWERS && props.componentData.plans.length > 0) {
+		} else if (
+			props.componentData.followers >= CONSTANTS.MIN_FOLLOWERS &&
+			props.componentData.plans.length > 0
+		) {
 			setPlans(props.componentData.plans)
 		} else {
 			setPlans(DEFAULT_PLANS[props.componentData.type])
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props])
+	}, [props, DEFAULT_PLANS])
 
 	const handleRedirect = (item) => {
 		serviceEventGoogleAnalytics({
@@ -99,78 +103,83 @@ const Plans = (props) => {
 
 	return (
 		<>
-			{props.componentData.representation === false && props.componentData.followers <= CONSTANTS.MIN_FOLLOWERS && (
-				<div className='cv-detail-content-plans'>
-					<div className='cv-detail-content-plans-main'>
-						<h3 className='cv-detail-plans-title'>{text}</h3>
-						<div className='cv-detail-plans-hr'></div>
+			{props.componentData.representation === false &&
+				props.componentData.followers <= CONSTANTS.MIN_FOLLOWERS && (
+					<div className='cv-detail-content-plans'>
+						<div className='cv-detail-content-plans-main'>
+							<h3 className='cv-detail-plans-title'>{text}</h3>
+							<div className='cv-detail-plans-hr'></div>
 
-						<List
-							className='cv-detail-plans-list'
-							itemLayout='horizontal'
-							dataSource={plans}
-							renderItem={(item) => (
-								<span
-									onClick={() => {
-										handleRedirect({
-											data: props.componentData,
-											action: 'click',
-											category: 'contratacion',
-											label: props.componentData.name,
-											concept: `te encontre en cuentasvirales.com y quisiera contratar tu publicidad de: ${item.description} ${item.type}`,
-										})
-									}}>
-									<List.Item actions={[<WhatsAppOutlined />]}>
-										<List.Item.Meta
-											avatar={<Avatar src={props.componentData.image} />}
-											title={`${item.description}`}
-											description={item.type}
-										/>
-									</List.Item>
-								</span>
-							)}
-						/>
+							<List
+								className='cv-detail-plans-list'
+								itemLayout='horizontal'
+								dataSource={plans}
+								renderItem={(item) => (
+									<span
+										onClick={() => {
+											handleRedirect({
+												data: props.componentData,
+												action: 'click',
+												category: 'contratacion',
+												label: props.componentData.name,
+												concept: `te encontre en cuentasvirales.com y quisiera contratar tu publicidad de: ${item.description} ${item.type}`,
+											})
+										}}>
+										<List.Item actions={[<WhatsAppOutlined />]}>
+											<List.Item.Meta
+												avatar={<Avatar src={props.componentData.image} />}
+												title={`${item.description}`}
+												description={item.type}
+											/>
+										</List.Item>
+									</span>
+								)}
+							/>
+						</div>
 					</div>
-				</div>
-			)}
+				)}
 
-			{props.componentData.representation === false && props.componentData.followers > CONSTANTS.MIN_FOLLOWERS && (
-				<div className='cv-detail-content-plans'>
-					<div className='cv-detail-content-plans-main'>
-						<h3 className='cv-detail-plans-title'>{text}</h3>
-						<div className='cv-detail-plans-hr'></div>
+			{props.componentData.representation === false &&
+				props.componentData.followers > CONSTANTS.MIN_FOLLOWERS && (
+					<div className='cv-detail-content-plans'>
+						<div className='cv-detail-content-plans-main'>
+							<h3 className='cv-detail-plans-title'>{text}</h3>
+							<div className='cv-detail-plans-hr'></div>
 
-						<List
-							className='cv-detail-plans-list'
-							itemLayout='horizontal'
-							dataSource={plans}
-							renderItem={(item) => (
-								<span
-									onClick={() => {
-										handleRedirect({
-											data: props.componentData,
-											action: 'click',
-											category: 'contratacion',
-											label: props.componentData.name,
-											concept: `te encontre en cuentasvirales.com y quisiera contratar tu publicidad de: ${item.description} por ${item.price} ${item.currency}`,
-										})
-									}}>
-									<List.Item actions={[<WhatsAppOutlined />]}>
-										<List.Item.Meta
-											avatar={<Avatar src={props.componentData.image} />}
-											title={`${item.description}`}
-											description={`${item.price} ${item.currency} `}
-										/>
-									</List.Item>
-								</span>
-							)}
-						/>
-						<p style={{ textAlign: 'center' }}>Puedes hacer el pago en tu moneda local</p>
+							<List
+								className='cv-detail-plans-list'
+								itemLayout='horizontal'
+								dataSource={plans}
+								renderItem={(item) => (
+									<span
+										onClick={() => {
+											handleRedirect({
+												data: props.componentData,
+												action: 'click',
+												category: 'contratacion',
+												label: props.componentData.name,
+												concept: `te encontre en cuentasvirales.com y quisiera contratar tu publicidad de: ${item.description} por ${item.price} ${item.currency}`,
+											})
+										}}>
+										<List.Item actions={[<WhatsAppOutlined />]}>
+											<List.Item.Meta
+												avatar={<Avatar src={props.componentData.image} />}
+												title={`${item.description}`}
+												description={`${item.price} ${item.currency} `}
+											/>
+										</List.Item>
+									</span>
+								)}
+							/>
+							<p style={{ textAlign: 'center' }}>
+								Puedes hacer el pago en tu moneda local
+							</p>
+						</div>
 					</div>
-				</div>
-			)}
+				)}
 
-			{(props.componentData.plans.length <= 0 || props.componentData.representation === true) && (
+			{(props.componentData.plans.length <= 0 ||
+				props.componentData.representation === true) && (
 				<div className='cv-detail-content-plans'>
 					<div className='cv-detail-content-plans-main'>
 						<h3 className='cv-detail-plans-title'>{text}</h3>
@@ -178,7 +187,11 @@ const Plans = (props) => {
 
 						<Row>
 							<Comment
-								author={<p className='cv-detail-actiones-title'>Posicionar una Cuenta</p>}
+								author={
+									<p className='cv-detail-actiones-title'>
+										Posicionar una Cuenta
+									</p>
+								}
 								avatar={<UserOutlined style={{ fontSize: '26px' }} />}
 								content={
 									<p>
@@ -194,7 +207,11 @@ const Plans = (props) => {
 							/>
 
 							<Comment
-								author={<p className='cv-detail-actiones-title'>Promocionar un Producto</p>}
+								author={
+									<p className='cv-detail-actiones-title'>
+										Promocionar un Producto
+									</p>
+								}
 								avatar={<HeartOutlined style={{ fontSize: '26px' }} />}
 								content={
 									<p>
@@ -219,7 +236,11 @@ const Plans = (props) => {
 							/>
 
 							<Comment
-								author={<p className='cv-detail-actiones-title'>Promocionar un Servicio</p>}
+								author={
+									<p className='cv-detail-actiones-title'>
+										Promocionar un Servicio
+									</p>
+								}
 								avatar={<SmileOutlined style={{ fontSize: '26px' }} />}
 								content={
 									<p>
@@ -243,6 +264,31 @@ const Plans = (props) => {
 								}
 							/>
 						</Row>
+					</div>
+				</div>
+			)}
+			{props.componentData.links.length > 0 && (
+				<div className='cv-detail-plans-link'>
+					<div className='cv-detail-plans-link-content'>
+						{' '}
+						<h3 className='cv-detail-plans-link-title'>Mis enlaces</h3>
+						<div className='cv-detail-plans-hr'></div>
+						{props.componentData.links.map((item, key) => {
+							return (
+								<a
+									href={item.url}
+									target='_blank'
+									key={key}
+									rel='noopener noreferrer'>
+									<div className=''>
+										<LinkOutlined />{' '}
+										<span className='cv-detail-plans-link-title-link'>
+											{item.title}
+										</span>
+									</div>
+								</a>
+							)
+						})}
 					</div>
 				</div>
 			)}
