@@ -8,6 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
+import SelectField from '../../../../../components/Form/Select'
 import RadioField from '../../../../../components/Form/Radio'
 import TextAreaField from '../../../../../components/Form/TextArea'
 
@@ -50,19 +51,44 @@ export default function AccountLinks(props) {
 	}, [props])
 
 	const handleAddElement = (item) => {
-		console.log(item)
-		if (item.type === 'whatsapp') {
+		console.log(links)
+		if (item.radio === 'whatsapp') {
+			console.log('whatsapp', item)
+
 			setLinks((links) => [
 				...links,
 				{
 					id: links.length,
+					type: 'whatsapp',
 					title: item.title,
 					url: `https://api.whatsapp.com/send?phone=${item.number}&text=${item.message}`,
 				},
 			])
 			form.resetFields(['message', 'title'])
+		} else if (item.radio === 'social') {
+			console.log('social', item)
+			setLinks((links) => [
+				...links,
+				{
+					id: links.length,
+					type: item.type,
+					title: item.title,
+					url: item.url,
+				},
+			])
+			form.resetFields(['type', 'title', 'url'])
 		} else {
-			setLinks((links) => [...links, { id: links.length, title: item.title, url: item.url }])
+			console.log('web', item)
+
+			setLinks((links) => [
+				...links,
+				{
+					id: links.length,
+					type: 'web',
+					title: item.title,
+					url: item.url,
+				},
+			])
 			form.resetFields(['title', 'url'])
 		}
 	}
@@ -85,7 +111,6 @@ export default function AccountLinks(props) {
 		let item = data
 		item.links = links
 		console.log(item)
-
 		serviceUpdateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
@@ -145,7 +170,7 @@ export default function AccountLinks(props) {
 										<RadioField
 											componentClass={'cv-auth-login-field-input'}
 											componentLabel={'¿Que tipo de link es?'}
-											componentName={'type'}
+											componentName={'radio'}
 											componentButtonStyle={'solid'}
 											componentOptions={[...CONSTANTS.TYPE_LINK]}
 											componentDefaultValue={'web'}
@@ -159,6 +184,20 @@ export default function AccountLinks(props) {
 												}
 											}}
 										/>
+
+										{radio === 'social' && (
+											<>
+												<SelectField
+													componentClass={'cv-global-select-field-input'}
+													componentLabel={'Red Social'}
+													componentName={'type'}
+													componentMode={'single'}
+													componentPlaceholder={'Seleccione una opción'}
+													componentOptions={[...CONSTANTS.LINK_SOCIAL]}
+													componentRules={'rulesSelect'}
+												/>
+											</>
+										)}
 
 										{radio === 'whatsapp' && (
 											<>

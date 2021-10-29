@@ -58,7 +58,30 @@ export const CONSTANTS = {
 	],
 	FORMAT: '.jpeg, .png, .jpg',
 	TYPE_LINK: [
-		{ name: 'Web / Red Social', value: 'web' },
+		{ name: 'Sitio Web', value: 'web' },
+		{ name: 'Red Social', value: 'social' },
 		{ name: 'WhatsApp', value: 'whatsapp' },
+	],
+	LINK_SOCIAL: [
+		{
+			name: 'Instagram',
+			value: 'instagram',
+		},
+		{
+			name: 'TikTok',
+			value: 'tiktok',
+		},
+		{
+			name: 'Facebook',
+			value: 'facebook',
+		},
+		{
+			name: 'Twitter',
+			value: 'twitter',
+		},
+		{
+			name: 'Otra',
+			value: 'otra',
+		},
 	],
 }

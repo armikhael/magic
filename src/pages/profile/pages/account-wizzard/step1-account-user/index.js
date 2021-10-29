@@ -115,6 +115,7 @@ export default function AccountUser(props) {
 										componentValue={data.followers}
 										componentOnChange={(e) => setFollowers(e.target.value)}
 									/>
+
 									{name !== undefined && type !== undefined && followers >= 200 && (
 										<>
 											<UploadImagesAlt
@@ -140,9 +141,7 @@ export default function AccountUser(props) {
 									)}
 
 									<Form.Item className='cv-right'>
-										<Button
-											htmlType={'submit'}
-											className={'cv-account-wizzard-button-submit'}>
+										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 											Siguiente
 										</Button>
 									</Form.Item>
