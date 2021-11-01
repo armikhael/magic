@@ -2,7 +2,9 @@
 
 import axios from 'axios'
 
-const serviceGetData = async (item) => {
+import { notification } from 'antd'
+
+export const serviceGetData = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -17,4 +19,31 @@ const serviceGetData = async (item) => {
 	return returnResponse
 }
 
-export { serviceGetData }
+export const serviceDelete = async (item) => {
+	let returnResponse
+	await axios({
+		method: 'DELETE',
+		url: `${process.env.REACT_APP_HOST}/link/${item._id}`,
+	})
+		.then((response) => {
+			if (response.data.statusCode === 200) {
+				returnResponse = response.data.data
+				notification['success']({
+					message: `¡Felicidades!`,
+					description: `El enlace ha sido eliminado correctamente`,
+				})
+			} else {
+				notification['error']({
+					message: `¡Ups!`,
+					description: response.data.message,
+				})
+			}
+		})
+		.catch(() => {
+			notification['error']({
+				message: `¡Advertencia!`,
+				description: `Verifica tu conexión a internet`,
+			})
+		})
+	return returnResponse
+}
