@@ -43,7 +43,8 @@
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.1",
 		"redux": "^4.0.5",
-		"redux-thunk": "^2.3.0"
+		"redux-thunk": "^2.3.0",
+		"sass": "^1.43.4"
 	},
 	"scripts": {
 		"start": "set PORT=3000 && react-scripts start",

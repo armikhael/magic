@@ -1,0 +1,91 @@
+/** @format */
+
+@import '../../../../components/Sass/components/_colors'
+
+.cv-profile-business-main-container
+  max-width: 1300px
+  margin: auto
+  padding: 10px
+
+.cv-profile-business-head-container
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 40px 0
+  padding: 0 15px
+
+.cv-profile-business-head-title
+  margin-bottom: 0
+  color: $grayColortext1
+  font-size: 32px
+
+.cv-profile-business-spacer
+  flex-grow: 1 !important
+
+.cv-profile-business-add-icon
+  margin-right: 10px
+
+.cv-profile-business-add-button, 
+.cv-profile-business-add-button:hover, 
+.cv-profile-business-add-button:active, 
+.cv-profile-business-add-button:focus
+  border: 1px solid $primaryColor
+  color: $primaryColor
+  font-size: 15px
+  border-radius: 8px
+  font-weight: 600
+  padding: 5px 25px
+  background-color: $whiteBackgroundColor
+
+.cv-profile-business-title-container
+  display: flex
+  align-items: center
+  padding: 0 15px
+
+.cv-profile-business-title-icon
+  margin-right: 10px
+  font-size: 20px
+
+.cv-profile-business-title
+  color: $grayColortext1
+  font-weight: 400
+  margin-bottom: 0px
+
+.cv-profile-business-no-results-container
+  background-color: $whiteBackgroundColor
+  border-radius: 8px
+  box-shadow: $primaryBoxShadow
+  width: 100%
+  max-width: 450px
+  margin: 35px auto
+
+.cv-profile-business-main-button,
+.cv-profile-business-main-button:hover,
+.cv-profile-business-main-button:active,
+.cv-profile-business-main-button:focus
+  color: #fff
+  font-weight: 600
+  font-size: 16px
+  background-color: #f61073
+  border-radius: 50px
+  padding: 9px 35px
+  width: 150px
+  max-width: 100%
+  margin: 0 auto
+  cursor: pointer
+  box-shadow: $primaryBoxShadow
+
+@media(max-width: 575px)
+  .cv-profile-business-head-container
+    margin: 5px 0 20px 0
+    display: block
+    text-align: center
+  
+  .cv-profile-business-head-title
+    font-size: 20px
+  
+  .cv-profile-business-add-button
+    display: block
+    width: 100%
+    max-width: 210px
+    margin: 15px auto 0
