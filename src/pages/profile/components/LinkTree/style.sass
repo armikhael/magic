@@ -1,0 +1,169 @@
+
+@import '../../../../components/Sass/components/_colors'
+  
+.cv-profile-business-linktree-notify
+  font-size: 14px
+  padding-left: 32px
+  margin-bottom: 34px
+  color: $grayColortext2
+
+.cv-profile-business-linktree-list-main-container
+  padding: 15px
+
+.cv-profile-business-linktree-list-container
+  background-color: $whiteBackgroundColor
+  border-radius: 8px
+  box-shadow: $secondaryBoxShadow
+  transition: 0.4s ease
+  cursor: pointer
+  height: 100%
+  flex-direction: column
+  display: flex
+  justify-content: space-between!important
+
+.cv-profile-business-linktree-list-info-container
+  padding: 15px
+  position: relative
+
+.cv-profile-business-linktree-list-info-inner-container
+  width: 100%
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  margin-bottom: 10px
+
+.cv-profile-business-linktree-list-info-description
+  font-weight: 200
+  color: $grayColortext2
+  font-size: 12px
+  margin-bottom: 0
+
+.cv-profile-business-linktree-list-info-avatar-container
+  width: 25%
+  text-align: center
+
+.cv-profile-business-linktree-list-avatar
+  width: 100%
+  max-width: 75px
+  border: 1px solid $primaryBorderColor
+  border-radius: 100%
+
+.cv-profile-business-linktree-list-info-data-container
+  width: 75%
+  padding: 0 10px
+
+.cv-profile-business-linktree-list-info-title
+  text-transform: uppercase
+  font-weight: 500
+  color: $grayColortext1
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  max-width: 95%
+
+.cv-profile-business-linktree-list-info-nick
+  color: $grayColortext1
+  font-size: 12px
+  font-weight: 500
+  margin-bottom: 2px
+  display: flex
+  align-items: center
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  max-width: 90%
+
+.cv-profile-business-linktree-list-info-nick-icon
+  margin-right: 3px
+  color: $primaryColor
+  opacity: 0.5
+
+.cv-profile-business-linktree-list-info-email
+  color: $grayColortext1
+  font-size: 12px
+  font-weight: 500
+  margin-bottom: 2px
+  display: flex
+  align-items: center
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  max-width: 90%
+
+.cv-profile-business-linktree-list-info-email-icon
+  margin-right: 3px
+  color: $primaryColor
+  opacity: 0.5
+
+
+.cv-profile-business-linktree-list-actions-container
+  border-top: 1px solid $primaryBorderColor
+  display: flex
+  justify-content: center
+  align-items: center
+
+.cv-profile-business-linktree-delete-button
+  color: $primaryColor
+  padding: 2px 6px
+  border: 1px solid $primaryColor
+  border-radius: 100% 
+  position: absolute
+  top: 10px
+  right: 10px
+  opacity: 0.5
+
+.cv-profile-business-linktree-delete-button:hover
+  opacity: 1
+
+.cv-profile-business-linktree-preview-button
+  color: $primaryColor
+  padding: 2px 6px
+  border: 1px solid $primaryColor
+  border-radius: 100% 
+  position: absolute
+  top: 45px
+  right: 10px
+  opacity: 0.5
+
+.cv-profile-business-linktree-preview-button:hover
+  opacity: 1
+
+.cv-profile-business-linktree-list-actions-copy
+  width: 50%
+  padding: 10px
+  text-align: center
+  position: relative
+  font-size: 12px
+
+.cv-profile-business-linktree-list-actions-copy::after
+  content: ""
+  width: 1px
+  height: 100%
+  position: absolute
+  top: 0
+  right: 0!important
+  bottom: unset
+  right: unset
+  z-index: 1
+  display: unset
+  background: transparent
+  background-color: $primaryBorderColor
+
+.cv-profile-business-linktree-list-actions-copy:hover
+  color: $primaryColor
+
+.cv-profile-business-linktree-list-actions-edit
+  width: 50%
+  padding: 10px
+  text-align: center
+  font-size: 12px
+
+.cv-profile-business-linktree-list-actions-edit:hover
+  color: $primaryColor
+
+@media(max-width: 575px)
+  .cv-profile-business-linktree-list-main-container
+    padding: 15px 5px
+  
+  .cv-profile-business-linktree-notify
+    margin-bottom: 10px

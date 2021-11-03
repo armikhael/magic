@@ -9,6 +9,22 @@
 	height: 45px !important;
 }
 
+.cv-account-linktree-drawer-title {
+	font-size: 25px;
+	color: #5f5f5f;
+	margin-bottom: 0px;
+}
+
+.cv-account-linktree-drawer-sub-title {
+	font-size: 13px;
+	font-weight: 100;
+	color: #5f5f5f;
+}
+
+.cv-account-linktree-drawer-title-color {
+	color: #e1336f;
+}
+
 .cv-pulse {
 	animation: pulse 2s infinite;
 }
@@ -42,12 +58,17 @@
 
 .cv-account-linktree-content-card {
 	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
-	padding: 15px;
-	margin: 5px;
+	padding: 5px;
+	margin: 8px;
 	background-color: #fff;
 	border-radius: 12px;
 	border: 1px solid whitesmoke;
 	cursor: pointer;
+	margin-top: 15px;
+}
+
+.cv-account-linktree-content-card-img {
+	border-radius: 8px;
 }
 
 .cv-account-linktree-content-card:hover {
@@ -63,7 +84,12 @@
 	padding: 0px 10px;
 }
 
+.cv-account-linktree-content-card-two > div {
+	text-align: right;
+}
+
 .cv-account-linktree-content-card-two h3 {
+	margin-top: 5px;
 	font-weight: 500;
 	color: #212121;
 }
@@ -75,9 +101,21 @@
 	margin-bottom: 0px;
 }
 
-.cv-account-linktree-content-card-three {
-	padding: 25px;
-	border-left: 1px solid #ececec;
+.cv-account-linktree-drawer-card-button {
+	background-color: #f61073;
+	border-color: #f61073;
+	border-radius: 8px;
+	font-weight: 500;
+}
+
+@media (max-width: 768px) {
+	.cv-account-linktree-drawer-titles-contens {
+		text-align: center;
+	}
+
+	.cv-account-linktree-drawer-title {
+		font-size: 20px;
+	}
 }
 
 @-webkit-keyframes spin {
