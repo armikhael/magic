@@ -34,7 +34,7 @@ const DrawerLinktree = () => {
 
 	useEffect(() => {
 		if (window.innerWidth < 1025) {
-			setMobile('550')
+			setMobile('400')
 		}
 	}, [])
 
@@ -90,34 +90,6 @@ const DrawerLinktree = () => {
 								'https://api.whatsapp.com/send?phone=573106044125&text=Hola,%20vi%20un%20anuncio%20en%20@cuentasvirales%20y%20quisiera%20informaci%C3%B3n%20de%20la%20master%20class'
 							)
 						}}>
-						<Col xs={24} sm={24} md={8}>
-							<Row className='cv-account-linktree-content-card'>
-								<Col xs={7} sm={7} md={7}>
-									<img
-										className='cv-account-linktree-content-card-img'
-										width='100%'
-										src='https://i.ibb.co/Ptb6Ldb/2.jpg'
-										title='Información'
-										alt='Información'
-									/>
-								</Col>
-								<Col
-									xs={17}
-									sm={17}
-									md={17}
-									className='cv-account-linktree-content-card-two'>
-									<h3>Master Class</h3>
-									<p>Mejora el rendimiento de tu cuenta de instagram</p>
-									<div>
-										<Button
-											className='cv-account-linktree-drawer-card-button'
-											type='primary'>
-											Click aquí
-										</Button>
-									</div>
-								</Col>
-							</Row>
-						</Col>
 						{data.map((item) => {
 							return (
 								<Col
