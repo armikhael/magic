@@ -16,16 +16,10 @@ export default function LinksAccount(props) {
 					<div className='cv-account-linkaccount-hr'></div>
 					{props.links.map((item, key) => {
 						return (
-							<a
-								href={item.url}
-								target='_blank'
-								key={key}
-								rel='noopener noreferrer'>
+							<a href={item.url} target='_blank' key={key} rel='noopener noreferrer'>
 								<div className='cv-account-linkaccount-card'>
-									<LinkOutlined />{' '}
-									<span className='cv-account-linkaccount-link-title-link'>
-										{item.title}
-									</span>
+									<LinkOutlined />
+									<span className='cv-account-linkaccount-link-title-link'>{item.title}</span>
 								</div>
 							</a>
 						)
