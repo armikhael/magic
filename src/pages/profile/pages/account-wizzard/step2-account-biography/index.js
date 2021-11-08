@@ -138,10 +138,8 @@ const AccountBiography = (props) => {
 			console.log(response)
 			if (response.statusCode === 200) {
 				console.log(response.data.name)
-				if (isModify === false && response.data.followers <= CONSTANTS.MIN_FOLLOWERS) {
+				if (isModify === false) {
 					history.push(`/profile/account-links/${response.data.name}`)
-				} else if (isModify === false && response.data.followers > CONSTANTS.MIN_FOLLOWERS) {
-					history.push(`/profile/account-plans/${response.data.name}`)
 				} else {
 					history.push(`/profile/accounts`)
 				}
@@ -160,10 +158,7 @@ const AccountBiography = (props) => {
 				<Row justify='center' className='cv-account-wizzard-global-content'>
 					<Col xs={23} sm={20} xl={12} className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
-							<Card
-								className='cv-account-wizzard-card'
-								title='Datos de tu cuenta (2/4)'
-								bordered={false}>
+							<Card className='cv-account-wizzard-card' title='Datos de tu cuenta (2/4)' bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>
 										<SelectField
@@ -243,10 +238,7 @@ const AccountBiography = (props) => {
 									</div>
 									<Row className='cv-account-wizzard-upload-image-container'>
 										<Col xs={10} sm={10} md={8}>
-											<UploadImage
-												account={data}
-												componentHandle={handleSetImageProfile}
-											/>
+											<UploadImage account={data} componentHandle={handleSetImageProfile} />
 										</Col>
 										<Col xs={14} sm={14} md={16}>
 											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
@@ -266,10 +258,7 @@ const AccountBiography = (props) => {
 									</Row>
 									<Row className='cv-account-wizzard-upload-image-container'>
 										<Col xs={10} sm={10} md={8}>
-											<UploadCover
-												account={data}
-												componentHandle={handleSetImageCover}
-											/>
+											<UploadCover account={data} componentHandle={handleSetImageCover} />
 										</Col>
 										<Col xs={14} sm={14} md={16}>
 											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
@@ -288,9 +277,7 @@ const AccountBiography = (props) => {
 										</Col>
 									</Row>
 									<Form.Item className='cv-right'>
-										<Button
-											htmlType={'submit'}
-											className={'cv-account-wizzard-button-submit'}>
+										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 											{buttonText}
 										</Button>
 										{handleButtonSkip()}
