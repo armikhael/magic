@@ -33,7 +33,12 @@
 .cv-detail-hr {
 	border: 0;
 	height: 1px;
-	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0 0 0 / 11%), rgba(0, 0, 0, 0));
+	background-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0),
+		rgb(0 0 0 / 11%),
+		rgba(0, 0, 0, 0)
+	);
 }
 
 .cv-detail-content-accoun {
@@ -246,7 +251,7 @@
 .cv-detail-content-plans {
 	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
 	background-color: #fff;
-	border-radius: 0 0 12px 12px;
+	border-radius: 12px;
 	margin-bottom: 20px;
 	min-height: 50vh;
 	height: auto;

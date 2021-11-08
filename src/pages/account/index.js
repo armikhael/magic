@@ -19,7 +19,11 @@ import Views from './components/Views'
 import LinkTree from './components/LinkTree'
 import Plans from './components/Plans'
 
-import { serviceAccountDetail, serviceGetLinks, serviceGetPermissions } from './services'
+import {
+	serviceAccountDetail,
+	serviceGetLinks,
+	serviceGetPermissions,
+} from './services'
 import './style.css'
 
 const { Content } = Layout
@@ -75,7 +79,9 @@ export default class AccountDetail extends React.Component {
 
 				this.setState({
 					image: accountDetail.account[0].image,
-					image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
+					image_cover:
+						accountDetail.account[0].image_cover ||
+						accountDetail.account[0].image,
 					detail: accountDetail.account[0],
 					relations: accountDetail.relations,
 					asociation: accountDetail.asociation,
@@ -259,7 +265,10 @@ export default class AccountDetail extends React.Component {
 												/>
 											</Col>
 											<Col xs={12} sm={12} md={12} className='pl10'>
-												<span className='cv-detail-account-vlc-title'>ViralCoin</span> <br />
+												<span className='cv-detail-account-vlc-title'>
+													ViralCoin
+												</span>{' '}
+												<br />
 												<span className='cv-detail-account-vlc-title-sub'>
 													{this.state.detail.point} <span>VLC</span>
 												</span>{' '}
@@ -307,7 +316,9 @@ export default class AccountDetail extends React.Component {
 											</span>
 										</Col>
 									)}
-									<Col span={24} className='cv-detail-content-account-detail cv-md'>
+									<Col
+										span={24}
+										className='cv-detail-content-account-detail cv-md'>
 										{this.state.detail.point >= 1 && (
 											<Row
 												className={`${
@@ -324,7 +335,9 @@ export default class AccountDetail extends React.Component {
 													/>
 												</Col>
 												<Col xs={24} sm={24} md={12} className='pl10'>
-													<span className='cv-detail-account-vlc-title'>ViralCoin</span>{' '}
+													<span className='cv-detail-account-vlc-title'>
+														ViralCoin
+													</span>{' '}
 													<br />
 													<span className='cv-detail-account-vlc-title-sub'>
 														{this.state.detail.point} <span>VLC</span>
@@ -368,7 +381,11 @@ export default class AccountDetail extends React.Component {
 														src={this.state.image}
 													/>
 												</Col>
-												<Col xs={24} sm={24} md={15} className='cv-detail-account-content-info'>
+												<Col
+													xs={24}
+													sm={24}
+													md={15}
+													className='cv-detail-account-content-info'>
 													<h3 className='cv-detail-account-content-info-country'>
 														{this.state.detail.country}
 													</h3>
@@ -385,7 +402,9 @@ export default class AccountDetail extends React.Component {
 															<h3>@{this.state.detail.account}</h3>
 														</div>
 													</a>
-													<p>Cantidad de Visitas: {this.state.detail.counter}</p>
+													<p>
+														Cantidad de Visitas: {this.state.detail.counter}
+													</p>
 													<h3 className='cv-detail-account-content-info-email'>
 														{this.state.detail.email}
 													</h3>
@@ -403,7 +422,9 @@ export default class AccountDetail extends React.Component {
 											</Row>
 											<div className='cv-masonry-item-card-image-bg'></div>
 										</div>
-										<p className='cv-detail-account-descript'>{this.state.detail.description}</p>
+										<p className='cv-detail-account-descript'>
+											{this.state.detail.description}
+										</p>
 										<div>
 											{this.state.detail.categories.map(function (item, i) {
 												return (
@@ -424,13 +445,15 @@ export default class AccountDetail extends React.Component {
 										detail={this.state.detail}
 										permissions={this.state.permissions}
 									/>
-
 									<AccountsRelations relations={this.state.relations} />
 								</div>
 							</Col>
 							<Col xs={24} sm={24} md={6}>
 								<Plans componentData={this.state.detail} />
-								<CreateUser componentData={this.state.detail} asociation={this.state.asociation} />
+								<CreateUser
+									componentData={this.state.detail}
+									asociation={this.state.asociation}
+								/>
 								<InterestAccounts interestAccounts={this.state.promotions} />
 							</Col>
 							<div className='cv-detail-accounts-user-email-xs'>
@@ -446,7 +469,9 @@ export default class AccountDetail extends React.Component {
 					</Content>
 				)}
 
-				{this.state.links !== null && <LinkTree componentData={this.state.links} />}
+				{this.state.links !== null && (
+					<LinkTree componentData={this.state.links} />
+				)}
 			</>
 		)
 	}

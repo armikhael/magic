@@ -8,12 +8,13 @@ import {
 	HeartOutlined,
 	UserOutlined,
 	SmileOutlined,
-	LinkOutlined,
 	WhatsAppOutlined,
 } from '@ant-design/icons'
 
 import { CONSTANTS } from '../../../../components/ServiceCommons/Constant'
 import serviceEventGoogleAnalytics from '../../../../components/ServiceCommons/EventsGoogleAnalitycs'
+
+import LinksAccount from '../LinksAccount/'
 
 import './style.css'
 
@@ -103,6 +104,9 @@ const Plans = (props) => {
 
 	return (
 		<>
+			{props.componentData.links.length > 0 && (
+				<LinksAccount links={props.componentData.links} />
+			)}
 			{props.componentData.representation === false &&
 				props.componentData.followers <= CONSTANTS.MIN_FOLLOWERS && (
 					<div className='cv-detail-content-plans'>
@@ -264,31 +268,6 @@ const Plans = (props) => {
 								}
 							/>
 						</Row>
-					</div>
-				</div>
-			)}
-			{props.componentData.links.length > 0 && (
-				<div className='cv-detail-plans-link'>
-					<div className='cv-detail-plans-link-content'>
-						{' '}
-						<h3 className='cv-detail-plans-link-title'>Mis enlaces</h3>
-						<div className='cv-detail-plans-hr'></div>
-						{props.componentData.links.map((item, key) => {
-							return (
-								<a
-									href={item.url}
-									target='_blank'
-									key={key}
-									rel='noopener noreferrer'>
-									<div className=''>
-										<LinkOutlined />{' '}
-										<span className='cv-detail-plans-link-title-link'>
-											{item.title}
-										</span>
-									</div>
-								</a>
-							)
-						})}
 					</div>
 				</div>
 			)}
