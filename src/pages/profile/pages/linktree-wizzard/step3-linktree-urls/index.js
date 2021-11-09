@@ -28,7 +28,7 @@ export default function LinkTreeUrl(props) {
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
 		console.log('response', response.data[0])
-		response.data[0].type = 'web'
+		response.data[0].radio = 'web'
 		setData(response.data[0])
 		const newLinks = response.data[0].links.map((item, key) => {
 			return {
@@ -171,7 +171,7 @@ export default function LinkTreeUrl(props) {
 											componentName={'radio'}
 											componentButtonStyle={'solid'}
 											componentOptions={[...CONSTANTS.TYPE_LINK]}
-											componentDefaultValue={'web'}
+											componentDefaultValue={radio}
 											componentOnChange={(e) => {
 												console.log(e.target.value)
 												setRadio(e.target.value)
