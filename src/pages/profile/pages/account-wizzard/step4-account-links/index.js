@@ -28,7 +28,7 @@ export default function AccountLinks(props) {
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
 		console.log('response', response)
-		response.type = 'web'
+		response.radio = 'web'
 		setData(response)
 		const newLinks = response.links.map((item, key) => {
 			return {
