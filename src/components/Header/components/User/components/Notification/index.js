@@ -10,7 +10,7 @@ import { EllipsisOutlined, FileDoneOutlined, NotificationOutlined } from '@ant-d
 
 import serviceEventGoogleAnalytics from '../../../../../ServiceCommons/EventsGoogleAnalitycs'
 import { serviceGetData } from './services'
-import './style.css'
+import './style.sass'
 
 export default function Notification() {
 	const [data, setData] = useState([])
@@ -75,7 +75,10 @@ export default function Notification() {
 									<h3>Recomendaciones</h3>
 								</Col>
 								<Col xs={4} sm={4} md={4} className='cv-header-notifi-title-icon'>
-									<Dropdown trigger={['click']} overlay={menuNotifi} placement='bottomRight'>
+									<Dropdown
+										trigger={['click']}
+										overlay={menuNotifi}
+										placement='bottomRight'>
 										<EllipsisOutlined className='cv-header-notifi-title-icon-i' />
 									</Dropdown>
 								</Col>
@@ -85,8 +88,10 @@ export default function Notification() {
 					</Menu>
 				}
 				placement='bottomCenter'>
-				<Badge dot>
-					<NotificationOutlined style={{ fontSize: '20px', color: '#200159', cursor: 'pointer' }} />
+				<Badge dot className='cv-header-notify-badge-container'>
+					<NotificationOutlined
+						style={{ fontSize: '20px', color: '#200159', cursor: 'pointer' }}
+					/>
 				</Badge>
 			</Dropdown>
 		</>

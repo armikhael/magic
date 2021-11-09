@@ -4,26 +4,15 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import './style.css'
+import { ENV_LOGO } from '../../../Common/Hooks/Enviroment'
 
-class Logo extends React.Component {
-	render() {
-		return (
-			<React.Fragment>
-				<Link
-					to={{
-						pathname: '/',
-					}}>
-					<img
-						className='cv-navbar-logo'
-						src={process.env.REACT_APP_LOGO}
-						alt='Logo Cuentas Virales'
-					/>
-					<h1 className='cv-navbar-logo-titles'>Cuentas Virales</h1>
-				</Link>
-			</React.Fragment>
-		)
-	}
+import './style.sass'
+
+export default function Logo() {
+	return (
+		<Link className='cv-navbar-logo-link-container' to='/'>
+			<img className='cv-navbar-logo' src={ENV_LOGO} alt='Logo Cuentas Virales' />
+			<h1 className='cv-navbar-logo-titles'>Cuentas Virales</h1>
+		</Link>
+	)
 }
-
-export default Logo
