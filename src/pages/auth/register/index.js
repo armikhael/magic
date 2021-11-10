@@ -39,7 +39,7 @@ const Register = (props) => {
 				)
 
 				setTimeout(() => {
-					if (item.type_account === 'model') {
+					if (item.type_account === 'personal') {
 						history.push('/profile/account-user')
 					} else {
 						history.push('/profile/linktree-name')
@@ -60,9 +60,7 @@ const Register = (props) => {
 				<Content className='cv-container-main'>
 					<Row className='cv-login-conteent-row' align='middle'>
 						<Col xs={24} sm={24} md={12}>
-							<h1 className='cv-login-title-main'>
-								Se parte de la comunidad de Influencers en LATIONAMÉRICA
-							</h1>
+							<h1 className='cv-login-title-main'>Comparte todos tus enlaces en un sólo lugar</h1>
 						</Col>
 						<Col xs={24} sm={24} md={12}>
 							<div className='cv-login-content-logins'>
@@ -107,8 +105,8 @@ const Register = (props) => {
 												componentDisabled={false}
 											/>
 											<SelectField
-												componentClass={'cv-auth-login-field-input'}
-												componentLabel={'¿Tipo de Cuenta?'}
+												componentClass={'cv-global-select-field-input'}
+												componentLabel={'¿Que tipo de cuenta manejas?'}
 												componentName={'type_account'}
 												componentMode={'single'}
 												componentPlaceholder={'Seleccione una opción'}
