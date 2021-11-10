@@ -80,6 +80,18 @@ export const CONSTANTS = {
 			value: 'twitter',
 		},
 		{
+			name: 'Youtube',
+			value: 'youtube',
+		},
+		{
+			name: 'Onlyfans',
+			value: 'onlyfans',
+		},
+		{
+			name: 'Behance',
+			value: 'behance',
+		},
+		{
 			name: 'Otra',
 			value: 'otra',
 		},
