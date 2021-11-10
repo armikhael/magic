@@ -48,38 +48,6 @@ export default function Help(props) {
 		console.log('useEffects')
 	}, [props])
 
-	const handleReferalContact = () => {
-		return (
-			<Row justify='center'>
-				{props.match.params.name === 'posicionamiento' && !props.match.params.account && (
-					<Button
-						shape={'round'}
-						className={'cv-help-button'}
-						onClick={() => {
-							window.open(
-								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola vengo de cuentasvirales.com donde vi la información que ustedes ofrecen el servicio de posicionamiento y me interesa recibir mayor información`
-							)
-						}}>
-						Solicitar atención de un Ejecutivo
-					</Button>
-				)}
-
-				{props.match.params.account && (
-					<Button
-						shape={'round'}
-						className={'cv-help-button'}
-						onClick={() => {
-							window.open(
-								`${process.env.REACT_APP_WHATSAPP}?phone=${phone}&text=Hola, desde el perfil de ${props.match.params.account} vi que en cuentasvirales.com ofrecen el servicio de posicionamiento y me interesa recibir mayor información`
-							)
-						}}>
-						Solicitar atención de un Ejecutivo
-					</Button>
-				)}
-			</Row>
-		)
-	}
-
 	if (isLoading) {
 		return <Loading />
 	}
@@ -123,8 +91,6 @@ export default function Help(props) {
 													<h3 className='cv-help-detail-title'>{item.title}</h3>
 													{renderHTML(item.text_html)}
 													<br />
-
-													{handleReferalContact()}
 
 													{item.url_type === 'youtube' && (
 														<iframe
