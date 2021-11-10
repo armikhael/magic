@@ -67,7 +67,7 @@ export default class Login extends React.Component {
 						<Row className='cv-login-conteent-row' align='middle'>
 							<Col xs={24} sm={24} md={12}>
 								<h1 className='cv-login-title-main'>
-									Se parte de la comunidad de Influencers en LATIONAMÉRICA
+									Comparte todas tus redes sociales en un solo link
 								</h1>
 							</Col>
 							<Col xs={24} sm={24} md={12}>

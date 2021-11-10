@@ -60,7 +60,7 @@ const Register = (props) => {
 				<Content className='cv-container-main'>
 					<Row className='cv-login-conteent-row' align='middle'>
 						<Col xs={24} sm={24} md={12}>
-							<h1 className='cv-login-title-main'>Comparte todos tus enlaces en un sólo lugar</h1>
+							<h1 className='cv-login-title-main'>Comparte todas tus redes sociales en un solo link</h1>
 						</Col>
 						<Col xs={24} sm={24} md={12}>
 							<div className='cv-login-content-logins'>
