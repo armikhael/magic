@@ -76,16 +76,11 @@ export default function Modeles() {
 					<Row className='cv-models-row-firts' align='middle'>
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
-								Ya son más de{' '}
-								<span className='cv-models-firts-title-900'>1000</span>{' '}
-								Influencers en Latinoamérica usando nuestros{' '}
-								<span className='cv-models-firts-title-900'>
-									enlaces personalizados
-								</span>{' '}
-								para gestionar sus pautas publicitarias de una forma{' '}
-								<span className='cv-models-firts-title-900'>
-									gratuita y simple
-								</span>
+								Ya son más de <span className='cv-models-firts-title-900'>1000</span> Influencers en
+								Latinoamérica usando nuestros{' '}
+								<span className='cv-models-firts-title-900'>enlaces personalizados</span> para gestionar
+								todas sus redes sociales y contenido de forma{' '}
+								<span className='cv-models-firts-title-900'>gratuita y simple</span>
 							</h3>
 							<br />
 							<Button
@@ -113,9 +108,7 @@ export default function Modeles() {
 						</h3>
 						<p>Aquí te dejamos algunos de los beneficios más importantes</p>
 					</div>
-					<AwesomeSwiper
-						ref={(ref) => (swiper.swiperRef = ref)}
-						config={swiper.config}>
+					<AwesomeSwiper ref={(ref) => (swiper.swiperRef = ref)} config={swiper.config}>
 						<div className='swiper-wrapper'>
 							{data.carrusel.map(function (item, i) {
 								return (
