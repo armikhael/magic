@@ -12,7 +12,7 @@ import SelectField from '../../../../../components/Form/Select'
 import RadioField from '../../../../../components/Form/Radio'
 import TextAreaField from '../../../../../components/Form/TextArea'
 
-import { serviceGetData, serviceUpdateData } from './services'
+import { serviceGetData, serviceUpdateData, serviceGetOptions } from './services'
 import './style.css'
 
 export default function AccountLinks(props) {
@@ -23,13 +23,23 @@ export default function AccountLinks(props) {
 	const [links, setLinks] = useState([])
 	const [isModify, setIsModify] = useState(false)
 	const [radio, setRadio] = useState('web')
+	const [redSocial, setRedSocial] = useState([])
 	const [textButton, setTextButton] = useState('Agregar enlace')
 
 	const fetchData = async (param) => {
 		const response = await serviceGetData(param)
-		console.log('response', response)
 		response.radio = 'web'
 		setData(response)
+
+		const responseOptions = await serviceGetOptions('red_social')
+		const optionsMap = responseOptions.map((item, key) => {
+			return {
+				name: item.label,
+				value: item.name,
+			}
+		})
+		setRedSocial(optionsMap)
+
 		const newLinks = response.links.map((item, key) => {
 			return {
 				id: key.toString(),
@@ -193,7 +203,7 @@ export default function AccountLinks(props) {
 													componentName={'type'}
 													componentMode={'single'}
 													componentPlaceholder={'Seleccione una opción'}
-													componentOptions={[...CONSTANTS.LINK_SOCIAL]}
+													componentOptions={[...redSocial]}
 													componentRules={'rulesSelect'}
 												/>
 											</>

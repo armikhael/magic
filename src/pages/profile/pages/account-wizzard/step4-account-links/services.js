@@ -36,4 +36,23 @@ const serviceUpdateData = async (body) => {
 	return returnResponse
 }
 
-export { serviceGetData, serviceUpdateData }
+const serviceGetOptions = async (item) => {
+	console.log(item)
+	let returnResponse
+	await axios({
+		method: 'GET',
+		url: `${process.env.REACT_APP_HOST}/common/select-options`,
+		params: {
+			type: item,
+		},
+	})
+		.then((response) => {
+			returnResponse = response.data.data
+		})
+		.catch((error) => {
+			returnResponse = error.response.data
+		})
+	return returnResponse
+}
+
+export { serviceGetData, serviceUpdateData, serviceGetOptions }
