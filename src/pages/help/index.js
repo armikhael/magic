@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import renderHTML from 'react-render-html'
 import { Link } from 'react-router-dom'
-import { Layout, Row, Col, notification, Button } from 'antd'
+import { Layout, Row, Col, notification } from 'antd'
 import InstagramEmbed from 'react-instagram-embed'
 import Vimeo from '@u-wave/react-vimeo'
 
@@ -20,7 +20,7 @@ export default function Help(props) {
 	const [data, setData] = useState()
 	const [isLoading, setLoading] = useState(true)
 	const [isError, setError] = useState(false)
-	const [phone] = useState('56979582051')
+
 	useEffect(() => {
 		console.log(props)
 		serviceEventGoogleAnalytics({

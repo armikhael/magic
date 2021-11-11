@@ -67,7 +67,7 @@ export default function Pricing(props) {
 	}, [props])
 
 	const price300 = 5
-	const price500 = 25
+	const price500 = 20
 	const price1000 = 35
 	const [plan300, setPlan300] = useState(price300)
 	const [plan500, setPlan500] = useState(price500)
@@ -91,11 +91,6 @@ export default function Pricing(props) {
 		{
 			name: 'Soles Peruanos',
 			value: 'PEN',
-		},
-		{
-			name: 'Pesos Argentinos',
-			value: 'ARS',
-			bank: 'Santander',
 		},
 		{
 			name: 'Pesos Mexicanos',
@@ -207,7 +202,7 @@ export default function Pricing(props) {
 						<Col xs={20} sm={20} md={6} className='center'>
 							<Form>
 								<SelectField
-									componentClass={'cv-auth-login-field-input'}
+									componentClass={'cv-global-select-field-input'}
 									componentLabel={'¿En qué moneda deseas hacer el pago?'}
 									componentName={'currency'}
 									componentMode={'single'}
