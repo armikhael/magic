@@ -1,0 +1,467 @@
+/** @format */
+.cv-detail-img-main {
+	width: 100%;
+}
+
+.cv-detail-content-mobil {
+	position: relative;
+}
+
+.cv-detail-whatsapp-icon-mobil {
+	position: absolute;
+	bottom: 63px;
+	right: 24px;
+	font-size: 18px;
+	z-index: 1;
+	border: 1px solid #f61073;
+	padding: 2px 10px;
+	border-radius: 8px;
+	color: #fff;
+	background-color: #f61073;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.cv-detail-whatsapp-icon-mobil span {
+	font-size: 15px;
+}
+
+.cv-detail-content-accoun-mobil {
+	padding: 0px 15px;
+}
+
+.cv-detail-hr {
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0 0 0 / 11%), rgba(0, 0, 0, 0));
+}
+
+.cv-detail-content-accoun {
+	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
+	background-color: #fff;
+	border-radius: 0 0 0 50px;
+	border-radius: 12px;
+	margin: 20px;
+	padding: 20px;
+}
+
+.cv-detail-content-accoun-p {
+	margin-bottom: 0px;
+}
+
+.cv-detail-whatsapp-icon {
+	position: absolute;
+	right: 20px;
+	font-size: 18px;
+	top: 0px;
+	z-index: 1;
+	border: 1px solid #f61073;
+	padding: 2px 10px;
+	border-radius: 8px;
+	color: #fff;
+	background-color: #f61073;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.cv-detail-whatsapp-icon:hover {
+	color: #fff;
+}
+
+.cv-detail-whatsapp-icon span {
+	font-size: 15px;
+}
+
+.cv-detail-whatsapp-icon-i {
+	color: #fff;
+}
+
+.cv-detail-content-account-detail {
+	padding: 0 50px;
+	position: relative;
+}
+
+.cv-detail-account-vlc-content {
+	position: absolute;
+	right: 0;
+	width: 130px;
+}
+
+.cv-detail-account-vlc-content-top {
+	top: 0;
+}
+
+.cv-detail-account-vlc-content-bottom {
+	bottom: 0;
+}
+
+.cv-detail-account-vlc-content-mobil {
+	width: 130px;
+	margin-top: 10px;
+	margin: 0 auto;
+}
+
+.cv-detail-account-vlc-title {
+	font-weight: 700;
+}
+
+.cv-detail-account-vlc-title-sub {
+	font-weight: 500;
+	color: #8e8e8e;
+}
+
+.cv-detail-account-vlc-title-sub span {
+	font-size: 9px;
+	font-weight: 100;
+}
+
+.cv-detail-img-content-account-verified {
+	width: 45px;
+	margin-top: -7px;
+	margin-left: 10px;
+}
+
+.cv-detail-title-main {
+	font-weight: 00;
+	color: #53565d;
+	line-height: 50px;
+	text-decoration: none;
+	font-size: 40px;
+	margin-top: 30px;
+	text-transform: uppercase;
+}
+
+.cv-detail-sub-title {
+	font-size: 14px;
+	color: #7d7d7d;
+	font-weight: 400;
+	margin-top: 10px;
+}
+
+.cv-detail-account-category-title {
+	padding: 4px 15px;
+	background-color: #200159;
+	font-size: 11px;
+	line-height: 14px;
+	color: #fff;
+	border-radius: 4px;
+	font-weight: 600;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.cv-detail-account-img-main-contnet {
+	margin-top: 20px;
+	overflow: hidden;
+	border-radius: 12px;
+	position: relative;
+}
+
+.cv-detail-account-img-main {
+	width: 100%;
+	border-radius: 12px;
+	margin-top: 15px;
+	-webkit-transition: all 0.6s ease;
+	transition: all 0.6s ease;
+	z-index: 1;
+	margin-bottom: 15px;
+	border-radius: 10px;
+}
+
+.cv-detail-account-content-info {
+	padding: 10px 40px;
+	margin-top: 0px;
+}
+
+.cv-detail-account-content-info-country {
+	color: #5d5d5d;
+	font-size: 20px;
+	text-transform: capitalize;
+}
+
+.cv-detail-account-content-info-account {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.cv-detail-account-content-info-account h3 {
+	margin-left: 10px;
+	font-size: 14px;
+	color: #f61073;
+	font-weight: 600;
+	margin-top: 3px;
+}
+
+.cv-detail-account-content-info-email {
+	font-size: 15px;
+	color: #444;
+	font-style: italic;
+}
+
+.cv-detail-followers {
+	color: #f61073;
+	font-weight: 500;
+}
+
+.cv-detail-account-descript {
+	color: #5c5c5c;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 26px;
+	margin-top: 20px;
+}
+
+.cv-detail-category-tag {
+	font-size: 14px;
+	color: #5c5c5c;
+	font-weight: 400;
+	font-style: italic;
+	float: left;
+}
+
+.cv-detail-category-tag:hover {
+	color: #200159;
+	font-weight: 500;
+}
+
+.cv-detail-accounts-relations-conente {
+	padding: 0 20px;
+}
+
+.cv-detail-contente-user-create {
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	background-color: #fff;
+	border-radius: 12px;
+	margin: 20px;
+	padding: 20px;
+}
+
+.cv-detail-user-create-title {
+	color: #2c2d2f;
+	font-size: 17px;
+}
+
+.cv-detail-content-plans {
+	box-shadow: 0px 7px 14px 0px rgba(151, 160, 204, 0.12);
+	background-color: #fff;
+	border-radius: 12px;
+	margin-bottom: 20px;
+	min-height: 50vh;
+	height: auto;
+}
+
+.cv-detail-content-plans-main {
+	padding: 20px 30px;
+}
+
+.cv-detail-plans-content-images {
+	text-align: center;
+}
+
+.cv-detail-plans-content-images img {
+	border-radius: 4px;
+}
+
+.cv-detail-plans-images {
+	width: 100%;
+	max-width: 100%;
+}
+
+.cv-detail-inter-canj-content {
+	font-size: 13px;
+	margin-top: 20px;
+	background: #ffffff;
+	text-align: center;
+	padding: 8px 5px;
+	border-radius: 7px;
+	border: 1px solid #f61073;
+}
+.ant-popover {
+	width: 60%;
+}
+
+.cv-detail-inter-canj-content > a {
+	color: #f61073;
+	font-weight: 900;
+}
+
+.cv-detail-plans-title {
+	margin-top: 30px;
+	color: #2c2d2f;
+	font-size: 17px;
+	font-weight: 400;
+}
+
+.cv-detail-plans-hr {
+	border: 1px solid #200159;
+	display: block;
+	height: 5px;
+	width: 25px;
+	border-radius: 2px;
+	background-color: #200159;
+	margin-bottom: 20px;
+}
+
+.cv-detail-plans-content-plan {
+	margin-bottom: 20px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.cv-detail-plans-images-plan {
+	width: 48px;
+	height: auto;
+	border-radius: 6px;
+	float: left;
+	margin-right: 10px;
+}
+
+.cv-detail-plans-title-plan-title {
+	margin-bottom: 5px;
+	color: #3a3a3a;
+	font-size: 16px;
+}
+
+.cv-detail-plans-title-plan-title-price {
+	margin-top: 5px;
+	color: #888888;
+}
+
+.cv-detail-plans-list {
+	cursor: pointer;
+}
+
+.cv-detail-plans-list .ant-list-item-meta-avatar {
+	margin-top: 16px;
+}
+
+.cv-account-detail-content {
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	margin-bottom: 20px;
+	padding: 20px;
+	background: #fff;
+	border-radius: 12px;
+}
+
+.cv-account-detail-content img {
+	border-radius: 4px;
+}
+
+.cv-detail-accounts-user-email-xs {
+	display: none;
+}
+
+.cv-detail-accounts-user-publicidad {
+	padding: 10px;
+	background: #fff;
+	box-shadow: 0px 7px 14px 0px rgb(151 160 204 / 12%);
+	border-radius: 12px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.cv-detail-account-content-info-detail {
+	font-weight: 300;
+}
+
+@media (max-width: 768px) {
+	.cv-detail-content-accoun {
+		margin: 10px;
+		padding: 10px;
+		margin-top: -80px;
+	}
+	.cv-detail-whatsapp-icon {
+		right: 0px;
+		top: 0px;
+		position: relative;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		display: none;
+	}
+	.cv-detail-content-account-detail {
+		padding: 0 10px;
+		font-size: 16px;
+	}
+	.cv-detail-account-category-title {
+		float: right;
+		margin-top: -40px;
+		margin-right: -5px;
+	}
+	.cv-detail-title-main {
+		font-size: 17px;
+		text-align: left;
+		margin-top: 20px;
+		margin-bottom: 0;
+		line-height: 30px;
+	}
+	.cv-detail-moment-title-mobil {
+		font-size: 13px;
+	}
+	.cv-detail-img-content-account-verified {
+		width: 20px;
+	}
+	.cv-detail-plans-content-images {
+		display: none;
+	}
+	.cv-detail-sub-title {
+		text-align: center;
+	}
+	.cv-detail-account-img-main {
+		width: 100%;
+	}
+	.cv-detail-account-img-main-content {
+		text-align: center;
+	}
+	.cv-detail-account-content-info {
+		margin-top: 0px;
+		text-align: center;
+	}
+	.cv-detail-account-content-info-detail {
+		font-size: 14px;
+	}
+	.cv-detail-accounts-user-email-md {
+		display: none;
+	}
+	.cv-detail-accounts-user-email-xs {
+		display: block;
+		width: 100%;
+		padding: 0 5px;
+	}
+	.cv-detail-contente-user-create {
+		margin: 10px 5px;
+	}
+	.cv-detail-accounts-user-publicidad {
+		margin: 10px 5px;
+	}
+	.cv-detail-user-create-title {
+		margin-top: 12px;
+	}
+	.cv-detail-content-plans {
+		border-radius: 12px;
+		margin-bottom: 0px;
+		margin: 10px;
+		height: auto;
+	}
+	.cv-detail-content-create-user {
+		margin: 0px 10px;
+	}
+	.cv-detail-plans-list {
+		height: auto;
+	}
+	.cv-account-detail-content {
+		display: none;
+	}
+	.cv-detail-account-content-info-account {
+		margin-top: 3px;
+	}
+	.cv-detail-account-content-info-account img {
+		height: 23px;
+		margin-top: 3px;
+		width: 23px;
+	}
+	.cv-detail-accounts-relations-conente {
+		padding: 0 0px;
+	}
+}

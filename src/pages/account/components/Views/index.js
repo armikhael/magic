@@ -24,13 +24,7 @@ export default function Views(props) {
 	}
 
 	useEffect(() => {
-		if (props.permissions !== undefined) {
-			if (props.permissions.red_social.length > 0) {
-				const resultPermissions = props.permissions.red_social.includes(props.detail.type)
-				console.log('permisos', resultPermissions)
-			}
-		}
-		console.log(props.permissions)
+		console.log('useEffect')
 	}, [props])
 
 	return (
