@@ -53,7 +53,7 @@ const publish = (
 			</Link>
 		</Menu.Item>
 		<Menu.Item>
-			<Link to={`/profile/linktree-name`}>
+			<Link to={`/profile/account-user`}>
 				<div className='cv-header-user-icon-login-content'>
 					<SisternodeOutlined style={{ fontSize: 16 }} />
 					<span className='ml10'>De Negocio</span>

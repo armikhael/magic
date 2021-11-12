@@ -14,9 +14,10 @@ import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsG
 import InterestAccounts from './components/InterestAccounts'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
+import LinkTree from './components/LinkTree'
 import LinksAccount from './components/LinksAccount'
 
-import { serviceAccountDetail, serviceGetPermissions } from './services'
+import { serviceAccountDetail } from './services'
 import './style.css'
 
 const { Content } = Layout
@@ -49,42 +50,36 @@ export default class AccountDetail extends React.Component {
 				ip: ipv4,
 			})
 			console.log('accountDetail', accountDetail)
-			if (accountDetail.statusCode === 409) {
-				this.setState({
-					loading: false,
-					pageError: {
-						statusCode: 404,
-						message: 'Este usuario no existe o no esta habilitado',
-					},
-				})
-				return
-			}
-
-			this.setState({
-				image: accountDetail.account[0].image,
-				image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
-				detail: accountDetail.account[0],
-				relations: accountDetail.relations,
-				asociation: accountDetail.asociation,
-				views: accountDetail.statitics_view,
-				totalView: accountDetail.total_week_view,
-				promotions: accountDetail.promotions,
-			})
-
-			if (localStorage.getItem('user')) {
-				const userProfile = JSON.parse(localStorage.getItem('user'))
-				console.log(userProfile.email)
-				if (userProfile.email !== undefined) {
-					const permissions = await serviceGetPermissions(userProfile.email)
-					console.log('permissions', permissions)
+			this.setState({ detail: accountDetail.account[0] })
+			if (accountDetail.account[0].type_account === 'personal') {
+				if (accountDetail.statusCode === 409) {
 					this.setState({
-						permissions: permissions,
+						loading: false,
+						pageError: {
+							statusCode: 404,
+							message: 'Este usuario no existe o no esta habilitado',
+						},
 					})
 				}
+
+				this.setState({
+					image: accountDetail.account[0].image,
+					image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
+					detail: accountDetail.account[0],
+					relations: accountDetail.relations,
+					asociation: accountDetail.asociation,
+					views: accountDetail.statitics_view,
+					totalView: accountDetail.total_week_view,
+					promotions: accountDetail.promotions,
+					loading: false,
+				})
+			} else {
+				console.log('linktree', accountDetail.account[0])
+				this.setState({
+					loading: false,
+					links: accountDetail.account[0],
+				})
 			}
-			this.setState({
-				loading: false,
-			})
 		} catch (e) {
 			console.log(e)
 			notification['error']({
@@ -110,7 +105,7 @@ export default class AccountDetail extends React.Component {
 		}
 		return (
 			<>
-				{this.state.detail !== null && (
+				{this.state.detail.type_account === 'personal' && (
 					<Content className='cv-container-main'>
 						<div className='cv-detail-content-mobil cv-xs'>
 							<img
@@ -404,6 +399,8 @@ export default class AccountDetail extends React.Component {
 						</Row>
 					</Content>
 				)}
+
+				{this.state.detail.type_account === 'business' && <LinkTree componentData={this.state.links} />}
 			</>
 		)
 	}

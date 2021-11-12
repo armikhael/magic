@@ -50,19 +50,13 @@ const LinkTree = (props) => {
 			</Helmet>
 
 			<div className='cv-linktree-content'>
-				<img
-					className='cv-linktree-img'
-					src={props.componentData.image}
-					alt={props.componentData.account}
-					title={props.componentData.account}
-				/>
-				<h1 className='cv-linktree-title'>{props.componentData.account}</h1>
-				<p className='cv-linktree-description'>{props.componentData.description}</p>
+				<img className='cv-linktree-img' src={props.componentData.image} alt={props.componentData.name} />
+				<p className='cv-linktree-description'>{props.componentData.biography}</p>
 				<br></br>
 				<div>
 					{props.componentData.links.map((item, key) => {
 						return (
-							<a href={item.url} target='_blank' key={key} rel='noopener noreferrer'>
+							<a href={item.url} target='_blank' key={`${key}`} rel='noopener noreferrer'>
 								<div className='cv-linktree-link' style={{ background: link, borderColor: link }}>
 									<LinkOutlined className='cv-linktree-link-icon' style={{ color: icon }} />
 									<span style={{ color: text }}>{item.title}</span>

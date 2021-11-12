@@ -69,11 +69,8 @@ const DrawerLinktree = () => {
 					<div className='cv-account-linktree-drawer-titles-contens'>
 						<br />
 						<h3 className='cv-account-linktree-drawer-title'>
-							Te Ayudamos a{' '}
-							<span className='cv-account-linktree-drawer-title-color'>
-								crecer
-							</span>{' '}
-							en tu cuenta{' '}
+							Te Ayudamos a <span className='cv-account-linktree-drawer-title-color'>crecer</span> en tu
+							cuenta{' '}
 						</h3>
 						<span className='cv-account-linktree-drawer-sub-title'>
 							Ten más seguidores, más interacción, más ventas...
@@ -90,12 +87,13 @@ const DrawerLinktree = () => {
 								'https://api.whatsapp.com/send?phone=573106044125&text=Hola,%20vi%20un%20anuncio%20en%20@cuentasvirales%20y%20quisiera%20informaci%C3%B3n%20de%20la%20master%20class'
 							)
 						}}>
-						{data.map((item) => {
+						{data.map((item, key) => {
 							return (
 								<Col
 									xs={24}
 									sm={24}
 									md={8}
+									key={key}
 									onClick={() => {
 										serviceEventGoogleAnalytics({
 											action: 'click-linktree',
@@ -114,11 +112,7 @@ const DrawerLinktree = () => {
 												alt='Información'
 											/>
 										</Col>
-										<Col
-											xs={17}
-											sm={17}
-											md={17}
-											className='cv-account-linktree-content-card-two'>
+										<Col xs={17} sm={17} md={17} className='cv-account-linktree-content-card-two'>
 											<h3>{item.text}</h3>
 											<p>{item.description}</p>
 											<div>

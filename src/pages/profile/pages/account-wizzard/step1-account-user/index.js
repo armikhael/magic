@@ -23,7 +23,6 @@ export default function AccountUser(props) {
 	const [imageProfile, setImageProfile] = useState(undefined)
 	const [imageCover, setImageCover] = useState(undefined)
 	const [name, setName] = useState()
-	const [type, setType] = useState()
 	const [typeAccount, setTypeAccount] = useState()
 	const [textImage, setTextImage] = useState('Imagen de Pefil')
 
@@ -114,7 +113,6 @@ export default function AccountUser(props) {
 											componentPlaceholder={'Seleccione una opción'}
 											componentOptions={redSocial}
 											componentRules={'rulesSelect'}
-											componentOnChange={(e) => setType(e)}
 										/>
 									)}
 
@@ -143,7 +141,7 @@ export default function AccountUser(props) {
 										<>
 											<UploadImagesAlt
 												title={textImage}
-												componentName={`${name}-${type}`}
+												componentName={`${name}-${Date.now()}`}
 												componentHandle={(e) => {
 													setImageProfile(e)
 												}}
@@ -152,7 +150,7 @@ export default function AccountUser(props) {
 											{typeAccount === 'personal' && (
 												<UploadImagesAlt
 													title={'Imagen de Portada'}
-													componentName={`${name}-${type}-cover`}
+													componentName={`${name}-${Date.now()}-cover`}
 													componentHandle={(e) => {
 														setImageCover(e)
 													}}

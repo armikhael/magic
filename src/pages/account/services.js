@@ -43,34 +43,4 @@ const serviceGetPromotions = async (item) => {
 	return returnResponse
 }
 
-const serviceGetLinks = async (item) => {
-	let returnResponse
-	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/link/${item}`,
-	})
-		.then((response) => {
-			returnResponse = response.data.data
-		})
-		.catch((e) => {
-			returnResponse = e.response.data
-		})
-	return returnResponse
-}
-
-const serviceGetPermissions = async (item) => {
-	let returnResponse
-	await axios({
-		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/account/permissions/${item}`,
-	})
-		.then((response) => {
-			returnResponse = response.data.data
-		})
-		.catch((e) => {
-			returnResponse = e.response.data
-		})
-	return returnResponse
-}
-
-export { serviceAccountDetail, serviceGetPromotions, serviceGetLinks, serviceGetPermissions }
+export { serviceAccountDetail, serviceGetPromotions }
