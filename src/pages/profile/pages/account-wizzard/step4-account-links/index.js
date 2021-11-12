@@ -164,7 +164,7 @@ export default function AccountLinks(props) {
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card'
-								title='Agrega tus otras redes sociales (4/4)'
+								title='Agrega tus redes sociales (4/4)'
 								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleAddElement}>
 									<div className='ph-auth-login-form-container'>

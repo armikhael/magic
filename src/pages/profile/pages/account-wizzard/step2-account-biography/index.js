@@ -5,12 +5,10 @@ import { useHistory } from 'react-router-dom'
 
 import { Form, Button, notification, Col, Card, Row } from 'antd'
 
-import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
 import TextAreaField from '../../../../../components/Form/TextArea'
 import { serviceGetCountry } from '../../../../../components/ServiceCommons/GetCountry'
-import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
 
 import UploadImage from '../../../components/UploadImage'
 import UploadCover from '../../../components/UploadCover'
@@ -24,7 +22,6 @@ const AccountBiography = (props) => {
 	const [isEdit, setEdit] = useState(false)
 	const [categories, setCategories] = useState([])
 	const [countries, setCountries] = useState([])
-	const [redSocial, setRedSocial] = useState([])
 	const [listCountry, setListCountry] = useState([])
 	const [code, setCode] = useState()
 	const [isModify, setIsModify] = useState(false)
@@ -36,31 +33,11 @@ const AccountBiography = (props) => {
 		const response = await serviceGetData(param)
 		console.log(response)
 		setData(response)
-
-		const responseRedSocial = await serviceGetRedSocial()
-		const filterRedSocial = responseRedSocial.filter((iterator) => {
-			return iterator.name === response.type
-		})
-		const mapRedSocial = filterRedSocial.map((iterator) => {
-			return {
-				name: iterator.label,
-				value: iterator.name,
-			}
-		})
-		setRedSocial([...mapRedSocial])
 		setCode(response.code)
 		setImageProfile(response.image)
 		setImageCover(response.image_cover)
 		setEdit(true)
-	}
-
-	useEffect(() => {
-		if (props.match.params.modify) {
-			setIsModify(true)
-			setButtonText('Actualizar')
-		}
-		fetchData(props.match.params.name)
-		serviceGetCategories().then((data) => {
+		serviceGetCategories(response.type_account).then((data) => {
 			let result = data.map((item) => {
 				return {
 					value: item.name,
@@ -69,7 +46,14 @@ const AccountBiography = (props) => {
 			})
 			setCategories([...result])
 		})
+	}
 
+	useEffect(() => {
+		if (props.match.params.modify) {
+			setIsModify(true)
+			setButtonText('Actualizar')
+		}
+		fetchData(props.match.params.name)
 		serviceGetCountry().then((data) => {
 			setListCountry(data)
 			let result = data.map((item) => {
@@ -80,8 +64,6 @@ const AccountBiography = (props) => {
 			})
 			setCountries([...result])
 		})
-
-		setRedSocial([...CONSTANTS.RED_SOCIAL])
 		console.log('useEffects')
 	}, [props])
 
@@ -158,19 +140,9 @@ const AccountBiography = (props) => {
 				<Row justify='center' className='cv-account-wizzard-global-content'>
 					<Col xs={23} sm={20} xl={12} className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
-							<Card className='cv-account-wizzard-card' title='Datos de tu cuenta (2/4)' bordered={false}>
+							<Card className='cv-account-wizzard-card' title='Agrega tus datos (2/4)' bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>
-										<SelectField
-											componentClass={'cv-global-select-field-input'}
-											componentLabel={'Red Social'}
-											componentName={'type'}
-											componentMode={'single'}
-											componentPlaceholder={'Seleccione una opción'}
-											componentOptions={redSocial}
-											componentDisabled={isEdit}
-											componentRules={'rulesSelect'}
-										/>
 										<InputField
 											componentClass={'cv-auth-login-field-input'}
 											componentName={'account'}
@@ -187,7 +159,7 @@ const AccountBiography = (props) => {
 											componentLabel={'Cantidad de Seguidores'}
 											componentPlaceholder={'Seguidores'}
 											componentType={'text'}
-											componentRules={'rulesFollowers'}
+											componentRules={'required'}
 											componentValue={data.followers}
 										/>
 										<TextAreaField
@@ -256,26 +228,28 @@ const AccountBiography = (props) => {
 											</div>
 										</Col>
 									</Row>
-									<Row className='cv-account-wizzard-upload-image-container'>
-										<Col xs={10} sm={10} md={8}>
-											<UploadCover account={data} componentHandle={handleSetImageCover} />
-										</Col>
-										<Col xs={14} sm={14} md={16}>
-											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
-												<div>
-													<h3 className='cv-account-wizzard-upload-image-mobile-title'>
-														Imagen de Portada
-													</h3>
-													<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
-														Click en el recuadro
-													</h3>
-													<h3 className='cv-account-wizzard-upload-image-mobile-description'>
-														(obligatoria)
-													</h3>
+									{data.type_account === 'personal' && (
+										<Row className='cv-account-wizzard-upload-image-container'>
+											<Col xs={10} sm={10} md={8}>
+												<UploadCover account={data} componentHandle={handleSetImageCover} />
+											</Col>
+											<Col xs={14} sm={14} md={16}>
+												<div className='cv-account-wizzard-upload-image-mobile-title-container'>
+													<div>
+														<h3 className='cv-account-wizzard-upload-image-mobile-title'>
+															Imagen de Portada
+														</h3>
+														<h3 className='cv-account-wizzard-upload-image-mobile-subtitle'>
+															Click en el recuadro
+														</h3>
+														<h3 className='cv-account-wizzard-upload-image-mobile-description'>
+															(obligatoria)
+														</h3>
+													</div>
 												</div>
-											</div>
-										</Col>
-									</Row>
+											</Col>
+										</Row>
+									)}
 									<Form.Item className='cv-right'>
 										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
 											{buttonText}

@@ -49,8 +49,8 @@ export const CONSTANTS = {
 	},
 	CURRENCY: ['Dólares', 'Pesos Colombianos', 'Pesos Chilenos', 'Pesos Argentinos', 'Pesos Cubanos', 'Soles Peruanos'],
 	TYPE_ACCOUNT: [
-		{ name: 'Influencer / Creador de Contenido', value: 'personal' },
-		{ name: 'Negocio / Emprendimiento', value: 'bussiness' },
+		{ name: 'Soy Influencer / Creador de Contenido', value: 'personal' },
+		{ name: 'Tengo un Negocio / Emprendimiento', value: 'business' },
 	],
 	BOOLEAN: [
 		{ name: 'No', value: false },

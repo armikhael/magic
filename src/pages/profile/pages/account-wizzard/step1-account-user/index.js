@@ -8,6 +8,7 @@ import InputField from '../../../../../components/Form/Input'
 import SelectField from '../../../../../components/Form/Select'
 import UploadImagesAlt from '../../../../../components/UploadImagesAlt'
 import { serviceGetRedSocial } from '../../../../../components/ServiceCommons/GetRedSocial'
+import { CONSTANTS } from '../../../../../components/ServiceCommons/Constant'
 
 import { serviceCreateData } from './services'
 import insterfaceForm from './interface'
@@ -23,7 +24,8 @@ export default function AccountUser(props) {
 	const [imageCover, setImageCover] = useState(undefined)
 	const [name, setName] = useState()
 	const [type, setType] = useState()
-	const [followers, setFollowers] = useState()
+	const [typeAccount, setTypeAccount] = useState()
+	const [textImage, setTextImage] = useState('Imagen de Pefil')
 
 	useEffect(() => {
 		serviceGetRedSocial().then((response) => {
@@ -41,6 +43,17 @@ export default function AccountUser(props) {
 		console.log('useEffects')
 	}, [props])
 
+	const handleChangeImage = (e) => {
+		setTypeAccount(e)
+		if (e === 'personal') {
+			setTextImage('Imagen de Perfil')
+			setImageCover(undefined)
+		} else {
+			setTextImage('Su Logo')
+			setImageCover(process.env.REACT_APP_LOGO)
+		}
+	}
+
 	const handleOnFinish = (item) => {
 		console.log('imageProfile', imageProfile)
 		console.log('imageCover', imageCover)
@@ -53,11 +66,12 @@ export default function AccountUser(props) {
 		}
 
 		item.email = user.email
-		item.name = `${item.account}-${item.type}`
+		item.name = item.type !== undefined ? `${item.account}-${item.type}` : item.account
 		item.image = imageProfile
 		item.image_thumb = imageProfile
 		item.image_cover = imageCover
 		console.log(item)
+
 		serviceCreateData(item).then((response) => {
 			console.log(response)
 			if (response.statusCode === 200) {
@@ -78,21 +92,31 @@ export default function AccountUser(props) {
 				<Row justify='center' className='cv-account-wizzard-global-content'>
 					<Col xs={23} sm={20} xl={10} className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
-							<Card
-								className='cv-account-wizzard-card'
-								title='Creación de tu enlace personal (1/4)'
-								bordered={false}>
+							<Card className='cv-account-wizzard-card' title='Reserva tu nombre (1/4)' bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<SelectField
 										componentClass={'cv-global-select-field-input'}
-										componentLabel={'Red Social'}
-										componentName={'type'}
+										componentLabel={'¿A qué te dedicas?'}
+										componentName={'type_account'}
 										componentMode={'single'}
 										componentPlaceholder={'Seleccione una opción'}
-										componentOptions={redSocial}
+										componentOptions={[...CONSTANTS.TYPE_ACCOUNT]}
 										componentRules={'rulesSelect'}
-										componentOnChange={(e) => setType(e)}
+										componentOnChange={handleChangeImage}
 									/>
+
+									{typeAccount === 'personal' && (
+										<SelectField
+											componentClass={'cv-global-select-field-input'}
+											componentLabel={'Red Social'}
+											componentName={'type'}
+											componentMode={'single'}
+											componentPlaceholder={'Seleccione una opción'}
+											componentOptions={redSocial}
+											componentRules={'rulesSelect'}
+											componentOnChange={(e) => setType(e)}
+										/>
+									)}
 
 									<InputField
 										componentClass={'cv-auth-login-field-input'}
@@ -111,28 +135,29 @@ export default function AccountUser(props) {
 										componentLabel={'Cantidad de Seguidores'}
 										componentPlaceholder={'Seguidores'}
 										componentType={'text'}
-										componentRules={'rulesFollowers'}
+										componentRules={'required'}
 										componentValue={data.followers}
-										componentOnChange={(e) => setFollowers(e.target.value)}
 									/>
 
-									{name !== undefined && type !== undefined && followers >= 200 && (
+									{typeAccount !== undefined && (
 										<>
 											<UploadImagesAlt
-												title={'Imagen de Pefil'}
+												title={textImage}
 												componentName={`${name}-${type}`}
 												componentHandle={(e) => {
 													setImageProfile(e)
 												}}
 											/>
 
-											<UploadImagesAlt
-												title={'Imagen de Portada'}
-												componentName={`${name}-${type}-cover`}
-												componentHandle={(e) => {
-													setImageCover(e)
-												}}
-											/>
+											{typeAccount === 'personal' && (
+												<UploadImagesAlt
+													title={'Imagen de Portada'}
+													componentName={`${name}-${type}-cover`}
+													componentHandle={(e) => {
+														setImageCover(e)
+													}}
+												/>
+											)}
 
 											<a href='https://www.instagram.com/cuentasvirales/'>
 												¿Problemas para cargar tus imágenes?

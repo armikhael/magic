@@ -47,7 +47,7 @@ const authLoginServices = async (item, redirect) => {
 					description: `Ahora registra tus cuentas de redes sociales`,
 				})
 				setTimeout(() => {
-					redirect.history.push('/profile')
+					redirect.history.push('/profile/accounts')
 				}, 1000)
 			} else {
 				notification['warning']({

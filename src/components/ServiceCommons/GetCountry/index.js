@@ -1,10 +1,12 @@
+/** @format */
+
 import axios from 'axios'
 
 const serviceGetCountry = async () => {
 	let returnResponse
 	await axios({
 		method: 'GET',
-		url: `${process.env.REACT_APP_HOST}/country`,
+		url: `${process.env.REACT_APP_HOST}/common/country`,
 	})
 		.then((response) => {
 			returnResponse = response.data.data

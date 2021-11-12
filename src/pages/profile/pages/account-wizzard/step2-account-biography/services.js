@@ -34,20 +34,22 @@ const serviceUpdateData = async (body) => {
 	return returnResponse
 }
 
-const serviceGetCategories = async () => {
+const serviceGetCategories = async (item) => {
+	console.log('serviceGetCategories', item)
 	let returnResponse
 	await axios({
 		method: 'POST',
 		url: `${process.env.REACT_APP_HOST}/category/search`,
 		data: {
 			query: {
-				type: 'personal',
+				type: item,
 			},
-			sort: { name: -1 },
+			sort: { name: 1 },
 			page: 1,
 		},
 	})
 		.then((response) => {
+			console.log('response', response.data)
 			returnResponse = response.data.data
 		})
 		.catch((error) => {

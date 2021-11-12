@@ -17,7 +17,7 @@ export default function Company() {
 	const history = useHistory()
 	const handleClickEnlace = () => {
 		if (localStorage.getItem('user')) {
-			history.push('profile/linktree-name')
+			history.push('profile/account-user')
 			serviceEventGoogleAnalytics({
 				category: 'homee',
 				action: 'click-enlace-negocio',
@@ -84,14 +84,10 @@ export default function Company() {
 						</Col>
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
-								<span className='cv-models-firts-title-900'>
-									Mejora la gestión
-								</span>{' '}
-								de tu empresa y de tus clientes en un sólo lugar,{' '}
-								<span className='cv-models-firts-title-900'>
-									administrando los enlaces
-								</span>{' '}
-								de todas tus redes sociales y páginas webs en un mismo sitio
+								<span className='cv-models-firts-title-900'>Mejora la gestión</span> de tu empresa y de
+								tus clientes en un sólo lugar,{' '}
+								<span className='cv-models-firts-title-900'>administrando los enlaces</span> de todas
+								tus redes sociales y páginas webs en un mismo sitio
 							</h3>
 							<br />
 							<Button
@@ -106,14 +102,11 @@ export default function Company() {
 					</Row>
 					<div className='cv-models-title-two cv-company-title-two'>
 						<h3>
-							¿Por qué registrarme como{' '}
-							<span className='cv-models-firts-title-900'>Negocio </span>?
+							¿Por qué registrarme como <span className='cv-models-firts-title-900'>Negocio </span>?
 						</h3>
 						<p>Aquí te dejamos algunos de los beneficios más importantes</p>
 					</div>
-					<AwesomeSwiper
-						ref={(ref) => (swiper.swiperRef = ref)}
-						config={swiper.config}>
+					<AwesomeSwiper ref={(ref) => (swiper.swiperRef = ref)} config={swiper.config}>
 						<div className='swiper-wrapper'>
 							{data.carrusel.map(function (item, i) {
 								return (

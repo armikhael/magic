@@ -10,15 +10,13 @@ import publicIp from 'public-ip'
 import Loading from '../../components/Loading/Loading'
 import PageError from '../../components/Errors/PageError'
 import serviceEventGoogleAnalytics from '../../components/ServiceCommons/EventsGoogleAnalitycs'
-import { CONSTANTS } from '../../components/ServiceCommons/Constant'
 
 import InterestAccounts from './components/InterestAccounts'
 import AccountsRelations from './components/AccountsRelations'
 import Views from './components/Views'
-import LinkTree from './components/LinkTree'
 import LinksAccount from './components/LinksAccount'
 
-import { serviceAccountDetail, serviceGetLinks, serviceGetPermissions } from './services'
+import { serviceAccountDetail, serviceGetPermissions } from './services'
 import './style.css'
 
 const { Content } = Layout
@@ -45,74 +43,48 @@ export default class AccountDetail extends React.Component {
 			label: this.props.match.params.name,
 		})
 		try {
-			const includeName = CONSTANTS.SLUG_ADMITED.find((item) => {
-				return this.props.match.params.name.includes(item)
+			const ipv4 = await publicIp.v4()
+			const accountDetail = await serviceAccountDetail({
+				name: this.props.match.params.name,
+				ip: ipv4,
 			})
-			if (includeName !== undefined) {
-				const ipv4 = await publicIp.v4()
-				const accountDetail = await serviceAccountDetail({
-					name: this.props.match.params.name,
-					ip: ipv4,
-				})
-				console.log('accountDetail', accountDetail)
-				if (accountDetail.statusCode === 409) {
-					this.setState({
-						loading: false,
-						pageError: {
-							statusCode: 404,
-							message: 'Este usuario no existe o no esta habilitado',
-						},
-					})
-					return
-				}
-				if (accountDetail.account[0].representation === true) {
-					this.setState({
-						representation: true,
-						textContact: 'Publicidad y Canjes',
-					})
-				}
-
-				this.setState({
-					image: accountDetail.account[0].image,
-					image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
-					detail: accountDetail.account[0],
-					relations: accountDetail.relations,
-					asociation: accountDetail.asociation,
-					views: accountDetail.statitics_view,
-					totalView: accountDetail.total_week_view,
-					promotions: accountDetail.promotions,
-				})
-
-				if (localStorage.getItem('user')) {
-					const userProfile = JSON.parse(localStorage.getItem('user'))
-					console.log(userProfile.email)
-					if (userProfile.email !== undefined) {
-						const permissions = await serviceGetPermissions(userProfile.email)
-						console.log('permissions', permissions)
-						this.setState({
-							permissions: permissions,
-						})
-					}
-				}
+			console.log('accountDetail', accountDetail)
+			if (accountDetail.statusCode === 409) {
 				this.setState({
 					loading: false,
+					pageError: {
+						statusCode: 404,
+						message: 'Este usuario no existe o no esta habilitado',
+					},
 				})
-			} else {
-				serviceGetLinks(this.props.match.params.name).then((response) => {
-					console.log(response)
-					if (response.length > 0) {
-						this.setState({
-							loading: false,
-							links: response[0],
-						})
-					} else {
-						this.setState({
-							loading: false,
-							pageError: { statusCode: 404, message: 'Página no encontrada' },
-						})
-					}
-				})
+				return
 			}
+
+			this.setState({
+				image: accountDetail.account[0].image,
+				image_cover: accountDetail.account[0].image_cover || accountDetail.account[0].image,
+				detail: accountDetail.account[0],
+				relations: accountDetail.relations,
+				asociation: accountDetail.asociation,
+				views: accountDetail.statitics_view,
+				totalView: accountDetail.total_week_view,
+				promotions: accountDetail.promotions,
+			})
+
+			if (localStorage.getItem('user')) {
+				const userProfile = JSON.parse(localStorage.getItem('user'))
+				console.log(userProfile.email)
+				if (userProfile.email !== undefined) {
+					const permissions = await serviceGetPermissions(userProfile.email)
+					console.log('permissions', permissions)
+					this.setState({
+						permissions: permissions,
+					})
+				}
+			}
+			this.setState({
+				loading: false,
+			})
 		} catch (e) {
 			console.log(e)
 			notification['error']({
@@ -432,8 +404,6 @@ export default class AccountDetail extends React.Component {
 						</Row>
 					</Content>
 				)}
-
-				{this.state.links !== null && <LinkTree componentData={this.state.links} />}
 			</>
 		)
 	}
