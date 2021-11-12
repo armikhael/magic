@@ -6,9 +6,6 @@ import { useHistory } from 'react-router-dom'
 import { Layout, Row, Col, Button, Form, Divider, notification } from 'antd'
 
 import InputField from '../../../components/Form/Input'
-import SelectField from '../../../components/Form/Select'
-
-import { CONSTANTS } from '../../../components/ServiceCommons/Constant'
 
 import { serviceAuthSignin } from './services'
 import './style.css'
@@ -39,11 +36,7 @@ const Register = (props) => {
 				)
 
 				setTimeout(() => {
-					if (item.type_account === 'personal') {
-						history.push('/profile/account-user')
-					} else {
-						history.push('/profile/linktree-name')
-					}
+					history.push('/profile/account-user')
 				}, 2000)
 			} else {
 				notification['warning']({
@@ -103,16 +96,6 @@ const Register = (props) => {
 												componentType={'text'}
 												componentValue={''}
 												componentDisabled={false}
-											/>
-											<SelectField
-												componentClass={'cv-global-select-field-input'}
-												componentLabel={'¿Que tipo de cuenta manejas?'}
-												componentName={'type_account'}
-												componentMode={'single'}
-												componentPlaceholder={'Seleccione una opción'}
-												componentOptions={[...CONSTANTS.TYPE_ACCOUNT]}
-												componentRules={'rulesSelect'}
-												componentMaxTagCount={5}
 											/>
 
 											<InputField

@@ -2,25 +2,17 @@
 
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Menu, Dropdown, Badge } from 'antd'
-import {
-	UserOutlined,
-	ExportOutlined,
-	NotificationOutlined,
-	SafetyOutlined,
-	SubnodeOutlined,
-	SisternodeOutlined,
-} from '@ant-design/icons'
+import { Row, Col, Menu, Dropdown } from 'antd'
+import { UserOutlined, ExportOutlined, SafetyOutlined, SubnodeOutlined, SisternodeOutlined } from '@ant-design/icons'
 
 import SideBar from './components/SideBar'
-import Notification from './components/Notification'
 
 import './style.sass'
 
 const menu = (
 	<Menu>
 		<Menu.Item>
-			<Link to={`/profile`}>
+			<Link to={`/profile/accounts`}>
 				<div className='cv-header-user-icon-login-content'>
 					<UserOutlined style={{ fontSize: 16 }} />
 					<span className='ml10'>Mis Enlaces</span>
@@ -87,9 +79,7 @@ export default function User() {
 						<Row align='middle'>
 							<Col span={12}>
 								<Dropdown shape={'circle'} overlay={publish} placement='bottomCenter' arrow>
-									<div
-										className='cv-header-user-icon-login-content'
-										style={{ cursor: 'pointer' }}>
+									<div className='cv-header-user-icon-login-content' style={{ cursor: 'pointer' }}>
 										<img
 											className='cv-heder-user-icon-add-account'
 											src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
@@ -99,19 +89,12 @@ export default function User() {
 									</div>
 								</Dropdown>
 							</Col>
-							<Col span={5}>
-								<Notification />
-							</Col>
 							<Col span={7}>
 								<Dropdown shape={'circle'} overlay={menu} placement='bottomRight' arrow>
 									<div className='cv-header-user-image-container'>
 										<img
 											className='cv-heder-user-image-user'
-											src={
-												isUser.image
-													? isUser.image
-													: 'https://i.postimg.cc/YSQXZWCP/logo.jpg'
-											}
+											src={isUser.image ? isUser.image : 'https://i.postimg.cc/YSQXZWCP/logo.jpg'}
 											alt='Imagen de Usuario'
 										/>
 									</div>
@@ -122,9 +105,6 @@ export default function User() {
 				) : (
 					<Col xs={12} sm={12} md={24}>
 						<Row align='middle'>
-							<Col xs={4} sm={4} md={4}>
-								<Notification />
-							</Col>
 							<Col xs={10} sm={10} md={10}>
 								<Link to={`/auth/login`}>
 									<div className='cv-header-user-icon-init-sesion'>Iniciar sesión</div>
@@ -147,15 +127,7 @@ export default function User() {
 				)}
 			</Row>
 			<Row align='middle' className='cv-header-user-mobil'>
-				<Col xs={6} sm={4} md={4}>
-					<a href='/notifications'>
-						<Badge dot>
-							<NotificationOutlined
-								style={{ fontSize: '20px', color: '#200159', cursor: 'pointer' }}
-							/>
-						</Badge>
-					</a>
-				</Col>
+				<Col xs={6} sm={4} md={4}></Col>
 				<Col xs={18} sm={20} md={20}>
 					<img
 						onClick={() => handleOpenMenu(true)}

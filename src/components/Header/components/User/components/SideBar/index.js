@@ -8,8 +8,6 @@ import {
 	QuestionOutlined,
 	CloseSquareOutlined,
 	UserOutlined,
-	SisternodeOutlined,
-	SubnodeOutlined,
 	SafetyOutlined,
 	ExclamationCircleOutlined,
 } from '@ant-design/icons'
@@ -102,51 +100,23 @@ export default class SideBar extends React.Component {
 				{localStorage.getItem('user') && (
 					<>
 						<div className='cv-header-user-sidebar-list'>
-							<Link to={`/profile`}>
+							<Link to={`/profile/accounts`}>
 								<UserOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
 								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces</span>
 							</Link>
 						</div>
 						<div className='cv-header-user-sidebar-list'>
 							<div className='cv-header-user-icon-login-content'>
-								<img width='19px' src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png' alt='Crear Cuenta' />
-								<span className='cv-header-user-sidebar-list-title'>Crear Enlace</span>
+								<Link to={`/profile/account-user`}>
+									<img
+										width='22px'
+										src='https://i.ibb.co/fqJq9TP/agg-cuenta-1.png'
+										alt='Crear Cuenta'
+									/>
+									<span className='cv-header-user-sidebar-list-title'>Crear Enlace</span>
+								</Link>
 							</div>
 						</div>
-						<div className='cv-header-user-sidebar-list ml10'>
-							<Link to={`/profile/account-user`}>
-								<div className='cv-header-user-icon-login-content'>
-									<SubnodeOutlined
-										className='cv-header-user-sidebar-list-icon'
-										style={{ fontSize: 22 }}
-									/>
-									<span className='cv-header-user-sidebar-list-title'>Personal</span>
-								</div>
-							</Link>
-						</div>
-						<div className='cv-header-user-sidebar-list ml10'>
-							<Link to={`/profile/linktree-name`}>
-								<div className='cv-header-user-icon-login-content'>
-									<SisternodeOutlined
-										className='cv-header-user-sidebar-list-icon'
-										style={{ fontSize: 22 }}
-									/>
-									<span className='cv-header-user-sidebar-list-title'>De Negocio</span>
-								</div>
-							</Link>
-						</div>
-						{/* <div className='cv-header-user-sidebar-list'>
-							<Link to={`/profile/accounts`}>
-								<TeamOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
-								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces Personales</span>
-							</Link>
-						</div>
-						<div className='cv-header-user-sidebar-list'>
-							<Link to={`/profile/linktree`}>
-								<LinkOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
-								<span className='cv-header-user-sidebar-list-title'>Mis Enlaces de Negocio</span>
-							</Link>
-						</div> */}
 						<div className='cv-header-user-sidebar-list'>
 							<Link to={`/profile/change-password`}>
 								<SafetyOutlined className='cv-header-user-sidebar-list-icon' style={{ fontSize: 22 }} />
