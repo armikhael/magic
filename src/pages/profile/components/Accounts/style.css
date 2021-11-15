@@ -134,6 +134,21 @@
 	font-size: 12px;
 }
 
+.cv-profile-account-phone-type-account-content {
+	margin-bottom: 20px;
+}
+
+.cv-profile-account-title-phone-type-account {
+	margin: 20px 0;
+	color: #7e7e7e;
+	font-size: 14px;
+}
+
+.cv-profile-account-img-phone-type-account {
+	width: 250px;
+	max-width: 100%;
+}
+
 @media only screen and (max-width: 600px) {
 	.cv-profile-accounts-button-active-position {
 		position: absolute;

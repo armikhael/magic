@@ -245,6 +245,31 @@ const Accounts = (props) => {
 						title='Cuentas Registradas'
 						subTitle='No tienes ninguna red social registrada, para poder registrar una solo debes hacer click en el siguiente boton o en Menú también encontraras un acceso directo.'
 						extra={[
+							<h3>Recuerdas que tendras dos modalidades de registro</h3>,
+							<Row className='cv-profile-account-phone-type-account-content'>
+								<Col xs={12} sm={12} md={12} xl={12}>
+									<h3 className='cv-profile-account-title-phone-type-account'>
+										Cuentas de Influencer
+									</h3>
+									<img
+										className='cv-profile-account-img-phone-type-account'
+										src='https://i.ibb.co/ngHy2q9/Grupo-46.png'
+										title='Telefonos'
+										alt='Telefonos'
+									/>
+								</Col>
+								<Col xs={12} sm={12} md={12} xl={12}>
+									<h3 className='cv-profile-account-title-phone-type-account'>
+										Cuentas de Negocios
+									</h3>
+									<img
+										className='cv-profile-account-img-phone-type-account'
+										src='https://i.ibb.co/c6FVtS2/Grupo-45.png'
+										title='Telefonos'
+										alt='Telefonos'
+									/>
+								</Col>
+							</Row>,
 							<Button
 								onClick={() => {
 									history.push(`/profile/account-user`)
