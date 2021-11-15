@@ -138,7 +138,7 @@ export default function LinkTreeInfo(props) {
 										}}
 									/>
 
-									<Form.Item className='cv-right'>
+									<Form.Item className='mt25 cv-aling-right'>
 										<Button
 											htmlType={'submit'}
 											className={'cv-account-wizzard-button-submit'}>

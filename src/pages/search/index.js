@@ -65,7 +65,11 @@ const Search = (props) => {
 		setLoading(true)
 		console.log(item.key, sortDictionary[item.key])
 		setOrderBy(sortDictionary[item.key])
-		const response = await serviceGetData({ query: query, page: 1, sort: sortDictionary[item.key] })
+		const response = await serviceGetData({
+			query: query,
+			page: 1,
+			sort: sortDictionary[item.key],
+		})
 		console.log(response)
 		setList([])
 		setList([...response.data])
@@ -80,9 +84,13 @@ const Search = (props) => {
 	}
 	return (
 		<>
-			<Content className='cv-container-main'>
+			<Content className='cv-global-main-container'>
 				<Filters section='Refinando Búsqueda' handleMenuClick={handleMenuClick}></Filters>
-				<InfiniteScroll dataLength={list.length} next={handleList} hasMore={hasMore} loader={<center></center>}>
+				<InfiniteScroll
+					dataLength={list.length}
+					next={handleList}
+					hasMore={hasMore}
+					loader={<center></center>}>
 					<ListMasonry listMasonry={list} />
 				</InfiniteScroll>
 			</Content>

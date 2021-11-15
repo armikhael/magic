@@ -50,10 +50,12 @@ const Register = (props) => {
 	return (
 		<>
 			<div className='cv-login-content'>
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<Row className='cv-login-conteent-row' align='middle'>
 						<Col xs={24} sm={24} md={12}>
-							<h1 className='cv-login-title-main'>Comparte todas tus redes sociales en un solo link</h1>
+							<h1 className='cv-login-title-main'>
+								Comparte todas tus redes sociales en un solo link
+							</h1>
 						</Col>
 						<Col xs={24} sm={24} md={12}>
 							<div className='cv-login-content-logins'>
@@ -68,7 +70,9 @@ const Register = (props) => {
 										/>
 									</Link>
 									<h2 className='cv-login-title-register'>Bienvenido a Cuentas Virales</h2>
-									<p className='cv-login-sub-title-register'>Encuentra las mejores cuentas</p>
+									<p className='cv-login-sub-title-register'>
+										Encuentra las mejores cuentas
+									</p>
 								</div>
 								<div className='cv-login-content-redes-main'>
 									<Form
@@ -121,7 +125,9 @@ const Register = (props) => {
 											/>
 										</div>
 										<Form.Item>
-											<Button htmlType={'submit'} className={'cv-auth-login-main-button-submit'}>
+											<Button
+												htmlType={'submit'}
+												className={'cv-auth-login-main-button-submit'}>
 												Registrar
 											</Button>
 										</Form.Item>
@@ -134,8 +140,8 @@ const Register = (props) => {
 									</div>
 								</div>
 								<p className='cv-login-title-termi-condi'>
-									Al continuar, aceptas las Condiciones del servicio y la Política de privacidad de
-									Cuentas Virales.
+									Al continuar, aceptas las Condiciones del servicio y la Política de
+									privacidad de Cuentas Virales.
 								</p>
 								<center>
 									<Link to={`/`}>

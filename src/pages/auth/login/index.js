@@ -63,7 +63,7 @@ export default class Login extends React.Component {
 		return (
 			<>
 				<div className='cv-login-content'>
-					<Content className='cv-container-main'>
+					<Content className='cv-global-main-container'>
 						<Row className='cv-login-conteent-row' align='middle'>
 							<Col xs={24} sm={24} md={12}>
 								<h1 className='cv-login-title-main'>
@@ -85,7 +85,9 @@ export default class Login extends React.Component {
 										<h2 className='cv-login-title-register'>
 											Bienvenido a Cuentas Virales {this.state.email}
 										</h2>
-										<p className='cv-login-sub-title-register'>Encuentra las mejores cuentas</p>
+										<p className='cv-login-sub-title-register'>
+											Encuentra las mejores cuentas
+										</p>
 									</div>
 									<div className='cv-login-content-redes-main'>
 										<Form
@@ -115,7 +117,9 @@ export default class Login extends React.Component {
 												/>
 											</div>
 											<Link to={`/auth/recovery`}>
-												<h3 className='cv-auth-login-recover'>¿Olvidaste tu contraseña?</h3>
+												<h3 className='cv-auth-login-recover'>
+													¿Olvidaste tu contraseña?
+												</h3>
 											</Link>
 											<Form.Item>
 												<Button
@@ -156,8 +160,8 @@ export default class Login extends React.Component {
 									</div>
 									<br />
 									<p className='cv-login-title-termi-condi'>
-										Al continuar, aceptas las Condiciones del servicio y la Política de privacidad
-										de Cuentas Virales.
+										Al continuar, aceptas las Condiciones del servicio y la Política de
+										privacidad de Cuentas Virales.
 									</p>
 									<center>
 										<Link to={`/`}>

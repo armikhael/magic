@@ -65,11 +65,12 @@ const DrawerLinktree = () => {
 				visible={showDrawer}
 				key={'bottom'}
 				height={isMobil}>
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<div className='cv-account-linktree-drawer-titles-contens'>
 						<br />
 						<h3 className='cv-account-linktree-drawer-title'>
-							Te Ayudamos a <span className='cv-account-linktree-drawer-title-color'>crecer</span> en tu
+							Te Ayudamos a{' '}
+							<span className='cv-account-linktree-drawer-title-color'>crecer</span> en tu
 							cuenta{' '}
 						</h3>
 						<span className='cv-account-linktree-drawer-sub-title'>
@@ -112,7 +113,11 @@ const DrawerLinktree = () => {
 												alt='Información'
 											/>
 										</Col>
-										<Col xs={17} sm={17} md={17} className='cv-account-linktree-content-card-two'>
+										<Col
+											xs={17}
+											sm={17}
+											md={17}
+											className='cv-account-linktree-content-card-two'>
 											<h3>{item.text}</h3>
 											<p>{item.description}</p>
 											<div>

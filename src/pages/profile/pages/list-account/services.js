@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { notification } from 'antd'
 
-const serviceGetData = async (item) => {
+export const serviceGetData = async (item) => {
 	let returnResponse
 	await axios({
 		method: 'GET',
@@ -11,7 +11,7 @@ const serviceGetData = async (item) => {
 	})
 		.then((response) => {
 			if (response.data.statusCode === 200) {
-				returnResponse = response.data
+				returnResponse = response.data.accounts
 			} else {
 				notification['error']({
 					message: `Error ${response.data.statusCode}`,
@@ -19,10 +19,11 @@ const serviceGetData = async (item) => {
 				})
 			}
 		})
-		.catch((error) => {
-			returnResponse = error.response.data
+		.catch(() => {
+			notification['error']({
+				message: `Error!`,
+				description: `Problemas con el servico.`,
+			})
 		})
 	return returnResponse
 }
-
-export { serviceGetData }

@@ -62,8 +62,10 @@ export default function LinkTreeName(props) {
 										componentType={'text'}
 										componentValue={data.name}
 									/>
-									<Form.Item className='cv-right'>
-										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+									<Form.Item className='mt25 cv-aling-right'>
+										<Button
+											htmlType={'submit'}
+											className={'cv-account-wizzard-button-submit'}>
 											Siguiente
 										</Button>
 									</Form.Item>

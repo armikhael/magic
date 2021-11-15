@@ -72,14 +72,14 @@ export default function Modeles() {
 	return (
 		<>
 			<section className='cv-models-content-section'>
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<Row className='cv-models-row-firts' align='middle'>
 						<Col xs={24} sm={24} md={12} className='cv-models-col-firts'>
 							<h3 className='cv-models-firts-title'>
-								Ya son más de <span className='cv-models-firts-title-900'>1000</span> Influencers en
-								Latinoamérica usando nuestros{' '}
-								<span className='cv-models-firts-title-900'>enlaces personalizados</span> para gestionar
-								todas sus redes sociales y contenido de forma{' '}
+								Ya son más de <span className='cv-models-firts-title-900'>1000</span>{' '}
+								Influencers en Latinoamérica usando nuestros{' '}
+								<span className='cv-models-firts-title-900'>enlaces personalizados</span>{' '}
+								para gestionar todas sus redes sociales y contenido de forma{' '}
 								<span className='cv-models-firts-title-900'>gratuita y simple</span>
 							</h3>
 							<br />
@@ -92,7 +92,7 @@ export default function Modeles() {
 								Crear mi enlace
 							</Button>
 						</Col>
-						<Col xs={24} sm={24} md={12} className='center'>
+						<Col xs={24} sm={24} md={12} className='cv-aling-center'>
 							<img
 								className='cv-models-firts-img'
 								src='https://i.ibb.co/ccyGyw7/Grupo-46.png'
@@ -135,7 +135,7 @@ export default function Modeles() {
 				</p>
 			</div>
 			<section className='cv-models-content-section-two'>
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<Row className='cv-models-row-req' align='middle' justify='center'>
 						<Col xs={24} sm={24} md={8} className=''>
 							<div className='cv-models-row-req-item'>

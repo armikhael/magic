@@ -35,7 +35,7 @@ export default function ChangePassword() {
 
 	return (
 		<>
-			<div className='cv-content-main'>
+			<div className='cv-global-main-container'>
 				<Header className='cv-profile-header'>
 					<h3 className='cv-profile-header-title'>
 						{' '}
@@ -72,7 +72,8 @@ export default function ChangePassword() {
 												componentPlaceholder={'Ingrese tu nueva contraseña'}
 												componentType={'password'}
 											/>
-											<div className={'cv-profile-button-submit-change-password-content'}>
+											<div
+												className={'cv-profile-button-submit-change-password-content'}>
 												<Form.Item>
 													<Button
 														htmlType={'submit'}

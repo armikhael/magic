@@ -140,7 +140,10 @@ const AccountBiography = (props) => {
 				<Row justify='center' className='cv-account-wizzard-global-content'>
 					<Col xs={23} sm={20} xl={12} className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
-							<Card className='cv-account-wizzard-card' title='Agrega tus datos (2/4)' bordered={false}>
+							<Card
+								className='cv-account-wizzard-card'
+								title='Agrega tus datos (2/4)'
+								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<div className='ph-auth-login-form-container'>
 										<InputField
@@ -210,7 +213,10 @@ const AccountBiography = (props) => {
 									</div>
 									<Row className='cv-account-wizzard-upload-image-container'>
 										<Col xs={10} sm={10} md={8}>
-											<UploadImage account={data} componentHandle={handleSetImageProfile} />
+											<UploadImage
+												account={data}
+												componentHandle={handleSetImageProfile}
+											/>
 										</Col>
 										<Col xs={14} sm={14} md={16}>
 											<div className='cv-account-wizzard-upload-image-mobile-title-container'>
@@ -231,7 +237,10 @@ const AccountBiography = (props) => {
 									{data.type_account === 'personal' && (
 										<Row className='cv-account-wizzard-upload-image-container'>
 											<Col xs={10} sm={10} md={8}>
-												<UploadCover account={data} componentHandle={handleSetImageCover} />
+												<UploadCover
+													account={data}
+													componentHandle={handleSetImageCover}
+												/>
 											</Col>
 											<Col xs={14} sm={14} md={16}>
 												<div className='cv-account-wizzard-upload-image-mobile-title-container'>
@@ -250,8 +259,10 @@ const AccountBiography = (props) => {
 											</Col>
 										</Row>
 									)}
-									<Form.Item className='cv-right'>
-										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+									<Form.Item className='mt25 cv-aling-right'>
+										<Button
+											htmlType={'submit'}
+											className={'cv-account-wizzard-button-submit'}>
 											{buttonText}
 										</Button>
 										{handleButtonSkip()}

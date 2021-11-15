@@ -38,7 +38,7 @@ export default class Profile extends React.Component {
 		}
 		return (
 			<>
-				<div className='cv-content-main'>
+				<div className='cv-global-main-container'>
 					<Header className='cv-profile-header'>
 						<h3 className='cv-profile-header-title'>Mis Enlaces</h3>
 					</Header>
@@ -50,8 +50,8 @@ export default class Profile extends React.Component {
 								<h3>Mis Enlaces Personales</h3>
 								<div className='cv-profile-card-item-title'>
 									<p>
-										Enlaces diseñados especialmente para Modelos, Actores, Cantantes, Mascotas,
-										Bailarines, Personajes Públicos.
+										Enlaces diseñados especialmente para Modelos, Actores, Cantantes,
+										Mascotas, Bailarines, Personajes Públicos.
 									</p>
 								</div>
 								<br />
@@ -79,8 +79,8 @@ export default class Profile extends React.Component {
 								<h3>Mis Enlaces de Negocio</h3>
 								<div className='cv-profile-card-item-title'>
 									<p>
-										Enlaces diseñados especialmente para Negocios, Diseñadores, Creadores de
-										Contenido, Empresas, Marketing de Referidos, Profesores.
+										Enlaces diseñados especialmente para Negocios, Diseñadores, Creadores
+										de Contenido, Empresas, Marketing de Referidos, Profesores.
 									</p>
 								</div>
 								<br />
@@ -161,7 +161,9 @@ export default class Profile extends React.Component {
 						</Col>
 						<Col xs={24} sm={6} md={6}>
 							<Link to={`/pricing`}>
-								<div className='cv-profile-card-item-link'>¿Necesitas ganar más seguidores?</div>
+								<div className='cv-profile-card-item-link'>
+									¿Necesitas ganar más seguidores?
+								</div>
 							</Link>
 						</Col>
 						<Col xs={24} sm={6} md={6}>

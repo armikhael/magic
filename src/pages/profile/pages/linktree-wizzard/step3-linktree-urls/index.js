@@ -323,7 +323,7 @@ export default function LinkTreeUrl(props) {
 										</DragDropContext>
 									</div>
 									<Form.Item>
-										<div className='cv-right'>
+										<div className='mt25 cv-aling-right'>
 											<Button
 												className={'cv-linktree-button-submit'}
 												onClick={() => {

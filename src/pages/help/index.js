@@ -56,7 +56,7 @@ export default function Help(props) {
 	}
 	return (
 		<>
-			<Content className='cv-container-main'>
+			<Content className='cv-global-main-container'>
 				<div className='cv-help-content'>
 					<h1 className='cv-help-title'>¿Necesitas Ayuda?</h1>
 				</div>
@@ -70,7 +70,9 @@ export default function Help(props) {
 											<li>
 												<Link
 													className={`cv-help-list-li ${
-														item.slug === props.match.params.name ? 'cv-active-li' : ''
+														item.slug === props.match.params.name
+															? 'cv-active-li'
+															: ''
 													}`}
 													to={`/help/${item.slug}`}>
 													{item.title}
@@ -105,7 +107,11 @@ export default function Help(props) {
 													)}
 
 													{item.url_type === 'vimeo' && (
-														<Vimeo video={item.url_embed} autoplay responsive={true} />
+														<Vimeo
+															video={item.url_embed}
+															autoplay
+															responsive={true}
+														/>
 													)}
 
 													{item.url_type === 'instagram' && (

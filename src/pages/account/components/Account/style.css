@@ -33,7 +33,12 @@
 .cv-detail-hr {
 	border: 0;
 	height: 1px;
-	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0 0 0 / 11%), rgba(0, 0, 0, 0));
+	background-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0),
+		rgb(0 0 0 / 11%),
+		rgba(0, 0, 0, 0)
+	);
 }
 
 .cv-detail-content-accoun {
@@ -463,5 +468,21 @@
 	}
 	.cv-detail-accounts-relations-conente {
 		padding: 0 0px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.cv-md {
+		display: none;
+	}
+}
+
+.cv-xs {
+	display: none;
+}
+
+@media only screen and (max-width: 768px) {
+	.cv-xs {
+		display: block;
 	}
 }

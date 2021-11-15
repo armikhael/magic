@@ -21,13 +21,16 @@ const Account = (props) => {
 	return (
 		<>
 			{props.componentData && (
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<div className='cv-detail-content-mobil cv-xs'>
 						<img
 							className='cv-detail-img-main '
 							title={props.componentData.account[0].name}
 							alt={props.componentData.account[0].name}
-							src={props.componentData.account[0].image_cover || props.componentData.account[0].image}
+							src={
+								props.componentData.account[0].image_cover ||
+								props.componentData.account[0].image
+							}
 						/>
 						<div
 							className='cv-detail-whatsapp-icon-mobil'
@@ -73,7 +76,10 @@ const Account = (props) => {
 													/>
 												)}
 											</h1>
-											<Moment format='LLLL' withTitle className='cv-detail-moment-title-mobil'>
+											<Moment
+												format='LLLL'
+												withTitle
+												className='cv-detail-moment-title-mobil'>
 												{props.componentData.account[0].createdAt}
 											</Moment>
 											<a
@@ -137,7 +143,9 @@ const Account = (props) => {
 										{props.componentData.account[0].categories.map(function (item, i) {
 											return (
 												<Link to={`/category/${item}`} key={i}>
-													<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+													<span className='cv-detail-category-tag'>
+														#{item}&nbsp;&nbsp;
+													</span>
 												</Link>
 											)
 										})}
@@ -213,7 +221,11 @@ const Account = (props) => {
 									</Link>
 									<div className='cv-detail-account-img-main-contnet'>
 										<Row>
-											<Col xs={24} sm={24} md={7} className='cv-detail-account-img-main-content'>
+											<Col
+												xs={24}
+												sm={24}
+												md={7}
+												className='cv-detail-account-img-main-content'>
 												<img
 													title={props.componentData.account[0].name}
 													alt={props.componentData.account[0].name}
@@ -221,7 +233,11 @@ const Account = (props) => {
 													src={props.componentData.account[0].image}
 												/>
 											</Col>
-											<Col xs={24} sm={24} md={15} className='cv-detail-account-content-info'>
+											<Col
+												xs={24}
+												sm={24}
+												md={15}
+												className='cv-detail-account-content-info'>
 												<h3 className='cv-detail-account-content-info-country'>
 													{props.componentData.account[0].country}
 												</h3>
@@ -238,7 +254,9 @@ const Account = (props) => {
 														<h3>@{props.componentData.account[0].account}</h3>
 													</div>
 												</a>
-												<p>Cantidad de Visitas: {props.componentData.account[0].counter}</p>
+												<p>
+													Cantidad de Visitas: {props.componentData.account[0].counter}
+												</p>
 												<h3 className='cv-detail-account-content-info-email'>
 													{props.componentData.account[0].email}
 												</h3>
@@ -263,7 +281,9 @@ const Account = (props) => {
 										{props.componentData.account[0].categories.map(function (item, i) {
 											return (
 												<Link to={`/category/${item}`} key={i}>
-													<span className='cv-detail-category-tag'>#{item}&nbsp;&nbsp;</span>
+													<span className='cv-detail-category-tag'>
+														#{item}&nbsp;&nbsp;
+													</span>
 												</Link>
 											)
 										})}

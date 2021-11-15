@@ -30,7 +30,7 @@ export default class Recovery extends React.Component {
 		return (
 			<>
 				<div className='cv-login-content'>
-					<Content className='cv-container-main'>
+					<Content className='cv-global-main-container'>
 						<Row className='cv-login-conteent-row' align='middle'>
 							<Col xs={24} sm={24} md={12}>
 								<h1 className='cv-login-title-main'>
@@ -49,11 +49,14 @@ export default class Recovery extends React.Component {
 												src={process.env.REACT_APP_LOGO}
 											/>
 										</Link>
-										<h2 className='cv-login-title-register'>Bienvenido a Cuentas Virales</h2>
+										<h2 className='cv-login-title-register'>
+											Bienvenido a Cuentas Virales
+										</h2>
 										<p className='cv-login-sub-title-register'>
-											Tienes problemas para recordar tu contraseña ingresa tu correo electrónico y
-											te enviaremos una clave alternativa, recuerda que luego desde tu perfil puedes
-											cambiar y poner la que mejor te acomode.{' '}
+											Tienes problemas para recordar tu contraseña ingresa tu correo
+											electrónico y te enviaremos una clave alternativa, recuerda que
+											luego desde tu perfil puedes cambiar y poner la que mejor te
+											acomode.{' '}
 										</p>
 									</div>
 									<div className='cv-login-content-redes-main'>

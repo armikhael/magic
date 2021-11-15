@@ -64,9 +64,11 @@ export default class InactiveAccounts extends React.Component {
 	render() {
 		return (
 			<>
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<div className='cv-category-content-title'>
-						<h1 className='cv-category-title'>Cuentas inactivas ({this.state.list.length})</h1>
+						<h1 className='cv-category-title'>
+							Cuentas inactivas ({this.state.list.length})
+						</h1>
 					</div>
 					{this.state.list.length > 0 && (
 						<ul>
@@ -79,7 +81,9 @@ export default class InactiveAccounts extends React.Component {
 											<img width='150' src={item.image} alt={item.name} />
 										</li>
 										<li>
-											<Button type='danger' onClick={() => this.handleDeleteAccount(item)}>
+											<Button
+												type='danger'
+												onClick={() => this.handleDeleteAccount(item)}>
 												Eliminar cuenta
 											</Button>
 										</li>

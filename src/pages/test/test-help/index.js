@@ -38,7 +38,7 @@ const html = `
 export default function App() {
 	return (
 		<>
-			<Content className='cv-container-main'>
+			<Content className='cv-global-main-container'>
 				<div className='cv-help-content'>
 					<h1 className='cv-help-title'>¿Necesitas Ayuda?</h1>
 				</div>

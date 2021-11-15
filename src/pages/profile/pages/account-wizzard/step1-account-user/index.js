@@ -91,7 +91,10 @@ export default function AccountUser(props) {
 				<Row justify='center' className='cv-account-wizzard-global-content'>
 					<Col xs={23} sm={20} xl={10} className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
-							<Card className='cv-account-wizzard-card' title='Reserva tu nombre (1/4)' bordered={false}>
+							<Card
+								className='cv-account-wizzard-card'
+								title='Reserva tu nombre (1/4)'
+								bordered={false}>
 								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
 									<SelectField
 										componentClass={'cv-global-select-field-input'}
@@ -163,8 +166,10 @@ export default function AccountUser(props) {
 										</>
 									)}
 
-									<Form.Item className='cv-right'>
-										<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+									<Form.Item className='mt25 cv-aling-right'>
+										<Button
+											htmlType={'submit'}
+											className={'cv-account-wizzard-button-submit'}>
 											Siguiente
 										</Button>
 									</Form.Item>

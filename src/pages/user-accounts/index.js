@@ -25,7 +25,7 @@ export default class userAccounts extends React.Component {
 	render() {
 		return (
 			<>
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<div className='cv-category-content-title'>
 						<h1 className='cv-category-title'>
 							Cuentas asociadas de: {atob(this.props.match.params.name)}

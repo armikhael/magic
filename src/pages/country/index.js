@@ -53,15 +53,17 @@ export default class Country extends React.Component {
 			label: item.item.props.name,
 		})
 		this.setState({ list: [], loading: true, orderBy: item.item.props.name })
-		serviceGetAccountByCountry(this.props.match.params.name.replaceAll('-', ' '), 1, item.item.props.name).then(
-			(response) => {
-				if (response.statusCode === 200) {
-					this.setState({ list: response.data, loading: false })
-				} else {
-					this.setState({ loading: false, error: response })
-				}
+		serviceGetAccountByCountry(
+			this.props.match.params.name.replaceAll('-', ' '),
+			1,
+			item.item.props.name
+		).then((response) => {
+			if (response.statusCode === 200) {
+				this.setState({ list: response.data, loading: false })
+			} else {
+				this.setState({ loading: false, error: response })
 			}
-		)
+		})
 	}
 
 	render() {
@@ -75,7 +77,7 @@ export default class Country extends React.Component {
 		return (
 			<React.Fragment>
 				<div>
-					<Content className='cv-container-main'>
+					<Content className='cv-global-main-container'>
 						<Filters
 							section='País'
 							title={this.props.match.params.name.replaceAll('-', ' ')}

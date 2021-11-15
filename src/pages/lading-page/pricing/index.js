@@ -152,7 +152,7 @@ export default function Pricing(props) {
 	return (
 		<>
 			<section className='cv-buy-followers-content-section'>
-				<Content className='cv-container-main'>
+				<Content className='cv-global-main-container'>
 					<Row className='cv-buy-followers-row-main' align='middle'>
 						<Col xs={24} sm={24} md={12} className='cv-buy-followers-row-main-col-publi'>
 							<h3 className='cv-buy-followers-title-dest'>
@@ -160,7 +160,7 @@ export default function Pricing(props) {
 							</h3>
 							<h1 className='cv-buy-followers-title-main'>Publicidad Creativa</h1>
 						</Col>
-						<Col xs={24} sm={24} md={12} className='center'>
+						<Col xs={24} sm={24} md={12} className='cv-aling-center'>
 							<img
 								className='cv-buy-followers-img-main'
 								src='https://i.ibb.co/fqz7xjj/telefonos.png'
@@ -174,8 +174,8 @@ export default function Pricing(props) {
 							Método de Posicionamiento <span>100%</span> Orgánico en <span>Instagram</span>
 						</h3>
 						<p>
-							Conoce el método de crecimiento en instagram que utilizan Modelos y Negocios para hacer
-							crecer sus cuentas de forma explosiva de seguidores 100% orgánicos.
+							Conoce el método de crecimiento en instagram que utilizan Modelos y Negocios
+							para hacer crecer sus cuentas de forma explosiva de seguidores 100% orgánicos.
 						</p>
 					</div>
 					<AwesomeSwiper ref={(ref) => (swiper.swiperRef = ref)} config={swiper.config}>
@@ -196,10 +196,13 @@ export default function Pricing(props) {
 					<br></br>
 					<div className='cv-buy-followers-title-two'>
 						<h3>Planes</h3>
-						<p>¡En todos los paquetes publicitarios quedarás publicado hasta lograr la meta contratada!</p>
+						<p>
+							¡En todos los paquetes publicitarios quedarás publicado hasta lograr la meta
+							contratada!
+						</p>
 					</div>
 					<Row justify='center'>
-						<Col xs={20} sm={20} md={6} className='center'>
+						<Col xs={20} sm={20} md={6} className='cv-aling-center'>
 							<Form>
 								<SelectField
 									componentClass={'cv-global-select-field-input'}
@@ -229,10 +232,12 @@ export default function Pricing(props) {
 								</center>
 								<ul>
 									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Reales
+										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100%
+										Reales
 									</li>
 									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Latinos
+										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100%
+										Latinos
 									</li>
 								</ul>
 								<center>
@@ -266,10 +271,12 @@ export default function Pricing(props) {
 								</center>
 								<ul>
 									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Reales
+										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100%
+										Reales
 									</li>
 									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Latinos
+										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100%
+										Latinos
 									</li>
 								</ul>
 								<center>
@@ -304,10 +311,12 @@ export default function Pricing(props) {
 								</center>
 								<ul>
 									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Reales
+										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100%
+										Reales
 									</li>
 									<li>
-										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100% Latinos
+										<CheckCircleOutlined className='cv-buy-followers-card-i' /> 100%
+										Latinos
 									</li>
 								</ul>
 								<center>
@@ -327,7 +336,11 @@ export default function Pricing(props) {
 												action: 'click',
 												label: `1000 Seguidores`,
 											})
-											handleBuy({ plan: '1000', amount: plan1000, currency: typeCountry })
+											handleBuy({
+												plan: '1000',
+												amount: plan1000,
+												currency: typeCountry,
+											})
 										}}>
 										Reservar Cupo
 									</Button>
@@ -367,8 +380,8 @@ export default function Pricing(props) {
 							<div className='cv-buy-followers-title-tre p20'>
 								<h3>Requisitos</h3>
 								<p>
-									Estos son los requisitos mínimos que necesitamos para que nuestra estrategia
-									funcione.
+									Estos son los requisitos mínimos que necesitamos para que nuestra
+									estrategia funcione.
 								</p>
 							</div>
 						</Col>
@@ -394,7 +407,11 @@ export default function Pricing(props) {
 						</Col>
 						<Col xs={12} sm={12} md={6} className=''>
 							<div className='cv-buy-followers-card-reque'>
-								<img src='http://imgfz.com/i/elojRWr.png' alt='Publicidad' title='Publicidad' />
+								<img
+									src='http://imgfz.com/i/elojRWr.png'
+									alt='Publicidad'
+									title='Publicidad'
+								/>
 								<h3>No hacer publicidad durante el proceso</h3>
 							</div>
 						</Col>

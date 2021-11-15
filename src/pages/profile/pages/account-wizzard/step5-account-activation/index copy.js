@@ -133,8 +133,10 @@ const AccountActivation = (props) => {
 									/>
 								</div>
 
-								<Form.Item className='cv-right'>
-									<Button htmlType={'submit'} className={'cv-account-wizzard-button-submit'}>
+								<Form.Item className='mt25 cv-aling-right'>
+									<Button
+										htmlType={'submit'}
+										className={'cv-account-wizzard-button-submit'}>
 										Activar
 									</Button>
 								</Form.Item>

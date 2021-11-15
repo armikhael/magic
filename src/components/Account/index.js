@@ -62,11 +62,15 @@ export default class Account extends React.Component {
 						{this.props.accountBio && <p>{this.props.account.biography}</p>}
 						<div className='mt10'>
 							<UserOutlined />{' '}
-							<span className='cv-masonry-followers'>{this.props.account.interface.followers}</span>{' '}
+							<span className='cv-masonry-followers'>
+								{this.props.account.interface.followers}
+							</span>{' '}
 							Seguidores
 						</div>
 						<div className='cv-masonry-item-card-more'>
-							<Link className='cv-masonry-item-card-more-title' to={`/${this.props.account.name}`}>
+							<Link
+								className='cv-masonry-item-card-more-title'
+								to={`/${this.props.account.name}`}>
 								Leer más
 							</Link>
 						</div>
@@ -80,7 +84,7 @@ export default class Account extends React.Component {
 									</Link>
 								</h3>
 							</Col>
-							<Col xs={24} sm={12} md={10} className='aling-right'>
+							<Col xs={24} sm={12} md={10} className='cv-aling-right'>
 								<h3 className='cv-masonry-item-gird-like-card-title'>
 									<img
 										width='30px'

@@ -111,7 +111,11 @@ const AccountPlans = (props) => {
 								className='cv-account-wizzard-card mt20'
 								title='Tus paquetes publicitarios (3/4)'
 								bordered={false}>
-								<Form id='formPlans' form={form} initialValues={data} onFinish={handleAddPlans}>
+								<Form
+									id='formPlans'
+									form={form}
+									initialValues={data}
+									onFinish={handleAddPlans}>
 									<div className='ph-auth-login-form-container'>
 										<SelectConstantField
 											componentClass={'cv-auth-login-field-input'}
@@ -156,7 +160,9 @@ const AccountPlans = (props) => {
 									<Form.Item>
 										<Button
 											htmlType='submit'
-											className={'cv-auth-login-main-button-submit cv-linktree-button-add'}>
+											className={
+												'cv-auth-login-main-button-submit cv-linktree-button-add'
+											}>
 											Agregar Plan
 										</Button>
 									</Form.Item>
@@ -187,8 +193,10 @@ const AccountPlans = (props) => {
 											/>
 										</>
 									)}
-									<Form.Item className='cv-right'>
-										<Button onClick={handleSubmit} className={'cv-account-wizzard-button-submit'}>
+									<Form.Item className='mt25 cv-aling-right'>
+										<Button
+											onClick={handleSubmit}
+											className={'cv-account-wizzard-button-submit'}>
 											{buttonText}
 										</Button>
 										{handleButtonSkip()}
