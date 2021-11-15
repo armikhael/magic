@@ -28,11 +28,14 @@
 	padding: 10px 10px 5px 10px;
 }
 
-.cv-account-wizzard-upload-image-container .ant-upload-list-picture-card .ant-upload-list-item {
+.cv-account-wizzard-upload-image-container
+	.ant-upload-list-picture-card
+	.ant-upload-list-item {
 	margin: 0 !important;
 }
 
-.cv-account-wizzard-upload-image-container .ant-upload-list-picture-card-container {
+.cv-account-wizzard-upload-image-container
+	.ant-upload-list-picture-card-container {
 	margin: 0 !important;
 }
 
@@ -89,15 +92,31 @@
 	line-height: 39px !important;
 }
 
-.cv-account-wizzard-global-content .cv-upload-img .ant-upload.ant-upload-select-picture-card {
+.cv-account-wizzard-global-content
+	.cv-upload-img
+	.ant-upload.ant-upload-select-picture-card {
 	margin: 0;
+}
+
+.cv-account-wizzard-step1-content-card-example {
+	border-radius: 8px;
+}
+
+.cv-account-wizzard-step1-content-card-example h3 {
+	color: #525252;
+}
+
+.cv-account-wizzard-step1-content-card-example p {
+	color: #898989;
 }
 
 @media (max-width: 600px) {
 	.cv-account-wizzard-upload-image-desktop-title {
 		display: none;
 	}
-	.cv-account-wizzard-global-content .cv-upload-img .ant-upload.ant-upload-select-picture-card {
+	.cv-account-wizzard-global-content
+		.cv-upload-img
+		.ant-upload.ant-upload-select-picture-card {
 		height: auto;
 		padding: 36% 0;
 	}

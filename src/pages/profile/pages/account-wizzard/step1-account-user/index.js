@@ -43,6 +43,7 @@ export default function AccountUser(props) {
 	}, [props])
 
 	const handleChangeImage = (e) => {
+		console.log(e)
 		setTypeAccount(e)
 		if (e === 'personal') {
 			setTextImage('Imagen de Perfil')
@@ -65,7 +66,8 @@ export default function AccountUser(props) {
 		}
 
 		item.email = user.email
-		item.name = item.type !== undefined ? `${item.account}-${item.type}` : item.account
+		item.name =
+			item.type !== undefined ? `${item.account}-${item.type}` : item.account
 		item.image = imageProfile
 		item.image_thumb = imageProfile
 		item.image_cover = imageCover
@@ -89,13 +91,20 @@ export default function AccountUser(props) {
 		<>
 			{data !== undefined && (
 				<Row justify='center' className='cv-account-wizzard-global-content'>
-					<Col xs={23} sm={20} xl={10} className='cv-account-wizzard-main-content'>
+					<Col
+						xs={23}
+						sm={20}
+						xl={10}
+						className='cv-account-wizzard-main-content'>
 						<div className='cv-account-wizzard-content'>
 							<Card
 								className='cv-account-wizzard-card'
 								title='Reserva tu nombre (1/4)'
 								bordered={false}>
-								<Form form={form} initialValues={data} onFinish={handleOnFinish}>
+								<Form
+									form={form}
+									initialValues={data}
+									onFinish={handleOnFinish}>
 									<SelectField
 										componentClass={'cv-global-select-field-input'}
 										componentLabel={'¿A qué te dedicas?'}
@@ -151,15 +160,67 @@ export default function AccountUser(props) {
 											/>
 
 											{typeAccount === 'personal' && (
-												<UploadImagesAlt
-													title={'Imagen de Portada'}
-													componentName={`${name}-${Date.now()}-cover`}
-													componentHandle={(e) => {
-														setImageCover(e)
-													}}
-												/>
+												<>
+													<UploadImagesAlt
+														title={'Imagen de Portada'}
+														componentName={`${name}-${Date.now()}-cover`}
+														componentHandle={(e) => {
+															setImageCover(e)
+														}}
+													/>
+												</>
 											)}
 
+											{typeAccount === 'personal' && (
+												<>
+													<Card className='cv-account-wizzard-step1-content-card-example'>
+														<Row>
+															<Col xs={6} sm={6} xl={6}>
+																<img
+																	className='cv-profile-account-img-phone-type-account'
+																	src='https://i.ibb.co/ngHy2q9/Grupo-46.png'
+																	title='Telefonos'
+																	alt='Telefonos'
+																/>
+															</Col>
+															<Col xs={18} sm={18} xl={18} className='p20'>
+																<h3>Cuenta de Influencer</h3>
+																<p>
+																	Asi luciria tu cuenta de influcer al terminar
+																	todo el proceso, asi que animo y continua que
+																	falta poco.
+																</p>
+															</Col>
+														</Row>
+													</Card>
+												</>
+											)}
+											{typeAccount === 'business' && (
+												<>
+													<Card className='cv-account-wizzard-step1-content-card-example'>
+														<Row>
+															<Col xs={6} sm={6} xl={6}>
+																<img
+																	className='cv-profile-account-img-phone-type-account'
+																	src='https://i.ibb.co/c6FVtS2/Grupo-45.png'
+																	title='Telefonos'
+																	alt='Telefonos'
+																/>
+															</Col>
+															<Col xs={18} sm={18} xl={18} className='p20'>
+																<h3>Cuenta de Empresa</h3>
+																<p>
+																	Asi luciria tu cuenta de Empresa al terminar
+																	todo el proceso, asi que animo y continua que
+																	falta poco.
+																</p>
+															</Col>
+														</Row>
+													</Card>
+												</>
+											)}
+											<br />
+											<br />
 											<a href='https://www.instagram.com/cuentasvirales/'>
 												¿Problemas para cargar tus imágenes?
 											</a>
